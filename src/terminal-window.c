@@ -29,11 +29,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <libgnome/gnome-program.h>
-#include <libgnomeui/gnome-about.h>
-#include <libgnomeui/gnome-stock-icons.h>
+#include <gtk/gtklabel.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
-#include <eel/eel-ellipsizing-label.h>
 #include <libsn/sn-launchee.h>
 
 struct _TerminalWindowPrivate
@@ -67,6 +65,7 @@ struct _TerminalWindowPrivate
   GList *terms;
   TerminalScreen *active_term;
   GdkPixbuf *icon;
+  GtkClipboard *clipboard;
   int old_char_width;
   int old_char_height;
   void *old_geometry_widget; /* only used for pointer value as it may be freed */
@@ -746,6 +745,29 @@ update_zoom_items (TerminalWindow *window)
 }
 
 static void
+update_edit_menu (GtkClipboard *clipboard,
+                  const  gchar *text,
+                  gpointer     *user_data)
+{
+  TerminalWindow *window;
+
+  window = (TerminalWindow *) user_data;
+
+  gtk_widget_set_sensitive (window->priv->paste_menuitem, text != NULL);
+}
+
+static void
+edit_menu_activate_callback (GtkMenuItem *menuitem,
+                             gpointer     user_data)
+{
+  TerminalWindow *window;
+
+  window = (TerminalWindow *) user_data;
+
+  gtk_clipboard_request_text (window->priv->clipboard, (GtkClipboardTextReceivedFunc) update_edit_menu, window);
+}
+
+static void
 terminal_window_init (TerminalWindow *window)
 {
   GtkWidget *mi;
@@ -776,6 +798,9 @@ terminal_window_init (TerminalWindow *window)
   
   window->priv->use_mnemonics = TRUE;
   window->priv->using_mnemonics = FALSE;
+
+  /* force gtk to construct its GtkClipboard; otherwise our UI is very slow the first time we need it */
+  window->priv->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (GTK_WIDGET (window)), GDK_NONE);
 
   error = NULL;
   menus_have_icons = gconf_client_get_bool (client, "/desktop/gnome/interface/menus_have_icons", &error);
@@ -873,6 +898,8 @@ terminal_window_init (TerminalWindow *window)
                            G_CALLBACK (paste_callback),
                            window);
   menuitem_icon_visibility (window->priv->paste_menuitem, menus_have_icons);
+  g_signal_connect (G_OBJECT (mi), "activate", 
+                    G_CALLBACK (edit_menu_activate_callback), window);
 
   mi = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
@@ -925,8 +952,6 @@ terminal_window_init (TerminalWindow *window)
 
   mi = append_stock_menuitem (menu, GTK_STOCK_ZOOM_100, ACCEL_PATH_ZOOM_NORMAL,
                               G_CALLBACK (zoom_normal_callback), window);
-  /* the default label for GTK_STOCK_ZOOM_100 does not follow the HIG... */
-  set_menuitem_text (mi, _("_Normal Size"), FALSE);
   window->priv->zoom_normal_menuitem = mi;
   menuitem_icon_visibility (window->priv->zoom_normal_menuitem, menus_have_icons);
 
@@ -1016,7 +1041,7 @@ terminal_window_init (TerminalWindow *window)
                                 ACCEL_PATH_HELP);
 
   
-  mi = append_stock_menuitem (menu, GNOME_STOCK_ABOUT, NULL,
+  mi = append_stock_menuitem (menu, GTK_STOCK_ABOUT, NULL,
                               G_CALLBACK (about_callback), window);
   set_menuitem_text (mi, _("_About"), FALSE);
   menuitem_icon_visibility (mi, menus_have_icons);
@@ -1150,8 +1175,25 @@ terminal_window_show (GtkWidget *widget)
       context = sn_launchee_context_new (sn_display,
                                          gdk_screen_get_number (screen),
                                          window->priv->startup_id);
-      sn_launchee_context_setup_window (context,
-                                        GDK_WINDOW_XWINDOW (widget->window));
+
+      /* Handle the setup for the window if the startup_id is valid; I
+       * don't think it can hurt to do this even if it was invalid,
+       * but why do the extra work...
+       */
+      if (strncmp (sn_launchee_context_get_startup_id (context), "_TIME", 5) != 0)
+        sn_launchee_context_setup_window (context,
+                                          GDK_WINDOW_XWINDOW (widget->window));
+
+      /* Now, set the _NET_WM_USER_TIME for the new window to the timestamp
+       * that caused the window to be launched.
+       */
+      if (sn_launchee_context_get_id_has_timestamp (context))
+        {
+          gulong timestamp;
+
+          timestamp = sn_launchee_context_get_timestamp (context);
+          gdk_x11_window_set_user_time (widget->window, timestamp);
+        }
     }
   
   GTK_WIDGET_CLASS (parent_class)->show (widget);
@@ -1164,6 +1206,13 @@ terminal_window_show (GtkWidget *widget)
     }
 }
 
+void terminal_window_realized_callback (GtkWidget *window,
+                                        gpointer   user_data)
+{
+  gdk_window_set_group (window->window, window->window);
+  g_signal_handlers_disconnect_by_func (window, terminal_window_realized_callback, NULL);
+}
+
 TerminalWindow*
 terminal_window_new (GConfClient *conf)
 {
@@ -1172,6 +1221,7 @@ terminal_window_new (GConfClient *conf)
   gboolean use_mnemonics;
   
   window = g_object_new (TERMINAL_TYPE_WINDOW, NULL);
+  g_signal_connect (G_OBJECT (window), "realize", G_CALLBACK (terminal_window_realized_callback), NULL);
 
   window->priv->conf = conf;
   g_object_ref (G_OBJECT (conf));
@@ -1215,20 +1265,12 @@ terminal_window_new (GConfClient *conf)
 static void
 update_notebook (TerminalWindow *window)
 {
-  if (g_list_length (window->priv->terms) > 1)
-    {
-      gtk_notebook_set_show_border (GTK_NOTEBOOK (window->priv->notebook),
-                                    TRUE);
-      gtk_notebook_set_show_tabs (GTK_NOTEBOOK (window->priv->notebook),
-                                  TRUE);
-    }
-  else
-    {
-      gtk_notebook_set_show_border (GTK_NOTEBOOK (window->priv->notebook),
-                                    FALSE);
-      gtk_notebook_set_show_tabs (GTK_NOTEBOOK (window->priv->notebook),
-                                  FALSE);
-    }
+  gboolean single;
+
+  single = g_list_length (window->priv->terms) == 1;
+    
+  gtk_notebook_set_show_border (GTK_NOTEBOOK (window->priv->notebook), !single);
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (window->priv->notebook), !single);
 }
 
 static void
@@ -1259,8 +1301,7 @@ title_changed_callback (TerminalScreen *screen,
     }
 
   label = screen_get_label (screen);
-  eel_ellipsizing_label_set_text (EEL_ELLIPSIZING_LABEL (label),
-                                  terminal_screen_get_title (screen));
+  gtk_label_set_text (GTK_LABEL (label), terminal_screen_get_title (screen));
 
   mi = screen_get_menuitem (screen);
   if (mi)
@@ -1357,7 +1398,8 @@ terminal_window_add_screen (TerminalWindow *window,
 
   hbox = gtk_hbox_new (FALSE, 0);
   scrollbar = gtk_vscrollbar_new (NULL);
-  label = eel_ellipsizing_label_new (terminal_screen_get_title (screen));
+  label = gtk_label_new (terminal_screen_get_title (screen));
+  gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
   gtk_widget_show (label);
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
   
@@ -1418,15 +1460,9 @@ terminal_window_add_screen (TerminalWindow *window,
   {
     /* Match size to current active screen */
     int current_width, current_height;
-    GtkWidget *current_widget;
-
     if (window->priv->active_term)
-      current_widget = terminal_screen_get_widget (window->priv->active_term);
-    else
-      current_widget = NULL;
-    
-    if (current_widget)
-      terminal_widget_get_size (current_widget, &current_width, &current_height);
+      terminal_widget_get_size (terminal_screen_get_widget(window->priv->active_term), 
+                                &current_width, &current_height);
     else
       {
         current_width = 80;
@@ -1701,6 +1737,7 @@ terminal_window_set_active (TerminalWindow *window,
   
   fill_in_config_picker_submenu (window);
   fill_in_new_term_submenus (window);
+  fill_in_encoding_menu (window);
   update_zoom_items (window);
 }
 
@@ -2231,7 +2268,8 @@ new_window_callback (GtkWidget      *menuitem,
       terminal_app_new_terminal (terminal_app_get (),
                                  profile,
                                  NULL,
-                                 FALSE, FALSE, NULL, NULL, NULL, dir, NULL, 1.0,
+                                 FALSE, FALSE, FALSE,
+                                 NULL, NULL, NULL, dir, NULL, 1.0,
                                  NULL, name, -1);
 
       g_free (name);
@@ -2258,7 +2296,8 @@ new_tab_callback (GtkWidget      *menuitem,
       terminal_app_new_terminal (terminal_app_get (),
                                  profile,
                                  window,
-                                 FALSE, FALSE, NULL, NULL, NULL, dir, NULL, 1.0,
+                                 FALSE, FALSE, FALSE,
+                                 NULL, NULL, NULL, dir, NULL, 1.0,
                                  NULL, NULL, -1);
     }
 }
@@ -2678,42 +2717,38 @@ about_callback (GtkWidget      *menuitem,
                 TerminalWindow *window)
 {
   static GtkWidget *about = NULL;
-  GdkPixbuf *pixbuf = NULL;
-  gchar *file;
 
+  const char *copyright =
+    "Copyright \xc2\xa9 2002-2004 Havoc Pennington\n"
+    "Copyright \xc2\xa9 2003-2004 Mariano Su\303\241rez-Alvarez";
   const char *authors[] = {
     "Havoc Pennington <hp@redhat.com>",
-    "Mariano Su\303\241rez-Alvarez <msuarezalvarez@arnet.com.ar>",
+    "Mariano Su\303\241rez-Alvarez <mariano@gnome.org>",
     NULL
   };
-  const char *documenters [] = {
-    NULL
-  };
-  const char *translator_credits = _("translator_credits");
 
   if (about)
     {
+      gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
       gtk_window_present (GTK_WINDOW (about));
       return;
     }
 				     
-  file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-terminal.png", TRUE, NULL);
-  pixbuf = gdk_pixbuf_new_from_file (file, NULL);
-  g_free(file);
+  about = gtk_about_dialog_new ();
 
-  about = gnome_about_new (_("GNOME Terminal"), VERSION,
-                           "Copyright \xc2\xa9 2002 Havoc Pennington",
-                           NULL,
-                           (const char **)authors,
-                           (const char **)documenters,
-                           strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-                           pixbuf);
+  gtk_about_dialog_set_name (GTK_ABOUT_DIALOG (about), _("GNOME Terminal"));
+  gtk_about_dialog_set_version (GTK_ABOUT_DIALOG (about), VERSION);
+  gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (about), copyright);
+  gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (about), authors);
+  gtk_about_dialog_set_translator_credits (GTK_ABOUT_DIALOG (about), _("translator-credits"));
+  gtk_about_dialog_set_logo_icon_name (GTK_ABOUT_DIALOG (about), "gnome-terminal");
+
   gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (about), TRUE);
 
   terminal_util_set_unique_role (GTK_WINDOW (about), "gnome-terminal-about");
   
-  g_object_add_weak_pointer (G_OBJECT (about),
-                             (void**) &about);
+  g_object_add_weak_pointer (G_OBJECT (about), (void**) &about);
 
   gtk_widget_show (about);
 }

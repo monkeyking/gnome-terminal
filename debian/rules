@@ -15,6 +15,8 @@ build/gnome-terminal::
 binary-post-install/gnome-terminal::
 	cp debian/gnome-terminal.xpm debian/gnome-terminal/usr/share/pixmaps
 	install -m 0755 debian/gnome-terminal.wrapper debian/gnome-terminal/usr/bin
+	# 2.9.1 install the scrollkeeper files here !?
+	rm -rf debian/gnome-terminal/var
 
 clean::
 	rm -f debian/gnome-terminal.1
