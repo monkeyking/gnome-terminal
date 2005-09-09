@@ -186,6 +186,7 @@ profile_editor_destroyed (GtkWidget       *editor,
   
   g_object_set_data (G_OBJECT (profile), "editor-window", NULL);
   g_object_set_data (G_OBJECT (editor), "glade-xml", NULL);
+  profile_name_entry_notify (profile);
 }
 
 static PangoFontDescription*
@@ -1209,7 +1210,7 @@ terminal_profile_edit (TerminalProfile *profile,
         }
       else
         {
-          fontsel = egg_xfont_selector_new ();
+          fontsel = egg_xfont_selector_new (_("Choose a terminal font"));
           g_object_set_data (G_OBJECT (editor), "font-selector", fontsel);
  
           profile_editor_update_x_font (editor, profile);
