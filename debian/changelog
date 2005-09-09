@@ -1,3 +1,133 @@
+gnome-terminal (2.12.0-0ubuntu2) breezy; urgency=low
+
+  * debian/patches/03_menu_entry.patch:
+    - move the menu entry to the accessories.
+
+ -- Sebastien Bacher <seb128@canonical.com>  Fri,  9 Sep 2005 12:37:59 +0200
+
+gnome-terminal (2.12.0-0ubuntu1) breezy; urgency=low
+
+  * New upstream release:
+    - Translation updates:
+      - Catalan, Czech, Estonian, French, German,
+        Hungarian, Lithuanian, Norwegian Nynorsk, Russian,
+        Serbian, Turkish, Welsh.
+  * debian/control.in:
+    - Bumped Standards-Version.
+
+ -- Daniel Holbach <dh@mailempfang.de>  Tue,  6 Sep 2005 14:36:11 +0200
+
+gnome-terminal (2.11.3-0ubuntu1) breezy; urgency=low
+
+  * New upstream version:
+    - Don't always go back to the default profile when editing 
+      a different profile.
+    - Translation updates.
+  * debian/patches/02_autoconf.patch:
+    - updated.
+
+ -- Sebastien Bacher <seb128@canonical.com>  Tue, 23 Aug 2005 14:06:09 +0200
+
+gnome-terminal (2.11.2-0ubuntu1) breezy; urgency=low
+
+  * New upstream version:
+    - Reimplement the S/KEY support so we don't ship code that 
+      isn't GPL-compliant. 
+    - HIG fixes.
+    - Translation updates.
+  * debian/control.in:
+    - updated the Build-Depends for the changes.
+  * debian/patches/01_lpi.patch:
+    - launchpad-integration patch.
+  * debian/patches/02_autoconf.patch:
+    - update configure.
+
+ -- Sebastien Bacher <seb128@canonical.com>  Mon,  8 Aug 2005 19:40:33 +0200
+
+gnome-terminal (2.11.1-0ubuntu1) breezy; urgency=low
+
+  * New upstream version:
+    - Accept DND drops from Konqueror.
+    - HIG fixes.
+    - Update profile names instantly.
+    - Include trailing slash when highlighting an URL.
+    - Use the correct name for the Cyrillic/Ukrainian locale.
+    - Open folders that are dropped on a terminal launcher.
+    - Ask the user before creating two profiles with the same name.
+    - Fix highlighting of NNTP links (Ubuntu: #12285).
+    - Use the right keycombo to zoom to normal size (according to the HIG).
+    - Add Name attribute to the server definition.
+  * debian/watch:
+    - new upstream version.
+
+ -- Sebastien Bacher <seb128@canonical.com>  Mon,  4 Jul 2005 18:33:04 +0200
+
+gnome-terminal (2.10.0-2ubuntu1) breezy; urgency=low
+
+  * debian/control.in:
+    - fix an overwrite issue (Closes: #12206).
+  * debian/patches/translation_warning.patch:
+    - fix a warning due to a translation issue.
+
+ -- Sebastien Bacher <seb128@canonical.com>  Tue, 28 Jun 2005 12:46:14 +0200
+
+gnome-terminal (2.10.0-2) unstable; urgency=low
+
+  * Upload to unstable (GNOME Team upload).
+  * Updated 'debian/copyright'.
+  * Updated Depends / Build-Depends.
+  * Renamed debian files with pkg prefix, install menu file and bonobo
+    files in '/usr/lib' and some more '/usr/share/' subdirectories in
+    gnome-terminal-data.
+
+ -- Marc Dequènes (Duck) <Duck@DuckCorp.org>  Mon, 13 Jun 2005 23:25:32 +0200
+
+gnome-terminal (2.10.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Update debian/watch.
+  * Split out data files in a separate package.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 27 Apr 2005 19:51:37 +0200
+
+gnome-terminal (2.8.2-2) unstable; urgency=medium
+
+  * Pass --as-needed to LDFLAGS, to reduce dependencies.
+    + Incidentally removes the dependency upon libhowl0 (closes: #298850).
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 10 Mar 2005 22:50:38 +0100
+
+gnome-terminal (2.8.2-1) unstable; urgency=medium
+
+  * New upstream release (translation updates).
+  * [debian/patches/update-config-guess-sub.patch] Dropped; upstream now
+    includes a newer config.guess and config.sub than are available in 
+    autotools-dev.
+  * [debian/rules] Have binary-post-install clean up scrollkeeper's droppings.
+
+ -- J.H.M. Dassen (Ray) <jdassen@debian.org>  Sat,  1 Jan 2005 12:20:00 +0100
+
+gnome-terminal (2.8.0-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/watch:
+    - updated.
+
+ -- Sebastien Bacher <seb128@debian.org>  Fri, 19 Nov 2004 17:18:12 +0100
+
+gnome-terminal (2.8.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * [debian/patches/update-config-guess-sub.patch] Update config.{guess,sub}.
+  * Fixed in 2.7.2:
+    Recognize mailto: (with or without the mailto:...) and webdav: uris
+    (Closes: #230549)
+  * [debian/control.in] Dropped "libesd0-dev" build dependency, as the
+    gnome-terminal code does not depend on it directly (and the libraries it
+    depends on that do have a proper dependency on it).
+
+ -- J.H.M. Dassen (Ray) <jdassen@debian.org>  Sun, 17 Oct 2004 09:49:40 +0200
+
 gnome-terminal (2.7.3-1) experimental; urgency=low
 
   * GNOME Team upload.

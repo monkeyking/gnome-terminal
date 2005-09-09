@@ -1,14 +1,18 @@
 # Danish translation of gnome-terminal.
 # Copyright (C) 2002, 03, 04 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-terminal package.
 # Ole Laursen <olau@hardworking.dk>, 2002, 03, 04.
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
+#
+# Husk at tilføje dig i credit-listen (besked id "translator-credits")
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-29 19:42-0300\n"
-"PO-Revision-Date: 2004-03-03 19:05+0100\n"
-"Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
+"POT-Creation-Date: 2004-11-23 11:28+0100\n"
+"PO-Revision-Date: 2004-11-23 11:27+0100\n"
+"Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +25,7 @@ msgstr "Kommandolinje"
 
 #: gnome-terminal.desktop.in.in.h:2 src/gnome-terminal.schemas.in.h:109
 #: src/terminal-accels.c:172 src/terminal-profile.c:276
-#: src/terminal-window.c:761 src/terminal.c:1172 src/terminal.c:1518
+#: src/terminal-window.c:783 src/terminal.c:1205 src/terminal.c:1553
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -41,7 +45,7 @@ msgstr "Genvejstilstand"
 msgid "The type of accelerator."
 msgstr "Genvejstypen."
 
-#: src/eggcellrendererkeys.c:219 src/gnome-terminal.glade2.h:32
+#: src/eggcellrendererkeys.c:219 src/gnome-terminal.glade2.h:33
 #: src/terminal-accels.c:717
 msgid "Disabled"
 msgstr "Deaktiveret"
@@ -203,65 +207,65 @@ msgstr ""
 "terminalkodningslisten. %s\n"
 
 #: src/gnome-terminal.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: src/gnome-terminal.glade2.h:2
 msgid "<b>Background</b>"
 msgstr "<b>Baggrund</b>"
 
-#: src/gnome-terminal.glade2.h:3
+#: src/gnome-terminal.glade2.h:2
 msgid "<b>Command</b>"
 msgstr "<b>Kommando</b>"
 
-#: src/gnome-terminal.glade2.h:4
+#: src/gnome-terminal.glade2.h:3
 msgid "<b>Compatibility</b>"
 msgstr "<b>Kompatibilitet</b>"
 
-#: src/gnome-terminal.glade2.h:5
+#: src/gnome-terminal.glade2.h:4
 msgid "<b>Foreground and Background</b>"
 msgstr "<b>Forgrund og baggrund</b>"
 
-#: src/gnome-terminal.glade2.h:6
+#: src/gnome-terminal.glade2.h:5
 msgid "<b>General</b>"
 msgstr "<b>Generelt</b>"
 
-#: src/gnome-terminal.glade2.h:7
+#: src/gnome-terminal.glade2.h:6
 msgid "<b>Palette</b>"
 msgstr "<b>Palet</b>"
 
-#: src/gnome-terminal.glade2.h:8
+#: src/gnome-terminal.glade2.h:7
 msgid "<b>Scrolling</b>"
 msgstr "<b>Rulning</b>"
 
-#: src/gnome-terminal.glade2.h:9
+#: src/gnome-terminal.glade2.h:8
 msgid "<b>Title</b>"
 msgstr "<b>Titel</b>"
 
 # RETMIG: hvad er dette?
-#: src/gnome-terminal.glade2.h:10
+#: src/gnome-terminal.glade2.h:9
 msgid "<big>S/Key Challenge Response</big>"
 msgstr "<big>S/nøgle-udfordringssvar<big>"
 
-#: src/gnome-terminal.glade2.h:11
+#: src/gnome-terminal.glade2.h:10
 msgid "<small><i>Maximum</i></small>"
 msgstr "<small><i>Maksimal</i></small>"
 
-#: src/gnome-terminal.glade2.h:12
+#: src/gnome-terminal.glade2.h:11
 msgid "<small><i>None</i></small>"
 msgstr "<small><i>Ingen</i></small>"
 
-#: src/gnome-terminal.glade2.h:13
+#: src/gnome-terminal.glade2.h:12
 msgid "ASCII DEL"
 msgstr "ASCII DEL"
 
-#: src/gnome-terminal.glade2.h:14
+#: src/gnome-terminal.glade2.h:13
 msgid "A_vailable encodings:"
 msgstr "_Tilgængelige kodninger:"
 
-#: src/gnome-terminal.glade2.h:15
+#: src/gnome-terminal.glade2.h:14
 msgid "Add or Remove Terminal Encodings"
 msgstr "Tilføj eller fjern terminalkodninger"
+
+#: src/gnome-terminal.glade2.h:15
+msgid "Background _image"
+msgstr "Baggrunds_billede"
 
 #: src/gnome-terminal.glade2.h:16
 msgid "Background image _scrolls"
@@ -283,246 +287,257 @@ msgstr "Indbyggede forgrunds- og baggrundsfarveskemaer:"
 msgid "Built-in palette schemes:"
 msgstr "Indbyggede paletskemaer:"
 
-# 'terminal' er overflødigt
 #: src/gnome-terminal.glade2.h:21
+msgid "C_reate"
+msgstr "Op_ret"
+
+# 'terminal' er overflødigt
+#: src/gnome-terminal.glade2.h:22
 msgid "Choose terminal background color"
 msgstr "Vælg baggrundsfarve"
 
-#: src/gnome-terminal.glade2.h:22
+#: src/gnome-terminal.glade2.h:23
 msgid "Choose terminal text color"
 msgstr "Vælg tekstfarve"
 
-#: src/gnome-terminal.glade2.h:23
+#: src/gnome-terminal.glade2.h:24
 msgid "Color Selector"
 msgstr "Farvevælger"
 
-#: src/gnome-terminal.glade2.h:24
+#: src/gnome-terminal.glade2.h:25
 msgid "Color _palette:"
 msgstr "Farve_palet:"
 
-#: src/gnome-terminal.glade2.h:25
+#: src/gnome-terminal.glade2.h:26
 msgid "Colors"
 msgstr "Farver"
 
-#: src/gnome-terminal.glade2.h:26
+#: src/gnome-terminal.glade2.h:27
 msgid "Compatibility"
 msgstr "Kompatibilitet"
 
-#: src/gnome-terminal.glade2.h:27
+#: src/gnome-terminal.glade2.h:28
 msgid "Control-H"
 msgstr "Ctrl-H"
 
-#: src/gnome-terminal.glade2.h:28
+#: src/gnome-terminal.glade2.h:29
 msgid "Cursor blin_ks"
 msgstr "Markør _blinker"
 
-#: src/gnome-terminal.glade2.h:29
+#: src/gnome-terminal.glade2.h:30
 msgid "Custom co_mmand:"
 msgstr "Brugerdefineret ko_mmando"
 
-#: src/gnome-terminal.glade2.h:30
+#: src/gnome-terminal.glade2.h:31
 msgid "Disable all me_nu access keys (such as Alt+f to open File menu)"
 msgstr "Deaktivér alle me_nugenveje (som f.eks. Alt-f til at åbne filmenuen)"
 
-#: src/gnome-terminal.glade2.h:31
+#: src/gnome-terminal.glade2.h:32
 msgid "Disable m_enu shortcut key (F10 by default)"
 msgstr "Deaktivér menu_genvejstasten (som standard F10)"
 
-#: src/gnome-terminal.glade2.h:33
+#: src/gnome-terminal.glade2.h:34
 msgid "E_ncodings shown in menu:"
 msgstr "_Kodninger der vises i menu:"
 
-#: src/gnome-terminal.glade2.h:34
+#: src/gnome-terminal.glade2.h:35
 msgid "Effects"
 msgstr "Effekter"
 
-#: src/gnome-terminal.glade2.h:35
+#: src/gnome-terminal.glade2.h:36
 msgid "Escape sequence"
 msgstr "Escapesekvens"
 
-#: src/gnome-terminal.glade2.h:36
+#: src/gnome-terminal.glade2.h:37
 msgid "Exit the terminal"
 msgstr "Afslut terminalen"
 
-#: src/gnome-terminal.glade2.h:37
+#: src/gnome-terminal.glade2.h:38
 msgid "General"
 msgstr "Generelt"
 
-#: src/gnome-terminal.glade2.h:38
+#: src/gnome-terminal.glade2.h:39
 msgid "Goes after initial title"
 msgstr "Står efter starttitel"
 
-#: src/gnome-terminal.glade2.h:39
+#: src/gnome-terminal.glade2.h:40
 msgid "Goes before initial title"
 msgstr "Står før starttitel"
 
-#: src/gnome-terminal.glade2.h:40
-#, fuzzy
-msgid "Hold the terminal open"
-msgstr "Afslut terminalen"
-
 #: src/gnome-terminal.glade2.h:41
+msgid "Hold the terminal open"
+msgstr "Hold terminalen åben"
+
+#: src/gnome-terminal.glade2.h:42
+msgid "Image _file:"
+msgstr "Billed_fil:"
+
+#: src/gnome-terminal.glade2.h:43
 msgid "Initial _title:"
 msgstr "Start_titel:"
 
-#: src/gnome-terminal.glade2.h:42
+#: src/gnome-terminal.glade2.h:44
 msgid "Isn't displayed"
 msgstr "Vises ikke"
 
-#: src/gnome-terminal.glade2.h:43
+#: src/gnome-terminal.glade2.h:45
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturgenveje"
 
-#: src/gnome-terminal.glade2.h:44 src/terminal-accels.c:79
+#: src/gnome-terminal.glade2.h:46 src/terminal-accels.c:79
 msgid "New Profile"
 msgstr "Ny profil"
 
 # indledes med 'rulleskakt er:'
-#: src/gnome-terminal.glade2.h:45
+#: src/gnome-terminal.glade2.h:47
 msgid "On the left side"
 msgstr "På venstre side"
 
 # indledes med 'rulleskakt er:'
-#: src/gnome-terminal.glade2.h:46
+#: src/gnome-terminal.glade2.h:48
 msgid "On the right side"
 msgstr "På højre side"
 
-#: src/gnome-terminal.glade2.h:47
+#: src/gnome-terminal.glade2.h:49
 msgid "Open a dialog to specify the color"
 msgstr "Åbn et vindue for at angive farven"
 
-#: src/gnome-terminal.glade2.h:48
+#: src/gnome-terminal.glade2.h:50
 msgid "Palette entry 1"
 msgstr "Paletelement 1"
 
-#: src/gnome-terminal.glade2.h:49
+#: src/gnome-terminal.glade2.h:51
 msgid "Palette entry 10"
 msgstr "Paletelement 10"
 
-#: src/gnome-terminal.glade2.h:50
+#: src/gnome-terminal.glade2.h:52
 msgid "Palette entry 11"
 msgstr "Paletelement 11"
 
-#: src/gnome-terminal.glade2.h:51
+#: src/gnome-terminal.glade2.h:53
 msgid "Palette entry 12"
 msgstr "Paletelement 12"
 
-#: src/gnome-terminal.glade2.h:52
+#: src/gnome-terminal.glade2.h:54
 msgid "Palette entry 13"
 msgstr "Paletelement 13"
 
-#: src/gnome-terminal.glade2.h:53
+#: src/gnome-terminal.glade2.h:55
 msgid "Palette entry 14"
 msgstr "Paletelement 14"
 
-#: src/gnome-terminal.glade2.h:54
+#: src/gnome-terminal.glade2.h:56
 msgid "Palette entry 15"
 msgstr "Paletelement 15"
 
-#: src/gnome-terminal.glade2.h:55
+#: src/gnome-terminal.glade2.h:57
 msgid "Palette entry 16"
 msgstr "Paletelement 16"
 
-#: src/gnome-terminal.glade2.h:56
+#: src/gnome-terminal.glade2.h:58
 msgid "Palette entry 2"
 msgstr "Paletelement 2"
 
-#: src/gnome-terminal.glade2.h:57
+#: src/gnome-terminal.glade2.h:59
 msgid "Palette entry 3"
 msgstr "Paletelement 3"
 
-#: src/gnome-terminal.glade2.h:58
+#: src/gnome-terminal.glade2.h:60
 msgid "Palette entry 4"
 msgstr "Paletelement 4"
 
-#: src/gnome-terminal.glade2.h:59
+#: src/gnome-terminal.glade2.h:61
 msgid "Palette entry 5"
 msgstr "Paletelement 5"
 
-#: src/gnome-terminal.glade2.h:60
+#: src/gnome-terminal.glade2.h:62
 msgid "Palette entry 6"
 msgstr "Paletelement 6"
 
-#: src/gnome-terminal.glade2.h:61
+#: src/gnome-terminal.glade2.h:63
 msgid "Palette entry 7"
 msgstr "Paletelement 7"
 
-#: src/gnome-terminal.glade2.h:62
+#: src/gnome-terminal.glade2.h:64
 msgid "Palette entry 8"
 msgstr "Paletelement 8"
 
-#: src/gnome-terminal.glade2.h:63
+#: src/gnome-terminal.glade2.h:65
 msgid "Palette entry 9"
 msgstr "Paletelement 9"
 
-#: src/gnome-terminal.glade2.h:64
+#: src/gnome-terminal.glade2.h:66
 msgid "Password:"
 msgstr "Adgangskode:"
 
-#: src/gnome-terminal.glade2.h:65
+#: src/gnome-terminal.glade2.h:67
 msgid "Profile Editor"
 msgstr "Profilredigering"
 
-#: src/gnome-terminal.glade2.h:66
+#: src/gnome-terminal.glade2.h:68
 msgid "Profile _icon:"
 msgstr "Profil_ikon:"
 
-#: src/gnome-terminal.glade2.h:67
+#: src/gnome-terminal.glade2.h:69
 msgid "Profile _name:"
 msgstr "Profil_navn:"
 
-#: src/gnome-terminal.glade2.h:68
+#: src/gnome-terminal.glade2.h:70
 msgid "Replaces initial title"
 msgstr "Erstatter starttitel"
 
-#: src/gnome-terminal.glade2.h:69
+#: src/gnome-terminal.glade2.h:71
 msgid "Restart the command"
 msgstr "Genstart kommandoen"
 
-#: src/gnome-terminal.glade2.h:70
+#: src/gnome-terminal.glade2.h:72
 msgid "Ru_n a custom command instead of my shell"
 msgstr "K_ør en brugerdefineret kommando i stedet for kommandoskallen"
 
+#: src/gnome-terminal.glade2.h:73
+msgid "S_hade transparent or image background:"
+msgstr "Gør gennemsigtige og billedbaggrunde m_ørkere:"
+
 # terminalen ruller automatisk _ned_
-#: src/gnome-terminal.glade2.h:71
+#: src/gnome-terminal.glade2.h:74
 msgid "Sc_roll on output"
 msgstr "Rul ned ved _data"
 
-#: src/gnome-terminal.glade2.h:72
+#: src/gnome-terminal.glade2.h:75
 msgid "Scr_ollback:"
 msgstr "_Tilbagerulning:"
 
 # terminalen ruller automatisk _ned_
-#: src/gnome-terminal.glade2.h:73
+#: src/gnome-terminal.glade2.h:76
 msgid "Scroll on _keystroke"
 msgstr "Rul ned ved _tastetryk"
 
-#: src/gnome-terminal.glade2.h:74
+#: src/gnome-terminal.glade2.h:77
 msgid "Scrolling"
 msgstr "Rulning"
 
-#: src/gnome-terminal.glade2.h:75
+#: src/gnome-terminal.glade2.h:78
 msgid "Select-by-_word characters:"
 msgstr "Ord_vælgningstegn:"
 
-#: src/gnome-terminal.glade2.h:76
+#: src/gnome-terminal.glade2.h:79
 msgid "Show _menubar by default in new terminals"
 msgstr "Vis som standard _menulinjen i nye terminaler"
 
-#: src/gnome-terminal.glade2.h:77
+#: src/gnome-terminal.glade2.h:80
 msgid "Terminal _bell"
 msgstr "Terminal_bip"
 
-#: src/gnome-terminal.glade2.h:78
+#: src/gnome-terminal.glade2.h:81
 msgid "Terminal applications have these colors available to them."
 msgstr "Disse farver er tilgængelige for terminalprogrammer."
 
-#: src/gnome-terminal.glade2.h:79
+#: src/gnome-terminal.glade2.h:82
 msgid ""
 "The command running inside the terminal may dynamically set a new title."
 msgstr "Kommandoen i terminalen kan vælge en ny titel dynamisk."
 
-#: src/gnome-terminal.glade2.h:80
+#: src/gnome-terminal.glade2.h:83
 msgid ""
 "These options may cause some applications to behave incorrectly.\n"
 "They are only here to allow you to work around certain applications\n"
@@ -532,53 +547,41 @@ msgstr ""
 "De er her kun for at gøre det muligt for dig at arbejde dig rundt om\n"
 "visse programmer og styresystemer som forventer anderledes terminalopførsel."
 
-#: src/gnome-terminal.glade2.h:83
+#: src/gnome-terminal.glade2.h:86
 msgid "Title and Command"
 msgstr "Titel og kommando"
 
-#: src/gnome-terminal.glade2.h:84
+#: src/gnome-terminal.glade2.h:87
 msgid "Use colors from s_ystem theme"
 msgstr "Benyt farver fra s_ystemtemaet"
 
-#: src/gnome-terminal.glade2.h:85
+#: src/gnome-terminal.glade2.h:88
 msgid "When command _exits:"
 msgstr "Når kommando _slutter:"
 
-#: src/gnome-terminal.glade2.h:86
+#: src/gnome-terminal.glade2.h:89
 msgid "_Allow bold text"
 msgstr "_Tillad fed tekst"
 
-#: src/gnome-terminal.glade2.h:87
+#: src/gnome-terminal.glade2.h:90
 msgid "_Background color:"
 msgstr "_Baggrundsfarve:"
 
-#: src/gnome-terminal.glade2.h:88
-msgid "_Background image"
-msgstr "B_aggrundsbillede"
-
-#: src/gnome-terminal.glade2.h:89
+#: src/gnome-terminal.glade2.h:91
 msgid "_Backspace key generates:"
 msgstr "Slet-_tilbage genererer:"
 
-#: src/gnome-terminal.glade2.h:90
+#: src/gnome-terminal.glade2.h:92
 msgid "_Base on:"
 msgstr "_Basér på:"
 
-#: src/gnome-terminal.glade2.h:91
-msgid "_Create"
-msgstr "_Opret"
-
-#: src/gnome-terminal.glade2.h:92
+#: src/gnome-terminal.glade2.h:93
 msgid "_Delete key generates:"
 msgstr "_Slettetast genererer:"
 
-#: src/gnome-terminal.glade2.h:93
+#: src/gnome-terminal.glade2.h:94
 msgid "_Dynamically-set title:"
 msgstr "_Dynamisk valgt titel:"
-
-#: src/gnome-terminal.glade2.h:94
-msgid "_Image file:"
-msgstr "_Billedfil:"
 
 #: src/gnome-terminal.glade2.h:95
 msgid "_None (use solid color)"
@@ -601,39 +604,34 @@ msgid "_Scrollbar is:"
 msgstr "_Rulleskakt er:"
 
 #: src/gnome-terminal.glade2.h:100
-msgid "_Shade transparent or image background:"
-msgstr "Gør gennemsigtige og billedbaggrunde _mørkere:"
-
-#: src/gnome-terminal.glade2.h:101
 msgid "_Shortcut Keys:"
 msgstr "_Genvejstaster:"
 
-#: src/gnome-terminal.glade2.h:102
+#: src/gnome-terminal.glade2.h:101
 msgid "_Text color:"
 msgstr "_Tekstfarve:"
 
-#: src/gnome-terminal.glade2.h:103
+#: src/gnome-terminal.glade2.h:102
 msgid "_Transparent background"
 msgstr "_Gennemsigtig baggrund"
 
-#: src/gnome-terminal.glade2.h:104
-#, fuzzy
+#: src/gnome-terminal.glade2.h:103
 msgid "_Update login records when command is launched"
-msgstr "_Opdatér utmp/wtmp-opføringer når kommando køres"
+msgstr "_Opdatér log ind-opførsler når kommando køres"
 
-#: src/gnome-terminal.glade2.h:105
+#: src/gnome-terminal.glade2.h:104
 msgid "_Use the system terminal font"
 msgstr "Benyt _systemets terminalskrifttype"
 
-#: src/gnome-terminal.glade2.h:106
-msgid "_kilobytes"
-msgstr "_kilobyte"
-
-#: src/gnome-terminal.glade2.h:107
+#: src/gnome-terminal.glade2.h:105
 msgid "_lines"
 msgstr "_linjer"
 
-#: src/gnome-terminal.glade2.h:108
+#: src/gnome-terminal.glade2.h:106
+msgid "kilo_bytes"
+msgstr "kilo_byte"
+
+#: src/gnome-terminal.glade2.h:107
 msgid "kilobytes"
 msgstr "kilobyte"
 
@@ -796,13 +794,12 @@ msgstr ""
 "have en tankestreg foran)."
 
 #: src/gnome-terminal.schemas.in.h:28
-#, fuzzy
 msgid ""
 "If true, the system login records utmp and wtmp will be updated when the "
 "command inside the terminal is launched."
 msgstr ""
-"Om utmp/wtmp vil blive opdateret når kommandoen inden i terminalen bliver "
-"udført."
+"Om log ind-opførslerne utmp/wtmp i systemet vil blive opdateret når "
+"kommandoen inden i terminalen bliver udført."
 
 #: src/gnome-terminal.schemas.in.h:29
 msgid ""
@@ -1508,11 +1505,12 @@ msgid ""
 "Whether to ask for confirmation when closing a terminal window which has "
 "more than one open tab."
 msgstr ""
+"Om der skal spørges efter bekræftelsen ved lukning af et terminalvindue med "
+"mere end ét åbent faneblad."
 
 #: src/gnome-terminal.schemas.in.h:124
-#, fuzzy
 msgid "Whether to ask for confirmation when closing terminal windows"
-msgstr "Om utmp/wtmp skal opdateres ved kørsel af terminalkommando"
+msgstr "Om der skal spørges efter bekræftelse ved lukning af terminalvinduer"
 
 #: src/gnome-terminal.schemas.in.h:125
 msgid "Whether to blink the cursor"
@@ -1558,9 +1556,8 @@ msgid "Whether to silence terminal bell"
 msgstr "Om terminalbippet skal være stumt"
 
 #: src/gnome-terminal.schemas.in.h:134
-#, fuzzy
 msgid "Whether to update login records when launching terminal command"
-msgstr "Om utmp/wtmp skal opdateres ved kørsel af terminalkommando"
+msgstr "Om log ind-opførsler skal opdateres ved kørsel af terminalkommando"
 
 #: src/gnome-terminal.schemas.in.h:135
 msgid "Whether to use the colors from the theme for the terminal widget"
@@ -1570,13 +1567,15 @@ msgstr "Om farverne fra temaet skal benyttes til terminalkontrollen"
 msgid "Whether to use the system font"
 msgstr "Om systemskrifttypen skal benyttes"
 
-#. Translators: please note this is has to be a list of valid encodings (which are to
-#. be taken from the list in src/encoding.c) It has to include UTF-8 and the word 'current', which
-#. is not to be translated. This is provided for costumization of the default encoding menu; see
-#. bug 144810 for an use case. In most cases, this should be left alone.
-#: src/gnome-terminal.schemas.in.h:141
+#. Translators: Please note that this has to be a list of
+#. valid encodings (which are to be taken from the list in src/encoding.c).
+#. It has to include UTF-8 and the word 'current', which is not to be
+#. translated. This is provided for customization of the default encoding
+#. menu; see bug 144810 for an use case. In most cases, this should be
+#. left alone.
+#: src/gnome-terminal.schemas.in.h:143
 msgid "[UTF-8,current]"
-msgstr ""
+msgstr "[UTF-8,current,ISO-8859-15]"
 
 #: src/profile-editor.c:47
 msgid "Black on light yellow"
@@ -1614,7 +1613,7 @@ msgstr "Rxvt"
 msgid "Custom"
 msgstr "Brugerdefineret"
 
-#: src/profile-editor.c:1179
+#: src/profile-editor.c:1179 src/profile-editor.c:1212
 msgid "Choose a terminal font"
 msgstr "Vælg en terminalskrifttype"
 
@@ -1732,7 +1731,7 @@ msgstr "Zoom ud"
 msgid "Normal Size"
 msgstr "Normal størrelse"
 
-#: src/terminal-accels.c:111 src/terminal-screen.c:1969
+#: src/terminal-accels.c:111 src/terminal-screen.c:1977
 msgid "Set Title"
 msgstr "Skift titel"
 
@@ -1825,7 +1824,7 @@ msgid "Help"
 msgstr "Hjælp"
 
 #: src/terminal-accels.c:264 src/terminal-profile.c:392
-#: src/terminal-screen.c:199 src/terminal.c:1620
+#: src/terminal-screen.c:199 src/terminal.c:1655
 #, c-format
 msgid "There was an error loading config from %s. (%s)\n"
 msgstr "Der opstod en fejl under indlæsning af konfiguration fra %s. %s\n"
@@ -1894,7 +1893,7 @@ msgstr ""
 #: src/terminal-accels.c:986
 #, c-format
 msgid "The shortcut key \"%s\" is already bound to the \"%s\" action"
-msgstr ""
+msgstr "Genvejstasten \"%s\" er allerede bundet til handlingen \"%s\""
 
 #: src/terminal-accels.c:1018
 #, c-format
@@ -1996,7 +1995,7 @@ msgstr ""
 msgid "_Details"
 msgstr "_Detaljer"
 
-#: src/terminal-profile.c:2923
+#: src/terminal-profile.c:2923 src/terminal.c:2295
 #, c-format
 msgid "There was an error creating the profile \"%s\""
 msgstr "Der opstod en fejl under oprettelse af profilen \"%s\""
@@ -2026,17 +2025,17 @@ msgstr ""
 "Der opstod en fejl under bestilling af underrettelser om fast bredde-"
 "skrifttypeændringer. %s\n"
 
-#: src/terminal-screen.c:822
+#: src/terminal-screen.c:825
 #, c-format
 msgid "Could not load font \"%s\"\n"
 msgstr "Kunne ikke indlæse skrifttypen \"%s\"\n"
 
-#: src/terminal-screen.c:950
+#: src/terminal-screen.c:953
 #, c-format
 msgid "There was a problem with the command for this terminal: %s"
 msgstr "Der var et problem med kommandoen for denne terminal: %s"
 
-#: src/terminal-screen.c:1306
+#: src/terminal-screen.c:1301
 #, c-format
 msgid ""
 "Could not open the address \"%s\":\n"
@@ -2045,7 +2044,7 @@ msgstr ""
 "Kunne ikke åbne adressen \"%s\":\n"
 "%s"
 
-#: src/terminal-screen.c:1399 src/terminal-window.c:784
+#: src/terminal-screen.c:1398 src/terminal-window.c:809
 #, c-format
 msgid ""
 "There was an error loading config value for whether to use image in menus. (%"
@@ -2055,82 +2054,78 @@ msgstr ""
 "bruges billeder i menuer. %s\n"
 
 # passer bedre med adresse her
-#: src/terminal-screen.c:1470
+#: src/terminal-screen.c:1485
 msgid "_Open Link"
 msgstr "_Åbn adresse"
 
-#: src/terminal-screen.c:1475
+#: src/terminal-screen.c:1490
 msgid "_Copy Link Address"
 msgstr "K_opier adresse"
 
-#: src/terminal-screen.c:1486 src/terminal-window.c:827
+#: src/terminal-screen.c:1500 src/terminal-window.c:852
 msgid "Open _Terminal"
 msgstr "Åbn _terminal"
 
-#: src/terminal-screen.c:1491 src/terminal-window.c:830
+#: src/terminal-screen.c:1505 src/terminal-window.c:855
 msgid "Open Ta_b"
 msgstr "Åbn fane_blad"
 
-#: src/terminal-screen.c:1501 src/terminal-window.c:845
+#: src/terminal-screen.c:1515 src/terminal-window.c:870
 msgid "C_lose Tab"
 msgstr "L_uk faneblad"
 
-#: src/terminal-screen.c:1506 src/terminal-window.c:849
+#: src/terminal-screen.c:1515 src/terminal-window.c:874
 msgid "_Close Window"
 msgstr "_Luk vindue"
 
-#: src/terminal-screen.c:1534
+#: src/terminal-screen.c:1540
 msgid "Change P_rofile"
 msgstr "Skift p_rofil"
 
-#: src/terminal-screen.c:1584
+#: src/terminal-screen.c:1576
 msgid "_Edit Current Profile..."
 msgstr "_Redigér aktuel profil..."
 
-#: src/terminal-screen.c:1589
+#: src/terminal-screen.c:1581
 msgid "Show _Menubar"
 msgstr "Vis _menulinje"
 
-#: src/terminal-screen.c:1596
-msgid "Secure _Keyboard"
-msgstr "Sikr _tastaturfokus"
-
-#: src/terminal-screen.c:1606
+#: src/terminal-screen.c:1591
 msgid "_Input Methods"
 msgstr "_Indtastningsmetoder"
 
-#: src/terminal-screen.c:1998
+#: src/terminal-screen.c:2006
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: src/terminal-screen.c:2115
+#: src/terminal-screen.c:2123
 #, c-format
 msgid "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
 msgstr ""
 "\"text/plain\" sluppet på terminalen havde ugyldigt format (%d) eller længde "
 "(%d)\n"
 
-#: src/terminal-screen.c:2138
+#: src/terminal-screen.c:2146
 #, c-format
 msgid "Color dropped on terminal had wrong format (%d) or length (%d)\n"
 msgstr ""
 "Farve sluppet på terminalen havde ugyldigt format (%d) eller længde (%d)\n"
 
-#: src/terminal-screen.c:2181
+#: src/terminal-screen.c:2189
 #, c-format
 msgid "Mozilla url dropped on terminal had wrong format (%d) or length (%d)\n"
 msgstr ""
 "Mozilla-adresse sluppet på terminalen havde ugyldigt format (%d) eller "
 "længde (%d)\n"
 
-#: src/terminal-screen.c:2230
+#: src/terminal-screen.c:2238
 #, c-format
 msgid "URI list dropped on terminal had wrong format (%d) or length (%d)\n"
 msgstr ""
 "URI-liste sluppet på terminalen havde ugyldigt format (%d) eller længde (%"
 "d)\n"
 
-#: src/terminal-screen.c:2284
+#: src/terminal-screen.c:2292
 #, c-format
 msgid ""
 "Image filename dropped on terminal had wrong format (%d) or length (%d)\n"
@@ -2138,7 +2133,7 @@ msgstr ""
 "Billedfilnavn sluppet på terminalen havde ugyldigt format (%d) eller længde "
 "(%d)\n"
 
-#: src/terminal-screen.c:2310
+#: src/terminal-screen.c:2318
 #, c-format
 msgid "Error converting URI \"%s\" into filename: %s\n"
 msgstr "Fejl konvertering af URI'en \"%s\" til filnavn: %s\n"
@@ -2148,7 +2143,7 @@ msgid "There was an error creating the child process for this terminal"
 msgstr ""
 "Der opstod en fejl under oprettelse af afkomsprocessen for denne terminal"
 
-#: src/terminal-window.c:336
+#: src/terminal-window.c:335
 #, c-format
 msgid ""
 "There was an error subscribing to notification of menu icon visibility "
@@ -2157,91 +2152,86 @@ msgstr ""
 "Der opstod en fejl under bestilling af underrettelser om ændringer i "
 "menuikonssynligheden. %s\n"
 
-#: src/terminal-window.c:594
+#: src/terminal-window.c:593
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
 
-#: src/terminal-window.c:596
+#: src/terminal-window.c:595
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
-#: src/terminal-window.c:717
+#: src/terminal-window.c:716
 msgid "_Add or Remove..."
 msgstr "_Tilføj eller fjern..."
 
 #. This is fairly bogus to have here but I don't know
 #. * where else to put it really
 #.
-#: src/terminal-window.c:838
+#: src/terminal-window.c:863
 msgid "New _Profile..."
 msgstr "Ny _profil..."
 
-#: src/terminal-window.c:880
+#: src/terminal-window.c:907
 msgid "P_rofiles..."
 msgstr "P_rofiler..."
 
-#: src/terminal-window.c:883
+#: src/terminal-window.c:910
 msgid "_Keyboard Shortcuts..."
 msgstr "_Tastaturgenveje..."
 
-#: src/terminal-window.c:887
+#: src/terminal-window.c:914
 msgid "C_urrent Profile..."
 msgstr "_Aktuel profil..."
 
 #. This is a check menu item so that the togglability is evident, but when it is not checked,
 #. * it won't be seen, of course, because the menubar will be then hidden.
-#: src/terminal-window.c:902
+#: src/terminal-window.c:929
 msgid "Show Menu_bar"
 msgstr "Vis menu_linje"
 
-#: src/terminal-window.c:906
+#: src/terminal-window.c:933
 msgid "_Full Screen"
 msgstr "_Fuldskærm"
 
-#. the default label for GTK_STOCK_ZOOM_100 does not follow the HIG...
-#: src/terminal-window.c:929
-msgid "_Normal Size"
-msgstr "_Normal størrelse"
-
-#: src/terminal-window.c:951
+#: src/terminal-window.c:976
 msgid "Change _Profile"
 msgstr "Skift _profil"
 
-#: src/terminal-window.c:954
+#: src/terminal-window.c:979
 msgid "_Set Title..."
 msgstr "Skift _titel..."
 
-#: src/terminal-window.c:961
+#: src/terminal-window.c:986
 msgid "Set _Character Encoding"
 msgstr "Sæt _tegnkodning"
 
-#: src/terminal-window.c:971
+#: src/terminal-window.c:996
 msgid "_Reset"
 msgstr "_Nulstil"
 
-#: src/terminal-window.c:974
+#: src/terminal-window.c:999
 msgid "Reset and C_lear"
 msgstr "Nulstil og r_yd"
 
-#: src/terminal-window.c:988
+#: src/terminal-window.c:1013
 msgid "_Previous Tab"
 msgstr "_Foregående fane"
 
-#: src/terminal-window.c:992
+#: src/terminal-window.c:1017
 msgid "_Next Tab"
 msgstr "_Næste fane"
 
-#: src/terminal-window.c:1011
+#: src/terminal-window.c:1036
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: src/terminal-window.c:1021
+#: src/terminal-window.c:1046
 msgid "_About"
 msgstr "_Om"
 
-#: src/terminal-window.c:1185
+#: src/terminal-window.c:1235
 #, c-format
 msgid ""
 "There was an error loading config value for whether to use mnemonics. (%s)\n"
@@ -2249,7 +2239,7 @@ msgstr ""
 "Der opstod en fejl under indlæsning af konfigurationsværdi for om der skal "
 "bruges tastaturgenveje. %s\n"
 
-#: src/terminal-window.c:1204
+#: src/terminal-window.c:1254
 #, c-format
 msgid ""
 "There was an error subscribing to notification of terminal window "
@@ -2258,66 +2248,72 @@ msgstr ""
 "Der opstod en fejl under bestilling af underrettelser om "
 "konfigurationsændringer for terminalvindue. %s\n"
 
-#: src/terminal-window.c:2092
+#: src/terminal-window.c:2129
 msgid "_File"
 msgstr "_Fil"
 
-#: src/terminal-window.c:2094 src/terminal.c:2827
+#: src/terminal-window.c:2131 src/terminal.c:2874
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: src/terminal-window.c:2096
+#: src/terminal-window.c:2133
 msgid "_View"
 msgstr "_Vis"
 
-#: src/terminal-window.c:2098
+#: src/terminal-window.c:2135
 msgid "_Terminal"
 msgstr "_Terminal"
 
-#: src/terminal-window.c:2100
+#: src/terminal-window.c:2137
 msgid "Ta_bs"
 msgstr "Fane_blade"
 
-#: src/terminal-window.c:2102
+#: src/terminal-window.c:2139
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/terminal-window.c:2283
+#: src/terminal-window.c:2322
 #, c-format
 msgid "This window has one tab open. Closing the window will close it."
 msgid_plural ""
 "This window has %d tabs open. Closing the window will also close all its "
 "tabs."
 msgstr[0] ""
+"Dette vindue har et faneblad åbent. Lukning af vinduet vil lukke det."
 msgstr[1] ""
+"Dette vindue har %d faneblade åbent. Lukning af vinduet vil lukke alle "
+"fanebladene"
 
-#: src/terminal-window.c:2288
-#, fuzzy
+#: src/terminal-window.c:2327
 msgid "Close all tabs?"
-msgstr "Luk faneblad"
+msgstr "Luk alle faneblade?"
 
-#: src/terminal-window.c:2300
-#, fuzzy
+#: src/terminal-window.c:2339
 msgid "Close All Tabs"
-msgstr "Luk faneblad"
+msgstr "Luk alle faneblade"
 
-#: src/terminal-window.c:2692
-msgid "translator_credits"
-msgstr "Ole Laursen <olau@hardworking.dk>"
-
-#: src/terminal-window.c:2704
+#: src/terminal-window.c:2739
 msgid "GNOME Terminal"
 msgstr "Gnome-terminal"
 
-#: src/terminal.c:187
+#: src/terminal-window.c:2743
+msgid "translator-credits"
+msgstr ""
+"Martin Willemoes Hansen\n"
+"Ole Laursen\n"
+"\n"
+"Dansk-gruppen <dansk@klid.dk>\n"
+"Mere info: http://www.klid.dk/dansk/"
+
+#: src/terminal.c:189
 msgid "Execute the argument to this option inside the terminal."
 msgstr "Kør parameteren til dette tilvalg inden i terminalen."
 
-#: src/terminal.c:196
+#: src/terminal.c:198
 msgid "Execute the remainder of the command line inside the terminal."
 msgstr "Kør resten af kommandolinjen inden i terminalen."
 
-#: src/terminal.c:205
+#: src/terminal.c:207
 msgid ""
 "Open a new window containing a tab with the default profile. More than one "
 "of these options can be provided."
@@ -2325,7 +2321,7 @@ msgstr ""
 "Åbn et nyt vindue med et faneblad med standardprofilen. Mere end ét af disse "
 "tilvalg kan gives."
 
-#: src/terminal.c:214
+#: src/terminal.c:216
 msgid ""
 "Open a new window containing a tab with the given profile. More than one of "
 "these options can be provided."
@@ -2333,11 +2329,11 @@ msgstr ""
 "Åbn et nyt vindue med et faneblad med den givne profil. Mere end ét af disse "
 "tilvalg kan gives."
 
-#: src/terminal.c:215 src/terminal.c:233
+#: src/terminal.c:217 src/terminal.c:235
 msgid "PROFILENAME"
 msgstr "PROFILNAVN"
 
-#: src/terminal.c:223
+#: src/terminal.c:225
 msgid ""
 "Open a new tab in the last-opened window with the default profile. More than "
 "one of these options can be provided."
@@ -2345,7 +2341,7 @@ msgstr ""
 "Åbn et nyt faneblad med standardprofilen i det sidst åbnede vindue. Mere end "
 "ét af disse tilvalg kan gives."
 
-#: src/terminal.c:232
+#: src/terminal.c:234
 msgid ""
 "Open a new tab in the last-opened window with the given profile. More than "
 "one of these options can be provided."
@@ -2353,7 +2349,7 @@ msgstr ""
 "Åbn et nyt faneblad med den givne profil i det sidst åbnede vindue. Mere end "
 "ét af disse tilvalg kan gives."
 
-#: src/terminal.c:241
+#: src/terminal.c:243
 msgid ""
 "Open a new window containing a tab with the given profile ID. Used "
 "internally to save sessions."
@@ -2361,11 +2357,11 @@ msgstr ""
 "Åbn et nyt vindue med et faneblad med den givne profil-id. Bruges internt "
 "til at gemme sessioner."
 
-#: src/terminal.c:242 src/terminal.c:251
+#: src/terminal.c:244 src/terminal.c:253
 msgid "PROFILEID"
 msgstr "PROFILID"
 
-#: src/terminal.c:250
+#: src/terminal.c:252
 msgid ""
 "Open a new tab in the last-opened window with the given profile ID. Used "
 "internally to save sessions."
@@ -2373,7 +2369,7 @@ msgstr ""
 "Åbn et nyt faneblad med den givne profil-id i det sidst åbnede vindue. "
 "Bruges internt til at gemme sessioner."
 
-#: src/terminal.c:259
+#: src/terminal.c:261
 msgid ""
 "Set the role for the last-specified window; applies to only one window; can "
 "be specified once for each window you create from the command line."
@@ -2381,29 +2377,38 @@ msgstr ""
 "Angiv rollen for det sidst angivne vindue; gælder kun for ét vindue, og kan "
 "angives for hvert vindue du åbner fra kommandolinjen."
 
-#: src/terminal.c:260
+#: src/terminal.c:262
 msgid "ROLE"
 msgstr "ROLLE"
 
-#: src/terminal.c:268
+#: src/terminal.c:270
 msgid ""
 "Turn on the menubar for the last-specified window; applies to only one "
 "window; can be specified once for each window you create from the command "
 "line."
 msgstr ""
 "Slå menulinjen til for det sidst angivne vindue; gælder kun for ét vindue, "
-"og kan angives for hvert vindue du åbner fra kommandolinjen."
+"og kan angives én gang for hvert vindue du åbner fra kommandolinjen."
 
-#: src/terminal.c:277
+#: src/terminal.c:279
 msgid ""
 "Turn off the menubar for the last-specified window; applies to only one "
 "window; can be specified once for each window you create from the command "
 "line."
 msgstr ""
 "Slå menulinjen fra for det sidst angivne vindue; gælder kun for ét vindue, "
-"og kan angives for hvert vindue du åbner fra kommandolinjen."
+"og kan angives én gang for hvert vindue du åbner fra kommandolinjen."
 
-#: src/terminal.c:286
+#: src/terminal.c:288
+msgid ""
+"Set the last-specified window into fullscreen mode; applies to only one "
+"window; can be specified once for each window you create from the command "
+"line."
+msgstr ""
+"Sæt fuldskærmstilstand for det sidst angivne vindue; gælder kun for ét "
+"vindue; kan angives én gang for hvert vindue du åbner fra kommandolinjen."
+
+#: src/terminal.c:297
 msgid ""
 "X geometry specification (see \"X\" man page), can be specified once per "
 "window to be opened."
@@ -2411,78 +2416,78 @@ msgstr ""
 "X-geomtrispecifikation (se manualsiden \"X\"), kan angives én gang pr. "
 "vindue der skal åbnes."
 
-#: src/terminal.c:287
+#: src/terminal.c:298
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
-#: src/terminal.c:295
+#: src/terminal.c:306
 msgid ""
 "Do not register with the activation nameserver, do not re-use an active "
 "terminal"
 msgstr ""
 "Registrer ikke med aktiveringsnavneserveren, genbrug ikke en aktiv terminal"
 
-#: src/terminal.c:304
+#: src/terminal.c:315
 msgid "Register with the activation nameserver [default]"
 msgstr "Registrer med aktiveringsnavneserveren [standard]"
 
-#: src/terminal.c:313
+#: src/terminal.c:324
 msgid "ID for startup notification protocol."
 msgstr "Id for startbekendtgørelsesprotokollen."
 
-#: src/terminal.c:322
+#: src/terminal.c:333
 msgid "Set the terminal's title"
 msgstr "Angiv terminalens titel"
 
-#: src/terminal.c:323
+#: src/terminal.c:334
 msgid "TITLE"
 msgstr "TITEL"
 
-#: src/terminal.c:331
+#: src/terminal.c:342
 msgid "Set the terminal's working directory"
 msgstr "Angiv terminalens arbejdsmappe"
 
-#: src/terminal.c:332 src/terminal.c:341
+#: src/terminal.c:343 src/terminal.c:352
 msgid "DIRNAME"
 msgstr "MAPPENAVN"
 
-#: src/terminal.c:340
+#: src/terminal.c:351
 msgid "Set the default terminal's working directory. Used internally"
 msgstr "Angiv standardterminalens arbejdsmappe. Bruges internt"
 
-#: src/terminal.c:349
+#: src/terminal.c:360
 msgid "Set the terminal's zoom factor (1.0 = normal size)"
 msgstr "Angiv terminalens zoomfaktor (1.0 = normal størrelse)"
 
-#: src/terminal.c:350 src/terminal.c:359
+#: src/terminal.c:361 src/terminal.c:370
 msgid "ZOOMFACTOR"
 msgstr "ZOOMFAKTOR"
 
-#: src/terminal.c:358
+#: src/terminal.c:369
 msgid "Set the last specified tab as the active one in its window"
 msgstr "Benyt det sidst angivne faneblad som det aktive i dets vindue"
 
-#: src/terminal.c:696
+#: src/terminal.c:712
 #, c-format
 msgid "Could not load icon \"%s\": %s\n"
 msgstr "Kunne ikke indlæse ikonet \"%s\": %s\n"
 
-#: src/terminal.c:761
+#: src/terminal.c:777
 #, c-format
 msgid "Option \"%s\" requires specifying the command to run\n"
 msgstr "Tilvalget \"%s\" kræver angivelse af en kommando der skal køres\n"
 
-#: src/terminal.c:769
+#: src/terminal.c:785
 #, c-format
 msgid "Argument to \"%s\" is not a valid command: %s\n"
 msgstr "Parameteren til \"%s\" er ikke en gyldig kommando: %s\n"
 
-#: src/terminal.c:779 src/terminal.c:803
+#: src/terminal.c:795 src/terminal.c:819
 #, c-format
 msgid "\"%s\" specified more than once for the same window or tab\n"
 msgstr "\"%s\" angivet mere end én gang for det samme vindue eller faneblad\n"
 
-#: src/terminal.c:794
+#: src/terminal.c:810
 #, c-format
 msgid ""
 "Option \"%s\" requires specifying the command to run on the rest of the "
@@ -2492,57 +2497,57 @@ msgstr ""
 "kommandolinjen\n"
 "\n"
 
-#: src/terminal.c:825 src/terminal.c:849
+#: src/terminal.c:841 src/terminal.c:865
 #, c-format
 msgid "Option \"%s\" requires an argument specifying what profile to use\n"
 msgstr ""
 "Tilvalget \"%s\" kræver en parameter der angiver hvilken profil der skal "
 "bruges\n"
 
-#: src/terminal.c:883 src/terminal.c:909
+#: src/terminal.c:899 src/terminal.c:925
 #, c-format
 msgid "\"%s\" option given twice for the same window\n"
 msgstr "Tilvalget \"%s\" er angivet to gange for det samme vindue\n"
 
-#: src/terminal.c:932
+#: src/terminal.c:965
 #, c-format
 msgid "Option \"%s\" requires an argument giving the role\n"
 msgstr "Tilvalget \"%s\" kræver en parameter der angiver rollen\n"
 
-#: src/terminal.c:941
+#: src/terminal.c:974
 msgid "Two roles given for one window\n"
 msgstr "To roller angivet for ét vindue\n"
 
-#: src/terminal.c:957
+#: src/terminal.c:990
 #, c-format
 msgid "Option \"%s\" requires an argument giving the geometry\n"
 msgstr "Tilvalget \"%s\" kræver en parameter der angiver geometrien\n"
 
-#: src/terminal.c:966
+#: src/terminal.c:999
 #, c-format
 msgid "Two \"%s\" options given for one window\n"
 msgstr "To tilvalg \"%s\" angivet for ét vindue\n"
 
-#: src/terminal.c:976
+#: src/terminal.c:1009
 msgid "Two geometries given for one window\n"
 msgstr "To geometrier angivet for ét vindue\n"
 
-#: src/terminal.c:1002
+#: src/terminal.c:1035
 #, c-format
 msgid "Option \"%s\" requires an argument giving the title\n"
 msgstr "Tilvalget \"%s\" kræver en parameter der angiver titlen\n"
 
-#: src/terminal.c:1010 src/terminal.c:1033 src/terminal.c:1075
+#: src/terminal.c:1043 src/terminal.c:1066 src/terminal.c:1108
 #, c-format
 msgid "Two \"%s\" options given for one tab\n"
 msgstr "To tilvalg \"%s\" angivet for ét faneblad\n"
 
-#: src/terminal.c:1025
+#: src/terminal.c:1058
 #, c-format
 msgid "Option \"%s\" requires an argument giving the directory\n"
 msgstr "Tilvalget \"%s\" kræver en parameter der angiver rollen\n"
 
-#: src/terminal.c:1045
+#: src/terminal.c:1078
 msgid ""
 "Option --default-working-directory requires an argument giving the "
 "directory\n"
@@ -2550,31 +2555,31 @@ msgstr ""
 "Tilvalget --default-working-directory kræver en parameter der angiver "
 "mappen\n"
 
-#: src/terminal.c:1051
+#: src/terminal.c:1084
 msgid "Two --default-working-directories given\n"
 msgstr "To --default-working-directories angivet\n"
 
-#: src/terminal.c:1067
+#: src/terminal.c:1100
 #, c-format
 msgid "Option \"%s\" requires an argument giving the zoom factor\n"
 msgstr "Tilvalget \"%s\" kræver en parameter der angiver zoomfaktoren\n"
 
-#: src/terminal.c:1090
+#: src/terminal.c:1123
 #, c-format
 msgid "\"%s\" is not a valid zoom factor\n"
 msgstr "\"%s\" er ikke en gyldig zoomfaktor\n"
 
-#: src/terminal.c:1098
+#: src/terminal.c:1131
 #, c-format
 msgid "Zoom factor \"%g\" is too small, using %g\n"
 msgstr "Zoomfaktoren \"%g\" er for lille, bruger %g\n"
 
-#: src/terminal.c:1105
+#: src/terminal.c:1138
 #, c-format
 msgid "Zoom factor \"%g\" is too large, using %g\n"
 msgstr "Zoomfaktoren \"%g\" er for stor, bruger %g\n"
 
-#: src/terminal.c:1126
+#: src/terminal.c:1159
 #, c-format
 msgid ""
 "Option --%s is no longer supported in this version of gnome-terminal; you "
@@ -2585,32 +2590,32 @@ msgstr ""
 "oprette en profil med den ønskede indstilling og bruge tilvalget --window-"
 "with-profile\n"
 
-#: src/terminal.c:1132
+#: src/terminal.c:1165
 #, c-format
 msgid "\"%s\" option given twice\n"
 msgstr "Tilvalget \"%s\" angivet to gange\n"
 
-#: src/terminal.c:1137 src/terminal.c:1278
+#: src/terminal.c:1170 src/terminal.c:1311
 #, c-format
 msgid "\"%s\" option requires an argument\n"
 msgstr "Tilvalget \"%s\" kræver en parameter\n"
 
-#: src/terminal.c:1256
+#: src/terminal.c:1289
 #, c-format
 msgid "No argument given to \"%s\" option\n"
 msgstr "Ingen parameter givet til tilvalget \"%s\"\n"
 
-#: src/terminal.c:1390
+#: src/terminal.c:1423
 #, c-format
 msgid "No such profile '%s', using default profile\n"
 msgstr "Ingen profil ved navn '%s', bruger standardprofil\n"
 
-#: src/terminal.c:1568
+#: src/terminal.c:1603
 #, c-format
 msgid "Invalid argument: \"%s\"\n"
 msgstr "Ugyldig parameter: \"%s\"\n"
 
-#: src/terminal.c:1636
+#: src/terminal.c:1671
 #, c-format
 msgid ""
 "There was an error subscribing to notification of terminal profile list "
@@ -2619,98 +2624,98 @@ msgstr ""
 "Der opstod en fejl under bestilling af underrettelser om ændringer i "
 "terminalprofillisten. %s\n"
 
-#: src/terminal.c:1864
+#: src/terminal.c:1900
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Ugyldig geometriangivelse \"%s\"\n"
 
-#: src/terminal.c:1924
+#: src/terminal.c:1965
 #, c-format
 msgid "There was an error getting the list of terminal profiles. (%s)\n"
 msgstr ""
 "Der opstod en fejl under hentning af listen over terminalprofiler. %s\n"
 
-#: src/terminal.c:2223
+#: src/terminal.c:2264
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Du har allerede en profil ved navn \"%s\""
 
-#: src/terminal.c:2234
+#: src/terminal.c:2275
 msgid ""
 "The profile you selected as a base for your new profile no longer exists"
 msgstr ""
 "Den profil du valgte som grundlag for den nye profil, eksisterer ikke længere"
 
-#: src/terminal.c:2323
+#: src/terminal.c:2370
 msgid "Enter profile name"
 msgstr "Indtast profilnavn"
 
-#: src/terminal.c:2333
+#: src/terminal.c:2380
 msgid "Choose base profile"
 msgstr "Vælg grundprofil"
 
-#: src/terminal.c:2472
+#: src/terminal.c:2519
 msgid "Profile list"
 msgstr "Profilliste"
 
-#: src/terminal.c:2541
+#: src/terminal.c:2588
 msgid "You must select one or more profiles to delete."
 msgstr "Du skal angive en eller flere profiler der skal slettes."
 
-#: src/terminal.c:2552
+#: src/terminal.c:2599
 msgid "You must have at least one profile; you can't delete all of them."
 msgstr "Du skal mindst have én profil; du kan ikke slette dem allesammen."
 
-#: src/terminal.c:2559
+#: src/terminal.c:2606
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Slet denne profil?\n"
 msgstr[1] "Slet disse %d profiler?\n"
 
-#: src/terminal.c:2580
+#: src/terminal.c:2627
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Slet profilen \"%s\"?"
 
-#: src/terminal.c:2602
+#: src/terminal.c:2649
 msgid "Delete Profile"
 msgstr "Slet profil"
 
-#: src/terminal.c:2860
+#: src/terminal.c:2907
 msgid "Profiles"
 msgstr "Profiler"
 
-#: src/terminal.c:2902
+#: src/terminal.c:2949
 msgid "Profile _used when launching a new terminal:"
 msgstr "Profil der _bruges ved start af ny terminal:"
 
-#: src/terminal.c:2922
+#: src/terminal.c:2969
 msgid "_Profiles:"
 msgstr "_Profiler:"
 
-#: src/terminal.c:2969
+#: src/terminal.c:3016
 msgid "Click to open new profile dialog"
 msgstr "Klik for at åbne ny profil-vinduet"
 
-#: src/terminal.c:2982
+#: src/terminal.c:3029
 msgid "Click to open edit profile dialog"
 msgstr "Klik for at åbne redigér profil-vinduet"
 
-#: src/terminal.c:2992
+#: src/terminal.c:3039
 msgid "Click to delete selected profile"
 msgstr "Klik for at slette den valgte profil"
 
-#: src/terminal.c:3041
+#: src/terminal.c:3088
 msgid "Click button to choose profile"
 msgstr "Klik for at vælge profil"
 
-#: src/terminal.c:3458
+#: src/terminal.c:3505
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Der opstod en fejl under visning af hjælp: %s"
 
-#: src/terminal.c:3529
+#: src/terminal.c:3576
 #, c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
@@ -2718,7 +2723,7 @@ msgid ""
 msgstr ""
 "Filen \"%s\" mangler. Dette indikerer at programmet er installeret forkert."
 
-#: src/terminal.c:3693
+#: src/terminal.c:3740
 msgid ""
 "It appears that you do not have gnome-terminal.server installed in a valid "
 "location. Factory mode disabled.\n"
@@ -2726,7 +2731,7 @@ msgstr ""
 "Det ser ud til at der ikke er en gnome-terminal.server installeret et "
 "gyldigt sted. Fabrikstilstand deaktiveret.\n"
 
-#: src/terminal.c:3696
+#: src/terminal.c:3743
 msgid ""
 "Error registering terminal with the activation service; factory mode "
 "disabled.\n"
@@ -2734,9 +2739,33 @@ msgstr ""
 "Fejl ved registrering af terminalen med aktiveringstjenesten; "
 "fabrikstilstand deaktiveret.\n"
 
-#: src/terminal.c:3732
+#: src/terminal.c:3779
 msgid "Failed to retrieve terminal server from activation server\n"
 msgstr "Det mislykkedes at skaffe terminalserveren fra aktiveringsserveren\n"
+
+#~ msgid "Secure _Keyboard"
+#~ msgstr "Sikr _tastaturfokus"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "_Background image"
+#~ msgstr "B_aggrundsbillede"
+
+#~ msgid "_kilobytes"
+#~ msgstr "_kilobyte"
+
+#~ msgid ""
+#~ "<!-- Translators: please note this is has to be a list of valid encodings "
+#~ "(which are to be taken from the list in src/encoding.c) It has to include "
+#~ "UTF-8 and the word 'current', which is not to be translated. This is "
+#~ "provided for costumization of the default encoding menu; see bug 144810 "
+#~ "for an use case. In most cases, this should be left alone. -->[UTF-8,"
+#~ "current]"
+#~ msgstr "[UTF-8,current,ISO-8859-15]"
+
+#~ msgid "_Normal Size"
+#~ msgstr "_Normal størrelse"
 
 #~ msgid "There was an error creating the child process for this terminal: %s"
 #~ msgstr ""

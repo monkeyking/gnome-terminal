@@ -1079,6 +1079,15 @@ terminal_profile_set_is_default (TerminalProfile *profile,
                            CONF_GLOBAL_PREFIX"/default_profile",
                            terminal_profile_get_name (profile),
                            NULL);
+
+  /* Even though the gconf change notification does this, it happens too late.
+   * In some cases, the default profile changes twice in quick succession,
+   * and update_default_profile must be called in sync with those changes.
+   */
+  update_default_profile (terminal_profile_get_name (profile),
+                          !gconf_client_key_is_writable (profile->priv->conf,
+                                                         CONF_GLOBAL_PREFIX"/default_profile",
+                                                         NULL));
 }
 
 void
@@ -1470,7 +1479,7 @@ terminal_profile_set_use_skey (TerminalProfile *profile,
 const PangoFontDescription*
 terminal_profile_get_font (TerminalProfile *profile)
 {
-  g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), FALSE);
+  g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), NULL);
 
   return profile->priv->font;
 }
@@ -3228,3 +3237,9 @@ terminal_palette_rxvt[TERMINAL_PALETTE_SIZE] =
   { 0, 0xffff, 0xffff, 0xffff }
 };
 
+void
+profile_name_entry_notify (TerminalProfile *profile)
+{
+  gconf_client_notify (profile->priv->conf,
+		       CONF_GLOBAL_PREFIX"/profile_list");
+}
