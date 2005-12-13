@@ -108,6 +108,11 @@
          <long>gnome-terminal-ek ezagutzen dituen profilen zerrenda. /apps/gnome-terminal/profiles direktorioko azpidirektorioen izenak dira.</long>
       </locale>
 
+      <locale name="fa">
+         <short>فهرست مجموعه‌های‌ تنظیمات</short>
+         <long>فهرست مجموعه‌های‌ تنظیماتی شناخته شده برای پایانه‌ی گنوم. فهرست شامل رشته‌هایی است که زیرشاخه‌ها را به صورت نسبی از ‎/apps/gnome-terminal/profiles معرفی می‌کند.</long>
+      </locale>
+
       <locale name="fi">
          <short>Profiililuettelo</short>
          <long>Luettelo Gnomen päätteen tuntemista profiileista. Luettelo sisältää merkkijonot, jotka nimeävät kansion /apps/gnome-terminal/profiles alikansiot.</long>
@@ -170,7 +175,7 @@
 
       <locale name="lt">
          <short>Profilių sąrašas</short>
-         <long>Gnome-terminalui žinomų profilių sąrašas. Sąraše saugomos sekos, atitinkančios /apps/gnome-terminal/profiles žemesniuosius katalogus.</long>
+         <long>Gnome-terminalui žinomų profilių sąrašas. Sąraše saugomos sekos, atitinkančios /apps/gnome-terminal/profiles žemesniuosius aplankus.</long>
       </locale>
 
       <locale name="mk">
@@ -350,7 +355,7 @@
 
       <locale name="bg">
          <short>Профил за новите терминали</short>
-         <long>Профил, който да се използва, при отваряне на нов прозорец или страница. Трябва да е в списъка с профилите.</long>
+         <long>Профил, който да се използва, при отваряне на нов прозорец или подпрозорец. Трябва да е в списъка с профилите.</long>
       </locale>
 
       <locale name="bn">
@@ -416,6 +421,11 @@
       <locale name="eu">
          <short>Terminal berrietan erabiltzeko profila</short>
          <long>Leiho edo fitxa berria irekitzean erabiliko den profila. Profilen zerrendan egon behar du.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>مجموعه‌ تنظیماتی که برای پایانه‌های جدید استفاده می‌شود</short>
+         <long>مجموعه‌ تنظیماتی که هنگام باز کردن یک پنجره یا زبانه‌ی جدید استفاده می‌شود. باید در profile_list باشد.</long>
       </locale>
 
       <locale name="fi">
@@ -661,7 +671,7 @@
 
       <locale name="bg">
          <short>Дали за менюто да има клавиши за достъп</short>
-         <long>Дали да се разрешават бързите клавиши за менюто „Alt+буква“. Те може да пречат на някои приложения, работещи в терминала, затова има възможност да бъдат изключвани.</long>
+         <long>Дали да се разрешават бързите клавиши за менюто „Alt+буква“. Те може да пречат на някои програми, работещи в терминала, затова има възможност да бъдат изключвани.</long>
       </locale>
 
       <locale name="bs">
@@ -717,6 +727,11 @@
       <locale name="eu">
          <short>Menu-barrak sarbide-teklarik duen</short>
          <long>Menu-barran Alt+letra bizkortzailerik eduki behar den. Terminalean exekutatzen diren aplikazioekin interferentzia egin lezakete, eta horregatik ematen da desaktibatzeko aukera.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که نوار منو کلید دسترسی داشته باشد یا نه</short>
+         <long>این که کلید‌های دسترسی دگرساز+حرف برای نوار منو باشند یا نه. این کلیدها ممکن است با بعضی برنامه‌ها که داخل پایانهاجرا می‌شوند تداخل داشته باشند بنابراین می‌توان خاموششان کرد.</long>
       </locale>
 
       <locale name="fi">
@@ -999,6 +1014,11 @@
       <locale name="eu">
          <short>Menu-barra bistaratzeko GTKren laster-tekla estandarra gaituta dagoen</short>
          <long>Normalean, F10 sakatuta menu-barra bistaratzen da. Nahi izanez gero, pertsonaliza daiteke gtkrc-ren bidez (gtk-menu-bar-accel = &quot;nahiduzuna&quot;). Aukera honekin menu-barraren ohiko laster-tekla desgai daiteke.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که میانبر استاندارد GTK برای دسترسی به نوار منو فعال باشد یا نه</short>
+         <long>به طور طبیعی می‌توان با کلید F10 به نوار منو دسترسی یافت. این کار را می‌توان با سفارشی کردن از طریق gtkrc (gtk-menu-bar-accel = «whatever»)‎ نیز انجام داد. این گزینه همچنین از کار انداختن شتاب‌ده استاندارد نوار منو را ممکن می‌سازد.</long>
       </locale>
 
       <locale name="fi">
@@ -1308,7 +1328,7 @@
       <locale name="es">
          <default>[UTF-8,current,ISO-8859-15]</default>
          <short>Lista de las codificaciones disponibles</short>
-         <long>Un sub-conjunto de codificaciones posibles están presentes en el submenú de codificaciones. Esta es una lista de las codificaciones que aparecerán ahí. El nombre de codificación especial «current» significa que se mostrará la codificación de la localización actual.</long>
+         <long>Un subconjunto de codificaciones posibles están presentes en el submenú «Codificaciones». Esta es una lista de las codificaciones que aparecerán ahí. El nombre de codificación especial «current» significa que se mostrará la codificación de la localización actual.</long>
       </locale>
 
       <locale name="et">
@@ -1325,8 +1345,8 @@
 
       <locale name="fa">
          <default>[UTF-8,current]</default>
-         
-         
+         <short>فهرست کدگذاری‌های موجود</short>
+         <long>زیرمجموعه‌ای از کدگذاری‌های ممکن در زیرمنوی کدگذاری‌ها نمایش داده شده‌اند. این فهرست کدگذاری‌هایی است که آنجا ظاهر می‌شود. نام کدگذاری ویژه‌ی «فعلی» به معنی نمایش کدگذاری شرایط محلی فعلی است.</long>
       </locale>
 
       <locale name="fi">
@@ -1631,7 +1651,7 @@
 
       <locale name="bg">
          <short>Дали да се пита при затваряне на прозорците на терминала</short>
-         <long>Дали да се пита при затварянето на прозорец на термина с повече от една страница.</long>
+         <long>Дали да се пита при затварянето на прозорец на терминала с повече от един подпрозорец.</long>
       </locale>
 
       <locale name="bs">
@@ -1687,6 +1707,11 @@
       <locale name="eu">
          <short>Terminal baten lehioa ixtean baieztapena eskatu behar duen ala ez.</short>
          <long>Hainbat fitxa dituen terminal baten lehioa ixtean baieztapena eskatu behar duen ala ez.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که موقع بستن پنجره‌های پایانه تصدیق گرفته شود یا نه</short>
+         <long>این که موقع بستن پنجره‌ی پایانه‌ای که بیش از یک زبانه‌ی باز دارد تصدیق گرفته شود یا نه.</long>
       </locale>
 
       <locale name="fi">
@@ -1976,6 +2001,11 @@
          <long>Profilaren izen ulergarria.</long>
       </locale>
 
+      <locale name="fa">
+         <short>نام انسانی مجموعه تنظیمات</short>
+         <long>نام انسانی مجموعه تنظیمات.</long>
+      </locale>
+
       <locale name="fi">
          <short>Ihmisille tarkoitettu profiilin nimi</short>
          <long>Ihmisille tarkoitettu profiilin nimi.</long>
@@ -2152,8 +2182,8 @@
       </locale>
 
       <locale name="th">
-         <short>ชื่อของโพรไฟล์ในรูปแบบที่คนอ่านได้</short>
-         <long>ชื่อของโพรไฟล์ในรูปแบบที่คนอ่านได้</long>
+         <short>ชื่อของโพรไฟล์ที่ใช้แสดงผล</short>
+         <long>ชื่อของโพรไฟล์ที่ใช้แสดงผล</long>
       </locale>
 
       <locale name="tr">
@@ -2284,6 +2314,11 @@
       <locale name="eu">
          <short>Kurtsorea keinuka erakutsi behar den</short>
          <long>Egiazkoa, kurtsoreak keinuka agertu behar badu terminalak fokua duenean profil hau duten leihoetan/fitxetan.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که مکان‌نما چشمک بزند یا نه</short>
+         <long>درست اگر وقتی پایانه مورد تمرکز است مکان‌نما باید، برای پنجره/زبانه‌هایی با این مجموعه تنظیمات، چشمک بزند.</long>
       </locale>
 
       <locale name="fi">
@@ -2457,8 +2492,8 @@
       </locale>
 
       <locale name="th">
-         <short>กระพริบเคอร์เซอร์หรือไม่</short>
-         <long>เลือก ถ้าเคอร์เซอร์ควรจะกระพริบเมื่อเทอร์มินัลได้โฟกัส สำหรับหน้าต่าง/แท็บที่ใช้โพรไฟล์นี้</long>
+         <short>กะพริบเคอร์เซอร์หรือไม่</short>
+         <long>เลือก ถ้าเคอร์เซอร์ควรจะกะพริบเมื่อเทอร์มินัลได้โฟกัส สำหรับหน้าต่าง/แท็บที่ใช้โพรไฟล์นี้</long>
       </locale>
 
       <locale name="tr">
@@ -2528,8 +2563,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Дали да се показва менюто в новите прозорци/страници</short>
-         <long>Ако е зададено, менюто е видимо в новите прозорци, за прозорци и страници с този профил.</long>
+         <short>Дали да се показва менюто в новите прозорци/подпрозорци</short>
+         <long>Ако е зададено, менюто е видимо в новите прозорци, за прозорци и подпрозорци с този профил.</long>
       </locale>
 
       <locale name="bs">
@@ -2585,6 +2620,11 @@
       <locale name="eu">
          <short>Leiho/fitxa berrietan menu-barra erakutsi behar den</short>
          <long>Egiazkoa leiho berrietan menu-barrak agertu behar badu profil hau duten leihoetan/fitxetan.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که نوار منو در پنجره/زبانه‌های جدید نشان داده بشوند یا نه</short>
+         <long>درست اگر نوار منو باید در پنجره‌های جدید، برای پنجره/زبانه‌های با این مجموعه تنظیمات، نشان داده شود.</long>
       </locale>
 
       <locale name="fi">
@@ -2881,6 +2921,11 @@
       <locale name="eu">
          <short>Terminaleko testuaren kolore lehenetsia</short>
          <long>Terminaleko testuaren kolore lehenetsia, kolore-zehaztapen gisa (HTML estiloko digitu hamaseitarretan, edo kolore-izena emanda, adib. &quot;red&quot;).</long>
+      </locale>
+
+      <locale name="fa">
+         <short>رنگ پیش‌فرض متن در پایانه</short>
+         <long>رنگ پیش‌فرض متن در پایانه، به شکل مشخصات رنگی (می‌تواند ارقام شانزده‌شانزدهی به سبک HTML یا نام یک رنگ مثل «قرمز» باشد).</long>
       </locale>
 
       <locale name="fi">
@@ -3199,6 +3244,11 @@
          <long>Atzeko planoko kolore lehenetsia, kolore-zehaztapen gisa (HTML estiloko digitu hamaseitarretan, edo kolore-izena emanda, adib. &quot;red&quot;).</long>
       </locale>
 
+      <locale name="fa">
+         <short>رنگ پیش‌فرض پس‌زمینه‌ی پایانه</short>
+         <long>رنگ پیش‌فرض پس‌زمینه‌ی پایانه، به شکل مشخصات رنگی (می‌تواند ارقام شانزده‌شانزدهی به سبک HTML یا نام یک رنگ مثل «قرمز» باشد).‏</long>
+      </locale>
+
       <locale name="fi">
          <short>Päätteen taustan oletusarvoinen väri</short>
          <long>Päätteen oletusarvoinen taustaväri, värimääreenä (voi olla värin nimi, kuten &quot;red&quot;, tai HTML-tyylinen heksadesimaaliarvo)</long>
@@ -3513,6 +3563,11 @@
          <long>Terminaleko aplikazioak titulua ezartzen badu (normalena eginkizun hori shell-ari ematea izaten da), dinamikoki ezarritako titulua lehendik dagoenaren ordez, edo aurretik, edo ondoren jar daiteke. Balio posibleak &quot;replace&quot;, &quot;before&quot;, &quot;after&quot;, eta &quot;ignore&quot; dira.</long>
       </locale>
 
+      <locale name="fa">
+         <short>با عنوان پویا چه‌کار باید کرد</short>
+         <long>اگر برنامه‌ی داخل پایانه عنوان را تنظیم کند (اکثر آدم‌ها پوسته‌شان را برای انجام این کار تنظیم می‌کنند)، عنوان پویا می‌تواند عنوان پیکربندی شده را پاک کند، قبل از آن بیاید، بعد از آن بیاید یا به جای آن بنشیند. مقادیر ممکن عبارتند از «replace»، «before»، «after» و «ignore».</long>
+      </locale>
+
       <locale name="fi">
          <short>Mitä tehdä dynaamisella otsikolla</short>
          <long>Jos päätteessä toimiva sovellus asettaa otsikon (useimmat säätävät kuorensa tekemään tämän), tämä asetettu otsikko joko korvaa kiinteän otsikon tai tulee sitä ennen tai jälkeen. Mahdollisia arvoja ovat &quot;replace&quot; (korvaa), &quot;before&quot; (ennen), &quot;after&quot; (jälkeen) ja &quot;ignore&quot; (jää huomiotta).</long>
@@ -3680,7 +3735,7 @@
 
       <locale name="th">
          <short>สิ่งที่เกิดขึ้นกับหัวเรื่องพลวัต</short>
-         <long>ถ้าโปรแกรมในเทอร์มินัลกำหนดหัวเรื่อง (คนทั่วไปส่วนใหญ่มีการตั้งเชลล์ส่วนตัวสำหรับทำหน้าที่ในส่วนนี้) หัวเรื่องที่ถูกกำหนดแบบพลวัตสามารถลบ, อยู่ข้างหน้า, อยู่ข้างหลัง หรือแทนที่หัวเรื่องที่ถูกกำหนดไว้ ค่าที่เป็นไปได้คือ &quot;replace&quot;, &quot;before&quot;, &quot;after&quot;, หรือ &quot;ignore&quot;</long>
+         <long>ถ้าโปรแกรมในเทอร์มินัลกำหนดหัวเรื่อง (คนทั่วไปส่วนใหญ่มีการตั้งเชลล์ส่วนตัวสำหรับทำหน้าที่ในส่วนนี้) หัวเรื่องที่ถูกกำหนดแบบพลวัตจะสามารถลบ, อยู่ข้างหน้า, อยู่ข้างหลัง หรือแทนที่หัวเรื่องที่ถูกกำหนดไว้ ค่าที่เป็นไปได้คือ &quot;replace&quot;, &quot;before&quot;, &quot;after&quot;, หรือ &quot;ignore&quot;</long>
       </locale>
 
       <locale name="tr">
@@ -3762,7 +3817,7 @@
       <locale name="bg">
 	<default>Терминал</default>
          <short>Заглавие за терминала</short>
-         <long>Заглавие на прозорец на терминала или страница. Това заглавие може да се замени или да включва заглавие, зададено от приложението, работещо в терминала, в зависимост от настройката title_mode.</long>
+         <long>Заглавие на прозорец на терминала или подпрозорец. Това заглавие може да се замени или да включва заглавие, зададено от приложението, работещо в терминала, в зависимост от настройката title_mode.</long>
       </locale>
 
       <locale name="bn">
@@ -3845,8 +3900,8 @@
 
       <locale name="fa">
 	<default>پایانه</default>
-         
-         
+         <short>عنوان پایانه</short>
+         <long>عنوانی که برای پنجره یا زبانه‌ی پایانه نمایش داده می‌شود. بسته به تنظیم title_mode، ممکن است عنوان تنظیم شده توسط برنامه‌های داخل این پایانه، به جای این عنوان بنشینند یا با آن ترکیب شوند.</long>
       </locale>
 
       <locale name="fi">
@@ -3931,6 +3986,12 @@
 	<default>터미널</default>
          <short>터미널의 제목</short>
          <long>터미널 창이나 탭에 보여줄 제목. 이 타이틀은 title_mode 설정 값에 따라 터미널 내의 프로그램이 설정하는 타이틀로 바뀌거나 결합될 수 있습니다.</long>
+      </locale>
+
+      <locale name="ku">
+	<default>Termînal</default>
+         
+         
       </locale>
 
       <locale name="lt">
@@ -4225,6 +4286,11 @@
          <long>Hautatzen bada, terminaleko aplikazioek testu-formatu lodia erabili ahal izango dute.</long>
       </locale>
 
+      <locale name="fa">
+         <short>این که متن سیاه مجاز باشد یا نه</short>
+         <long>اگر درست باشد، به برنامه‌های داخل پایانه اجازه داده شود که متن را سیاه کنند.</long>
+      </locale>
+
       <locale name="fi">
          <short>Onko lihavoitu teksti sallittu</short>
          <long>Jos tosi, salli sovellusten käyttää lihavoitua tekstiä.</long>
@@ -4396,7 +4462,7 @@
       </locale>
 
       <locale name="th">
-         <short>อนุญาตให้เป็นข้อความตัวหนาหรือไม่</short>
+         <short>อนุญาตให้ใช้ข้อความตัวหนาหรือไม่</short>
          <long>ถ้าเลือก ต้องอนุญาตให้โปรแกรมในเทอร์มินัลทำข้อความตัวพิมพ์หนา</long>
       </locale>
 
@@ -4528,6 +4594,11 @@
       <locale name="eu">
          <short>Terminal-soinua isilarazi behar den</short>
          <long>Hautatzen bada, ez da zaratarik entzungo aplikazioek ihes-sekuentzia bidaltzen dutenean terminal-soinuarentzat.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که زنگ پایانه ساکت شود یا نه</short>
+         <long>اگر درست باشد، وقتی برنامه‌ها یک دنباله‌ی گریزدار برای زنگ پایانه می‌فرستند صدایی تولید نشود.</long>
       </locale>
 
       <locale name="fi">
@@ -4697,7 +4768,7 @@
 
       <locale name="th">
          <short>ปิดเสียงออดเตือนเทอร์มินัลหรือไม่</short>
-         <long>ถ้าเลือก ต้องไม่สร้างเสียงรบกวนเมื่อโปรแกรมส่งลำดับอักขระรหัสพิเศษของออดเตือนเทอร์มินัล</long>
+         <long>ถ้าเลือก จะไม่ส่งเสียงเมื่อโปรแกรมส่งลำดับอักขระพิเศษของเสียงบี๊ปของเทอร์มินัล</long>
       </locale>
 
       <locale name="tr">
@@ -4832,6 +4903,11 @@
          <long>Testua hitzez hitz hautatzen denean, karaktere-sekuentzia hauek hitz bezala hartuko dira. Balio-bitarteak &quot;A-Z&quot; moduan eman daitezke. Marratxo literalak (balio-bitartea adierazten ez dutenak) lehen karaktere gisa eman behar dira.</long>
       </locale>
 
+      <locale name="fa">
+         <short>نویسه‌هایی که «جزئی از کلمه» قلمداد می‌شوند</short>
+         <long>هنگام انتخاب متن بر اساس کلمه، دنباله‌هایی از این نویسه‌ها یک تک‌کلمه فرض می‌شوند. محدوده را می‌توان به صورت «ا-ی» وارد کرد. خط تیره (به جز در مشخص کردن محدوده) باید اولین نویسه‌ی داده شده باشد.</long>
+      </locale>
+
       <locale name="fi">
          <short>Merkit, jotka lasketaan &quot;sanoihin kuuluviksi&quot;.</short>
          <long>Kun tekstiä valitaan sana kerrallaan, näiden merkkien sarjat jäsentyvät yksittäisiksi sanoiksi. Merkkialueet voi määritellä kuten &quot;A-Z&quot;. Pelkkä tavuviiva muuten kuin merkkialueen osana tulee antaa ensimmäisenä merkkinä.</long>
@@ -4893,7 +4969,7 @@
       </locale>
 
       <locale name="lt">
-         <short>Simboliai, kurie yra laikomi &quot;žodžio dalimi&quot;</short>
+         <short>Simboliai, kurie yra laikomi „žodžio dalimi“</short>
          <long>Pažymint žodžius, šių simbolių sekos bus laikomos atskiru žodžiu. Diapazoną galima nurodyti kaip  &quot;A-Z&quot;. Minusas, kuris nenurodo diapazono, turi būti pirmas nurodytas simbolis.</long>
       </locale>
 
@@ -5003,8 +5079,8 @@
       </locale>
 
       <locale name="th">
-         <short>อักขระที่พิจารณาเป็น &quot;ส่วนของคำ&quot;</short>
-         <long>เมื่อเลือกข้อความเป็นคำ ลำดับของอักขระเหล่านี้พิจารณาเป็นคำเดี่ยว ช่วงอักขระสามารถกำหนดเป็น &quot;A-Z&quot; เครื่องหมายยติภังค์ (ที่ไม่ใช่การแสดงช่วง) ควรเป็นอักขระตัวแรก</long>
+         <short>อักขระที่พิจารณาเป็น &quot;ส่วนหนึ่งของคำ&quot;</short>
+         <long>เมื่อเลือกข้อความเป็นคำ ลำดับของอักขระเหล่านี้พิจารณาเป็นคำเดี่ยว ช่วงอักขระสามารถกำหนดเป็น &quot;A-Z&quot; เครื่องหมายยัติภังค์ (ที่ไม่ใช่การแสดงช่วง) ควรเป็นอักขระตัวแรก</long>
       </locale>
 
       <locale name="tr">
@@ -5074,7 +5150,7 @@
 
       <locale name="bg">
          <short>Разположение на плъзгача</short>
-         <long>Местоположение на плъзгача на терминала. Възможностите са „отляво“, „отдясно“ и „без“.</long>
+         <long>Местоположение на плъзгача на терминала. Възможностите са „left“, „right“ и „disabled“.</long>
       </locale>
 
       <locale name="bs">
@@ -5135,6 +5211,11 @@
       <locale name="eu">
          <short>Korritze-barraren kokalekua</short>
          <long>Terminalaren korritze-barra non kokatu. Aukerak: &quot;left&quot; (ezkerrean), &quot;right&quot; (eskuinean), eta &quot;disabled&quot; (desgaituta).</long>
+      </locale>
+
+      <locale name="fa">
+         <short>موقعیت نوار لغزش</short>
+         <long>نوار لغزش پایانه کجا قرار داده شود. مقادیر ممکن عبارتند از «left»، «right» و «disabled».</long>
       </locale>
 
       <locale name="fi">
@@ -5435,9 +5516,19 @@
          <long>Cantidad de líneas de desplazamiento a guardar aproximadamente. Puede desplazarse hacia atrás en la terminal este cantidad de líneas ; las líneas que no entran en el desplazamiento son descartadas. Sea cuidadoso con esta configuración ya que es uno de los factores determinantes sobre cuanta memoria utilizará la terminal.</long>
       </locale>
 
+      <locale name="et">
+         <short>Tagasikerimise puhvri ridade arv</short>
+         <long>Ridade arv, mida hoitakse tagasikerimiseks. Selle arvu võrra on terminalilt läbijooksnud ridu võimalik tagasi kerida. Kõik sellest puhvrist väljapoole jäävad read kustutatakse mälust. Ole selle sättega ettevaatlik - see mõjutab otseselt terminali pool kasutatava mälu hulka.</long>
+      </locale>
+
       <locale name="eu">
          <short>Korritze-barran mantentzeko lerro-kopurua</short>
          <long>Korritze-barran zenbat lerro mantendu. Lerro horiek izango dituzu atzera korritu ahal izateko; kopuru hori gainditu ahala, lerroak galduz joango dira. Kontuz ibili ezarpen hau zehaztean, bera baita terminalak zenbat memoria erabiliko duen erabakitzeko faktore nagusia.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>تعداد سطرهایی که در حافظه‌ی لغزش نگهداری شود</short>
+         <long>تعداد سطرهای حافظه‌ی لغزش که نگه داشته می‌شوند. در پایانه می‌توان تا این تعداد سطر به عقب رفت: سطرهایی که در محدوده‌ی حافظه‌ی لغزش نیستند دور انداخته می‌شوند. با احتیاط این پارامتر را تنظیم کنید چون عامل اصلی در تعیین مقدار حافظه‌ی مورد استفاده‌ی پایانه است.</long>
       </locale>
 
       <locale name="fi">
@@ -5732,6 +5823,11 @@
       <locale name="eu">
          <short>Tekla bat sakatutakoan beheraino korritu behar den</short>
          <long>Hautatzen bada, tekla bat sakatzean korritze-barra beheraino joango da.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که هنگام فشرده شدن یک کلید تا ته صفحه پایین بلغزد یا نه</short>
+         <long>اگر درست باشد، فشار دادن یک کلید نوار لغزش را به ته صفحه می‌برد.</long>
       </locale>
 
       <locale name="fi">
@@ -6034,6 +6130,11 @@
          <long>Hautatzen bada, irteera berri bat dagoenean terminala beheraino korrituko da.</long>
       </locale>
 
+      <locale name="fa">
+         <short>این که هنگام وجود خروجی جدید تا ته صفحه پایین بلغزد یا نه</short>
+         <long>اگر درست باشد، با هر خروجی جدید پایانه به انتهای آن خواهد لغزید.</long>
+      </locale>
+
       <locale name="fi">
          <short>Vierittyykö päätteen teksti alas kun uutta tulostetta on</short>
          <long>Jos tosi, uusi tuloste päätteessä vierittää tekstin alas.</long>
@@ -6324,6 +6425,11 @@
          <long>Balio posibleak: &quot;close&quot; terminala ixteko, eta &quot;restart&quot; komandoa berrabiarazteko.</long>
       </locale>
 
+      <locale name="fa">
+         <short>وقتی فرمان فرزند وجود دارد با پایانه چه‌کار باید کرد</short>
+         <long>مقادیر ممکن عبارتند از «close» برای بستن پایانه، و «restart» برای آغاز مجدد فرمان.</long>
+      </locale>
+
       <locale name="fi">
          <short>Mitä päättelle tapahtuu, kun lapsikomento loppuu</short>
          <long>Mahdollisia arvoja ovat &quot;close&quot;, joka sulkee päätteen ja &quot;restart&quot;, joka käynnistää komennon uudelleen.</long>
@@ -6381,7 +6487,7 @@
 
       <locale name="lt">
          <short>Ką daryti su terminalu, jei susijęs procesas baigia darbą</short>
-         <long>Galimos reikšmės yra &quot;close&quot; (uždaro terminalą) ir &quot;restart&quot; (pakartoja komandą).</long>
+         <long>Galimos reikšmės yra „close“ (užveria terminalą) ir „restart“ (pakartoja komandą).</long>
       </locale>
 
       <locale name="mk">
@@ -6616,6 +6722,11 @@
          <long>Hautatzen bada, terminaleko komandoa saioa hasteko shell gisa abiaraziko da. (Marratxo bat izango du argv[0] katearen aurretik).</long>
       </locale>
 
+      <locale name="fa">
+         <short>این که فرمان در پایانه مثل پوسته‌ی ورود به سیستم راه‌اندازی شوند یا نه</short>
+         <long>اگر درست باشد، فرمان داخل پایانه مثل پوسته‌ی ورود به سیستم اجرا شود. (اول argv[0] یک تیره خواهد داشت.)‏</long>
+      </locale>
+
       <locale name="fi">
          <short>Käynnistetäänkö komento päätteessä kirjautumiskuorena</short>
          <long>Jos tosi, päätteen komento käynnistyy kirjautumiskuorena. (argv[0]:ssa on väliviiva alussa.)</long>
@@ -6778,7 +6889,7 @@
 
       <locale name="th">
          <short>เรียกใช้คำสั่งในเทอร์มินัลแบบเชลล์ล็อกอินหรือไม่</short>
-         <long>ถ้าเลือก, คำสั่งภายในเทอร์มินัลจะถูกเรียกใช้งานแบบเชลล์ลอกอิน (argv[0] จะมีเครื่องหมายยติภังค์อยู่ข้างหน้า)</long>
+         <long>ถ้าเลือก คำสั่งภายในเทอร์มินัลจะถูกเรียกใช้งานแบบเชลล์ลอกอิน (argv[0] จะมีเครื่องหมายยัติภังค์อยู่ข้างหน้า)</long>
       </locale>
 
       <locale name="tr">
@@ -6904,6 +7015,11 @@
       <locale name="eu">
          <short>Terminaleko komandoa abiaraztean saio-hasierako erregistroak eguneratu behar dituen ala ez.</short>
          <long>Hautatzen bada, sistemako saio-hasierako utmp eta wtmp erregistroak  eguneratu egingo da terminalean komando bat abiarazten denean.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که سوابق ورود به سیستم موقع راه‌اندازی فرمان پایانه به‌هنگام شود یا نه</short>
+         <long>اگر درست باشد، سوابق ورود به سیستم utmp و wtmp هنگام اجرای فرمان داخل پایانه به‌هنگام خواهند شد.</long>
       </locale>
 
       <locale name="fi">
@@ -7191,6 +7307,11 @@
          <long>Hautatzen bada, custom_command ezarpenaren balioa erabiliko da, shell bat exekutatu beharrean.</long>
       </locale>
 
+      <locale name="fa">
+         <short>این که به جای پوسته یک فرمان سفارشی اجرا شود یا نه</short>
+         <long>اگر درست باشد، مقدار تنظیمات custom_command به جای اجرای پوسته استفاده خواهد شد.</long>
+      </locale>
+
       <locale name="fi">
          <short>Käynnistyykö muu komento komentotulkin sijaan</short>
          <long>Jos tosi, avaimen &quot;custom_command&quot; arvoa käytetään kuoren suorittamisen sijaan.</long>
@@ -7362,8 +7483,8 @@
       </locale>
 
       <locale name="th">
-         <short>เรียกใช้คำสั่งที่กำหนดเองแทนการใช้ของเชลล์หรือไม่</short>
-         <long>ถ้าเลือก ค่าของ custom_command จะใช้ในที่สำหรับกำลังเรียกใช้งานเชลล์</long>
+         <short>เรียกใช้คำสั่งที่กำหนดเองแทนการใช้เชลล์หรือไม่</short>
+         <long>ถ้าเลือก จะใช้ค่าของ custom_command แทนการเรียกใช้งานเชลล์</long>
       </locale>
 
       <locale name="tr">
@@ -7499,6 +7620,11 @@
       <locale name="eu">
          <short>Shell-aren ordez erabiltzeko komando pertsonalizatua</short>
          <long>Exekutatu hau komando hau shell-aren ordez, use_custom_command egiazkoa bada.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>فرمان سفارشی‌ای که به جای پوسته استفاده می‌شود</short>
+         <long>اجرای این فرمان به جای پوسته، اگر use_custom_command درست باشد.</long>
       </locale>
 
       <locale name="fi">
@@ -7805,6 +7931,11 @@
          <long>Profil honetako fitxetan/leihoetan erabiltzeko ikonoa.</long>
       </locale>
 
+      <locale name="fa">
+         <short>شمایل پنجره‌ی پایانه</short>
+         <long>شمایلی که برای زبانه/پنجره‌های حاوی این مجموعه تنظیمات استفاده می‌شود.</long>
+      </locale>
+
       <locale name="fi">
          <short>Pääteikkunan kuvake</short>
          <long>Tätä profiilia käyttävien ikkunoiden tai välilehtien kuvake.</long>
@@ -8108,13 +8239,18 @@
       </locale>
 
       <locale name="et">
-         <short>Paletti terminalirakenduste jaoks</short>
+         <short>Palett terminalirakenduste jaoks</short>
          
       </locale>
 
       <locale name="eu">
          <short>Terminaleko aplikazioentzako paleta</short>
          <long>Terminalek 16 koloreko paleta dute terminaleko aplikazioek erabiltzeko. Hau da paleta hori, kolore-izenak bi puntuz bereizita. Kolore-izenak formatu hamaseitarrean ematen dira, adib. &quot;#FF00FF&quot;</long>
+      </locale>
+
+      <locale name="fa">
+         <short>تخته‌رنگ برنامه‌های پایانه</short>
+         <long>پایانه‌ها یک تخته‌رنگ ۱۶ رنگی دارند که برنامه‌های داخل پایانه می‌توانند استفاده کنند. این همان تخته‌رنگ است که به شکلی فهرستی از نام رنگ‌ها که با نقطه‌ویرگول از هم جدا شده‌اند، آمده است. نام رنگ‌ها باید در قالب شانزده‌شانزدهی باشد مثل «FF00FF»</long>
       </locale>
 
       <locale name="fi">
@@ -8434,7 +8570,7 @@
 
       <locale name="fa">
          <short>قلم</short>
-         
+         <long>یک نام قلم X. برای جزئیات بیشتر درباره‌ی قالب نام قلم‌های X، صفحه‌ی راهنمای X را ببینید (تایپ کنید «man X»)</long>
       </locale>
 
       <locale name="fi">
@@ -8504,7 +8640,7 @@
 
       <locale name="lt">
          <short>Šriftas</short>
-         <long>X šrifto vardas. Daugiau informacijos apie šriftų vardus rasite X pagalbos puslapiuose (įveskite &quot;man X&quot;).</long>
+         <long>X šrifto pavadinimas. Daugiau informacijos apie šriftų pavadinimų formatą rasite X žinyno puslapyje (įveskite „man X“).</long>
       </locale>
 
       <locale name="lv">
@@ -8774,7 +8910,7 @@
 
       <locale name="fa">
          <short>قلم</short>
-         
+         <long>یک نان قلم پانگو. مثلاً «Sans 12» یا «Monospace Bold 14».</long>
       </locale>
 
       <locale name="fi">
@@ -9107,6 +9243,11 @@
          <long>Terminalaren atzeko planoaren mota. Aukerak: &quot;solid&quot; (kolore solidoa) &quot;image&quot; (irudia), edo &quot;transparent&quot; (sasi-gardentasuna).</long>
       </locale>
 
+      <locale name="fa">
+         <short>نوع پس‌زمینه</short>
+         <long>نوع پس‌زمینه‌ی پایانه. می‌تواند برای رنگ یکدست «solid»، برای تصویر «image» یا برای شبه شفافیت «transparent» باشد.</long>
+      </locale>
+
       <locale name="fi">
          <short>Taustan tyyppi</short>
          <long>Päätteen taustan tyyppi. Mahdollisia arvoja ovat &quot;solid&quot; (yhtenäinen väri), &quot;image&quot; (kuva) ja &quot;transparent&quot; (vale-läpinäkyvä).</long>
@@ -9421,6 +9562,11 @@
          <long>Atzeko planoko irudiaren fitxategi-izena.</long>
       </locale>
 
+      <locale name="fa">
+         <short>تصویر پس‌زمینه</short>
+         <long>نام پرونده‌ی تصویر پس‌زمینه.</long>
+      </locale>
+
       <locale name="fi">
          <short>Taustakuva</short>
          <long>Tiedostonimi tai taustakuva.</long>
@@ -9673,7 +9819,7 @@
       </locale>
 
       <locale name="bg">
-         <short>Дали да се плъзга фоновото изображение</short>
+         <short>Дали фоновото изображение да се плъзга</short>
          <long>Ако е включено, фоновото изображение се движи с текста, ако не е включено - текстът се движи върху неподвижното фоново изображение.</long>
       </locale>
 
@@ -9735,6 +9881,11 @@
       <locale name="eu">
          <short>Atzeko planoko irudia korritu behar den.</short>
          <long>Hautatzen bada, atzeko planoko irudia aurreko planoko testuarekin batera korrituko da; bestela, irudia ez da mugituko eta testua bakarrik korrituko da.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که تصویر پس‌زمینه بلغزد یا نه</short>
+         <long>اگر درست باشد، تصویر پس‌زمینه همراه با متن پیش‌زمینه بلغزد؛ اگر نه، تصویر در یک موقعیت ثابت نگه داشته شود و متن روی آن بلغزد.</long>
       </locale>
 
       <locale name="fi">
@@ -10045,6 +10196,11 @@
          <long>Atzeko planoko irudia zenbat ilunsu behar den zehazteko, 0.0 eta 1.0 arteko balio bat adierazi behar da. 0.0 balioak ez iluntzeko esan nahi du eta 1.0 balioak erabat iluntzeko. Oraingoz, bi maila besterik ez daude aukeran, eta, beraz, ezarpen boolearra da (0.0k itzaleztatzea desgaitzen du).</long>
       </locale>
 
+      <locale name="fa">
+         <short>مقدار تاریکی تصویر پس‌زمینه</short>
+         <long>مقداری بین ۰٫۰ و ۱٫۰ که مقداری تیرگی تصویر پس‌زمینه را مشخص می‌کند. ۰٫۰ به معنی بدون تاریکی و ۱٫۰ به معنی تاریکی کامل است. در پیاده‌سازی فعلی، فقط دو سطح تاریکی وجود دارد، بنابراین تنظیمات به شکل بولی عمل می‌کنند، یعنی ۰٫۰ تأثیر تاریکی را از کار می‌اندازد.</long>
+      </locale>
+
       <locale name="fi">
          <short>Kuinka paljon taustakuvaa tummennetaan</short>
          <long>Arvo väliltä 0.0 - 0.1, joka ilmaisee, kuinka paljon taustakuvaa tummennetaan. 0.0 merkitsee ei tummennusta, 1.0 merkitsee kokonaan tummaa. Nykyisessä toteutuksessa vain kaksi arvoa on mahdollista: 0.0 ei tummenna ja mikä muu tahansa tummentaa saman verran.</long>
@@ -10107,7 +10263,7 @@
 
       <locale name="lt">
          <short>Kiek patamsinti foninį paveikslėlį</short>
-         <long>Reikšmė tarp 0.0 ir 1.0 nurodo, kiek reikia patamsinti foninį paveikslėlį. 0,0 reiškia tamsinimo netaikymą, 1.0 - visišką užtamsinimą. Dabar turima programos specifikacija leidžia tik du galimus tamsinimo atvejus ir reikšmė veikia kaip loginis kintamasis, kuris atjungia (0.0) arba įjungia (1.0) tamsinimą.</long>
+         <long>Reikšmė tarp 0.0 ir 1.0 nurodo, kiek reikia patamsinti foninį paveikslėlį. 0.0 reiškia tamsinimo netaikymą, 1.0 - visišką užtamsinimą. Dabar turima programos specifikacija leidžia tik du galimus tamsinimo atvejus ir reikšmė veikia kaip loginis kintamasis, kuris atjungia (0.0) arba įjungia (1.0) tamsinimą.</long>
       </locale>
 
       <locale name="mk">
@@ -10352,6 +10508,11 @@
       <locale name="eu">
          <short>Atzera-teklaren ekintza</short>
          <long>Atzera-teklak sortuko duen kodea ezartzen du. Hauek dira balio posibleak: &quot;ascii-del&quot; (ASCII DEL karakterea), &quot;control-h&quot; (Ktrl+H, AKA ASCII BS karakterea), &quot;escape-sequence&quot; (normalean atzera-teklari edo ezabatzekoari lotutako ihes-sekuentzia). Atzera-teklarentzat &quot;ascii-del&quot; ezarpen egokitzat jotzen da normalean.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>تأثیر کلید پس‌بر</short>
+         <long>کدی که کلید پس‌بر تولید می‌کند را تنظیم می‌کند. مقادیر ممکن عبارتند از «ascii-del» برای نویسه‌ی ASCII DEL، «control-h» برای مهار+ا (به عنوان نویسه‌ی ASCII BS هم شناخته می‌شود)، «escape-sequence» برای دنباله‌ی گریزداری که معمولاً به پس‌بر یا حذف مقید است. در شرایط عادی «ascii-del» تنظیم درست کلید پس‌بر به شمار می‌رود.</long>
       </locale>
 
       <locale name="fi">
@@ -10668,6 +10829,11 @@
          <long>Ezabatu teklak sortuko duen kodea ezartzen du. Hauek dira balio posibleak: &quot;ascii-del&quot; (ASCII DEL karakterea), &quot;control-h&quot; (Ktrl+H, AKA ASCII BS karakterea), &quot;escape-sequence&quot; (normalean atzera-teklari edo ezabatzekoari lotutako ihes-sekuentzia). Ezabatu teklarentzat &quot;escape-sequence&quot; ezarpen egokitzat jotzen da normalean.</long>
       </locale>
 
+      <locale name="fa">
+         <short>تأثیر کلید حذف</short>
+         <long>کدی که کلید حذف تولید می‌کند را تنظیم می‌کند. مقادیر ممکن عبارتند از «ascii-del» برای نویسه‌ی ASCII DEL، «control-h» برای مهار+ا (به عنوان نویسه‌ی ASCII BS هم شناخته می‌شود)، «escape-sequence» برای دنباله‌ی گریزداری که معمولاً به پس‌بر یا حذف مقید است. در شرایط عادی «ascii-del» تنظیم درست کلید حذف به شمار می‌رود.</long>
+      </locale>
+
       <locale name="fi">
          <short>Delete-näppäimen vaikutus</short>
          <long>Minkä koodin delete-näppäin tuottaa. Mahdollisia arvoja ovat &quot;ascii-del&quot; (ASCII DEL -merkki), &quot;control-h&quot; (control-H eli ASCII BS -merkki), &quot;escape-sequence&quot; (ohjausmerkkijono, joka liittyy yleensä askelpalauttimeen tai delete-näppäimeen). &quot;escape-sequence&quot; on yleensä oikea asetus delete-näppäimelle.</long>
@@ -10914,7 +11080,7 @@
       </locale>
 
       <locale name="bg">
-         <short>Дали да се използват цветовете от темата за терминалния уиджет</short>
+         <short>Дали да се използват цветовете от темата за графичния обект за терминала</short>
          <long>Ако е истина, терминалът ще използва цветовата схема на работния плот, а не тази на потребителя.</long>
       </locale>
 
@@ -10971,6 +11137,11 @@
       <locale name="eu">
          <short>Terminalean gaiaren koloreak erabili behar diren</short>
          <long>Hautatzen bada, testua sartzeko koadroetako gaiaren kolore-eskema bera erabiliko da terminalean, erabiltzaileak zehaztutako koloreak erabili beharrean.</long>
+      </locale>
+
+      <locale name="fa">
+         <short>این که رنگ‌های تم برای ویجت پایانه استفاده شود یا نه</short>
+         <long>اگر درست باشد، به جای رنگ‌های تعیین شده به دست کاربر، تم رنگ به کار رفته برای جعبه‌های ورود متن برای پایانه استفاده خواهد شد.</long>
       </locale>
 
       <locale name="fi">
@@ -11264,6 +11435,11 @@
          <long>Hautatzen bada, terminalak mahaigaineko letra-tipo orokorra erabiliko du, tarte bakarrekoa bada (eta hurbileneko letra-tipoa bestela).</long>
       </locale>
 
+      <locale name="fa">
+         <short>این که از قلم سیستم استفاده شود یا نه</short>
+         <long>اگر درست باشد، پایانه در صورت متساوی‌العرض بودن قلم استاندارد رومیزی/جهانی آن را به کار خواهد برد (و در غیر این صورت از نزدیک‌ترین قلم به آن که پیدا کند استفاده خواهد کرد).</long>
+      </locale>
+
       <locale name="fi">
          <short>Onko järjestelmän kirjasin käytössä</short>
          <long>Jos tosi, pääte käyttää työpöydänlaajuista peruskirjasinta jos se on tasavälinen (ja muussa tapauksessa lähintä vastaavaa).</long>
@@ -11436,7 +11612,7 @@
 
       <locale name="th">
          <short>ใช้แบบอักษรระบบหรือไม่</short>
-         <long>ถ้าเลือก เทอร์มินัลจะใช้แบบอักษรมาตรฐานเดสก์ทอปทั่วไป ถ้าแบบอักษรนั้นเป็นช่องว่างเดี่ยว (รวมทั้งแบบอักษรส่วนใหญ่ที่คล้ายกันสามารถเกิดสิ่งที่ไม่คาดหมายได้)</long>
+         <long>ถ้าเลือก เทอร์มินัลจะใช้แบบอักษรมาตรฐานเดสก์ท็อปทั่วไป ถ้าแบบอักษรนั้นเป็นช่องว่างเดี่ยว (รวมทั้งแบบอักษรส่วนใหญ่ที่คล้ายกันสามารถเกิดสิ่งที่ไม่คาดหมายได้)</long>
       </locale>
 
       <locale name="tr">
@@ -11483,272 +11659,83 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-         <short>Support skey dingus clicking</short>
-         <long>
-	 Popup a dialog when an s/key challenge response query is
-         detected and clicked on.  Typing a password into the dialog
+         <short><!-- Translators: S/Key is the name of an application, so it should
+         not be translated. -->Highlight S/Key challenges</short>
+         <long><!-- Translators: S/Key is the name of an application, so it should
+         not be translated. -->Popup a dialog when an S/Key challenge response query is
+	 detected and clicked on.  Typing a password into the dialog
          will send it to the terminal.
          </long>
       </locale>
 
-      <locale name="ar">
-         <short>دعم لنقر العبارات المسطرة لبروتوكول skey</short>
-         <long>بثق حوار عند كشف طلب إجابة عن حدوث اتصال ببروتوكول s/key و نقر عليه. كتابة كلمة سر في الحوار سترسله إلى الشاشة الطرفية.</long>
-      </locale>
-
-      <locale name="az">
-         <short>Skey dingus tıqlamasını dəstəklə</short>
-         <long>S/düymə yarış cavabı aşkar ediləndə və tıqlananda dialoq göstər. Dialoqa şifrə daxil edildiyi vaxt o terminala göndəriləcək.</long>
-      </locale>
-
-      <locale name="be">
-         <short>Падтрымка зычнага націску skey</short>
-         <long>Усплывае дыялёгавае вакно, калі s/key выклік-адказ запыт выяўлены й націснуты. Увод паролю ў дыялёг дашле яго да тэрміналу.</long>
-      </locale>
-
       <locale name="bg">
-         <short>Поддръжка на щракване с мишката върху идентификация с ключ</short>
-         <long>Показване на диалогова кутия при необходимост за въвеждане на парола. Паролата ще бъде пратена към терминала.</long>
-      </locale>
-
-      <locale name="bs">
-         <short>Podrška za skey dingus klikanje</short>
-         <long>Otvori dijalog kada je s/key challenge response query detektiran i kliknut. Upisivanje šifre u dijalogu će je poslati u terminal.</long>
-      </locale>
-
-      <locale name="ca">
-         <short>Implementa fer clic en comprovacions d&apos;skey</short>
-         <long>Mostra un diàleg quan es detecta i es fa clic a una consulta de resposta d&apos;una comprovació d&apos;s/key. Si es tecleja una contrasenya al diàleg, s&apos;enviarà al terminal.</long>
+         <short>Осветяване на предизвикателствата на S/Key</short>
+         <long>Показване на диалогова кутия при засичане на запитване за отговор на предизвикателство на S/Key. Паролата ще бъде пратена към терминала.</long>
       </locale>
 
       <locale name="cs">
-         <short>Podporovat klikání na řetězce skey</short>
-         <long>Otevřít dialog, když je detekován dotaz na odpověď na výzvu s/key a je na něj kliknuto. Napsání hesla do dialogu je pošle terminálu.</long>
-      </locale>
-
-      <locale name="cy">
-         <short>Cynnal clicio peth S/Key</short>
-         <long>Dangos blwch deialog pan synhwyrir cais her-ymates S/Key a caiff ei glicio. Fe fydd teipio cyfrinair i&apos;r deialog yn ei anfon i&apos;r terfynell.</long>
-      </locale>
-
-      <locale name="da">
-         <short>Understøt S/Key-klik</short>
-         <long>Vis et vindue når en S/Key-udfordringsforespørgsel opdages og klikkes på. Indtastning af en adgangskode i vinduet vil sende den til terminalen.</long>
-      </locale>
-
-      <locale name="de">
-         <short>skey-Dingus-Clicking unterstützen?</short>
-         <long>Soll ein Dialog angezeigt werden, wenn eine s/key-Challenge-Response-Anfrage erkannt und angeklickt wird? Die Eingabe eines Passworts in den Dialog schickt dieses an das Terminal.</long>
-      </locale>
-
-      <locale name="el">
-         <short>Υποστήριξη skey dingus clicking</short>
-         <long>Ανάδυση ενός διαλόγου όταν εντοπίζεται ένα ερώτημα πατήματος πλήκτρου και γίνεται κλικ. Η πληκτρολόγηση κωδικού στο διάλογο θα το στέλνει στο τερματικό.</long>
+         <short>Zvýrazňovat výzvy S/Key</short>
+         <long>Otevřít dialog, když je detekován dotaz na odpověď na výzvu S/Key a je na něj kliknuto. Napsání hesla do dialogu je pošle terminálu.</long>
       </locale>
 
       <locale name="en_CA">
-         <short>Support skey dingus clicking</short>
-         <long>Popup a dialogue when an s/key challenge response query is detected and clicked on. Typing a password into the dialogue will send it to the terminal.</long>
-      </locale>
-
-      <locale name="en_GB">
-         <short>Support skey dingus clicking</short>
-         <long>Popup a dialogue when an s/key challenge response query is detected and clicked on. Typing a password into the dialog will send it to the terminal.</long>
+         <short>Highlight S/Key challenges</short>
+         <long>Pop up a dialogue when an S/Key challenge response query is detected and clicked on. Typing a password into the dialogue will send it to the terminal.</long>
       </locale>
 
       <locale name="es">
-         <short>Soporte de pulsaciones de superteclas</short>
-         <long>Mostrar un diálogo cuando se detecte una consulta de claves de respuesta-desafío y sean pulsadas. Al escribir una contraseña en el diálogo esta será enviada a la terminal.</long>
-      </locale>
-
-      <locale name="eu">
-         <short>Onartu skey zerean klik egitea</short>
-         <long>Ireki elkarrizketa bat s/key erronka-erantzunaren kontsulta detektatu eta bertan klik egiten denean. Pasahitza idatzita, terminalera bidaliko du.</long>
+         <short>Resaltar desafíos S/Key</short>
+         <long>Mostrar un diálogo cuando se detecte una consulta de claves de respuesta-desafío y sean pulsadas. Al escribir una contraseña en el diálogo ésta será enviada a la terminal.</long>
       </locale>
 
       <locale name="fi">
-         <short>Tue S/Key-fraasien napsauttamista</short>
-         <long>Avaa valintaikkuna kun s/key-haasteen vastauskysely tunnistuu ja sitä napsautetaan. Salasanan kirjoittaminen ikkunaan lähettää sen päätteelle.</long>
-      </locale>
-
-      <locale name="fr">
-         <short>Gérer les challenges S/Key</short>
-         <long>Ouvrir une fenêtre de dialogue lorsqu&apos;une challenge S/Key est détecté et que l&apos;utilisateur clique dessus. Le mot de passe entré dans cette fenêtre sera renvoyé au terminal.</long>
+         <short>Korosta S/Key-haasteet</short>
+         <long>Avaa valintaikkuna kun S/Key-haasteen vastauskysely tunnistetaan ja sitä napsautetaan. Salasanan kirjoittaminen ikkunaan lähettää sen päätteelle.</long>
       </locale>
 
       <locale name="gl">
-         <short>Permitir a selección de desafíos skey</short>
+         <short>Resaltar desafíos S/Key</short>
          <long>Mostrar un diálogo cando se detecte e seleccione unha petición de desafío s/key. Ao escribir un contrasinal no diálogo, este enviaráse ao terminal.</long>
       </locale>
 
       <locale name="gu">
-         <short>skey dingus કી પર ક્લિક કરવા માટે આધાર આપે છે</short>
-         <long>જ્યારે s/કી પરકારના જવાબરુપ પ્રશ્ન શોધાય અને તેના પર ક્લિક થાય ત્યારે સંવાદ પોપઅપ કરો. સંવાદમાં પાસવર્ડ લખવાથી તેને ટર્મિનલમાં મોકલશે.</long>
-      </locale>
-
-      <locale name="hi">
-         <short>एस-की डिंगस क्लिकिंग समर्थन दें</short>
-         <long>एक संवाद पॉपअप करें जब एक s/key चुनौती अनुक्रिया प्रश्न जांचा जाता है और क्लिक किया जाता है. संवाद पेटी में शब्दकूट टाइप करना इसे टर्मिनल में भेजेगा.</long>
-      </locale>
-
-      <locale name="hr">
-         <short>Podrška skey dingus klikanju</short>
-         <long>Iskoči s dijalogom kada dođe do s/key zahtijev/odgovor upita. Utipkavanje lozine u dijalog poslati će je na terminal.</long>
-      </locale>
-
-      <locale name="hu">
-         <short>skey dingus kattintás támogatása</short>
-         <long>Párbeszédablak megjelenítése s/key hívás-válasz lekérdezés érzékelésekor és rákattintáskor. A párbeszédablakba beírt jelszó a terminálra lesz küldve.</long>
-      </locale>
-
-      <locale name="id">
-         <short>Mendukung klik dingus skey</short>
-         <long>Tampilkan dialog saat permintaan respon s/key challenge diterima dan diklik. Kata sandi yang diketikkan pada dialog akan dikirimkan langsung ke dalam terminal.</long>
-      </locale>
-
-      <locale name="it">
-         <short>Abilita il clic per il challenge skey</short>
-         <long>Apre una finestra di dialogo quando una richiesta di risposta a «S/Key challenge» è intercettata e cliccata. Scrivendo la password nella finestra di dialogo questa viene spedita al terminale.</long>
-      </locale>
-
-      <locale name="ja">
-         <short>S/Key クリック機構をサポートする</short>
-         <long>S/Key チャレンジ・レスポンスのクエリを検出して、クリックした際にダイアログをポップアップします。ダイアログにパスワードを入力すると、その値を端末に送ります。</long>
-      </locale>
-
-      <locale name="ko">
-         <short>skey 장치 클릭 지원</short>
-         <long>s/key channelge 응답 요청이 들어왔을 때 클릭하면 대화 상자를 실행합니다. 대화 상자로 열쇠글을 입력하면 터미널로 보냅니다.</long>
+         <short>S/કી શરતો પ્રકાશિત કરો</short>
+         <long>જ્યારે s/કી શરત પ્રત્યુત્તર મળે અને તેના પર ક્લિક થાય ત્યારે સંવાદ પોપઅપ કરો. સંવાદમાં પાસવર્ડ લખવાનું તેને ટર્મિનલમાં મોકલશે.</long>
       </locale>
 
       <locale name="lt">
-         <short>Palaikyti s/key dingus žymas</short>
-         <long>Iškviesti dialogo langą, kai užregistruojamas atsakymo į s/key kreipinio užklausą įvedimas. Slaptažodžio įvedimas dialogo lange nusiųs jį į terminalą.</long>
-      </locale>
-
-      <locale name="mk">
-         <short>Подршла за skey dingus кликање</short>
-         <long>Прикажи дијалог кога с/копче одговор на прашалник е детектиран и притиснат. Внесување на лозинка во диалогот ќе го прати во терминал.</long>
+         <short>Paryškinti S/Key iškvietimus</short>
+         <long>Iškviesti dialogo langą, kai aptinkamas atsakymo į S/Key kreipinio užklausą įvedimas. Dialoge įvedus slaptažodį šis bus nusiųstas į terminalą.</long>
       </locale>
 
       <locale name="nb">
-         <short>Støtte for skey dingusklikk</short>
-         <long>Vis en dialog når en spørring etter svar på en s/key utfordring gjenkjennes og klikkes. Hvis passordet skrives inn i dialogen vil dette sendes til terminalen.</long>
-      </locale>
-
-      <locale name="nl">
-         <short>skey dinges klikken ondersteunen</short>
-         <long>Een dialoogvenster tonen als een s/key challenge response query ontdekt en aangeklikt wordt. Het intypen van een wachtwoord in het dialoogvenster zal het wachtwoord doen verzenden aan de terminal.</long>
-      </locale>
-
-      <locale name="nn">
-         <short>Støtt klikking på S/Key-dingsar</short>
-         <long>Opna ein dialog når ei S/Key-utfordring vert oppdaga og klikka på. Når eit passord vert skrive inn i dialogen vert det sendt til terminalen.</long>
+         <short>Merk S/Key spørring</short>
+         <long>Vis en dialog når en spørring etter svar på en S/Key utfordring gjenkjennes og klikkes. Hvis passordet skrives inn i dialogen vil dette sendes til terminalen.</long>
       </locale>
 
       <locale name="no">
-         <short>Støtte for skey dingusklikk</short>
-         <long>Vis en dialog når en spørring etter svar på en s/key utfordring gjenkjennes og klikkes. Hvis passordet skrives inn i dialogen vil dette sendes til terminalen.</long>
-      </locale>
-
-      <locale name="pa">
-         <short>skey dingus ਕਲਿੱਕਿੰਗ ਨੂੰ ਸਹਾਇਤਾ ਦਿਉ</short>
-         <long>ਵਾਰਤਾਲਾਪ ਖੋਲ੍ਹੋ, ਜਦੋ ਇੱਕ s/key ਨਤੀਜਾ ਆਵੇ ਅਤੇ ਇਸ ਉਪੱਰ ਕਲਿੱਕ ਹੋਵੇ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਦਿੱਤਾ ਗਿਆ ਗੁਪਤ-ਕੋਡ ਟਰਮੀਨਲ ਨੂੰ ਭੇਜਿਆ ਜਾਵੇ</long>
-      </locale>
-
-      <locale name="pl">
-         <short>Wsparcie dla haseł S/Key</short>
-         <long>Wyświetlenie okna gdy zostanie wykryte i klikniete pytanie o hasło jednorazowe s/key. Hasło wpisane w oknie zostanie wysłane do terminala.</long>
-      </locale>
-
-      <locale name="pt">
-         <short>Suportar clique em pedido senha segura</short>
-         <long>Apresentar um diálogo quando é detectado um pedido de resposta a uma questão de senha segura e este é clicado. Inserir uma senha no diálogo irá enviá-la para a consola.</long>
-      </locale>
-
-      <locale name="pt_BR">
-         <short>Suportar clique em dingus skey</short>
-         <long>Mostrar um diálogo quando uma solicitação de resposta a um desafio s/key for detectado e clicado. Digitar uma senha no diálogo a enviará para o terminal.</long>
-      </locale>
-
-      <locale name="ro">
-         <short>Suportă clic pe skey dingus</short>
-         <long>Afişează un dialog în momentul detectării unei interogări în terminal. Parola scrisă în căsuţă va fi trimisă din nou în terminal.</long>
-      </locale>
-
-      <locale name="ru">
-         <short>Поддержка нажатия skey dingus</short>
-         <long>Показывать диалог при обнаружении ответа на запрос s/key нажатии на него. Ввод пароля в диалоге приведет к отправке его в терминал.</long>
+         <short>Merk S/Key spørring</short>
+         <long>Vis en dialog når en spørring etter svar på en S/Key utfordring gjenkjennes og klikkes. Hvis passordet skrives inn i dialogen vil dette sendes til terminalen.</long>
       </locale>
 
       <locale name="sk">
-         <short>Podpora kliknutia na skey dingus</short>
-         <long>Zobraziť dialóg pri kliknutí na dotaz s/key challenge response. Zadaním hesla do dialógu ho pošlete do terminálu.</long>
-      </locale>
-
-      <locale name="sl">
-         <short>Podpri klikanje skritega ključa v dialogu ??????</short>
-         <long>Kadar je zaznan izziv s tajnim ključem, prikaži dialog. Vpis gesla v dialog ga bo poslal v terminal.</long>
-      </locale>
-
-      <locale name="sq">
-         <short>Support skey dingus clicking</short>
-         <long>Një dialog popup kur është kërkuar dhe klikuar një përgjigje s/key challenge. Duke shkruar fjalëkalimin tek dritarja e dialogut do t&apos;ja çojë terminalit.</long>
-      </locale>
-
-      <locale name="sr">
-         <short>Подршка за клик на skey dingus</short>
-         <long>Искаче прозорче када се препозна одговор за „s/key challenge“ и када се кликне на њега. Укуцавање лозинке у прозорче ће је послати терминалу.</long>
-      </locale>
-
-      <locale name="sr@Latn">
-         <short>Podrška za klik na skey dingus</short>
-         <long>Iskače prozorče kada se prepozna odgovor za „s/key challenge“ i kada se klikne na njega. Ukucavanje lozinke u prozorče će je poslati terminalu.</long>
-      </locale>
-
-      <locale name="sv">
-         <short>Stöd skey-dingusklick</short>
-         <long>Visa ett dialogfönster då en s/key-utmaningssvarsfråga detekteras och klickas på. Att ange ett lösenord i dialogfönstret kommer att skicka det till terminalfönstret.</long>
-      </locale>
-
-      <locale name="ta">
-         <short>skey dingus க்ளிக்கு ஆதரவு உண்டு</short>
-         <long>க்ளிக் செய்யும் போது s/key சவால் விடை உரையாடல் பெட்டியில் தோன்றும். இந்த உரையாடல் பெட்டியில் கடவுச்சொல்லை தட்டச்சு செய்தால் அது முனையத்திற்கு அனுப்பப்படும்.</long>
+         <short>Zvýrazniť výzvy S/Key</short>
+         <long>Zobraziť dialóg pri kliknutí na dotaz odpovede výzvy S/Key. Zadaním hesla do dialógu ho pošlete na terminál.</long>
       </locale>
 
       <locale name="th">
-         <short>สนับสนุนการคลิกเมาส์แบบ dingus สำหรับ skey</short>
-         <long>แสดงไดอะล็อกขึ้นมาเมื่อตรวจพบ และมีการคลิ้กคำร้องขอข้อมูลการตอบสนองการท้าทาย s/key การพิมพ์รหัสผ่านในไดอะล็อกจะส่งคำร้องดังกล่าวไปที่เทอร์มินัล</long>
-      </locale>
-
-      <locale name="tr">
-         <short>Skey dingus tıklamasını destekle</short>
-         <long>s/key challenge response sorgusu algılandığında ve tıklandığında bir pencere çıkar. Bu pencereye yazılacak olan parola uçbirime gönderilir.</long>
-      </locale>
-
-      <locale name="uk">
-         <short>Підтримка натискання skey dingus</short>
-         <long>Показувати діалог при виявлені запиту на відповідь s/key та клацанні. Набирання паролю у діалозі призведе до відправки його у термінал.</long>
-      </locale>
-
-      <locale name="vi">
-         <short>Hỗ trợ nhắp điều phím-S</short>
-         <long>Bật lên hộp thoại khi phát hiện và nhắp vào yêu cầu/đáp ứng phím S. Gõ mật khẩu vào hộp thoại thì sẽ gởi nó cho thiết bị cuối.</long>
-      </locale>
-
-      <locale name="xh">
-         <short>Ukucofwa okuxhaswayo kwe-skey dingus</short>
-         <long>Veza unxibelelwano xa i-s/key yomngeni wempendulo yombuzo lifunayniswa uze ucofe. Ukuchwetheza i-password kunxibelelwano kuya kuyithumela kwi-terminal.</long>
+         <short>เน้นคำท้า S/Key</short>
+         <long>ผุดไดอะล็อกเมื่อตรวจพบและมีการคลิกคำขอการโต้ตอบคำท้า S/Key การพิมพ์รหัสผ่านในไดอะล็อกจะส่งการโต้ตอบดังกล่าวไปที่เทอร์มินัล</long>
       </locale>
 
       <locale name="zh_CN">
-         <short>支持 skey 智能点击</short>
-         <long>检测到 s/key 挑战响应查询时弹出一个对话框。在对话框中输入的密码将发送到终端。</long>
+         <short>高亮 S/Key 挑战</short>
+         <long>检测到 S/Key 挑战响应查询且单击时弹出一个对话框。在对话框中输入的密码将发送到终端。</long>
       </locale>
 
       <locale name="zh_TW">
-         <short>可點選 s/key 暗號</short>
-         <long>當偵測到終端機出現 s/key challenge(暗號) 而且用戶點選這個暗號後，顯示對話方塊，要求用戶輸入密碼。然後這個密碼會被送出至終端機。</long>
+         <short>突顯 s/key challenge(暗號)</short>
+         <long>當偵測到終端機出現 s/key challenge(暗號) 而且用戶點選這個暗號後，顯示對話方塊。輸入到此對話方塊中的密碼會被送出至終端機。</long>
       </locale>
     </schema>
 
@@ -11786,8 +11773,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за отваряне на нова страница</short>
-         <long>Бърз клавиш за отваряне на нова страница. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за отваряне на нов подпрозорец</short>
+         <long>Бърз клавиш за отваряне на нов подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -11850,9 +11837,14 @@
          <long>Fitxa berria irekitzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای باز کردن یک زبانه‌ی جدید</short>
+         <long>میانبر صفحه‌کلید برای باز کردن یک زبانه‌ی جدید. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Uuden välilehden avaava pikanäppäin</short>
-         <long>Pikanäppäin, joka avaa uuden välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka avaa uuden välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -11911,8 +11903,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, atveriantis naują kortelę</short>
-         <long>Greitasis klavišas, atveriantis naują kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, naujos kortelės atvėrimui</short>
+         <long>Klavišų kombinacija, atveriantis naują kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -12032,7 +12024,7 @@
 
       <locale name="vi">
          <short>Phím tắt Mở thanh mới</short>
-         <long>Phím tắt để mở tab mới. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để mở tab mới. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -12152,9 +12144,14 @@
          <long>Leiho berria irekitzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای باز کردن یک پنجره‌ی جدید</short>
+         <long>میانبر صفحه‌کلید برای باز کردن یک پنجره‌ی جدید. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Uuden ikkunan avaava pikanäppäin</short>
-         <long>Pikanäppäin, joka avaa uuden ikkunan. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka avaa uuden ikkunan. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -12213,8 +12210,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, sukuriantis naują langą</short>
-         <long>Greitasis klavišas, atveriantis naują langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, naujo lango atvėrimui</short>
+         <long>Klavišų kombinacija, atveriantis naują langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -12334,7 +12331,7 @@
 
       <locale name="vi">
          <short>Phím tắt Mở cửa sổ mới</short>
-         <long>Phím tắt để mở cửa sổ mới. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để mở cửa sổ mới. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -12454,9 +12451,14 @@
          <long>Profila sortzeko elkarrizketa-koadroa irekitzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای ایجاد مجموعه تنظیمات جدید</short>
+         <long>میانبر صفحه‌کلید برای بالا آوردن محاوره‌ی ایجاد مجموعه تنظیمات. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Uuden profiilin luova pikanäppäin</short>
-         <long>Pikanäppäin, joka avaa profiilien luonti-ikkunan. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka avaa profiilien luonti-ikkunan. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -12515,8 +12517,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, sukuriantis naują profilį</short>
-         <long>Greitasis klavišas, iškviečiantis profilio kūrimo langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, naujo profilio sukūrimui</short>
+         <long>Klavišų kombinacija, iškviečianti profilio kūrimo langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -12692,8 +12694,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за затваряне на страница</short>
-         <long>Бърз клавиш за затварянето на страница. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за затваряне на подпрозорец</short>
+         <long>Бърз клавиш за затварянето на подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -12756,9 +12758,14 @@
          <long>Fitxa ixteko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای بستن زبانه</short>
+         <long>میانبر صفحه‌کلید برای بستن زبانه. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehden sulkeva pikanäppäin</short>
-         <long>Pikanäppäin, joka sulkee välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka sulkee välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -12817,8 +12824,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, uždarantis kortelę</short>
-         <long>Greitasis klavišas, uždarantis kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, kortelės užvėrimui</short>
+         <long>Klavišų kombinacija, užverianti kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -12938,7 +12945,7 @@
 
       <locale name="vi">
          <short>Phím tắt Đóng thanh</short>
-         <long>Phím tắt để đóng tab. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để đóng tab. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -13058,9 +13065,14 @@
          <long>Leihoa ixteko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای بستن پنجره</short>
+         <long>میانبر صفحه‌کلید برای بستن پنجره. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Ikkunan sulkeva pikanäppäin</short>
-         <long>Pikanäppäin, joka sulkee ikkunan. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka sulkee ikkunan. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -13119,8 +13131,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, uždarantis langą</short>
-         <long>Greitasis klavišas, uždarantis langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, lango užvėrimui</short>
+         <long>Klavišų kombinacija, užverianti langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -13240,7 +13252,7 @@
 
       <locale name="vi">
          <short>Phím tắt Đóng cửa sổ</short>
-         <long>Phím tắt để đóng cửa sổ. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để đóng cửa sổ. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -13362,9 +13374,14 @@
          <long>Hautatutako testua arbelean kopiatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای نسخه‌برداری از متن</short>
+         <long>میانبر صفحه‌کلید برای نسخه‌برداری از متن انتخاب‌شده در تخته‌گیره. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Tekstiä kopioiva pikanäppäin</short>
-         <long>Pikanäppäin, joka kopioi valitun tekstin leikepöydälle. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka kopioi valitun tekstin leikepöydälle. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -13423,8 +13440,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, kopijuojantis tekstą</short>
-         <long>Greitasis klavišas, nukopijuojantis pažymėtą tekstą į atmintinę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, teksto kopijavimui</short>
+         <long>Klavišų kombinacija, nukopijuojantis pažymėtą tekstą į atmintinę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -13544,7 +13561,7 @@
 
       <locale name="vi">
          <short>Phím tắt Chép văn bản</short>
-         <long>Phím tắt để sao chép đoạn văn bản được chọn vào khay. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để sao chép đoạn văn bản được chọn vào khay. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -13666,9 +13683,14 @@
          <long>Arbeleko testua itsasteko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای چسباندن متن</short>
+         <long>میانبر صفحه‌کلید برای چسباندن محتویات تخته‌گیره در پایانه. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Tekstiä liittävä pikanäppäin</short>
-         <long>Pikanäppäin, joka liittää tekstiä leikepöydältä. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka liittää tekstiä leikepöydältä. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -13727,8 +13749,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, įterpiantis tekstą</short>
-         <long>Greitasis klavišas, įterpiantis tekstą iš atmintinės. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, teksto įdėjimui</short>
+         <long>Klavišų kombinacija, įterpiantis tekstą iš atmintinės. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -13848,7 +13870,7 @@
 
       <locale name="vi">
          <short>Phím tắt Dán văn bản</short>
-         <long>Phím tắt để dán văn bản được chọn từ khay. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để dán văn bản được chọn từ khay. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -13967,9 +13989,14 @@
          <long>Pantaila osoko modua jartzeko eta kentzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای زدن ضامن حالت تمام‌صفحه</short>
+         <long>میانبر صفحه‌کلید برای زدن ضامن حالت تمام‌صفحه. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Kokoruututilaa vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka vaihtaa kokoruututilaa. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka vaihtaa kokoruututilaa. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -14028,8 +14055,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į pilnaekranį režimą</short>
-         <long>Greitasis klavišas, perjungiantis pilnaekranį režimą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į viso ekrano režimą</short>
+         <long>Klavišų kombinacija, perjungiantis pilnaekranį režimą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -14149,7 +14176,7 @@
 
       <locale name="vi">
          <short>Phím tắt Bật tắt Toàn màn hình</short>
-         <long>Phím tắt để bật tắt chế độ toàn màn hình. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để bật tắt chế độ toàn màn hình. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -14267,9 +14294,14 @@
          <long>Menu-barra erakutsi eta ezkutatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای زدن ضامن مرئی بودن نوار منو </short>
+         <long>میانبر صفحه‌کلید برای زدن ضامن مرئی بودن نوار منو. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Valikkopalkin näyttävä tai piilottava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää tai piilottaa valikkopalkin. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää tai piilottaa valikkopalkin. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -14328,8 +14360,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, perjungiantis meniu rodymą</short>
-         <long>Greitasis klavišas, valdantis meniu juostos rodymą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, perjungianti meniu rodymą</short>
+         <long>Klavišų kombinacija, valdantis meniu juostos rodymą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -14449,7 +14481,7 @@
 
       <locale name="vi">
          <short>Phím tắt Bật tắt hiển thị thanh trình đơn</short>
-         <long>Phím tắt để bật tắt hiển thị thanh trình đơn. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để bật tắt hiển thị thanh trình đơn. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -14568,9 +14600,14 @@
          <long>Terminalaren titulua ezartzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تنظیم عنوان پایانه</short>
+         <long>کلید میانبر صفحه‌کلید برای تنظیم عنوان پایانه. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Päätteen otsikon asettava pikanäppäin</short>
-         <long>Pikanäppäin, joka asettaa päätteen otsikon. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka asettaa päätteen otsikon. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -14629,8 +14666,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, nustatantis terminalo antraštę</short>
-         <long>Greitasis klavišas, nustatantis terminalo antraštę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, terminalo antraštei nustatyti</short>
+         <long>Klavišų kombinacija, nustatantis terminalo antraštę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -14869,9 +14906,14 @@
          <long>Terminala berrezartzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای برگرداندن تنظیمات پایانه به حالت اولیه</short>
+         <long>میانبر صفحه‌کلید برای برگرداندن پایانه به شرایط اولیه. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Päätteen alustava pikanäppäin</short>
-         <long>Pikanäppäin, joka alustaa päätteen. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka alustaa päätteen. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -14930,8 +14972,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, perkraunantis terminalą</short>
-         <long>Greitasis klavišas, perkraunantis terminalą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, terminalo atstatymui</short>
+         <long>Klavišų kombinacija, perkraunantis terminalą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -15170,9 +15212,14 @@
          <long>Terminala berrezarri eta garbitzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای برگرداندن  تنظیمات پایانه به حالت اولیه و پاک کردن آن</short>
+         <long>میانبر صفحه‌کلید برای برگرداندن پایانه به شرایط اولیه و پاک کردن آن. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Päätteen alustava ja tyhjentävä pikanäppäin</short>
-         <long>Pikanäppäin, joka alustaa ja tyhjentää päätteen. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka alustaa ja tyhjentää päätteen. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -15231,8 +15278,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, perkraunantis ir išvalantis terminalą</short>
-         <long>Greitasis klavišas, perkraunantis ir išvalantis terminalą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, terminalo atstatymui ir išvalymui</short>
+         <long>Klavišų kombinacija, perkraunantis ir išvalantis terminalą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -15352,7 +15399,7 @@
 
       <locale name="vi">
          <short>Phím tắt Đặt lại và xoá thiết bị cuối</short>
-         <long>Phím tắt để đặt lại và xóa thiết bị cuối. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để đặt lại và xóa thiết bị cuối. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -15408,8 +15455,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към предишната страница</short>
-         <long>Бърз клавиш за превключване към предишната страница. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към предишния подпрозорец</short>
+         <long>Бърз клавиш за превключване към предишния подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -15472,9 +15519,14 @@
          <long>Aurreko fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی قبلی</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی قبلی. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Edelliseen välilehteen vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää edellisen välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää edellisen välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -15533,8 +15585,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į ankstesnę kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į ankstesnę kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į ankstesnę kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į ankstesnę kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -15654,7 +15706,7 @@
 
       <locale name="vi">
          <short>Phím tắt Chuyển sang thanh trước</short>
-         <long>Phím tắt để chuyển sang thanh trước đó. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để chuyển sang thanh trước đó. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -15710,8 +15762,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към следващата страница</short>
-         <long>Бърз клавиш за превключване към следващата страница. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към следващия подпрозорец</short>
+         <long>Бърз клавиш за превключване към следващия подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -15774,9 +15826,14 @@
          <long>Hurrengo fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی بعدی</short>
+         <long>کلید میانبر صفحه‌کلید برای تعویض به زبانه‌ی بعدی. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Seuraavaan välilehteen vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää seuraavan välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää seuraavan välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -15835,8 +15892,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, persijungiantis į kitą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į kitą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, persijungimui į kitą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į kitą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -15956,7 +16013,7 @@
 
       <locale name="vi">
          <short>Phím tắt Chuyển sang thanh kế</short>
-         <long>Phím tắt để chuyển sang thanh kế tiếp. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để chuyển sang thanh kế tiếp. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -15977,6 +16034,251 @@
       <locale name="zh_TW">
          <short>用來切換至下一個分頁的捷徑鍵</short>
          <long>切換至下一個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/move_tab_left</key>
+      <applyto>/apps/gnome-terminal/keybindings/move_tab_left</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <default>&lt;Ctrl&gt;&lt;Shift&gt;Page_Up</default>
+      <locale name="C">
+         <short>Accelerator to move current tab left.</short>
+         <long>
+          Accelerator key to move current tab left. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there 
+          will be no keybinding for this action.
+         </long>
+      </locale>
+
+      <locale name="bg">
+         <short>Бърз клавиш за преместване на текущия подпрозорец наляво.</short>
+         <long>Бърз клавиш за преместване на текущия подпрозорец наляво. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+      </locale>
+
+      <locale name="cs">
+         <short>Klávesová zkratka pro posun aktuální karty doleva.</short>
+         <long>Klávesová zkratka posun aktuální karty doleva. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+      </locale>
+
+      <locale name="en_CA">
+         <short>Accelerator to move current tab left.</short>
+         <long>Accelerator key to move current tab left. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
+      <locale name="es">
+         <short>Acelerador para mover la solapa actual a la izquierda.</short>
+         <long>Tecla aceleradora para mover la solapa actual a la izquierda. Expresada como una cadena en el mismo formato que usan los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación de teclas para esta acción.</long>
+      </locale>
+
+      <locale name="fi">
+         <short>Pikanäppäin valitun välilehden siirtämiseksi vasemmalle.</short>
+         <long>Pikanäppäin, joka siirtää valittua välilehteä vasemmalle. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+      </locale>
+
+      <locale name="gl">
+         <short>Acelerador para mover a solapa actual á esquerda.</short>
+         <long>Tecla aceleradora para mover a solapa actual á esquerda. Expresado como unha cadea de texto co mesmo formato que os ficheiros de recursos de GTK+. Se pon o valor coa cadea especial &quot;disabled&quot;, non haberá ningún atallo para esta acción.</long>
+      </locale>
+
+      <locale name="gu">
+         <short>વર્તમાન ટેબને ડાબે ખસેડવા માટેની પ્રવેગક કી.</short>
+         <long>વર્તમાન ટેબને ડાબે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
+      </locale>
+
+      <locale name="lt">
+         <short>Greitasis klavišas perkelti kortelę kairėn.</short>
+         <long>Greitasis klavišas, kortelės perkėlimui kairėn. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="nb">
+         <short>Hurtigtast for å flytte aktiv fane til venstre.</short>
+         
+      </locale>
+
+      <locale name="no">
+         <short>Hurtigtast for å flytte aktiv fane til venstre.</short>
+         
+      </locale>
+
+      <locale name="sk">
+         <short>Akcelerátor na presunutie aktuálnej karty vľavo.</short>
+         <long>Akcelerátor pre presunutie aktuálnej karty vľavo. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
+      </locale>
+
+      <locale name="th">
+         <short>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางซ้าย</short>
+         <long>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางซ้าย กำหนดโดยข้อความที่มีรูปแบบเหมือนกับที่ใช้ในแฟ้ม resource ของ GTK+ ถ้าคุณกำหนดตัวเลือกนี้เป็นค่าพิเศษ &quot;disabled&quot; จะไม่มีปุ่มลัดสำหรับปฏิบัติการนี้</long>
+      </locale>
+
+      <locale name="zh_CN">
+         <short>将当前标签左移的加速键。</short>
+         <long>将当前标签左移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+    </schema>
+    
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/move_tab_right</key>
+      <applyto>/apps/gnome-terminal/keybindings/move_tab_right</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <default>&lt;Ctrl&gt;&lt;Shift&gt;Page_Down</default>
+      <locale name="C">
+         <short>Accelerator to move current tab right.</short>
+         <long>
+          Accelerator key to move current tab right. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there 
+          will be no keybinding for this action.
+         </long>
+      </locale>
+
+      <locale name="bg">
+         <short>Бърз клавиш за преместване на текущия подпрозорец надясно.</short>
+         <long>Бърз клавиш за преместване на текущия подпрозорец надясно. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+      </locale>
+
+      <locale name="cs">
+         <short>Klávesová zkratka pro posun aktuální karty doleva.</short>
+         <long>Klávesová zkratka posun aktuální karty doprava. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+      </locale>
+
+      <locale name="en_CA">
+         <short>Accelerator to move current tab right.</short>
+         <long>Accelerator key to move current tab right. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
+      <locale name="es">
+         <short>Acelerador para mover la solapa actual a la derecha.</short>
+         <long>Tecla aceleradora para mover la solapa de la terminal actual a la derecha. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+      </locale>
+
+      <locale name="fi">
+         <short>Pikanäppäin valitun välilehden siirtämiseksi oikealle.</short>
+         <long>Pikanäppäin, joka siirtää valittua välilehteä oikealle. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+      </locale>
+
+      <locale name="gl">
+         <short>Acelerador para mover a solapa actual á dereita.</short>
+         <long>Tecla aceleradora para mover a solapa actual á dereita. Expresado como unha cadea de texto co mesmo formato que os ficheiros de recursos de GTK+. Se pon o valor coa cadea especial &quot;disabled&quot;, non haberá ningún atallo para esta acción.</long>
+      </locale>
+
+      <locale name="gu">
+         <short>વર્તમાન ટેબને જમણે ખસેડવા માટેની પ્રવેગક કી.</short>
+         <long>વર્તમાન ટેબને જમણે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
+      </locale>
+
+      <locale name="lt">
+         <short>Greitasis klavišas perkelti kortelę dešinėn.</short>
+         <long>Greitasis klavišas, kortelės perkėlimui dešinėn. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="nb">
+         <short>Hurtigtast for å flytte aktiv fane til høyre.</short>
+         
+      </locale>
+
+      <locale name="no">
+         <short>Hurtigtast for å flytte aktiv fane til høyre.</short>
+         
+      </locale>
+
+      <locale name="sk">
+         <short>Akcelerátor na presunutie aktuálnej karty vpravo.</short>
+         <long>Akcelerátor pre presunutie aktuálnej karty vpravo. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
+      </locale>
+
+      <locale name="th">
+         <short>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางขวา</short>
+         <long>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางขวา กำหนดโดยข้อความที่มีรูปแบบเหมือนกับที่ใช้ในแฟ้ม resource ของ GTK+ ถ้าคุณกำหนดตัวเลือกนี้เป็นค่าพิเศษ &quot;disabled&quot; จะไม่มีปุ่มลัดสำหรับปฏิบัติการนี้</long>
+      </locale>
+
+      <locale name="zh_CN">
+         <short>将当前标签右移的加速键。</short>
+         <long>将当前标签右移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/detach_tab</key>
+      <applyto>/apps/gnome-terminal/keybindings/detach_tab</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <locale name="C">
+         <short>Accelerator to detach current tab.</short>
+         <long>
+          Accelerator key to detach current tab. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there 
+          will be no keybinding for this action.
+         </long>
+      </locale>
+
+      <locale name="bg">
+         <short>Бърз клавиш за отделяне на текущия подпрозорец.</short>
+         <long>Бърз клавиш за отделяне на текущия подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+      </locale>
+
+      <locale name="cs">
+         <short>Klávesová zkratka pro odpojení aktuální karty.</short>
+         <long>Klávesová zkratka odpojení aktuální karty. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+      </locale>
+
+      <locale name="en_CA">
+         <short>Accelerator to detach current tab.</short>
+         <long>Accelerator key to detach current tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
+      <locale name="es">
+         <short>Acelerador para desacoplar la solapa actual.</short>
+         <long>Tecla de aceleración para desacoplar la solapa actual. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define la opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+      </locale>
+
+      <locale name="fi">
+         <short>Pikanäppäin valitun välilehden irroittamiseksi.</short>
+         <long>Pikanäppäin, joka irrottaa valitun välilehden. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+      </locale>
+
+      <locale name="gl">
+         <short>Acelerador para desacoplar a solapa actual.</short>
+         <long>Tecla aceleradora para desacoplar a solapa actual. Expresado como unha cadea de texto co mesmo formato que os ficheiros de recursos de GTK+. Se pon o valor coa cadea especial &quot;disabled&quot;, non haberá ningún atallo para esta acción.</long>
+      </locale>
+
+      <locale name="gu">
+         <short>વર્તમાન ટેબ જોડવા માટેનો પ્રવેગક.</short>
+         <long>વર્તમાન ટૅબ પર જવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
+      </locale>
+
+      <locale name="lt">
+         <short>Greitasis klavišas atkabinti esamai kortelei.</short>
+         <long>Greitasis klavišas, esamos kortelės atkabinimui. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="nb">
+         <short>Hurtigtast for å rive løs aktiv fane.</short>
+         
+      </locale>
+
+      <locale name="no">
+         <short>Hurtigtast for å rive løs aktiv fane.</short>
+         
+      </locale>
+
+      <locale name="sk">
+         <short>Akcelerátora na odpojenie aktuálnej karty.</short>
+         <long>Akcelerátor pre odpojenie aktuálnej karty. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
+      </locale>
+
+      <locale name="th">
+         <short>ปุ่มลัดสำหรับดึงแท็บปัจจุบันออกมา</short>
+         <long>ปุ่มลัดสำหรับดึงแท็บปัจจุบันออกมา กำหนดโดยข้อความที่มีรูปแบบเหมือนกับที่ใช้ในแฟ้ม resource ของ GTK+ ถ้าคุณกำหนดตัวเลือกนี้เป็นค่าพิเศษ &quot;disabled&quot; จะไม่มีปุ่มลัดสำหรับปฏิบัติการนี้</long>
+      </locale>
+
+      <locale name="zh_CN">
+         <short>漂移当前标签的加速键。</short>
+         <long>漂移当前标签的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
       </locale>
     </schema>
 
@@ -16012,8 +16314,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 1</short>
-         <long>Бърз клавиш за превключването към страница 1. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 1</short>
+         <long>Бърз клавиш за превключването към подпрозорец 1. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -16076,9 +16378,14 @@
          <long>1. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 1 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 1. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 1. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -16137,8 +16444,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, perjungiantis į 1-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 1-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, persijungimui į 1-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 1-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -16314,8 +16621,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 2</short>
-         <long>Бърз клавиш за превключването към страница 2. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 2</short>
+         <long>Бърз клавиш за превключването към подпрозорец 2. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -16378,9 +16685,14 @@
          <long>2. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۲</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۲. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 2 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 2. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 2. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -16439,8 +16751,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 2-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 2-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 2-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 2-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -16616,8 +16928,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 3</short>
-         <long>Бърз клавиш за превключването към страница 3. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 3</short>
+         <long>Бърз клавиш за превключването към подпрозорец 3. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -16680,9 +16992,14 @@
          <long>3. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۳</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۳. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 3 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 3. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 3. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -16741,8 +17058,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 3-ią kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 3-ią kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 3-ią kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 3-ią kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -16918,8 +17235,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 4</short>
-         <long>Бърз клавиш за превключването към страница 4. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 4</short>
+         <long>Бърз клавиш за превключването към подпрозорец 4. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -16982,9 +17299,14 @@
          <long>4. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۴</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۴. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 4 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 4. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 4. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -17043,8 +17365,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 4-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 4-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 4-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 4-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -17220,8 +17542,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 5</short>
-         <long>Бърз клавиш за превключването към страница 5. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 5</short>
+         <long>Бърз клавиш за превключването към подпрозорец 5. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -17284,9 +17606,14 @@
          <long>5. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۵</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۵. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 5 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 5. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 5. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -17345,8 +17672,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 5-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 5-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 5-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 5-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -17522,8 +17849,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 6</short>
-         <long>Бърз клавиш за превключването към страница 6. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 6</short>
+         <long>Бърз клавиш за превключването към подпрозорец 6. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -17586,9 +17913,14 @@
          <long>6. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۶</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۶. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 6 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 6. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 6. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -17647,8 +17979,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 6-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 6-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 6-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 6-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -17824,8 +18156,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 7</short>
-         <long>Бърз клавиш за превключването към страница 7. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 7</short>
+         <long>Бърз клавиш за превключването към подпрозорец 7. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -17888,9 +18220,14 @@
          <long>7. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۷</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۷. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 7 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 7. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 7. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -17949,8 +18286,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 7-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 7-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 7-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 7-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -18126,8 +18463,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 8</short>
-         <long>Бърз клавиш за превключването към страница 8. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 8</short>
+         <long>Бърз клавиш за превключването към подпрозорец 8. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -18190,9 +18527,14 @@
          <long>8. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۸</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۸. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 8 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 8. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 8. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -18251,8 +18593,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 8-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 8-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 8-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 8-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -18428,8 +18770,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 9</short>
-         <long>Бърз клавиш за превключването към страница 9. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 9</short>
+         <long>Бърз клавиш за превключването към подпрозорец 9. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -18492,9 +18834,14 @@
          <long>9. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۹</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۹. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 9 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 9. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 9. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -18553,8 +18900,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 9-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 9-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 9-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 9-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -18730,8 +19077,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 10</short>
-         <long>Бърз клавиш за превключването към страница 10. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 10</short>
+         <long>Бърз клавиш за превключването към подпрозорец 10. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -18794,9 +19141,14 @@
          <long>10. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱۰</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱۰. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 10 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 10. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 10. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -18855,8 +19207,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, perjungiantis į 10-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 10-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, persijungimui į 10-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 10-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -19032,8 +19384,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 11</short>
-         <long>Бърз клавиш за превключването към страница 11. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 11</short>
+         <long>Бърз клавиш за превключването към подпрозорец 11. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -19096,9 +19448,14 @@
          <long>11. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱۱</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱۱. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 11 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 11. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 11. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -19157,8 +19514,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 11-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 11-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 11-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 11-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -19334,8 +19691,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Бърз клавиш за преход към страница 12</short>
-         <long>Бърз клавиш за превключването към страница 12. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
+         <short>Бърз клавиш за преход към подпрозорец 12</short>
+         <long>Бърз клавиш за превключването към подпрозорец 12. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
       <locale name="bs">
@@ -19398,9 +19755,14 @@
          <long>12. fitxara aldatzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱۲</short>
+         <long>میانبر صفحه‌کلید برای تعویض به زبانه‌ی ۱۲. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Välilehteen 12 vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka näyttää välilehden 12. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka näyttää välilehden 12. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -19459,8 +19821,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas persijungti į 12-ą kortelę</short>
-         <long>Greitasis klavišas, perjungiantis į 12-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija persijungimui į 12-ą kortelę</short>
+         <long>Klavišų kombinacija, perjungiantis į 12-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -19700,9 +20062,14 @@
          <long>Laguntza irekitzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای راه‌اندازی راهنما</short>
+         <long>میانبر صفحه‌کلید برای راه‌اندازی راهنما. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Ohjeen käynnistävä pikanäppäin</short>
-         <long>Pikanäppäin, joka käynnistää ohjeen. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka käynnistää ohjeen. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -19761,8 +20128,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, paleidžiantis pagalbos sistemą</short>
-         <long>Greitasis klavišas, paleidžiantis pagalbos sistemą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, žinyno atvėrimui</short>
+         <long>Klavišų kombinacija, paleidžiantis pagalbos sistemą. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -19882,7 +20249,7 @@
 
       <locale name="vi">
          <short>Phím tắt Hiện trợ giúp</short>
-         <long>Phím tắt để hiện trợ giúp. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để hiện trợ giúp. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
@@ -20002,9 +20369,14 @@
          <long>Letra handiagotzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای بزرگتر کردن قلم</short>
+         <long>میانبر صفحه‌کلید برای بزرگتر کردن قلم. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Kirjasinta suurentava pikanäppäin</short>
-         <long>Pikanäppäin, joka vaihtaa kirjasimen suuremmaksi. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka vaihtaa kirjasimen suuremmaksi. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -20063,8 +20435,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, padidinantis šrifto dydį</short>
-         <long>Greitasis klavišas, padidinantis šrifto dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, šrifto dydžiui padidinti</short>
+         <long>Klavišų kombinacija, padidinantis šrifto dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -20304,9 +20676,14 @@
          <long>Letra txikiagotzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای کوچکتر کردن قلم</short>
+         <long>میانبر صفحه‌کلید برای کوچکتر کردن قلم. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Kirjasinta pienentävä pikanäppäin</short>
-         <long>Pikanäppäin, joka vaihtaa kirjasimen pienemmäksi. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka vaihtaa kirjasimen pienemmäksi. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -20365,8 +20742,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, sumažinantis šrifto dydį</short>
-         <long>Greitasis klavišas, sumažinantis šriftų dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, šrifto dydžio sumažinimui</short>
+         <long>Klavišų kombinacija, sumažinantis šriftų dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -20606,9 +20983,14 @@
          <long>Letra-tamaina normala ezartzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
+      <locale name="fa">
+         <short>میانبر صفحه‌کلید برای برگرداندن قلم به اندازه‌ی عادی</short>
+         <long>میانبر صفحه‌کلید برای برگرداندن قلم به اندازه‌ی عادی. به شکل یک رشته با قالبی مشابه پرونده‌های منبع GTK+‎ بیان می‌شود. اگر گزینه را روی رشته‌ی ویژه‌ی «disabled» تنظیم کنید، دیگر میانبر صفحه‌کلیدی برای این کنش وجود نخواهد داشت.</long>
+      </locale>
+
       <locale name="fi">
          <short>Kirjasimen normaalikokoiseksi vaihtava pikanäppäin</short>
-         <long>Pikanäppäin, joka vaihtaa kirjasimen normaalikokoiseksi. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
+         <long>Pikanäppäin, joka vaihtaa kirjasimen normaalikokoiseksi. Annetaan samassa muodossa kuin GTK+-resurssitiedostoissa. Jos arvo on asetettu erityiseksi merkkijonoksi &quot;disabled&quot; (ei käytössä), niin tähän toimintoon liittyvää pikanäppäintä ei ole.</long>
       </locale>
 
       <locale name="fr">
@@ -20667,8 +21049,8 @@
       </locale>
 
       <locale name="lt">
-         <short>Greitasis klavišas, atstatantis normalų šrifto dydį</short>
-         <long>Greitasis klavišas, atstatantis įprastą šriftų dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+         <short>Klavišų kombinacija, normalaus šrifto dydžio nustatymui</short>
+         <long>Klavišų kombinacija, atstatantis numatytajį šriftų dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų bylose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
       <locale name="mk">
@@ -20788,7 +21170,7 @@
 
       <locale name="vi">
          <short>Phím tắt Dùng phông cỡ thường</short>
-         <long>Phím tắt để dùng phông cỡ bình thường. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị tắt), nghĩa là không có phím tắt cho hành động này.</long>
+         <long>Phím tắt để dùng phông cỡ bình thường. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này.</long>
       </locale>
 
       <locale name="wa">
