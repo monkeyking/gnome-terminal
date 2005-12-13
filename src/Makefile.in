@@ -59,7 +59,8 @@ am_gnome_terminal_OBJECTS = encoding.$(OBJEXT) \
 	terminal.$(OBJEXT) terminal-accels.$(OBJEXT) \
 	terminal-profile.$(OBJEXT) terminal-screen.$(OBJEXT) \
 	terminal-widget-vte.$(OBJEXT) terminal-window.$(OBJEXT) \
-	simple-x-font-selector.$(OBJEXT) $(am__objects_1)
+	terminal-notebook.$(OBJEXT) simple-x-font-selector.$(OBJEXT) \
+	$(am__objects_1)
 gnome_terminal_OBJECTS = $(am_gnome_terminal_OBJECTS)
 am__DEPENDENCIES_1 =
 gnome_terminal_DEPENDENCIES = $(am__DEPENDENCIES_1) skey/libskey.la
@@ -159,6 +160,7 @@ INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
 INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
 INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
 INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
+INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
 INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
 INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
 INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
@@ -290,6 +292,8 @@ gnome_terminal_SOURCES = \
 	terminal-widget-vte.c			\
 	terminal-window.c			\
 	terminal-window.h			\
+	terminal-notebook.c			\
+	terminal-notebook.h			\
 	simple-x-font-selector.c		\
 	simple-x-font-selector.h		\
 	$(EGGFILES)
@@ -393,6 +397,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/simple-x-font-selector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skey-popup.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-accels.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-notebook.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-profile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-screen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-widget-vte.Po@am__quote@

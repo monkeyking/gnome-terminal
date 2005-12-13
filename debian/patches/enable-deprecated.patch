@@ -1,0 +1,22 @@
+diff -Nur gnome-terminal-2.13.0/src/Makefile.am gnome-terminal-2.13.0.new/src/Makefile.am
+--- gnome-terminal-2.13.0/src/Makefile.am	2005-11-20 15:53:30.000000000 +0100
++++ gnome-terminal-2.13.0.new/src/Makefile.am	2005-12-12 22:24:39.000000000 +0100
+@@ -12,7 +12,6 @@
+ 	-DTERM_PREFIX=\"$(prefix)\" \
+ 	-DTERM_SYSCONFDIR=\"$(sysconfdir)\" \
+ 	-DTERM_PKGDATADIR=\"$(pkgdatadir)\" \
+-	-DGDK_DISABLE_DEPRECATED -DG_DISABLE_DEPRECATED	\
+ 	-DSN_API_NOT_YET_FROZEN
+ #	-DGTK_DISABLE_DEPRECATED 
+ #	-DGNOME_DISABLE_DEPRECATED 
+diff -Nur gnome-terminal-2.13.0/src/Makefile.in gnome-terminal-2.13.0.new/src/Makefile.in
+--- gnome-terminal-2.13.0/src/Makefile.in	2005-12-12 20:07:10.000000000 +0100
++++ gnome-terminal-2.13.0.new/src/Makefile.in	2005-12-12 22:24:52.000000000 +0100
+@@ -263,7 +263,6 @@
+ 	-DTERM_PREFIX=\"$(prefix)\" \
+ 	-DTERM_SYSCONFDIR=\"$(sysconfdir)\" \
+ 	-DTERM_PKGDATADIR=\"$(pkgdatadir)\" \
+-	-DGDK_DISABLE_DEPRECATED -DG_DISABLE_DEPRECATED	\
+ 	-DSN_API_NOT_YET_FROZEN
+ 
+ EGGFILES = \

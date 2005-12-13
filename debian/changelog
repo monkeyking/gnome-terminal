@@ -1,3 +1,33 @@
+gnome-terminal (2.13.0-0ubuntu2) dapper; urgency=low
+
+  * debian/patches/revert-patch-for-environment-variables.patch:
+    - revert patch from http://bugzilla.gnome.org/show_bug.cgi?id=98715
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 13 Dec 2005 19:33:27 +0100
+
+gnome-terminal (2.13.0-0ubuntu1) dapper; urgency=low
+
+  * New upstream release:
+    - Don't lose environment variables on startup (Davyd)
+    - Only show mnemonics when the menubar is visible (DanW)
+    - Detachable and movable tabs (Tony Tsui, Mario Manno)
+    - Don't use deprecated widgets (Dennis Cranston)
+    - Don't pass include flags to the link stage (dmacks@netspace.org)
+  * debian/patches/02_autoconf.patch,
+    debian/patches/tab-change.patch:
+    - updated.
+  * debian/patches/enable-deprecated:
+    - circumvent momentary build failures.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Mon, 12 Dec 2005 22:04:01 +0100
+
+gnome-terminal (2.12.0-0ubuntu3) dapper; urgency=low
+
+  * debian/control.in:
+    - Depends on {misc:Depends}
+
+ -- Sebastien Bacher <seb128@canonical.com>  Fri,  9 Dec 2005 16:24:49 +0100
+
 gnome-terminal (2.12.0-0ubuntu2) breezy; urgency=low
 
   * debian/patches/03_menu_entry.patch:
