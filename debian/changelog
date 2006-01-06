@@ -1,3 +1,34 @@
+gnome-terminal (2.13.1-0ubuntu1) dapper; urgency=low
+
+  * New upstream release:
+    - New maintainer! (Guilherme de S. Pastore)
+    - Revert the environment variable patch. It caused hangs etc. (Olav Vitters)
+    - Fix i18n issue with application name (Frédéric Crozat, Olav)
+    - Fix some compiler warnings (Kjartan Maraas)
+    - Drop lots of unnecessary strings (Guilherme)
+    - General cleanups and UI improvements (Guilherme)
+    - Actually remove profiles when they are deleted (Guilherme)
+    - Moved from section System to Utility in the menu (Guilherme)
+    - New, updated and fixed translations: Brazilian Portuguese [Guilherme 
+      de S. Pastore], Catalan [Josep Puigdemont i Casamajó], Finnish [Ilkka 
+      Tuohela], Gujarati [Ankit Patel], Japanese [Takeshi AIHANA], 
+      Kinyarwanda [Guilherme de S. Pastore], Lithuanian [Žygimantas Beručka],
+      Nepali [Guilherme de S. Pastore], Spanish [Francisco Javier F.
+      Serrador], Thai [Theppitak Karoonboonyanan], Vietnamese [Clytie
+      Siddall], Xhosa [Guilherme de S. Pastore]
+   * debian/patches/revert-patch-for-environment-variables.patch,
+     debian/patches/03_menu_entry.patch:
+     - dropped, done Upstream.
+   * debian/patches/translation_warning.patch:
+     - dropped, done differently upstream.
+   * debian/patches/02_autoconf.patch:
+     - updated.
+   * debian/gnome-terminal-data.install:
+     - remove debian/tmp/usr/share/application-registry, upstream doesn't
+     ship the corresponding files any more.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Fri,  6 Jan 2006 18:30:03 +0100
+
 gnome-terminal (2.13.0-0ubuntu2) dapper; urgency=low
 
   * debian/patches/revert-patch-for-environment-variables.patch:

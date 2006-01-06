@@ -1,3 +1,96 @@
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* MAINTAINERS: added.
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.1.
+
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* gnome-terminal.desktop.in.in: removed System from categories,
+	  like Debian, Ubuntu and others have been doing for a long time.
+	  gnome-terminal is really not a system tool.
+	
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-profile.c: recursively unset profile directories
+	  when the profile is removed, so they don't remain around forever.
+	  Closes bug #140603.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c, src/terminal-window.c: removed calls to ngettext
+	  where it is not necessary, nukes two strings.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: have different menu items for links and
+	  e-mail addresses. Closes bug #49306.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c: applied patch from "Jan" to set icon title too
+	  if --title is passed. Closes bug #321929.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in, terminal-accels.c, terminal-window.c:
+	  changed strings to move tabs _to the_ left/right for correctness and
+	  clarity. Closes bug #324276.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/profile-editor.c, src/gnome-terminal.glade2: handle the
+	  palette picker titles and tooltips in the code rather than in
+	  Glade in order to be able to avoid string duplication. Closes
+	  bug #325214.
+	
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: added a description for GNOME Terminal
+	  in the about box.
+
+2006-01-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* gnome-terminal.applications: removed, this is deprecated (yay
+	  for freedesktop.org compliance). Makefile.am updated accordingly.
+
+	* TODO: removed, did not even make much sense.
+
+	* HACKING: cleaned up, no need to rewrite general documentation.
+
+2006-01-01  Olav Vitters  <olav@bkor.dhs.org>
+
+	* src/terminal-screen.c: (terminal_screen_init),
+	(terminal_screen_finalize), (get_child_environment),
+	(new_window_callback), (new_tab_callback),
+	(terminal_screen_set_working_dir):
+	* src/terminal-screen.h:
+	* src/terminal-window.c: (new_window), (new_tab_callback):
+	* src/terminal.c: (new_terminal_with_options),
+	(terminal_app_new_terminal), (handle_new_terminal_event),
+	(handle_new_terminal_events), (terminal_new_event),
+	(terminal_invoke_factory):
+	* src/terminal.h: Backout patch from bug #98715. Causes hangs when
+	starting gnome-terminal with extra arguments (-e or -x) and
+	gnome-terminal was already running.
+
+2005-12-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-window.c: (detach_tab_callback): Remove unused var.
+	* src/terminal.c: (slowly_and_stupidly_obtain_timestamp),
+	(terminal_app_new_terminal): Cast away some warnings.
+
+2005-12-14  Olav Vitters  <olav@bkor.dhs.org>
+
+	* src/terminal.c: Fix i18n issue with the application name. Patch by
+	Frederic Crozat. Fixes bug #324050.
+
+2005-12-12  Kjartan Maraas <kmaraas@gnome.org>
+
+	* configure.in: released 2.13.0
+
 2005-10-30  Dan Winship  <danw@novell.com>
 
 	* src/terminal-window.c (terminal_window_set_menubar_visible):
