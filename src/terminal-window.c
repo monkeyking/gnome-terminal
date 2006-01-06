@@ -1027,11 +1027,11 @@ terminal_window_init (TerminalWindow *window)
   mi = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
-  mi = append_menuitem (menu, _("Move Tab _Left"), ACCEL_PATH_MOVE_TAB_LEFT,
+  mi = append_menuitem (menu, _("Move Tab to the _Left"), ACCEL_PATH_MOVE_TAB_LEFT,
                         G_CALLBACK (move_left_tab_callback), window);
   window->priv->move_left_tab_menuitem = mi;
   
-  mi = append_menuitem (menu, _("Move Tab _Right"), ACCEL_PATH_MOVE_TAB_RIGHT,
+  mi = append_menuitem (menu, _("Move Tab to the _Right"), ACCEL_PATH_MOVE_TAB_RIGHT,
                         G_CALLBACK (move_right_tab_callback), window);
   window->priv->move_right_tab_menuitem = mi;
 
@@ -2215,7 +2215,7 @@ new_window (TerminalWindow *window,
                              screen,
                              FALSE, FALSE, FALSE,
                              NULL, NULL, NULL, dir, NULL, 1.0,
-                             NULL, name, -1, NULL);
+                             NULL, name, -1);
 }
 
 static void
@@ -2241,7 +2241,7 @@ new_tab_callback (GtkWidget      *menuitem,
                                  NULL,
                                  FALSE, FALSE, FALSE,
                                  NULL, NULL, NULL, dir, NULL, 1.0,
-                                 NULL, NULL, -1, NULL);
+                                 NULL, NULL, -1);
     }
 }
 
@@ -2262,12 +2262,11 @@ confirm_close_window (TerminalWindow *window)
   if (!gconf_client_get_bool (window->priv->conf, CONF_GLOBAL_PREFIX "/confirm_window_close", &error))
     return TRUE;
 
-  msg1 = g_strdup_printf (ngettext ("This window has one tab open. Closing the window will close it.",
-                                    "This window has %d tabs open. Closing the window will also close all its tabs.",
-                                    n),
-                          n);
+  msg1 = g_strdup_printf (_("This window has %d tabs open. Closing the window "
+			    "will also close all its tabs."), n);
+
   msg = g_strdup_printf ("<span weight=\"bold\" size=\"larger\">%s</span>\n\n%s\n", 
-                         _("Close all tabs?"), 
+                         _("Close all tabs?"),
                          msg1);
 
   dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -2764,7 +2763,7 @@ detach_tab_callback(GtkWidget      *menuitem,
                     TerminalWindow *window)
 {
   GtkNotebook *notebook;
-  gint page_num,last_page;
+  gint page_num;
   GtkWidget *page; 
 
   notebook = GTK_NOTEBOOK (window->priv->notebook);
@@ -2826,6 +2825,7 @@ about_callback (GtkWidget      *menuitem,
   about = gtk_about_dialog_new ();
 
   gtk_about_dialog_set_name (GTK_ABOUT_DIALOG (about), _("GNOME Terminal"));
+  gtk_about_dialog_set_comments (GTK_ABOUT_DIALOG(about), _("A terminal emulator for the GNOME desktop"));
   gtk_about_dialog_set_version (GTK_ABOUT_DIALOG (about), VERSION);
   gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (about), copyright);
   gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (about), authors);
