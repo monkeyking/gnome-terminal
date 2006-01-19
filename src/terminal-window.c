@@ -2169,7 +2169,6 @@ terminal_window_set_fullscreen (TerminalWindow *window,
 gboolean
 terminal_window_get_fullscreen (TerminalWindow *window)
 {
-
   return window->priv->fullscreen;
 }
 
@@ -2255,6 +2254,7 @@ confirm_close_window (TerminalWindow *window)
   int n;
 
   n = gtk_notebook_get_n_pages (GTK_NOTEBOOK (window->priv->notebook));
+
   if (n <= 1)
     return TRUE;
 
@@ -2262,12 +2262,16 @@ confirm_close_window (TerminalWindow *window)
   if (!gconf_client_get_bool (window->priv->conf, CONF_GLOBAL_PREFIX "/confirm_window_close", &error))
     return TRUE;
 
-  msg1 = g_strdup_printf (_("This window has %d tabs open. Closing the window "
-			    "will also close all its tabs."), n);
+  msg1 = g_strdup_printf (ngettext ("This window has one tab open. Closing "
+				    "the window will close it.",
+				    "This window has %d tabs open. Closing "
+				    "the window will also close all of its "
+				    "tabs.",
+				    n),
+			  n);
 
-  msg = g_strdup_printf ("<span weight=\"bold\" size=\"larger\">%s</span>\n\n%s\n", 
-                         _("Close all tabs?"),
-                         msg1);
+  msg = g_strdup_printf ("<span weight=\"bold\" size=\"larger\">%s</span>\n\n"
+			 "%s\n", _("Close all tabs?"), msg1);
 
   dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -2808,8 +2812,10 @@ about_callback (GtkWidget      *menuitem,
 
   const char *copyright =
     "Copyright \xc2\xa9 2002-2004 Havoc Pennington\n"
-    "Copyright \xc2\xa9 2003-2004 Mariano Su\303\241rez-Alvarez";
+    "Copyright \xc2\xa9 2003-2004 Mariano Su\303\241rez-Alvarez\n"
+    "Copyright \xc2\xa9 2006 Guilherme de S. Pastore";
   const char *authors[] = {
+    "Guilherme de S. Pastore <gpastore@gnome.org> (maintainer)",
     "Havoc Pennington <hp@redhat.com>",
     "Mariano Su\303\241rez-Alvarez <mariano@gnome.org>",
     NULL

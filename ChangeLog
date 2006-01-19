@@ -1,3 +1,109 @@
+2006-01-17  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c (sync_label): fixed to be able to get the
+	  actual title label from the tab now that we have new elements such
+	  as the close button. Closes bug #327313.
+
+2006-01-16  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* configure.in: release 2.13.2
+
+	* NEWS: updated
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: added a close button to the tabs. Closes
+	  #71444 and all of its duplicates.
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in, src/terminal-profile.c,
+	  src/terminal-profile.h, src/terminal-screen.c, src/terminal-widget.h,
+	  src/terminal-widget-vte.c: applied patch from Kiran Kumar Immidi
+	  to allow disabling font anti-aliasing when the X RENDER extension is
+	  not available, and do that by default. Closes bug #139332.
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: applied patch from John Spray to set
+	  the http_proxy environment variable based on the GNOME proxy
+	  settings. Closes bug #321952.
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c, src/terminal-screen.c, src/terminal-screen.h:
+	  made the title not be dinamically changed anymore once the user
+	  has manually set it. Closes bug #152986 (along with another ton
+	  of duplicates).
+
+2006-01-15  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-accels.c: fix build failure caused by undocumented
+	  API change in libegg. Closes bug #326972.
+
+2006-01-15  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in: made the visible name of the
+	  default profile be translatable. Closes bug #129889.
+
+2006-01-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: clean up the highlighting flavors mess,
+	  S/Key, OTP and mailto can use FLAVOR_AS_IS without problems.
+
+2006-01-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/eggaccelerators.c, src/eggaccelerators.h,
+	  src/eggcellrendererkeys.c, src/eggcellrendererkeys.h: update
+	  from libegg.
+
+2006-01-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/skey-popup.c: fix a compiler warning.
+
+2006-01-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/Makefile.am: applied patch from Marco Pesenti Gritti to allow
+	  building from the src directory. Closes bug #158319.
+
+2006-01-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: applied patch from Gary Coady to fix the
+	  regular expressions for URL highlighting. Closes bug #324246.
+
+2006-01-11  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.glade2, src/skey-popup.c: made the dialog which
+	  asks for the reply to the S/Key challenge a bit prettier and more
+	  HIG-compliant.
+
+2006-01-11  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c, src/skey-popup.c: add One-Time Passwords
+	  support, based on the work by Michele Baldessari. Thanks! Closes
+	  bug #310529.	  
+
+2006-01-10  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/skey-popup.c, src/gnome-terminal.glade2: add markup to label
+	  in the code, so translators don't see it. Closes bug #100038.
+
+2006-01-09  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: handle file URLs differently from others,
+	  as they necessarily have three slashes and do not have things like
+	  username and port. Closes bug #309201.	  
+
+2006-01-07  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c (title_entry_changed): set icon title
+	  together with the title here too. Closes bug #324965.
+
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: add tooltips to the tabs so their full
+	  title can be displayed when many tabs are open. Closes bug #310137.
+
 2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
 
 	* MAINTAINERS: added.
@@ -17,11 +123,6 @@
 	* src/terminal-profile.c: recursively unset profile directories
 	  when the profile is removed, so they don't remain around forever.
 	  Closes bug #140603.
-
-2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
-
-	* src/terminal.c, src/terminal-window.c: removed calls to ngettext
-	  where it is not necessary, nukes two strings.
 
 2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
 

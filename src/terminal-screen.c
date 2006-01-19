@@ -44,6 +44,10 @@
 
 #define MONOSPACE_FONT_DIR "/desktop/gnome/interface"
 #define MONOSPACE_FONT_KEY MONOSPACE_FONT_DIR "/monospace_font_name"
+#define HTTP_PROXY_DIR "/system/http_proxy"
+#define HTTP_PROXY_HOST HTTP_PROXY_DIR "/host"
+#define HTTP_PROXY_PORT HTTP_PROXY_DIR "/port"
+#define HTTP_PROXY_USE_PROXY HTTP_PROXY_DIR "/use_http_proxy"
 
 struct _TerminalScreenPrivate
 {
@@ -69,6 +73,7 @@ struct _TerminalScreenPrivate
   guint gconf_connection_id;
   GtkWidget *hbox;
   GtkWidget *scrollbar;
+  gboolean user_title; /* title was manually set */
 };
 
 static GList* used_ids = NULL;
@@ -86,9 +91,7 @@ enum
 {
   FLAVOR_AS_IS = 0,
   FLAVOR_DEFAULT_TO_HTTP,
-  FLAVOR_MAILTO,
-  FLAVOR_EMAIL,
-  FLAVOR_SKEY
+  FLAVOR_EMAIL
 };
 
 static void terminal_screen_init        (TerminalScreen      *screen);
@@ -277,22 +280,26 @@ terminal_screen_init (TerminalScreen *screen)
 #define PASSCHARS "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
 #define HOSTCHARS "-A-Za-z0-9"
 #define PATHCHARS "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
-#define SCHEME    "(news|telnet|nntp|file|https?|ftps?|webcal)"
+#define SCHEME    "(news|telnet|nntp|https?|ftps?|webcal)"
 #define USER      "[" USERCHARS "]+(:["PASSCHARS "]+)?"
 #define URLPATH   "/[" PATHCHARS "]*[^]'.}>) \t\r\n,\\\"]"
 
   terminal_widget_match_add (screen->priv->term,
 			     "\\<(" SCHEME "://(" USER "@)?)[" HOSTCHARS ".]+"
-			     "(:[0-9]+)?(" URLPATH ")?", FLAVOR_AS_IS);
+			     "(:[0-9]+)?(" URLPATH ")?\\>", FLAVOR_AS_IS);
+
+  terminal_widget_match_add (screen->priv->term,
+			     "\\<(file:///(" URLPATH ")?", FLAVOR_AS_IS);
+			     
 
   terminal_widget_match_add (screen->priv->term,
 			     "\\<(www|ftp)[" HOSTCHARS "]*\\.[" HOSTCHARS ".]+"
-			     "(:[0-9]+)?(" URLPATH ")?",
+			     "(:[0-9]+)?(" URLPATH ")?\\>",
 			     FLAVOR_DEFAULT_TO_HTTP);
 
   terminal_widget_match_add (screen->priv->term,
 			     "\\<mailto:[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
-			     "(\\.[a-z0-9][a-z0-9-]*)+\\>", FLAVOR_MAILTO);
+			     "(\\.[a-z0-9][a-z0-9-]*)+\\>", FLAVOR_AS_IS);
 
   terminal_widget_match_add (screen->priv->term,
 			     "\\<[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
@@ -328,6 +335,7 @@ terminal_screen_init (TerminalScreen *screen)
                     G_CALLBACK (terminal_screen_button_press_event),
                     screen);
 
+  screen->priv->user_title = FALSE;
   terminal_widget_connect_title_changed (screen->priv->term,
                                          G_CALLBACK (terminal_screen_widget_title_changed),
                                          screen);
@@ -606,7 +614,12 @@ reread_profile (TerminalScreen *screen)
   if (terminal_profile_get_use_skey (screen->priv->profile))
     {
       terminal_widget_skey_match_add (screen->priv->term,
-				      "s/key [0-9]* [-A-Za-z0-9]*", FLAVOR_SKEY);
+				      "s/key [0-9]* [-A-Za-z0-9]*",
+				      FLAVOR_AS_IS);
+
+      terminal_widget_skey_match_add (screen->priv->term,
+				      "otp-[a-z0-9]* [0-9]* [-A-Za-z0-9]*",
+				      FLAVOR_AS_IS);
     }
   else
     {
@@ -642,6 +655,7 @@ reread_profile (TerminalScreen *screen)
   
   terminal_widget_set_delete_binding (term,
                                       terminal_profile_get_delete_binding (profile));
+
 }
 
 /**
@@ -692,7 +706,6 @@ cook_title  (TerminalScreen *screen, const char *raw_title, char **old_cooked_ti
       break;
     case TERMINAL_TITLE_IGNORE:
       new_cooked_title = g_strdup (terminal_profile_get_title (screen->priv->profile));
-      break;
     /* no default so we get missing cases statically */
     }
 
@@ -821,7 +834,8 @@ terminal_screen_update_on_realize (GtkWidget      *term,
                                        screen->priv->font_scale *
                                        pango_font_description_get_size (desc));
 
-      terminal_widget_set_pango_font (term, desc);
+      terminal_widget_set_pango_font (term, desc,
+      					terminal_profile_get_no_aa_without_render(profile));
 
       pango_font_description_free (desc);
     }
@@ -1109,7 +1123,7 @@ get_child_environment (GtkWidget      *term,
   char **p;
   int i;
   char **retval;
-#define EXTRA_ENV_VARS 7
+#define EXTRA_ENV_VARS 8
   
   profile = screen->priv->profile;
 
@@ -1149,6 +1163,24 @@ get_child_environment (GtkWidget      *term,
   ++i;
   retval[i] = g_strdup_printf ("DISPLAY=%s", 
 			       gdk_display_get_name(gtk_widget_get_display(term)));
+  ++i;
+  
+  /* Setup HTTP proxy according to gconf */
+  GConfClient *conf = gconf_client_get_default ();
+  gchar *host = gconf_client_get_string (
+    conf, HTTP_PROXY_HOST, NULL);
+  gint port = gconf_client_get_int (
+    conf, HTTP_PROXY_PORT, NULL);
+  gboolean use_proxy = gconf_client_get_bool (
+    conf, HTTP_PROXY_USE_PROXY, NULL);
+
+  if (host && port && !getenv ("http_proxy") && use_proxy)
+    retval[i] = g_strdup_printf ("http_proxy=%s:%d", host, port);
+  else
+    retval[i] = g_strdup_printf ("");
+  
+  if (host)
+    g_free (host);
   ++i;
   
   retval[i] = NULL;
@@ -1338,18 +1370,9 @@ open_url (TerminalScreen *screen,
       url = g_strdup_printf ("http:%s", orig_url);
       break;
     case FLAVOR_EMAIL:
-    case FLAVOR_MAILTO:
-      if (strncmp ("mailto:", orig_url, 7) != 0)
-        {
-          url = g_strdup_printf ("mailto:%s", orig_url);
-        }
-      else
-        {
-          url = g_strdup (orig_url);
-        }
+      url = g_strdup_printf ("mailto:%s", orig_url);
       break;
     case FLAVOR_AS_IS:
-    case FLAVOR_SKEY:
       url = g_strdup (orig_url);
       break;
     default:
@@ -1793,12 +1816,14 @@ terminal_screen_button_press_event (GtkWidget      *widget,
 
 void
 terminal_screen_set_dynamic_title (TerminalScreen *screen,
-                                   const char     *title)
+                                   const char     *title,
+				   gboolean	  userset)
 {
-  g_return_if_fail (TERMINAL_IS_SCREEN (screen));
+  g_assert (TERMINAL_IS_SCREEN (screen));
   
-  if (screen->priv->raw_title && title &&
-      strcmp (screen->priv->raw_title, title) == 0)
+  if ((screen->priv->user_title && !userset) ||
+      (screen->priv->raw_title && title &&
+       strcmp (screen->priv->raw_title, title) == 0))
     return;
 
   g_free (screen->priv->raw_title);
@@ -1823,12 +1848,16 @@ terminal_screen_set_dynamic_title (TerminalScreen *screen,
 
 void
 terminal_screen_set_dynamic_icon_title (TerminalScreen *screen,
-                                        const char     *icon_title)
+                                        const char     *icon_title,
+					gboolean       userset)
 {
-  g_return_if_fail (TERMINAL_IS_SCREEN (screen));
-  
-  if (screen->priv->icon_title_set && screen->priv->raw_icon_title && icon_title &&
-      strcmp (screen->priv->raw_icon_title, icon_title) == 0)
+  g_assert (TERMINAL_IS_SCREEN (screen));
+
+  if ((screen->priv->user_title && !userset) ||  
+      (screen->priv->icon_title_set &&
+       screen->priv->raw_icon_title &&
+       icon_title &&
+       strcmp (screen->priv->raw_icon_title, icon_title) == 0))
     return;
 
   g_free (screen->priv->raw_icon_title);
@@ -1978,7 +2007,8 @@ terminal_screen_widget_title_changed (GtkWidget      *widget,
                                       TerminalScreen *screen)
 {
   terminal_screen_set_dynamic_title (screen,
-                                     terminal_widget_get_title (widget));  
+                                     terminal_widget_get_title (widget),
+				     FALSE);
 
   queue_recheck_working_dir (screen);
 }
@@ -1988,7 +2018,8 @@ terminal_screen_widget_icon_title_changed (GtkWidget      *widget,
                                            TerminalScreen *screen)
 {
   terminal_screen_set_dynamic_icon_title (screen,
-                                          terminal_widget_get_icon_title (widget));  
+                                          terminal_widget_get_icon_title (widget),
+					  FALSE);  
 
   queue_recheck_working_dir (screen);
 }
@@ -2040,8 +2071,10 @@ title_entry_changed (GtkWidget      *entry,
   char *text;
 
   text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-  
-  terminal_screen_set_dynamic_title (screen, text);
+
+  screen->priv->user_title = TRUE;  
+  terminal_screen_set_dynamic_title (screen, text, TRUE);
+  terminal_screen_set_dynamic_icon_title (screen, text, TRUE);
 
   g_free (text);
 }
