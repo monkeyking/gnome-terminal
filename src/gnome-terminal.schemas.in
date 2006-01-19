@@ -124,8 +124,8 @@
       <applyto>/apps/gnome-terminal/profiles/Default/visible_name</applyto>
       <owner>gnome-terminal</owner>
       <type>string</type>
-      <default>Default</default>
       <locale name="C">
+         <default>Default</default>
          <short>Human-readable name of the profile</short>
          <long>
            Human-readable name of the profile.
@@ -591,6 +591,21 @@
          <long>
         If true, the theme color scheme used for text entry boxes will 
         be used for the terminal, instead of colors provided by the user.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/no_aa_without_render</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/no_aa_without_render</applyto>
+      <owner>gnome-terminal</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+         <short>Whether to disable anti aliasing without render extension</short>
+         <long>
+	  If true, font anti aliasing will be disabled for X servers without the RENDER
+	  extension. This would give a large performance improvement.
          </long>
       </locale>
     </schema>
