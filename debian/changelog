@@ -1,3 +1,36 @@
+gnome-terminal (2.13.90-0ubuntu2) dapper; urgency=low
+
+  * debian/patches/04_http_uri_action.patch:
+    - fixed http URIs context menu action (Ubuntu: #30210)
+
+ -- Sebastien Bacher <seb128@canonical.com>  Fri,  3 Feb 2006 12:26:38 +0000
+
+gnome-terminal (2.13.90-0ubuntu1) dapper; urgency=low
+
+  * New upstream release:
+    - Fixed the handling of file:// URLs
+    - Fixed the setting of accelerators
+    - Fixed the heights of the huge tabs (Malone: #28966)
+    - Added a tool tip to the tabs' close buttons
+    - Added F11 as default accelerator for fullscreen 
+    - Allow returning to dynamically setting the title by manually
+      setting it to an empty string 
+    - Several fixes and improvements to the patches applied for exporting
+      the GNOME proxy settings to the terminal and disabling anti-aliasing
+    - Other optimizations, cleanups and standards-compliance changes
+    - Lots of updated translations; huge thanks to the translators!
+  * debian/patches/02_autoconf.patch:
+    - updated.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 31 Jan 2006 15:56:56 +0100
+
+gnome-terminal (2.13.3-0ubuntu2) dapper; urgency=low
+
+  * debian/patches/03_ubuntu_lpi_fix_crash.diff:
+    - fix a crash caused by launchpad-integration
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Mon, 30 Jan 2006 12:22:44 +0000
+
 gnome-terminal (2.13.3-0ubuntu1) dapper; urgency=low
 
   * New upstream release:
