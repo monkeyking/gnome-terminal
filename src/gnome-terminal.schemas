@@ -2102,7 +2102,7 @@
       </locale>
 
       <locale name="ko">
-         
+         <default>기본값</default>
          <short>읽기 좋은 프로파일 이름</short>
          <long>읽기 좋은 프로파일 이름.</long>
       </locale>
@@ -2114,7 +2114,7 @@
       </locale>
 
       <locale name="mk">
-         
+         <default>Стандардно</default>
          <short>Име на профилот</short>
          <long>Име на профилот</long>
       </locale>
@@ -11465,6 +11465,11 @@
          <long>જો સાચું હોય, તો X સર્વરો માટે ફોન્ટ એન્ટી એલિઆઝીંગ નિષ્ક્રિય થઈ જશે RENDER એક્સટેન્સન વિના, કે જે આવી પરિસ્થિતિઓમાં સમજી શકાય તેવા પ્રભાવ સુધારાઓ આપે છે.</long>
       </locale>
 
+      <locale name="mk">
+         <short>Дали да се исклучи анти-алијасинг без проширувањето за X RENDER</short>
+         <long>Ако е точно анти-алијасингот ќе биде исклучен кога работите без проширувањето X RENDER, кое што нуди подобрувања во перформансите во вакви ситуации.</long>
+      </locale>
+
       <locale name="nl">
          <short>Anti-aliasing uitzetten indien er geen X RENDER extension is.</short>
          <long>Indien waar, zullen, bij het ontbreken van de X RENDER extension, lettertekens geen anti-aliasing krijgen. Dat levert in die situatie een aanzienlijke snelheidswinst op.</long>
@@ -11478,6 +11483,16 @@
       <locale name="ru">
          <short>Отключать ли сглаживание без расширения X RENDER</short>
          <long>Если включено, сглаживание шрифтов не будет использовано если запущено без расширения X RENDER, которое дает значнительное улучшение произволительности в это ситуации</long>
+      </locale>
+
+      <locale name="sr">
+         <short>Да ли да искључим омекшавање слова ако нема „X RENDER“ проширења</short>
+         <long>Ако је постављено, омекшавање слова биће искључено за Икс сервере који немају RENDER проширење што тада даје велико убрзање.</long>
+      </locale>
+
+      <locale name="sr@Latn">
+         <short>Da li da isključim omekšavanje slova ako nema „X RENDER“ proširenja</short>
+         <long>Ako je postavljeno, omekšavanje slova biće isključeno za Iks servere koji nemaju RENDER proširenje što tada daje veliko ubrzanje.</long>
       </locale>
 
       <locale name="th">
@@ -11884,9 +11899,19 @@
          <long>S/Key チャレンジ・レスポンスのクエリを検出して、クリックした際にダイアログをポップアップします。ダイアログにパスワードを入力すると、その値を端末に送ります。</long>
       </locale>
 
+      <locale name="ko">
+         
+         <long>S/Key channelge 응답 요청이 들어왔을 때 클릭하면 대화 상자를 실행합니다. 대화 상자로 열쇠글을 입력하면 터미널로 보냅니다.</long>
+      </locale>
+
       <locale name="lt">
          <short>Paryškinti S/Key iškvietimus</short>
          <long>Iškviesti dialogo langą, kai aptinkamas atsakymo į S/Key kreipinio užklausą įvedimas. Dialoge įvedus slaptažodį šis bus nusiųstas į terminalą.</long>
+      </locale>
+
+      <locale name="mk">
+         <short>Осветлувај ги S/копче предизвиците</short>
+         <long>Прикажи дијалог кога S/копче одговор на прашалник е детектиран и притиснат. Внесување на лозинка во дијалогот ќе го прати во терминал.</long>
       </locale>
 
       <locale name="nb">
@@ -16335,9 +16360,19 @@
          <long>現在開いているタブを左へ移動するためのキーボード・ショートカット・キーを指定します。GTK+ のリソース・ファイルと同じ書式で文字列を一個指定します。&quot;disabled&quot; という特殊な文字列をオプションに指定した場合は、この操作に対するキーバインドは無効になります。</long>
       </locale>
 
+      <locale name="ko">
+         <short>현재 탭을 왼쪽으로 옮기는 바로가기 키.</short>
+         <long>현재 탭을 왼쪽으로 옮기는 바로가기 키. GTK+ 리소스 파일과 같은 형식의 문자열로 표현합니다. 특별히 &quot;disabled&quot;라고 설정하면, 이 액션에 대한 바로가기 키는 없어집니다.</long>
+      </locale>
+
       <locale name="lt">
          <short>Spartusis klavišas perkelti esamą kortelę kairėn.</short>
          <long>Spartusis klavišas, kortelės perkėlimui kairėn. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="mk">
+         <short>Забрзувач за поместување на јазичињата налево.</short>
+         <long>Копче за забрзување за подесување на насловот на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;исклучено&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
       <locale name="nb">
@@ -16477,9 +16512,19 @@
          <long>現在開いているタブを右へ移動するためのキーボード・ショートカット・キーを指定します。GTK+ のリソース・ファイルと同じ書式で文字列を一個指定します。&quot;disabled&quot; という特殊な文字列をオプションに指定した場合は、この操作に対するキーバインドは無効になります。</long>
       </locale>
 
+      <locale name="ko">
+         <short>현재 탭을 오른쪽으로 옮기는 바로가기 키.</short>
+         <long>현재 탭을 오른쪽으로 옮기는 바로가기 키. GTK+ 리소스 파일과 같은 형식의 문자열로 표현합니다. 특별히 &quot;disabled&quot;라고 설정하면, 이 액션에 대한 바로가기 키는 없어집니다.</long>
+      </locale>
+
       <locale name="lt">
          <short>Spartusis klavišas perkelti esamą kortelę dešinėn.</short>
          <long>Spartusis klavišas, kortelės perkėlimui dešinėn. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="mk">
+         <short>Забрзувач за поместување на јазичињата надесно.</short>
+         <long>Копче за забрзување за подесување на насловот на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;исклучено&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
       <locale name="nb">
@@ -16623,9 +16668,19 @@
          <long>現在開いているタブを閉じるためのキーボード・ショートカット・キーを指定します。GTK+ のリソース・ファイルと同じ書式で文字列を一個指定します。&quot;disabled&quot; という特殊な文字列をオプションに指定した場合は、この操作に対するキーバインドは無効になります。</long>
       </locale>
 
+      <locale name="ko">
+         <short>현재 탭 떼기 바로가기 키.</short>
+         <long>현재 탭을 떼는 바로가기 키. GTK+ 리소스 파일과 같은 형식의 문자열로 표현합니다. 특별히 &quot;disabled&quot;라고 설정하면, 이 액션에 대한 바로가기 키는 없어집니다.</long>
+      </locale>
+
       <locale name="lt">
          <short>Spartusis klavišas atkabinti esamai kortelei.</short>
          <long>Spartusis klavišas, esamos kortelės atkabinimui. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="mk">
+         <short>Забрзувач за откачување на тековното јазиче.</short>
+         <long>Копче за забрзување за префрлување следното јазиче. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;исклучено&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
       <locale name="nb">

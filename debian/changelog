@@ -1,3 +1,19 @@
+gnome-terminal (2.13.91-0ubuntu1) dapper; urgency=low
+
+  * New upstream release:
+    - Stopped forcing invisible_char to '*'
+    - Re-added the context menu for highlighted URLs
+    - Updated translations: Canadian English [Adam Weinberger], Catalan 
+      [Josep Puigdemont i Casamajó], Dutch [Tino Meinen], Finnish [Ilkka 
+      Tuohela], Simplified Chinese [Funda Wang], Thai [Theppitak 
+      Karoonboonyanan], Vietnamese [Clytie Siddall]
+  * debian/patches/02_autoconf.patch:
+    - updated.
+  * debian/patches/04_http_uri_action.patch:
+    - dropped, included upstream.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Mon, 13 Feb 2006 09:33:13 +0100
+
 gnome-terminal (2.13.90-0ubuntu2) dapper; urgency=low
 
   * debian/patches/04_http_uri_action.patch:
