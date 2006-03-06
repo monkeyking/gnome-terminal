@@ -463,7 +463,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot GETTEXT_PACKAGE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CPP EGREP build build_cpu build_vendor build_os host host_cpu host_vendor host_os LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL INTLTOOL_DESKTOP_RULE INTLTOOL_DIRECTORY_RULE INTLTOOL_KEYS_RULE INTLTOOL_PROP_RULE INTLTOOL_OAF_RULE INTLTOOL_PONG_RULE INTLTOOL_SERVER_RULE INTLTOOL_SHEET_RULE INTLTOOL_SOUNDLIST_RULE INTLTOOL_UI_RULE INTLTOOL_XAM_RULE INTLTOOL_KBD_RULE INTLTOOL_XML_RULE INTLTOOL_XML_NOMERGE_RULE INTLTOOL_CAVES_RULE INTLTOOL_SCHEMAS_RULE INTLTOOL_THEME_RULE INTLTOOL_EXTRACT INTLTOOL_MERGE INTLTOOL_UPDATE INTLTOOL_PERL INTLTOOL_ICONV INTLTOOL_MSGFMT INTLTOOL_MSGMERGE INTLTOOL_XGETTEXT USE_NLS MSGFMT GMSGFMT XGETTEXT CATALOGS CATOBJEXT DATADIRNAME GMOFILES INSTOBJEXT INTLLIBS PO_IN_DATADIR_TRUE PO_IN_DATADIR_FALSE POFILES POSUB MKINSTALLDIRS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS PKG_CONFIG ac_pt_PKG_CONFIG TERM_CFLAGS TERM_LIBS GCONFTOOL GCONF_SCHEMA_CONFIG_SOURCE GCONF_SCHEMA_FILE_DIR GCONF_SCHEMAS_INSTALL_TRUE GCONF_SCHEMAS_INSTALL_FALSE LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot GETTEXT_PACKAGE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CPP EGREP build build_cpu build_vendor build_os host host_cpu host_vendor host_os LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL INTLTOOL_DESKTOP_RULE INTLTOOL_DIRECTORY_RULE INTLTOOL_KEYS_RULE INTLTOOL_PROP_RULE INTLTOOL_OAF_RULE INTLTOOL_PONG_RULE INTLTOOL_SERVER_RULE INTLTOOL_SHEET_RULE INTLTOOL_SOUNDLIST_RULE INTLTOOL_UI_RULE INTLTOOL_XAM_RULE INTLTOOL_KBD_RULE INTLTOOL_XML_RULE INTLTOOL_XML_NOMERGE_RULE INTLTOOL_CAVES_RULE INTLTOOL_SCHEMAS_RULE INTLTOOL_THEME_RULE INTLTOOL_SERVICE_RULE INTLTOOL_EXTRACT INTLTOOL_MERGE INTLTOOL_UPDATE INTLTOOL_PERL INTLTOOL_ICONV INTLTOOL_MSGFMT INTLTOOL_MSGMERGE INTLTOOL_XGETTEXT USE_NLS MSGFMT GMSGFMT XGETTEXT CATALOGS CATOBJEXT DATADIRNAME GMOFILES INSTOBJEXT INTLLIBS PO_IN_DATADIR_TRUE PO_IN_DATADIR_FALSE POFILES POSUB MKINSTALLDIRS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS PKG_CONFIG ac_pt_PKG_CONFIG TERM_CFLAGS TERM_LIBS GCONFTOOL GCONF_SCHEMA_CONFIG_SOURCE GCONF_SCHEMA_FILE_DIR GCONF_SCHEMAS_INSTALL_TRUE GCONF_SCHEMAS_INSTALL_FALSE LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1822,7 +1822,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=gnome-terminal
- VERSION=2.13.91
+ VERSION=2.13.93
 
 
 cat >>confdefs.h <<_ACEOF
@@ -19782,25 +19782,30 @@ LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 
 
 
+case "$am__api_version" in
+    1.01234)
+	{ { echo "$as_me:$LINENO: error: Automake 1.5 or newer is required to use intltool" >&5
+echo "$as_me: error: Automake 1.5 or newer is required to use intltool" >&2;}
+   { (exit 1); exit 1; }; }
+    ;;
+    *)
+    ;;
+esac
 
 if test -n ""; then
     echo "$as_me:$LINENO: checking for intltool >= " >&5
 echo $ECHO_N "checking for intltool >= ... $ECHO_C" >&6
 
-    INTLTOOL_REQUIRED_VERSION_AS_INT=`echo  | awk -F. '{ printf "%d", $1 * 100 + $2; }'`
-    INTLTOOL_APPLIED_VERSION=`awk -F\" '/\\$VERSION / { printf $2; }'  < ${ac_aux_dir}/intltool-update.in`
+    INTLTOOL_REQUIRED_VERSION_AS_INT=`echo  | awk -F. '{ print $ 1 * 100 + $ 2; }'`
+    INTLTOOL_APPLIED_VERSION=`awk -F\" '/\\$VERSION / { print $ 2; }' ${ac_aux_dir}/intltool-update.in`
+    INTLTOOL_APPLIED_VERSION_AS_INT=`awk -F\" '/\\$VERSION / { split($ 2, VERSION, "."); print VERSION[1] * 100 + VERSION[2];}' ${ac_aux_dir}/intltool-update.in`
 
-    INTLTOOL_APPLIED_VERSION_AS_INT=`awk -F\" '/\\$VERSION / { split($2, VERSION, "."); printf "%d\n", VERSION[1] * 100 + VERSION[2];}' < ${ac_aux_dir}/intltool-update.in`
-
-
-    if test "$INTLTOOL_APPLIED_VERSION_AS_INT" -ge "$INTLTOOL_REQUIRED_VERSION_AS_INT"; then
-	echo "$as_me:$LINENO: result: $INTLTOOL_APPLIED_VERSION found" >&5
+    echo "$as_me:$LINENO: result: $INTLTOOL_APPLIED_VERSION found" >&5
 echo "${ECHO_T}$INTLTOOL_APPLIED_VERSION found" >&6
-    else
-	echo "$as_me:$LINENO: result: $INTLTOOL_APPLIED_VERSION found. Your intltool is too old.  You need intltool  or later." >&5
-echo "${ECHO_T}$INTLTOOL_APPLIED_VERSION found. Your intltool is too old.  You need intltool  or later." >&6
-	exit 1
-    fi
+    test "$INTLTOOL_APPLIED_VERSION_AS_INT" -ge "$INTLTOOL_REQUIRED_VERSION_AS_INT" ||
+	{ { echo "$as_me:$LINENO: error: Your intltool is too old.  You need intltool  or later." >&5
+echo "$as_me: error: Your intltool is too old.  You need intltool  or later." >&2;}
+   { (exit 1); exit 1; }; }
 fi
 
   INTLTOOL_DESKTOP_RULE='%.desktop:   %.desktop.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@'
@@ -19820,6 +19825,8 @@ INTLTOOL_SOUNDLIST_RULE='%.soundlist: %.soundlist.in $(INTLTOOL_MERGE) $(wildcar
     INTLTOOL_CAVES_RULE='%.caves:     %.caves.in     $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@'
   INTLTOOL_SCHEMAS_RULE='%.schemas:   %.schemas.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -s -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@'
     INTLTOOL_THEME_RULE='%.theme:     %.theme.in     $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@'
+    INTLTOOL_SERVICE_RULE='%.service: %.service.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@'
+
 
 
 
@@ -19840,13 +19847,11 @@ INTLTOOL_SOUNDLIST_RULE='%.soundlist: %.soundlist.in $(INTLTOOL_MERGE) $(wildcar
 
 
 # Use the tools built into the package, not the ones that are installed.
-
 INTLTOOL_EXTRACT='$(top_builddir)/intltool-extract'
+
 INTLTOOL_MERGE='$(top_builddir)/intltool-merge'
+
 INTLTOOL_UPDATE='$(top_builddir)/intltool-update'
-
-
-
 
 
 # Extract the first word of "perl", so it can be a program name with args.
@@ -20072,15 +20077,8 @@ echo "${ECHO_T}no" >&6
 fi
 
 
-# Remove file type tags (using []) from po/POTFILES.
 
 
-
-
-
-
-
-# Manually sed perl in so people don't have to put the intltool scripts in AC_OUTPUT.
 
           ac_config_commands="$ac_config_commands intltool"
 
@@ -23381,7 +23379,7 @@ else
    using_xft2=no
 fi
 
-                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile gnome-terminal.desktop.in src/Makefile src/skey/Makefile help/Makefile help/C/Makefile help/ro/Makefile help/de/Makefile help/es/Makefile help/fr/Makefile help/it/Makefile help/sv/Makefile help/ja/Makefile help/ko/Makefile help/uk/Makefile help/zh_CN/Makefile help/zh_TW/Makefile po/Makefile.in"
+                                                                                                                                                                                              ac_config_files="$ac_config_files Makefile gnome-terminal.desktop.in src/Makefile src/skey/Makefile help/Makefile help/C/Makefile help/bg/Makefile help/ro/Makefile help/de/Makefile help/es/Makefile help/fr/Makefile help/it/Makefile help/sv/Makefile help/ja/Makefile help/ko/Makefile help/uk/Makefile help/zh_CN/Makefile help/zh_TW/Makefile po/Makefile.in"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -23509,9 +23507,8 @@ Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
 
-       mv -f po/POTFILES po/POTFILES.tmp
-        sed -e '/[[]encoding.*]/d' -e 's/[[].*] *//' < po/POTFILES.tmp > po/POTFILES
-        rm -f po/POTFILES.tmp
+            ac_config_commands="$ac_config_commands po/stamp-it"
+
 
 if test -z "${GCONF_SCHEMAS_INSTALL_TRUE}" && test -z "${GCONF_SCHEMAS_INSTALL_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"GCONF_SCHEMAS_INSTALL\" was never defined.
@@ -23954,10 +23951,11 @@ cat >>$CONFIG_STATUS <<_ACEOF
 #
 
 AMDEP_TRUE="$AMDEP_TRUE" ac_aux_dir="$ac_aux_dir"
-INTLTOOL_PERL='${INTLTOOL_PERL}' ac_aux_dir=${ac_aux_dir}
-INTLTOOL_EXTRACT='${INTLTOOL_EXTRACT}' ICONV='${INTLTOOL_ICONV}'
-MSGFMT='${INTLTOOL_MSGFMT}' MSGMERGE='${INTLTOOL_MSGMERGE}'
-XGETTEXT='${INTLTOOL_XGETTEXT}'
+INTLTOOL_PERL='${INTLTOOL_PERL}' ac_aux_dir='${ac_aux_dir}'
+prefix="$prefix" exec_prefix="$exec_prefix" INTLTOOL_LIBDIR="$libdir"
+INTLTOOL_EXTRACT='${INTLTOOL_EXTRACT}' INTLTOOL_ICONV='${INTLTOOL_ICONV}'
+INTLTOOL_MSGFMT='${INTLTOOL_MSGFMT}' INTLTOOL_MSGMERGE='${INTLTOOL_MSGMERGE}'
+INTLTOOL_XGETTEXT='${INTLTOOL_XGETTEXT}'
 
 
 _ACEOF
@@ -23975,6 +23973,7 @@ do
   "src/skey/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/skey/Makefile" ;;
   "help/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/Makefile" ;;
   "help/C/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/C/Makefile" ;;
+  "help/bg/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/bg/Makefile" ;;
   "help/ro/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/ro/Makefile" ;;
   "help/de/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/de/Makefile" ;;
   "help/es/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/es/Makefile" ;;
@@ -23990,6 +23989,7 @@ do
   "depfiles" ) CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
   "intltool" ) CONFIG_COMMANDS="$CONFIG_COMMANDS intltool" ;;
   "default-1" ) CONFIG_COMMANDS="$CONFIG_COMMANDS default-1" ;;
+  "po/stamp-it" ) CONFIG_COMMANDS="$CONFIG_COMMANDS po/stamp-it" ;;
   "config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
@@ -24160,6 +24160,7 @@ s,@INTLTOOL_XML_NOMERGE_RULE@,$INTLTOOL_XML_NOMERGE_RULE,;t t
 s,@INTLTOOL_CAVES_RULE@,$INTLTOOL_CAVES_RULE,;t t
 s,@INTLTOOL_SCHEMAS_RULE@,$INTLTOOL_SCHEMAS_RULE,;t t
 s,@INTLTOOL_THEME_RULE@,$INTLTOOL_THEME_RULE,;t t
+s,@INTLTOOL_SERVICE_RULE@,$INTLTOOL_SERVICE_RULE,;t t
 s,@INTLTOOL_EXTRACT@,$INTLTOOL_EXTRACT,;t t
 s,@INTLTOOL_MERGE@,$INTLTOOL_MERGE,;t t
 s,@INTLTOOL_UPDATE@,$INTLTOOL_UPDATE,;t t
@@ -24889,47 +24890,51 @@ done
  ;;
     intltool )
 
-intltool_edit="-e 's#@INTLTOOL_EXTRACT@#`pwd`/intltool-extract#g' \
-               -e 's#@INTLTOOL_ICONV@#${INTLTOOL_ICONV}#g' \
-               -e 's#@INTLTOOL_MSGFMT@#${INTLTOOL_MSGFMT}#g' \
-               -e 's#@INTLTOOL_MSGMERGE@#${INTLTOOL_MSGMERGE}#g' \
-               -e 's#@INTLTOOL_XGETTEXT@#${INTLTOOL_XGETTEXT}#g' \
-               -e 's#@INTLTOOL_PERL@#${INTLTOOL_PERL}#g'"
-
-eval sed ${intltool_edit} < ${ac_aux_dir}/intltool-extract.in \
-  > intltool-extract.out
-if cmp -s intltool-extract intltool-extract.out 2>/dev/null; then
-  rm -f intltool-extract.out
-else
-  mv -f intltool-extract.out intltool-extract
-fi
-chmod ugo+x intltool-extract
-chmod u+w intltool-extract
-
-eval sed ${intltool_edit} < ${ac_aux_dir}/intltool-merge.in \
-  > intltool-merge.out
-if cmp -s intltool-merge intltool-merge.out 2>/dev/null; then
-  rm -f intltool-merge.out
-else
-  mv -f intltool-merge.out intltool-merge
-fi
-chmod ugo+x intltool-merge
-chmod u+w intltool-merge
-
-eval sed ${intltool_edit} < ${ac_aux_dir}/intltool-update.in \
-  > intltool-update.out
-if cmp -s intltool-update intltool-update.out 2>/dev/null; then
-  rm -f intltool-update.out
-else
-  mv -f intltool-update.out intltool-update
-fi
-chmod ugo+x intltool-update
-chmod u+w intltool-update
+for file in intltool-extract intltool-merge intltool-update; do
+  sed -e "s|@INTLTOOL_EXTRACT@|`pwd`/intltool-extract|g" \
+      -e "s|@INTLTOOL_LIBDIR@|${INTLTOOL_LIBDIR}|g" \
+      -e "s|@INTLTOOL_ICONV@|${INTLTOOL_ICONV}|g" \
+      -e "s|@INTLTOOL_MSGFMT@|${INTLTOOL_MSGFMT}|g" \
+      -e "s|@INTLTOOL_MSGMERGE@|${INTLTOOL_MSGMERGE}|g" \
+      -e "s|@INTLTOOL_XGETTEXT@|${INTLTOOL_XGETTEXT}|g" \
+      -e "s|@INTLTOOL_PERL@|${INTLTOOL_PERL}|g" \
+	< ${ac_aux_dir}/${file}.in > ${file}.out
+  if cmp -s ${file} ${file}.out 2>/dev/null; then
+    rm -f ${file}.out
+  else
+    mv -f ${file}.out ${file}
+  fi
+  chmod ugo+x ${file}
+  chmod u+w ${file}
+done
 
  ;;
     default-1 ) case "$CONFIG_FILES" in *po/Makefile.in*)
         sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile
       esac ;;
+    po/stamp-it )
+    rm -f "po/stamp-it" "po/stamp-it.tmp" "po/POTFILES" "po/Makefile.tmp"
+    >"po/stamp-it.tmp"
+    sed '/^#/d
+	 s/^[[].*] *//
+	 /^[ 	]*$/d
+	'"s|^|	$ac_top_srcdir/|" \
+      "$srcdir/po/POTFILES.in" | sed '$!s/$/ \\/' >"po/POTFILES"
+
+    if test ! -f "po/Makefile"; then
+      { { echo "$as_me:$LINENO: error: po/Makefile is not ready." >&5
+echo "$as_me: error: po/Makefile is not ready." >&2;}
+   { (exit 1); exit 1; }; }
+    fi
+    mv "po/Makefile" "po/Makefile.tmp"
+    sed '/^POTFILES =/,/[^\\]$/ {
+		/^POTFILES =/!d
+		r po/POTFILES
+	  }
+	 ' "po/Makefile.tmp" >"po/Makefile"
+    rm -f "po/Makefile.tmp"
+    mv "po/stamp-it.tmp" "po/stamp-it"
+   ;;
   esac
 done
 _ACEOF

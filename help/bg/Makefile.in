@@ -98,7 +98,7 @@ POST_UNINSTALL = :
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/omf.make $(top_srcdir)/xmldocs.make
-subdir = help/ko
+subdir = help/bg
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -263,8 +263,8 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 figdir = figures
 docname = gnome-terminal
-lang = ko
-omffile = gnome-terminal-ko.omf
+lang = bg
+omffile = gnome-terminal-bg.omf
 entities = legal.xml
 
 # **********  Begin of section some packagers may need to modify  **********
@@ -290,9 +290,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  help/ko/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  help/bg/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  help/ko/Makefile
+	  $(AUTOMAKE) --gnu  help/bg/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

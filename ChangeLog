@@ -1,3 +1,42 @@
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.93 so we get broader testing
+	  for the latest changes.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: applied patch from Tony Tsui to fix a
+	  serious freeze when detaching a tab right after changing its
+	  position. Closes bug #330246.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c: applied patch from jeff@ratsite.com to fix
+	  a crash in case too many terminals were started too quickly.
+	  Closes bug #318797.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.92.
+
+2006-03-03  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* configure.in: fix a build failure. Closes bug #333292.
+
+2006-02-18  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: made the licensing information not be
+	  translatable on Danilo Šegan's request.
+
+2006-02-17  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: added licensing information to the about
+	  dialog. Closes bug #330875.
+
 2006-02-12  Guilherme de S. Pastore  <gpastore@gnome.org>
 
 	* NEWS: updated.
