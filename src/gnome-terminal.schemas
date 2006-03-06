@@ -45,7 +45,7 @@
 
       <locale name="bn">
          <short>প্রোফাইলের তালিকা</short>
-         
+         <long>gnome-terminal&apos;র পরিচিত প্রোফাইলের তালিকা। /apps/gnome-terminal/profiles ডিরেক্টরি অনুযায়ী সাব-ডিরেক্টরির নাম এই তালিকায় উপস্থিত করা হয়।</long>
       </locale>
 
       <locale name="bs">
@@ -64,8 +64,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Rhestr o broffeiliau</short>
-         <long>Rhestr o broffeiliau sy&apos;n hysbys i gnome-terminal. Mae&apos;r rhestr yn cynnwys llinynau yn enwi isgyfeiriaduron yn gymharol i /apps/gnome-terminal/profiles.</long>
+         <short>Rhestr o broffiliau</short>
+         <long>Rhestr o broffiliau sy&apos;n hysbys i gnome-terminal. Mae&apos;r rhestr yn cynnwys llinynnau yn enwi is-gyfeiriaduron yn gymharol i /apps/gnome-terminal/profiles.</long>
       </locale>
 
       <locale name="da">
@@ -359,8 +359,8 @@
       </locale>
 
       <locale name="bn">
-         <short>নতুন টার্মিন্যাল শুরু করা হলে যে প্রোফাইল ব্যবহার করা হবে</short>
-         
+         <short>নতুন টার্মিনালের জন্য ব্যবহারযোগ্য প্রোফাইল</short>
+         <long>নতুন উইন্ডো অথবা ট্যাব খোলার সময় ব্যবহারযোগ্য প্রোফাইল। নির্বাচিত প্রোফাইলটি প্রোফাইল তালিকায় (profile_list) উপস্থিত থাকা আবশ্যক।</long>
       </locale>
 
       <locale name="bs">
@@ -380,7 +380,7 @@
 
       <locale name="cy">
          <short>Y proffeil i&apos;w ddefnyddio ar gyfer terfynellau newydd</short>
-         <long>Y proffeil i&apos;w ddefnyddio wrth agor ffenest neu dab newydd. Rhaidd iddo fod yn profile_list.</long>
+         <long>Y proffeil i&apos;w ddefnyddio wrth agor ffenest neu dab newydd. Rhaid iddo fod yn profile_list.</long>
       </locale>
 
       <locale name="da">
@@ -674,6 +674,11 @@
          <long>Дали да се разрешават бързите клавиши за менюто „Alt+буква“. Те може да пречат на някои програми, работещи в терминала, затова има възможност да бъдат изключвани.</long>
       </locale>
 
+      <locale name="bn">
+         <short>মেনু-বারের মধ্যে অ্যাকসেস-কি উপস্থিত রয়েছে কি না</short>
+         <long>মেনুবারের ক্ষেত্রে Alt+অক্ষর বিশিষ্ট অ্যাকসেস-কি সক্রিয় করা হবে কি না। টার্মিনালে চলমান কিছু অ্যাপ্লিকেশনের কর্মে এর ফলে ব্যঘাত ঘটার আশঙ্কায় এই বৈশিষ্ট্য নিষ্ক্রিয় করা যাবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li traka menija ima kraticu tastature</short>
          <long>Da li imati kratice Alt+slovo za traku menija. Moguće je da se miješaju sa aplikacijama koje su pokrenute u terminalu te ih je zato moguće isključiti.</long>
@@ -691,7 +696,7 @@
 
       <locale name="cy">
          <short>A oes bysellau cyrchu gan y bar dewislen</short>
-         <long>A ddylid cael bysellau cyrchu Alt+llythyren ar gyfer y bar dewislen. Fe allent ynyrryd a rhai rhaglenni sy&apos;n rhedeg o fewn y terfynell felly mae&apos;n bosib eu analluogi nhw.</long>
+         <long>A ddylid cael bysellau cyrchu Alt+llythyren ar gyfer y bar dewislen. Fe allent ymyrryd a rhai rhaglenni sy&apos;n rhedeg o fewn y derfynell felly mae&apos;n bosib eu hanalluogi nhw.</long>
       </locale>
 
       <locale name="da">
@@ -961,6 +966,11 @@
          <long>Можете да достигате до лентата с инструменти чрез F10. Това може да се променя чрез файла gtkrc (gtk-menu-bar-accel = „каквото_трябва“). Тази настройка изключва бързия клавиш за достъп до лентата с инструменти.</long>
       </locale>
 
+      <locale name="bn">
+         <short>মেনু-বার ব্যবহারের উদ্দেশ্যে প্রমিত GTK শর্টকাট সক্রিয় করা রয়েছে কি না</short>
+         <long>সাধারণত F10 কি&apos;র সাহায্যে মেনু-বার ব্যবহার করা সম্ভব। gtkrc&apos;র (gtk-menu-bar-accel = &quot;whatever&quot;) সাহায্যে আপনার পছন্দ অনুসারে এটি পরিবর্তন করা যাবে। এই অপশনের ফলে মেনু-বারের প্রমিত অ্যাকসেলিরেটরগুলি নিষ্ক্রিয় করা হবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li je uključena standardna GTK kratica za traku menija</short>
          <long>Obično se može pristupiti traci menija tipkom F10. Ovo se također može podesiti preko gtkrc (gtk-menu-bar-accel &quot;bilo šta&quot;). Ova opcija dozvoljava isključivanje standardne kratice za traku menija.</long>
@@ -977,8 +987,8 @@
       </locale>
 
       <locale name="cy">
-         <short>A ydy&apos;r byrlwybr safonnol GTK wedi ei alluogi ar gyfer cyrchu&apos;r bar dewislen</short>
-         <long>Fel arfer fe allwch gyrchu&apos;r bar dewislen gyda F10. Hefyd, gellir addasu hyn drwy gtkrc (gtk-menu-bar-accel = &quot;rhywbeth&quot;). Mae&apos;r opsiwn hywn yn caniatau analluogi&apos;r cyflymydd bar dewislen.</long>
+         <short>A ydy&apos;r byrlwybr safonol GTK wedi ei alluogi ar gyfer cyrchu&apos;r bar dewislen</short>
+         <long>Fel arfer fe allwch gyrchu&apos;r bar dewislen gyda F10. Hefyd, gellir addasu hyn drwy gtkrc (gtk-menu-bar-accel = &quot;rhywbeth&quot;). Mae&apos;r opsiwn hwn yn caniatáu analluogi&apos;r cyflymydd bar dewislen.</long>
       </locale>
 
       <locale name="da">
@@ -1007,7 +1017,7 @@
       </locale>
 
       <locale name="es">
-         <short>Define si las combinaciones de teclas estándar de GTK de acceso a las barras de menús están habilitadas</short>
+         <short>Define si la combinación de teclas estándar de GTK+ para acceder a la barra de menús está activada</short>
          <long>Normalmente usted puede acceder a la barra de menús pulsando F10. Esto puede ser personalizado por medio de gtkrc (gtk-menu-bar-accel = &quot;lo que quiera&quot;). Esta opción permite deshabilitar la combinación de teclas estándar de acceso a la barra de menús.</long>
       </locale>
 
@@ -1267,8 +1277,8 @@
 
       <locale name="bn">
          <default>[UTF-8,current]</default>
-         <short>উপস্থিত এনকোডিং এর তালিকা</short>
-         
+         <short>উপস্থিত এনকোডিং&apos;র তালিকা</short>
+         <long>সম্ভাব্য এনকোডিং&apos;র একটি ক্ষুদ্র তালিকা এনকোডিং নামক সাব-মেনুর মধ্যে উপস্থিত করা হয়। এই তালিকায় প্রদর্শনযোগ্য এনকোডিং-গুলি এই স্থানে প্রস্তুত করা হয়েছে। &quot;current&quot; রূপে প্রদর্শিত বিশেষ এনকোডিং&apos;র দ্বারা বর্তমান লোকেইলে ব্যবহৃত এনকোডিং দর্শানো হয়।</long>
       </locale>
 
       <locale name="bs">
@@ -1292,7 +1302,7 @@
       <locale name="cy">
          <default>[UTF-8,current,ISO-8859-14]</default>
          <short>Rhestr o amgodiadau sydd ar gael</short>
-         <long>Dangosir rhai o&apos;r amgodiadau posib yn yr is-ddewislen Amogidad. Mae hyn yn rhestr o amgodiadau i&apos;w cynnwys yno. Mae&apos;r enw amgodiad arbennig &quot;current&quot; yn glygu dylid dangos amgodiad y locale cyfredol.</long>
+         <long>Dangosir rhai o&apos;r amgodiadau posib yn yr is-ddewislen Amgodiad. Mae hyn yn rhestr o amgodiadau i&apos;w cynnwys yno. Mae&apos;r enw amgodiad arbennig &quot;current&quot; yn golygu dylid dangos amgodiad y locale cyfredol.</long>
       </locale>
 
       <locale name="da">
@@ -1328,7 +1338,7 @@
       <locale name="es">
          <default>[UTF-8,current,ISO-8859-15]</default>
          <short>Lista de las codificaciones disponibles</short>
-         <long>Un subconjunto de codificaciones posibles están presentes en el submenú «Codificaciones». Esta es una lista de las codificaciones que aparecerán ahí. El nombre de codificación especial «current» significa que se mostrará la codificación de la localización actual.</long>
+         <long>Un subconjunto de codificaciones posibles están presentes en el submenú «Codificaciones». Esta es una lista de las codificaciones que aparecerán ahí. El nombre de codificación especial «current» significa que se mostrará la codificación de la configuración regional actual.</long>
       </locale>
 
       <locale name="et">
@@ -1422,7 +1432,7 @@
       </locale>
 
       <locale name="ko">
-         <default>[UTF-8,EUC-KR,current]</default>
+         <default>[UTF-8,UHC,current]</default>
          <short>쓸 수 있는 인코딩 목록</short>
          <long>사용 가능한 인코딩 중의 일부가 인코딩 서브메뉴에 보여집니다. 이것은 인코딩 서브 메뉴에 나타날 인코딩 목록입니다. 특별히 &quot;current&quot;라는 인코딩 이름은 현재 로케일의 인코딩을 나타냅니다.</long>
       </locale>
@@ -1660,6 +1670,11 @@
          <long>Дали да се пита при затварянето на прозорец на терминала с повече от един подпрозорец.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালের উইন্ডো বন্ধ করার পূর্বে ব্যবহারকারীর সম্মতি নেওয়া হবে কি না</short>
+         <long>একাধিক খোলা ট্যাব সমেত টার্মিনাল উইন্ডো বন্ধ করার সময় ব্যবহারকারীর সম্মতি নেওয়া হবে কি না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li tražiti potvrdu pri zatvaranju prozora terminala</short>
          <long>Da li tražiti potvrdu pri zatvaranju prozora terminala koji ima više od jedne otvorene kartice.</long>
@@ -1677,7 +1692,7 @@
 
       <locale name="cy">
          <short>A ddylid gofyn am gadarnhad wrth gau ffenestri terfynell</short>
-         <long>A ddylid gofyn am gadarnhad pan yn cau ffenest terfynell sydd a mwy na un tab agored.</long>
+         <long>A ddylid gofyn am gadarnhad wrth gau ffenest terfynell sydd a mwy na un tab agored.</long>
       </locale>
 
       <locale name="da">
@@ -1951,6 +1966,12 @@
          <long>Разбираемо за човек име на профила.</long>
       </locale>
 
+      <locale name="bn">
+         <default>ডিফল্ট</default>
+         <short>প্রোফাইলের জন্য নির্ধারিত পাঠযোগ্য নাম</short>
+         <long>প্রোফাইলের জন্য নির্ধারিত পাঠযোগ্য নাম।</long>
+      </locale>
+
       <locale name="bs">
          
          <short>Ime profila u ljudski čitljivom obliku</short>
@@ -1964,15 +1985,15 @@
       </locale>
 
       <locale name="cs">
-         
+         <default>Implicitní</default>
          <short>Člověkem čitelný název profilu</short>
          <long>Člověkem čitelný název profilu.</long>
       </locale>
 
       <locale name="cy">
-         
-         <short>Enw darllenadwy-gan-berson y proffeil</short>
-         <long>Enw darllenadwy-gan-berson y proffeil.</long>
+         <default>Rhagosodiad</default>
+         <short>Enw darllenadwy-gan-berson y proffil</short>
+         <long>Enw darllenadwy-gan-berson y proffil.</long>
       </locale>
 
       <locale name="da">
@@ -1982,7 +2003,7 @@
       </locale>
 
       <locale name="de">
-         
+         <default>Vorgabe</default>
          <short>Menschenlesbarer Profilname</short>
          <long>Menschenlesbarer Profilname.</long>
       </locale>
@@ -2018,7 +2039,7 @@
       </locale>
 
       <locale name="eu">
-         
+         <default>Lehenetsia</default>
          <short>Profilaren izen ulergarria.</short>
          <long>Profilaren izen ulergarria.</long>
       </locale>
@@ -2078,7 +2099,7 @@
       </locale>
 
       <locale name="hu">
-         
+         <default>Alapértelmezett</default>
          <short>A profil emberek által olvasható neve</short>
          <long>A profil emberek által olvasható neve.</long>
       </locale>
@@ -2096,9 +2117,15 @@
       </locale>
 
       <locale name="ja">
-         
+         <default>デフォルト</default>
          <short>プロファイルの可読な名前</short>
          <long>プロファイルの可読な名前です。</long>
+      </locale>
+
+      <locale name="ka">
+         <default>ნაგულისხმევი</default>
+         
+         
       </locale>
 
       <locale name="ko">
@@ -2108,7 +2135,7 @@
       </locale>
 
       <locale name="lt">
-         
+         <default>Numatytasis</default>
          <short>Skaitomas profilio pavadinimas</short>
          <long>Skaitomas profilio pavadinimas.</long>
       </locale>
@@ -2174,7 +2201,7 @@
       </locale>
 
       <locale name="pt">
-         
+         <default>Omissão</default>
          <short>Nome legível do perfil</short>
          <long>Nome legível do perfil.</long>
       </locale>
@@ -2252,7 +2279,7 @@
       </locale>
 
       <locale name="uk">
-         
+         <default>Типово</default>
          <short>Читабельна назва профілю</short>
          <long>Читабельна назва профілю.</long>
       </locale>
@@ -2319,7 +2346,12 @@
 
       <locale name="bg">
          <short>Дали показалецът да мига</short>
-         <long>Ако е зададено, показалецът ще мига в терминали с фокус, за прозорци и страници с този профил.</long>
+         <long>Ако е зададено, показалецът ще мига в терминали с фокус, за прозорци и подпрозорци с този профил.</long>
+      </locale>
+
+      <locale name="bn">
+         <short>কার্সারে ঝলকানি হবে কি না</short>
+         <long>চিহ্নিত প্রোফাইলের উইন্ডো/ট্যাবের ক্ষেত্রে টার্মিনালে ফোকাস প্রাপ্ত হলে মান সত্য (True)।</long>
       </locale>
 
       <locale name="bs">
@@ -2339,7 +2371,7 @@
 
       <locale name="cy">
          <short>A ddylid chwincio&apos;r cyrchydd</short>
-         <long>Gwir os dylai&apos;r cyrchydd chwincio pan mae gan y terfynell ffocws, ar gyfer ffenestri/tabiau efo&apos;r proffeil hwn.</long>
+         <long>Gwir os dylai&apos;r cyrchydd chwincio pan mae gan y derfynell ffocws, ar gyfer ffenestri/tabiau gyda&apos;r proffeil hwn.</long>
       </locale>
 
       <locale name="da">
@@ -2369,7 +2401,7 @@
 
       <locale name="es">
          <short>Define si el cursor debe parpadear</short>
-         <long>Verdadero (True) si el cursor debería parpadear cuando la terminal tiene el foco, para las ventanas/solapas con este perfil.</long>
+         <long>Verdadero (True) si el cursor debe parpadear cuando la terminal tiene el foco, para las ventanas/solapas con este perfil.</long>
       </locale>
 
       <locale name="et">
@@ -2633,6 +2665,11 @@
          <long>Ако е зададено, менюто е видимо в новите прозорци, за прозорци и подпрозорци с този профил.</long>
       </locale>
 
+      <locale name="bn">
+         <short>নতুন উইন্ডো/ট্যাবের মধ্যে মেনু-বার প্রদর্শন করা হবে কি না</short>
+         <long>চিহ্নিত প্রোফাইলের উইন্ডো/ট্যাবের ক্ষেত্রে মেনুবার নতুন উইন্ডোতে প্রদর্শন করা হলে মান সত্য (True)।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li pokazati traku menija u novima prozorima/karticama</short>
          <long>Ako je postavljeno, traka menija će se pokazivati u novim prozorima, za prozore/kartice sa ovim profilom.</long>
@@ -2650,7 +2687,7 @@
 
       <locale name="cy">
          <short>A ddylid dangos y bar dewislen mewn tabiau/ffenestri newydd</short>
-         <long>Gwis os dylid danfos y bar dewislen mewn ffenestri newydd, ar gyfer ffenestri tabiau gyda&apos;r proffeil hwn.</long>
+         <long>Gwis os dylid dangos y bar dewislen mewn ffenestri newydd, ar gyfer ffenestri tabiau gyda&apos;r proffeil hwn.</long>
       </locale>
 
       <locale name="da">
@@ -2679,8 +2716,8 @@
       </locale>
 
       <locale name="es">
-         <short>Indica si se deben mostrar la barra de menús en las ventanas/solapas</short>
-         <long>Verdadero (True) si la barra de menús debería ser mostrada en las ventanas nuevas, para las ventanas/solapas con este perfil.</long>
+         <short>Indica si se deben mostrar la barra de menú en las ventanas/solapas nuevas</short>
+         <long>Verdadero (True) si la barra de menús debe mostrarse en las ventanas nuevas, para las ventanas/solapas con este perfil.</long>
       </locale>
 
       <locale name="eu">
@@ -2929,6 +2966,11 @@
          <long>Цвят по подразбиране на текста в терминала (може да е HTML-цвят, шестнадесетично представен или име на цвета, например „red“).</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালে ব্যবহৃত হরফের ডিফল্ট রং</short>
+         <long>টার্মিনালে ব্যবহৃত হরফের ডিফল্ট রং, রং-র সুনির্দিষ্ট মান হিসাবে চিহ্নিত (HTML-তে ব্যবহৃত hex অক্ষর অথবা রং-র নাম যেমন &quot;red&quot;)।</long>
+      </locale>
+
       <locale name="bs">
          <short>Uobičajena boja teksta u terminalu</short>
          <long>Uobičajena boja teksta u terminalu, izražena kao specifikacija boje (može biti heksadecimalne cifre u HTML stilu ili ime boje kao npr. &quot;red&quot;).</long>
@@ -2945,8 +2987,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Lliw rhagosodedig testun yn y terfynell</short>
-         <long>Lliw rhagosodol testun yn y terfynell, fel penodid lliw (gall fod mewn hecs-ddigidau fel yn HTML neu fel enw lliw megis &quot;red&quot;).</long>
+         <short>Lliw rhagosodedig testun yn y derfynell</short>
+         <long>Lliw rhagosodol testun yn y derfynell, fel penodid lliw (gall fod mewn hecs-ddigidau fel yn HTML neu fel enw lliw megis &quot;red&quot;).</long>
       </locale>
 
       <locale name="da">
@@ -3246,8 +3288,8 @@
       </locale>
 
       <locale name="bn">
-         <short>টার্মিন্যালের পটভূমির ডিফল্ট রঙ</short>
-         
+         <short>টার্মিনাল পটভূমির ডিফল্ট রং</short>
+         <long>টার্মিনালের পটভূমির ডিফল্ট রং, রং-র সুনির্দিষ্ট মান হিসাবে চিহ্নিত (HTML-তে ব্যবহৃত hex অক্ষর অথবা রং-র নাম যেমন &quot;red&quot;)।</long>
       </locale>
 
       <locale name="bs">
@@ -3266,8 +3308,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Lliw cefndir y rhagosodedig y terfynell</short>
-         <long>Rhagosodiad lliw cefndir y terfynell, fel penodid lliw (gall fod mewn hecs-ddigidau fel yn HTML neu fel enw lliw megis &quot;red&quot;).</long>
+         <short>Lliw cefndir y rhagosodedig y derfynell</short>
+         <long>Rhagosodiad lliw cefndir y derfynell, fel penodid lliw (gall fod mewn hecs-ddigidau fel yn HTML neu fel enw lliw megis &quot;red&quot;).</long>
       </locale>
 
       <locale name="da">
@@ -3569,6 +3611,11 @@
          <long>Ако програмата в терминала задава заглавието (обикновено хората за настроили програмите да правят това), динамично задаваното заглавие може да надделее над стандартното, да отиде пред него, да отиде след него или да го замени. Възможните стойности са „replace“, „before“, „after“, и „ignore“.</long>
       </locale>
 
+      <locale name="bn">
+         <short>পরিবরতনশীল শিরোনামের ক্ষেত্রে করণীয় কর্ম</short>
+         <long>টার্মিনালে চলমান অ্যাপ্লিকেশনের দ্বারা শিরোনাম ধার্য করা হলে (অধিকাংশ শেলেলর ক্ষেত্রে এই বৈশিষ্ট্য সক্রিয় করা থাকে), পরিবর্তনশীল এই শিরোনামের দরুন কনফিগার করা পূর্ববর্তী শিরোনাম মুছে ফেলা হতে পারে। অথবা কনফিগার করা শিরোনামের পূর্বে, পরে অথবা পরিবর্তে প্রয়োগ করা হবে। সম্ভাব্য মান হল &quot;replace&quot;, &quot;before&quot;, &quot;after&quot; ও &quot;ignore&quot;।</long>
+      </locale>
+
       <locale name="bs">
          <short>Šta činiti sa dinamičkim naslovom</short>
          <long>Ako aplikacija u terminalu postavlja naslov (ljudi uglavnom biraju ovu postavku u shellu), dinamički postavljen naslov može izbrisati prvobitni naslov, biti postavljen prije, biti postavljen poslije ili zamijeniti prvobitni naslov. Moguće vrijednosti su &quot;replace&quot;, &quot;before&quot;, &quot;after&quot; i &quot;ignore&quot;.</long>
@@ -3585,8 +3632,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Betg i&apos;w wneud efo&apos;r teitl dynamig?</short>
-         <long>Os mae&apos;r rhaglen yn y terfynell yn gosod y teitl (gan amlaf mae pobl yn gosod eu cragen i wneud hyn), fe fydd y teitl a osodwyd yn ddynamig yn gallu dileu&apos;r teitl a gyfluniwyd, mynd cynddi, mynd ar ei ôl, neu cymryd ei le. Y gwethoedd posib: &quot;replace&quot;, &quot;before&quot;, &quot;after&quot; ac &quot;ignore&quot;.</long>
+         <short>Beth i&apos;w wneud gyda&apos;r teitl dynamig?</short>
+         <long>Os mae&apos;r rhaglen yn y derfynell yn gosod y teitl (gan amlaf mae pobl yn gosod eu cragen i wneud hyn), fe fydd y teitl a osodwyd yn ddynamig yn gallu dileu&apos;r teitl a gyfluniwyd, mynd cyn y teitl, mynd ar ei ôl, neu gymryd ei le. Y gwerthoedd posib: &quot;replace&quot;, &quot;before&quot;, &quot;after&quot; ac &quot;ignore&quot;.</long>
       </locale>
 
       <locale name="da">
@@ -3616,7 +3663,7 @@
 
       <locale name="es">
          <short>Qué hacer con el título dinámico</short>
-         <long>Si la aplicación en la configuración de la terminal define el título (la mayoría de la gente deja que su intérprete haga esto), el título definido dinámicamente puede borrar el título configurado, puede ir antes de éste, después de éste, o reemplazarlo. Los valores posibles son «replace», «before», «after» e «ignore».</long>
+         <long>Si la aplicación en la configuración de la terminal define el título (la mayoría de la gente deja que su intérprete haga esto), el título definido dinámicamente puede borrar el título configurado, puede ir antes de éste, después de éste, o reemplazarlo. Los valores posibles son «replace» (reemplazar), «before» (antes), «after» (después) e «ignore» (ignorar).</long>
       </locale>
 
       <locale name="et">
@@ -3887,9 +3934,9 @@
       </locale>
 
       <locale name="bn">
-	<default>টার্মিন্যাল</default>
-         <short>টার্মিন্যালের শিরোনাম</short>
-         
+	<default>টার্মিনাল</default>
+         <short>টার্মিনালের শিরোনাম</short>
+         <long>টার্মিনাল উইন্ডো অথবা ট্যাবে প্রদর্শনের উদ্দেশ্যে শিরোনাম। এই শিরোনাম পরিবর্তন করা যাবে অথবা টার্মিনালে চলমান অ্যাপ্লিকেশনের দ্বারা নির্ধারিত নামের সাথে যুক্ত করা যাবে। title_mode বৈশিষ্ট্যের মানের উপর এটি নির্ভরশীল।</long>
       </locale>
 
       <locale name="bs">
@@ -3912,8 +3959,8 @@
 
       <locale name="cy">
 	<default>Terfynell</default>
-         <short>Teitl ar gyfer y terfynell</short>
-         <long>Y teitl i&apos;w ddangos ar gyfer ffenest neu dab y terfynell. Fe all y teitl hwn gael ei amnewid neu eu gyfuno efo&apos;r teitl a osodir gan y rhaglen o fewn y terfynell, yn dibynnu ar y gosodiad title_mode.</long>
+         <short>Teitl ar gyfer y derfynell</short>
+         <long>Y teitl i&apos;w ddangos ar gyfer ffenest neu dab y derfynell. Fe all y teitl hwn gael ei amnewid neu eu cyfuno gyda&apos;r teitl a osodir gan y rhaglen o fewn y derfynell, yn dibynnu ar y gosodiad title_mode.</long>
       </locale>
 
       <locale name="da">
@@ -4046,6 +4093,12 @@
 	<default>GNOME 端末</default>
          <short>端末のタイトル</short>
          <long>端末ウィンドウやタブに表示するタイトルを指定します。このタイトルは、端末で実行中のアプリケーションによって置き換えられたり、追加されたりすることが可能で、title_mode の設定に依存します。</long>
+      </locale>
+
+      <locale name="ka">
+	<default>ტერმინალი</default>
+         
+         
       </locale>
 
       <locale name="ko">
@@ -4288,8 +4341,8 @@
       </locale>
 
       <locale name="bn">
-         <short>গাড় লেখা ব্যবহার করো</short>
-         
+         <short>গাঢ় হরফ ব্যবহার করা হবে কি না</short>
+         <long>মান সত্য হলে, টার্মিনালে চলমান অ্যাপ্লিকেশনগুলির দ্বারা গাঢ় হরফ প্রয়োগ করা যাবে।</long>
       </locale>
 
       <locale name="bs">
@@ -4309,7 +4362,7 @@
 
       <locale name="cy">
          <short>A ddylid caniatàu testunau trwm</short>
-         <long>Os yn wir, caniatau i rhaglenni yn y terfynell i wneud testun yn drwm.</long>
+         <long>Os yn wir, caniatáu i raglenni yn y derfynell i wneud testun yn drwm.</long>
       </locale>
 
       <locale name="da">
@@ -4602,6 +4655,11 @@
          <long>Ако е вярно, програмите няма да издават звуци когато изпращат escape sequence за терминалния звънец.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালের ঘন্টি নিঃশব্দ অবস্থায় রাখা হবে কি না</short>
+         <long>মান সত্য হলে, অ্যাপ্লিকেশনের দ্বারা সিস্টেমের ধ্বনি&apos;র জন্য এস্কেপ চ্যারেক্টার উল্লিখিত হলে আওয়াজ করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li ugušiti zvonce terminala</short>
          <long>Ako je postavljeno, nemoj se oglašavati kada aplikacije pošalju escape sekvencu za zvonce terminala.</long>
@@ -4618,8 +4676,8 @@
       </locale>
 
       <locale name="cy">
-         <short>A ddylid tawelu cloch y terfynell</short>
-         <long>Os yn wir, peidio gwneu sŵn pan mae rhaglenni yn anfon y dilynniant dianc ar gyfer clock y terfynell.</long>
+         <short>A ddylid tawelu cloch y derfynell</short>
+         <long>Os yn wir, peidio gwneud sŵn pan mae rhaglenni yn anfon y dilyniant dianc ar gyfer clock y derfynell.</long>
       </locale>
 
       <locale name="da">
@@ -4909,6 +4967,11 @@
          <long>Последователностите, които съдържат тези знаци се считат за една дума при избирането на текст по думи. Обхватите могат да се записват разделени с тире: „А-Я“. Ако тирето също се счита за част от дума, то трябва да се зададе като първи знак.</long>
       </locale>
 
+      <locale name="bn">
+         <short>&quot;শব্দের অংশ&quot; হিসাবে ধার্য অক্ষর</short>
+         <long>শব্দ অনুযায়ী টেক্সট নির্বাচনের সময় এই অক্ষরগুলি একটি পৃথক শব্দ হিসাবে গণ্য করা হবে। &quot;A-Z&quot; হিসাবে অক্ষরের সীমা উল্লেখ করা যাবে। প্রথম অক্ষর হিসাবে হাইফেন (অক্ষরের সীমা উল্লেখ না করার জন্য) উল্লেখ করা হবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Znakovi koji se smatraju dijelom riječi</short>
          <long>Kada se tekst bira riječima, sekvence ovih znakova se smatraju zasebnim riječima. Rasponi mogu biti dani kao &quot;A-Z&quot;. Crtica (koja ne izražava raspon) treba biti prvi navedn znak.</long>
@@ -4925,8 +4988,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Nodau fe ymdrinir a hwy fel &quot;rhan gair&quot;</short>
-         <long>Wrth ddewis testun yn ôl gair, fe gaiff dilyniannau o&apos;r nodau yma eu trin fel geiriau unigol. Gellir rhoi amrediadau fel &quot;A-Z&quot;. Dylid cysylltnod llythrennol (sydd ddym yn arwyddo amrediad) fod y nod cyntaf a roddir.</long>
+         <short>Nodau fe ymdrinnir â hwy fel &quot;rhan gair&quot;</short>
+         <long>Wrth ddewis testun yn ôl gair, fe gaiff dilyniannau o&apos;r nodau yma eu trin fel geiriau unigol. Gellir rhoi amrediadau fel &quot;A-Z&quot;. Dylid cysylltnod llythrennol (sydd ddim yn arwyddo amrediad) fod y nod cyntaf a roddir.</long>
       </locale>
 
       <locale name="da">
@@ -4955,8 +5018,8 @@
       </locale>
 
       <locale name="es">
-         <short>Caracteres que son considerados «partes de una palabra»</short>
-         <long>Al seleccionar texto por palabras, las secuencias de estos caracteres serán considerada palabras simples. Los rangos puede ser definidos como «A-Z». Un guión literal (sin expresar un rango) debería ser el primer carácter proporcionado.</long>
+         <short>Caracteres que son considerados «parte de una palabra»</short>
+         <long>Al seleccionar texto por palabras, las secuencias de estos caracteres se consideran palabras simples. Los rangos se pueden dar como «A-Z». Un guión literal (sin expresar un rango) debería ser el primer carácter proporcionado.</long>
       </locale>
 
       <locale name="et">
@@ -5219,6 +5282,11 @@
          <long>Местоположение на плъзгача на терминала. Възможностите са „left“, „right“ и „disabled“.</long>
       </locale>
 
+      <locale name="bn">
+         <short>স্ক্রোল-বারের অবস্থান</short>
+         <long>টার্মিনাল স্ক্রোলবারের অবস্থান। সম্ভাব্য মান হল &quot;left (বাঁদিকে)&quot;, &quot;right (ডানদিকে)&quot; ও &quot;disabled (নিষ্ক্রিয়)&quot;।</long>
+      </locale>
+
       <locale name="bs">
          <short>Pozicija klizača</short>
          <long>Gdje postaviti klizač u terminalu. Moguće vrijednosti su &quot;left&quot;, &quot;right&quot; i &quot;disabled&quot;.</long>
@@ -5235,8 +5303,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Safle y bar sgrolio</short>
-         <long>Lle i roi bar sgrolio&apos;r terfynell. Posibiliadau: &quot;left&quot;, &quot;right&quot;, a &quot;disabled&quot;.</long>
+         <short>Safle&apos;r bar sgrolio</short>
+         <long>Lle i roi bar sgrolio&apos;r derfynell. Posibiliadau: &quot;left&quot;, &quot;right&quot;, a &quot;disabled&quot;.</long>
       </locale>
 
       <locale name="da">
@@ -5266,7 +5334,7 @@
 
       <locale name="es">
          <short>Posición de la barra de desplazamiento</short>
-         <long>Donde colocar la barra de desplazamiento de la terminal. Las posibilidades son «left», «right», y «disabled».</long>
+         <long>Indica dónde colocar la barra de desplazamiento de la terminal. Las posibilidades son «left» (izquierda), «right» (derecha), y «disabled» (desactivada).</long>
       </locale>
 
       <locale name="et">
@@ -5532,6 +5600,11 @@
          <long>Броят на редовете, които да се пазят в паметта за прелистване назад. Можете да се връщате обратно с този брой редове. При надвишаването на броя най-старите редове се изтриват от паметта. Използвайте внимателно този параметър, понеже той определя в най-силна степен колко памет ще използва терминала.</long>
       </locale>
 
+      <locale name="bn">
+         <short>স্ক্রোলব্যাকে উপস্থিত পংক্তির সংখ্যা</short>
+         <long>প্রদর্শনযোগ্য স্ক্রোলব্যাক লাইনের সংখ্যা। চিহ্নিত সংখ্যক পংক্তি আপনি টার্মিনালে স্ক্রোল করতে পারবেন।; স্ক্রোলব্যাকের নির্ধারিত বহির্ভুত পংক্তি অগ্রাহ্য করা হবে। এই বৈশিষ্ট্য প্রয়োগ করার সময় সাবধানতা অবলম্বন করুন; টার্মিনালের দ্বারা ব্যবহৃত মেমরির পরিমাপ প্রধানত এই বৈশিষ্ট্যের দ্বারা নির্ধারিত হয়।</long>
+      </locale>
+
       <locale name="bs">
          <short>Broj linija za pomjeranje ispisa unazad</short>
          <long>Broj linija za pomjeranje ispisa unazad. Požete pomjerati ispis unazad ovaj broj linija; linije izvan ovog broja su poništene. Budite pažljivi sa ovom postavkom, ovo je glavni faktor pri određivanju koliko će memorijekoristiti terminal.</long>
@@ -5548,8 +5621,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Y nifer o linellau i&apos;w cadw yn y hanes</short>
-         <long>Y nifer o linellau hanes i&apos;w cadw. Gallwch sgrolio yn ôl yn y terfynell drwy&apos;r nifer yma o linellau; teflir llinellau nad ydynt yn ffitio yn y hanes. Byddwch yn ofalus gyda&apos;r gosodiad hwn; y prif ffactor ydyw yn penderfynu faint o gof fe fydd eich terfynell yn defnyddio.</long>
+         <short>Y nifer o linellau i&apos;w cadw yn yr hanes</short>
+         <long>Y nifer o linellau hanes i&apos;w cadw. Gallwch sgrolio yn ôl yn y derfynell drwy&apos;r nifer yma o linellau; teflir llinellau nad ydynt yn ffitio yn yr hanes. Byddwch yn ofalus gyda&apos;r gosodiad hwn; y prif ffactor ydyw yn penderfynu faint o gof fe fydd eich terfynell yn defnyddio.</long>
       </locale>
 
       <locale name="da">
@@ -5836,6 +5909,11 @@
          <long>Ако е включено, натискането на клавиш прелиства до най-долу.</long>
       </locale>
 
+      <locale name="bn">
+         <short>কি টেপা হলে নীচের প্রান্ত অবধি স্ক্রোল করা হবে কি না</short>
+         <long>মান সত্য হলে, কোনো কি টেপা হলে স্ক্রোলবারটি নীচে স্থানান্তর করা হয়।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li će se klizač postaviti na dno kada je tipka pritisnuta</short>
          <long>Ako je postavljeno, pritisak tipke pomjera klizač na dno.</long>
@@ -5852,7 +5930,7 @@
       </locale>
 
       <locale name="cy">
-         <short>A ddylid sgrolio i&apos;r gwaelod pan gwasgir bysell</short>
+         <short>A ddylid sgrolio i&apos;r gwaelod pan wasgir bysell</short>
          <long>Os yn wir, mae gwasgu bysell yn llamu&apos;r bar sgrolio i&apos;r gwaelod.</long>
       </locale>
 
@@ -5883,7 +5961,7 @@
 
       <locale name="es">
          <short>Indica si se debe desplazar hasta el final cuando se presione una tecla</short>
-         <long>Si es «true» (verdadero) al presionar una tecla la barra de desplazamiento salta hasta el final.</long>
+         <long>Si es «true» (verdadero), pulsar una tecla hace saltar la barra de desplazamiento hasta el final.</long>
       </locale>
 
       <locale name="eu">
@@ -6141,6 +6219,11 @@
          <long>Ако е включено, при изписване на текст екранът ще се прелиства до най-долу.</long>
       </locale>
 
+      <locale name="bn">
+         <short>নতুন ফলাফল উত্‍‌পন্ন হলে নীচের প্রান্ত অবধি স্ক্রোল করা হবে কি না</short>
+         <long>মান সত্য (true) হলে, নতুন আউটপুট উত্‍‌পন্ন হলে নীচের প্রান্ত অবধি টার্মিনাল স্ক্রোল করা হবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li će se klizač postaviti na dno pri novom ispisu</short>
          <long>Ako je postavljeno, kod svakog novog ispisa će se klizač pomjeriti na dno.</long>
@@ -6158,7 +6241,7 @@
 
       <locale name="cy">
          <short>A ddylid sgrolio i&apos;r gwaelod pan mae allbwn newydd</short>
-         <long>Os yn wir, fe fydd y terfynell yn sgrolio i&apos;r gwaelod pan mae allbwn newydd.</long>
+         <long>Os yn wir, fe fydd y derfynell yn sgrolio i&apos;r gwaelod pan mae allbwn newydd.</long>
       </locale>
 
       <locale name="da">
@@ -6436,6 +6519,11 @@
          <long>Възможните стойности са „затваряне“ за затваряне на терминала и „рестартиране“ за повторно изпълнение на командата.</long>
       </locale>
 
+      <locale name="bn">
+         <short>চাইল্ড কমান্ড বন্ধ করা হলে টার্মিনালের ক্ষেত্রে করণীয় কর্ম</short>
+         <long>সম্ভাব্যা মান হল &quot;close&quot;-টার্মিনাল বন্ধ করার জন্য ও &quot;restart&quot;-কমান্ড পুনরায় আরম্ভ করার জন্য।</long>
+      </locale>
+
       <locale name="bs">
          <short>Šta činiti sa terminalom kada se podređena naredba završi</short>
          <long>Moguće vrijednosti su &quot;close&quot; za zatvaranje terminala i &quot;restart&quot; za ponovno pokretanje naredbe.</long>
@@ -6452,8 +6540,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Beth i&apos;w wneud efo&apos;r terfynell pan mae&apos;r gorchymyn plentyn yn gorffen</short>
-         <long>Gwerthoedd posib: &quot;close&quot; er mwyn cau&apos;r terfynell, a &quot;restart&quot; er mwyn ailgychwyn y gorchymyn.</long>
+         <short>Beth i&apos;w wneud gyda&apos;r derfynell pan mae&apos;r gorchymyn plentyn yn gorffen</short>
+         <long>Gwerthoedd posib: &quot;close&quot; er mwyn cau&apos;r derfynell, a &quot;restart&quot; er mwyn ailgychwyn y gorchymyn.</long>
       </locale>
 
       <locale name="da">
@@ -6733,6 +6821,11 @@
          <long>Ако е истина, командата в терминала ще се изпълни като обвивка с влизане в системата. (пред argv[0] ще има тире.)</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালের মধ্যে কমান্ডটি লগ-ইন শেল রূপে আরম্ভ করা হবে কি না</short>
+         <long>মান সত্য (true) হলে, টার্মিনালের কমান্ডটি লগ-ইন শেল হিসাবে আরম্ভ করা হবে। (argv[0]&apos;র পূর্বে একটি হাইফেন চিহ্ন উপস্থিত থাকবে।)</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li pokrenuti naredbu u terminalu kao shell za prijavu</short>
          <long>Ako je postavljeno, naredba u terminalu će biti pokrenuta kao shell za prijavu. (argv[0] će imati crticu ispred.)</long>
@@ -6749,8 +6842,8 @@
       </locale>
 
       <locale name="cy">
-         <short>A ddylid lansio&apos;r gorchymyn yn y terfynell fel cragen mewngofnodi</short>
-         <long>Os yn wir, fe fydd y gorchymyn o fewn y terfynell yn cael ei lansio fel cragen mewngofnodi. (Fe fydd gan argv[0] ?? o&apos;i flaen.)</long>
+         <short>A ddylid lansio&apos;r gorchymyn yn y derfynell fel cragen mewngofnodi</short>
+         <long>Os yn wir, fe fydd y gorchymyn o fewn y derfynell yn cael ei lansio fel cragen mewngofnodi. (Fe fydd gan argv[0] ?? o&apos;i flaen.)</long>
       </locale>
 
       <locale name="da">
@@ -6780,7 +6873,7 @@
 
       <locale name="es">
          <short>Define si se debe ejecutar el comando en terminal como un intérprete de acceso (login shell)</short>
-         <long>Si es «true» (verdadero) el comando del interior de la terminal será ejecutado como un intérprete de acceso (login) (argv[0] tendrá un guión delante de él)</long>
+         <long>Si es «true» (verdadero), el comando del interior de la terminal se ejecutará como un intérprete de acceso (login) (argv[0] tendrá un guión delante de él.)</long>
       </locale>
 
       <locale name="eu">
@@ -7028,6 +7121,11 @@
          <long>Ако е истина, журналите за utmp и wtmp ще бъдат обновени при изпълнението на командата в терминала.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালের কমান্ড আরম্ভ করার সময় লগ-ইন সংক্রান্ত তথ্য আপডেট করা হবে কি না</short>
+         <long>মান সত্য (true) হলে, টার্মিনালের মধ্যে কমান্ড আরম্ভ করা হলে সিস্টেমের লগ-ইন রেকর্ড utmp ও wtmp আপডেট করা হবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li ažurirati zapisnik prijava pri pokretanju naredbe terminala</short>
          <long>Ako je postavljeno, sistemski zapisnici prijava utmp i wtmp će biti ažurirani pri pokretanju naredbe u terminalu.</long>
@@ -7045,7 +7143,7 @@
 
       <locale name="cy">
          <short>A ddylid diweddaru cofnodion mewngofnodi wrth lansio gorchymyn terfynell</short>
-         <long>Os yn wir, diweddarir cofnodion mewngofnodi&apos;r system utmp a wtmp wrth i&apos;r gorchymyn gael ei lansio o fewn y terfynell.</long>
+         <long>Os yn wir, diweddarir cofnodion mewngofnodi&apos;r system utmp a wtmp wrth i&apos;r gorchymyn gael ei lansio o fewn y derfynell.</long>
       </locale>
 
       <locale name="da">
@@ -7075,7 +7173,7 @@
 
       <locale name="es">
          <short>Indica si se debe actualizar los registros de inicio de sesión al lanzar el comando de terminal</short>
-         <long>Si es «true» (verdadero) el utmp/wtmp será actualizado cuando el comando de dentro del terminal sea ejecutado.</long>
+         <long>Si es «true» (verdadero), el los registros de entrada del sistema utmp y wtmp se actualizarán cuando se lance el comando de dentro de la terminal.</long>
       </locale>
 
       <locale name="eu">
@@ -7309,8 +7407,8 @@
       </locale>
 
       <locale name="bn">
-         <short>আমার শেলের পরিবর্তে একটি নিজস্ব কমান্ড চালাও</short>
-         
+         <short>শেলের পরিবর্তে নিজস্ব পছন্দ অনুসারে কোনো কমান্ড চালানো হবে কি না</short>
+         <long>মান সত্য (true) হলে, চলমান শেলের পরিবর্তে custom_command বৈশিষ্ট্যের মান প্রয়োগ করা হবে।</long>
       </locale>
 
       <locale name="bs">
@@ -7329,7 +7427,7 @@
       </locale>
 
       <locale name="cy">
-         <short>A ddylid gweithredu gorchymyn yn lle&apos;r cragen</short>
+         <short>A ddylid gweithredu gorchymyn yn lle&apos;r gragen</short>
          <long>Os yn wir, caiff gwerth y gosodiad custom_command ei ddefnyddio yn lle gweithredu cragen.</long>
       </locale>
 
@@ -7360,7 +7458,7 @@
 
       <locale name="es">
          <short>Define si se debe ejecutar un comando personalizado en lugar del intérprete</short>
-         <long>Si es «true» (verdadero) el valor de la configuración de «custom_command» será usado en lugar de ejecutar un intérprete.</long>
+         <long>Si es «true» (verdadero), el valor de la configuración de «custom_command» será usado en lugar de ejecutar un intérprete.</long>
       </locale>
 
       <locale name="et">
@@ -7624,8 +7722,8 @@
       </locale>
 
       <locale name="bn">
-         <short>আমার শেলের পরিবর্তে একটি নিজস্ব কমান্ড চালাও</short>
-         
+         <short>শেলের পরিবর্তে ব্যবহারের জন্য চিহ্নিত স্বনির্বাচিত কমান্ড</short>
+         <long>use_custom_command অপশনের মান সত্য (true) হলে শেলের পরিবর্তে চিহ্নিত কমান্ডটি চালানো হবে।</long>
       </locale>
 
       <locale name="bs">
@@ -7644,8 +7742,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Gorchymyn i&apos;w weithredu yn lle&apos;r cragen</short>
-         <long>Gweithredu&apos;r gorchymyn hwn yn lle&apos;r cragen, os mae use_custom_commant yn wir.</long>
+         <short>Gorchymyn i&apos;w weithredu yn lle&apos;r gragen</short>
+         <long>Gweithredu&apos;r gorchymyn hwn yn lle&apos;r gragen, os mae use_custom_command yn wir.</long>
       </locale>
 
       <locale name="da">
@@ -7934,7 +8032,12 @@
 
       <locale name="bg">
          <short>Икона за прозореца на терминала</short>
-         <long>Икона за страници и прозорци с този профил.</long>
+         <long>Икона за прозорци и подпрозорци с този профил.</long>
+      </locale>
+
+      <locale name="bn">
+         <short>টার্মিনাল উইন্ডোর আইকন</short>
+         <long>চিহ্নিত প্রোফাইল ধারণকারী ট্যাব/উইন্ডো&apos;র জন্য ব্যবহৃত আইকন।</long>
       </locale>
 
       <locale name="bs">
@@ -7954,7 +8057,7 @@
 
       <locale name="cy">
          <short>Eicon ar gyfer ffenest terfynell</short>
-         <long>Yr eicon i&apos;w ddefnyddio ar gyfer tabiau/ffenestri&apos;n defnyddio&apos;r proffeil hwn.</long>
+         <long>Yr eicon i&apos;w ddefnyddio ar gyfer tabiau/ffenestri&apos;n defnyddio&apos;r proffil hwn.</long>
       </locale>
 
       <locale name="da">
@@ -8254,6 +8357,11 @@
          <long>Терминалите имат палитра с 16 цвята, която приложенията могат да използват. Това е тази палитра, цветовете са разделени с двоеточие. Имената на цветовете трябва да бъдат в шестнадесетичен формат, например „#FF00FF“</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালের অ্যাপ্লিকেশনের জন্য ব্যবহারযোগ্য প্যালেট</short>
+         <long>টার্মিনালের মধ্যে চলমান অ্যাপ্লিকেশনগুলির দ্বারা ব্যবহারের জন্য ১৬-টি রং বিশিষ্ট একটি প্যালেট উপস্থিত রয়েছে। কোলোন চিহ্ন দ্বারা বিভাজিত বিন্যাসে রং&apos;র নামের তালিকা এই প্যালেটে উপস্থিত রয়েছে। রং&apos;র নাম hex বিন্যাসে লেখা আবশ্যক উদাহরণস্বরূপ &quot;#FF00FF&quot;</long>
+      </locale>
+
       <locale name="bs">
          <short>Paleta za aplikacije terminala</short>
          <long>Terminali imaju paletu sa 16 boja koje aplikacije unutar terminala mogu koristiti. Ovo je ta paleta, u obliku liste imena boja odvojenih dvotačkama. Imena boja trebaju biti u heksadecimalnom obliku npr. &quot;#FF00FF&quot;.</long>
@@ -8271,7 +8379,7 @@
 
       <locale name="cy">
          <short>Palet rhaglenni terfynell</short>
-         <long>Mae gan derfynellau balet 16 lliw gall rhaglenni o fewn y terfynell ddefnyddio. Dyma&apos;r palet hwnw, yn y ffurf rhestr colon-whanedig enwau lliwiau. Dylai enwau lliwiau fod mewn ffurf hecs, e.e. &quot;#F00FF&quot;</long>
+         <long>Mae gan derfynellau balet 16 lliw gall rhaglenni o fewn y derfynell ddefnyddio. Dyma&apos;r palet hwnnw, yn y ffurf rhestr colon-whanedig enwau lliwiau. Dylai enwau lliwiau fod mewn ffurf hecs, e.e. &quot;#F00FF&quot;</long>
       </locale>
 
       <locale name="da">
@@ -8571,7 +8679,7 @@
 
       <locale name="bn">
          <short>ফন্ট</short>
-         
+         <long>একটি X ফন্টের নাম। See the X ফন্টের নামের বিন্যাস সম্পরকে জানতে X man পৃষ্ঠা পড়ুন (&quot;man X&quot; লিখুন)।</long>
       </locale>
 
       <locale name="bs">
@@ -8591,7 +8699,7 @@
 
       <locale name="cy">
          <short>Ffont</short>
-         <long>Enw ffont X. Gweler tudalen &quot; man&quot; X (teipiwch &quot;man X&quot;) ar gyfer mwy o fanylion ynchylch enwau ffont X.</long>
+         <long>Enw ffont X. Gweler tudalen &quot; man&quot; X (teipiwch &quot;man X&quot;) ar gyfer mwy o fanylion ynghylch enwau ffont X.</long>
       </locale>
 
       <locale name="da">
@@ -8911,7 +9019,7 @@
 
       <locale name="bn">
          <short>ফন্ট</short>
-         
+         <long>একটি Pango ফন্টের নাম। উদাহরণ, &quot;Sans 12&quot; অথবা &quot;Monospace Bold 14&quot;।</long>
       </locale>
 
       <locale name="bs">
@@ -8931,7 +9039,7 @@
 
       <locale name="cy">
          <short>Ffont</short>
-         <long>Enw Ffont Pango. Eghreifftiau: &quot;Sans 12&quot; neu &quot;Monospace Bold 14&quot;.</long>
+         <long>Enw Ffont Pango. Enghreifftiau: &quot;Sans 12&quot; neu &quot;Monospace Bold 14&quot;.</long>
       </locale>
 
       <locale name="da">
@@ -9245,8 +9353,8 @@
       </locale>
 
       <locale name="bn">
-         <short>পটভূমির চিত্র</short>
-         
+         <short>পটভূমির ধরন</short>
+         <long>টার্মিনাল পটভূমির প্রকৃতি। সম্ভাব্য মান, গাঢ় রং&apos;র জন্য &quot;solid&quot;, চিত্রের জন্য &quot;image&quot; অথবা স্বচ্ছপটভূমির জন্য &quot;transparent&quot;।</long>
       </locale>
 
       <locale name="bs">
@@ -9266,7 +9374,7 @@
 
       <locale name="cy">
          <short>Math cefndir</short>
-         <long>Math cefndir y terfynell. Gall fod yn &quot;solid&quot; ar gyfer lliw unffurf, &quot;image&quot; ar gyfer delwedd, neu &quot;transparent&quot; ar gyfer ffug-didreiddedd.</long>
+         <long>Math cefndir y derfynell. Gall fod yn &quot;solid&quot; ar gyfer lliw unffurf, &quot;image&quot; ar gyfer delwedd, neu &quot;transparent&quot; ar gyfer ffug-ddidreiddedd.</long>
       </locale>
 
       <locale name="da">
@@ -9565,7 +9673,7 @@
 
       <locale name="bn">
          <short>পটভূমির চিত্র</short>
-         <long>পটভূমির চিত্রের ফাইল</long>
+         <long>পটভূমির চিত্র হিসাবে ব্যবহৃত ফাইলের নাম।</long>
       </locale>
 
       <locale name="bs">
@@ -9889,6 +9997,11 @@
          <long>Ако е включено, фоновото изображение се движи с текста, ако не е включено - текстът се движи върху неподвижното фоново изображение.</long>
       </locale>
 
+      <locale name="bn">
+         <short>পটভূমির চিত্র স্ক্রোল করা হবে কি না</short>
+         <long>মান সত্য (true) হলে, অগ্রভূমির হরফের সাথে পটভূমির চিত্র স্ক্রোল করা হবে; মান সত্য না হলে (false) পটভূমির চিত্রের স্থান অপরিবর্তিত রেখে অগ্রভূমির হরফ স্ক্রোল করা হবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li će se pomjerati slika pozadine</short>
          <long>Ako je postavljeno, pomjeraj sliku pozadine sa tekstom; ako nije postavljeno, čuvaj sliku u jednoj poziciji i pomjeraj tekst.</long>
@@ -9905,8 +10018,8 @@
       </locale>
 
       <locale name="cy">
-         <short>A ddylid sgrolio&apos;r delwedd cefndir</short>
-         <long>Os yn wir, sgrolio delwedd y cefndir gyda testun y blaendir; os yn anwir, cadw&apos;r ddelwedd mewn safle gosodedig a sgrolio&apos;r testun dros ei ben.</long>
+         <short>A ddylid sgrolio&apos;r ddelwedd cefndir</short>
+         <long>Os yn wir, sgrolio delwedd y cefndir gyda thestun y blaendir; os yn anwir, cadw&apos;r ddelwedd mewn safle gosodedig a sgrolio&apos;r testun dros ei ben.</long>
       </locale>
 
       <locale name="da">
@@ -9936,7 +10049,7 @@
 
       <locale name="es">
          <short>Indica si debe desplazarse la imagen de fondo</short>
-         <long>Si es «true» (verdadero) se desplaza la imagen de fondo junto con el texto del frente, si es «false» (falso) se mantiene la imagen en una posición fija y se desplaza el texto por encima de esta.</long>
+         <long>Si es «true» (verdadero), se desplaza la imagen de fondo junto con el texto del frente, si es «false» (falso) se mantiene la imagen en una posición fija y se desplaza el texto por encima de ésta.</long>
       </locale>
 
       <locale name="et">
@@ -10202,6 +10315,11 @@
          <long>Стойност между 0.0 и 1.0 определя колко да бъде затъмнено фоновото изображение. 0.0 означава липса на затъмняване, 1.0 е за пълно затъмняване. В текущото прилагане има само две възможни нива на затъмняване, затова стойността се държи като boolean, където 0.0. изключва ефекта на затъмняване.</long>
       </locale>
 
+      <locale name="bn">
+         <short>পটভূমির চিত্র চিহ্নিত মাত্রা অনুযায়ী নিষ্প্রভ করা হবে</short>
+         <long>পটভূমির চিত্র ছায়াচ্ছন্ন করার মাত্রা হিসাবে 0.0 ও 1.0&apos;র মধ্যবর্তী একটি মান। মান 0.0 হলে ছায়াচ্ছন্ন করা হবে না, 1.0 মান নির্ধারিত হলে চিত্র সম্পূর্ণরূপে ছায়াচ্ছন্ন হবে। বর্তমানে এই বৈশিষ্ট্যের শুধুমাত্র দুটি স্তর উপলব্ধ রয়েছে, যার ফলে এই বৈশিষ্ট্যের জন্য বুলিয়ান&apos;র অনুরূপ মান ধার্য হয়। অর্থাত্‌ 0.0 মান প্রয়োগ করে এই বৈশিষ্ট্য নিষ্ক্রিয় করা যাবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Koliko će se zatamniti slika pozadine</short>
          <long>Vrijednost između 0.0 i 1.0 koja označava koliko će se zatamniti slika pozadine. 0.0 označava bez zatamnjivanja, 1.0 označava potpuno zatamnjeno. Trenutna implementacija sadrži samo dva moguća nivoa zatamnjivanja što znači da se postavka ponaša buleanski gdje 0.0 isključuje efekat zatamnjivanja.</long>
@@ -10219,7 +10337,7 @@
 
       <locale name="cy">
          <short>Faint i dywyllu delwedd y cefndir</short>
-         <long>Gwerth rhwng 0.0. a 1.0 yn penod faint i dywyllu y delwedd cefndir. Yn y gweithrediad cyfredol, dim on dau lefel o dywyllwch sy&apos;n bosib, felly mae&apos;r gosodiad yn ymddwyn fel gwerth bŵleaidd, lle mae 0.0 an analluogi yr effaith tywyllu.</long>
+         <long>Gwerth rhwng 0.0. a 1.0 sy&apos;n penodi faint i dywyllu&apos;r ddelwedd cefndir. Yn y gweithrediad cyfredol, dim on dau lefel o dywyllwch sy&apos;n bosib, felly mae&apos;r gosodiad yn ymddwyn fel gwerth Boole, lle mae 0.0 yn analluogi&apos;r effaith tywyllu.</long>
       </locale>
 
       <locale name="da">
@@ -10516,6 +10634,11 @@
          <long>Задава кода, който се генерира при натискането на клавиша за обратно триене (backspace). Възможните стойности са „ascii-del“ за символа ASCII DEL, „control-h“ за символа Control-H (ASCII BS), „escape-sequence“ за екраниращата последователност, която най-често се задава за нормално или обратно триене. Обикновено се счита, че правилната настройка е „ascii-del“.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ব্যাক-স্পেস কি&apos;র প্রতিক্রিয়া</short>
+         <long>ব্যাকস্পেস-কি&apos;র দ্বারা উত্‌পন্ন কোড নির্ধারণ করে। সম্ভাব্য মান হল ASCII DEL অক্ষরের ক্ষেত্রে &quot;ascii-del&quot;, Control-H&apos;র (অর্থাত্‍‌ ASCII BS অক্ষর) ক্ষেত্রে &quot;control-h&quot; ও ব্যাকস্পেস অথবা ডিলিট-কি&apos;র সাথে যুক্ত এস্কেপ সিকোয়েন্সের জন্য &quot;escape-sequence&quot;।  ব্যাকস্পেস-কি&apos;র সঠিক বৈশিষ্ট্য হিসাবে &quot;ascii-del&quot; ধার্য করা হয়।</long>
+      </locale>
+
       <locale name="bs">
          <short>Efekat tipke za brisanje</short>
          <long>Postavlja koji kod proizvodi tipka za brisanje. Moguće vrijednosti su &quot;ascii-del&quot; za ASCII DEL znak, &quot;control-h&quot; za Control-H (AKA ASCII BS znak), &quot;escape-sequence&quot; za escape sekvencu koja je obično vezana za tipku za brisanje ili tipku Delete. &quot;ascii-del&quot; se obično smatra ispravnom postavkom za tipku za brisanje.</long>
@@ -10532,8 +10655,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Effaith y bysell Ôlnod</short>
-         <long>Gosod pa gôd mae&apos;r bysell ôlnod yn cynhyrchu. Gwerthoedd posib: &quot;ascii-del&quot; ar gyfer y nod DEL ASCII, &quot;control-h&quot; ar gyfer Control-H (sef y nod BS ASCII), &quot;escape-sequence&quot; ar gyfer y dilyniant dianc a rhwymir yn aml at ôlnod neu Dileu. &quot;ascii-del&quot; yw&apos;r gosodiad cywir ar gyfer y bysell Ôlnod fel arfer.</long>
+         <short>Effaith y fysell Olnod</short>
+         <long>Gosod pa god mae&apos;r fysell olnod yn cynhyrchu. Gwerthoedd posib: &quot;ascii-del&quot; ar gyfer y nod DEL ASCII, &quot;control-h&quot; ar gyfer Control-H (sef y nod BS ASCII), &quot;escape-sequence&quot; ar gyfer y dilyniant dianc a rhwymir yn aml at olnod neu Dileu. &quot;ascii-del&quot; yw&apos;r gosodiad cywir ar gyfer y fysell Ôlnod fel arfer.</long>
       </locale>
 
       <locale name="da">
@@ -10562,7 +10685,7 @@
       </locale>
 
       <locale name="es">
-         <short>Efecto de la tecla Retroceso (Backspace)</short>
+         <short>Efecto de la tecla «Retroceso» (Backspace)</short>
          <long>Determina que código genera la tecla Retroceso (Backspace). Los valores posibles son «ascii-del» para el carácter ASCII de DEL, «control-h» para Control-H (también conocido como el carácter ASCII BS), «escape-sequence» para la secuencia de escape que típicamente está asociada con retroceso (backspace) o suprimir (delete). «ascii-del» se considera normalmente como la configuración correcta para la tecla Retroceso (Backspace).</long>
       </locale>
 
@@ -10835,6 +10958,11 @@
          <long>Задава кода, който се генерира при натискането на клавиша за триене (delete). Възможните стойности са „ascii-del“ за символа ASCII DEL, „control-h“ за символа Control-H (ASCII BS), „escape-sequence“ за екраниращата последователност, която най-често се задава за нормално или обратно триене. Обикновено се счита, че правилната настройка е „escape-sequence“.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ডিলিট-কি&apos;র প্রতিক্রিয়া</short>
+         <long>ডিলিট-কি&apos;র দ্বারা উত্‌পন্ন কোড নির্ধারণ করে। সম্ভাব্য মান হল ASCII DEL অক্ষরের ক্ষেত্রে &quot;ascii-del&quot;, Control-H&apos;র (অর্থাত্‍‌ ASCII BS অক্ষর) ক্ষেত্রে &quot;control-h&quot; ও ব্যাকস্পেস অথবা ডিলিট-কি&apos;র সাথে যুক্ত এস্কেপ সিকোয়েন্সের জন্য &quot;escape-sequence&quot;।  ব্যাকস্পেস-কি&apos;র সঠিক বৈশিষ্ট্য হিসাবে &quot;ascii-del&quot; ধার্য করা হয়।</long>
+      </locale>
+
       <locale name="bs">
          <short>Efekat tipke Delete</short>
          <long>Postavlja koji kod proizvodi tipka Delete. Moguće vrijednosti su &quot;ascii-del&quot; za ASCII DEL znak, &quot;control-h&quot; za Control-H (AKA ASCII BS znak), &quot;escape-sequence&quot; za escape sekvencu koja je obično vezana za tipku za brisanje ili tipku Delete. &quot;escape-sequence&quot; se obično smatra ispravnom postavkom za tipku Delete.</long>
@@ -10851,8 +10979,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Effaith y bysell Dileu</short>
-         <long>Gosod pa gôd mae&apos;r bysell dileu yn cynhyrchu. Gwerthoedd posib: &quot;ascii-del&quot; ar gyfer y nod DEL ASCII, &quot;control-h&quot; ar gyfer Control-H (sef y nod BS ASCII), &quot;escape-sequence&quot; ar gyfer y dilyniant dianc a rhwymir yn aml at ôlnod neu Dileu. &quot;escape-sequence&quot; yw&apos;r gosodiad cywir ar gyfer y bysell Dileu fel arfer.</long>
+         <short>Effaith y fysell Dileu</short>
+         <long>Gosod pa gôd mae&apos;r fysell dileu yn cynhyrchu. Gwerthoedd posib: &quot;ascii-del&quot; ar gyfer y nod DEL ASCII, &quot;control-h&quot; ar gyfer Control-H (sef y nod BS ASCII), &quot;escape-sequence&quot; ar gyfer y dilyniant dianc a rhwymir yn aml at ôlnod neu Ddileu. &quot;escape-sequence&quot; yw&apos;r gosodiad cywir ar gyfer y fysell Dileu fel arfer.</long>
       </locale>
 
       <locale name="da">
@@ -10881,7 +11009,7 @@
       </locale>
 
       <locale name="es">
-         <short>Efecto de la tecla Suprimir (Delete)</short>
+         <short>Efecto de la tecla «Suprimir» (Delete)</short>
          <long>Determina qué código genera la tecla Suprimir (Delete). Los valores posibles son «ascii-del» para el carácter ASCII de DEL, «control-h» para Control-H (también conocido como el carácter ASCII BS), «escape-sequence» para la secuencia de escape que típicamente está asociada con retroceso (backspace) o suprimir (delete). «escape-sequence» se considera normalmente como la configuración correcta para la tecla Suprimir (Delete).</long>
       </locale>
 
@@ -11150,6 +11278,11 @@
          <long>Ако е истина, терминалът ще използва цветовата схема на работния плот, а не тази на потребителя.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনাল উইজেটের ক্ষেত্রে সক্রিয় থিমের রং প্রয়োগ করা হবে কি না</short>
+         <long>মান সত্য (true) হলে, ব্যবহারকারীর দ্বারা উল্লিখিত রং&apos;র পরিবর্তে টেক্সট এন্ট্রি বক্সের জন্য ব্যবহৃত থিমের রং টার্মিনালে প্রয়োগ করা হবে।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li koristiti boje iz teme za grafički element terminal</short>
          <long>Ako je postavljeno, šema boja teme koja se koristi za polja za unos će se koristiti u terminalu umjesto boja definiranih od korisnika.</long>
@@ -11167,7 +11300,7 @@
 
       <locale name="cy">
          <short>A ddylid defnyddio&apos;r lliwiau o&apos;r thema ar gyfer y teclyn terfynell</short>
-         <long>Os gwir, caiff y cynllun lliwiau a ddefnyddir ar gyfer blychau mewnbynnu testun ei ddefnyddio ar gyfer y terfynell, yn lle lliwiau a ddarparwyd gan y defnyddiwr.</long>
+         <long>Os gwir, caiff y cynllun lliwiau a ddefnyddir ar gyfer blychau mewnbynnu testun ei ddefnyddio ar gyfer y derfynell, yn lle lliwiau a ddarparwyd gan y defnyddiwr.</long>
       </locale>
 
       <locale name="da">
@@ -11430,9 +11563,29 @@
          <long>Ако е вярно, заглаждането на шрифтовете ще бъде изключено при отсъствието на разширението X RENDER, което дава значително увеличение на скоростта в такива ситуации.</long>
       </locale>
 
+      <locale name="bn">
+         <short>X RENDER এক্সটেনশন বিনা অ্যান্টি-অ্যালায়েসিং বৈশিষ্ট্য নিষ্ক্রিয় করা হবে কি না</short>
+         <long>মান সত্য হলে, X RENDER এক্সটেনশনের বিনা চালানো হলে ফন্ট অ্যান্টি-অ্যালায়েসিং বৈশিষ্ট্য নিষ্ক্রিয় করা হবে। এর ফলে কিছু পরিস্থিতিতে কর্মক্ষমতা উল্লেখযোগ্যরূপে বৃদ্ধি হবে।</long>
+      </locale>
+
       <locale name="ca">
          <short>Si s&apos;ha d&apos;inhabilitar l&apos;antidentat sense l&apos;extensió X RENDER</short>
          <long>Si està habilitat, no s&apos;utilitzarà l&apos;antidentat per al tipus de lletra quan s&apos;executi sense l&apos;extensió X RENDER, que proporciona una considerable millora de rendiment en aquestes situacions.</long>
+      </locale>
+
+      <locale name="cs">
+         <short>Jestli zakázat vyhlazování bez rozšíření X RENDER</short>
+         <long>Je-li true, bude zakázáno vyhlazování písem při běhu bez rozšíření X RENDER, což v této situaci výrazně zvyšuje výkon.</long>
+      </locale>
+
+      <locale name="cy">
+         <short>A ddylid analluogi dat-amgennu wrth redeg heb yr estyniad X RENDER</short>
+         <long>Os yn wir, fe analluogir dat-amgennu wrth redeg heb yr estyniad X RENDER. Mae hyn yn gwella&apos;r perfformiad yn sylweddol yn y sefyllfaoedd hynny.</long>
+      </locale>
+
+      <locale name="de">
+         <short>Soll Kantenglättung ohne X-RENDER-Erweiterung deaktiviert werden?</short>
+         <long>Falls dieser Schlüssel wahr ist, wird Kantenglättung für Schrift deaktiviert wenn X ohne die RENDER-Erweiterung läuft, was zu spürbar besserer Performance in solchen Situationen führt.</long>
       </locale>
 
       <locale name="el">
@@ -11447,7 +11600,12 @@
 
       <locale name="es">
          <short>Indica si se debe desactivar el alisado de tipografías sin la extensión X RENDER</short>
-         <long>Si es «true», el suavizado de tipografías será desactivado cuando se ejecute sin la extensión XRENDER, la cual produce una mejora considerable de rendimiento en estos casos.</long>
+         <long>Si es «true», el suavizado de tipografías será desactivado cuando se ejecute sin la extensión X RENDER, la cual produce una mejora considerable de rendimiento en estos casos.</long>
+      </locale>
+
+      <locale name="eu">
+         <short>X RENDER luzapenik gabe antialiasing-a desgaitu ala ez.</short>
+         <long>Egia bada, letra-tipoen antialiasing-a desgaitu egingo da X RENDER luzapenik gabe exekutatzen denean, honelako kasuetan errendimendua hobetzen du nabarmenki.</long>
       </locale>
 
       <locale name="fi">
@@ -11465,14 +11623,49 @@
          <long>જો સાચું હોય, તો X સર્વરો માટે ફોન્ટ એન્ટી એલિઆઝીંગ નિષ્ક્રિય થઈ જશે RENDER એક્સટેન્સન વિના, કે જે આવી પરિસ્થિતિઓમાં સમજી શકાય તેવા પ્રભાવ સુધારાઓ આપે છે.</long>
       </locale>
 
+      <locale name="hu">
+         <short>Élsimítás tiltása az X RENDER kiterjesztésének hiányában</short>
+         <long>Ha be van állítva, akkor az élsimítás ki lesz kapcsolva, ha az X a RENDER kiterjesztés nélkül fut, ami jelentősen növeli a teljesítményt ilyen helyzetben.</long>
+      </locale>
+
+      <locale name="ja">
+         <short>X RENDER 拡張を使用しない場合にアンチ・エイリアス効果を無効にするかどうか</short>
+         <long>TRUE にすると、GNOME 端末を X RENDER 拡張を使わずに実行している際にフォントのアンチ・エイリアス表示を無効にします。これにより、そのような状況下でかなりのパフォーマンス向上が得られます。</long>
+      </locale>
+
+      <locale name="ko">
+         <short>X RENDER확장 없이 부드러운 글꼴을 사용할 지 여부</short>
+         <long>참이면 X RENDER 확장이 없을 때 부드러운 글꼴을 사용하지 않게 합니다. 그렇게 되면 성능이 향상됩니다.</long>
+      </locale>
+
+      <locale name="lt">
+         <short>Ar išjungti glotninimą be X RENDER plėtinio</short>
+         <long>Jei teigiama, šriftų glotninimas bus išjungtas, paleidus be X RENDER plėtinio, šiais atvejais tai pastebimai padidina spartą.</long>
+      </locale>
+
       <locale name="mk">
          <short>Дали да се исклучи анти-алијасинг без проширувањето за X RENDER</short>
          <long>Ако е точно анти-алијасингот ќе биде исклучен кога работите без проширувањето X RENDER, кое што нуди подобрувања во перформансите во вакви ситуации.</long>
       </locale>
 
+      <locale name="nb">
+         <short>Om skrifttypeutjevning skal slås av når RENDER-utvidelsen for X ikke er tilgjengelig</short>
+         <long>Hvis denne settes til «true» vil fontutjevning slås av når RENDER-utvidelsen ikke er tilgjengelig. Dette gir en stor ytelsesforbedring i disse situasjonene.</long>
+      </locale>
+
       <locale name="nl">
          <short>Anti-aliasing uitzetten indien er geen X RENDER extension is.</short>
          <long>Indien waar, zullen, bij het ontbreken van de X RENDER extension, lettertekens geen anti-aliasing krijgen. Dat levert in die situatie een aanzienlijke snelheidswinst op.</long>
+      </locale>
+
+      <locale name="no">
+         <short>Om skrifttypeutjevning skal slås av når RENDER-utvidelsen for X ikke er tilgjengelig</short>
+         <long>Hvis denne settes til «true» vil fontutjevning slås av når RENDER-utvidelsen ikke er tilgjengelig. Dette gir en stor ytelsesforbedring i disse situasjonene.</long>
+      </locale>
+
+      <locale name="pt">
+         <short>Se desactivar ou não anti-alias quando não existe a extensão X RENDER</short>
+         <long>Se verdadeiro, anti-aliasing de fontes será desactivado quando em execução sem a extensão X RENDER, o que concede um aumento considerável de desempenho.</long>
       </locale>
 
       <locale name="pt_BR">
@@ -11498,6 +11691,11 @@
       <locale name="th">
          <short>กำหนดว่าจะไม่ใช้การลบรอยหยักเมื่อไม่มีส่วนขยาย X RENDER หรือไม่</short>
          <long>ถ้าเลือก จะปิดการลบรอยหยักเมื่อทำงานโดยไม่มีส่วนขยาย X RENDER ซึ่งจะเพิ่มประสิทธิภาพการทำงานของโปรแกรมพอสมควร ภายใต้สภาวะดังกล่าว</long>
+      </locale>
+
+      <locale name="uk">
+         <short>Чи вимикати згладжування шрифтів за відсутності X RENDER</short>
+         <long>Якщо відмічено, згладжування шрифтів не буде використовуватись, якщо запущено без розширення X RENDER, яке дає значне підвищення швидкодії у цьому випадку</long>
       </locale>
 
       <locale name="vi">
@@ -11546,6 +11744,11 @@
          <long>Ако е истина, терминалът ще използва шрифта по подразбиране на графичната среда, ако шрифтът е равноширок. В противен случай ще се полза най-близкия шрифт.</long>
       </locale>
 
+      <locale name="bn">
+         <short>সিস্টেমের ফন্ট প্রয়োগ করা হবে কি না</short>
+         <long>মান সত্য হলে (true), টার্মিনালে ডেস্কটপ-গ্লোবাল প্রমিত মানের ফন্ট ব্যবহার করা হবে যদি তা মোনোস্পেস হয় (অথবা নিকটতম মানের কোনো ফন্ট)।</long>
+      </locale>
+
       <locale name="bs">
          <short>Da li koristiti sistemski font</short>
          <long>Ako je postavljeno, terminal će koristiti standardni globalni font desktopa ako je monospace (i najsličniji font koji može naći ako nije).</long>
@@ -11563,7 +11766,7 @@
 
       <locale name="cy">
          <short>A ddylid defnyddio ffont y system</short>
-         <long>Os yn wir, fe fydd y terfynell yn defnyddio y ffont safon penbwrdd-eang os mae&apos;n unlled (a&apos;r ffont mwyaf tebyg gellir ei ganfod fel arall).</long>
+         <long>Os yn wir, fe fydd y derfynell yn defnyddio&apos;r ffont safon penbwrdd-eang os mae&apos;n unlled (a&apos;r ffont mwyaf tebyg gellir ei ganfod fel arall).</long>
       </locale>
 
       <locale name="da">
@@ -11593,7 +11796,7 @@
 
       <locale name="es">
          <short>Indica si se debe usar la tipografía del sistema</short>
-         <long>Si es «true» (verdadero) la terminal usará la tipografía global del escritorio si ésta es de ancho fijo (de otro modo será la tipografía más similar posible a ésta).</long>
+         <long>Si es «true» (verdadero), la terminal usará la tipografía global del escritorio si ésta es de ancho fijo (de otro modo será la tipografía más similar posible a ésta).</long>
       </locale>
 
       <locale name="eu">
@@ -11844,6 +12047,11 @@
          <long>Показване на диалогова кутия при засичане на запитване за отговор на предизвикателство на S/Key. Паролата ще бъде пратена към терминала.</long>
       </locale>
 
+      <locale name="bn">
+         <short>S/Key challenges উজ্জ্বল করা হবে</short>
+         <long>S/Key চ্যালেঞ্জ প্রতিক্রিয়ার কোয়েরি সনাক্ত করে ক্লিক করা কলে পপ-আপ ডায়লগ প্রদর্শন করা হবে। ডায়লগে পাসওয়ার্ড লেখা হলে তা টার্মিনালে প্রেরিত হবে।</long>
+      </locale>
+
       <locale name="ca">
          <short>Ressalta els desafiaments d&apos;S/Key</short>
          <long>Mostra un diàleg quan es detecta i es fa clic a una consulta de resposta d&apos;un desafiament d&apos;s/key. Si es tecleja una contrasenya al diàleg, s&apos;enviarà al terminal.</long>
@@ -11852,6 +12060,11 @@
       <locale name="cs">
          <short>Zvýrazňovat výzvy S/Key</short>
          <long>Otevřít dialog, když je detekován dotaz na odpověď na výzvu S/Key a je na něj kliknuto. Napsání hesla do dialogu je pošle terminálu.</long>
+      </locale>
+
+      <locale name="cy">
+         <short>Amlygu&apos;r heriau S/Key</short>
+         <long>Dangos blwch deialog pan synhwyrir a chlicir ar gais her-ymateb S/Key. Fe fydd teipio cyfrinair i&apos;r deialog yn ei anfon at y derfynell.</long>
       </locale>
 
       <locale name="da">
@@ -11876,7 +12089,12 @@
 
       <locale name="es">
          <short>Resaltar desafíos S/Key</short>
-         <long>Mostrar un diálogo cuando se detecte una consulta de claves de respuesta-desafío y sean pulsadas. Al escribir una contraseña en el diálogo ésta será enviada a la terminal.</long>
+         <long>Mostrar un diálogo emergente cuando se detecte y se pulse sobre una consulta de respuesta a desafío S/Key. Al escribir una contraseña en el diálogo ésta será enviada a la terminal.</long>
+      </locale>
+
+      <locale name="eu">
+         <short>Nabarmendu S/Key erronkak</short>
+         <long>Ireki elkarrizketa bat S/key erronka-erantzunaren kontsulta detektatu eta bertan klik egiten denean. Pasahitza idatzita, terminalera bidaliko du.</long>
       </locale>
 
       <locale name="fi">
@@ -11894,18 +12112,23 @@
          <long>જ્યારે s/કી શરત પ્રત્યુત્તર મળે અને તેના પર ક્લિક થાય ત્યારે સંવાદ પોપઅપ કરો. સંવાદમાં પાસવર્ડ લખવાનું તેને ટર્મિનલમાં મોકલશે.</long>
       </locale>
 
+      <locale name="hu">
+         <short>S/Key hívások kiemelése</short>
+         <long>Párbeszédablak megjelenítése s/key hívás-válasz lekérdezés érzékelésekor és rákattintáskor. A párbeszédablakba beírt jelszó a terminálra lesz küldve.</long>
+      </locale>
+
       <locale name="ja">
          <short>S/Key のチャレンジ・レスポンスを強調表示する</short>
          <long>S/Key チャレンジ・レスポンスのクエリを検出して、クリックした際にダイアログをポップアップします。ダイアログにパスワードを入力すると、その値を端末に送ります。</long>
       </locale>
 
       <locale name="ko">
-         
+         <short>S/Key 요구를 강조</short>
          <long>S/Key channelge 응답 요청이 들어왔을 때 클릭하면 대화 상자를 실행합니다. 대화 상자로 열쇠글을 입력하면 터미널로 보냅니다.</long>
       </locale>
 
       <locale name="lt">
-         <short>Paryškinti S/Key iškvietimus</short>
+         <short>Paryškinti S/Key kreipinius</short>
          <long>Iškviesti dialogo langą, kai aptinkamas atsakymo į S/Key kreipinio užklausą įvedimas. Dialoge įvedus slaptažodį šis bus nusiųstas į terminalą.</long>
       </locale>
 
@@ -11932,6 +12155,11 @@
       <locale name="pa">
          <short>ਸ਼ਾਰਟਕੱਟ ਜੋੜ ਉਘਾੜੋ</short>
          <long>ਵਾਰਤਾਲਾਪ ਖੋਲ੍ਹੋ, ਜਦੋ ਇੱਕ ਸ਼ਾਰਟਕੱਟ ਨਤੀਜਾ ਆਵੇ ਅਤੇ ਇਸ ਨੂੰ ਦਬਾਉ ਹੋਵੇ। ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਦਿੱਤਾ ਗਿਆ ਗੁਪਤ-ਕੋਡ ਟਰਮੀਨਲ ਨੂੰ ਭੇਜਿਆ ਜਾਵੇ|</long>
+      </locale>
+
+      <locale name="pt">
+         <short>Realçar questões S/Key</short>
+         <long>Apresentar um diálogo quando é detectado um pedido de resposta a uma questão de S/Key e este é clicado. Inserir uma senha no diálogo irá enviá-la para a consola.</long>
       </locale>
 
       <locale name="pt_BR">
@@ -11962,6 +12190,11 @@
       <locale name="th">
          <short>เน้นคำท้า S/Key</short>
          <long>เปิดกล่องโต้ตอบเมื่อตรวจพบและมีการคลิกคำขอการโต้ตอบคำท้า S/Key การพิมพ์รหัสผ่านในกล่องโต้ตอบจะส่งการโต้ตอบดังกล่าวไปที่เทอร์มินัล</long>
+      </locale>
+
+      <locale name="uk">
+         <short>Виділяти запити S/Key</short>
+         <long>Показувати діалог при виявлені відповіді на запит s/key та натиснення на нього. Набирання паролю у діалозі призведе до відправки його у термінал.</long>
       </locale>
 
       <locale name="vi">
@@ -12018,6 +12251,11 @@
          <long>Бърз клавиш за отваряне на нов подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>নতুন ট্যাব খোলার জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>নতুন ট্যাব খোলার জন্য ব্যবহৃত শর্টকাট-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za otvaranje nove kartice</short>
          <long>Kratica tastature za otvaranje nove kartice. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -12065,7 +12303,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para abrir una solapa nueva</short>
-         <long>Combinación de teclas para abrir una solapa nueva. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para abrir una solapa nueva. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -12325,6 +12563,11 @@
          <long>Бърз клавиш за отваряне на нов прозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>নতুন উইন্ডো খোলার জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>নতুন উইন্ডো খোলার জন্য ব্যবহৃত শর্টকাট-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za otvaranje novog prozora</short>
          <long>Kratica tastature za otvaranje novog prozora. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -12372,7 +12615,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para abrir una ventana nueva</short>
-         <long>Combinación de teclas para abrir una ventana nueva. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para abrir una ventana nueva. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -12632,6 +12875,11 @@
          <long>Бърз клавиш за показване на диалога за създаването на профил. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+. Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>নতুন প্রোফাইল নির্মাণ করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>প্রোফাইল নির্মাণের ডায়লগ বক্স প্রদর্শনের উদ্দেশ্যে ব্যবহৃত কি-বোর্ড শর্ট-কাট। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za stvaranje novog profila</short>
          <long>Kratica tastature za otvaranje dijaloga za pravljenje profila. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -12649,7 +12897,7 @@
 
       <locale name="cy">
          <short>Byrlwybr bysellfwrdd ar gyfer creu proffeil newydd</short>
-         <long>Byrlwybr bysellfwrdd ar gyfer lansio&apos;r deialog ar gyfer creu proffeil. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
+         <long>Byrlwybr bysellfwrdd ar gyfer lansio&apos;r deialog ar gyfer creu proffil. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -12679,7 +12927,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para crear un perfil nuevo</short>
-         <long>Combinación de teclas para mostrar el diálogo para la creación de perfiles. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para mostrar el diálogo para la creación de perfiles. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -12939,6 +13187,11 @@
          <long>Бърз клавиш за затварянето на подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব বন্ধ করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব বন্ধ করেত ব্যবহৃত কি-বোর্ড শর্টকাট। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za zatvaranje kartice</short>
          <long>Kratica tastature za zatvaranje kartice. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -12986,7 +13239,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cerrar una solapa</short>
-         <long>Combinación de teclas para cerrar una solapa. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cerrar una solapa. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -13246,6 +13499,11 @@
          <long>Бърз клавиш за затваряне на прозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>উইন্ডো বন্ধ করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>উইন্ডো বন্ধ করতে ব্যবহৃত কি-বোর্ড শর্টকাট। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za zatvaranje prozora</short>
          <long>Kratica tastature za zatvaranje prozora. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -13293,7 +13551,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cerrar una ventana</short>
-         <long>Combinación de teclas para cerrar una ventana. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cerrar una ventana. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -13555,6 +13813,11 @@
          <long>Бърз клавиш за копиране на избрания текст в буфера за обмен. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টেক্সট কপি করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>নির্বাচিত টেক্সট ক্লিপবোর্ডের কপি করতে ব্যবহৃত কি-বোর্ড শর্টকাট। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za kopiranje teksta</short>
          <long>Kratica tastature za kopiranje izabranog teksta u clipboard. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -13572,7 +13835,7 @@
 
       <locale name="cy">
          <short>Byrlwybrau bysellfwrdd er mwyn copïo testun</short>
-         <long>Byrlwybr bysellfwrdd ar gyfer copïo y testun a ddewiswyd i&apos;r clipfwrdd. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
+         <long>Byrlwybr bysellfwrdd ar gyfer copïo&apos;r testun a ddewiswyd i&apos;r clipfwrdd. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -13602,7 +13865,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para copiar texto</short>
-         <long>Combinación de teclas para copiar el texto seleccionado en el portapapeles. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para copiar el texto seleccionado en el portapapeles. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -13864,6 +14127,11 @@
          <long>Бърз клавиш за поставяне на съдържанието на буфера за обмен в терминала. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টেক্সট পেস্ট করার জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ক্লিপবোর্ডের বিষয়বস্তু টার্মিনালে পেস্ট করার জন্য ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za umetanje teksta</short>
          <long>Kratica tastature za umetanje sadržaja clipboarda u terminal. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -13911,7 +14179,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para pegar texto</short>
-         <long>Combinación de teclas para pegar el contenido del portapapeles en la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para pegar el contenido del portapapeles en la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -14171,6 +14439,11 @@
          <long>Бърз клавиш за пускането на режим „На цял екран“. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>সম্পূর্ণ পর্দাজুড়ে প্রদর্শন ব্যবস্থা সক্রিয় অথবা নিষ্ক্রিয় করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>সম্পূর্ণ পর্দা জুড়ে প্রদর্শন ব্যবস্থা সক্রিয় অথবা নিষ্ক্রিয় করতে ব্যবহৃত কি-বোর্ড শর্টকাট। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za prikaz preko cijelog ekrana</short>
          <long>Kratica tastature za prikaz preko cijelog ekrana. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -14187,8 +14460,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Byrlwybr bysellfwrdd ar gyfer toglu&apos;r modd llenwi&apos;r sgrîn</short>
-         <long>Byrlwybr bysellfwrdd ar gyfer toglu&apos;r modd llenwi&apos;r sgrîn. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
+         <short>Byrlwybr bysellfwrdd ar gyfer toglu&apos;r modd llenwi&apos;r sgrin</short>
+         <long>Byrlwybr bysellfwrdd ar gyfer toglu&apos;r modd llenwi&apos;r sgrin. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -14218,7 +14491,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar al modo de pantalla completa</short>
-         <long>Combinación de teclas para cambiar al modo de pantalla completa. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar al modo de pantalla completa. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -14476,6 +14749,11 @@
          <long>Бърз клавиш за настройване видимостта на лентата с менюто. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>মেনু-বার প্রদর্শন অথবা আড়াল করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>মেনুবার প্রদর্শন অথবা আড়াল করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za vidljivost trake menija</short>
          <long>Kratica tastature za vidljivost trake menija. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -14523,7 +14801,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar la visibilidad de la barra de menús</short>
-         <long>Combinación de teclas para cambiar la visibilidad de la barra de menús. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar la visibilidad de la barra de menús. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -14578,7 +14856,7 @@
 
       <locale name="hu">
          <short>Gyorsbillentyű a menüsor láthatóságának átállításához</short>
-         <long>Gyorsbillentyű a menüsor láthatóságának átállításához.Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
+         <long>Gyorsbillentyű a menüsor láthatóságának átállításához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="id">
@@ -14782,6 +15060,11 @@
          <long>Бърз клавиш за задаване на заглавие на терминала. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনালের শিরোনাম নির্ধারণের উদ্দেশ্যে কি-বোর্ড শর্টকাট</short>
+         <long>টার্মিনালের শিরোনাম পরিশ্রুত করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za postavljanje naslova terminala</short>
          <long>Kratica tastature za postavljenje naslova terminala. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -14798,8 +15081,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Byrlwybr bysellfwrdd ar gyfer gosod teitl y terfynell</short>
-         <long>Byrlwybr bysellfwrdd ar gyfer gosod teitl y terfynell. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
+         <short>Byrlwybr bysellfwrdd ar gyfer gosod teitl y derfynell</short>
+         <long>Byrlwybr bysellfwrdd ar gyfer gosod teitl y derfynell. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -14829,7 +15112,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para establecer el título de la terminal</short>
-         <long>Combinación de teclas para definir el título de la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para definir el título de la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -15088,6 +15371,11 @@
          <long>Бърз клавиш за рестартиране на терминала. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনাল রি-সেট করার উদ্দেশ্যে কি-বোর্ড শর্টকাট</short>
+         <long>টার্মিনাল রি-সেট করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za resetovanje terminala</short>
          <long>Kratica tastature za resetovanje terminala. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -15104,8 +15392,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Byrlwybr bysellfwrdd ar gyfer ailosod y terfynell</short>
-         <long>Byrlwybr bysellfwrdd ar gyfer ailosod y terfynell. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
+         <short>Byrlwybr bysellfwrdd ar gyfer ailosod y derfynell</short>
+         <long>Byrlwybr bysellfwrdd ar gyfer ailosod y derfynell. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -15135,7 +15423,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para reiniciar la terminal</short>
-         <long>Combinación de teclas para reiniciar la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para reiniciar la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -15190,7 +15478,7 @@
 
       <locale name="hu">
          <short>Gyorsbillentyű a terminál visszaállításához</short>
-         <long>Gyorsbillentyű a terminál visszaállításához.Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
+         <long>Gyorsbillentyű a terminál visszaállításához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="id">
@@ -15394,6 +15682,11 @@
          <long>Бърз клавиш за изчистване на терминала. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>টার্মিনাল রি-সেট ও পরিশ্রুত করার উদ্দেশ্যে কি-বোর্ড শর্টকাট</short>
+         <long>টার্মিনাল রি-সেট অথবা পরিশ্রুত করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za resetovanje i čišćenje terminala</short>
          <long>Kratica tastature za resetovanje i čišćenje terminala. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -15410,8 +15703,8 @@
       </locale>
 
       <locale name="cy">
-         <short>Byrlwybr bysellfwrdd ar gyfer ailosod a chlirio&apos;r terfynell</short>
-         <long>Byrlwybr bysellfwrdd er mwyn ailosod a chlirio&apos;r terfynell. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
+         <short>Byrlwybr bysellfwrdd ar gyfer ailosod a chlirio&apos;r derfynell</short>
+         <long>Byrlwybr bysellfwrdd er mwyn ailosod a chlirio&apos;r derfynell. Mynegir fel llinyn yn yr un ffurf a ddefnyddir ar gyfer ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -15441,7 +15734,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para reiniciar y limpiar la terminal</short>
-         <long>Combinación de teclas para reiniciar y limpiar la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para reiniciar y limpiar la terminal. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -15496,7 +15789,7 @@
 
       <locale name="hu">
          <short>Gyorsbillentyű a terminál visszaállításához és törléséhez</short>
-         <long>Gyorsbillentyű a terminál visszaállításához és törléséhez.Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
+         <long>Gyorsbillentyű a terminál visszaállításához és törléséhez. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="id">
@@ -15701,6 +15994,11 @@
          <long>Бърз клавиш за превключване към предишния подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>পূর্ববর্তী ট্যাবে পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>পূর্ববর্তী ট্যাবে পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje prethodne kartice</short>
          <long>Kratica tastature za biranje prethodne kartice. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -15748,7 +16046,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa anterior</short>
-         <long>Combinación de teclas para cambiar a la solapa anterior. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa anterior. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -15803,7 +16101,7 @@
 
       <locale name="hu">
          <short>Gyorsbillentyű az előző lapra váltáshoz</short>
-         <long>Gyorsbillentyű az előző lapra váltáshoz.Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
+         <long>Gyorsbillentyű az előző lapra váltáshoz. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="id">
@@ -16008,6 +16306,11 @@
          <long>Бърз клавиш за превключване към следващия подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>পরবর্তী ট্যাবে পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>পরবর্তী ট্যাবে পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje sljedeće kartice</short>
          <long>Kratica tastature za biranje sljedeće kartice. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -16055,7 +16358,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la siguiente solapa</short>
-         <long>Combinación de teclas para cambiar a la siguiente solapa. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la siguiente solapa. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -16305,9 +16608,24 @@
          <long>Бърз клавиш за преместване на текущия подпрозорец наляво. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>বর্তমান ট্যাব বাঁদিকে স্থানান্তর করতে ব্যবহৃত গতিবর্ধক।</short>
+         <long>বর্তমান ট্যাব বাঁদিকে স্থানান্তর করতে ব্যবহৃত গতিবর্ধক-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="ca">
          <short>Accelerador per a moure la pestanya actual a l&apos;esquerra.</short>
          <long>Tecla acceleradora per a moure la pestanya actual a l&apos;esquerra. S&apos;expressa com a una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+      </locale>
+
+      <locale name="cs">
+         <short>Klávesová zkratka pro posun aktuální karty doleva.</short>
+         <long>Klávesová zkratka posun aktuální karty doleva. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+      </locale>
+
+      <locale name="cy">
+         <short>Cyflymydd i symud y tab presennol i&apos;r chwith.</short>
+         <long>Allwedd gyflym er mwyn symud y tab presennol i&apos;r chwith. Mynegir fel llinyn yn yr un ffurf â ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -16332,12 +16650,17 @@
 
       <locale name="es">
          <short>Acelerador para mover la solapa actual a la izquierda.</short>
-         <long>Tecla aceleradora para mover la solapa actual a la izquierda. Expresada como una cadena en el mismo formato que usan los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación de teclas para esta acción.</long>
+         <long>Tecla aceleradora para mover la solapa actual a la izquierda. Expresada como una cadena en el mismo formato que usan los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
          <short>Kiirklahv käesoleva saki liigutamiseks vasakule</short>
          <long>Klaviatuuri kiirklahv käesoleva saki liigutamiseks vasakule. Väljendatakse samasuguses vormingus nagu kasutab GTK+ abifailides. Kui seada selle valiku väärtuseks &quot;keelatud&quot;, siis selle tegevuse jaoks kiirklahvi ei ole.</long>
+      </locale>
+
+      <locale name="eu">
+         <short>Tekla bizkortzailea, uneko fitxa ezkerrera eramateko.</short>
+         <long>Tekla bizkortzailea, uneko fitxa ezkerrera eramateko. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
       <locale name="fi">
@@ -16353,6 +16676,11 @@
       <locale name="gu">
          <short>વર્તમાન ટેબને ડાબે ખસેડવા માટેની પ્રવેગક કી.</short>
          <long>વર્તમાન ટેબને ડાબે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો, તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
+      </locale>
+
+      <locale name="hu">
+         <short>Gyorsbillentyű a jelenlegi lap balra mozgatásához.</short>
+         <long>Gyorsbillentyű a jelenlegi lap balra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="ja">
@@ -16395,6 +16723,11 @@
          <long>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਖੱਬੇ ਕਰਨ ਲਈ ਲਈ ਕੀ-ਬੋਰਡ ਪਰਵੇਸ਼ਕ ਸਵਿੱਚ। ਉਸੇ ਫਾਰਮਿਟ ਵਿੱਚ ਲਿਖੋ, ਜਿਸ ਵਿੱਚ GTK+ ਸਰੋਤ ਫਾਇਲ ਵਿੱਚ ਵਰਤੀਆ ਹਨ ਜੇਕਰ ਤੁਸੀ ਚੋਣ ਸਮੇ ਖਾਸ ਸਤਰ ਨਿਰਧਾਰਿਤ ਕਰ ਦਿੱਤੀ &quot;ਅਯੋਗ&quot;, ਤਾਂ ਇਸ ਕਾਰਵਾਈ ਲਈ ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਨਹੀ ਹੋਵੇਗਾ।</long>
       </locale>
 
+      <locale name="pt">
+         <short>Atalho para mover o separador actual à esquerda.</short>
+         <long>Tecla de atalho para mover à esquerda o separador actual. Expressa como uma expressão no mesmo formato que o utilizado nos ficheiros de recursos do GTK+. Se definir a opção para a expressão especial &quot;disabled&quot;, não existirá um atalho para esta acção.</long>
+      </locale>
+
       <locale name="pt_BR">
          <short>Atalho para mover a aba atual para a esquerda.</short>
          <long>Tecla de atalho para mover a aba atual para a esquerda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
@@ -16418,6 +16751,11 @@
       <locale name="th">
          <short>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางซ้าย</short>
          <long>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางซ้าย กำหนดโดยข้อความที่มีรูปแบบเหมือนกับที่ใช้ในแฟ้ม resource ของ GTK+ ถ้าคุณกำหนดตัวเลือกนี้เป็นค่าพิเศษ &quot;disabled&quot; จะไม่มีปุ่มลัดสำหรับปฏิบัติการนี้</long>
+      </locale>
+
+      <locale name="uk">
+         <short>Комбінація клавіш для переміщення поточної вкладки ліворуч.</short>
+         <long>Клавіша-прискорювач для переміщення поточної закладки ліворуч. Представляється рядком у форматі, який використовується у файлах ресурсів GTK+. Якщо параметр встановлено у спеціальне значення &quot;disabled&quot;, тоді для цієї дії не буде призначена клавіша-прискорювач.</long>
       </locale>
 
       <locale name="vi">
@@ -16457,9 +16795,24 @@
          <long>Бърз клавиш за преместване на текущия подпрозорец надясно. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако  зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>বর্তমান ট্যাব ডানদিকে স্থানান্তর করতে ব্যবহৃত গতিবর্ধক।</short>
+         <long>বর্তমান ট্যাব ডানদিকে স্থানান্তর করতে ব্যবহৃত গতিবর্ধক-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="ca">
          <short>Accelerador per a moure la pestanya actual a la dreta.</short>
          <long>Tecla acceleradora per a moure la pestanya actual a la dreta. S&apos;expressa com a una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+      </locale>
+
+      <locale name="cs">
+         <short>Klávesová zkratka pro posun aktuální karty doleva.</short>
+         <long>Klávesová zkratka posun aktuální karty doprava. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+      </locale>
+
+      <locale name="cy">
+         <short>Cyflymydd i symud y tab presennol i&apos;r dde.</short>
+         <long>Allwedd gyflym er mwyn symud y tab presennol i&apos;r dde. Mynegir fel llinyn yn yr un ffurf â ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -16484,12 +16837,17 @@
 
       <locale name="es">
          <short>Acelerador para mover la solapa actual a la derecha.</short>
-         <long>Tecla aceleradora para mover la solapa actual a la derecha. Expresada como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Tecla aceleradora para mover la solapa actual a la derecha. Expresada como una cadena en el mismo formato que usan los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
          <short>Kiirklahv käesoleva saki liigutamiseks paremale</short>
          <long>Klaviatuuri kiirklahv käesoleva saki liigutamiseks paremale. Väljendatakse samasuguses vormingus nagu kasutab GTK+ abifailides. Kui seada selle valiku väärtuseks &quot;keelatud&quot;, siis selle tegevuse jaoks kiirklahvi ei ole.</long>
+      </locale>
+
+      <locale name="eu">
+         <short>Tekla bizkortzailea, uneko fitxa eskuinera eramateko.</short>
+         <long>Tekla bizkortzailea, uneko fitxa eskuinera eramateko. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
       <locale name="fi">
@@ -16505,6 +16863,11 @@
       <locale name="gu">
          <short>વર્તમાન ટેબને જમણે ખસેડવા માટેની પ્રવેગક કી.</short>
          <long>વર્તમાન ટેબને જમણે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો, તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
+      </locale>
+
+      <locale name="hu">
+         <short>Gyorsbillentyű a jelenlegi lap jobbra mozgatásához.</short>
+         <long>Gyorsbillentyű a jelenlegi lap jobbra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="ja">
@@ -16547,6 +16910,11 @@
          <long>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਸੱਜੇ ਭੇਜਣ ਲਈ ਕੀ-ਬੋਰਡ ਪਰਵੇਸ਼ਕ ਸਵਿੱਚ ਹੈ। ਉਸੇ ਫਾਰਮਿਟ ਵਿੱਚ ਲਿਖੋ, ਜਿਸ ਵਿੱਚ GTK+ ਸਰੋਤ ਫਾਇਲ ਵਿੱਚ ਵਰਤੀਆਂ ਹਨ ਜੇਕਰ ਤੁਸੀ ਚੋਣ ਸਮੇਂ ਖਾਸ ਸਤਰ ਦਿੱਤੀ &quot;ਅਯੋਗ&quot;, ਤਾਂ ਇਸ ਕਾਰਵਾਈ ਲਈ ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਨਹੀ ਹੋਵੇਗਾ।</long>
       </locale>
 
+      <locale name="pt">
+         <short>Atalho para mover o separador actual à direita.</short>
+         <long>Tecla de atalho para mover à direita o separador actual. Expressa como uma expressão no mesmo formato que o utilizado nos ficheiros de recursos do GTK+. Se definir a opção para a expressão especial &quot;disabled&quot;, não existirá um atalho para esta acção.</long>
+      </locale>
+
       <locale name="pt_BR">
          <short>Atalho para mover a aba atual para a direita.</short>
          <long>Tecla de atalho para mover a aba atual para a direita. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
@@ -16570,6 +16938,11 @@
       <locale name="th">
          <short>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางขวา</short>
          <long>ปุ่มลัดสำหรับย้ายแท็บปัจจุบันไปทางขวา กำหนดโดยข้อความที่มีรูปแบบเหมือนกับที่ใช้ในแฟ้ม resource ของ GTK+ ถ้าคุณกำหนดตัวเลือกนี้เป็นค่าพิเศษ &quot;disabled&quot; จะไม่มีปุ่มลัดสำหรับปฏิบัติการนี้</long>
+      </locale>
+
+      <locale name="uk">
+         <short>Комбінація клавіш для переміщення поточної вкладки праворуч.</short>
+         <long>Клавіша-прискорювач для переміщення поточної закладки ліворуч. Представляється рядком у форматі, який використовується у файлах ресурсів GTK+. Якщо параметр встановлено у спеціальне значення &quot;disabled&quot;, тоді для цієї дії не буде призначена клавіша-прискорювач.</long>
       </locale>
 
       <locale name="vi">
@@ -16608,6 +16981,11 @@
          <long>Бърз клавиш за отделяне на текущия подпрозорец. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>বর্তমান ট্যাব বিচ্ছিন্ন করতে ব্যবহৃত গতিবর্ধক।</short>
+         <long>বর্তমান ট্যাব বিচ্ছিন্ন করতে ব্যবহৃত গতিবর্ধক-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="ca">
          <short>Accelerador per a separar la pestanya actual.</short>
          <long>Tecla acceleradora per a separar la pestanya actual. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
@@ -16616,6 +16994,11 @@
       <locale name="cs">
          <short>Klávesová zkratka pro odpojení aktuální karty.</short>
          <long>Klávesová zkratka odpojení aktuální karty. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+      </locale>
+
+      <locale name="cy">
+         <short>Allwedd gyflym er mwyn datod y tab presennol.</short>
+         <long>Allwedd gyflym er mwyn datod y tab presennol. Mynegir fel llinyn yn yr un ffurf â ffeiliau adnodd GTK+. Os ydych yn gosod yr opsiwn i&apos;r llinyn arbenning &quot;disabled&quot;, yna ni fydd byrlwybr bysellfwrdd ar gyfer y weithred hon.</long>
       </locale>
 
       <locale name="da">
@@ -16640,12 +17023,17 @@
 
       <locale name="es">
          <short>Acelerador para desacoplar la solapa actual.</short>
-         <long>Tecla de aceleración para desacoplar la solapa actual. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define la opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Tecla aceleradora para desacoplar la solapa actual. Expresada como una cadena en el mismo formato que usan los archivos de recursos de GTK+. Si define la opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
          <short>Kiirklahv käesoleva saki lahtihaakimiseks</short>
          <long>Klaviatuuri kiirklahv käesoleva saki lahtihaakimiseks. Väljendatakse samasuguses vormingus nagu kasutab GTK+ abifailides. Kui seada selle valiku väärtuseks &quot;keelatud&quot;, siis selle tegevuse jaoks kiirklahvi ei ole.</long>
+      </locale>
+
+      <locale name="eu">
+         <short>Bizkortzialea uneko fitxa desuztartzeko.</short>
+         <long>Uneko fitxa desuztartzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
       <locale name="fi">
@@ -16661,6 +17049,11 @@
       <locale name="gu">
          <short>વર્તમાન ટેબ જોડવા માટેનો પ્રવેગક.</short>
          <long>વર્તમાન ટૅબ પર જવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
+      </locale>
+
+      <locale name="hu">
+         <short>Gyorsbillentyű a jelenlegi lap leválasztásához.</short>
+         <long>Gyorsbillentyű a jelenlegi lap leválasztásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
       <locale name="ja">
@@ -16703,13 +17096,18 @@
          <long>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਵੱਖ ਕਰਨ ਲਈ ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ। ਉਸੇ ਫਾਰਮਿਟ ਵਿੱਚ ਲਿਖੋ, ਜਿਸ ਵਿੱਚ GTK+ ਸਰੋਤ ਫਾਇਲ ਵਿੱਚ ਵਰਤੀਆਂ ਹਨ, ਜੇਕਰ ਤੁਸੀ ਚੋਣ ਸਮੇਂ ਖਾਸ ਸਤਰ ਨਿਰਧਾਰਿਤ ਕਰ ਦਿੱਤੀ &quot;ਅਯੋਗ&quot;, ਤਾਂ ਇਸ ਕਾਰਵਾਈ ਲਈ ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਨਹੀ ਹੋਵੇਗਾ।</long>
       </locale>
 
+      <locale name="pt">
+         <short>Atalho para destacar o separador actual.</short>
+         <long>Tecla de atalho para destacar o separador actual. Expressa como uma expressão no mesmo formato que o utilizado nos ficheiros de recursos do GTK+. Se definir a opção para a expressão especial &quot;disabled&quot;, não existirá um atalho para esta acção.</long>
+      </locale>
+
       <locale name="pt_BR">
          <short>Atalho para destacar a aba atual.</short>
          <long>Tecla de atalho para destacar a aba atual. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ru">
-         <short>Комбинация клавиш для о</short>
+         <short>Комбинация клавиш для отделения текущей вкладки.</short>
          <long>Комбинация клавиш для отцепления текущей вкладки. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
       </locale>
 
@@ -16731,6 +17129,11 @@
       <locale name="th">
          <short>ปุ่มลัดสำหรับดึงแท็บปัจจุบันออกมา</short>
          <long>ปุ่มลัดสำหรับดึงแท็บปัจจุบันออกมา กำหนดโดยข้อความที่มีรูปแบบเหมือนกับที่ใช้ในแฟ้ม resource ของ GTK+ ถ้าคุณกำหนดตัวเลือกนี้เป็นค่าพิเศษ &quot;disabled&quot; จะไม่มีปุ่มลัดสำหรับปฏิบัติการนี้</long>
+      </locale>
+
+      <locale name="uk">
+         <short>Комбінація клавіш для від&apos;єднання поточної вкладки.</short>
+         <long>Клавіша-прискорювач для відключення поточної вкладки. Представляється рядком у форматі, який використовується у файлах ресурсів GTK+. Якщо параметр встановлено у спеціальне значення &quot;disabled&quot;, тоді для цієї дії не буде призначена клавіша-прискорювач.</long>
       </locale>
 
       <locale name="vi">
@@ -16780,6 +17183,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 1. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ১&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ১&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 1</short>
          <long>Kratica tastature za biranje prve kartice. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -16827,7 +17235,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 1</short>
-         <long>Combinación de teclas para cambiar a la solapa 1. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 1. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -17087,6 +17495,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 2. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ২&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ২&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 2</short>
          <long>Kratica tastature za biranje kartice 2. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -17134,7 +17547,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 2</short>
-         <long>Combinación de teclas para cambiar a la solapa 2. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 2. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -17394,6 +17807,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 3. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৩&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৩&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 3</short>
          <long>Kratica tastature za biranje kartice 3. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -17441,7 +17859,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 3</short>
-         <long>Combinación de teclas para cambiar a la solapa 3. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 3. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -17701,6 +18119,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 4. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৪&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৪&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 4</short>
          <long>Kratica tastature za biranje kartice 4. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -17748,7 +18171,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 4</short>
-         <long>Combinación de teclas para cambiar a la solapa 4. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 4. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -18008,6 +18431,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 5. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৫&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৫&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 5</short>
          <long>Kratica tastature za biranje kartice 5. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -18055,7 +18483,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 5</short>
-         <long>Combinación de teclas para cambiar a la solapa 5. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 5. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -18315,6 +18743,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 6. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৬&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৬&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 6</short>
          <long>Kratica tastature za biranje kartice 6. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -18362,7 +18795,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 6</short>
-         <long>Combinación de teclas para cambiar a la solapa 6. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 6. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -18622,6 +19055,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 7. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৭&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৭&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 7</short>
          <long>Kratica tastature za biranje kartice 7. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -18669,7 +19107,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 7</short>
-         <long>Combinación de teclas para cambiar a la solapa 7. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 7. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -18929,6 +19367,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 8. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৮&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৮&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 8</short>
          <long>Kratica tastature za biranje kartice 8. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -18976,7 +19419,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 8</short>
-         <long>Combinación de teclas para cambiar a la solapa 8. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 8. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -19236,6 +19679,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 9. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ৯&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ৯&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 9</short>
          <long>Kratica tastature za biranje kartice 9. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -19283,7 +19731,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 9</short>
-         <long>Combinación de teclas para cambiar a la solapa 9. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 9. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -19543,6 +19991,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 10. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ১০&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ১০&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 10</short>
          <long>Kratica tastature za biranje kartice 10. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -19590,7 +20043,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 10</short>
-         <long>Combinación de teclas para cambiar a la solapa 10. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 10. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -19850,6 +20303,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 11. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ১১&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ১১&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 11</short>
          <long>Kratica tastature za biranje kartice 11. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -19897,7 +20355,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 11</short>
-         <long>Combinación de teclas para cambiar a la solapa 11. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 11. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -20157,6 +20615,11 @@
          <long>Бърз клавиш за превключването към подпрозорец 12. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ট্যাব ১২&apos;এ পরিবর্তনের জন্য ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>ট্যাব ১২&apos;এ পরিবর্তন করতে ব্যবহৃত কি-বোর্ড শর্টকাট কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za biranje kartice 12</short>
          <long>Kratica tastature za biranje kartice 12. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -20204,7 +20667,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para cambiar a la solapa 12</short>
-         <long>Combinación de teclas para cambiar a la solapa 12. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para cambiar a la solapa 12. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -20464,6 +20927,11 @@
          <long>Бърз клавиш за пускане на помощта. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>সহায়িকা প্রদর্শন করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>সহায়িকা প্রদর্শনের জন্য ব্যবহৃত শর্টকাট-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za pokretanje pomoći</short>
          <long>Kratica tastature za pokretanje pomoći. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -20511,7 +20979,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para lanzar la ayuda</short>
-         <long>Combinación de teclas para abrir la ayuda. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para lanzar la ayuda. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -20771,6 +21239,11 @@
          <long>Бърз клавиш за увеличаване на шрифта. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>নতুন প্রোফাইল নির্মাণ করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>হরফের মাপ বৃদ্ধি করতে ব্যবহৃত শর্টকাট-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za povećavanje fonta</short>
          <long>Kratica tastature za povećavanje fonta. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -20818,7 +21291,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para agrandar la tipografía</short>
-         <long>Combinación de teclas para agrandar la tipografía. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para agrandar la tipografía. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -21078,6 +21551,11 @@
          <long>Бърз клавиш за намаляване на шрифта. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ফন্টের মাপ হ্রাস করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>হরফের মাপ হ্রাস করার জন্য ব্যবহৃত শর্টকাট-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za smanjivanje fonta</short>
          <long>Kratica tastature za smanjivanje fonta. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -21125,7 +21603,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para reducir la tipografía</short>
-         <long>Combinación de teclas para reducir la tipografía. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para reducir la tipografía. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">
@@ -21385,6 +21863,11 @@
          <long>Бърз клавиш за задаване на нормална големина на шрифта. Изразен е като низ в същия формат използван за ресурсните файлове използвани от GTK+.Ако искате зададете „disabled“, то няма да имате бърз клавиш за тази опция.</long>
       </locale>
 
+      <locale name="bn">
+         <short>ফন্টের মাপ বৃদ্ধি করতে ব্যবহৃত কি-বোর্ড শর্টকাট</short>
+         <long>হরফের মাপ স্বাভাবিক করতে ব্যবহৃত শর্টকাট-কি। GTK+ রিসোর্স ফাইলে ব্যবহৃত বিন্যাস অনুযায়ী পংক্তিরূপে উল্লিখিত হয়। এই অপশনটির জন্য &quot;disabled&quot; মান নির্ধারিত হলে চিহ্নিত কর্মের জন্য কোনো কি-বোর্ড শর্টকাট যুক্ত করা হবে না।</long>
+      </locale>
+
       <locale name="bs">
          <short>Kratica tastature za postavljanje fonta na normalnu veličinu</short>
          <long>Kratica tastature za postavljanje fonta na normalnu veličinu. Izraženo kao string u istom formatu koji se koristi za GTK+ resursne datoteke. Ako postavite opciju na specijalan string &quot;disabled&quot;, onda neće biti kratica za ovu radnju.</long>
@@ -21432,7 +21915,7 @@
 
       <locale name="es">
          <short>Combinación de teclas para establecer la tipografía a su tamaño normal</short>
-         <long>Combinación de teclas para dejar a tamaño normal la tipografía. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
+         <long>Combinación de teclas para dejar a tamaño normal la tipografía. Expresado como una cadena en el mismo formato usado por los archivos de recursos de GTK+. Si define esta opción con la cadena especial «disabled», entonces no habrá una combinación para esta acción.</long>
       </locale>
 
       <locale name="et">

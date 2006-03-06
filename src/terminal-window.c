@@ -1803,6 +1803,10 @@ notebook_tab_detached_callback (GtkWidget       *notebook,
                                 TerminalScreen  *screen,
                                 TerminalWindow  *window)
 {
+  /* Reset the tab menu before detaching the tab, in case the tab changed
+   * position before it was detached (bug #330246). */
+  reset_tab_menuitems (window);
+
   detach_tab (screen, window);
 }
 
@@ -2775,9 +2779,6 @@ detach_tab_callback(GtkWidget      *menuitem,
   page = gtk_notebook_get_nth_page (notebook, page_num);
   
   detach_tab (TERMINAL_SCREEN (page), window);
-  
-  update_tab_sensitivity (window);
-  reset_tab_menuitems (window);
 }
 
 static void
@@ -2820,6 +2821,20 @@ about_callback (GtkWidget      *menuitem,
     "Mariano Su\303\241rez-Alvarez <mariano@gnome.org>",
     NULL
   };
+  const gchar *license[] = {
+    "GNOME Terminal is free software; you can redistribute it and/or modify \n"
+    "it under the terms of the GNU General Public License as published by \n"
+    "the Free Software Foundation; either version 2 of the License, or \n"
+    "(at your option) any later version.",
+    "GNOME Terminal is distributed in the hope that it will be useful, \n"
+    "but WITHOUT ANY WARRANTY; without even the implied warranty of \n"
+    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the \n"
+    "GNU General Public License for more details.",
+    "You should have received a copy of the GNU General Public License \n"
+    "along with Nautilus; if not, write to the Free Software Foundation, Inc., \n"
+    "51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA"
+  };
+  const gchar *license_text;
 
   if (about)
     {
@@ -2829,6 +2844,11 @@ about_callback (GtkWidget      *menuitem,
     }
 				     
   about = gtk_about_dialog_new ();
+
+  license_text = g_strconcat (license[0], "\n\n", license[1], "\n\n",
+			      license[2], "\n\n", NULL);
+
+  gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (about), license_text);
 
   gtk_about_dialog_set_name (GTK_ABOUT_DIALOG (about), _("GNOME Terminal"));
   gtk_about_dialog_set_comments (GTK_ABOUT_DIALOG(about), _("A terminal emulator for the GNOME desktop"));
