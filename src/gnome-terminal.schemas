@@ -100,7 +100,7 @@
 
       <locale name="et">
          <short>Profiilide nimekiri</short>
-         
+         <long>Gnome terminalile teadaolevate profiilide loend. Sisaldab alamkataloogide nimesid kataloogi /apps/gnome-terminal/profiles suhtes.</long>
       </locale>
 
       <locale name="eu">
@@ -690,8 +690,8 @@
       </locale>
 
       <locale name="cs">
-         <short>Jestli má lišta menu klávesové zkratky</short>
-         <long>Jestli mít klávesové zkratky Alt+písmeno pro lištu menu. Mohou kolidovat s některými aplikacemi uvnitř terminálu, takže je možné je vypnout.</long>
+         <short>Jestli má panel nabídky klávesové zkratky</short>
+         <long>Jestli mít klávesové zkratky Alt+písmeno pro panel nabídky. Mohou kolidovat s některými aplikacemi uvnitř terminálu, takže je možné je vypnout.</long>
       </locale>
 
       <locale name="cy">
@@ -982,8 +982,8 @@
       </locale>
 
       <locale name="cs">
-         <short>Jestli je povolena standardní klávesová zkratka GTK pro přístup k menu</short>
-         <long>Normálně můžete k menu přistupovat pomocí F10. To může být také upraveno pomocí gtkrc (gtk-menu-bar-accel = &quot;cokoli&quot;). Tato možnost umožňuje vypnout standardní klávesovou zkratku menu.</long>
+         <short>Jestli je povolena standardní klávesová zkratka GTK pro přístup k panelu nabídky</short>
+         <long>Normálně můžete k panelu nabídky přistupovat pomocí F10. To může být také upraveno pomocí gtkrc (gtk-menu-bar-accel = &quot;cokoli&quot;). Tato možnost umožňuje vypnout standardní klávesovou zkratku nabídky.</long>
       </locale>
 
       <locale name="cy">
@@ -1019,6 +1019,11 @@
       <locale name="es">
          <short>Define si la combinación de teclas estándar de GTK+ para acceder a la barra de menús está activada</short>
          <long>Normalmente usted puede acceder a la barra de menús pulsando F10. Esto puede ser personalizado por medio de gtkrc (gtk-menu-bar-accel = &quot;lo que quiera&quot;). Esta opción permite deshabilitar la combinación de teclas estándar de acceso a la barra de menús.</long>
+      </locale>
+
+      <locale name="et">
+         <short>Kast standardne GTK kiirklahv menüüriba kasutamiseks on lubatud</short>
+         
       </locale>
 
       <locale name="eu">
@@ -1296,7 +1301,7 @@
       <locale name="cs">
          <default>[UTF-8,ISO-8859-2,current]</default>
          <short>Seznam dostupných kódování</short>
-         <long>V menu Kódování je nabídnuta podmnožina možných kódování. Toto je seznam kódování, které se tam mají objevit. Speciální název kódování &quot;current&quot; znamená zobrazit kódování aktuálního locale.</long>
+         <long>V nabídce Kódování je nabídnuta podmnožina možných kódování. Toto je seznam kódování, které se tam mají objevit. Speciální název kódování &quot;current&quot; znamená zobrazit kódování aktuálního locale.</long>
       </locale>
 
       <locale name="cy">
@@ -2033,7 +2038,7 @@
       </locale>
 
       <locale name="et">
-         
+         <default>Vaikimisi</default>
          <short>Profiili inimloetav nimi</short>
          <long>Profiili inimloetav nimi.</long>
       </locale>
@@ -2087,7 +2092,7 @@
       </locale>
 
       <locale name="hi">
-         
+         <default>डिफ़ॉल्ट</default>
          <short>प्रोफ़ाइल का मनुष्य द्वारा पढ़ सकने योग्य नाम</short>
          <long>इस प्रोफ़ाइल का मनुष्य द्वारा पढ़ सकने योग्य नाम.</long>
       </locale>
@@ -2111,7 +2116,7 @@
       </locale>
 
       <locale name="it">
-         
+         <default>Predefinito</default>
          <short>Nome mnemonico per il profilo</short>
          <long>Nome mnemonico per il profilo.</long>
       </locale>
@@ -2213,7 +2218,7 @@
       </locale>
 
       <locale name="ro">
-         
+         <default>Implicit</default>
          <short>Numele profilului în format clar</short>
          <long>Numele profilului în format clar.</long>
       </locale>
@@ -2237,7 +2242,7 @@
       </locale>
 
       <locale name="sq">
-         
+         <default>E prezgjedhur</default>
          <short>Emri i profilit (në gjuhë të kuptueshme)</short>
          <long>Emri i profilit (në gjuhë të kuptueshme).</long>
       </locale>
@@ -2255,7 +2260,7 @@
       </locale>
 
       <locale name="sv">
-         
+         <default>Standard</default>
          <short>Läsbart namn för profilen</short>
          <long>Läsbart namn för profilen.</long>
       </locale>
@@ -2681,8 +2686,8 @@
       </locale>
 
       <locale name="cs">
-         <short>Jestli zobrazovat menu v nových oknech/kartách</short>
-         <long>True, má-li být menu zobrazováno v nových oknech, pro okna/karty s tímto profilem.</long>
+         <short>Jestli zobrazovat panel nabídky v nových oknech/kartách</short>
+         <long>True, má-li být nabídka zobrazována v nových oknech, pro okna/karty s tímto profilem.</long>
       </locale>
 
       <locale name="cy">
@@ -3728,7 +3733,7 @@
 
       <locale name="it">
          <short>Cosa fare con il titolo dinamico</short>
-         <long>Se l&apos;applicazione nel terminale imposta il titolo (generalmente le persone hanno degli script di shell per fare questo), il titolo impostato dinamicamente può cancellare quello configurato, andare prima, dopo oppure rimpiazzarlo. I possibili valori sono &quot;replace&quot;, &quot;before&quot;, &quot;after&quot; e &quot;ignore&quot;.</long>
+         <long>Se l&apos;applicazione nel terminale imposta il titolo (generalmente le persone hanno degli script di shell per fare questo), il titolo impostato dinamicamente può eliminare quello configurato, andare prima, dopo oppure rimpiazzarlo. I possibili valori sono &quot;replace&quot;, &quot;before&quot;, &quot;after&quot; e &quot;ignore&quot;.</long>
       </locale>
 
       <locale name="ja">
@@ -11074,7 +11079,7 @@
       </locale>
 
       <locale name="it">
-         <short>Effetto del tasto «Cancella»</short>
+         <short>Effetto del tasto «Canc»</short>
          <long>Imposta il codice generato dal tasto cancella. Valori possibili sono &quot;ascii-del&quot; per il carattere DEL ASCII, &quot;control-h&quot; per Control-H (cioè il carattere BS ASCII), &quot;escape-sequence&quot; per la sequenza di escape generalmente legata al tasto backspace o canc. &quot;escape-sequence&quot; è generalmente considerato il valore corretto per il tasto canc.</long>
       </locale>
 
@@ -11294,8 +11299,8 @@
       </locale>
 
       <locale name="cs">
-         <short>Jestli používat barvy z tématu widgetu terminálu</short>
-         <long>Je-li true, bude použito barevné schéma tématu používané pro pole pro vkládání textu místo barev poskytnutým uživatelem.</long>
+         <short>Jestli používat barvy z motivu widgetu terminálu</short>
+         <long>Je-li true, bude použito barevné schéma motivu používané pro pole pro vkládání textu místo barev poskytnutým uživatelem.</long>
       </locale>
 
       <locale name="cy">
@@ -11583,6 +11588,11 @@
          <long>Os yn wir, fe analluogir dat-amgennu wrth redeg heb yr estyniad X RENDER. Mae hyn yn gwella&apos;r perfformiad yn sylweddol yn y sefyllfaoedd hynny.</long>
       </locale>
 
+      <locale name="da">
+         <short>Om udjævning deaktiveres uden X RENDER-udvidelsen</short>
+         <long>Om skrifttype-udjævning deaktiveres når X RENDER-udvidelsen ikke er tilgængelig hvilket giver en betydelig ydelsesforbedring i dette tilfælde.</long>
+      </locale>
+
       <locale name="de">
          <short>Soll Kantenglättung ohne X-RENDER-Erweiterung deaktiviert werden?</short>
          <long>Falls dieser Schlüssel wahr ist, wird Kantenglättung für Schrift deaktiviert wenn X ohne die RENDER-Erweiterung läuft, was zu spürbar besserer Performance in solchen Situationen führt.</long>
@@ -11628,6 +11638,11 @@
          <long>Ha be van állítva, akkor az élsimítás ki lesz kapcsolva, ha az X a RENDER kiterjesztés nélkül fut, ami jelentősen növeli a teljesítményt ilyen helyzetben.</long>
       </locale>
 
+      <locale name="it">
+         <short>Indica se disabilitare l&apos;anti-aliasing senza le estension X RENDER</short>
+         <long>Se vero, l&apos;anti-aliasing dei caratteri sarà disabilitato quando si sta eseguendo X senza le estensioni RENDER, il che migliora considerevolmente le prestazioni in queste situazioni.</long>
+      </locale>
+
       <locale name="ja">
          <short>X RENDER 拡張を使用しない場合にアンチ・エイリアス効果を無効にするかどうか</short>
          <long>TRUE にすると、GNOME 端末を X RENDER 拡張を使わずに実行している際にフォントのアンチ・エイリアス表示を無効にします。これにより、そのような状況下でかなりのパフォーマンス向上が得られます。</long>
@@ -11663,6 +11678,11 @@
          <long>Hvis denne settes til «true» vil fontutjevning slås av når RENDER-utvidelsen ikke er tilgjengelig. Dette gir en stor ytelsesforbedring i disse situasjonene.</long>
       </locale>
 
+      <locale name="pa">
+         <short>ਕੀ X RENDER ਐਕਸਟੇਸ਼ਨ ਬਿਨਾਂ ਐਟੀ-ਅਲਾਈਸਿੰਗ ਨੂੰ ਆਯੋਗ ਕੀਤਾ ਜਾਵੇ</short>
+         <long>ਜੇਕਰ ਸੱਚ ਕੀਤਾ ਤਾਂ X RENDER ਐਕਸਟੇਸ਼ਨ ਬਿਨਾਂ ਚੱਲਣ ਦੌਰਾਨ  ਐਂਟੀ-ਅਲਾਈਸਿੰਗ ਨੂੰ ਯੋਗ ਕਰ ਦਿੱਤਾ ਜਾਵੇ, ਜਿਸ ਨਾਲ ਇਹਨਾਂ ਹਾਲਤਾਂ ਵਿੱਚ ਸਮਰੱਥਾ ਵਿੱਚ ਭਾਰੀ ਸੁਧਾਰ ਹੁੰਦਾ ਹੈ।</long>
+      </locale>
+
       <locale name="pt">
          <short>Se desactivar ou não anti-alias quando não existe a extensão X RENDER</short>
          <long>Se verdadeiro, anti-aliasing de fontes será desactivado quando em execução sem a extensão X RENDER, o que concede um aumento considerável de desempenho.</long>
@@ -11673,9 +11693,19 @@
          <long>Se verdadeiro, anti-aliasing de fontes será desabilitado quando rodando sem a extensão RENDER do X, o que resulta em um aumento considerável de desempenho nessas situações.</long>
       </locale>
 
+      <locale name="ro">
+         <short>Dacă să dezactiveze anti-aliasing la absenţa extensiei X RENDER</short>
+         <long>Dacă este setat la true, anti-aliasing-ul pentru fonturi va fi dezactivat la rularea într-un mediu fără extensia X RENDER, ceea ce duce la un o mărire vizibilă a performanţei în aceste situaţii.</long>
+      </locale>
+
       <locale name="ru">
          <short>Отключать ли сглаживание без расширения X RENDER</short>
          <long>Если включено, сглаживание шрифтов не будет использовано если запущено без расширения X RENDER, которое дает значнительное улучшение произволительности в это ситуации</long>
+      </locale>
+
+      <locale name="sq">
+         <short>Nëse duhet çaktivuar anti-aliasing pa shtesa X RENDER</short>
+         <long>Nëse e vërtetë, anti-aliasing i shkronjave do të çaktivohet kur punohet pa shtesat X RENDER, gjë që përmirëson në menyrë të ndjeshme performace në këto situata.</long>
       </locale>
 
       <locale name="sr">
@@ -11686,6 +11716,11 @@
       <locale name="sr@Latn">
          <short>Da li da isključim omekšavanje slova ako nema „X RENDER“ proširenja</short>
          <long>Ako je postavljeno, omekšavanje slova biće isključeno za Iks servere koji nemaju RENDER proširenje što tada daje veliko ubrzanje.</long>
+      </locale>
+
+      <locale name="sv">
+         <short>Huruvida kantutjämning utan X RENDER-utökningen ska inaktiveras</short>
+         <long>Om sant, kantutjämning för typsnitt kommer att vara inaktiverad vid körning utan X RENDER-utökningen, som ger en avsevärd prestandaökning i de här situationerna.</long>
       </locale>
 
       <locale name="th">
@@ -12117,6 +12152,11 @@
          <long>Párbeszédablak megjelenítése s/key hívás-válasz lekérdezés érzékelésekor és rákattintáskor. A párbeszédablakba beírt jelszó a terminálra lesz küldve.</long>
       </locale>
 
+      <locale name="it">
+         <short>Evidenzia le «S/Key challenge»</short>
+         <long>Apre una finestra di dialogo quando una richiesta di risposta a «S/Key challenge» è intercettata e cliccata. Scrivendo la password nella finestra di dialogo questa viene spedita al terminale.</long>
+      </locale>
+
       <locale name="ja">
          <short>S/Key のチャレンジ・レスポンスを強調表示する</short>
          <long>S/Key チャレンジ・レスポンスのクエリを検出して、クリックした際にダイアログをポップアップします。ダイアログにパスワードを入力すると、その値を端末に送ります。</long>
@@ -12167,6 +12207,11 @@
          <long>Mostrar um diálogo quando uma solicitação de resposta a um desafio S/Key for detectada e clicada. Digitar uma senha no diálogo a enviará para o terminal.</long>
       </locale>
 
+      <locale name="ro">
+         <short>Evidenţiază provocările S/Key</short>
+         <long>Afişează un dialog în momentul detectării unei interogări S/Key pe care se efectueaza clic. Parola scrisă în dialog va fi trimisă terminalului.</long>
+      </locale>
+
       <locale name="ru">
          <short>Выделять запросы S/Key</short>
          <long>Показывать диалог при обнаружении ответа на запрос S/Key и нажатии на него. Ввод пароля в диалоге приведет к отправке его в терминал.</long>
@@ -12177,6 +12222,11 @@
          <long>Zobraziť dialóg pri kliknutí na dotaz odpovede výzvy S/Key. Zadaním hesla do dialógu ho pošlete na terminál.</long>
       </locale>
 
+      <locale name="sq">
+         <short>Vër në dukje S/Key</short>
+         <long>Hap një dialog kur është ybuluar dhe klikuar tek një kërkesë përgjigje sfidës S/Key. Duke shkruar fjalëkalimin në dialog do ta dërgojë në terminal.</long>
+      </locale>
+
       <locale name="sr">
          <short>Истакни S/Key</short>
          <long>Искаче прозорче када се препозна одговор на S/Key challenge упит и када се кликне на њега. Укуцавање лозинке у прозорче ће је послати терминалу.</long>
@@ -12185,6 +12235,11 @@
       <locale name="sr@Latn">
          <short>Istakni S/Key</short>
          <long>Iskače prozorče kada se prepozna odgovor na S/Key challenge upit i kada se klikne na njega. Ukucavanje lozinke u prozorče će je poslati terminalu.</long>
+      </locale>
+
+      <locale name="sv">
+         <short>Framhäv svar på S/key-utmaningar</short>
+         <long>Visa ett dialogfönster då en svar på S/key-utmaning efterfrågas, detekteras och klickas på. Genom att ange ett lösenord i dialogfönstret kommer det att skickas till terminalfönstret.</long>
       </locale>
 
       <locale name="th">
@@ -14765,8 +14820,8 @@
       </locale>
 
       <locale name="cs">
-         <short>Klávesová zkratka pro přepnutí viditelnosti lišty menu</short>
-         <long>Klávesová zkratka pro přepnutí viditelnosti lišty menu. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
+         <short>Klávesová zkratka pro přepnutí viditelnosti panelu nabídky</short>
+         <long>Klávesová zkratka pro přepnutí viditelnosti panelu nabídky. Vyjádřena jako řetězec ve formátu používaném pro soubory resource GTK+. Pokud možnost nastavíte na speciální řetězec &quot;disabled&quot;, nebude pro tuto akci žádná klávesová zkratka.</long>
       </locale>
 
       <locale name="cy">
@@ -16683,6 +16738,11 @@
          <long>Gyorsbillentyű a jelenlegi lap balra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
+      <locale name="it">
+         <short>Acceleratore per spostare la scheda corrente a sinistra.</short>
+         <long>Scorciatoia da tastiera per spostare la scheda corrente a sinistra terminale, espressa nello stesso formato usato dai file di risorse per GTK+. Se l&apos;opzione è impostata alla stringa speciale &quot;disabled&quot;, non c&apos;è alcun collegamento con tasti per questa azione.</long>
+      </locale>
+
       <locale name="ja">
          <short>現在開いているタブを左へ移動するアクセラレータ</short>
          <long>現在開いているタブを左へ移動するためのキーボード・ショートカット・キーを指定します。GTK+ のリソース・ファイルと同じ書式で文字列を一個指定します。&quot;disabled&quot; という特殊な文字列をオプションに指定した場合は、この操作に対するキーバインドは無効になります。</long>
@@ -16733,9 +16793,19 @@
          <long>Tecla de atalho para mover a aba atual para a esquerda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
+      <locale name="ro">
+         <short>Combinaţie de taste pentru a muta tabul curent la stânga.</short>
+         <long>Combinaţie de taste pentru a muta tabul curent la stânga. Exprimat ca string în acelaşi format folosit pentru fişierul de resurse GTK+. Dacă setaţi valoarea la stringul special „disabled”, nu va fi alocată nici o combinaţie pentru această acţiune.</long>
+      </locale>
+
       <locale name="ru">
          <short>Комбинация клавиш для перемещения текущей вкладки влево.</short>
          <long>Комбинация клавиш для перемещения текущей вкладки влево. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
+      </locale>
+
+      <locale name="sq">
+         <short>Përshpejtues për të lëvizur majtas skedën aktuale.</short>
+         <long>Pulsant përshpejtues për lëvizur majtas skedën aktuale. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opsioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
       </locale>
 
       <locale name="sr">
@@ -16746,6 +16816,11 @@
       <locale name="sr@Latn">
          <short>Prečica za premeštanje tekućeg lista na levo.</short>
          <long>Prečica za premeštanje tekučeg lista na levo. Izražava se kao niska na isti način kako se koristi i u datotekama sa Gtk+ resursima. Ukoliko postavite opciju na naročitu nisku „disabled“, onda se neće dodeliti prečica ovoj akciji.</long>
+      </locale>
+
+      <locale name="sv">
+         <short>Snabbtangent för att flytta aktuell flik till vänster.</short>
+         <long>Snabbtangent för att flytta aktuell flik till vänster. Uttryckt som en sträng i samma format som används för GTK+-resursfiler. Om du ställer in detta alternativ till specialsträngen &quot;disabled&quot; kommer det inte att finnas någon tangentbindning för denna åtgärd.</long>
       </locale>
 
       <locale name="th">
@@ -16870,6 +16945,11 @@
          <long>Gyorsbillentyű a jelenlegi lap jobbra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
+      <locale name="it">
+         <short>Acceleratore per spostare la scheda a destra.</short>
+         <long>Scorciatoia da tastiera per  per spostare la scheda corrente a destra, espressa nello stesso formato usato dai file di risorse per GTK+. Se l&apos;opzione è impostata alla stringa speciale &quot;disabled&quot;, non c&apos;è alcun collegamento con tasti per questa azione.</long>
+      </locale>
+
       <locale name="ja">
          <short>現在開いているタブを右へ移動するアクセラレータ</short>
          <long>現在開いているタブを右へ移動するためのキーボード・ショートカット・キーを指定します。GTK+ のリソース・ファイルと同じ書式で文字列を一個指定します。&quot;disabled&quot; という特殊な文字列をオプションに指定した場合は、この操作に対するキーバインドは無効になります。</long>
@@ -16920,9 +17000,19 @@
          <long>Tecla de atalho para mover a aba atual para a direita. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
+      <locale name="ro">
+         <short>Combinaţie de taste pentru a muta tabul curent la dreapta.</short>
+         <long>Combinaţie de taste pentru a muta tabul curent la dreapta. Exprimat ca string în acelaşi format folosit pentru fişierul de resurse GTK+. Dacă setaţi valoarea la stringul special „disabled”, nu va fi alocată nici o combinaţie pentru această acţiune.</long>
+      </locale>
+
       <locale name="ru">
          <short>Комбинация клавиш для перемещения текущей вкладки вправо.</short>
          <long>Комбинация клавиш для перемещения текущей вкладки вправо. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
+      </locale>
+
+      <locale name="sq">
+         <short>Përshpejtues për të lëvizur djathtas skedën aktuale.</short>
+         <long>Pulsant përshpejtues për lëvizur dhjathtas skedën aktuale. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opsioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
       </locale>
 
       <locale name="sr">
@@ -16933,6 +17023,11 @@
       <locale name="sr@Latn">
          <short>Prečica za premeštanje tekućeg lista na desno.</short>
          <long>Prečica za premeštanje tekućeg lista na desno. Izražava se kao niska na isti način kako se koristi i u datotekama sa Gtk+ resursima. Ukoliko postavite opciju na naročitu nisku „disabled“, onda se neće dodeliti prečica ovoj akciji.</long>
+      </locale>
+
+      <locale name="sv">
+         <short>Snabbtangent för att flytta aktuell flik till höger.</short>
+         <long>Snabbtangent för att flytta aktuell flik till höger. Uttryckt som en sträng i samma format som används för GTK+-resursfiler. Om du ställer in detta alternativ till specialsträngen &quot;disabled&quot; kommer det inte att finnas någon tangentbindning för denna åtgärd.</long>
       </locale>
 
       <locale name="th">
@@ -17051,9 +17146,19 @@
          <long>વર્તમાન ટૅબ પર જવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
       </locale>
 
+      <locale name="hi">
+         <short>त्वरक को मौजूदा टैब से अलग करने के लिये</short>
+         
+      </locale>
+
       <locale name="hu">
          <short>Gyorsbillentyű a jelenlegi lap leválasztásához.</short>
          <long>Gyorsbillentyű a jelenlegi lap leválasztásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
+      </locale>
+
+      <locale name="it">
+         <short>Acceleratore per staccare la scheda corrente.</short>
+         <long>Scorciatoia da tastiera per staccare la scheda corrente, espressa nello stesso formato usato dai file di risorse per GTK+. Se l&apos;opzione è impostata alla stringa speciale &quot;disabled&quot;, non c&apos;è alcun collegamento con tasti per questa azione.</long>
       </locale>
 
       <locale name="ja">
@@ -17106,6 +17211,11 @@
          <long>Tecla de atalho para destacar a aba atual. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
+      <locale name="ro">
+         <short>Combinaţie de taste pentru a detaşa tabul curent.</short>
+         <long>Combinaţie de taste pentru a detaşa tabul curent. Exprimat ca string în acelaşi format folosit pentru fişierul de resurse GTK+. Dacă setaţi valoarea la stringul special „disabled”, nu va fi alocată nici o combinaţie pentru această acţiune.</long>
+      </locale>
+
       <locale name="ru">
          <short>Комбинация клавиш для отделения текущей вкладки.</short>
          <long>Комбинация клавиш для отцепления текущей вкладки. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
@@ -17116,6 +17226,11 @@
          <long>Akcelerátor pre odpojenie aktuálnej karty. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sq">
+         <short>Përshpejtues për të shkëputur skedën aktuale.</short>
+         <long>Pulsant përshpejtues shkëputur skedën aktuale. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
+      </locale>
+
       <locale name="sr">
          <short>Пречица са тастатуре за одвајање текућег листа.</short>
          <long>Пречица за одвајање текућег листа. Изражава се као ниска на исти начин како се користи и у датотекама са Гтк+ ресурсима. Уколико поставите опцију на нарочиту ниску „disabled“, онда се неће доделити пречица овој акцији.</long>
@@ -17124,6 +17239,11 @@
       <locale name="sr@Latn">
          <short>Prečica sa tastature za odvajanje tekućeg lista.</short>
          <long>Prečica za odvajanje tekućeg lista. Izražava se kao niska na isti način kako se koristi i u datotekama sa Gtk+ resursima. Ukoliko postavite opciju na naročitu nisku „disabled“, onda se neće dodeliti prečica ovoj akciji.</long>
+      </locale>
+
+      <locale name="sv">
+         <short>Snabbtangent för att frigöra aktuell flik.</short>
+         <long>Snabbtangent för att frigöra aktuell flik. Uttryckt som en sträng i samma format som används för GTK+-resursfiler. Om du ställer in detta alternativ till specialsträngen &quot;disabled&quot; kommer det inte att finnas någon tangentbindning för denna åtgärd.</long>
       </locale>
 
       <locale name="th">
