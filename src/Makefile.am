@@ -1,7 +1,7 @@
 
 EFENCE=
 
-SUBDIRS=eel skey
+SUBDIRS=skey
 
 INCLUDES=@TERM_CFLAGS@ \
 	-DTERM_LOCALEDIR=\"$(datadir)/locale\" -DEXECUTABLE_NAME=\"gnome-terminal\" \
@@ -13,9 +13,9 @@ INCLUDES=@TERM_CFLAGS@ \
 	-DTERM_SYSCONFDIR=\"$(sysconfdir)\" \
 	-DTERM_PKGDATADIR=\"$(pkgdatadir)\" \
 	-DGDK_DISABLE_DEPRECATED -DG_DISABLE_DEPRECATED	\
-	-DGNOME_DISABLE_DEPRECATED \
 	-DSN_API_NOT_YET_FROZEN
 #	-DGTK_DISABLE_DEPRECATED 
+#	-DGNOME_DISABLE_DEPRECATED 
 
 bin_PROGRAMS=gnome-terminal
 
@@ -46,25 +46,31 @@ gnome_terminal_SOURCES=				\
 	terminal-widget-vte.c			\
 	terminal-window.c			\
 	terminal-window.h			\
+	terminal-notebook.c			\
+	terminal-notebook.h			\
 	simple-x-font-selector.c		\
 	simple-x-font-selector.h		\
 	$(EGGFILES)
 
-gnome_terminal_LDADD= $(EFENCE) @TERM_LIBS@ eel/libeelcnp.la skey/libskey.la
+gnome_terminal_LDADD= $(EFENCE) @TERM_LIBS@ skey/libskey.la
 
 gladedir   = $(pkgdatadir)/glade
 glade_DATA = gnome-terminal.glade2
 
 schemadir   = @GCONF_SCHEMA_FILE_DIR@
+schema_in_files = gnome-terminal.schemas.in
 schema_DATA = gnome-terminal.schemas
 
 icondir = $(datadir)/pixmaps
 icon_DATA = gnome-terminal.png
 
+CLEANFILES = gnome-terminal.schemas
+
 EXTRA_DIST =				\
 	$(icon_DATA)			\
 	$(glade_DATA)			\
 	$(schema_DATA)			\
+	$(schema_in_files)		\
 	$(server_DATA)			\
 	update-from-egg.sh		\
 	terminal-widget-vte.c
@@ -82,5 +88,5 @@ server_DATA = gnome-terminal.server
 
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/src/$(schema_DATA)
 endif

@@ -1,3 +1,134 @@
+gnome-terminal (2.14.1-0ubuntu1) dapper; urgency=low
+
+  * New upstream release:
+    - New and updated translations: Belarusian, Breton, Chinese Traditional,
+      Dutch, Estonian, French.
+  * Resynchronized with Debian. Only Ubuntu chages are:
+    - debian/patches/01_lpi.patch, debian/patches/02_autoconf.patch, 
+      debian/patches/03_ubuntu_lpi_fix_crash.diff, debian/control.in: 
+      - Launchpad Integration.
+    - debian/watch:
+      - Updated.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Mon, 10 Apr 2006 10:24:43 +0200
+
+gnome-terminal (2.14.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Guilherme de S. Pastore <guilherme.pastore@terra.com.br>  Sat, 18 Mar 2006 13:13:33 -0300
+
+gnome-terminal (2.13.93-1) experimental; urgency=low
+
+  * New upstream release
+    - Tabs can be dragged and dropped. (Closes: #240139, #265736)
+    - Pre-selects the window/tab title on edit. (Closes: #305678)
+  * debian/patches:
+    - tab-change.patch: dropped; fixed upstream.
+    - 03_menu_entry.patch: dropped; applied upstream.
+    - translation_warning.patch: dropped; fixed upstream.
+  * debian/gnome-terminal-data.install:
+    - do not install /usr/share/application-registry, it has been
+      dropped and deprecated upstream.  
+
+ -- Guilherme de S. Pastore <guilherme.pastore@terra.com.br>  Sat,  4 Mar 2006 15:46:20 -0300
+
+gnome-terminal (2.12.0-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Josselin Mouette <joss@debian.org>  Sun,  8 Jan 2006 17:10:23 +0100
+
+gnome-terminal (2.12.0-1) experimental; urgency=low
+
+  * New upstream releases.
+    - Update watch file. [debian/watch]
+  * New patch from Ubuntu to move the menu entry to utilities/accessories.
+    [debian/patches/03_menu_entry.patch]
+  * Add CDBS' utils. [debian/rules]
+  * Clarify Copyright versus License. [debian/copyright]
+  * Don't run scrollkeeper. [debian/rules]
+
+ -- Loic Minier <lool@dooz.org>  Sat, 29 Oct 2005 20:44:07 +0200
+
+gnome-terminal (2.10.0-3) UNRELEASED; urgency=low
+
+  [ Josselin Mouette ]
+  * Don't overwrite DEB_CONFIGURE_SCRIPT_ENV completely.
+  Sebastien Bacher:
+  * debian/control.in:
+    - the data package replaces files.
+  * debian/patches/translation_warning.patch:
+    - fix a warning due to a translation issue (Closes: #315948).
+
+  [ Clément Stenac ]
+  * Clarify some manpage descriptions (Closes: #275888)
+  * Improve description (Closes:#264480)
+  * Add gconf dependency for gnome-terminal-data (Closes:#315171, #328295)
+
+  [ Loic Minier ]
+  * Fix by Tim Baverstock to stop ARGV processing when we find -e.
+    (Closes: #326825)
+
+ -- Loic Minier <lool@dooz.org>  Wed, 14 Sep 2005 20:20:21 +0200
+
+gnome-terminal (2.10.0-2) unstable; urgency=low
+
+  * Upload to unstable (GNOME Team upload).
+  * Updated 'debian/copyright'.
+  * Updated Depends / Build-Depends.
+  * Renamed debian files with pkg prefix, install menu file and bonobo
+    files in '/usr/lib' and some more '/usr/share/' subdirectories in
+    gnome-terminal-data.
+
+ -- Marc Dequènes (Duck) <Duck@DuckCorp.org>  Mon, 13 Jun 2005 23:25:32 +0200
+
+gnome-terminal (2.10.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Update debian/watch.
+  * Split out data files in a separate package.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 27 Apr 2005 19:51:37 +0200
+
+gnome-terminal (2.8.2-2) unstable; urgency=medium
+
+  * Pass --as-needed to LDFLAGS, to reduce dependencies.
+    + Incidentally removes the dependency upon libhowl0 (closes: #298850).
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 10 Mar 2005 22:50:38 +0100
+
+gnome-terminal (2.8.2-1) unstable; urgency=medium
+
+  * New upstream release (translation updates).
+  * [debian/patches/update-config-guess-sub.patch] Dropped; upstream now
+    includes a newer config.guess and config.sub than are available in 
+    autotools-dev.
+  * [debian/rules] Have binary-post-install clean up scrollkeeper's droppings.
+
+ -- J.H.M. Dassen (Ray) <jdassen@debian.org>  Sat,  1 Jan 2005 12:20:00 +0100
+
+gnome-terminal (2.8.0-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/watch:
+    - updated.
+
+ -- Sebastien Bacher <seb128@debian.org>  Fri, 19 Nov 2004 17:18:12 +0100
+
+gnome-terminal (2.8.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * [debian/patches/update-config-guess-sub.patch] Update config.{guess,sub}.
+  * Fixed in 2.7.2:
+    Recognize mailto: (with or without the mailto:...) and webdav: uris
+    (Closes: #230549)
+  * [debian/control.in] Dropped "libesd0-dev" build dependency, as the
+    gnome-terminal code does not depend on it directly (and the libraries it
+    depends on that do have a proper dependency on it).
+
+ -- J.H.M. Dassen (Ray) <jdassen@debian.org>  Sun, 17 Oct 2004 09:49:40 +0200
+
 gnome-terminal (2.7.3-1) experimental; urgency=low
 
   * GNOME Team upload.
