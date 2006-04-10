@@ -1,3019 +1,2636 @@
-# Gnome-terminal in Vietnamese.
-# Copyright (C) 2002 Free Software Foundation, Inc.
-# pclouds <pclouds@gmx.net>, 2002 - 2003.
-#
+# Vietnamese Translation for Gnome Terminal.
+# Copyright © 2002-2006 Gnome i18n Project for Vietnamese.
+# Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002 - 2004.
+# Clytie Siddall <clytie@riverland.net.au>, 2005, 2006.
+# 
 msgid ""
-msgstr ""
-"Project-Id-Version: Gnome-terminal VERSION\n"
+""
+msgstr "Project-Id-Version: gnome-terminal 2.12.0 Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-29 19:42-0300\n"
-"PO-Revision-Date: 2003-09-07 18:22+0700\n"
-"Last-Translator: pclouds <pclouds@gmx.net>\n"
-"Language-Team: Gnome-Vi <gnomevi-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2006-01-30 22:48+0100\n"
+"PO-Revision-Date: 2006-01-31 15:22+1030\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: LocFactoryEditor 1.6b34\n"
 
-#: gnome-terminal.desktop.in.in.h:1
-msgid "Command line"
-msgstr "Dòng lệnh"
-
-#: gnome-terminal.desktop.in.in.h:2 src/gnome-terminal.schemas.in.h:109
-#: src/terminal-accels.c:172 src/terminal-profile.c:276
-#: src/terminal-window.c:761 src/terminal.c:1172 src/terminal.c:1518
+#:../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:121
+#:../src/terminal-accels.c:181 ../src/terminal-profile.c:278
+#:../src/terminal-window.c:765 ../src/terminal.c:1206 ../src/terminal.c:1638
 msgid "Terminal"
-msgstr "Terminal"
+msgstr "Thiết bị cuối"
 
-#: src/eggcellrendererkeys.c:160 src/eggcellrendererkeys.c:161
+#:../gnome-terminal.desktop.in.in.h:2
+msgid "Use the command line"
+msgstr "Dùng dòng lệnh"
+
+#:../src/eggcellrendererkeys.c:160 ../src/eggcellrendererkeys.c:161
 msgid "Accelerator key"
-msgstr "Phím nóng"
+msgstr "Phím tắt"
 
-#: src/eggcellrendererkeys.c:170 src/eggcellrendererkeys.c:171
+#:../src/eggcellrendererkeys.c:170 ../src/eggcellrendererkeys.c:171
 msgid "Accelerator modifiers"
 msgstr "Phím bổ trợ"
 
-#: src/eggcellrendererkeys.c:180
+#:../src/eggcellrendererkeys.c:180
 msgid "Accelerator Mode"
-msgstr "Chế độ phím nóng"
+msgstr "Chế độ phím tắt"
 
-#: src/eggcellrendererkeys.c:181
+#:../src/eggcellrendererkeys.c:181
 msgid "The type of accelerator."
-msgstr "Kiểu phím nóng."
+msgstr "Kiểu phím tắt."
 
-#: src/eggcellrendererkeys.c:219 src/gnome-terminal.glade2.h:32
-#: src/terminal-accels.c:717
+#:../src/eggcellrendererkeys.c:219 ../src/terminal-accels.c:726
 msgid "Disabled"
-msgstr "Tắt"
+msgstr "Đã tắt"
 
-#: src/eggcellrendererkeys.c:330 src/eggcellrendererkeys.c:564
+#:../src/eggcellrendererkeys.c:330 ../src/eggcellrendererkeys.c:564
 msgid "Type a new accelerator, or press Backspace to clear"
-msgstr "Gõ một phím nóng, hoặc nhấn Backspace để xoá"
+msgstr "Hãy gõ một phím tất mới, hoặc bấm phím Backspace để xóa"
 
-#: src/eggcellrendererkeys.c:567
+#:../src/eggcellrendererkeys.c:567
 msgid "Type a new accelerator"
-msgstr "Gõ phím nóng mới"
+msgstr "Gõ phím tắt mới"
 
-#: src/encoding.c:55
+#:../src/encoding.c:55
 msgid "Current Locale"
-msgstr "Locale hiện thời"
+msgstr "Miền địa phương hiện thời"
 
-#: src/encoding.c:58 src/encoding.c:84 src/encoding.c:127 src/encoding.c:175
-#: src/encoding.c:199
+#:../src/encoding.c:58 ../src/encoding.c:84 ../src/encoding.c:127
+#:../src/encoding.c:175 ../src/encoding.c:199
 msgid "Western"
-msgstr "Western"
+msgstr "Phương Tây"
 
-#: src/encoding.c:60 src/encoding.c:129 src/encoding.c:155 src/encoding.c:195
+#:../src/encoding.c:60 ../src/encoding.c:129 ../src/encoding.c:155
+#:../src/encoding.c:195
 msgid "Central European"
-msgstr "Central European"
+msgstr "Âu Trung"
 
-#: src/encoding.c:62
+#:../src/encoding.c:62
 msgid "South European"
-msgstr "South European"
+msgstr "Nam Âu"
 
-#: src/encoding.c:64 src/encoding.c:80 src/encoding.c:209
+#:../src/encoding.c:64 ../src/encoding.c:80 ../src/encoding.c:209
 msgid "Baltic"
-msgstr "Baltic"
+msgstr "Ban-tích"
 
-#: src/encoding.c:66 src/encoding.c:131 src/encoding.c:144 src/encoding.c:148
-#: src/encoding.c:159 src/encoding.c:197
+#:../src/encoding.c:66 ../src/encoding.c:131 ../src/encoding.c:144
+#:../src/encoding.c:148 ../src/encoding.c:159 ../src/encoding.c:197
 msgid "Cyrillic"
-msgstr "Cyrillic"
+msgstr "Ki-rin"
 
-#: src/encoding.c:68 src/encoding.c:137 src/encoding.c:153 src/encoding.c:207
+#:../src/encoding.c:68 ../src/encoding.c:137 ../src/encoding.c:153
+#:../src/encoding.c:207
 msgid "Arabic"
-msgstr "Arabic"
+msgstr "Ả Rập"
 
-#: src/encoding.c:70 src/encoding.c:165 src/encoding.c:201
+#:../src/encoding.c:70 ../src/encoding.c:165 ../src/encoding.c:201
 msgid "Greek"
-msgstr "Greek"
+msgstr "Hy Lạp"
 
-#: src/encoding.c:72
+#:../src/encoding.c:72
 msgid "Hebrew Visual"
-msgstr "Hebrew Visual"
+msgstr "Do thái trực quan"
 
-#: src/encoding.c:74 src/encoding.c:135 src/encoding.c:171 src/encoding.c:205
+#:../src/encoding.c:74 ../src/encoding.c:135 ../src/encoding.c:171
+#:../src/encoding.c:205
 msgid "Hebrew"
-msgstr "Hebrew"
+msgstr "Do Thái"
 
-#: src/encoding.c:76 src/encoding.c:133 src/encoding.c:179 src/encoding.c:203
+#:../src/encoding.c:76 ../src/encoding.c:133 ../src/encoding.c:179
+#:../src/encoding.c:203
 msgid "Turkish"
-msgstr "Turkish"
+msgstr "Tiếng Thổ Nhĩ Kỳ"
 
-#: src/encoding.c:78
+#:../src/encoding.c:78
 msgid "Nordic"
-msgstr "Nordic"
+msgstr "Bắc Âu"
 
-#: src/encoding.c:82
+#:../src/encoding.c:82
 msgid "Celtic"
-msgstr "Celtic"
+msgstr "Xen-tơ"
 
-#: src/encoding.c:86 src/encoding.c:177
+#:../src/encoding.c:86 ../src/encoding.c:177
 msgid "Romanian"
-msgstr " roman"
+msgstr "Lỗ-má-ni"
 
-#: src/encoding.c:89 src/encoding.c:91 src/encoding.c:93 src/encoding.c:95
-#: src/encoding.c:97
+#:../src/encoding.c:89 ../src/encoding.c:91 ../src/encoding.c:93
+#:../src/encoding.c:95 ../src/encoding.c:97
 msgid "Unicode"
 msgstr "Unicode"
 
-#: src/encoding.c:100
+#:../src/encoding.c:100
 msgid "Armenian"
-msgstr "Armenian"
+msgstr "Ác-mê-ni"
 
-#: src/encoding.c:102 src/encoding.c:104 src/encoding.c:113
+#:../src/encoding.c:102 ../src/encoding.c:104 ../src/encoding.c:113
 msgid "Chinese Traditional"
-msgstr "Chinese Traditional"
+msgstr "Tiếng Hoa truyền thống"
 
-#: src/encoding.c:106
+#:../src/encoding.c:106
 msgid "Cyrillic/Russian"
-msgstr "Cyrillic/Russian"
+msgstr "Ki-rin/Nga"
 
-#: src/encoding.c:109 src/encoding.c:140 src/encoding.c:184
+#:../src/encoding.c:109 ../src/encoding.c:140 ../src/encoding.c:184
 msgid "Japanese"
-msgstr "Japanese"
+msgstr "Nhật Bản"
 
-#: src/encoding.c:111 src/encoding.c:142 src/encoding.c:146 src/encoding.c:190
+#:../src/encoding.c:111 ../src/encoding.c:142 ../src/encoding.c:146
+#:../src/encoding.c:190
 msgid "Korean"
-msgstr "Korean"
+msgstr "Hàn Quốc"
 
-#: src/encoding.c:116 src/encoding.c:118 src/encoding.c:120 src/encoding.c:124
+#:../src/encoding.c:116 ../src/encoding.c:118 ../src/encoding.c:120
+#:../src/encoding.c:124
 msgid "Chinese Simplified"
-msgstr "Chinese Simplified"
+msgstr "Tiếng Hoa phổ thông"
 
-#: src/encoding.c:122
+#:../src/encoding.c:122
 msgid "Georgian"
-msgstr "Georgian"
+msgstr "Gi-oa-gi-a"
 
-#: src/encoding.c:150 src/encoding.c:181
+#:../src/encoding.c:150 ../src/encoding.c:181
 msgid "Cyrillic/Ukrainian"
-msgstr "Cyrillic/Ukrainian"
+msgstr "Ki-rin/U-cợr-ainh"
 
-#: src/encoding.c:157
+#:../src/encoding.c:157
 msgid "Croatian"
-msgstr "Croatian"
+msgstr "Cợ-rô-a-ti-a"
 
-#: src/encoding.c:161
+#:../src/encoding.c:161
 msgid "Hindi"
-msgstr "Hindi"
+msgstr "Hin-đi"
 
-#: src/encoding.c:163
+#:../src/encoding.c:163
 msgid "Persian"
-msgstr ""
+msgstr "Ba Tư"
 
-#: src/encoding.c:167
+#:../src/encoding.c:167
 msgid "Gujarati"
-msgstr "Gujarati"
+msgstr "Gu-gia-ra-ti"
 
-#: src/encoding.c:169
+#:../src/encoding.c:169
 msgid "Gurmukhi"
-msgstr "Gurmukhi"
+msgstr "Gổ-mu-khi"
 
-#: src/encoding.c:173
+#:../src/encoding.c:173
 msgid "Icelandic"
-msgstr "Icelandic"
+msgstr "Băng-đảo"
 
-#: src/encoding.c:186 src/encoding.c:192 src/encoding.c:211
+#:../src/encoding.c:186 ../src/encoding.c:192 ../src/encoding.c:211
 msgid "Vietnamese"
 msgstr "Việt Nam"
 
-#: src/encoding.c:188
+#:../src/encoding.c:188
 msgid "Thai"
-msgstr "Thai"
+msgstr "Thái"
 
-#: src/encoding.c:377
+#:../src/encoding.c:377
 msgid "User Defined"
 msgstr "Người dùng xác định"
 
-#: src/encoding.c:735 src/encoding.c:799
+#:../src/encoding.c:735 ../src/encoding.c:799
 msgid "_Description"
-msgstr "Mô t_ả"
+msgstr "_Mô tả"
 
-#: src/encoding.c:744 src/encoding.c:808
+#:../src/encoding.c:744 ../src/encoding.c:808
 msgid "_Encoding"
-msgstr "Bảng mã"
+msgstr "Bảng _mã"
 
-#: src/encoding.c:977
-#, c-format
+#:../src/encoding.c:977
+#,c-format
 msgid ""
 "There was an error subscribing to notification of terminal encoding list "
 "changes. (%s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi danh sách mã hóa của terminal (%s)\n"
+msgstr "Lỗi đăng ký thông báo thay đổi danh sách mã hóa của thiết bị cuối (%s)\n"
 
-#: src/gnome-terminal.glade2.h:1
-msgid "*"
-msgstr "*"
+#:../src/gnome-terminal.glade2.h:1
+msgid "    "
+msgstr "    "
 
-#: src/gnome-terminal.glade2.h:2
+#:../src/gnome-terminal.glade2.h:2
 msgid "<b>Background</b>"
 msgstr "<b>Nền</b>"
 
-#: src/gnome-terminal.glade2.h:3
+#:../src/gnome-terminal.glade2.h:3
 msgid "<b>Command</b>"
 msgstr "<b>Lệnh</b>"
 
-#: src/gnome-terminal.glade2.h:4
+#:../src/gnome-terminal.glade2.h:4
 msgid "<b>Compatibility</b>"
 msgstr "<b>Tương thích</b>"
 
-#: src/gnome-terminal.glade2.h:5
+#:../src/gnome-terminal.glade2.h:5
 msgid "<b>Foreground and Background</b>"
 msgstr "<b>Tiền cảnh và Nền</b>"
 
-#: src/gnome-terminal.glade2.h:6
+#:../src/gnome-terminal.glade2.h:6
 msgid "<b>General</b>"
 msgstr "<b>Chung</b>"
 
-#: src/gnome-terminal.glade2.h:7
+#:../src/gnome-terminal.glade2.h:7
 msgid "<b>Palette</b>"
-msgstr "<b>Bảng</b>"
+msgstr "<b>Bảng chọn</b>"
 
-#: src/gnome-terminal.glade2.h:8
+#:../src/gnome-terminal.glade2.h:8
 msgid "<b>Scrolling</b>"
 msgstr "<b>Cuộn</b>"
 
-#: src/gnome-terminal.glade2.h:9
+#:../src/gnome-terminal.glade2.h:9
 msgid "<b>Title</b>"
 msgstr "<b>Tiêu đề</b>"
 
-#: src/gnome-terminal.glade2.h:10
-msgid "<big>S/Key Challenge Response</big>"
-msgstr ""
+#:../src/gnome-terminal.glade2.h:10
+msgid ""
+"<small><i><b>Note:</b> Terminal applications have these colors available to "
+"them.</i></small>"
+msgstr "<small><i><b>Note:</b> Terminal applications have these colors available to "
+"them.</i></small>"
 
-#: src/gnome-terminal.glade2.h:11
+#:../src/gnome-terminal.glade2.h:11
+msgid ""
+"<small><i><b>Note:</b> The command running inside the terminal may "
+"dynamically set a new title.</i></small>"
+msgstr "<small><i><b>Note:</b> The command running inside the terminal may "
+"dynamically set a new title.</i></small>"
+
+#:../src/gnome-terminal.glade2.h:12
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr "<small><i><b>Note:</b>Những tùy chọn này có thể làm cho một số ứng dụng hoạt "
+"động sai.\n"
+"Chúng có mặt ở đây chỉ để cho phép bạn làm việc với một số ứng dụng\n"
+"nhất định và hệ điều hành mà mong muốn một hành vi thiết bị cuối khác.</i></"
+"small>"
+
+#:../src/gnome-terminal.glade2.h:13
 msgid "<small><i>Maximum</i></small>"
 msgstr "<small><i>Tối đa</i></small>"
 
-#: src/gnome-terminal.glade2.h:12
+#:../src/gnome-terminal.glade2.h:14
 msgid "<small><i>None</i></small>"
-msgstr "<small><i>Không</i></small>"
+msgstr "<small><i>Không có</i></small>"
 
-#: src/gnome-terminal.glade2.h:13
-msgid "ASCII DEL"
-msgstr "ASCII DEL"
+#:../src/gnome-terminal.glade2.h:15
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr "ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
 
-#: src/gnome-terminal.glade2.h:14
+#:../src/gnome-terminal.glade2.h:18
 msgid "A_vailable encodings:"
-msgstr "Bộ mã hiện c_ó:"
+msgstr "Bảng mã _sẵn sàng:"
 
-#: src/gnome-terminal.glade2.h:15
-#, fuzzy
+#:../src/gnome-terminal.glade2.h:19
+msgid "Add encoding to menu."
+msgstr "Thêm bộ mã hóa vàoBộ _ký tự hiển thị trên trình đơn:"
+
+#:../src/gnome-terminal.glade2.h:20
 msgid "Add or Remove Terminal Encodings"
-msgstr "Mã hóa terminal"
+msgstr "Thêm hoặc Loại bỏ Bộ ký tự Thiết bị Cuối"
 
-#: src/gnome-terminal.glade2.h:16
+#:../src/gnome-terminal.glade2.h:21
+msgid "Background _image"
+msgstr "Ảnh _nền"
+
+#:../src/gnome-terminal.glade2.h:22
 msgid "Background image _scrolls"
 msgstr "_Cuộn ảnh nền"
 
-#: src/gnome-terminal.glade2.h:17
+#:../src/gnome-terminal.glade2.h:23
 msgid "Built-_in schemes:"
-msgstr "Scheme có sẵn:"
+msgstr "Lược đồ có _sẵn:"
 
-#: src/gnome-terminal.glade2.h:18
+#:../src/gnome-terminal.glade2.h:24
 msgid "Built-in _schemes:"
-msgstr "_Scheme có sẵn:"
+msgstr "_Lược đồ có sẵn:"
 
-#: src/gnome-terminal.glade2.h:19
-msgid "Built-in foreground and background color schemes:"
-msgstr ""
+#:../src/gnome-terminal.glade2.h:25
+msgid "C_reate"
+msgstr "_Tạo"
 
-#: src/gnome-terminal.glade2.h:20
-#, fuzzy
-msgid "Built-in palette schemes:"
-msgstr "_Scheme có sẵn:"
+#:../src/gnome-terminal.glade2.h:26
+msgid "Choose A Profile Icon"
+msgstr "Chọn biểu tượng hồ sơ"
 
-#: src/gnome-terminal.glade2.h:21
-msgid "Choose terminal background color"
-msgstr "Chọn màu nền terminal"
+#:../src/gnome-terminal.glade2.h:27
+msgid "Choose Terminal Background Color"
+msgstr "Chọn màu nền thiết bị cuối"
 
-#: src/gnome-terminal.glade2.h:22
-msgid "Choose terminal text color"
-msgstr "Chòn màu chữ terminal"
+#:../src/gnome-terminal.glade2.h:28
+msgid "Choose Terminal Text Color"
+msgstr "Chòn màu chữ thiết bị cuối"
 
-#: src/gnome-terminal.glade2.h:23
-#, fuzzy
-msgid "Color Selector"
-msgstr "Bộ chọn font"
-
-#: src/gnome-terminal.glade2.h:24
+#:../src/gnome-terminal.glade2.h:29
 msgid "Color _palette:"
-msgstr "_Bảng màu:"
+msgstr "_Bảng chọn màu:"
 
-#: src/gnome-terminal.glade2.h:25
+#:../src/gnome-terminal.glade2.h:30
 msgid "Colors"
 msgstr "Màu sắc"
 
-#: src/gnome-terminal.glade2.h:26
+#:../src/gnome-terminal.glade2.h:31
 msgid "Compatibility"
 msgstr "Tương thích"
 
-#: src/gnome-terminal.glade2.h:27
-msgid "Control-H"
-msgstr "Control-H"
-
-#: src/gnome-terminal.glade2.h:28
-#, fuzzy
+#:../src/gnome-terminal.glade2.h:32
 msgid "Cursor blin_ks"
 msgstr "_Nháy con trỏ"
 
-#: src/gnome-terminal.glade2.h:29
+#:../src/gnome-terminal.glade2.h:33
+msgid "Custom"
+msgstr "Tự chọn"
+
+#:../src/gnome-terminal.glade2.h:34
 msgid "Custom co_mmand:"
 msgstr "_Lệnh tự chọn:"
 
-#: src/gnome-terminal.glade2.h:30
+#:../src/gnome-terminal.glade2.h:35
 msgid "Disable all me_nu access keys (such as Alt+f to open File menu)"
-msgstr "Tắt mọi phím truy cập me_nu (nhu Alt+f để mở menu Tập tin)"
+msgstr "Tắt mọi phím truy cập trình đơ_n (nhu Alt+f để mở trình đơn Tập tin)"
 
-#: src/gnome-terminal.glade2.h:31
+#:../src/gnome-terminal.glade2.h:36
 msgid "Disable m_enu shortcut key (F10 by default)"
-msgstr "Tắt phím tắt m_enu (mặc định F10)"
+msgstr "Tắt phím tắt _trình đơn (mặc định F10)"
 
-#: src/gnome-terminal.glade2.h:33
+#:../src/gnome-terminal.glade2.h:37
 msgid "E_ncodings shown in menu:"
-msgstr "Bộ m_ã hiển thị trên menu:"
+msgstr "Bộ _ký tự hiển thị trên trình đơn:"
 
-#: src/gnome-terminal.glade2.h:34
+#:../src/gnome-terminal.glade2.h:38
 msgid "Effects"
 msgstr "Hiệu ứng"
 
-#: src/gnome-terminal.glade2.h:35
-msgid "Escape sequence"
-msgstr "Chuỗi escape"
+#:../src/gnome-terminal.glade2.h:39
+msgid ""
+"Exit the terminal\n"
+"Restart the command\n"
+"Hold the terminal open"
+msgstr "Thoát khỏi thiết bị cuối\n"
+"Khởi chạy lại lệnh\n"
+"Mở thiết bị liên miên"
 
-#: src/gnome-terminal.glade2.h:36
-msgid "Exit the terminal"
-msgstr "Thoát terminal"
-
-#: src/gnome-terminal.glade2.h:37
+#:../src/gnome-terminal.glade2.h:42
 msgid "General"
 msgstr "Chung"
 
-#: src/gnome-terminal.glade2.h:38
-msgid "Goes after initial title"
-msgstr "Sau tựa đề ban đầu"
+#:../src/gnome-terminal.glade2.h:43
+msgid "Image _file:"
+msgstr "Tập tin ả_nh:"
 
-#: src/gnome-terminal.glade2.h:39
-msgid "Goes before initial title"
-msgstr "Trước tựa đề ban đầu"
-
-#: src/gnome-terminal.glade2.h:40
-#, fuzzy
-msgid "Hold the terminal open"
-msgstr "Thoát terminal"
-
-#: src/gnome-terminal.glade2.h:41
+#:../src/gnome-terminal.glade2.h:44
 msgid "Initial _title:"
-msgstr "Tựa để _khởi động:"
+msgstr "Tựa để _ban đầu:"
 
-#: src/gnome-terminal.glade2.h:42
-msgid "Isn't displayed"
-msgstr "Chưa được hiển thị"
-
-#: src/gnome-terminal.glade2.h:43
-#, fuzzy
+#:../src/gnome-terminal.glade2.h:45
 msgid "Keyboard Shortcuts"
-msgstr "_Phím tắt..."
+msgstr "Phím tắt"
 
-#: src/gnome-terminal.glade2.h:44 src/terminal-accels.c:79
+#:../src/gnome-terminal.glade2.h:46 ../src/terminal-accels.c:82
 msgid "New Profile"
-msgstr "Profile mới"
+msgstr "Hồ sơ mới"
 
-#: src/gnome-terminal.glade2.h:45
-msgid "On the left side"
-msgstr "Bên trái"
+#:../src/gnome-terminal.glade2.h:47
+msgid ""
+"On the left side\n"
+"On the right side\n"
+"Disabled"
+msgstr "Bên trái\n"
+"Bên phải\n"
+"Bị tắt"
 
-#: src/gnome-terminal.glade2.h:46
-msgid "On the right side"
-msgstr "Bên phải"
-
-#: src/gnome-terminal.glade2.h:47
-msgid "Open a dialog to specify the color"
-msgstr ""
-
-#: src/gnome-terminal.glade2.h:48
-msgid "Palette entry 1"
-msgstr "Mục 1"
-
-#: src/gnome-terminal.glade2.h:49
-msgid "Palette entry 10"
-msgstr "Mục 10"
-
-#: src/gnome-terminal.glade2.h:50
-msgid "Palette entry 11"
-msgstr "Mục 11"
-
-#: src/gnome-terminal.glade2.h:51
-msgid "Palette entry 12"
-msgstr "Mục 12"
-
-#: src/gnome-terminal.glade2.h:52
-msgid "Palette entry 13"
-msgstr "Mục 13"
-
-#: src/gnome-terminal.glade2.h:53
-msgid "Palette entry 14"
-msgstr "Mục 14"
-
-#: src/gnome-terminal.glade2.h:54
-msgid "Palette entry 15"
-msgstr "Mục 15"
-
-#: src/gnome-terminal.glade2.h:55
-msgid "Palette entry 16"
-msgstr "Mục 16"
-
-#: src/gnome-terminal.glade2.h:56
-msgid "Palette entry 2"
-msgstr "Mục 2"
-
-#: src/gnome-terminal.glade2.h:57
-msgid "Palette entry 3"
-msgstr "Mục 3"
-
-#: src/gnome-terminal.glade2.h:58
-msgid "Palette entry 4"
-msgstr "Mục 4"
-
-#: src/gnome-terminal.glade2.h:59
-msgid "Palette entry 5"
-msgstr "Mục 5"
-
-#: src/gnome-terminal.glade2.h:60
-msgid "Palette entry 6"
-msgstr "Mục 6"
-
-#: src/gnome-terminal.glade2.h:61
-msgid "Palette entry 7"
-msgstr "Mục 7"
-
-#: src/gnome-terminal.glade2.h:62
-msgid "Palette entry 8"
-msgstr "Mục 8"
-
-#: src/gnome-terminal.glade2.h:63
-msgid "Palette entry 9"
-msgstr "Mục 9"
-
-#: src/gnome-terminal.glade2.h:64
+#:../src/gnome-terminal.glade2.h:50
 msgid "Password:"
 msgstr "Mật khẩu:"
 
-#: src/gnome-terminal.glade2.h:65
+#:../src/gnome-terminal.glade2.h:51
 msgid "Profile Editor"
-msgstr "Bộ biên soạn Profile"
+msgstr "Bộ sửa đổi Hồ sơ"
 
-#: src/gnome-terminal.glade2.h:66
+#:../src/gnome-terminal.glade2.h:52
 msgid "Profile _icon:"
-msgstr "_Biểu tượng profile:"
+msgstr "_Biểu tượng Hồ sơ:"
 
-#: src/gnome-terminal.glade2.h:67
+#:../src/gnome-terminal.glade2.h:53
 msgid "Profile _name:"
-msgstr "T_ên lý lịch:"
+msgstr "_Tên hồ sơ:"
 
-#: src/gnome-terminal.glade2.h:68
-msgid "Replaces initial title"
-msgstr "Thay thế tựa đề ban đầu"
+#:../src/gnome-terminal.glade2.h:54
+msgid "Remove encoding from menu."
+msgstr "Gỡ bỏ bộ mã hóa ra trình đơn"
 
-#: src/gnome-terminal.glade2.h:69
-msgid "Restart the command"
-msgstr "Khởi động lại lệnh"
+#:../src/gnome-terminal.glade2.h:55
+msgid ""
+"Replaces initial title\n"
+"Goes before initial title\n"
+"Goes after initial title\n"
+"Isn't displayed"
+msgstr "Thay thế tựa đề ban đầu\n"
+"Đi trước tựa đề ban đầu\n"
+"Đi sau tựa đề ban đầu\n"
+"Không hiển thị"
 
-#: src/gnome-terminal.glade2.h:70
+#:../src/gnome-terminal.glade2.h:59
 msgid "Ru_n a custom command instead of my shell"
-msgstr "_Chạy lệnh tự chọn thay vì shell của tôi"
+msgstr "_Chạy lệnh tự chọn thay vì hệ vỏ của tôi"
 
-#: src/gnome-terminal.glade2.h:71
+#:../src/gnome-terminal.glade2.h:60
+msgid "S/Key Challenge Response"
+msgstr "Yêu cầu/đáp ứng S/Key"
+
+#:../src/gnome-terminal.glade2.h:61
+msgid "S_hade transparent or image background:"
+msgstr "Đánh _bóng nền trong suốt hoặc anh nền:"
+
+#:../src/gnome-terminal.glade2.h:62
 msgid "Sc_roll on output"
 msgstr "Cuộn đầu _ra"
 
-#: src/gnome-terminal.glade2.h:72
+#:../src/gnome-terminal.glade2.h:63
 msgid "Scr_ollback:"
 msgstr "Cuộn n_gược:"
 
-#: src/gnome-terminal.glade2.h:73
+#:../src/gnome-terminal.glade2.h:64
 msgid "Scroll on _keystroke"
 msgstr "Cuộn khi nhấn _phím"
 
-#: src/gnome-terminal.glade2.h:74
+#:../src/gnome-terminal.glade2.h:65
 msgid "Scrolling"
 msgstr "Cuộn"
 
-#: src/gnome-terminal.glade2.h:75
+#:../src/gnome-terminal.glade2.h:66
+msgid "Select Background Image"
+msgstr "Chọn ảnh nền"
+
+#:../src/gnome-terminal.glade2.h:67
 msgid "Select-by-_word characters:"
-msgstr "Các ký tự chọn theo từ:"
+msgstr "Các ký tự chọn theo _từ:"
 
-#: src/gnome-terminal.glade2.h:76
+#:../src/gnome-terminal.glade2.h:68
 msgid "Show _menubar by default in new terminals"
-msgstr "Hiện thanh menu trong terminal mới (mặc định)"
+msgstr "Hiện _thanh trình đơn trong thiết bị cuối mới (mặc định)"
 
-#: src/gnome-terminal.glade2.h:77
+#:../src/gnome-terminal.glade2.h:69
 msgid "Terminal _bell"
-msgstr "Chu_ông Terminal"
+msgstr "Ch_uông thiết bị cuối"
 
-#: src/gnome-terminal.glade2.h:78
-msgid "Terminal applications have these colors available to them."
-msgstr "Ứng dụng terminal có thể dùng những màu này"
-
-#: src/gnome-terminal.glade2.h:79
-msgid ""
-"The command running inside the terminal may dynamically set a new title."
-msgstr "Lệnh chạy bên trong terminal có thể đặt tựa đề terminal"
-
-#: src/gnome-terminal.glade2.h:80
-msgid ""
-"These options may cause some applications to behave incorrectly.\n"
-"They are only here to allow you to work around certain applications\n"
-"and operating systems that expect different terminal behavior."
-msgstr ""
-"Những tùy chọn này có thể làm cho một số ứng dụng hoạt động sai.\n"
-"Chúng có mặt ở đây chỉ để cho phép bạn làm việc với một số ứng dụng\n"
-"nhất định và hệ điều hành mà mong muốn một hành vi terminal khác."
-
-#: src/gnome-terminal.glade2.h:83
+#:../src/gnome-terminal.glade2.h:70
 msgid "Title and Command"
 msgstr "Tựa đề và lệnh"
 
-#: src/gnome-terminal.glade2.h:84
+#:../src/gnome-terminal.glade2.h:71
 msgid "Use colors from s_ystem theme"
-msgstr "Dùng màu từ theme _hệ thống"
+msgstr "Dùng màu từ sắc thái _hệ thống"
 
-#: src/gnome-terminal.glade2.h:85
+#:../src/gnome-terminal.glade2.h:72
 msgid "When command _exits:"
 msgstr "Khi lệnh _kết thúc:"
 
-#: src/gnome-terminal.glade2.h:86
+#:../src/gnome-terminal.glade2.h:73
 msgid "_Allow bold text"
 msgstr "_Cho phép chữ đậm"
 
-#: src/gnome-terminal.glade2.h:87
+#:../src/gnome-terminal.glade2.h:74
 msgid "_Background color:"
 msgstr "Màu _nền:"
 
-#: src/gnome-terminal.glade2.h:88
-msgid "_Background image"
-msgstr "Ảnh _nền"
-
-#: src/gnome-terminal.glade2.h:89
+#:../src/gnome-terminal.glade2.h:75
 msgid "_Backspace key generates:"
 msgstr "Phím _Backspace sẽ tạo ra:"
 
-#: src/gnome-terminal.glade2.h:90
+#:../src/gnome-terminal.glade2.h:76
 msgid "_Base on:"
 msgstr "_Dựa trên:"
 
-#: src/gnome-terminal.glade2.h:91
-msgid "_Create"
-msgstr "_Tạo"
-
-#: src/gnome-terminal.glade2.h:92
+#:../src/gnome-terminal.glade2.h:77
 msgid "_Delete key generates:"
 msgstr "Phím _Delete sẽ tạo ra:"
 
-#: src/gnome-terminal.glade2.h:93
+#:../src/gnome-terminal.glade2.h:78
 msgid "_Dynamically-set title:"
 msgstr "_Tựa đề thiết lập động:"
 
-#: src/gnome-terminal.glade2.h:94
-msgid "_Image file:"
-msgstr "Tập tin ả_nh:"
-
-#: src/gnome-terminal.glade2.h:95
+#:../src/gnome-terminal.glade2.h:79
 msgid "_None (use solid color)"
 msgstr "_Không (dùng màu đặc)"
 
-#: src/gnome-terminal.glade2.h:96
+#:../src/gnome-terminal.glade2.h:80
 msgid "_Profile name:"
-msgstr "Tên _profile:"
+msgstr "_Tên Hồ sơ:"
 
-#: src/gnome-terminal.glade2.h:97
-msgid "_Reset compatibility options to defaults"
+#:../src/gnome-terminal.glade2.h:81
+msgid "_Reset Compatibility Options to Defaults"
 msgstr "Đặt _lại tùy chọn tương thích mặc định"
 
-#: src/gnome-terminal.glade2.h:98
+#:../src/gnome-terminal.glade2.h:82
 msgid "_Run command as a login shell"
-msgstr "_Chạy lệnh như ở shell đăng nhập"
+msgstr "_Chạy lệnh là hệ vỏ đăng nhập"
 
-#: src/gnome-terminal.glade2.h:99
+#:../src/gnome-terminal.glade2.h:83
 msgid "_Scrollbar is:"
 msgstr "Thanh cuộn _là:"
 
-#: src/gnome-terminal.glade2.h:100
-msgid "_Shade transparent or image background:"
-msgstr "Nền trong _suốt hoặc anh nền:"
-
-#: src/gnome-terminal.glade2.h:101
-msgid "_Shortcut Keys:"
+#:../src/gnome-terminal.glade2.h:84
+msgid "_Shortcut keys:"
 msgstr "_Phím tắt:"
 
-#: src/gnome-terminal.glade2.h:102
+#:../src/gnome-terminal.glade2.h:85
 msgid "_Text color:"
 msgstr "Màu _chữ:"
 
-#: src/gnome-terminal.glade2.h:103
+#:../src/gnome-terminal.glade2.h:86
 msgid "_Transparent background"
 msgstr "Nền trong _suốt"
 
-#: src/gnome-terminal.glade2.h:104
-#, fuzzy
+#:../src/gnome-terminal.glade2.h:87
 msgid "_Update login records when command is launched"
-msgstr "_Cập nhật utmp/wtmp khi lệnh được thực hiện"
+msgstr "_Cập nhật mục ghi đăng nhập khi lệnh được khởi chạy"
 
-#: src/gnome-terminal.glade2.h:105
+#:../src/gnome-terminal.glade2.h:88
 msgid "_Use the system terminal font"
-msgstr "_Dùng font terminal hệ thống"
+msgstr "_Dùng phông thiết bị cuối hệ thống"
 
-#: src/gnome-terminal.glade2.h:106
-msgid "_kilobytes"
-msgstr "_kilobyte"
-
-#: src/gnome-terminal.glade2.h:107
+#:../src/gnome-terminal.glade2.h:89
 msgid "_lines"
 msgstr "_dòng"
 
-#: src/gnome-terminal.glade2.h:108
-msgid "kilobytes"
-msgstr "kilobyte"
+#:../src/gnome-terminal.glade2.h:90
+msgid "kilo_bytes"
+msgstr "kilo_byte"
 
-#: src/gnome-terminal.schemas.in.h:1
+#:../src/gnome-terminal.schemas.in.h:1
 msgid ""
 "A subset of possible encodings are presented in the Encoding submenu. This "
 "is a list of encodings to appear there. The special encoding name \"current"
 "\" means to display the encoding of the current locale."
-msgstr ""
-"Tập con các bảng mã được hiển thị trong menu con Bảng mã. Đây là danh sách "
-"các bảng mã đó. Tên đặc biệt \"current\" nghĩa là bảng mã của locale hiện "
-"thời."
+msgstr "Tập con các bộ ký tự co thể được hiển thị trong trình đơn con Bộ ký tự. Đây "
+"là danh sách các bộ ký tự đó. Tên đặc biệt « hiện thời » nghĩa là bảng mã "
+"của miền địa phương hiện thời."
 
-#: src/gnome-terminal.schemas.in.h:2
+#:../src/gnome-terminal.schemas.in.h:2
 msgid ""
 "A value between 0.0 and 1.0 indicating how much to darken the background "
 "image. 0.0 means no darkness, 1.0 means fully dark. In the current "
 "implementation, there are only two levels of darkness possible, so the "
 "setting behaves as a boolean, where 0.0 disables the darkening effect."
-msgstr ""
-"Giá trị nằm giữa 0.0 và 1.0 chỉ thị độ tối của ảnh nền. 0.0 nghĩa là hoàn "
+msgstr "Giá trị nằm giữa 0.0 và 1.0 chỉ thị độ tối của ảnh nền. 0.0 nghĩa là hoàn "
 "toàn không tối. 1.0 nghĩa là tối thui. Trong bản cài đặt này, chỉ có hai cấp "
-"đó có thể được dùng, vì thế thiết lập này giống như là boolean, 0.0 là tắt "
-"hiệu ứng tối."
+"đó có thể được dùng, vì thế thiết lập này giống như là boolean (đúng hay "
+"sai), 0.0 là tắt hiệu ứng tối."
 
-#: src/gnome-terminal.schemas.in.h:3
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:3
+msgid ""
+"Accelerator key to detach current tab. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keybinding for this action."
+msgstr "Phím tắt để gỡ ra thanh hiện có. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã "
+"tắt), nghĩa là không có phím tổ hợp cho hành động này."
+
+#:../src/gnome-terminal.schemas.in.h:4
+msgid ""
+"Accelerator key to move the current tab to the left. Expressed as a string "
+"in the same format used for GTK+ resource files. If you set the option to "
+"the special string \"disabled\", then there will be no keybinding for this "
+"action."
+msgstr "Phím tắt để chuyển thanh hiện thời sang bên trái. Dùng dạng chuỗi có cùng "
+"một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi "
+"đặc biệt « disabled » (bị tắt), nghĩa là không có phím tổ hợp cho hành động "
+"này."
+
+#:../src/gnome-terminal.schemas.in.h:5
+msgid ""
+"Accelerator key to move the current tab to the right. Expressed as a string "
+"in the same format used for GTK+ resource files. If you set the option to "
+"the special string \"disabled\", then there will be no keybinding for this "
+"action."
+msgstr "Phím tắt để chuyển thanh hiện thời sang phải. Dùng dạng chuỗi có cùng một "
+"khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi đặc "
+"biệt « disabled » (bị tắt), nghĩa là không có phím tổ hợp cho hành động này."
+
+#:../src/gnome-terminal.schemas.in.h:6
+msgid "Accelerator to detach current tab."
+msgstr "Phím tắt để gỡ ra thanh hiện có."
+
+#:../src/gnome-terminal.schemas.in.h:7
+msgid "Accelerator to move the current tab to the left."
+msgstr "Phím tắt có chuyển thanh hiện thời sang bên trái."
+
+#:../src/gnome-terminal.schemas.in.h:8
+msgid "Accelerator to move the current tab to the right."
+msgstr "Phím tắt có chuyển thanh hiện thời sang bên phải."
+
+#:../src/gnome-terminal.schemas.in.h:9
 msgid "An Pango font name. Examples are \"Sans 12\" or \"Monospace Bold 14\"."
-msgstr "Tên font Pango. Ví dụ \"Sans 12\" hoặc \"Monospace Bold 14\""
+msgstr "Tên phông chữ Pango. Ví dụ « Sans 12 » (phông chữ không chân có cỡ 12 điểm) "
+"hoặc « Monospace Bold 14 » (phông chữ đơn cách in đậm có cỡ 14 điểm)."
 
-#: src/gnome-terminal.schemas.in.h:4
+#:../src/gnome-terminal.schemas.in.h:10
 msgid ""
 "An X font name. See the X man page (type \"man X\") for more details on the "
 "format of X font names."
-msgstr ""
-"Tên font X. Xem man page X (gõ \"man X\") để biết chi tiết về dạng thức tên "
-"font."
+msgstr "Tên phông chữ X. Hãy xem trang hướng dẫn X (gõ « man X ») để biết chi tiết "
+"về dạng thức tên phông chữ X."
 
-#: src/gnome-terminal.schemas.in.h:5
+#:../src/gnome-terminal.schemas.in.h:11
 msgid "Background image"
 msgstr "Ảnh nền"
 
-#: src/gnome-terminal.schemas.in.h:6
+#:../src/gnome-terminal.schemas.in.h:12
 msgid "Background type"
 msgstr "Kiểu nền"
 
-#: src/gnome-terminal.schemas.in.h:7
+#:../src/gnome-terminal.schemas.in.h:13
 msgid "Characters that are considered \"part of a word\""
-msgstr "Ký tự được coi như là \"một phần của một từ\""
+msgstr "Ký tự được coi như là « phần của một từ »"
 
-#: src/gnome-terminal.schemas.in.h:8
+#:../src/gnome-terminal.schemas.in.h:14
 msgid "Custom command to use instead of the shell"
-msgstr "Chạy lệnh tự chọn thay vì shell"
+msgstr "Chạy lệnh tự chọn để dùng thay vì hệ vo"
 
-#: src/gnome-terminal.schemas.in.h:9
+#:../src/gnome-terminal.schemas.in.h:15
+msgid "Default"
+msgstr "Mặc định"
+
+#:../src/gnome-terminal.schemas.in.h:16
 msgid "Default color of terminal background"
-msgstr "Màu màu nền terminal mặc định"
+msgstr "Màu màu nền thiết bị cuối mặc định"
 
-#: src/gnome-terminal.schemas.in.h:10
+#:../src/gnome-terminal.schemas.in.h:17
 msgid ""
 "Default color of terminal background, as a color specification (can be HTML-"
 "style hex digits, or a color name such as \"red\")."
-msgstr ""
-"Màu nền mặc định của terminal, có thể là dạng hex của HTML, hoặc tên màu như "
-"\"red\"."
+msgstr "Màu nền mặc định của thiết bị cuối, có thể là dạng hệ thập lục phân của "
+"HTML, hoặc tên màu như « red » (đỏ)."
 
-#: src/gnome-terminal.schemas.in.h:11
+#:../src/gnome-terminal.schemas.in.h:18
 msgid "Default color of text in the terminal"
-msgstr "Màu văn bản mặc định trong terminal"
+msgstr "Màu chữ mặc định trong thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:12
+#:../src/gnome-terminal.schemas.in.h:19
 msgid ""
 "Default color of text in the terminal, as a color specification (can be HTML-"
 "style hex digits, or a color name such as \"red\")."
-msgstr ""
-"Màu mặc định cho văn bản trong terminal, có thể là dạng hex của HTML, hoặc "
-"tên màu như \"red\"."
+msgstr "Màu mặc định cho văn bản trong thiết bị cuối, có thể là dạng hệ thập lục "
+"phân của HTML, hoặc tên màu như «red» (đỏ)."
 
-#: src/gnome-terminal.schemas.in.h:13
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:20
 msgid "Effect of the Backspace key"
-msgstr "Tác động của phím Backspace."
+msgstr "Tác động của phím Backspace"
 
-#: src/gnome-terminal.schemas.in.h:14
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:21
 msgid "Effect of the Delete key"
-msgstr "Tác động của phím Delete."
+msgstr "Tác động của phím Delete"
 
-#: src/gnome-terminal.schemas.in.h:15
+#:../src/gnome-terminal.schemas.in.h:22
 msgid "Filename of a background image."
 msgstr "Tên tập tin ảnh nền."
 
-#: src/gnome-terminal.schemas.in.h:16
+#:../src/gnome-terminal.schemas.in.h:23
 msgid "Font"
-msgstr "Font"
+msgstr "Phông chữ"
 
-#: src/gnome-terminal.schemas.in.h:17
-#, fuzzy
+#.Translators: S/Key is the name of an application, so it should
+#.not be translated.
+#:../src/gnome-terminal.schemas.in.h:26
+msgid "Highlight S/Key challenges"
+msgstr "Nổi bật các sự thách thức S/Key"
+
+#:../src/gnome-terminal.schemas.in.h:27
 msgid "How much to darken the background image"
-msgstr "Ảnh nền tối cỡ nào."
+msgstr "Ảnh nền tối cỡ nào"
 
-#: src/gnome-terminal.schemas.in.h:18
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:28
 msgid "Human-readable name of the profile"
-msgstr "Tên dễ đọc của profile."
+msgstr "Tên hồ sơ mà người co đọc được."
 
-#: src/gnome-terminal.schemas.in.h:19
+#:../src/gnome-terminal.schemas.in.h:29
 msgid "Human-readable name of the profile."
-msgstr "Tên dễ đọc của profile."
+msgstr "Tên hồ sơ mà người co đọc được."
 
-#: src/gnome-terminal.schemas.in.h:20
+#:../src/gnome-terminal.schemas.in.h:30
 msgid "Icon for terminal window"
-msgstr "Biểu tượng cửa sổ terminal"
+msgstr "Biểu tượng cho cửa sổ thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:21
+#:../src/gnome-terminal.schemas.in.h:31
 msgid "Icon to use for tabs/windows containing this profile."
-msgstr "Biểu tượng dùng cho tab/cửa sổ dùng profile này."
+msgstr "Biểu tượng dùng cho thanh/cửa sổ chứa hồ sơ này."
 
-#: src/gnome-terminal.schemas.in.h:22
+#:../src/gnome-terminal.schemas.in.h:32
 msgid ""
 "If the application in the terminal sets the title (most typically people "
 "have their shell set up to do this), the dynamically-set title can erase the "
 "configured title, go before it, go after it, or replace it. The possible "
 "values are \"replace\", \"before\", \"after\", and \"ignore\"."
-msgstr ""
-"Nếu ứng dụng trong terminal đặt tựa đề (hầu hết người dùng thiết lập shell "
-"của họ để làm như thế), tựa đề đó có thể xóa tựa đề được cấu hình, đặt trước "
-"tựa đề cấu hình, đặt sau, hoặc thay thế tựa đề cấu hình. Giá trị có thể là "
-"\"replace\", \"before\", \"after\", và \"ignore\"."
+msgstr "Nếu ứng dụng trong thiết bị cuối đặt tựa đề (hầu hết người dùng thiết lập hệ "
+"vỏ của họ để làm như thế), tựa đề đã đặt động đó có thể xóa bỏ tựa đề được "
+"cấu hình, đặt trước tựa đề cấu hình, đặt sau, hoặc thay thế tựa đề cấu hình. "
+"Giá trị có thể là  « replace » (thay thế), « before » (trước), « after "
+"» (sau), và « ignore » (bỏ qua)."
 
-#: src/gnome-terminal.schemas.in.h:23
+#:../src/gnome-terminal.schemas.in.h:33
 msgid "If true, allow applications in the terminal to make text boldface."
-msgstr "Nếu đúng, cho phép ứng dụng trong terminal tạo chữ đậm"
+msgstr "Nếu đúng, cho phép ứng dụng trong thiết bị cuối tạo chữ đậm."
 
-#: src/gnome-terminal.schemas.in.h:24
+#:../src/gnome-terminal.schemas.in.h:34
 msgid ""
 "If true, don't make a noise when applications send the escape sequence for "
 "the terminal bell."
-msgstr ""
-"Nếu đúng, không làm ồn khi ứng dụng gửi chuỗi escape để terminal kêu bíp."
+msgstr "Nếu đúng, đừng làm ồn khi ứng dụng gửi chuỗi thoát để thiết bị cuối rung "
+"chuông."
 
-#: src/gnome-terminal.schemas.in.h:25
+#:../src/gnome-terminal.schemas.in.h:35
+msgid ""
+"If true, font anti-aliasing will be disabled when running without the X "
+"RENDER extension, which gives a considerable performance improvement in "
+"these situations."
+msgstr "Nếu đúng, khả năng làm trơn phông chữ sẽ bị tắt khi chạy không có phần mở "
+"rộng RENDER (vẽ), mà rất tăng tốc độ chạy trong những trường hợp này."
+
+#:../src/gnome-terminal.schemas.in.h:36
 msgid "If true, pressing a key jumps the scrollbar to the bottom."
-msgstr "Nếu đúng, terminal sẽ cuộn đến đáy nhấn phím."
+msgstr "Nếu đúng, thiết bị cuối sẽ cuộn đến đáy nhấn phím."
 
-#: src/gnome-terminal.schemas.in.h:26
+#:../src/gnome-terminal.schemas.in.h:37
 msgid ""
 "If true, scroll the background image with the foreground text; if false, "
 "keep the image in a fixed position and scroll the text above it."
-msgstr ""
-"Nếu đúng, sẽ cuộn ảnh nền với văn bản. Nếu sai, giữ nguyên vị trí ảnh nền "
-"khi cuộn văn bản."
+msgstr "Nếu đúng, sẽ cuộn ảnh nền với văn bản. Nếu sai, giữ nguyên vị trí ảnh nền "
+"khi cuộn văn bản ở trên nó."
 
-#: src/gnome-terminal.schemas.in.h:27
+#:../src/gnome-terminal.schemas.in.h:38
 msgid ""
 "If true, the command inside the terminal will be launched as a login shell. "
 "(argv[0] will have a hyphen in front of it.)"
-msgstr ""
-"Nếu đúng, lệnh trong terminal sẽ được thực hiện như login shell. (argv[0] sẽ "
-"chứa dấu - ở đằng trước)"
+msgstr "Nếu đúng, lệnh trong thiết bị cuối sẽ được thực hiện như hệ vỏ đăng nhập. « "
+"argv[0] » sẽ chứa dấu trừ ở đằng trước."
 
-#: src/gnome-terminal.schemas.in.h:28
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:39
 msgid ""
 "If true, the system login records utmp and wtmp will be updated when the "
 "command inside the terminal is launched."
-msgstr ""
-"Nếu đúng, utmp/wtmp sẽ được cập nhật mỗi khi thực hiện lệnh trong terminal."
+msgstr "Nếu đúng, mục ghi đăng nhập hệ thống « utmp/wtmp » sẽ được cập nhật mỗi khi "
+"thực hiện lệnh trong thiết bị cuối."
 
-#: src/gnome-terminal.schemas.in.h:29
+#:../src/gnome-terminal.schemas.in.h:40
 msgid ""
 "If true, the terminal will use the desktop-global standard font if it's "
 "monospace (and the most similar font it can come up with otherwise)."
-msgstr ""
-"Nếu đúng, terminal sẽ dùng font chuẩn của desktop nếu nó là font monospace "
-"(và font giống nhất nó có thể tìm được trong trường hợp ngược lại)"
+msgstr "Nếu đúng, thiết bị cuối sẽ dùng phông chữ chuẩn của toàn màn hình nền nếu nó "
+"là phông chữ cách đơn (và phông chữ giống nhất nó có thể tìm được trong "
+"trường hợp ngược lại)."
 
-#: src/gnome-terminal.schemas.in.h:30
+#:../src/gnome-terminal.schemas.in.h:41
 msgid ""
 "If true, the theme color scheme used for text entry boxes will be used for "
 "the terminal, instead of colors provided by the user."
-msgstr ""
-"Nếu đúng, scheme màu theme được dùng cho ô nhập văn bản sẽ được dùng cho "
-"terminal, thay vì màu của người dùng."
+msgstr "Nếu đúng, lược đồ màu sắc thái được dùng cho ô nhập văn bản sẽ được dùng cho "
+"thiết bị cuối, thay vì màu của người dùng."
 
-#: src/gnome-terminal.schemas.in.h:31
+#:../src/gnome-terminal.schemas.in.h:42
 msgid ""
 "If true, the value of the custom_command setting will be used in place of "
 "running a shell."
-msgstr ""
-"Nếu đúng, giá trị của thiết lập custom_command sẽ được dùng thay vì chạy "
-"shell."
+msgstr "Nếu đúng, giá trị của thiết lập « custom_command » (lệnh tự chọn) sẽ được "
+"dùng thay vì chạy hệ vỏ."
 
-#: src/gnome-terminal.schemas.in.h:32
+#:../src/gnome-terminal.schemas.in.h:43
 msgid ""
 "If true, whenever there's new output the terminal will scroll to the bottom."
-msgstr ""
-"Nếu đúng, bất cứ khi nào có dữ liệu mới xuất ra terminal, nó sẽ được cuộn "
-"xuống đáy."
+msgstr "Nếu đúng, bất cứ khi nào có dữ liệu mới xuất ra thiết bị cuối, nó sẽ được "
+"cuộn xuống đáy."
 
-#: src/gnome-terminal.schemas.in.h:33
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:44
 msgid ""
 "Keyboard shortcut key for bringing up the dialog for profile creation. "
 "Expressed as a string in the same format used for GTK+ resource files. If "
 "you set the option to the special string \"disabled\", then there will be no "
 "keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để hiện hộp thoại tạo profile. Dùng dạng chuỗi như dạng thư trong "
-"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa "
-"là không có phím tắt."
+msgstr "Phím tắt để hiện hộp thoại tạo hồ sơ. Dùng dạng chuỗi có cùng một khuôn dạng "
+"với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là sẽ không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:34
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:45
 msgid ""
 "Keyboard shortcut key for closing a tab. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để đóng tab. Dùng dạng chuỗi như dạng thư trong tập tin tài nguyên "
-"GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có phím tắt."
+msgstr "Phím tắt để đóng tab. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài "
+"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là "
+"không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:35
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:46
 msgid ""
 "Keyboard shortcut key for closing a window. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để đóng cửa sổ. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để đóng cửa sổ. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin "
+"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa "
+"là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:36
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:47
 msgid ""
 "Keyboard shortcut key for copying selected text to the clipboard. Expressed "
 "as a string in the same format used for GTK+ resource files. If you set the "
 "option to the special string \"disabled\", then there will be no keyboard "
 "shortcut for this action."
-msgstr ""
-"Phím tắt để sao chép đoạn văn bản được chọn vào clipboard. Dùng dạng chuỗi "
-"như dạng thư trong tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi "
-"\"disabled\", nghĩa là không có phím tắt."
+msgstr "Phím tắt để sao chép đoạn văn bản được chọn vào khay. Dùng dạng chuỗi có "
+"cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là "
+"chuỗi « disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:37
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:48
 msgid ""
 "Keyboard shortcut key for launching help. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để hiện trợ giúp. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để hiện trợ giúp. Dùng dạng chuỗi có cùng một khuôn dạng với tập "
+"tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), "
+"nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:38
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:49
 msgid ""
 "Keyboard shortcut key for making font larger. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để dùng font cỡ lớn. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để dùng phông lớn hơn. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:39
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:50
 msgid ""
 "Keyboard shortcut key for making font smaller. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để dùng font cỡ nhỏ. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để dùng phông nhỏ hơn. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:40
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:51
 msgid ""
 "Keyboard shortcut key for making font the normal size. Expressed as a string "
 "in the same format used for GTK+ resource files. If you set the option to "
 "the special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để dùng font cỡ bình thường. Dùng dạng chuỗi như dạng thư trong tập "
-"tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là "
-"không có phím tắt."
+msgstr "Phím tắt để dùng phông cỡ bình thường. Dùng dạng chuỗi có cùng một khuôn "
+"dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled "
+"» (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:41
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:52
 msgid ""
 "Keyboard shortcut key for opening a new tab. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để mở tab mới. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để mở tab mới. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin "
+"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa "
+"là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:42
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:53
 msgid ""
 "Keyboard shortcut key for opening a new window. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để mở cửa sổ mới. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để mở cửa sổ mới. Dùng dạng chuỗi có cùng một khuôn dạng với tập "
+"tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), "
+"nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:43
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:54
 msgid ""
 "Keyboard shortcut key for pasting the contents of the clipboard into the "
 "terminal. Expressed as a string in the same format used for GTK+ resource "
 "files. If you set the option to the special string \"disabled\", then there "
 "will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để dán văn bản được chọn từ clipboard. Dùng dạng chuỗi như dạng thư "
-"trong tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", "
-"nghĩa là không có phím tắt."
+msgstr "Phím tắt để dán văn bản được chọn từ khay. Dùng dạng chuỗi có cùng một khuôn "
+"dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled "
+"» (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:44
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:55
 msgid ""
 "Keyboard shortcut key for switch to tab 1. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 1. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 1. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:45
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:56
 msgid ""
 "Keyboard shortcut key for switch to tab 10. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 10. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 10. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:46
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:57
 msgid ""
 "Keyboard shortcut key for switch to tab 11. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 11. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 11. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:47
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:58
 msgid ""
 "Keyboard shortcut key for switch to tab 12. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 12. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 12. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:48
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:59
 msgid ""
 "Keyboard shortcut key for switch to tab 2. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 2. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 2. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:49
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:60
 msgid ""
 "Keyboard shortcut key for switch to tab 3. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 3. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 3. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:50
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:61
 msgid ""
 "Keyboard shortcut key for switch to tab 4. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 4. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 4. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:51
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:62
 msgid ""
 "Keyboard shortcut key for switch to tab 5. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 5. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 5. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:52
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:63
 msgid ""
 "Keyboard shortcut key for switch to tab 6. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 6. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 6. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:53
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:64
 msgid ""
 "Keyboard shortcut key for switch to tab 7. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 7. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 7. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:54
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:65
 msgid ""
 "Keyboard shortcut key for switch to tab 8. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 8. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 8. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:55
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:66
 msgid ""
 "Keyboard shortcut key for switch to tab 9. Expressed as a string in the same "
 "format used for GTK+ resource files. If you set the option to the special "
 "string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr ""
-"Phím tắt để chuyển sang tab 9. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh 9. Dùng dạng chuỗi có cùng một khuôn dạng với "
+"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:56
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:67
 msgid ""
 "Keyboard shortcut key for toggling full screen mode. Expressed as a string "
 "in the same format used for GTK+ resource files. If you set the option to "
 "the special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để bật tắt chế độ toàn màn hình. Dùng dạng chuỗi như dạng thư trong "
-"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa "
-"là không có phím tắt."
+msgstr "Phím tắt để bật tắt chế độ toàn màn hình. Dùng dạng chuỗi có cùng một khuôn "
+"dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled "
+"» (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:57
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:68
 msgid ""
 "Keyboard shortcut key to reset and clear the terminal. Expressed as a string "
 "in the same format used for GTK+ resource files. If you set the option to "
 "the special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để đặt lại và xóa terminal. Dùng dạng chuỗi như dạng thư trong tập "
-"tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là "
-"không có phím tắt."
+msgstr "Phím tắt để đặt lại và xóa thiết bị cuối. Dùng dạng chuỗi có cùng một khuôn "
+"dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled "
+"» (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:58
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:69
 msgid ""
 "Keyboard shortcut key to reset the terminal. Expressed as a string in the "
 "same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để đặt lại terminal. Dùng dạng chuỗi như dạng thư trong tập tin tài "
-"nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không có "
-"phím tắt."
+msgstr "Phím tắt để đặt lại thiết bị cuối. Dùng dạng chuỗi có cùng một khuôn dạng "
+"với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:59
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:70
 msgid ""
 "Keyboard shortcut key to set the terminal title. Expressed as a string in "
 "the same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để đặt tựa đề terminal. Dùng dạng chuỗi như dạng thư trong tập tin "
-"tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là không "
-"có phím tắt."
+msgstr "Phím tắt để đặt tựa đề thiết bị cuối. Dùng dạng chuỗi có cùng một khuôn dạng "
+"với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (bị "
+"tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:60
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:71
 msgid ""
 "Keyboard shortcut key to switch to the next tab. Expressed as a string in "
 "the same format used for GTK+ resource files. If you set the option to the "
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để chuyển sang tab kế tiếp. Dùng dạng chuỗi như dạng thư trong tập "
-"tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là "
-"không có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh kế tiếp. Dùng dạng chuỗi có cùng một khuôn "
+"dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled "
+"» (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:61
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:72
 msgid ""
 "Keyboard shortcut key to switch to the previous tab. Expressed as a string "
 "in the same format used for GTK+ resource files. If you set the option to "
 "the special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
-msgstr ""
-"Phím tắt để chuyển sang tab trước đó. Dùng dạng chuỗi như dạng thư trong tập "
-"tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa là "
-"không có phím tắt."
+msgstr "Phím tắt để chuyển sang thanh trước đó. Dùng dạng chuỗi có cùng một khuôn "
+"dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled "
+"» (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:62
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:73
 msgid ""
 "Keyboard shortcut key to toggle the visibility of the menubar. Expressed as "
 "a string in the same format used for GTK+ resource files. If you set the "
 "option to the special string \"disabled\", then there will be no keyboard "
 "shortcut for this action."
-msgstr ""
-"Phím tắt để bật tắt hiển thị thanh menu. Dùng dạng chuỗi như dạng thư trong "
-"tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi \"disabled\", nghĩa "
-"là không có phím tắt."
+msgstr "Phím tắt để bật tắt hiển thị thanh trình đơn. Dùng dạng chuỗi có cùng một "
+"khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « "
+"disabled » (đã tắt), nghĩa là không có phím tắt cho hành động này."
 
-#: src/gnome-terminal.schemas.in.h:63
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:74
 msgid "Keyboard shortcut to close a tab"
-msgstr "Trình biên soạn phím tắt"
+msgstr "Phím tắt Đóng thanh"
 
-#: src/gnome-terminal.schemas.in.h:64
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:75
 msgid "Keyboard shortcut to close a window"
-msgstr "Phím nóng để đóng cửa sổ."
+msgstr "Phím tắt Đóng cửa sổ"
 
-#: src/gnome-terminal.schemas.in.h:65
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:76
 msgid "Keyboard shortcut to copy text"
-msgstr "Trình biên soạn phím tắt"
+msgstr "Phím tắt Chép văn bản"
 
-#: src/gnome-terminal.schemas.in.h:66
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:77
 msgid "Keyboard shortcut to create a new profile"
-msgstr "Phím nóng để tạo profile mới."
+msgstr "Phím tắt Tạo hồ sơ mới"
 
-#: src/gnome-terminal.schemas.in.h:67
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:78
 msgid "Keyboard shortcut to launch help"
-msgstr "Trình biên soạn phím tắt"
+msgstr "Phím tắt Hiện trợ giúp"
 
-#: src/gnome-terminal.schemas.in.h:68
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:79
 msgid "Keyboard shortcut to make font larger"
-msgstr "Phím nóng để tăng cỡ font."
+msgstr "Phím tắt Dùng phông to hơn"
 
-#: src/gnome-terminal.schemas.in.h:69
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:80
 msgid "Keyboard shortcut to make font normal-size"
-msgstr "Phím nóng để đặt cỡ font bình thường."
+msgstr "Phím tắt Dùng phông cỡ thường"
 
-#: src/gnome-terminal.schemas.in.h:70
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:81
 msgid "Keyboard shortcut to make font smaller"
-msgstr "Phím nóng để giảm cỡ font."
+msgstr "Phím tắt Dùng phông nhỏ hơn"
 
-#: src/gnome-terminal.schemas.in.h:71
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:82
 msgid "Keyboard shortcut to open a new tab"
-msgstr "Phím nóng để mở tab mới."
+msgstr "Phím tắt Mở thanh mới"
 
-#: src/gnome-terminal.schemas.in.h:72
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:83
 msgid "Keyboard shortcut to open a new window"
-msgstr "Phím nóng để mở cửa sổ mới."
+msgstr "Phím tắt Mở cửa sổ mới"
 
-#: src/gnome-terminal.schemas.in.h:73
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:84
 msgid "Keyboard shortcut to paste text"
-msgstr "Trình biên soạn phím tắt"
+msgstr "Phím tắt Dán văn bản"
 
-#: src/gnome-terminal.schemas.in.h:74
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:85
 msgid "Keyboard shortcut to reset and clear the terminal"
-msgstr "Phím nóng để reset và xóa terminal."
+msgstr "Phím tắt Đặt lại và xoá thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:75
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:86
 msgid "Keyboard shortcut to reset the terminal"
-msgstr "Phím nóng để reset terminal."
+msgstr "Phím tắt Đặt lại thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:76
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:87
 msgid "Keyboard shortcut to set the terminal title"
-msgstr "Phím nóng để đặt tựa đề terminal."
+msgstr "Phím tắt Đặt tiêu đề thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:77
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:88
 msgid "Keyboard shortcut to switch to tab 1"
-msgstr "Phím nóng để chuyển qua tab 1."
+msgstr "Phím tắt Chuyển sang thanh 1"
 
-#: src/gnome-terminal.schemas.in.h:78
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:89
 msgid "Keyboard shortcut to switch to tab 10"
-msgstr "Phím nóng để chuyển qua tab 10."
+msgstr "Phím tắt Chuyển sang thanh 1"
 
-#: src/gnome-terminal.schemas.in.h:79
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:90
 msgid "Keyboard shortcut to switch to tab 11"
-msgstr "Phím nóng để chuyển qua tab 11."
+msgstr "Phím tắt Chuyển sang thanh 11"
 
-#: src/gnome-terminal.schemas.in.h:80
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:91
 msgid "Keyboard shortcut to switch to tab 12"
-msgstr "Phím nóng để chuyển qua tab 12."
+msgstr "Phím tắt Chuyển sang thanh 12"
 
-#: src/gnome-terminal.schemas.in.h:81
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:92
 msgid "Keyboard shortcut to switch to tab 2"
-msgstr "Phím nóng để chuyển qua tab 2."
+msgstr "Phím tắt Chuyển sang thanh 2"
 
-#: src/gnome-terminal.schemas.in.h:82
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:93
 msgid "Keyboard shortcut to switch to tab 3"
-msgstr "Phím nóng để chuyển qua tab 3."
+msgstr "Phím tắt Chuyển sang thanh 3"
 
-#: src/gnome-terminal.schemas.in.h:83
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:94
 msgid "Keyboard shortcut to switch to tab 4"
-msgstr "Phím nóng để chuyển qua tab 4."
+msgstr "Phím tắt Chuyển sang thanh 4"
 
-#: src/gnome-terminal.schemas.in.h:84
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:95
 msgid "Keyboard shortcut to switch to tab 5"
-msgstr "Phím nóng để chuyển qua tab 5."
+msgstr "Phím tắt Chuyển sang thanh 5"
 
-#: src/gnome-terminal.schemas.in.h:85
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:96
 msgid "Keyboard shortcut to switch to tab 6"
-msgstr "Phím nóng để chuyển qua tab 6."
+msgstr "Phím tắt Chuyển sang thanh 6"
 
-#: src/gnome-terminal.schemas.in.h:86
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:97
 msgid "Keyboard shortcut to switch to tab 7"
-msgstr "Phím nóng để chuyển qua tab 7."
+msgstr "Phím tắt Chuyển sang thanh 7"
 
-#: src/gnome-terminal.schemas.in.h:87
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:98
 msgid "Keyboard shortcut to switch to tab 8"
-msgstr "Phím nóng để chuyển qua tab 8."
+msgstr "Phím tắt Chuyển sang thanh 8"
 
-#: src/gnome-terminal.schemas.in.h:88
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:99
 msgid "Keyboard shortcut to switch to tab 9"
-msgstr "Phím nóng để chuyển qua tab 9."
+msgstr "Phím tắt Chuyển sang thanh 9"
 
-#: src/gnome-terminal.schemas.in.h:89
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:100
 msgid "Keyboard shortcut to switch to the next tab"
-msgstr "Phím nóng để chuyển qua tab kế tiếp."
+msgstr "Phím tắt Chuyển sang thanh kế"
 
-#: src/gnome-terminal.schemas.in.h:90
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:101
 msgid "Keyboard shortcut to switch to the previous tab"
-msgstr "Phím nóng để chuyển qua tab trước đó."
+msgstr "Phím tắt Chuyển sang thanh trước"
 
-#: src/gnome-terminal.schemas.in.h:91
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:102
 msgid "Keyboard shortcut to toggle full screen mode"
-msgstr "Phím nóng để bật tắt chế độ toàn màn hình."
+msgstr "Phím tắt Bật tắt Toàn màn hình"
 
-#: src/gnome-terminal.schemas.in.h:92
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:103
 msgid "Keyboard shortcut to toggle the visibility of the menubar"
-msgstr "Phím nóng để bật tắt hiển thị thanh menu."
+msgstr "Phím tắt Bật tắt hiển thị thanh trình đơn"
 
-#: src/gnome-terminal.schemas.in.h:93
+#:../src/gnome-terminal.schemas.in.h:104
 msgid "List of available encodings"
-msgstr "Danh sách bảng mã hiện có"
+msgstr "Danh sách các bộ ký tự hiện có"
 
-#: src/gnome-terminal.schemas.in.h:94
+#:../src/gnome-terminal.schemas.in.h:105
 msgid "List of profiles"
-msgstr "Danh sách profile"
+msgstr "Danh sách các hồ sơ"
 
-#: src/gnome-terminal.schemas.in.h:95
+#:../src/gnome-terminal.schemas.in.h:106
 msgid ""
 "List of profiles known to gnome-terminal. The list contains strings naming "
 "subdirectories relative to /apps/gnome-terminal/profiles."
-msgstr ""
-"Danh sách profile trong gnome-terminal. Danh sách chứa chuỗi tên thư mục con "
-"tương đối so với /apps/gnome-terminal/profiles."
+msgstr "Danh sách hồ sơ trong gnome-terminal. Danh sách chứa chuỗi tên thư mục con "
+"tương đối so với « /apps/gnome-terminal/profiles »."
 
-#: src/gnome-terminal.schemas.in.h:96
+#:../src/gnome-terminal.schemas.in.h:107
 msgid ""
 "Normally you can access the menubar with F10. This can also be customized "
 "via gtkrc (gtk-menu-bar-accel = \"whatever\"). This option allows the "
 "standard menubar accelerator to be disabled."
-msgstr ""
-"Bình thường bạn có thể truy cập thanh menu bằng F10. Điều này có thể được "
-"điều chỉnh trong gtkrc (gtk-menu-bar-accel = \"cái gì đó\"). Tùy chọn này "
-"cho phép tắt phím tắt chuẩn để kích hoạt thanh menu."
+msgstr "Bình thường bạn có thể truy cập thanh trình đơn bằng bấm phím chức năng F10. "
+"Điều này có thể được điều chỉnh trong « gtkrc » (gtk-menu-bar-accel = « cái "
+"gì đó »). Tùy chọn này cho phép tắt phím tắt chuẩn để kích hoạt thanh trình "
+"đơn."
 
-#: src/gnome-terminal.schemas.in.h:97
+#:../src/gnome-terminal.schemas.in.h:108
 msgid "Number of lines to keep in scrollback"
 msgstr "Số dòng cuộn ngược"
 
-#: src/gnome-terminal.schemas.in.h:98
+#:../src/gnome-terminal.schemas.in.h:109
 msgid ""
 "Number of scrollback lines to keep around. You can scroll back in the "
 "terminal by this number of lines; lines that don't fit in the scrollback are "
 "discarded. Be careful with this setting; it's the primary factor in "
 "determining how much memory the terminal will use."
-msgstr ""
-"Số dòng cuộn ngược to keep around. Bạn có thể cuộn ngược trong terminal một "
-"số dòng này. những dòng nằm ngoài sẽ bị hủy. Cẩn thận với thiết lập này; nó "
-"là hệ số chính xác định lượng bộ nhớ terminal dùng."
+msgstr "Số dòng cuộn ngược có thể truy cập. Bạn có thể cuộn ngược trong thiết bị "
+"cuối một số dòng này. những dòng nằm ngoài sẽ bị hủy. Cẩn thận với thiết lập "
+"này; nó là hệ số chính xác định lượng bộ nhớ thiết bị cuối dùng."
 
-#: src/gnome-terminal.schemas.in.h:99
+#:../src/gnome-terminal.schemas.in.h:110
 msgid "Palette for terminal applications"
-msgstr "Bảng màu cho ứng dụng terminal"
+msgstr "Bảng chọn cho ứng dụng thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:100
+#.Translators: S/Key is the name of an application, so it should
+#.not be translated.
+#:../src/gnome-terminal.schemas.in.h:113
 msgid ""
-"Popup a dialog when an s/key challenge response query is detected and "
+"Popup a dialog when an S/Key challenge response query is detected and "
 "clicked on. Typing a password into the dialog will send it to the terminal."
-msgstr ""
+msgstr "Bật lên hộp thoại khi phát hiện và nhắp vào yêu cầu/đáp ứng S/Key. Gõ mật "
+"khẩu vào hộp thoại thì sẽ gởi nó cho thiết bị cuối."
 
-#: src/gnome-terminal.schemas.in.h:101
+#:../src/gnome-terminal.schemas.in.h:114
 msgid "Position of the scrollbar"
 msgstr "Vị trí thanh cuộn"
 
-#: src/gnome-terminal.schemas.in.h:102
+#:../src/gnome-terminal.schemas.in.h:115
 msgid ""
 "Possible values are \"close\" to close the terminal, and \"restart\" to "
 "restart the command."
-msgstr ""
-"Giá trị có thể là \"close\" để đóng terminal, và \"restart\" để khởi động "
-"lại lệnh."
+msgstr "Giá trị có thể là « close » để _đóng_ thiết bị cuối, và « restart » để _khởi "
+"chạy lại_ lệnh."
 
-#: src/gnome-terminal.schemas.in.h:103
+#:../src/gnome-terminal.schemas.in.h:116
 msgid ""
 "Profile to be used when opening a new window or tab. Must be in profile_list."
-msgstr "Profile được dùng khi mở cửa sổ/tab mới. Phải nằm trong profile_list."
+msgstr "Hồ sơ được dùng khi mở cửa sổ/thanh mới. Phải nằm trong « profile_list "
+"» (danh sách hồ sơ)."
 
-#: src/gnome-terminal.schemas.in.h:104
+#:../src/gnome-terminal.schemas.in.h:117
 msgid "Profile to use for new terminals"
-msgstr "Profile được dùng với terminal mới"
+msgstr "Hồ sơ được dùng với thiết bị cuối mới"
 
-#: src/gnome-terminal.schemas.in.h:105
+#:../src/gnome-terminal.schemas.in.h:118
 msgid "Run this command in place of the shell, if use_custom_command is true."
-msgstr "Chạy lệnh này thay vì shell, nếu use_custom_command đúng."
+msgstr "Chạy lệnh này thay vì hệ vỏ, nếu « use_custom_command » (dùng lệnh tự chọn) "
+"đúng."
 
-#: src/gnome-terminal.schemas.in.h:106
+#:../src/gnome-terminal.schemas.in.h:119
 msgid ""
 "Sets what code the backspace key generates. Possible values are \"ascii-del"
 "\" for the ASCII DEL character, \"control-h\" for Control-H (AKA the ASCII "
 "BS character), \"escape-sequence\" for the escape sequence typically bound "
 "to backspace or delete. \"ascii-del\" is normally considered the correct "
 "setting for the Backspace key."
-msgstr ""
-"Đặt mã phát sinh cho phím backspace. Giá trị có thể là \"ascii-del\" cho mã "
-"ký tự ASCII DEL, \"control-h\" cho Control-H (cũng là ký tự ASCII BS), "
-"\"escape-sequence\" cho chuỗi escape gắn với backspace hoặc delete. \"escape-"
-"sequence\" thường được xem là thiết lập đúng cho phím Backspace."
+msgstr "Đặt mã mà phím backspace sẽ phát sinh. Giá trị có thể là « ascii-del » cho "
+"mã ký tự ASCII DEL, « control-h » cho Control-H (cũng là ký tự ASCII BS), « "
+"escape-sequence » cho _dây thoát_ thường gắn với backspace hoặc delete. « "
+"ascii-del » thường được xem là thiết lập đúng cho phím Backspace."
 
-#: src/gnome-terminal.schemas.in.h:107
+#:../src/gnome-terminal.schemas.in.h:120
 msgid ""
 "Sets what code the delete key generates. Possible values are \"ascii-del\" "
 "for the ASCII DEL character, \"control-h\" for Control-H (AKA the ASCII BS "
 "character), \"escape-sequence\" for the escape sequence typically bound to "
 "backspace or delete. \"escape-sequence\" is normally considered the correct "
 "setting for the Delete key."
-msgstr ""
-"Đặt mã phát sinh cho phím delete. Giá trị có thể là \"ascii-del\" cho mã ký "
-"tự ASCII DEL, \"control-h\" cho Control-H (cũng là ký tự ASCII BS), \"escape-"
-"sequence\" cho chuỗi escape gắn với backspace hoặc delete. \"escape-sequence"
-"\" thường được xem là thiết lập đúng cho phím Delete."
+msgstr "Đặt mã mà phím delete sẽ phát sinh. Giá trị có thể là « ascii-del » cho mã "
+"ký tự ASCII DEL, « control-h » cho Control-H (cũng là ký tự ASCII BS), « "
+"escape-sequence » cho _dây thoát_ thường gắn với backspace hoặc delete. « "
+"escape-sequence » thường được xem là thiết lập đúng cho phím Delete."
 
-#: src/gnome-terminal.schemas.in.h:108
-msgid "Support skey dingus clicking"
-msgstr ""
-
-#: src/gnome-terminal.schemas.in.h:110
+#:../src/gnome-terminal.schemas.in.h:122
 msgid ""
 "Terminals have a 16-color palette that applications inside the terminal can "
 "use. This is that palette, in the form of a colon-separated list of color "
 "names. Color names should be in hex format e.g. \"#FF00FF\""
-msgstr ""
-"Terminal có bảng màu 16 màu mà ứng dụng bên trong terminal có thể dùng. Đây "
-"là bảng màu đó, theo mẫu phân cách danh sách các màu bằng dấu hai chấm. Tên "
-"màu nên dùng dạng thức hex, vd \"#FF00FF\""
+msgstr "Thiết bị cuối có bảng chọn có 16 màu mà ứng dụng bên trong thiết bị cuối có "
+"thể dùng. Đây là bảng chọn đó, theo mẫu phân cách danh sách các màu bằng dấu "
+"hai chấm. Tên màu nên dùng dạng thức hệ thập lục phân, v.d. « #FF00FF »."
 
-#: src/gnome-terminal.schemas.in.h:111
+#:../src/gnome-terminal.schemas.in.h:123
 msgid "Title for terminal"
-msgstr "Tựa đề terminal"
+msgstr "Tựa đề thiết bị cuối"
 
-#: src/gnome-terminal.schemas.in.h:112
+#:../src/gnome-terminal.schemas.in.h:124
 msgid ""
 "Title to display for the terminal window or tab. This title may be replaced "
 "by or combined with the title set by the application inside the terminal, "
 "depending on the title_mode setting."
-msgstr ""
-"Tựa đề cần hiển thị trong cửa sổ/tab terminal. Tựa đề này có thể bị thay thế "
-"hoặc kết hợp với tựa đề do ứng dụng bên trong terminal tự đặt, tùy thuộc vào "
-"thiết lập title_mode."
+msgstr "Tựa đề cần hiển thị trong cửa sổ/thanh thiết bị cuối. Tựa đề này có thể bị "
+"thay thế hoặc kết hợp với tựa đề do ứng dụng bên trong thiết bị cuối tự đặt, "
+"tùy thuộc vào thiết lập « title_mode » (chế độ tựa đề)."
 
-#: src/gnome-terminal.schemas.in.h:113
+#:../src/gnome-terminal.schemas.in.h:125
 msgid ""
 "True if the cursor should blink when the terminal has focus, for windows/"
 "tabs with this profile."
-msgstr ""
-"Đúng nếu con trỏ chớp khi terminal có focus, với cửa sổ/tab dùng profile này."
+msgstr "Đúng nếu con trỏ chớp khi thiết bị cuối được chú ý, với cửa sổ/thanh dùng hồ "
+"sơ này."
 
-#: src/gnome-terminal.schemas.in.h:114
+#:../src/gnome-terminal.schemas.in.h:126
 msgid ""
 "True if the menubar should be shown in new windows, for windows/tabs with "
 "this profile."
-msgstr ""
-"Đúng nếu thanh menu nên hiển thị trong cửa sổ mới, với cửa sổ/tab dùng "
-"profile này."
+msgstr "Đúng nếu thanh trình đơn nên hiển thị trong cửa sổ mới, với cửa sổ/thanh "
+"dùng hồ sơ này."
 
-#: src/gnome-terminal.schemas.in.h:115
+#:../src/gnome-terminal.schemas.in.h:127
 msgid ""
 "Type of terminal background. May be \"solid\" for a solid color, \"image\" "
 "for an image, or \"transparent\" for pseudo-transparency."
-msgstr ""
-"Loại nền terminal. Có thể là \"solid\" cho màu đơn, \"image\" cho ảnh, "
-"\"transparent\" cho giả-trong suốt."
+msgstr "Loại nền thiết bị cuối. Có thể là « solid » cho _màu (đặc_) đơn, « image » "
+"cho _ảnh_, « transparent » cho giả-_trong suốt_."
 
-#: src/gnome-terminal.schemas.in.h:116
+#:../src/gnome-terminal.schemas.in.h:128
 msgid "What to do with dynamic title"
 msgstr "Làm gì với tựa đề động"
 
-#: src/gnome-terminal.schemas.in.h:117
+#:../src/gnome-terminal.schemas.in.h:129
 msgid "What to do with the terminal when the child command exits"
-msgstr "Làm gì với terminal khi lệnh con kết thúc."
+msgstr "Làm gì với thiết bị cuối khi lệnh con kết thúc."
 
-#: src/gnome-terminal.schemas.in.h:118
+#:../src/gnome-terminal.schemas.in.h:130
 msgid ""
 "When selecting text by word, sequences of these characters are considered "
 "single words. Ranges can be given as \"A-Z\". Literal hyphen (not expressing "
 "a range) should be the first character given."
-msgstr ""
-"Khi chọn văn bản theo từ, chuỗi các ký tự sau được coi là từ đơn. Có thể đặt "
-"một phạm vi các ký từ như kiểu \"A-Z\". Dấu - (không dùng để chỉ thị một "
+msgstr "Khi chọn văn bản theo từ, chuỗi các ký tự sau được coi là từ đơn. Có thể đặt "
+"một phạm vi các ký từ như kiểu « A-Z ». Dấu trừ (không dùng để chỉ thị một "
 "phạm vi) nên đặt ở vị trí đầu tiên."
 
-#: src/gnome-terminal.schemas.in.h:119
+#:../src/gnome-terminal.schemas.in.h:131
 msgid ""
 "Where to put the terminal scrollbar. Possibilities are \"left\", \"right\", "
 "and \"disabled\"."
-msgstr ""
-"Đặt thanh cuộn terminal ở đâu. Giá trị có thể là \"left\" (trái), \"right"
-"\" (phải), và \"disabled\" (tắt)."
+msgstr "Đặt thanh cuộn thiết bị cuối ở đâu. Giá trị có thể là « left » (trái), « "
+"right » (phải), và « disabled » (tắt)."
 
-#: src/gnome-terminal.schemas.in.h:120
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:132
 msgid "Whether the menubar has access keys"
-msgstr "Thanh menu có phím gợi nhớ không"
+msgstr "Thanh trình đơn có phím truy cập không."
 
-#: src/gnome-terminal.schemas.in.h:121
+#:../src/gnome-terminal.schemas.in.h:133
 msgid "Whether the standard GTK shortcut for menubar access is enabled"
-msgstr "Có bật truy cập thanh menu dựa trên phím tắt chuẩn GTK không"
+msgstr "Có bật truy cập thanh trình đơn dựa trên phím tắt chuẩn GTK không."
 
-#: src/gnome-terminal.schemas.in.h:122
+#:../src/gnome-terminal.schemas.in.h:134
 msgid "Whether to allow bold text"
-msgstr "Cho phép chữ đậm"
+msgstr "Có nên cho phép chữ đậm hay không."
 
-#: src/gnome-terminal.schemas.in.h:123
+#:../src/gnome-terminal.schemas.in.h:135
 msgid ""
 "Whether to ask for confirmation when closing a terminal window which has "
 "more than one open tab."
-msgstr ""
+msgstr "Có nên hỏi xác định khi đóng cửa sổ thiết bị cuối có nhiều thanh mở hay "
+"không."
 
-#: src/gnome-terminal.schemas.in.h:124
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:136
 msgid "Whether to ask for confirmation when closing terminal windows"
-msgstr "Có cập nhật utmp/wtmp khi chạy lệnh terminal không"
+msgstr "Có nên hỏi xác định khi đóng cửa sổ thiết bị cuối hay không."
 
-#: src/gnome-terminal.schemas.in.h:125
+#:../src/gnome-terminal.schemas.in.h:137
 msgid "Whether to blink the cursor"
-msgstr "Nháy con trỏ"
+msgstr "Có nên nháy con trỏ hay không."
 
-#: src/gnome-terminal.schemas.in.h:126
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:138
+msgid "Whether to disable anti-aliasing without the X RENDER extension"
+msgstr "Có nên tắt khả năng làm trơn không có phần mở rộng RENDER (vẽ) hay không"
+
+#:../src/gnome-terminal.schemas.in.h:139
 msgid ""
 "Whether to have Alt+letter access keys for the menubar. They may interfere "
 "with some applications run inside the terminal so it's possible to turn them "
 "off."
-msgstr ""
-"Có đặt phím tắt Alt-<Ký tự> cho thanh menu không. Việc này có thể gây trở "
-"ngạy cho vài ứng dụng chạy trong terminal, vì thế có lẽ nên tắt."
+msgstr "Có nên đặt phím tắt Alt-<Ký tự> cho thanh trình đơn hay không. Việc này có "
+"thể gây trở ngạy cho vài ứng dụng chạy trong thiết bị cuối, vì thế có lẽ nên "
+"tắt."
 
-#: src/gnome-terminal.schemas.in.h:127
+#:../src/gnome-terminal.schemas.in.h:140
 msgid "Whether to launch the command in the terminal as a login shell"
-msgstr "Có thực hiện lệnh trong terminal như là login shell không"
+msgstr "Có nên thực hiện lệnh trong thiết bị cuối như là hệ vỏ đăng nhập hay không."
 
-#: src/gnome-terminal.schemas.in.h:128
+#:../src/gnome-terminal.schemas.in.h:141
 msgid "Whether to run a custom command instead of the shell"
-msgstr "Chạy lệnh tự chọn thay vì shell"
+msgstr "Co nên chạy lệnh tự chọn thay vì hệ vỏ hay không."
 
-#: src/gnome-terminal.schemas.in.h:129
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:142
 msgid "Whether to scroll background image"
-msgstr "Có cuộn ảnh nền không"
+msgstr "Có nên cuộn ảnh nền hay không."
 
-#: src/gnome-terminal.schemas.in.h:130
+#:../src/gnome-terminal.schemas.in.h:143
 msgid "Whether to scroll to the bottom when a key is pressed"
-msgstr "Có cuộn đến đáy khi được nhấn phím không"
+msgstr "Có nên cuộn đến đáy khi được nhấn phím hay không."
 
-#: src/gnome-terminal.schemas.in.h:131
+#:../src/gnome-terminal.schemas.in.h:144
 msgid "Whether to scroll to the bottom when there's new output"
-msgstr "Có cuộn đến đáy khi có kết quả mới không"
+msgstr "Có nên cuộn đến đáy khi có kết quả mới hay không."
 
-#: src/gnome-terminal.schemas.in.h:132
+#:../src/gnome-terminal.schemas.in.h:145
 msgid "Whether to show menubar in new windows/tabs"
-msgstr "Có hiển thị thanh menu trong cửa sổ/tab mới không"
+msgstr "Có nên hiển thị thanh trình đơn trong cửa sổ/thanh mới hay không."
 
-#: src/gnome-terminal.schemas.in.h:133
+#:../src/gnome-terminal.schemas.in.h:146
 msgid "Whether to silence terminal bell"
-msgstr "Cấm chuông terminal"
+msgstr "Co nên cấm chuông thiết bị cuối hay không."
 
-#: src/gnome-terminal.schemas.in.h:134
-#, fuzzy
+#:../src/gnome-terminal.schemas.in.h:147
 msgid "Whether to update login records when launching terminal command"
-msgstr "Có cập nhật utmp/wtmp khi chạy lệnh terminal không"
+msgstr "Có nên cập nhật mục ghi đăng nhập khi chạy lệnh thiết bị cuối hay không."
 
-#: src/gnome-terminal.schemas.in.h:135
+#:../src/gnome-terminal.schemas.in.h:148
 msgid "Whether to use the colors from the theme for the terminal widget"
-msgstr "Có dùng màu từ theme của widget terminal hay không"
+msgstr "Có nên dùng màu từ sắc thái của ô điều khiển thiết bị cuối hay không."
 
-#: src/gnome-terminal.schemas.in.h:136
+#:../src/gnome-terminal.schemas.in.h:149
 msgid "Whether to use the system font"
-msgstr "Có dùng font hệ thống hay không"
+msgstr "Có nên dùng phông chữ hệ thống hay không."
 
-#. Translators: please note this is has to be a list of valid encodings (which are to
-#. be taken from the list in src/encoding.c) It has to include UTF-8 and the word 'current', which
-#. is not to be translated. This is provided for costumization of the default encoding menu; see
-#. bug 144810 for an use case. In most cases, this should be left alone.
-#: src/gnome-terminal.schemas.in.h:141
+#.Translators: Please note that this has to be a list of
+#.valid encodings (which are to be taken from the list in src/encoding.c).
+#.It has to include UTF-8 and the word 'current', which is not to be
+#.translated. This is provided for customization of the default encoding
+#.menu; see bug 144810 for an use case. In most cases, this should be
+#.left alone.
+#:../src/gnome-terminal.schemas.in.h:156
 msgid "[UTF-8,current]"
-msgstr ""
+msgstr "[UTF-8,current]"
 
-#: src/profile-editor.c:47
+#:../src/profile-editor.c:49
 msgid "Black on light yellow"
 msgstr "Đen trên nền vàng sáng"
 
-#: src/profile-editor.c:49
+#:../src/profile-editor.c:51
 msgid "Black on white"
 msgstr "Đen nền trắng"
 
-#: src/profile-editor.c:51
+#:../src/profile-editor.c:53
 msgid "Gray on black"
 msgstr "Xám nền đen"
 
-#: src/profile-editor.c:53
+#:../src/profile-editor.c:55
 msgid "Green on black"
-msgstr "Xanh nền đen"
+msgstr "Xanh la cây nền đen"
 
-#: src/profile-editor.c:55
+#:../src/profile-editor.c:57
 msgid "White on black"
 msgstr "Trắng nền đen"
 
-#: src/profile-editor.c:68
+#:../src/profile-editor.c:70
 msgid "Linux console"
-msgstr "Linux console"
+msgstr "Bàn giao tiếp Linux"
 
-#: src/profile-editor.c:69
+#:../src/profile-editor.c:71
 msgid "XTerm"
 msgstr "XTerm"
 
-#: src/profile-editor.c:70
+#:../src/profile-editor.c:72
 msgid "Rxvt"
 msgstr "Rxvt"
 
-#: src/profile-editor.c:791 src/profile-editor.c:821
-msgid "Custom"
-msgstr "Tự chọn"
+#:../src/profile-editor.c:884
+msgid "Images"
+msgstr "Ảnh"
 
-#: src/profile-editor.c:1179
-msgid "Choose a terminal font"
-msgstr "Chọn font terminal"
+#:../src/profile-editor.c:888
+msgid "All Files"
+msgstr "Mọi tập tin"
 
-#: src/profile-editor.c:1190 src/simple-x-font-selector.c:327
+#:../src/profile-editor.c:1199
+#,c-format
+msgid "Choose Palette Color %d"
+msgstr "Chòn màu bảng chọn %d"
+
+#:../src/profile-editor.c:1203
+#,c-format
+msgid "Palette entry %d"
+msgstr "Mục bảng chọn %d"
+
+#:../src/profile-editor.c:1231 ../src/profile-editor.c:1264
+msgid "Choose A Terminal Font"
+msgstr "Chọn phông chữ thiết bị cuối"
+
+#:../src/profile-editor.c:1242 ../src/simple-x-font-selector.c:327
 msgid "_Font:"
-msgstr "_Font:"
+msgstr "_Phông chữ:"
 
-#: src/profile-editor.c:1468
-#, fuzzy, c-format
+#:../src/profile-editor.c:1545
+#,c-format
 msgid "Editing Profile \"%s\""
-msgstr "Đang sửa profile \"%s\""
+msgstr "Đang hiệu chỉnh hồ sơ « %s »"
 
-#: src/simple-x-font-selector.c:332
+#:../src/simple-x-font-selector.c:332
 msgid "Si_ze:"
-msgstr "_Kích thước:"
+msgstr "_Cỡ:"
 
-#: src/simple-x-font-selector.c:334
+#:../src/simple-x-font-selector.c:334
 msgid "_Use bold version of font"
-msgstr "_Dùng font đậm"
+msgstr "_Dùng phông chữ đậm"
 
-#: src/simple-x-font-selector.c:341
+#:../src/simple-x-font-selector.c:341
 msgid "Click to choose font type"
-msgstr "Nhấn để chọn kiểu font"
+msgstr "Nhấn để chọn kiểu phông chữ"
 
-#: src/simple-x-font-selector.c:345
+#:../src/simple-x-font-selector.c:345
 msgid "Click to choose font size"
-msgstr "Nhấn để chọn kích thước font"
+msgstr "Nhấn để chọn kích thước phông chữ"
 
-#: src/simple-x-font-selector.c:656
+#:../src/simple-x-font-selector.c:656
 msgid "roman"
-msgstr "roman"
+msgstr "ro-man"
 
-#: src/simple-x-font-selector.c:657
+#:../src/simple-x-font-selector.c:657
 msgid "italic"
 msgstr "nghiêng"
 
-#: src/simple-x-font-selector.c:658
+#:../src/simple-x-font-selector.c:658
 msgid "oblique"
-msgstr "nghiêng"
+msgstr "xiên"
 
-#: src/simple-x-font-selector.c:659
+#:../src/simple-x-font-selector.c:659
 msgid "reverse italic"
 msgstr "nghiêng ngược"
 
-#: src/simple-x-font-selector.c:660
+#:../src/simple-x-font-selector.c:660
 msgid "reverse oblique"
-msgstr "nghiêng ngược lại"
+msgstr "xiên ngược lại"
 
-#: src/simple-x-font-selector.c:661
+#:../src/simple-x-font-selector.c:661
 msgid "other"
 msgstr "khác"
 
-#: src/simple-x-font-selector.c:668
+#:../src/simple-x-font-selector.c:668
 msgid "proportional"
-msgstr "co dãn"
+msgstr "cân đối"
 
-#: src/simple-x-font-selector.c:669
+#:../src/simple-x-font-selector.c:669
 msgid "monospaced"
-msgstr "cứng"
+msgstr "đơn cách"
 
-#: src/simple-x-font-selector.c:670
+#:../src/simple-x-font-selector.c:670
 msgid "char cell"
 msgstr "ô ký tự"
 
-#: src/simple-x-font-selector.c:1265
+#:../src/simple-x-font-selector.c:1265
 msgid "MAX_FONTS exceeded. Some fonts may be missing."
-msgstr "Vượt quá MAX_FONTS. Một vài font sẽ bị thiếu."
+msgstr "Vượt quá MAX_FONTS (số tối đa phông chữ). Một vài phông có lẽ bị thiếu."
 
-#: src/skey-popup.c:63
-msgid "The text you clicked doesn't seem to be an S/Key challenge."
-msgstr ""
+#:../src/skey-popup.c:122
+msgid "The text you clicked on doesn't seem to be a valid S/Key challenge."
+msgstr "Bạn đã nhắp vào đoạn văn bản không hình như yêu cầu S/Key hợp lệ."
 
-#: src/terminal-accels.c:75
+#:../src/skey-popup.c:133
+msgid "The text you clicked on doesn't seem to be a valid OTP challenge."
+msgstr "Bạn đã nhắp vào đoạn văn bản không hình như yêu cầu OTP hợp lệ."
+
+#:../src/terminal-accels.c:78
 msgid "New Tab"
-msgstr "Tab mới"
+msgstr "Thanh mới"
 
-#: src/terminal-accels.c:77
+#:../src/terminal-accels.c:80
 msgid "New Window"
 msgstr "Cửa sổ mới"
 
-#: src/terminal-accels.c:81
+#:../src/terminal-accels.c:84
 msgid "Close Tab"
-msgstr "Đóng tab"
+msgstr "Đóng thanh"
 
-#: src/terminal-accels.c:83
+#:../src/terminal-accels.c:86
 msgid "Close Window"
 msgstr "Đóng cửa sổ"
 
-#: src/terminal-accels.c:89
+#:../src/terminal-accels.c:92
 msgid "Copy"
-msgstr "Sao chép"
+msgstr "Chép"
 
-#: src/terminal-accels.c:91
+#:../src/terminal-accels.c:94
 msgid "Paste"
 msgstr "Dán"
 
-#: src/terminal-accels.c:97
+#:../src/terminal-accels.c:100
 msgid "Hide and Show menubar"
-msgstr "Ẩn / Hiện thanh menu"
+msgstr "Ẩn/Hiện thanh trình đơn"
 
-#: src/terminal-accels.c:99
+#:../src/terminal-accels.c:102
 msgid "Full Screen"
 msgstr "Toàn màn hình"
 
-#: src/terminal-accels.c:101
+#:../src/terminal-accels.c:104
 msgid "Zoom In"
 msgstr "Phóng to"
 
-#: src/terminal-accels.c:103
+#:../src/terminal-accels.c:106
 msgid "Zoom Out"
 msgstr "Thu nhỏ"
 
-#: src/terminal-accels.c:105
+#:../src/terminal-accels.c:108
 msgid "Normal Size"
-msgstr "Kích cỡ bình thường"
+msgstr "Cỡ bình thường"
 
-#: src/terminal-accels.c:111 src/terminal-screen.c:1969
+#:../src/terminal-accels.c:114 ../src/terminal-screen.c:2111
 msgid "Set Title"
 msgstr "Đặt tựa đề"
 
-#: src/terminal-accels.c:113
+#:../src/terminal-accels.c:116
 msgid "Reset"
 msgstr "Đặt lại"
 
-#: src/terminal-accels.c:115
+#:../src/terminal-accels.c:118
 msgid "Reset and Clear"
 msgstr "Đặt lại và xoá"
 
-#: src/terminal-accels.c:121
+#:../src/terminal-accels.c:124
 msgid "Switch to Previous Tab"
-msgstr "Chuyển qua tab trước"
+msgstr "Chuyển qua thanh trước"
 
-#: src/terminal-accels.c:123
+#:../src/terminal-accels.c:126
 msgid "Switch to Next Tab"
-msgstr "Chuyển qua tab kế"
+msgstr "Chuyển qua thanh kế"
 
-#: src/terminal-accels.c:125
+#:../src/terminal-accels.c:128
+msgid "Move Tab to the Left"
+msgstr "Chuyển thanh sang trái"
+
+#:../src/terminal-accels.c:130
+msgid "Move Tab to the Right"
+msgstr "Chuyển thanh sang phải"
+
+#:../src/terminal-accels.c:132 ../src/terminal-window.c:1041
+msgid "Detach Tab"
+msgstr "Gỡ ra thanh"
+
+#:../src/terminal-accels.c:134
 msgid "Switch to Tab 1"
-msgstr "Chuyển qua tab 1"
+msgstr "Chuyển qua thanh 1"
 
-#: src/terminal-accels.c:128
+#:../src/terminal-accels.c:137
 msgid "Switch to Tab 2"
-msgstr "Chuyển qua tab 2"
+msgstr "Chuyển qua thanh 2"
 
-#: src/terminal-accels.c:131
+#:../src/terminal-accels.c:140
 msgid "Switch to Tab 3"
-msgstr "Chuyển qua tab 3"
+msgstr "Chuyển qua thanh 3"
 
-#: src/terminal-accels.c:134
+#:../src/terminal-accels.c:143
 msgid "Switch to Tab 4"
-msgstr "Chuyển qua tab 4"
+msgstr "Chuyển qua thanh 4"
 
-#: src/terminal-accels.c:137
+#:../src/terminal-accels.c:146
 msgid "Switch to Tab 5"
-msgstr "Chuyển qua tab 5"
+msgstr "Chuyển qua thanh 5"
 
-#: src/terminal-accels.c:140
+#:../src/terminal-accels.c:149
 msgid "Switch to Tab 6"
-msgstr "Chuyển qua tab 6"
+msgstr "Chuyển qua thanh 6"
 
-#: src/terminal-accels.c:143
+#:../src/terminal-accels.c:152
 msgid "Switch to Tab 7"
-msgstr "Chuyển qua tab 7"
+msgstr "Chuyển qua thanh 7"
 
-#: src/terminal-accels.c:146
+#:../src/terminal-accels.c:155
 msgid "Switch to Tab 8"
-msgstr "Chuyển qua tab 8"
+msgstr "Chuyển qua thanh 8"
 
-#: src/terminal-accels.c:149
+#:../src/terminal-accels.c:158
 msgid "Switch to Tab 9"
-msgstr "Chuyển qua tab 9"
+msgstr "Chuyển qua thanh 9"
 
-#: src/terminal-accels.c:152
+#:../src/terminal-accels.c:161
 msgid "Switch to Tab 10"
-msgstr "Chuyển qua tab 10"
+msgstr "Chuyển qua thanh 10"
 
-#: src/terminal-accels.c:155
+#:../src/terminal-accels.c:164
 msgid "Switch to Tab 11"
-msgstr "Chuyển qua tab 11"
+msgstr "Chuyển qua thanh 11"
 
-#: src/terminal-accels.c:158
+#:../src/terminal-accels.c:167
 msgid "Switch to Tab 12"
-msgstr "Chuyển qua tab 12"
+msgstr "Chuyển qua thanh 12"
 
-#: src/terminal-accels.c:164
+#:../src/terminal-accels.c:173
 msgid "Contents"
 msgstr "Nội dung"
 
-#: src/terminal-accels.c:169
+#:../src/terminal-accels.c:178
 msgid "File"
 msgstr "Tập tin"
 
-#: src/terminal-accels.c:170
+#:../src/terminal-accels.c:179
 msgid "Edit"
 msgstr "Hiệu chỉnh"
 
-#: src/terminal-accels.c:171
+#:../src/terminal-accels.c:180
 msgid "View"
 msgstr "Xem"
 
-#: src/terminal-accels.c:173
+#:../src/terminal-accels.c:182
 msgid "Go"
 msgstr "Đi"
 
-#: src/terminal-accels.c:174
+#:../src/terminal-accels.c:183
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: src/terminal-accels.c:264 src/terminal-profile.c:392
-#: src/terminal-screen.c:199 src/terminal.c:1620
-#, c-format
+#:../src/terminal-accels.c:273 ../src/terminal-profile.c:395
+#:../src/terminal-screen.c:203 ../src/terminal.c:1724
+#,c-format
 msgid "There was an error loading config from %s. (%s)\n"
-msgstr "Gặp lỗi khi đang nạp cấu hình từ %s. (%s)\n"
+msgstr "Gặp lỗi khi tải cấu hình từ « %s ». (%s)\n"
 
-#: src/terminal-accels.c:278
-#, c-format
+#:../src/terminal-accels.c:287
+#,c-format
 msgid ""
 "There was an error subscribing to notification of terminal keybinding "
 "changes. (%s)\n"
-msgstr "Gặp lỗi khi đang đăng ký thông báo thay đổi terminal keybinding (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo thay đổi tổ hợp phím thiết bị cuối (%s)\n"
 
-#: src/terminal-accels.c:319
-#, c-format
+#:../src/terminal-accels.c:328
+#,c-format
 msgid "There was an error loading a terminal keybinding. (%s)\n"
-msgstr "Gặp lỗi khi nạp terminal keybinding (%s)\n"
+msgstr "Gặp lỗi khi tải tổ hợp phím thiết bị cuối. (%s)\n"
 
-#: src/terminal-accels.c:335
-#, c-format
+#:../src/terminal-accels.c:344
+#,c-format
 msgid "The value of configuration key %s is not valid; value is \"%s\"\n"
-msgstr "Giá trị của khóa cấu hình %s không hợp lệ; giá trị sẽ là \"%s\"\n"
+msgstr "Giá trị của khóa cấu hình « %s » không hợp lệ; giá trị đó là « %s ».\n"
 
-#: src/terminal-accels.c:358
-#, fuzzy, c-format
+#:../src/terminal-accels.c:367
+#,c-format
 msgid ""
 "There was an error loading config value for whether to use menubar access "
 "keys. (%s)\n"
-msgstr "Gặp lỗi khi đang nạp giá trị có dùng phím nóng menu hay không (%s)\n"
+msgstr "Gặp lỗi khi tải giá trị cấu hình có dùng phím tắt trình đơn hay không. (%s)\n"
 
-#: src/terminal-accels.c:372
-#, fuzzy, c-format
+#:../src/terminal-accels.c:381
+#,c-format
 msgid ""
 "There was an error subscribing to notification on changes on whether to use "
 "menubar access keys (%s)\n"
-msgstr "Gặp lỗi khi đăng ký thông báo use_menu_accelertors (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo thay đổi có dùng phím tắt thanh trình đơn hay "
+"không. (%s)\n"
 
-#: src/terminal-accels.c:383
-#, c-format
+#:../src/terminal-accels.c:392
+#,c-format
 msgid ""
 "There was an error loading config value for whether to use menu "
 "accelerators. (%s)\n"
-msgstr "Gặp lỗi khi đang nạp giá trị có dùng phím nóng menu hay không (%s)\n"
+msgstr "Gặp lỗi khi tải giá trị cấu hình có dùng phím tắt trình đơn hay không. (%s)\n"
 
-#: src/terminal-accels.c:399
-#, c-format
+#:../src/terminal-accels.c:408
+#,c-format
 msgid ""
 "There was an error subscribing to notification for use_menu_accelerators (%"
 "s)\n"
-msgstr "Gặp lỗi khi đăng ký thông báo use_menu_accelertors (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo « use_menu_accelertors » (dùng phím tắt trình "
+"đơn). (%s)\n"
 
-#: src/terminal-accels.c:777
-#, c-format
+#:../src/terminal-accels.c:786
+#,c-format
 msgid "Error propagating accelerator change to configuration database: %s\n"
-msgstr "Lỗi lan truyền thay đổi phím nóng trong cơ sở dữ liệu cấu hình: %s\n"
+msgstr "Lỗi lan truyền thay đổi phím tắt trong cơ sở dữ liệu cấu hình: %s\n"
 
-#: src/terminal-accels.c:986
-#, c-format
+#:../src/terminal-accels.c:995
+#,c-format
 msgid "The shortcut key \"%s\" is already bound to the \"%s\" action"
-msgstr ""
+msgstr "Phím tắt « %s » đã được đóng kết vớí hành động « %s »."
 
-#: src/terminal-accels.c:1018
-#, c-format
+#:../src/terminal-accels.c:1028
+#,c-format
 msgid "Error setting new accelerator in configuration database: %s\n"
-msgstr "Lỗi thiết lập phím nóng mới trong cơ sở dữ liệu cấu hình: %s\n"
+msgstr "Lỗi thiết lập phím tắt mới trong cơ sở dữ liệu cấu hình: %s\n"
 
-#: src/terminal-accels.c:1049
-#, fuzzy, c-format
+#:../src/terminal-accels.c:1059
+#,c-format
 msgid "Error setting %s config key: %s\n"
-msgstr "Lỗi thiết lập khóa use_mnemonics: %s\n"
+msgstr "Lỗi thiết lập khóa cấu hình « %s »: %s\n"
 
-#: src/terminal-accels.c:1077
-#, c-format
+#:../src/terminal-accels.c:1087
+#,c-format
 msgid "Error setting use_menu_accelerators key: %s\n"
-msgstr "Lỗi thiết lập khóa use_menu_accelerators: %s\n"
+msgstr "Lỗi thiết lập khóa « use_menu_accelerators » (dùng phím tắt trình đơn): %s\n"
 
-#: src/terminal-accels.c:1196
+#:../src/terminal-accels.c:1206
 msgid "_Action"
 msgstr "_Hành động"
 
-#: src/terminal-accels.c:1216
+#:../src/terminal-accels.c:1226
 msgid "Shortcut _Key"
 msgstr "Phím _tắt"
 
-#: src/terminal-profile.c:407
-#, c-format
+#:../src/terminal-notebook.c:776
+msgid "Close tab"
+msgstr "Đóng thanh"
+
+#:../src/terminal-profile.c:410
+#,c-format
 msgid ""
 "There was an error subscribing to notification of terminal profile changes. "
 "(%s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi terminal profile (%s)\n"
+msgstr "Lỗi đăng ký thông báo thay đổi hồ sơ thiết bị cuối. (%s)\n"
 
-#: src/terminal-profile.c:1002
-#, c-format
+#:../src/terminal-profile.c:1005
+#,c-format
 msgid "Could not find an icon called \"%s\" for terminal profile \"%s\"\n"
-msgstr "Không thể tìm thấy biểu tượng \"%s\" cho terminal profile \"%s\"\n"
+msgstr "Không thể tìm thấy biểu tượng « %s » cho hồ sơ thiết bị cuối « %s ».\n"
 
-#: src/terminal-profile.c:1016
-#, c-format
+#:../src/terminal-profile.c:1019
+#,c-format
 msgid "Failed to load icon \"%s\" for terminal profile \"%s\": %s\n"
-msgstr "Lỗi nạp biểu tượng \"%s\" cho terminal profile \"%s\": %s\n"
+msgstr "Lỗi tải biểu tượng « %s » cho hồ sơ thiết bị cuối « %s »: %s\n"
 
-#: src/terminal-profile.c:1193
-#, c-format
+#:../src/terminal-profile.c:1205
+#,c-format
 msgid ""
 "Could not find a background image called \"%s\" for terminal profile \"%s\"\n"
-msgstr "Không thể tìm thấy ảnh nền \"%s\" cho terminal profile \"%s\"\n"
+msgstr "Không thể tìm thấy ảnh nền được gọi là « %s » cho hồ sơ thiết bị cuối « %s "
+"».\n"
 
-#: src/terminal-profile.c:1207
-#, c-format
+#:../src/terminal-profile.c:1219
+#,c-format
 msgid ""
 "Failed to load background image \"%s\" for terminal profile \"%s\": %s\n"
-msgstr "Lỗi nạp ảnh nền \"%s\" cho terminal profile \"%s\": %s\n"
+msgstr "Lỗi tải ảnh nền « %s » cho hồ sơ thiết bị cuối « %s »: %s\n"
 
-#: src/terminal-profile.c:1861
-#, c-format
+#:../src/terminal-profile.c:1881
+#,c-format
 msgid ""
 "GNOME Terminal: font name \"%s\" set in configuration database is not valid\n"
-msgstr ""
-"Gnome Terminal: Thiết lập font tên \"%s\" trong cơ sở dữ liệu cấu hình là "
-"không hợp lệ\n"
+msgstr "Thiết bị cuối GNOME: thiết lập phông tên « %s » trong cơ sở dữ liệu cấu hình "
+"là không hợp lệ.\n"
 
-#: src/terminal-profile.c:2162
-#, c-format
+#:../src/terminal-profile.c:2184
+#,c-format
 msgid "Error getting default value of %s: %s\n"
-msgstr "Lỗi lấy giá trị mặc định của %s: %s\n"
+msgstr "Lỗi lấy giá trị mặc định của « %s »: %s\n"
 
-#: src/terminal-profile.c:2168
-#, c-format
+#:../src/terminal-profile.c:2190
+#,c-format
 msgid "There wasn't a default value for %s\n"
-msgstr "Không có giá trị mặc định cho %s\n"
+msgstr "Không có giá trị mặc định cho « %s ».\n"
 
-#: src/terminal-profile.c:2183
-#, c-format
+#:../src/terminal-profile.c:2205
+#,c-format
 msgid "Error setting key %s back to default: %s\n"
-msgstr "Lỗi thiết lập phím %s về mặc định: %s\n"
+msgstr "Lỗi thiết lập phím « %s » về mặc định: %s\n"
 
-#: src/terminal-profile.c:2386
-#, c-format
+#:../src/terminal-profile.c:2408
+#,c-format
 msgid ""
 "There was an error while removing the configuration directory %s. (%s)\n"
-msgstr "Gặp lỗi khi đang loại bỏ thư mục cấu hình %s. (%s)\n"
+msgstr "Gặp lỗi khi loại bỏ thư mục cấu hình « %s ». (%s)\n"
 
-#: src/terminal-profile.c:2443
-#, c-format
+#:../src/terminal-profile.c:2465
+#,c-format
 msgid ""
 "There was an error subscribing to notification of changes to default "
 "profile. (%s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi profile mặc định (%s)\n"
+msgstr "Lỗi đăng ký thông báo thay đổi hồ sơ mặc định (%s)\n"
 
-#: src/terminal-profile.c:2488
+#:../src/terminal-profile.c:2510
 msgid "_Details"
 msgstr "_Chi tiết"
 
-#: src/terminal-profile.c:2923
-#, c-format
+#:../src/terminal-profile.c:2953 ../src/terminal.c:2391
+#,c-format
 msgid "There was an error creating the profile \"%s\""
-msgstr "Lỗi tạo profile \"%s\""
+msgstr "Gặp lỗi khi tạo hồ sơ « %s »."
 
-#: src/terminal-profile.c:3003
+#:../src/terminal-profile.c:3045
 msgid "There was an error deleting the profiles"
-msgstr "Lỗi xóa profile"
+msgstr "Gặp lỗi khi xóa bỏ hồ sơ."
 
-#: src/terminal-profile.c:3106
-#, c-format
+#:../src/terminal-profile.c:3148
+#,c-format
 msgid "Could not parse string \"%s\" as a color palette\n"
-msgstr "Không thể phân tích chuỗi \"%s\" như là bảng màu\n"
+msgstr "Không thể phân tích chuỗi « %s » như là bảng chọn màu.\n"
 
-#: src/terminal-profile.c:3115
-#, fuzzy, c-format
+#:../src/terminal-profile.c:3157
+#,c-format
 msgid "Palette had %d entry instead of %d\n"
 msgid_plural "Palette had %d entries instead of %d\n"
-msgstr[0] "Bảng màu có %d mục thay vì %d\n"
-msgstr[1] "Bảng màu có %d mục thay vì %d\n"
+msgstr[0] "Bảng chọn có %d mục thay vì %d.\n"
 
-#: src/terminal-screen.c:215
-#, c-format
+#:../src/terminal-screen.c:219
+#,c-format
 msgid ""
 "There was an error subscribing to notification of monospace font changes. (%"
 "s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi font monospace (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo thay đổi phông chữ đơn cách. (%s)\n"
 
-#: src/terminal-screen.c:822
-#, c-format
+#:../src/terminal-screen.c:865
+#,c-format
 msgid "Could not load font \"%s\"\n"
-msgstr "Không thể nạp font \"%s\"\n"
+msgstr "Không tải được phông chữ « %s ».\n"
 
-#: src/terminal-screen.c:950
-#, c-format
+#:../src/terminal-screen.c:994
+#,c-format
 msgid "There was a problem with the command for this terminal: %s"
-msgstr "Lỗi với lệnh cho terminal này: %s"
+msgstr "Lỗi với lệnh cho thiết bị cuối này: %s"
 
-#: src/terminal-screen.c:1306
-#, c-format
+#:../src/terminal-screen.c:1404
+#,c-format
 msgid ""
 "Could not open the address \"%s\":\n"
 "%s"
-msgstr ""
-"Không thể mở địa chỉ \"%s\":\n"
+msgstr "Không mở được địa chỉ « %s »:\n"
 "%s"
 
-#: src/terminal-screen.c:1399 src/terminal-window.c:784
-#, c-format
+#:../src/terminal-screen.c:1501 ../src/terminal-window.c:791
+#,c-format
 msgid ""
 "There was an error loading config value for whether to use image in menus. (%"
 "s)\n"
-msgstr "Gặp lỗi khi nạp giá cấu hình có dùng ảnh trong menu hay không (%s)\n"
+msgstr "Gặp lỗi khi tải giá trị cấu hình có dùng ảnh trong trình đơn hay không. (%"
+"s)\n"
 
-#: src/terminal-screen.c:1470
+#:../src/terminal-screen.c:1588
+msgid "_Send Mail To..."
+msgstr "_Gởi thư cho..."
+
+#:../src/terminal-screen.c:1593
+msgid "_Copy E-mail Address"
+msgstr "_Chép địa chỉ thư"
+
+#:../src/terminal-screen.c:1600
 msgid "_Open Link"
-msgstr "_Mở liên kết"
+msgstr "Mở _liên kết"
 
-#: src/terminal-screen.c:1475
+#:../src/terminal-screen.c:1605
 msgid "_Copy Link Address"
-msgstr "_Sao chép địa chỉ liên kết"
+msgstr "_Chép địa chỉ liên kết"
 
-#: src/terminal-screen.c:1486 src/terminal-window.c:827
-#, fuzzy
+#:../src/terminal-screen.c:1617 ../src/terminal-window.c:854
 msgid "Open _Terminal"
-msgstr "Ter_minal"
+msgstr "_Mở Thiết bị cuối"
 
-#: src/terminal-screen.c:1491 src/terminal-window.c:830
-#, fuzzy
+#:../src/terminal-screen.c:1622 ../src/terminal-window.c:857
 msgid "Open Ta_b"
-msgstr "Tab mới"
+msgstr "Mở _thanh"
 
-#: src/terminal-screen.c:1501 src/terminal-window.c:845
+#:../src/terminal-screen.c:1632 ../src/terminal-window.c:872
 msgid "C_lose Tab"
-msgstr "Đó_ng tab"
+msgstr "Đó_ng thanh"
 
-#: src/terminal-screen.c:1506 src/terminal-window.c:849
+#:../src/terminal-screen.c:1632 ../src/terminal-window.c:876
 msgid "_Close Window"
-msgstr "Đón_g cửa sổ"
+msgstr "_Đóng cửa sổ"
 
-#: src/terminal-screen.c:1534
-#, fuzzy
+#:../src/terminal-screen.c:1657
 msgid "Change P_rofile"
-msgstr "_Profile"
+msgstr "Thay đổi _tồ sơ"
 
-#: src/terminal-screen.c:1584
+#:../src/terminal-screen.c:1693
 msgid "_Edit Current Profile..."
-msgstr "_Sửa profile hiện tại..."
+msgstr "_Sửa đổi hồ sơ hiện tại..."
 
-#: src/terminal-screen.c:1589
+#:../src/terminal-screen.c:1698
 msgid "Show _Menubar"
-msgstr "Hiện thanh _menu"
+msgstr "Hiện thanh _trình đơn"
 
-#: src/terminal-screen.c:1596
-msgid "Secure _Keyboard"
-msgstr "_Bàn phím an toàn"
-
-#: src/terminal-screen.c:1606
+#:../src/terminal-screen.c:1708
 msgid "_Input Methods"
-msgstr "_Phương thức nhập"
+msgstr "_Kiểu gõ"
 
-#: src/terminal-screen.c:1998
+#:../src/terminal-screen.c:2140
 msgid "_Title:"
 msgstr "_Tựa đề:"
 
-#: src/terminal-screen.c:2115
-#, c-format
+#:../src/terminal-screen.c:2254
+#,c-format
 msgid "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
-msgstr ""
-"Dạng text/plain thả xuống terminal có dạng thức (%d) hoặc chiều dài (%d) "
-"sai\n"
+msgstr "Dạng « text/plain » (chữ thô) thả xuống thiết bị cuối có dạng thức (%d) hoặc "
+"chiều dài (%d) không đúng.\n"
 
-#: src/terminal-screen.c:2138
-#, c-format
+#:../src/terminal-screen.c:2277
+#,c-format
 msgid "Color dropped on terminal had wrong format (%d) or length (%d)\n"
-msgstr "Màu thả xuống terminal có dạng thức (%d) hoặc chiều dài (%d) sai\n"
+msgstr "Màu thả xuống thiết bị cuối có dạng thức (%d) hoặc chiều dài (%d) không "
+"đúng.\n"
 
-#: src/terminal-screen.c:2181
-#, c-format
+#:../src/terminal-screen.c:2320
+#,c-format
 msgid "Mozilla url dropped on terminal had wrong format (%d) or length (%d)\n"
-msgstr ""
-"URL Mozilla thả xuống terminal có dạng thức (%d) hoặc chiều dài (%d) sai\n"
+msgstr "Địa chỉ Mạng Mozilla thả xuống thiết bị cuối có dạng thức (%d) hoặc chiều "
+"dài (%d) không đúng.\n"
 
-#: src/terminal-screen.c:2230
-#, c-format
+#:../src/terminal-screen.c:2369
+#,c-format
 msgid "URI list dropped on terminal had wrong format (%d) or length (%d)\n"
-msgstr ""
-"Danh sách URI thả xuống terminal có dạng thức (%d) hoặc chiều dài (%d) sai\n"
+msgstr "Danh sách địa chỉ Mạng thả xuống thiết bị cuối có dạng thức (%d) hoặc chiều "
+"dài (%d) không đung.\n"
 
-#: src/terminal-screen.c:2284
-#, c-format
+#:../src/terminal-screen.c:2424
+#,c-format
 msgid ""
 "Image filename dropped on terminal had wrong format (%d) or length (%d)\n"
-msgstr ""
-"Tên tập tin ảnh thả xuống terminal có dạng thức (%d) hoặc chiều dài (%d) "
-"sai\n"
+msgstr "Tên tập tin ảnh thả xuống thiết bị cuối có dạng thức (%d) hoặc chiều dài (%"
+"d) không đúng.\n"
 
-#: src/terminal-screen.c:2310
-#, c-format
+#:../src/terminal-screen.c:2450
+#,c-format
 msgid "Error converting URI \"%s\" into filename: %s\n"
-msgstr "Lỗi chuyển đổi URI \"%s\" vào tập tin: %s\n"
+msgstr "Gặp lỗi khi chuyển đổi địa chỉ Mạng « %s » vào tên tập tin: %s\n"
 
-#: src/terminal-widget-vte.c:574
-#, fuzzy
+#:../src/terminal-widget-vte.c:575
 msgid "There was an error creating the child process for this terminal"
-msgstr "Lỗi tạo tiến trình con cho terminal này: %s"
+msgstr "Gặp lỗi khi tạo tiến trình con cho thiết bị cuối này."
 
-#: src/terminal-window.c:336
-#, c-format
+#:../src/terminal-window.c:360
+#,c-format
 msgid ""
 "There was an error subscribing to notification of menu icon visibility "
 "changes. (%s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi cách hiển thị menu (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo thay đổi cách hiển thị biểu tượng trình đơn. (%"
+"s)\n"
 
-#: src/terminal-window.c:594
-#, c-format
+# Variable: do not translate/ biến: đừng dịch
+#:../src/terminal-window.c:573
+#,c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
 
-#: src/terminal-window.c:596
-#, c-format
+# Variable: do not translate/ biến: đừng dịch
+#:../src/terminal-window.c:575
+#,c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
-#: src/terminal-window.c:717
+#:../src/terminal-window.c:698
 msgid "_Add or Remove..."
-msgstr "Th_êm hay bỏ..."
+msgstr "_Thêm hay Loại bỏ..."
 
-#. This is fairly bogus to have here but I don't know
-#. * where else to put it really
+#.This is fairly bogus to have here but I don't know
+#.* where else to put it really
 #.
-#: src/terminal-window.c:838
+#:../src/terminal-window.c:865
 msgid "New _Profile..."
-msgstr "_Profile mới"
+msgstr "_Hồ sơ mới..."
 
-#: src/terminal-window.c:880
+#:../src/terminal-window.c:909
 msgid "P_rofiles..."
-msgstr "P_rofiles..."
+msgstr "_Hồ sơ..."
 
-#: src/terminal-window.c:883
+#:../src/terminal-window.c:912
 msgid "_Keyboard Shortcuts..."
 msgstr "_Phím tắt..."
 
-#: src/terminal-window.c:887
+#:../src/terminal-window.c:916
 msgid "C_urrent Profile..."
-msgstr "Profile _hiện thời..."
+msgstr "Hồ sơ _hiện thời..."
 
-#. This is a check menu item so that the togglability is evident, but when it is not checked,
-#. * it won't be seen, of course, because the menubar will be then hidden.
-#: src/terminal-window.c:902
-#, fuzzy
+#.This is a check menu item so that the togglability is evident, but when it is not checked,
+#.* it won't be seen, of course, because the menubar will be then hidden.
+#:../src/terminal-window.c:931
 msgid "Show Menu_bar"
-msgstr "Hiện thanh _menu"
+msgstr "Hiện _thanh trình đơn"
 
-#: src/terminal-window.c:906
+#:../src/terminal-window.c:935
 msgid "_Full Screen"
-msgstr "Toàn _màn hình"
+msgstr "_Toàn màn hình"
 
-#. the default label for GTK_STOCK_ZOOM_100 does not follow the HIG...
-#: src/terminal-window.c:929
-msgid "_Normal Size"
-msgstr "Kích cỡ bình thư_ờng"
-
-#: src/terminal-window.c:951
-#, fuzzy
+#:../src/terminal-window.c:978
 msgid "Change _Profile"
-msgstr "_Profile"
+msgstr "Chuyển đổi _hồ sơ"
 
-#: src/terminal-window.c:954
+#:../src/terminal-window.c:981
 msgid "_Set Title..."
 msgstr "Đặt _tựa đề..."
 
-#: src/terminal-window.c:961
-#, fuzzy
+#:../src/terminal-window.c:988
 msgid "Set _Character Encoding"
-msgstr "M_ã ký tự"
+msgstr "Đặt bộ _ký tự"
 
-#: src/terminal-window.c:971
+#:../src/terminal-window.c:998
 msgid "_Reset"
 msgstr "Đặt _lại"
 
-#: src/terminal-window.c:974
+#:../src/terminal-window.c:1001
 msgid "Reset and C_lear"
 msgstr "Đặt lại và _xóa"
 
-#: src/terminal-window.c:988
+#:../src/terminal-window.c:1015
 msgid "_Previous Tab"
-msgstr "Tab _trước"
+msgstr "Thanh t_rước"
 
-#: src/terminal-window.c:992
+#:../src/terminal-window.c:1019
 msgid "_Next Tab"
-msgstr "Tab _kế"
+msgstr "Thanh _kế"
 
-#: src/terminal-window.c:1011
+#:../src/terminal-window.c:1030
+msgid "Move Tab to the _Left"
+msgstr "Chuyển thanh sang _trái"
+
+#:../src/terminal-window.c:1034
+msgid "Move Tab to the _Right"
+msgstr "Chuyển thanh sang _phải"
+
+#:../src/terminal-window.c:1060
 msgid "_Contents"
 msgstr "_Nội dung"
 
-#: src/terminal-window.c:1021
+#:../src/terminal-window.c:1070
 msgid "_About"
-msgstr "G_iới thiệu"
+msgstr "_Giới thiệu"
 
-#: src/terminal-window.c:1185
-#, c-format
+#:../src/terminal-window.c:1259
+#,c-format
 msgid ""
 "There was an error loading config value for whether to use mnemonics. (%s)\n"
-msgstr "Gặp lỗi khi nạp giá cấu hình có dùng phím gợi nhớ hay không (%s)\n"
+msgstr "Gặp lỗi khi tải giá trị cấu hình có dùng phím gợi nhớ hay không. (%s)\n"
 
-#: src/terminal-window.c:1204
-#, c-format
+#:../src/terminal-window.c:1278
+#,c-format
 msgid ""
 "There was an error subscribing to notification of terminal window "
 "configuration changes. (%s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi cấu hình cửa sổ terminal (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo thay đổi cấu hình cửa sổ thiết bị cuối. (%s)\n"
 
-#: src/terminal-window.c:2092
+#:../src/terminal-window.c:2060
 msgid "_File"
 msgstr "_Tập tin"
 
-#: src/terminal-window.c:2094 src/terminal.c:2827
+#:../src/terminal-window.c:2062 ../src/terminal.c:2983
 msgid "_Edit"
 msgstr "_Hiệu chỉnh"
 
-#: src/terminal-window.c:2096
+#:../src/terminal-window.c:2064
 msgid "_View"
 msgstr "_Xem"
 
-#: src/terminal-window.c:2098
+#:../src/terminal-window.c:2066
 msgid "_Terminal"
-msgstr "Ter_minal"
+msgstr "_Thiết bị cuối"
 
-#: src/terminal-window.c:2100
+#:../src/terminal-window.c:2068
 msgid "Ta_bs"
-msgstr ""
+msgstr "Th_anh"
 
-#: src/terminal-window.c:2102
+#:../src/terminal-window.c:2070
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#: src/terminal-window.c:2283
-#, c-format
+#:../src/terminal-window.c:2265
+#,c-format
 msgid "This window has one tab open. Closing the window will close it."
-msgid_plural ""
-"This window has %d tabs open. Closing the window will also close all its "
+msgid_plural "This window has %d tabs open. Closing the window will also close all of its "
 "tabs."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cửa sổ có %d thanh được mở. Đóng cửa sổ thì sẽ đóng các thanh ấy."
 
-#: src/terminal-window.c:2288
-#, fuzzy
+#:../src/terminal-window.c:2274
 msgid "Close all tabs?"
-msgstr "Đóng tab"
+msgstr "Đóng mọi thanh chứ?"
 
-#: src/terminal-window.c:2300
-#, fuzzy
-msgid "Close All Tabs"
-msgstr "Đóng tab"
+#:../src/terminal-window.c:2286
+msgid "Close All _Tabs"
+msgstr "Đóng _mọi thanh"
 
-#: src/terminal-window.c:2692
-msgid "translator_credits"
-msgstr "Nguyễn Thái Ngọc Duy"
-
-#: src/terminal-window.c:2704
+#:../src/terminal-window.c:2833
 msgid "GNOME Terminal"
-msgstr "GNOME Terminal"
+msgstr "Thiết bị cuối GNOME"
 
-#: src/terminal.c:187
+#:../src/terminal-window.c:2834
+msgid "A terminal emulator for the GNOME desktop"
+msgstr "Một bộ mô phỏng thiết bị cuối cho môi trường Gnome"
+
+#:../src/terminal-window.c:2838
+msgid "translator-credits"
+msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
+
+#:../src/terminal.c:190
 msgid "Execute the argument to this option inside the terminal."
-msgstr "Thực hiện đối số tùy chọn này trong terminal"
+msgstr "Thực hiện đối số tùy chọn này trong thiết bị cuối."
 
-#: src/terminal.c:196
+#:../src/terminal.c:199
 msgid "Execute the remainder of the command line inside the terminal."
-msgstr "Thực hiện phần còn lại của dòng lệnh trong terminal."
+msgstr "Thực hiện phần còn lại của dòng lệnh trong thiết bị cuối."
 
-#: src/terminal.c:205
+#:../src/terminal.c:208
 msgid ""
 "Open a new window containing a tab with the default profile. More than one "
 "of these options can be provided."
-msgstr ""
-"Mở cửa sổ mới chứa 1 tab với profile mặc định. Có thể cung cấp nhiều hơn một "
-"trong những tùy chọn này."
+msgstr "Mở cửa sổ mới chứa một thanh với hồ sơ mặc định. Có thể cung cấp nhiều tùy "
+"chọn."
 
-#: src/terminal.c:214
+#:../src/terminal.c:217
 msgid ""
 "Open a new window containing a tab with the given profile. More than one of "
 "these options can be provided."
-msgstr ""
-"Mở cửa sổ mới chứa 1 tab với profile được cho. Có thể cung cấp nhiều hơn một "
-"trong những tùy chọn này."
+msgstr "Mở cửa sổ mới chứa một thanh với hồ sơ được cho. Có thể cung cấp nhiều tùy "
+"chọn."
 
-#: src/terminal.c:215 src/terminal.c:233
+#:../src/terminal.c:218 ../src/terminal.c:236
 msgid "PROFILENAME"
-msgstr "TÊN PROFILE"
+msgstr "TÊN HỒ SƠ"
 
-#: src/terminal.c:223
+#:../src/terminal.c:226
 msgid ""
 "Open a new tab in the last-opened window with the default profile. More than "
 "one of these options can be provided."
-msgstr ""
-"Mở tab mới trong cửa sổ được mở cuối cùng với profile mặc định. Có thể dùng "
-"những tùy chọn này nhiều hơn một lần."
+msgstr "Mở thanh mới trong cửa sổ được mở cuối cùng với hồ sơ mặc định. Có thể cung "
+"cấp nhiều tùy chọn."
 
-#: src/terminal.c:232
+#:../src/terminal.c:235
 msgid ""
 "Open a new tab in the last-opened window with the given profile. More than "
 "one of these options can be provided."
-msgstr ""
-"Mở tab mới trong cửa sổ được mở cuối cùng với profile được cho. Có thể dùng "
-"những tùy chọn này nhiều hơn một lần."
+msgstr "Mở thanh mới trong cửa sổ được mở cuối cùng với hồ sơ được cho. Có thể cung "
+"cấp nhiều tùy chọn."
 
-#: src/terminal.c:241
+#:../src/terminal.c:244
 msgid ""
 "Open a new window containing a tab with the given profile ID. Used "
 "internally to save sessions."
-msgstr ""
-"Mở cửa sổ mới chứa một tab với profile ID được cho. Được dùng nội tại để lưu "
-"session."
+msgstr "Mở cửa sổ mới chứa một thanh với hồ sơ ID được cho. Được dùng nội tại để lưu "
+"phiên làm việc."
 
-#: src/terminal.c:242 src/terminal.c:251
+#:../src/terminal.c:245 ../src/terminal.c:254
 msgid "PROFILEID"
-msgstr "PROFILEID"
+msgstr "ID_HỒ_SƠ"
 
-#: src/terminal.c:250
+#:../src/terminal.c:253
 msgid ""
 "Open a new tab in the last-opened window with the given profile ID. Used "
 "internally to save sessions."
-msgstr ""
-"Mở tab mới trong cửa sổ được mở cuối cùng với profile ID được cho. Dùng nội "
-"tại để lưu session."
+msgstr "Mở thanh mới trong cửa sổ được mở cuối cùng với hồ sơ ID được cho. Dùng nội "
+"tại để lưu phiên làm việc."
 
-#: src/terminal.c:259
+#:../src/terminal.c:262
 msgid ""
 "Set the role for the last-specified window; applies to only one window; can "
 "be specified once for each window you create from the command line."
-msgstr ""
-"Lập nhiệm vụ cho cửa sổ được xác định lần cuối; chỉ áp dụng cho một cửa sổ; "
+msgstr "Lập nhiệm vụ cho cửa sổ được xác định lần cuối; chỉ áp dụng cho một cửa sổ; "
 "có thể được xác định một lần cho từng cửa sổ bạn tạo từ dòng lệnh."
 
-#: src/terminal.c:260
+#:../src/terminal.c:263
 msgid "ROLE"
-msgstr "Nhiệm Vụ"
+msgstr "NHIỆM VỤ"
 
-#: src/terminal.c:268
+#:../src/terminal.c:271
 msgid ""
 "Turn on the menubar for the last-specified window; applies to only one "
 "window; can be specified once for each window you create from the command "
 "line."
-msgstr ""
-"Bật thanh menu cho cửa sổ được mở cuối cùng; chỉ áp dụng cho một cửa sổ; có "
-"thể xác định một lần cho mỗi cửa sổ bạn tạo từ dòng lệnh."
+msgstr "Bật thanh trình đơn cho cửa sổ được mở cuối cùng; chỉ áp dụng cho một cửa "
+"sổ; có thể xác định một lần cho mỗi cửa sổ bạn tạo từ dòng lệnh."
 
-#: src/terminal.c:277
+#:../src/terminal.c:280
 msgid ""
 "Turn off the menubar for the last-specified window; applies to only one "
 "window; can be specified once for each window you create from the command "
 "line."
-msgstr ""
-"Tắt thanh menu cho cửa sổ được mở cuối cùng; chỉ áp dụng cho một cửa sổ; có "
-"thể xác định một lần cho mỗi cửa sổ bạn tạo từ dòng lệnh."
+msgstr "Tắt thanh trình đơn cho cửa sổ được mở cuối cùng; chỉ áp dụng cho một cửa "
+"sổ; có thể xác định một lần cho mỗi cửa sổ bạn tạo từ dòng lệnh."
 
-#: src/terminal.c:286
+#:../src/terminal.c:289
+msgid ""
+"Set the last-specified window into fullscreen mode; applies to only one "
+"window; can be specified once for each window you create from the command "
+"line."
+msgstr "Lập chế độ toàn màn hình cho cửa sổ được xác định lần cuối; chỉ áp dụng cho "
+"một cửa sổ; có thể được xác định một lần cho từng cửa sổ bạn tạo từ dòng "
+"lệnh."
+
+#:../src/terminal.c:298
 msgid ""
 "X geometry specification (see \"X\" man page), can be specified once per "
 "window to be opened."
-msgstr ""
-"Xác định vị trí (X geometry - xem trang man \"X\"), có thể xác định một lần "
-"cho mỗi cửa sổ được mở."
+msgstr "Xác định vị trí X (X geometry: xem trang hướng dẫn X: lệnh « man X »), có "
+"thể xác định một lần cho mỗi cửa sổ được mở."
 
-#: src/terminal.c:287
+#:../src/terminal.c:299
 msgid "GEOMETRY"
-msgstr "GEOMETRY"
+msgstr "VỊ TRÍ"
 
-#: src/terminal.c:295
+#:../src/terminal.c:307
 msgid ""
 "Do not register with the activation nameserver, do not re-use an active "
 "terminal"
-msgstr ""
-"Không đăng ký hoạt động với nameserver, không dùng lại terminal đang hoạt "
-"động"
+msgstr "Không đăng ký với máý chủ tên hoạt hóa, không dùng lại thiết bị cuối đang "
+"hoạt động"
 
-#: src/terminal.c:304
-#, fuzzy
+#:../src/terminal.c:316
 msgid "Register with the activation nameserver [default]"
-msgstr ""
-"Không đăng ký hoạt động với nameserver, không dùng lại terminal đang hoạt "
-"động"
+msgstr "Đăng ký hoạt động với máy phục vụ tên hoạt hóa [mặc định]"
 
-#: src/terminal.c:313
+#:../src/terminal.c:325
 msgid "ID for startup notification protocol."
-msgstr "ID để khởi chạy giao thức thông báo"
+msgstr "ID để khởi chạy giao thức thông báo."
 
-#: src/terminal.c:322
+#:../src/terminal.c:334
 msgid "Set the terminal's title"
-msgstr "Đặt tựa đề terminal"
+msgstr "Đặt tựa đề thiết bị cuối"
 
-#: src/terminal.c:323
+#:../src/terminal.c:335
 msgid "TITLE"
 msgstr "TỰA ĐỀ"
 
-#: src/terminal.c:331
+#:../src/terminal.c:343
 msgid "Set the terminal's working directory"
-msgstr "Đặt thư mục làm việc của terminal"
+msgstr "Đặt thư mục làm việc của thiết bị cuối"
 
-#: src/terminal.c:332 src/terminal.c:341
+#:../src/terminal.c:344 ../src/terminal.c:353
 msgid "DIRNAME"
-msgstr "TÊN THƯ MỤC"
+msgstr "TÊN_THƯ_MỤC"
 
-#: src/terminal.c:340
-#, fuzzy
+#:../src/terminal.c:352
 msgid "Set the default terminal's working directory. Used internally"
-msgstr "Đặt thư mục làm việc của terminal"
+msgstr "Đặt thư mục làm việc mặc định của thiết bị cuối. Dùng nội bộ"
 
-#: src/terminal.c:349
+#:../src/terminal.c:361
 msgid "Set the terminal's zoom factor (1.0 = normal size)"
-msgstr "Đặt zoom factor của terminal (1.0 = kích cỡ bình thường)"
+msgstr "Đặt hệ số phóng của thiết bị cuối (1.0 = kích cỡ bình thường)"
 
-#: src/terminal.c:350 src/terminal.c:359
+#:../src/terminal.c:362 ../src/terminal.c:371
 msgid "ZOOMFACTOR"
-msgstr "ZOOMFACTOR"
+msgstr "HỆ_SỐ_PHÓNG"
 
-#: src/terminal.c:358
+#:../src/terminal.c:370
 msgid "Set the last specified tab as the active one in its window"
-msgstr "Đặt tab xác định cuối cuối là tab hoạt động trong cửa sổ của nó"
+msgstr "Đặt thanh xác định cuối cuối là thanh hoạt động trong cửa sổ của nó."
 
-#: src/terminal.c:696
-#, c-format
+#:../src/terminal.c:713
+#,c-format
 msgid "Could not load icon \"%s\": %s\n"
-msgstr "Không thể nạp biểu tượng \"%s\": %s\n"
+msgstr "Không thể tải biểu tượng « %s »: %s\n"
 
-#: src/terminal.c:761
-#, c-format
+#:../src/terminal.c:778
+#,c-format
 msgid "Option \"%s\" requires specifying the command to run\n"
-msgstr "Tùy chọn \"%s\" yêu cầu lệnh cần thực hiện\n"
+msgstr "Tùy chọn « %s » cần đến ghi rõ lệnh cần thực hiện.\n"
 
-#: src/terminal.c:769
-#, c-format
+#:../src/terminal.c:786
+#,c-format
 msgid "Argument to \"%s\" is not a valid command: %s\n"
-msgstr "Đối số của \"%s\" không phải là lệnh hợp lệ: %s\n"
+msgstr "Đối số đối với « %s » không phải là lệnh hợp lệ: %s\n"
 
-#: src/terminal.c:779 src/terminal.c:803
-#, c-format
+#:../src/terminal.c:796 ../src/terminal.c:820
+#,c-format
 msgid "\"%s\" specified more than once for the same window or tab\n"
-msgstr "\"%s\" xác định nhiều hơn một lần cho cùng một cửa sổ hoặc tab\n"
+msgstr "« %s » xác định nhiều lần cho cùng một cửa sổ hoặc thanh.\n"
 
-#: src/terminal.c:794
-#, c-format
+#:../src/terminal.c:811
+#,c-format
 msgid ""
 "Option \"%s\" requires specifying the command to run on the rest of the "
 "command line\n"
-msgstr ""
-"Tùy chọn \"%s\" yêu cầu xác định lệnh cần chạy trên phần còn lại của dòng "
-"lệnh\n"
+msgstr "Tùy chọn « %s » yêu cầu xác định lệnh cần chạy trên phần còn lại của dòng "
+"lệnh.\n"
 
-#: src/terminal.c:825 src/terminal.c:849
-#, c-format
+#:../src/terminal.c:842 ../src/terminal.c:866
+#,c-format
 msgid "Option \"%s\" requires an argument specifying what profile to use\n"
-msgstr "Tùy chọn \"%s\" yêu cầu đối số là profile cần dùng\n"
+msgstr "Tùy chọn « %s » yêu cầu đối số ghi rõ hồ sơ cần dùng.\n"
 
-#: src/terminal.c:883 src/terminal.c:909
-#, c-format
+#:../src/terminal.c:900 ../src/terminal.c:926
+#,c-format
 msgid "\"%s\" option given twice for the same window\n"
-msgstr "Tùy chọn \"%s\" hai lần trên cùng cửa sổ\n"
+msgstr "Tùy chọn « %s » được lập hai lần trên cùng cửa sổ\n"
 
-#: src/terminal.c:932
-#, c-format
+#:../src/terminal.c:966
+#,c-format
 msgid "Option \"%s\" requires an argument giving the role\n"
-msgstr "Tùy chọn \"%s\" yêu cầu đối số trao nhiệm vụ\n"
+msgstr "Tùy chọn « %s » yêu cầu đối số trao nhiệm vụ.\n"
 
-#: src/terminal.c:941
+#:../src/terminal.c:975
 msgid "Two roles given for one window\n"
-msgstr "Hai nhiệm vụ được trao cho một cửa sổ\n"
+msgstr "Hai nhiệm vụ được trao cho một cửa sổ.\n"
 
-#: src/terminal.c:957
-#, c-format
+#:../src/terminal.c:991
+#,c-format
 msgid "Option \"%s\" requires an argument giving the geometry\n"
-msgstr "Tùy chọn \"%s: yêu cầu đối số là vị trí\n"
+msgstr "Tùy chọn « %s » yêu cầu đối số trao vị trí\n"
 
-#: src/terminal.c:966
-#, c-format
+#:../src/terminal.c:1000
+#,c-format
 msgid "Two \"%s\" options given for one window\n"
-msgstr "Hai tùy chọn \"%s\" được trao cho một cửa sổ\n"
+msgstr "Hai tùy chọn « %s » được trao cho một cửa sổ.\n"
 
-#: src/terminal.c:976
+#:../src/terminal.c:1010
 msgid "Two geometries given for one window\n"
-msgstr "Hai vị trí được cho trên cùng một cửa sổ\n"
+msgstr "Hai vị trí được cho trên cùng một cửa sổ.\n"
 
-#: src/terminal.c:1002
-#, c-format
+#:../src/terminal.c:1036
+#,c-format
 msgid "Option \"%s\" requires an argument giving the title\n"
-msgstr "Tùy chọn \"%s: yêu cầu đối số là tựa đề\n"
+msgstr "Tùy chọn « %s » yêu cầu đối số trao tựa đề.\n"
 
-#: src/terminal.c:1010 src/terminal.c:1033 src/terminal.c:1075
-#, c-format
+#:../src/terminal.c:1044 ../src/terminal.c:1067 ../src/terminal.c:1109
+#,c-format
 msgid "Two \"%s\" options given for one tab\n"
-msgstr "Hai tùy chọn \"%s\" được đưa trên cùng một tab\n"
+msgstr "Hai tùy chọn « %s » được đưa trên cùng một thanh.\n"
 
-#: src/terminal.c:1025
-#, c-format
+#:../src/terminal.c:1059
+#,c-format
 msgid "Option \"%s\" requires an argument giving the directory\n"
-msgstr "Tùy chọn \"%s\" yêu cầu đối số là thư mục\n"
+msgstr "Tùy chọn « %s » yêu cầu đối số trao thư mục.\n"
 
-#: src/terminal.c:1045
-#, fuzzy
+#:../src/terminal.c:1079
 msgid ""
 "Option --default-working-directory requires an argument giving the "
 "directory\n"
-msgstr "Tùy chọn --working-directory yêu cầu đối số là thư mục\n"
+msgstr "Tùy chọn « --default-working-directory » (thư mục làm việc mặc định) yêu cầu "
+"đối số trao thư mục.\n"
 
-#: src/terminal.c:1051
-#, fuzzy
+#:../src/terminal.c:1085
 msgid "Two --default-working-directories given\n"
-msgstr "Hai thư mục làm việc cho cùng một tab\n"
+msgstr "Có đến tùy chọn « --default-working-directory » (thư mục làm việc mặc "
+"định).\n"
 
-#: src/terminal.c:1067
-#, c-format
+#:../src/terminal.c:1101
+#,c-format
 msgid "Option \"%s\" requires an argument giving the zoom factor\n"
-msgstr "Tùy chọn \"%s\" yêu cầu đối số trao hệ số thu phóng\n"
+msgstr "Tùy chọn « %s » yêu cầu đối số trao hệ số thu phóng.\n"
 
-#: src/terminal.c:1090
-#, c-format
+#:../src/terminal.c:1124
+#,c-format
 msgid "\"%s\" is not a valid zoom factor\n"
-msgstr "\"%s\" không phải zoom factor hợp lệ\n"
+msgstr "« %s » không phải hệ số thu phóng hợp lệ.\n"
 
-#: src/terminal.c:1098
-#, c-format
+#:../src/terminal.c:1132
+#,c-format
 msgid "Zoom factor \"%g\" is too small, using %g\n"
-msgstr "Zoom factor \"%g\" quá nhỏ, đang dùng %g\n"
+msgstr "Hệ số thu phóng « %g » quá nhỏ nên đang dùng « %g ».\n"
 
-#: src/terminal.c:1105
-#, c-format
+#:../src/terminal.c:1139
+#,c-format
 msgid "Zoom factor \"%g\" is too large, using %g\n"
-msgstr "Zoom factor \"%g\" quá lớn, đang dùng %g\n"
+msgstr "Hệ số thu phóng « %g » quá lớn nên đang dùng « %g ».\n"
 
-#: src/terminal.c:1126
-#, c-format
+#:../src/terminal.c:1160
+#,c-format
 msgid ""
 "Option --%s is no longer supported in this version of gnome-terminal; you "
 "might want to create a profile with the desired setting, and use the new --"
 "window-with-profile option\n"
-msgstr ""
-"Tùy chọn --%s không còn được hỗ trợ trong phiên bản gnome-terminal này; có "
-"lẽ bạn muốn tạo profile với các thiết lập thích hợp và dùng tùy chọn --"
-"window-with-profile mới\n"
+msgstr "Tùy chọn « --%s » không còn được hỗ trợ trong phiên bản gnome-terminal này; "
+"có lẽ bạn muốn tạo hồ sơ với các thiết lập thích hợp và dùng tùy chọn mới « "
+"--window-with-profile » (cửa sổ có hồ sơ).\n"
 
-#: src/terminal.c:1132
-#, c-format
+#:../src/terminal.c:1166
+#,c-format
 msgid "\"%s\" option given twice\n"
-msgstr "Tùy chọn \"%s\" được trao hai lần\n"
+msgstr "Tùy chọn « %s » được trao hai lần.\n"
 
-#: src/terminal.c:1137 src/terminal.c:1278
-#, c-format
+#:../src/terminal.c:1171 ../src/terminal.c:1312
+#,c-format
 msgid "\"%s\" option requires an argument\n"
-msgstr "Tùy chọn \"%s\" đòi hỏi một đối số\n"
+msgstr "Tùy chọn « %s » đòi hỏi một đối số.\n"
 
-#: src/terminal.c:1256
-#, c-format
+#:../src/terminal.c:1290
+#,c-format
 msgid "No argument given to \"%s\" option\n"
-msgstr "Không có đối số được trao cho tùy chọn \"%s\"\n"
+msgstr "Không có đối số được trao cho tùy chọn « %s ».\n"
 
-#: src/terminal.c:1390
-#, c-format
+#:../src/terminal.c:1424
+#,c-format
 msgid "No such profile '%s', using default profile\n"
-msgstr "Không có profile '%s', dùng profile mặc định\n"
+msgstr "Không có hồ sơ « %s » nên dùng hồ sơ mặc định.\n"
 
-#: src/terminal.c:1568
-#, c-format
+#:../src/terminal.c:1667
+#,c-format
 msgid "Invalid argument: \"%s\"\n"
-msgstr "Đối số không hợp lệ: \"%s\"\n"
+msgstr "Đối số không hợp lệ: « %s ».\n"
 
-#: src/terminal.c:1636
-#, c-format
+#:../src/terminal.c:1740
+#,c-format
 msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
-msgstr "Lỗi đăng ký thông báo thay đổi danh sách profile terminal (%s)\n"
+msgstr "Gặp lỗi khi đăng ký thông báo thay đổi danh sách hồ sơ thiết bị cuối. (%s)\n"
 
-#: src/terminal.c:1864
-#, c-format
+#:../src/terminal.c:1986
+#,c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Chuỗi vị trí không hợp lệ \"%s\"\n"
+msgstr "Chuỗi tọa độ không hợp lệ « %s ».\n"
 
-#: src/terminal.c:1924
-#, c-format
+#:../src/terminal.c:2052
+#,c-format
 msgid "There was an error getting the list of terminal profiles. (%s)\n"
-msgstr "Lỗi lấy danh sách terminal profile (%s)\n"
+msgstr "Gặp lỗi khi lấy danh sách các hồ sơ thiết bị cuối. (%s)\n"
 
-#: src/terminal.c:2223
-#, c-format
-msgid "You already have a profile called \"%s\""
-msgstr "Bạn đã có profile \"%s\" rồi"
+#:../src/terminal.c:2356
+#,c-format
+msgid ""
+"You already have a profile called \"%s\". Do you want to create another "
+"profile with the same name?"
+msgstr "Bạn đã có một hồ sơ tên « %s ». Bạn có muốn tạo một hồ sơ khác có cùng tên "
+"này không?"
 
-#: src/terminal.c:2234
+#:../src/terminal.c:2370
 msgid ""
 "The profile you selected as a base for your new profile no longer exists"
-msgstr "Profile bạn chọn như là cơ sở cho profile mới không còn tồn tại nữa"
+msgstr "Hồ sơ bạn chọn như là cơ sở cho hồ sơ mới không còn tồn tại nữa."
 
-#: src/terminal.c:2323
+#:../src/terminal.c:2466
 msgid "Enter profile name"
-msgstr "Nhập tên profile"
+msgstr "Nhập tên hồ sơ"
 
-#: src/terminal.c:2333
+#:../src/terminal.c:2476
 msgid "Choose base profile"
-msgstr "Chọn profile cơ sở"
+msgstr "Chọn hồ sơ cơ sở"
 
-#: src/terminal.c:2472
+#:../src/terminal.c:2615
 msgid "Profile list"
-msgstr "Danh sách profile"
+msgstr "Danh sách các hồ sơ"
 
-#: src/terminal.c:2541
+#:../src/terminal.c:2684
 msgid "You must select one or more profiles to delete."
-msgstr "Bạn phải chọn những profile cần xóa"
+msgstr "Bạn phải chọn một hoặc nhiều hồ sơ cần xoá bỏ."
 
-#: src/terminal.c:2552
+#:../src/terminal.c:2695
 msgid "You must have at least one profile; you can't delete all of them."
-msgstr "Bạn phải có ít nhất một profile; bạn không thể xóa tất cả."
+msgstr "Bạn phải có ít nhất một hồ sơ; bạn không thể xóa bỏ hết."
 
-#: src/terminal.c:2559
-#, fuzzy, c-format
+#:../src/terminal.c:2703
+#,c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "Xoá %d profile này chứ?\n"
-msgstr[1] "Xoá %d profile này chứ?\n"
+msgstr[0] "Xoá bỏ %d hồ sơ này chứ?\n"
 
-#: src/terminal.c:2580
-#, c-format
+#:../src/terminal.c:2724
+#,c-format
 msgid "Delete profile \"%s\"?"
-msgstr "Xoá profile \"%s\" chứ?"
+msgstr "Xoá bỏ hồ sơ « %s » chứ?"
 
-#: src/terminal.c:2602
+#:../src/terminal.c:2746
 msgid "Delete Profile"
-msgstr "Xoá Lý Lịch"
+msgstr "Xoá bỏ hồ sơ"
 
-#: src/terminal.c:2860
-#, fuzzy
+#:../src/terminal.c:3019
 msgid "Profiles"
-msgstr "_Profile:"
+msgstr "Hồ sơ"
 
-#: src/terminal.c:2902
-msgid "Profile _used when launching a new terminal:"
-msgstr "Profile được dùng khi khởi động terminal mới:"
-
-#: src/terminal.c:2922
+#:../src/terminal.c:3060
 msgid "_Profiles:"
-msgstr "_Profile:"
+msgstr "_Hồ sơ:"
 
-#: src/terminal.c:2969
+#:../src/terminal.c:3092
 msgid "Click to open new profile dialog"
-msgstr "Nhấn để mở hộp thoại profile mới"
+msgstr "Nhấn để mở hộp thoại hồ sơ mới"
 
-#: src/terminal.c:2982
+#:../src/terminal.c:3100
 msgid "Click to open edit profile dialog"
-msgstr "Nhấn để mở hộp thoại sửa profile"
+msgstr "Nhấn để mở hộp thoại sửa đổi hồ sơ"
 
-#: src/terminal.c:2992
+#:../src/terminal.c:3108
 msgid "Click to delete selected profile"
-msgstr "Nhấn để xóa các profile được chọn"
+msgstr "Nhấn để xóa bỏ hồ sơ được chọn"
 
-#: src/terminal.c:3041
+#:../src/terminal.c:3113
+msgid "Profile _used when launching a new terminal:"
+msgstr "Hồ sơ được _dùng khi khởi động thiết bị cuối mới:"
+
+#:../src/terminal.c:3169
 msgid "Click button to choose profile"
-msgstr "Nhấn để chọn profile"
+msgstr "Nhấn nút để chọn hồ sơ"
 
-#: src/terminal.c:3458
-#, c-format
+#:../src/terminal.c:3586
+#,c-format
 msgid "There was an error displaying help: %s"
-msgstr "Lỗi hiển thị trợ giúp: %s"
+msgstr "Gặp lỗi khi hiển thị trợ giúp: %s"
 
-#: src/terminal.c:3529
-#, c-format
+#:../src/terminal.c:3657
+#,c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly."
-msgstr ""
-"Thiếu tập tin \"%s\". Điều này có nghĩa là ứng dụng chưa được cài đặt đúng."
+msgstr "Thiếu tập tin « %s ». Điều này có nghĩa là ứng dụng chưa được cài đặt đúng."
 
-#: src/terminal.c:3693
+#:../src/terminal.c:3821
 msgid ""
 "It appears that you do not have gnome-terminal.server installed in a valid "
 "location. Factory mode disabled.\n"
-msgstr ""
-"Có lẽ bạn chưa cài đặt đúng vị trí gnome-terminal.server. Tắt chế độ "
-"factory.\n"
+msgstr "Có lẽ bạn chưa cài đặt đúng vị trí « gnome-terminal.server ». Tắt chế độ "
+"tạo.\n"
 
-#: src/terminal.c:3696
+#:../src/terminal.c:3824
 msgid ""
 "Error registering terminal with the activation service; factory mode "
 "disabled.\n"
-msgstr ""
-"Lỗi đang ký terminal với dịch vụ kích hoạt; chế độ factory đã được tắt.\n"
+msgstr "Gặp lỗi khi đang ký thiết bị cuối với dịch vụ hoạt hóa; chế độ tạo đã bị "
+"tắt.\n"
 
-#: src/terminal.c:3732
+#:../src/terminal.c:3860
 msgid "Failed to retrieve terminal server from activation server\n"
-msgstr "Lỗi nhận server terminal từ server kích hoạt\n"
-
-#~ msgid "There was an error creating the child process for this terminal: %s"
-#~ msgstr "Lỗi tạo tiến trình con cho terminal này: %s"
-
-#~ msgid "Could not set working directory to \"%s\": %s\n"
-#~ msgstr "Không thể thiết lập thư mục làm việc thành \"%s\": %s\n"
-
-#~ msgid "Could not execute command %s: %s\n"
-#~ msgstr "Không thể thực hiện lệnh %s: %s\n"
-
-#~ msgid ""
-#~ "There was an error subscribing to notification for use_mnemonics (%s)\n"
-#~ msgstr "Gặp lỗi khi đăng ký thông báo use_mnemonics (%s)\n"
-
-#~ msgid "Accelerator to close a tab."
-#~ msgstr "Phím nóng để đóng tab."
-
-#~ msgid "Accelerator to copy text."
-#~ msgstr "Phím nóng để chép văn bản."
-
-#~ msgid "Accelerator to launch help."
-#~ msgstr "Phím nóng để hiện trợ giúp."
-
-#~ msgid "Accelerator to paste text."
-#~ msgstr "Phím nóng để dán văn bản."
-
-#~ msgid "Delete these two profiles?\n"
-#~ msgstr "Xoá hai profile này chứ?\n"
-
-#~ msgid "Edit Profiles"
-#~ msgstr "Biên soạn lý lịch"
-
-#~ msgid "_New Window"
-#~ msgstr "_Cửa sổ mới"
-
-#~ msgid "New _Tab"
-#~ msgstr "_Tab mới"
-
-#~ msgid "Hide _Menubar"
-#~ msgstr "Ẩn thanh _menu"
-
-#~ msgid "Change terminal title"
-#~ msgstr "Thay đổi tựa terminal"
-
-#~ msgid "Hide Menu_bar"
-#~ msgstr "Ẩn _thanh menu"
-
-#~ msgid "_Zoom In"
-#~ msgstr "Phóng t_o"
-
-#~ msgid "Zoom _Out"
-#~ msgstr "Thu nh_ỏ"
-
-#~ msgid "_Go"
-#~ msgstr "Đ_i"
-
-#~ msgid "_Restore normal size"
-#~ msgstr "_Phục hồi kích thước bình thường"
-
-#~ msgid "_Full screen"
-#~ msgstr "Toàn _màn hình"
-
-#~ msgid ""
-#~ "Your current desktop environment does not support the full screen "
-#~ "feature.\n"
-#~ " (In technical terms, you need a window manager with support for the "
-#~ "_NET_WM_STATE_FULLSCREEN property.)"
-#~ msgstr ""
-#~ "Môi trường desktop này không hỗ trợ chế độ toàn màn hình.\n"
-#~ " (Theo thuật ngữ kỹ thuật, bạn cần một trình quản lý cửa sổ hỗ trợ thuộc "
-#~ "tính _NET_WM_STATE_FULLSCREEN)."
-
-#~ msgid "_Use the same size font as other applications"
-#~ msgstr "D_ùng cùng cỡ phông chữ như ứng dụng khác"
-
-#~ msgid ""
-#~ "Option --window-with-profile requires an argument specifying what profile "
-#~ "to use\n"
-#~ msgstr ""
-#~ "Tùy chọn --window-with-profile yêu cầu đối số là profile nào được dùng\n"
-
-#~ msgid "--hide-menubar option given twice for the same window\n"
-#~ msgstr "Tùy chọn --hide-menubar được trao hai lần cho cùng cửa sổ\n"
-
-#~ msgid "Two zoom factors given for one tab\n"
-#~ msgstr "Hai zoom factor được trao cho một tab\n"
-
-#~ msgid "No argument given to --display option\n"
-#~ msgstr "Không có đối số được trao cho tùy chọn --display\n"
-
-#~ msgid "You have to name your profile."
-#~ msgstr "Bạn phải đặt tên profile."
-
-#~ msgid "There was an error forgetting profile dir %s. (%s)\n"
-#~ msgstr "Lỗi quên thư mục profile %s. (%s)\n"
-
-#~ msgid "_Accelerators:"
-#~ msgstr "Phím n_óng:"
-
-#~ msgid "Accelerator _Key"
-#~ msgstr "_Phím nóng"
-
-#~ msgid "_Keybindings..."
-#~ msgstr "_Keybindings..."
-
-#~ msgid "Farsi"
-#~ msgstr "Farsi"
-
-#~ msgid "Foundry:"
-#~ msgstr "Nhà sản xuất:"
-
-#~ msgid "Family:"
-#~ msgstr "Họ:"
-
-#~ msgid "Weight:"
-#~ msgstr "Đậm:"
-
-#~ msgid "Slant:"
-#~ msgstr "Nghiêng:"
-
-#~ msgid "Set Width:"
-#~ msgstr "Chọn bề rộng:"
-
-#~ msgid "Add Style:"
-#~ msgstr "Thêm kiểu:"
-
-#~ msgid "Pixel Size:"
-#~ msgstr "Kích thước (pixel):"
-
-#~ msgid "Point Size:"
-#~ msgstr "Kích thước (point):"
-
-#~ msgid "Resolution X:"
-#~ msgstr "Độ phân giải X:"
-
-#~ msgid "Resolution Y:"
-#~ msgstr "Độ phân giải Y:"
-
-#~ msgid "Spacing:"
-#~ msgstr "Khoảng trống:"
-
-#~ msgid "Average Width:"
-#~ msgstr "Rộng trung bình:"
-
-#~ msgid "Charset:"
-#~ msgstr "Bảng mã:"
-
-#~ msgid "Font Property"
-#~ msgstr "Thuộc tính font"
-
-#~ msgid "Requested Value"
-#~ msgstr "Giá trị yêu cầu"
-
-#~ msgid "Actual Value"
-#~ msgstr "Giá trị thực"
-
-#~ msgid "Font:"
-#~ msgstr "Font:"
-
-#~ msgid "Font Style:"
-#~ msgstr "Kiểu font:"
-
-#~ msgid "Size:"
-#~ msgstr "Kích thước:"
-
-#~ msgid "Reset Filter"
-#~ msgstr "Đặt lại bộ lọc"
-
-#~ msgid "Metric:"
-#~ msgstr "Đơn vị:"
-
-#~ msgid "Points"
-#~ msgstr "Point"
-
-#~ msgid "Pixels"
-#~ msgstr "Pixel"
-
-#~ msgid "Preview:"
-#~ msgstr "Xem thử:"
-
-#~ msgid "Font Information"
-#~ msgstr "Thông tin font"
-
-#~ msgid "Requested Font Name:"
-#~ msgstr "Tên font yêy cầu:"
-
-#~ msgid "Actual Font Name:"
-#~ msgstr "Tên thực:"
-
-#~ msgid "%i fonts available with a total of %i styles."
-#~ msgstr "%i font sẵn sàng với tổng cộng %i kiểu"
-
-#~ msgid "Filter"
-#~ msgstr "Bộ lọc"
-
-#~ msgid "Font Types:"
-#~ msgstr "Loại font:"
-
-#~ msgid "Bitmap"
-#~ msgstr "Bitmap"
-
-#~ msgid "Scalable"
-#~ msgstr "Co dãn"
-
-#~ msgid "Scaled Bitmap"
-#~ msgstr "Bitmap co dãn"
-
-#~ msgid "(nil)"
-#~ msgstr "(nil)"
-
-#~ msgid "regular"
-#~ msgstr "bình thường"
-
-#~ msgid "[M]"
-#~ msgstr "[M]"
-
-#~ msgid "[C]"
-#~ msgstr "[C]"
-
-#~ msgid "The selected font is not available."
-#~ msgstr "Font được chọn không sẵn sàng."
-
-#~ msgid "The selected font is not a valid font."
-#~ msgstr "Font được chọn không hợp lệ."
-
-#~ msgid "This is a 2-byte font and may not be displayed correctly."
-#~ msgstr "Đây là font 2 byte và có thể được hiển thị không đúng."
-
-#~ msgid "(unknown)"
-#~ msgstr "(không biết)"
-
-#~ msgid "Font: (Filter Applied)"
-#~ msgstr "Font: (dùng bộ lọc)"
-
-#~ msgid "Select a font"
-#~ msgstr "Chọn font"
-
-#~ msgid "Copyright 2002 Havoc Pennington"
-#~ msgstr "Copyright 2002 Havoc Pennington"
-
-#~ msgid "Title"
-#~ msgstr "Tựa đề"
-
-#~ msgid ""
-#~ "The file \"%s\" is missing. This indicates that the application is "
-#~ "installed incorrectly, so the profile editor can't be displayed."
-#~ msgstr ""
-#~ "Thiếu tập tin \"%s\". Điều này có nghĩa là ứng dụng chưa được cài đặt "
-#~ "đúng. Vì thế bộ biên soạn profile không thể hiển thị."
-
-#~ msgid ""
-#~ "The file \"%s\" is missing. This indicates that the application is "
-#~ "installed incorrectly, so the keybindings dialog can't be displayed."
-#~ msgstr ""
-#~ "Thiếu tập tin \"%s\". Điều này có nghĩa là ứng dụng chưa được cài đặt "
-#~ "đúng. Vì thế nên hộp thoại keybinding sẽ không hiển thị."
-
-#~ msgid "_Blink cursor"
-#~ msgstr "Con trỏ _chớp"
-
-#~ msgid "_About GNOME Terminal"
-#~ msgstr "Giới thiệu GNOME Terminal"
-
-#~ msgid ""
-#~ "--geometry given prior to options that create a new window, must be given "
-#~ "after\n"
-#~ msgstr ""
-#~ "--geometry được đưa ra trước tùy chọn tạo cửa sổ mới, mà lẽ ra phải ở "
-#~ "đằng sau.\n"
-
-#~ msgid "New terminal profile"
-#~ msgstr "Terminal profile mới"
-
-#~ msgid "Profile _Name:"
-#~ msgstr "Tên _profile:"
-
-#~ msgid "_No"
-#~ msgstr "_Không"
-
-#~ msgid "_Delete"
-#~ msgstr "_Xoá"
-
-#~ msgid "Manage terminal profiles"
-#~ msgstr "Quản lý terminal profile"
-
-#~ msgid "_New..."
-#~ msgstr "_Mới..."
-
-#~ msgid "_Edit..."
-#~ msgstr "_Sửa..."
-
-#~ msgid "_Delete..."
-#~ msgstr "_Xoá..."
+msgstr "Lỗi nhận máy phục vụ thiết bị cuối từ máy phục vụ hoạt hóa.\n"
