@@ -1,6 +1,956 @@
+2006-05-17  Behdad Esfahbod  <behdad@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: released 2.15.1.
+
+	* configure.in: Remove m4 macro dir directive.
+
+2006-05-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* configure.in: bumped dependency on intltool to 0.35.
+
+2006-05-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: released 2.15.0.
+
+2006-05-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: improved proxy settings exporting,
+	  which now includes authentication. Closes bug #339134.
+
+2006-05-07  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* configure.in: applied patch from Brian Cameron to allow
+	  recognition of Xrender on Solaris. Closes bug #339979.
+
+2006-04-29  Behdad Esfahbod  <behdad@gnome.org>
+
+	* configure.in, po/LINGUAS: Use new intltool syntax.
+	(#337904)
+
+2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Remove obsolete entry for no_NO
+	* po/no.po: And the translation.
+
+2006-04-05  Tommi Vainikainen  <thv@iki.fi>
+
+	* .cvsignore, Makefile.am, autogen.sh, configure.in,
+	m4/.cvsignore: Migrated to gnome-doc-utils. Autoconf+Automake
+	adjustments.
+	* acconfig.h: Removed in migration.
+	* po/.cvsignore, src/skey/.cvsignore: Added missing generated
+	files.
+
+2006-04-02  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: include the final slash if there
+	  is one on URL highlighting. Closes bug #329003.
+
+2006-04-02  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c (terminal_app_get_clone_command): store
+	  the full geometry (including window position) on session
+	  save. Closes bug #336910.
+
+2006-04-01  Behdad Esfahbod  <behdad@gnome.org>
+
+	* src/terminal-window.c (terminal_window_set_size_force_grid):
+	Remove the old hack that was causing superfluous resize when a tab is
+	drag-n-dropped to a separate window.  We'll see if regressions happen.
+	Closes bug #336325 (may open new ones ;).
+
+2006-04-01  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: applied patch to fix the close button
+	  of the about dialog after changes in GTK+. Closes bug #335945.
+
+	* src/terminal-window.c: marked the license text for translation.
+
+2006-03-26  Tommi Vainikainen  <thv@iki.fi>
+
+	* configure.in (ALL_LINGUAS): Added Dzongkha (dz).
+
+2006-03-20  Vladimer Sichinava  <vlsichinava@gmail.com>
+
+        * configure.in: Added "ka" (Georgian) to ALL_LINGUAS
+
+2006-03-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: release 2.14.0.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.93 so we get broader testing
+	  for the latest changes.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: applied patch from Tony Tsui to fix a
+	  serious freeze when detaching a tab right after changing its
+	  position. Closes bug #330246.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c: applied patch from jeff@ratsite.com to fix
+	  a crash in case too many terminals were started too quickly.
+	  Closes bug #318797.
+
+2006-03-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.92.
+
+2006-03-03  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* configure.in: fix a build failure. Closes bug #333292.
+
+2006-02-18  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: made the licensing information not be
+	  translatable on Danilo Šegan's request.
+
+2006-02-17  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: added licensing information to the about
+	  dialog. Closes bug #330875.
+
+2006-02-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: 2.13.91!
+
+2006-02-02  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: removed an unused variable.
+
+	* src/terminal-screen.c: fix lack of items in the context menu
+	  for highlighted URLs. Closes bug #329553.
+
+2006-02-01  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.glade2: removed invisible_char, as it was set
+	  to '*', which is the default, for no good reason. Bug #329294.
+
+2006-01-30  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.90.
+
+2006-01-30  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: applied patch from Elijah Newren to fix
+	  some compiler warnings. Closes bug #329161.
+
+2006-01-30  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* gnome-terminal.desktop.in.in (Exec): removed --working-directory=%f.
+	  As far as I can tell, that was there for directory MIME-type
+	  handling, which was left for nautilus-open-terminal.
+
+2006-01-30  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: add tool tips to the tabs close buttons.
+
+2006-01-28  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: revert to dynamically setting the title if
+	  the user sets it to an empty string. Closes bug #328932.
+
+2006-01-27  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in: add F11 as default keybinding for
+	  entering and leaving fullscreen. Closes bug #326781.
+
+2006-01-26  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: code cleanups.
+
+	* src/terminal-screen.c: really fix the handling of file URLs and
+	  e-mail addresses highlighting now, getting a slight startup speed
+	  improvement as an extra bonus.
+
+2006-01-26  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* NEWS: rewrote the entries for 2.13.2 and 2.13.3 for more
+	  clarity and relevance.
+
+2006-01-26  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-accels.c: reverted to the old libegg API.
+
+	* src/eggaccelerators.c, src/eggaccelerators.h,
+	* src/eggcellrendererkeys.c, src/eggcellrendererkeys.h:
+	  revert the libegg update, as it somehow broke the setting
+	  of accelerators. Closes bug #328052.
+	  
+2006-01-21  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* gnome-terminal.desktop.in.in: added GTK to the list of
+	  Categories. Closes bug #328043.
+
+2006-01-20  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c: enforce our coding style on some code copied
+	  from libnautilus.
+
+2006-01-20  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c, src/terminal-screen.h: get rid of the
+	  unused screen ids, avoiding, among other things, some lists
+	  operations at screen initialization.
+
+2006-01-20  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	Fixes to patch submitted for bug #321952:
+
+	* src/terminal-screen.c (get_child_environment):
+	  - fixed the format of the http_proxy environment variable.
+	  - only query GConf for values we know we are going to use.
+	  - unref the GConfClient when nothing else from GConf is needed.
+	  - also set the no_proxy environment variable with ignore_hosts.
+	  - general code cleanups.
+
+2006-01-20  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	Fixes to patch submitted for bug #139332:
+
+	* src/gnome-terminal.schemas.in: reworded the descriptions.
+	  Fixes bug #327456.
+
+	* src/terminal-profile.c, src/terminal-profile.h,
+	  src/terminal-widget.h: removed unnecessary code and fixed
+	  indentation issues.
+
+	* src/terminal-widget-vte.c: better organized code to only do what
+	  might take long once simple checks have already been performed.
+
+2006-01-20  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: fixed a tiny compiler warning.
+
+	* src/terminal-notebook.c: fixed the tabs height based on a patch
+	  from Theerud Lawtrakul. Closes bug #327412 and its several dups.
+
+2006-01-18  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: bump version to 2.13.3.
+
+2006-01-17  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c (sync_label): fixed to be able to get the
+	  actual title label from the tab now that we have new elements such
+	  as the close button. Closes bug #327313.
+
+2006-01-16  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* configure.in: release 2.13.2
+
+	* NEWS: updated
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: added a close button to the tabs. Closes
+	  #71444 and all of its duplicates.
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in, src/terminal-profile.c,
+	  src/terminal-profile.h, src/terminal-screen.c, src/terminal-widget.h,
+	  src/terminal-widget-vte.c: applied patch from Kiran Kumar Immidi
+	  to allow disabling font anti-aliasing when the X RENDER extension is
+	  not available, and do that by default. Closes bug #139332.
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: applied patch from John Spray to set
+	  the http_proxy environment variable based on the GNOME proxy
+	  settings. Closes bug #321952.
+
+2006-01-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c, src/terminal-screen.c, src/terminal-screen.h:
+	  made the title not be dinamically changed anymore once the user
+	  has manually set it. Closes bug #152986 (along with another ton
+	  of duplicates).
+
+2006-01-15  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-accels.c: fix build failure caused by undocumented
+	  API change in libegg. Closes bug #326972.
+
+2006-01-15  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in: made the visible name of the
+	  default profile be translatable. Closes bug #129889.
+
+2006-01-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: clean up the highlighting flavors mess,
+	  S/Key, OTP and mailto can use FLAVOR_AS_IS without problems.
+
+2006-01-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/eggaccelerators.c, src/eggaccelerators.h,
+	  src/eggcellrendererkeys.c, src/eggcellrendererkeys.h: update
+	  from libegg.
+
+2006-01-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/skey-popup.c: fix a compiler warning.
+
+2006-01-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/Makefile.am: applied patch from Marco Pesenti Gritti to allow
+	  building from the src directory. Closes bug #158319.
+
+2006-01-12  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: applied patch from Gary Coady to fix the
+	  regular expressions for URL highlighting. Closes bug #324246.
+
+2006-01-11  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.glade2, src/skey-popup.c: made the dialog which
+	  asks for the reply to the S/Key challenge a bit prettier and more
+	  HIG-compliant.
+
+2006-01-11  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c, src/skey-popup.c: add One-Time Passwords
+	  support, based on the work by Michele Baldessari. Thanks! Closes
+	  bug #310529.	  
+
+2006-01-10  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/skey-popup.c, src/gnome-terminal.glade2: add markup to label
+	  in the code, so translators don't see it. Closes bug #100038.
+
+2006-01-09  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: handle file URLs differently from others,
+	  as they necessarily have three slashes and do not have things like
+	  username and port. Closes bug #309201.	  
+
+2006-01-07  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c (title_entry_changed): set icon title
+	  together with the title here too. Closes bug #324965.
+
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-notebook.c: add tooltips to the tabs so their full
+	  title can be displayed when many tabs are open. Closes bug #310137.
+
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* MAINTAINERS: added.
+
+	* NEWS: updated.
+
+	* configure.in: release 2.13.1.
+
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* gnome-terminal.desktop.in.in: removed System from categories,
+	  like Debian, Ubuntu and others have been doing for a long time.
+	  gnome-terminal is really not a system tool.
+	
+2006-01-06  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-profile.c: recursively unset profile directories
+	  when the profile is removed, so they don't remain around forever.
+	  Closes bug #140603.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: have different menu items for links and
+	  e-mail addresses. Closes bug #49306.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c: applied patch from "Jan" to set icon title too
+	  if --title is passed. Closes bug #321929.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/gnome-terminal.schemas.in, terminal-accels.c, terminal-window.c:
+	  changed strings to move tabs _to the_ left/right for correctness and
+	  clarity. Closes bug #324276.
+
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/profile-editor.c, src/gnome-terminal.glade2: handle the
+	  palette picker titles and tooltips in the code rather than in
+	  Glade in order to be able to avoid string duplication. Closes
+	  bug #325214.
+	
+2006-01-05  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: added a description for GNOME Terminal
+	  in the about box.
+
+2006-01-04  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* gnome-terminal.applications: removed, this is deprecated (yay
+	  for freedesktop.org compliance). Makefile.am updated accordingly.
+
+	* TODO: removed, did not even make much sense.
+
+	* HACKING: cleaned up, no need to rewrite general documentation.
+
+2006-01-01  Olav Vitters  <olav@bkor.dhs.org>
+
+	* src/terminal-screen.c: (terminal_screen_init),
+	(terminal_screen_finalize), (get_child_environment),
+	(new_window_callback), (new_tab_callback),
+	(terminal_screen_set_working_dir):
+	* src/terminal-screen.h:
+	* src/terminal-window.c: (new_window), (new_tab_callback):
+	* src/terminal.c: (new_terminal_with_options),
+	(terminal_app_new_terminal), (handle_new_terminal_event),
+	(handle_new_terminal_events), (terminal_new_event),
+	(terminal_invoke_factory):
+	* src/terminal.h: Backout patch from bug #98715. Causes hangs when
+	starting gnome-terminal with extra arguments (-e or -x) and
+	gnome-terminal was already running.
+
+2005-12-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-window.c: (detach_tab_callback): Remove unused var.
+	* src/terminal.c: (slowly_and_stupidly_obtain_timestamp),
+	(terminal_app_new_terminal): Cast away some warnings.
+
+2005-12-14  Olav Vitters  <olav@bkor.dhs.org>
+
+	* src/terminal.c: Fix i18n issue with the application name. Patch by
+	Frederic Crozat. Fixes bug #324050.
+
+2005-12-12  Kjartan Maraas <kmaraas@gnome.org>
+
+	* configure.in: released 2.13.0
+
+2005-10-30  Dan Winship  <danw@novell.com>
+
+	* src/terminal-window.c (terminal_window_set_menubar_visible):
+	Call reset_menubar_labels().
+	(reset_menubar_labels): Only enable menubar mnemonics if the
+	menubar is visible. #172777
+
+2005-11-30  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-screen.c: (terminal_screen_init),
+	(terminal_screen_finalize), (get_child_environment),
+	(new_window_callback), (new_tab_callback),
+	(terminal_screen_set_working_dir), (terminal_screen_set_environ):
+	* src/terminal-screen.h:
+	* src/terminal-window.c: (new_window), (new_tab_callback):
+	* src/terminal.c: (new_terminal_with_options_and_environ),
+	(new_terminal_with_options), (terminal_app_new_terminal),
+	(handle_new_terminal_event), (handle_new_terminal_events),
+	(terminal_new_event), (terminal_invoke_factory):
+	* src/terminal.h: Don't lose environment variables on
+	startup. Closes bug #98715. Patch from Davyd Madeley.
+
+2005-11-09  Tony Tsui  <tsui.tony@gmail.com>
+
+	* gnome-terminal.schemas.in
+	* src/terminal-accels.c:
+	* src/terminal-accels.c:
+	* src/terminal-window.c:
+	Support for detaching tabs via Tabs menu and via keybindings.
+
+2005-11-08  Mario Manno  <mm-bugs@manno.name>
+
+	* gnome-terminal.schemas.in
+	* src/terminal-accels.c:
+	* src/terminal-accels.c:
+	* src/terminal-window.c:
+	Support for moving tabs via Tabs menu and via keybindings.
+
+2005-11-01  Tony Tsui  <tsui.tony@gmail.com>
+
+	* src/Makefile.am:
+	* src/terminal-notebook.h:
+	* src/terminal-notebook.h:
+	* src/terminal-screen.c:
+	* src/terminal-screen.h:
+	* src/terminal-window.c:
+	* src/terminal-window.h:
+	* src/terminal.c:
+* src/terminal.h:
+	Add support for making tabs movable and detachable.
+
+2005-11-09  Behdad Esfahbod  <behdad@gnome.org>
+
+	* src/skey/btoe.c: Mark the huge array as static const.  (#320737,
+	patch from Benoît Dejean.)
+
+2005-10-27  Erdal Ronahi  <erdal.ronahi@gmail.com>
+
+	* configure.in: Added ku (Kurdish) to ALL_LINGUAS
+
+2005-10-03  Mark McLoughlin  <mark@skynet.ie>
+
+	* src/terminal-window.c: (fill_in_new_term_submenu_real): fix
+	thinko that made Ctrl-Shift-N be bound to both "New Terminal"
+	and "New Tab".
+
+2005-09-25  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-window.c: (fill_in_config_picker_submenu),
+	(fill_in_new_term_submenu_real), (fill_in_new_term_submenus):
+	Clean up window/tab menus when only one profile exists.
+	Patch from Mariano Suáres-Alvarez. Closes bug #88318.
+
+2005-09-20  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* src/gnome-terminal.glade2: Replace the Add and Remove buttons
+	from the "Add or Remove Terminal Encodings" dialog with Forward 
+	and Back buttons placed between the list views.
+
+2005-09-20  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-screen.c: (terminal_screen_edit_title):
+	Select text in the Set title dialog here too.
+
+2005-09-19  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/gnome-terminal.schemas.in: Make life easier for the
+	translators. Closes bug #137517. Reported by Telsa Gwynne
+	fixed by Mariano Suárez-Alvarez.
+
+2005-09-18  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* src/gnome-terminal.glade2:  Small HIG fixes for window titles.
+	* src/profile-editor.c: (terminal_profile_edit): Small HIG
+	fixes for window titles.
+
+2005-09-19  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/profile-editor.c: (update_image_preview): Don't leak
+	the filename here.
+
+2005-09-18  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Don't pass include flags to the link stage.
+	Patch from <dmacks@netspace.org>. Closes bug #313927.
+
+2005-09-18  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* src/gnome-terminal.glade2:  Replace the deprecated 
+	GtkOptionMenu widgets with GtkComboBox widgets.  Replace the
+	deprecated GnomeFileEntry widget with a 
+	GtkFileChooserButton widget.
+	
+	* src/profile-editor.c: (color_scheme_changed),
+	(title_mode_changed), (scrollbar_position_changed),
+	(exit_action_changed), (palette_scheme_changed),
+	(background_image_changed), (backspace_binding_changed),
+	(delete_binding_changed), (init_color_scheme_menu),
+	(init_palette_scheme_menu), (create_preview_pixbuf),
+	(update_image_preview), (setup_background_filechooser),
+	(terminal_profile_edit), (profile_editor_update_sensitivity),
+	(profile_editor_update_color_scheme_menu),
+	(profile_editor_update_title_mode),
+	(profile_editor_update_scrollbar_position),
+	(profile_editor_update_exit_action),
+	(profile_editor_update_palette),
+	(profile_editor_update_background_image),
+	(profile_editor_update_backspace_binding),
+	(profile_editor_update_delete_binding):  Convert the GtkOptionMenu 
+	code to use a GtkComboBox.  Convert the GnomeFileEntry code to 
+	use a GtkFileChooserButton, and add a preview widget to the 
+	GtkFileChooser.
+
+2005-09-18  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal.c: (new_profile_response_callback): Don't
+	change profiles in all other windows when creating a new
+	profile. Closes bug #125660 and bug #164378. Patch from
+	Chris Heath.
+
+2005-09-06 Dennis Cranston <dennis_cranston at yahoo com>
+
+	* src/gnome-terminal.glade2:  Cosmetic HIG fixes for the 
+	glade dialogs: 'Add or Remove', 'Current Profile', 'Keyboard
+	Shortcuts', and 'New Profile'.  Adjust widget layout.  Fix 
+	mnemonic conflicts.  Correct capitalizations.
+
+	* src/terminal.c, src/terminal-screen.c:  Fix actual border 
+	width to be 12 pixels.
+		
+	* src/profile-editor.c:  Toggle the sensitivity of labels 
+	and entry widgets.  Bug #147310.
+	
+2005-09-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-screen.c: (drag_data_received): Merge fix
+	for leak. Bug #315149.
+
+2005-09-07  Bastien Nocera  <hadess@hadess.net>
+
+	* src/terminal-window.c: (terminal_window_init),
+	(update_tab_sensitivity), (reset_and_clear_callback),
+	(accel_event_key_match), (key_press_callback):
+	Only send Previous tab/Next tab key events to the terminal if there's
+	no tab, and not when we reach the boundary with multiple tabs
+	(Closes: #138609)
+
+========================== 2.12.0 =======================
+
+2005-09-06  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Release 2.12.0
+
+========================== 2.11.3 =======================
+
+2005-08-19  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-profile.c: (terminal_profile_set_is_default):
+	Don't wrongly reset the default profile to the first one when
+	editing a different profile is finished. Closes bug #313326.
+	Patch from Chris Heath.
+
+2005-08-08  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* src/terminal-window.c: (confirm_close_window): HIG fixes
+	for the close dialog.  Adds a mnemonic and removes the window
+	title.
+	
+2005-07-12  Michele Baldessari  <michele@pupazzo.org>
+
+	* configure.in: Added AC_C_BIGENDIAN check
+	* src/skey/donkey.h, src/skey/donkey.c, src/skey/md2.c
+	* src/skey/tailor.h, src/skey/config.h: Removed due to 
+	license issues (#305216)
+	* src/skey/md5.c, src/skey/md5.h, src/skey/md4.c
+	* src/skey/md4.h, src/skey/sha1.h, src/skey/sha1.c: 
+	Added new non-license violating implementations for these 
+	hashes algorithms. MD4 and MD5 are taken from the mhash library
+	which in turn are based on public domain implementations by Colin Plumb.
+	SHA1 is from the public domain implementation of Steve Reid.
+	* src/skey/skey.c, src/skey/skey.h, src/skey/skeyutil.c,
+	* src/skey/skeyutil.h: Reimplementation from scratch of the previous
+	S/Key support (RFC1760). Removed MD2 support and added SHA1 support, 
+	in order to be able one day to support RFC2289.
+
+2005-07-21  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "hy" to ALL_LINGUAS.
+
+2005-07-04  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Post release bump to 2.11.2
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-screen.c: (terminal_screen_init):
+	Make URL highlighting include the trailing / so links
+	don't break when that makes a difference. Closes bug #170364.
+	Patch from Samuel Abels, fixed after I broke it by Olav Vitters
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Bump version to 2.11.1
+
+2005-06-22 Anoop.M <anoopvlcy@yahoo.com>
+	* terminal-profile.h
+	* terminal-profile.c
+	* profile-editor.c
+	Added a new function to notify profile name change.
+	
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-screen.c: (terminal_screen_setup_dnd):
+	Accept drops from Konqueror. Patch from Bastien Nocera
+	Closes bug 170330.
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/encoding.c: Use the right name for the Cyrillic
+	and Ukrainian locales. Patch from Michele Baldessari.
+	Closes bug #308882.
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gnome-terminal.desktop.in.in: HIGify launcher comment.
+	Closes bug #308572. Patch from Corey Burger.
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gnome-terminal.desktop.in.in: Open any folders that are
+	dropped on a terminal launcher. Closes bug 307925. Patch
+	from John Spray.
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal.c: (new_profile_response_callback):
+	Ask the user if they want to have profiles with the same 
+	name. Patch from <egeetha at novell com>. Closes
+	bug #74057.
+
+2005-07-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/terminal-screen.c: (terminal_screen_init):
+	Fix typo so nntp links work. (Sebastien Bacher).
+	Closes part of bug #309201.
+	* src/gnome-terminal.schemas.in: Use the right shortcut
+	to zoom back to normal size. HIG fix. Patch by Olav Vitters
+	Closes bug #302755. Reported by Sitsofe Wheeler.
+
+2005-05-31  Rodrigo Moya <rodrigo@novell.com>
+
+	* src/gnome-terminal.server: added name attribute.
+
+2005-03-31  Steve Murphy  <murf@e-tools.com>
+
+        * configure.in: Added "rw" to ALL_LINGUAS.
+
+2005-03-23  Adi Attar  <aattar@cvs.gnome.org>
+
+	* configure.in: Added 'xh' to ALL_LINGUAS.
+
+2005-03-01  Maxim Dziumanenko <mvd@mylinux.com.ua>
+
+	* configure.in: 
+	* help/Makefile.am:
+	* help/uk/*:
+	Added Ukrainian translation of the manual.
+
+2005-02-28  Elijah Newren  <newren@gmail.com>
+
+	* configure.in: Post release bump: Version 2.9.4
+
+2005-02-28  Elijah Newren  <newren@gmail.com>
+
+	* NEWS: 2.9.3 unstable release
+	* src/Makefile.am: Get distcheck to pass
+
+2005-02-28  Elijah Newren  <newren@gmail.com>
+
+	Approximate the time that gnome-terminal was launched if not
+	launched with startup-notification.  Fixes #168812.
+
+	* src/terminal.c: (slowly_and_stupidly_obtain_timestamp): new
+	function, (main): get a timestamp from the xserver to approximate
+	launch time if no DESKTOP_STARTUP_ID is provided
+
+	* src/terminal-window.c: (terminal_window_show): only do
+	sn_launchee_context_setup_window() if the startup_id is valid,
+	remove an error that shouldn't happen (well, unless using an
+	out-of-date startup-notification launcher, but that's someone
+	else's problem)
+
+2004-12-01  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* configure.in: Post release bump: Version 2.9.3
+
+2004-11-29  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-screen.c(terminal_screen_edit_title):
+	* src/terminal.c(fix_button_align, terminal_app_manage_profiles):
+	  use the HIG layout. Basically Dennis Cranston's patch from bug 147312.
+
+2004-11-23  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-screen.c(copy_url_callback): use the clipboard corresponding to the
+	  display of the window.
+	* src/terminal-window.c(update_edit_menu, edit_menu_activate_callback,
+	  terminal_window_init): watch for activations of the Edit menu, and set the
+	  sensitivity of the Paste menu item in the callback. Also when the window
+	  instance is created get the GtkClipboard for its display, so as not to lag too
+	  much the first time the user wants something with a Paste menu item.
+	* src/terminal-window.c(update_notebook): rewrite less verbosely.
+
+2004-11-21  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* configure.in: depend on startup-notification 0.8, so that we get
+	  the focus-stealing prevention stuff.
+
+2004-11-15  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/Makefile.am: Fix builddir problem, bug #158319.
+
+2004-11-15  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/Makefile.am: remove a deprecation flag.
+
+2004-11-10  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-window.c(about_callback): fix constness of the authors array now
+	  that gtk does the Right Thing there.
+
+2004-11-07  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* AUTHORS: UTF-8-fy my last name and update email.
+
+2004-11-07  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-window.c(about_callback): use the new GtkAboutDialog.
+	* src/terminal-window.c(terminal_window_init): use the new GTK_STOCK_ABOUT instead
+	  of GNOME_STOCK_ABOUT.
+
+2004-11-05  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-window.c(terminal_window_show): support _NET_WM_USER_TIME focus
+	  stealing prevention. Patch from Elijah Newren on bug #156413.
+
+2004-11-05  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* autogen.sh: use automake-1.8.
+	* Makefile.am: change distuninstallcheck_listfiles so that scrollkeeper's mess
+	  is ignored at distuninstallcheck time. I hope I got this right this time...
+	  Last time I moved to 1.8 it did distcheck for a time, too :(
+
+2004-11-03  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/termnal-window.c(title_changed_callback, terminal_window_add_screen): use
+	  the new GtkLabel ellipsizing, instead of our own EelEllipsizingLabel.
+	* configure.in: require GTK+ >= 2.5.4 so that we actually have the ellipsizing
+	  stuff in GtkLabel.
+	* src/eel/*: remove this, as we do not need any more.
+	* src/terminal-profile.c(terminal_profile_get_font): fix the return value on the 
+	  g_return_val_if_fail call.
+
+2004-11-03  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-screen.c(terminal_screen_do_popup): do not use gtk_clipboard_wait_is_text_available
+	  but explicitely do a gtk_clipboard_request_text, and build the popup in a new
+	  callback popup_clipboard_request_callback. Shoulf fix both bugs #157153 and #157151.
+
+2004-11-01  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* configure.in: Post release bump: Version 2.9.2
+
+2004-11-01  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* configure.in: Version 2.9.1
+
+2004-11-01  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-screen.c(terminal_screen_init): match news: URIs. Modified form of
+	  a patch by Juha Sahakangas <voas0113@saunalahti.fi> on bug #137653. Also, allow
+	  periods in the user name for a mailto: URI. 
+	* src/terminal-screen.c(open_url): remove a g_printerr which should not be there.
+
+2004-11-01  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-window.c(about_callback): do not leak the pixbuf in the about dialog.
+	  Caught by the venerable champion of finding leaks, Kjartan; bug #151813.
+
+2004-11-01  Mariano Suárez-Alvarez <mariano@gnome.org>
+
+	* src/terminal-window.c(terminal_window_new): make each terminal window be the
+	  window group leader of its group. This goes better with the illusion that
+	  different terminal windows are different instances of the application. This will
+	  change the way window managers deal with terminal windows when there are several
+	  of them---we'll see what people think, I guess. Suggested on bug #115994.
+
+2004-10-31 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal.c(new_profile_response_callback): show a error dialog when lookup of the newly created
+	  profile fails. Prompted by a failed assetion caught by Hidetoshi Tajima 
+	  <hidetoshi.tajima@sun.com> reported on bug #122687 which was caused by gconf's bug #122958.
+	  Now gconf has been fixed, but this might me helpful in the future.
+
+2004-10-30 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/gnome-terminal.glade2: fix two hotkey clashes. Caught by Damian Keogh 
+	  <damian_keogh@veritest.com> on bug #155810.
+
+2004-10-30 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal-window.c(about_callback): make the dialog be destroyed with its parent.
+	  Caught by Kjartan; bugs #151812. 
+	* src/gnome-terminal.glade2: fix an hotkey clash in the Scrollback page of the profile editor
+	  dialog. Damian Keogh <damian_keogh@veritest.com> on bug #155808.
+
+2004-10-30 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/simplex-x-font-selector.c(egg_xfont_selector_finalize):
+	* src/simplex-x-font-selector.h(egg_xfont_selector_new):
+	* src/profile-editor.c(terminal_profile_edit):
+	  Cleanups, from a patch by Kjartan on bug #150347.
+
+2004-10-30 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal.c(terminal_app_new_profile): Do not set accessibles names but 
+	  descriptions on the New Profile dialog. Reported by Frances Keenan
+	  <frances.keenan@sun.com> on bug #147484.
+
+2004-10-30 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal-screen.c(new_window_callback, new_tab_callback):
+	* src/terminal-window.c(new_window_callback, new_tab_callback):
+	* src/terminal.c(parse_options_callback and related structures, terminal_app_new_terminal):
+	* src/terminal.h: Added --full-screen command line option; from Hylke <weary@gamebox.net> 
+	  on bug #144189.
+	* src/terminal-window.c(terminal_window_add_screen): Clean up from Alexey Spiridonov 
+	  <lesha@netman.ru> on bug #145596.
+
+2004-10-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* NEWS: Update
+	* autogen.sh: Use automake 1.4 to get it to distcheck
+	* configure.in: Bump.
+
+2004-09-10  Akagic Amila  <bono@linux.org.ba>
+
+	* configure.in: Added 'bs' to ALL_LINGUAS.
+
+2004-08-30  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* po/no.po:
+	  Fix po file because it has been broken for more than two days.
+	  Spank me if I am out of line.
+
+2004-08-30  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* src/encoding.c: fixed georgian encoding
+
+2004-08-17  Christian Rose  <menthos@menthos.com>
+
+	* src/gnome-terminal.schemas.in: Fixed typos and linewrappings in
+	the encodings comment.
+
+2004-08-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Add nb to ALL_LINGUAS.
+
+2004-08-06 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal-window.c(terminal_window_set_active): also update the encoding menu,
+	so that a11y stuff picks it up correctly. Fixes 147485.
+
+2004-06-29 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal-window.c(terminal_window_init): GTK_STOCK_ZOOM_100 now has a HIGgy 
+	label, so there is no need to override it.
+
 2004-06-29 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
 
 	* configure.in: Version 2.7.3
+
+2004-06-29 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
+
+	* autogen.sh: require automake-1.8 to build.
+	* Makefile.am: add intltool-{merge,update,extract} and the .desktop file 
+	to DISTCLEANFILES. Tweak the distuninstallcheck_listfiles so that automake does
+	not see the /var/scrollkeeper cruft scrollkeeper leaves behind.
+	* configure.in: remoce the call to AC_ARG_PROGRAM, which is redundant.
 
 2004-06-28 Mariano Suárez-Alvarez <msuarezalvarez@arnet.com.ar>
 

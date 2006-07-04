@@ -1,3 +1,270 @@
+2.15.1
+===
+
+- Use intltool 0.35 to fix the bug with no translations in tarball.
+  (bug #342068)
+- Remove the m4 directory.
+
+2.15.0
+===
+
+Thanks for this release go to Behdad Esfahbod, Guilherme de S. Pastore,
+Tommi Vainikainen and all the translators listed below.
+
+- Migrated to gnome-doc-utils.
+- Migrated to po/LINGUAS (bug #337904).
+- Exports authentication proxy settings (bug #339134).
+- Correctly recognizes Xrender on Solaris (bug #339979).
+- Fixes the close button of the about dialog (bug #335945).
+- Includes final slashes on URL highlighting (bug #329003).
+- Eliminates superfluous resize on drag-n-drop (bug #336325).
+- Stores the position of the window on session save (bug #336910).
+
+- New and updated translations:
+  * Belarusian [Ales Nyakhaychyk]
+  * Dutch [Wouter Bolsterlee]
+  * Dzongkha [Tommi Vainikainen]
+  * Estonian [Ivar Smolin]
+  * French [Laurent Richard]
+  * Georgian [Vladimer Sichinava]
+  * Hungarian [Gabor Kelemen]
+  * Spanish [Francisco Javier F. Serrador]
+
+2.14.0
+===
+
+- New and updated translations:
+  * Albanian [Laurent Dhima]
+  * Brazilian Portuguese [Guilherme de S. Pastore]
+  * Czech [Petr Tomeš]
+  * Danish [Lasse Bang Mikkelsen]
+  * Estonian [Ivar Smolin]
+  * Hindi [Rajesh Ranjan]
+  * Italian [Stefano Canepa]
+  * Romanian [Mugurel Tudor]
+  * Spanish [Francisco Javier F. Serrador]
+  * Swedish [Daniel Nylander]
+
+2.13.93
+===
+
+- Fixes two crashes/freezes (bugs #318797, #330246)
+- Has a slightly better Brazilian Portuguese translation
+
+2.13.92
+===
+
+- Fixes a build failure (bug #333292)
+- Adds licensing informaiton to the UI (bug #330875)
+- Has lots of updated translations!
+
+2.13.91
+===
+
+- Stopped forcing invisible_char to '*' (bug #329294)
+- Re-added the context menu for highlighted URLs (bug #329553)
+
+- Updated translations:
+  * Canadian English [Adam Weinberger]
+  * Catalan [Josep Puigdemont i Casamajó]
+  * Dutch [Tino Meinen]
+  * Finnish [Ilkka Tuohela]
+  * Simplified Chinese [Funda Wang]
+  * Thai [Theppitak Karoonboonyanan]
+  * Vietnamese [Clytie Siddall]
+
+2.13.90
+===
+
+- Fixed the handling of file:// URLs
+- Fixed the setting of accelerators (bug #328052)
+- Fixed the heights of the huge tabs (bug #327412)
+- Added a tool tip to the tabs' close buttons
+- Added F11 as default accelerator for fullscreen (bug #326781)
+- Allow returning to dynamically setting the title by manually
+  setting it to an empty string (bug #328932)
+- Several fixes and improvements to the patches applied for exporting
+  the GNOME proxy settings to the terminal and disabling anti-aliasing
+- Other optimizations, cleanups and standards-compliance changes (bug #328043)
+
+- Lots of updated translations; huge thanks to the translators!
+
+2.13.3
+===
+
+- Fix a crash at startup (bug #327313)
+
+- New, updated and fixed translations:
+  * Belarusian [Ales Nyakhaychyk]
+  * Danish [Lasse Bang Mikkelsen]
+  * Canadian English [Adam Weinberger]
+  * Estonian [Ivar Smolin]
+  * Finnish [Ilkka Tuohela]
+  * Gujarati [Ankit Patel]
+  * Serbian [Слободан Д. Средојевић]
+  * Vietnamese [Clyttie Siddall]
+
+2.13.2
+===
+
+- Added close buttons to the tabs (bug #71444)
+- Added support for One-Time Passwords (bug #310529)
+- Added tooltips that display the full title to the tabs (bug #310137)
+- Make file:// URLs work by splitting their handling from others (bug #309201)
+- Avoid title desyncs by setting icon title together with window title (bug #324965)
+- Keep the title unchanged after it has been manually set (bug #152986)
+- Export the GNOME proxy settings to the terminal (bug #321952)
+- General build, user interface, performance and internationalization improvements
+  (bugs #100038, #129889, #139332, #158319, #324246)
+
+- New, updated and fixed translations:
+  * Bulgarian [Vladimir Petkov]
+  * Brazilian Portuguese [Guilherme de S. Pastore]
+  * Canadian English [Adam Weinberger]
+  * Danish [Lasse Bang Mikkelsen]
+  * Dutch [Tino Meinen]
+  * Estonian [Ivar Smolin]
+  * Finnish [Ilkka Tuohela]
+  * Galician [Ignacio Casal Quinteiro]
+  * German [Hendrik Brandt]
+  * Gujarati [Ankit Patel]
+  * Japanese [Takeshi AIHANA]
+  * Norwegian [Kjartan Maraas]
+  * Norwegian bokmål [Kjartan Maraas]
+  * Serbian [Слободан Д. Средојевић]
+  * Spanish [Francisco Javier F. Serrador]
+  * Thai [Theppitak Karoonboonyanan]
+  * Vietnamese [Clytie Siddall]
+
+2.13.1
+===
+
+- New maintainer! (Guilherme de S. Pastore)
+
+- Revert the environment variable patch. It caused hangs etc. (Olav Vitters)
+- Fix i18n issue with application name (Frédéric Crozat, Olav)
+- Fix some compiler warnings (Kjartan Maraas)
+- Drop lots of unnecessary strings (Guilherme)
+- General cleanups and UI improvements (Guilherme)
+- Actually remove profiles when they are deleted (Guilherme)
+- Moved from section System to Utility in the menu (Guilherme)
+
+- New, updated and fixed translations:
+  * Brazilian Portuguese [Guilherme de S. Pastore]
+  * Catalan [Josep Puigdemont i Casamajó]
+  * Finnish [Ilkka Tuohela]
+  * Gujarati [Ankit Patel]
+  * Japanese [Takeshi AIHANA]
+  * Kinyarwanda [Guilherme de S. Pastore]
+  * Lithuanian [Žygimantas Beručka]
+  * Nepali [Guilherme de S. Pastore]
+  * Spanish [Francisco Javier F. Serrador]
+  * Thai [Theppitak Karoonboonyanan]
+  * Vietnamese [Clytie Siddall]
+  * Xhosa [Guilherme de S. Pastore]
+
+2.13.0
+===
+
+- Don't lose environment variables on startup (Davyd)
+- Only show mnemonics when the menubar is visible (DanW)
+- Detachable and movable tabs (Tony Tsui, Mario Manno)
+- Don't use deprecated widgets (Dennis Cranston)
+- Don't pass include flags to the link stage (dmacks@netspace.org)
+ 
+2.12.0
+===
+
+- Translation updates:
+
+  Catalan, Czech, Estonian, French, German,
+  Hungarian, Lithuanian, Norwegian Nynorsk, Russian,
+  Serbian, Turkish, Welsh.
+
+2.11.3
+===
+
+- Don't always go back to the default profile when editing
+  a different profile (Chris Heath)
+- Translation updates
+
+2.11.2
+===
+
+- Reimplement the S/KEY support so we don't ship code that
+  isn't GPL-compliant. (Michele Baldessari)
+- HIG fixes (Dennis Cranston)
+- Translation updates 
+
+2.11.1
+===
+
+- Accept DND drops from Konqueror (Bastien Nocera)
+- HIG fixes (Dennis Cranston, Corey Burger, Olav Vitters)
+- Update profile names instantly (Anoop M.)
+- Include trailing slash when highlighting an URL (Samuel Abels)
+- Use the correct name for the Cyrillic/Ukrainian locale (Michele
+  Baldessari)
+- Open folders that are dropped on a terminal launcher (John Spray)
+- Ask the user before creating two profiles with the same name
+  (egeetha@novell.com)
+- Fix highlighting of NNTP links (Sebastien Bacher)
+- Use the right keycombo to zoom to normal size (according to the HIG)
+  (Olav Vitters, Sitsofe Wheeler)
+- Add Name attribute to the server definition (Rodrigo Moya)
+- Translation updates: be, bg, el, en_CA, et, gl, nb, pt_BR, rw, vi, 
+  wa, xh, zh_TW
+  
+2.10.0
+===
+
+- Translation updates: bg, ca, et, hu, lt, nl, ro, sr, sr@Latn, uk, zh_TW
+- Ukrainian translation of the docs
+
+2.9.3
+===
+
+- Approximate the time that gnome-terminal was launched if not launched with
+  startup-notification (Elijah Newren) [#168812]
+- Translation updates: Vladimir Petkov (bg), Jordi Mallach (ca), Kostas
+  Papadimas (el), Priit Laes (et), Pauli Virtanen (fi), Christophe
+  Merlet (RedFox) (fr), Ankit Patel (gu), Takeshi AIHANA (ja), Young-Ho Cha (ko),
+  Žygimantas Beručka (lt), Kjartan Maraas (nb), Rajeev Shrestha (ne), Åsmund
+  Skjæveland (nn), Kjartan Maraas (no), Gnome PL Team (pl), Gustavo Noronha
+  Silva (pt_BR), Duarte Loreto (pt), Leonid Kanter (ru), Marcel Telka (sk),
+  Christian Rose (sv), Theppitak Karoonboonyanan (th), Maxim Dziumanenko (uk)
+
+2.9.2
+===
+- Correct handling of the clipboard and of the clipboard availability checking.
+- Port to the new GTK widgets.
+- Support _NET_WM_USER_TIME (Elijah Newren)
+- Be more HIGgy in a couple of dialogs (Dennis Cranston)
+- Translation updates: Vladimir Petkov (bg), Miloslav Trmac (cs), Martin Willemoes 
+  Hansen (da), Hendrik Richter (de), Adam Weinberger (en_CA), David Lodge (en_GB), 
+  es@li.org (es), Laszlo Dvornik (hu), Takeshi AIHANA (ja), Daniel van Eeden (nl), 
+  Gustavo Noronha Silva (pt_BR), Laurent Dhima (sq), Funda Wang (zh_CN).
+
+2.9.1
+===
+- Make all terminal windows be group leaders; this will change the way grouping is 
+  done by window-managers, closer to what people expect (hopefully).
+- Match news: URIs, and recognize more mailto: ones.
+- Add --full-screen
+- Cleanups and leaks fixed from Alexey Spiridonov, Kjartan Maraas.
+- Fixed a couple of hotkey clashes, caught by Damian Keogh.
+- Set accessible descriptions correctly on the profile dialog; caught by Frances Keenan.
+- Translation updates: Miloslav Trmac (cs), Martin Willemoes Hansen (da),
+  Adam Weinberger (en_CA), Christophe Merlet (RedFox) (fr), Mohammad DAMT (id),
+  Young-Ho Cha (ko), Kjartan Maraas (nb), Kjartan Maraas (no).
+
+2.8.0
+===
+- HIG fixes
+- a11y fixes for the encodings menu
+- fix georgian encoding
+- added and updated translations
+ 
 2.7.3
 ===
 - Fix an annoying issue with the pointer getting ‘stuck’.

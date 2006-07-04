@@ -119,7 +119,7 @@ static TerminalEncoding encodings[] = {
   { TERMINAL_ENCODING_GBK, FALSE,
     "GBK", N_("Chinese Simplified") },
   { TERMINAL_ENCODING_GEOSTD8, FALSE,
-    "GEORGIAN-ACADEMY", N_("Georgian") }, /* FIXME GEOSTD8 ? */
+    "GEORGIAN-PS", N_("Georgian") },
   { TERMINAL_ENCODING_HZ, FALSE,
     "HZ", N_("Chinese Simplified") },
 
@@ -145,9 +145,9 @@ static TerminalEncoding encodings[] = {
   { TERMINAL_ENCODING_JOHAB, FALSE,
     "JOHAB", N_("Korean") },
   { TERMINAL_ENCODING_KOI8_R, FALSE,
-    "KOI8R", N_("Cyrillic") },
+    "KOI8-R", N_("Cyrillic") },
   { TERMINAL_ENCODING_KOI8_U, FALSE,
-    "KOI8U", N_("Cyrillic/Ukrainian") },
+    "KOI8-U", N_("Cyrillic/Ukrainian") },
 
   { TERMINAL_ENCODING_MAC_ARABIC, FALSE,
     "MAC_ARABIC", N_("Arabic") },
