@@ -1,3 +1,15 @@
+gnome-terminal (2.15.3-0ubuntu1) edgy; urgency=low
+
+  * New upstream release:
+    - Fixed Bug "Open/close tab adds row to terminal" (Malone: #53157)
+    - Fixed Bug "[patch] Redundant vte_terminal_set_font_full() calls
+    - This change, with the respective change in vte-0.13.4, improves g-t's
+      startup time around 20%.
+  * debian/control.in:
+    - bumped vte requirement.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 25 Jul 2006 14:23:46 +0200
+
 gnome-terminal (2.15.2-0ubuntu1) edgy; urgency=low
 
   * New upstream release:
@@ -7,7 +19,7 @@ gnome-terminal (2.15.2-0ubuntu1) edgy; urgency=low
   * debian/control.in:
     - bumped vte requirement.
 
- -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 11 Jul 2006 12:41:57 +0200
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 25 Jul 2006 14:23:42 +0200
 
 gnome-terminal (2.15.1-0ubuntu1) edgy; urgency=low
 
