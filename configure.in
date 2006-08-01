@@ -1,4 +1,4 @@
-AC_INIT([GNOME Terminal],[2.15.3],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
+AC_INIT([GNOME Terminal],[2.15.4],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
 AC_CONFIG_SRCDIR([src/terminal.c])
 
 AC_CONFIG_HEADER([config.h])
@@ -44,7 +44,7 @@ AM_GLIB_GNU_GETTEXT
 
 AC_PATH_XTRA
 
-GTK_REQUIRED=2.5.4
+GTK_REQUIRED=2.10.0
 GCONF_REQUIRED=1.1.9
 STARTUP_NOTIFICATION_REQUIRED=0.8
 VTE_REQUIRED=0.13.4
