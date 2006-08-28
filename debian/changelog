@@ -1,3 +1,11 @@
+gnome-terminal (2.15.4-0ubuntu2) edgy; urgency=low
+
+  * debian/patches/04_resized_on_tabs_switch.patch:
+    - undo upstream change to fix the window size changing on tabs switching
+      (Ubuntu: #53157)
+
+ -- Sebastien Bacher <seb128@canonical.com>  Mon, 28 Aug 2006 18:43:38 +0200
+
 gnome-terminal (2.15.4-0ubuntu1) edgy; urgency=low
 
   * New upstream release:
