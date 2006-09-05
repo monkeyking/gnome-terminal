@@ -423,8 +423,8 @@ fill_in_config_picker_submenu (TerminalWindow *window)
   if (window->priv->active_term == NULL || g_list_length (profiles) < 2)
     {
       gtk_widget_set_sensitive (window->priv->choose_config_menuitem, FALSE);
-      gtk_menu_item_set_submenu (GTK_MENU_ITEM (window->priv->choose_config_menuitem),
-                                 NULL);
+      gtk_menu_item_remove_submenu (GTK_MENU_ITEM (window->priv->choose_config_menuitem));
+
       return;
     }
   
@@ -518,8 +518,7 @@ fill_in_new_term_submenu_real(GtkWidget *menuitem,
     {
       /* Well, this shouldn't happen: it'd mean there is no default profile */
       gtk_widget_set_sensitive (window->priv->new_window_menuitem, FALSE);
-      gtk_menu_item_set_submenu (GTK_MENU_ITEM (window->priv->new_window_menuitem),
-                                 NULL);
+      gtk_menu_item_remove_submenu (GTK_MENU_ITEM (window->priv->new_window_menuitem));
     }
   else if (g_list_length (profiles) < 2)
     {
@@ -637,8 +636,8 @@ fill_in_encoding_menu (TerminalWindow *window)
   if (window->priv->active_term == NULL)
     {
       gtk_widget_set_sensitive (window->priv->encoding_menuitem, FALSE);
-      gtk_menu_item_set_submenu (GTK_MENU_ITEM (window->priv->encoding_menuitem),
-                                 NULL);
+      gtk_menu_item_remove_submenu (GTK_MENU_ITEM (window->priv->encoding_menuitem));
+
       return;
     }
   
@@ -1157,9 +1156,6 @@ terminal_window_destroy (GtkObject *object)
   TerminalWindow *window;
 
   window = TERMINAL_WINDOW (object);
-
-  while (window->priv->terms)
-    terminal_window_remove_screen (window, window->priv->terms->data);
 
   g_list_free (window->priv->tab_menuitems);
   window->priv->tab_menuitems = NULL;
@@ -2243,13 +2239,31 @@ new_window (TerminalWindow *window,
             char *name,
             const char *dir)
 {
+  char *geometry;
+
+  if (screen)
+    {
+      GtkWidget *term;
+      int width, height;
+
+      term = terminal_screen_get_widget (screen);
+      terminal_widget_get_size (term, &width, &height);
+      geometry = g_strdup_printf("%dx%d", width, height);
+    }
+  else
+    {
+      geometry = NULL;
+    }
+
   terminal_app_new_terminal (terminal_app_get (),
                              profile,
                              NULL,
                              screen,
                              FALSE, FALSE, FALSE,
-                             NULL, NULL, NULL, dir, NULL, 1.0,
+                             NULL, geometry, NULL, dir, NULL, 1.0,
                              NULL, name, -1);
+
+  g_free (geometry);
 }
 
 static void
@@ -2663,6 +2677,8 @@ accel_event_key_match (GdkEventKey *event, GtkAccelKey *key)
 
   if (modifiers & GDK_LOCK_MASK)
     modifiers -= GDK_LOCK_MASK;
+  if (modifiers & GDK_MOD2_MASK)
+    modifiers -= GDK_MOD2_MASK;
 
   if (modifiers != key->accel_mods)
     return FALSE;
