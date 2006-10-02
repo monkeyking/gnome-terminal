@@ -741,7 +741,7 @@
 
       <locale name="ca">
          <short>Si la barra de menú té dreceres</short>
-         <long>Si s&apos;han de tenir dreceres Alt+lletra per a la barra de menú. Poden interferir amb algunes aplicacions dins del terminal així que és possible inhabilitar-les.</long>
+         <long>Si s&apos;han de tenir dreceres Alt+lletra per a la barra de menú. Poden interferir amb algunes aplicacions dins del terminal així doncs és possible inhabilitar-les.</long>
       </locale>
 
       <locale name="cs">
@@ -2186,7 +2186,7 @@
       </locale>
 
       <locale name="en_GB">
-         
+         <default>Default</default>
          <short>Human-readable name of the profile</short>
          <long>Human-readable name of the profile.</long>
       </locale>
@@ -2474,7 +2474,7 @@
       </locale>
 
       <locale name="wa">
-         
+         <default>Prémetou</default>
          <short>No do profil dins ene cogne lijhåve påzès djins</short>
          <long>No do profil dins ene cogne lijhåve påzès djins.</long>
       </locale>
@@ -3957,7 +3957,7 @@
 
       <locale name="et">
          <short>Mida teha dünaamilise pealkirjaga</short>
-         
+         <long>Kui terminalis olev rakendus määrab pealkirja (kõige tüüpilisem sellekohane näide on kestprogramm). Võimalikud väärtused on &quot;replace&quot; (pealkiri asendatakse), &quot;before&quot; (dünaamiline pealkiri asetatakse määratud pealkirja ette), &quot;after&quot; (dünaamiline pealkiri asetatakse määratud pealkirja järele), ja &quot;ignore&quot; (dünaamilist pealkirja eiratakse).</long>
       </locale>
 
       <locale name="eu">
@@ -5076,7 +5076,7 @@
 
       <locale name="et">
          <short>Kas vaigistada terminali kellaheli</short>
-         
+         <long>Kui märgitud, siis terminal ei reageeri piiksu tegemiseks mõeldud koodijadale.</long>
       </locale>
 
       <locale name="eu">
@@ -8329,7 +8329,7 @@
 
       <locale name="ca">
          <short>L&apos;ordre personalitzada a utilitzar en comptes de l&apos;intèrpret d&apos;ordres</short>
-         <long>Executa aquesta ordre en lloc de l&apos;intèrpret, si use_custom_command és cert.</long>
+         <long>Executa aquesta ordre en comptes de l&apos;intèrpret, si use_custom_command és cert.</long>
       </locale>
 
       <locale name="cs">
@@ -10000,7 +10000,7 @@
 
       <locale name="wa">
          <short>Fonte</short>
-         <long>On no d&apos; fonte Pango (no del fonte, si stîle eyet s&apos; grandeu). Metans «Sans 12» ou «Monospace Bold 14»</long>
+         <long>On no d&apos; fonte Pango (no del fonte, si stîle eyet s&apos; grandeu). Metans «Sans 12» ou «Monospace Bold 14».</long>
       </locale>
 
       <locale name="xh">
@@ -11118,7 +11118,7 @@
 
       <locale name="ca">
          <short>Quant s&apos;ha d&apos;enfosquir la imatge de fons</short>
-         <long>Un valor entre 0.0 i 1.0 que indica quant s&apos;ha d&apos;enfosquir la imatge de fons. 0.0 vol dir sense foscor, 1.0 vol dir foscor total. A la implementació actual, només hi ha dos nivells de foscor possibles, així que la configuració actua com un booleà, on 0.0 inhabilita l&apos;efecte de foscor.</long>
+         <long>Un valor entre 0.0 i 1.0 que indica quant s&apos;ha d&apos;enfosquir la imatge de fons. 0.0 vol dir sense foscor, 1.0 vol dir foscor total. A la implementació actual, només hi ha dos nivells de foscor possibles, així doncs la configuració actua com un booleà, on 0.0 inhabilita l&apos;efecte de foscor.</long>
       </locale>
 
       <locale name="cs">
@@ -12507,6 +12507,11 @@
          <long>If true, font anti-aliasing will be disabled when running without the X RENDER extension, which gives a considerable performance improvement in these situations.</long>
       </locale>
 
+      <locale name="en_GB">
+         <short>Whether to disable anti-aliasing without the X RENDER extension</short>
+         <long>If true, font anti-aliasing will be disabled when running without the X RENDER extension, which gives a considerable performance improvement in these situations.</long>
+      </locale>
+
       <locale name="es">
          <short>Indica si se debe desactivar el alisado de tipografías sin la extensión X RENDER</short>
          <long>Si es «true», el suavizado de tipografías será desactivado cuando se ejecute sin la extensión X RENDER, la cual produce una mejora considerable de rendimiento en estos casos.</long>
@@ -13091,6 +13096,11 @@
          <long>Pop up a dialogue when an S/Key challenge response query is detected and clicked on. Typing a password into the dialogue will send it to the terminal.</long>
       </locale>
 
+      <locale name="en_GB">
+         <short>Highlight S/Key challenges</short>
+         <long>Popup a dialog when an S/Key challenge response query is detected and clicked on. Typing a password into the dialogue will send it to the terminal.</long>
+      </locale>
+
       <locale name="es">
          <short>Resaltar desafíos S/Key</short>
          <long>Mostrar un diálogo emergente cuando se detecte y se pulse sobre una consulta de respuesta a desafío S/Key. Al escribir una contraseña en el diálogo ésta será enviada a la terminal.</long>
@@ -13327,7 +13337,7 @@
 
       <locale name="ca">
          <short>Accelerador per a obrir una nova pestanya</short>
-         <long>Tecla acceleradora per a obrir una nova pestanya. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a obrir una nova pestanya. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -13669,7 +13679,7 @@
 
       <locale name="ca">
          <short>Accelerador per a obrir una nova finestra</short>
-         <long>Tecla acceleradora per a obrir una nova finestra. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a obrir una nova finestra. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -14011,7 +14021,7 @@
 
       <locale name="ca">
          <short>Accelerador per a crear un nou perfil</short>
-         <long>Tecla acceleradora per a mostrar el diàleg de creació de perfils. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a mostrar el diàleg de creació de perfils. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -14353,7 +14363,7 @@
 
       <locale name="ca">
          <short>Accelerador per a tancar una pestanya</short>
-         <long>Tecla acceleradora per a tancar una pestanya. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a tancar una pestanya. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -14695,7 +14705,7 @@
 
       <locale name="ca">
          <short>Accelerador per a tancar una finestra</short>
-         <long>Tecla acceleradora per a tancar una finestra. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a tancar una finestra. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -15039,7 +15049,7 @@
 
       <locale name="ca">
          <short>Accelerador per a copiar text</short>
-         <long>Tecla acceleradora per a copiar el text seleccionat al portaretalls. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a copiar el text seleccionat al portaretalls. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -15383,7 +15393,7 @@
 
       <locale name="ca">
          <short>Accelerador per a enganxar text</short>
-         <long>Tecla acceleradora per a enganxar el text seleccionat des del portaretalls. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a enganxar el text seleccionat des del portaretalls. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -15725,7 +15735,7 @@
 
       <locale name="ca">
          <short>Accelerador per a commutar el mode a pantalla sencera</short>
-         <long>Tecla acceleradora per a commutar el mode a pantalla sencera. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a commutar el mode a pantalla sencera. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -16065,7 +16075,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar la visibilitat de la barra del menú</short>
-         <long>Tecla acceleradora per a commutar la visibilitat de la barra de menú. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a commutar la visibilitat de la barra de menú. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -16406,7 +16416,7 @@
 
       <locale name="ca">
          <short>Accelerador per a establir el títol del terminal</short>
-         <long>Tecla acceleradora per a establir el títol del terminal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a establir el títol del terminal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -16747,7 +16757,7 @@
 
       <locale name="ca">
          <short>Accelerador per a reiniciar el terminal</short>
-         <long>Tecla acceleradora per a reiniciar el terminal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a reiniciar el terminal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -17088,7 +17098,7 @@
 
       <locale name="ca">
          <short>Accelerador per a reiniciar i netejar el terminal</short>
-         <long>Tecla acceleradora per a reiniciar i netejar el terminal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a reiniciar i netejar el terminal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -17430,7 +17440,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya anterior</short>
-         <long>Tecla acceleradora per a canviar a la pestanya anterior. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya anterior. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -17772,7 +17782,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya següent</short>
-         <long>Tecla acceleradora per a canviar a la pestanya següent. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya següent. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -18099,7 +18109,7 @@
 
       <locale name="ca">
          <short>Accelerador per a moure la pestanya actual a l&apos;esquerra.</short>
-         <long>Tecla acceleradora per a moure la pestanya actual a l&apos;esquerra. S&apos;expressa com a una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a moure la pestanya actual a l&apos;esquerra. S&apos;expressa com a una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -18133,6 +18143,11 @@
       </locale>
 
       <locale name="en_CA">
+         <short>Accelerator to move the current tab to the left.</short>
+         <long>Accelerator key to move the current tab to the left. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
+      <locale name="en_GB">
          <short>Accelerator to move the current tab to the left.</short>
          <long>Accelerator key to move the current tab to the left. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
       </locale>
@@ -18307,6 +18322,11 @@
          <long>Phím tắt để chuyển thanh hiện thời sang bên trái. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi đặc biệt « disabled » (bị tắt), nghĩa là không có phím tổ hợp cho hành động này.</long>
       </locale>
 
+      <locale name="wa">
+         <short>Tape di rascourti po displaecî l&apos; linwete do moumint viè l&apos; hintche.</short>
+         <long>Tape di rascourti po displaecî l&apos; linwete do moumint viè l&apos; hintche. Defineye come ene tchinne di tecse dins l&apos; minme cogne ki les fitchîs di rsoûce po GTK+. Si vos metoz li tchinne sipeciåle «disabled» (dismetou), adon i gn årè nou rascourti po ciste accion la.</long>
+      </locale>
+
       <locale name="zh_CN">
          <short>将当前标签左移的加速键。</short>
          <long>将当前标签左移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
@@ -18361,7 +18381,7 @@
 
       <locale name="ca">
          <short>Accelerador per a moure la pestanya actual a la dreta.</short>
-         <long>Tecla acceleradora per a moure la pestanya actual a la dreta. S&apos;expressa com a una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a moure la pestanya actual a la dreta. S&apos;expressa com a una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -18395,6 +18415,11 @@
       </locale>
 
       <locale name="en_CA">
+         <short>Accelerator to move the current tab to the right.</short>
+         <long>Accelerator key to move the current tab to the right. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
+      <locale name="en_GB">
          <short>Accelerator to move the current tab to the right.</short>
          <long>Accelerator key to move the current tab to the right. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
       </locale>
@@ -18569,6 +18594,11 @@
          <long>Phím tắt để chuyển thanh hiện thời sang phải. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi đặc biệt « disabled » (bị tắt), nghĩa là không có phím tổ hợp cho hành động này.</long>
       </locale>
 
+      <locale name="wa">
+         <short>Tape di rascourti po displaecî l&apos; linwete do moumint viè l&apos; droete.</short>
+         <long>Tape di rascourti po displaecî l&apos; linwete do moumint viè l&apos; droete. Defineye come ene tchinne di tecse dins l&apos; minme cogne ki les fitchîs di rsoûce po GTK+. Si vos metoz li tchinne sipeciåle «disabled» (dismetou), adon i gn årè nou rascourti po ciste accion la.</long>
+      </locale>
+
       <locale name="zh_CN">
          <short>将当前标签右移的加速键。</short>
          <long>将当前标签右移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
@@ -18622,7 +18652,7 @@
 
       <locale name="ca">
          <short>Accelerador per a separar la pestanya actual.</short>
-         <long>Tecla acceleradora per a separar la pestanya actual. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a separar la pestanya actual. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -18656,6 +18686,11 @@
       </locale>
 
       <locale name="en_CA">
+         <short>Accelerator to detach current tab.</short>
+         <long>Accelerator key to detach current tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
+      <locale name="en_GB">
          <short>Accelerator to detach current tab.</short>
          <long>Accelerator key to detach current tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
       </locale>
@@ -18835,6 +18870,11 @@
          <long>Phím tắt để gỡ ra thanh hiện có. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi « disabled » (đã tắt), nghĩa là không có phím tổ hợp cho hành động này.</long>
       </locale>
 
+      <locale name="wa">
+         <short>Tape di rascourti po distaetchî l&apos; linwete do moumint.</short>
+         <long>Tape di rascourti po distaetchî l&apos; linwete do moumint. Defineye come ene tchinne di tecse dins l&apos; minme cogne ki les fitchîs di rsoûce po GTK+. Si vos metoz li tchinne sipeciåle «disabled» (dismetou), adon i gn årè nou rascourti po ciste accion la.</long>
+      </locale>
+
       <locale name="zh_CN">
          <short>漂移当前标签的加速键。</short>
          <long>漂移当前标签的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
@@ -18904,7 +18944,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 1</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 1. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 1. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -19246,7 +19286,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 2</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 2. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 2. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -19588,7 +19628,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 3</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 3. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 3. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -19930,7 +19970,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 4</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 4. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 4. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -20272,7 +20312,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 5</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 5. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 5. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -20614,7 +20654,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 6</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 6. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 6. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -20956,7 +20996,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 7</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 7. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 7. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -21298,7 +21338,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 8</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 8. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 8. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -21640,7 +21680,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 9</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 9. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 9. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -21982,7 +22022,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 10</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 10. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 10. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -22324,7 +22364,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 11</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 11. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 11. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -22666,7 +22706,7 @@
 
       <locale name="ca">
          <short>Accelerador per a canviar a la pestanya 12</short>
-         <long>Tecla acceleradora per a canviar a la pestanya 12. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a canviar a la pestanya 12. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -23008,7 +23048,7 @@
 
       <locale name="ca">
          <short>Accelerador per a llançar l&apos;ajuda</short>
-         <long>Tecla acceleradora per a mostrar l&apos;ajuda. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a mostrar l&apos;ajuda. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -23350,7 +23390,7 @@
 
       <locale name="ca">
          <short>Accelerador per a fer el tipus de lletra més gran</short>
-         <long>Tecla acceleradora per a fer el tipus de lletra més gran. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a fer el tipus de lletra més gran. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -23692,7 +23732,7 @@
 
       <locale name="ca">
          <short>Accelerador per a fer el tipus de lletra més petit</short>
-         <long>Tecla acceleradora per a fer el tipus de lletra més petit. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a fer el tipus de lletra més petit. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
@@ -24034,7 +24074,7 @@
 
       <locale name="ca">
          <short>Accelerador per a fer el tipus de lletra de mida normal</short>
-         <long>Tecla acceleradora per a fer el tipus de lletra de mida normal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat en els fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
+         <long>Tecla acceleradora per a fer el tipus de lletra de mida normal. S&apos;expressa com una cadena en el mateix format que l&apos;utilitzat als fitxers de recursos de GTK+. Si establiu l&apos;opció a la cadena especial «disabled», no hi haurà cap assignació de tecla per a aquesta acció.</long>
       </locale>
 
       <locale name="cs">
