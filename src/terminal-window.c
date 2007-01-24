@@ -35,6 +35,10 @@
 #include <gdk/gdkkeysyms.h>
 #include <libsn/sn-launchee.h>
 
+/* Parameters for the ellipsization in the Tabs menu */
+#define TAB_MENU_WIDTH_CHARS    35
+#define TAB_MENU_ELLIPSIZE      PANGO_ELLIPSIZE_END
+
 struct _TerminalWindowPrivate
 {  
   GtkWidget *main_vbox;
@@ -1070,7 +1074,7 @@ terminal_window_init (TerminalWindow *window)
   mi = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
-  mi = append_menuitem (menu, _("Detach Tab"), ACCEL_PATH_DETACH_TAB,
+  mi = append_menuitem (menu, _("_Detach Tab"), ACCEL_PATH_DETACH_TAB,
                         G_CALLBACK (detach_tab_callback), window);
   window->priv->detach_tab_menuitem = mi;
 
@@ -1339,22 +1343,34 @@ static void
 title_changed_callback (TerminalScreen *screen,
                         TerminalWindow *window)
 {
-  GtkWidget *mi;
+  GtkWidget *menu_item;
+  const char *title;
   
-  if (screen == window->priv->active_term) 
+  title = terminal_screen_get_title (screen);
+
+  menu_item = screen_get_menuitem (screen);
+  if (menu_item)
     {
-    gtk_window_set_title (GTK_WINDOW (window),
-                          terminal_screen_get_title (screen));
-    if (terminal_screen_get_icon_title_set (screen))
-      gdk_window_set_icon_name (GTK_WIDGET (window)->window, terminal_screen_get_icon_title (screen));
-    else
-      gdk_window_set_icon_name (GTK_WIDGET (window)->window, terminal_screen_get_title (screen));
+      GtkWidget *label;
+
+      label = gtk_bin_get_child (GTK_BIN (menu_item));
+
+      gtk_label_set_use_underline (GTK_LABEL (label), FALSE);
+      gtk_label_set_ellipsize (GTK_LABEL (label), TAB_MENU_ELLIPSIZE);
+      gtk_label_set_max_width_chars (GTK_LABEL (label), TAB_MENU_WIDTH_CHARS); 
+      gtk_label_set_text (GTK_LABEL (label), title);
     }
 
-  mi = screen_get_menuitem (screen);
-  if (mi)
-    gtk_label_set_text (GTK_LABEL (gtk_bin_get_child (GTK_BIN (mi))),
-                        terminal_screen_get_title (screen));
+  if (screen == window->priv->active_term) 
+    {
+      gtk_window_set_title (GTK_WINDOW (window), title);
+
+      if (terminal_screen_get_icon_title_set (screen))
+        {
+          title = terminal_screen_get_icon_title (screen);
+        }
+      gdk_window_set_icon_name (GTK_WIDGET (window)->window, title);
+    }
 }
 
 static void
@@ -1613,8 +1629,22 @@ terminal_window_set_active (TerminalWindow *window,
   if (window->priv->active_term == screen)
     return;
   
+  /* Workaround to remove gtknotebook's feature of computing its size based on
+   * all pages. When the widget is hidden, its size will not be taken into
+   * account.
+   */
+  if (window->priv->active_term)
+  {
+    GtkWidget *old_widget;
+    old_widget = terminal_screen_get_widget (window->priv->active_term);
+    gtk_widget_hide (old_widget);
+  }
+  
   widget = terminal_screen_get_widget (screen);
   
+  /* Make sure that the widget is no longer hidden due to the workaround */
+  gtk_widget_show (widget);
+
   profile = terminal_screen_get_profile (screen);
 
   if (!GTK_WIDGET_REALIZED (widget))
@@ -1705,11 +1735,7 @@ notebook_page_selected_callback (GtkWidget       *notebook,
   TerminalScreen *screen;
   GtkWidget *menu_item;
   int old_grid_width, old_grid_height;
-  GtkWidget *old_widget;
-  
-  old_widget = NULL;
-  old_grid_width = -1;
-  old_grid_height = -1;
+  GtkWidget *old_widget, *new_widget;
 
   if (window->priv->active_term == NULL)
     return;
@@ -1725,17 +1751,13 @@ notebook_page_selected_callback (GtkWidget       *notebook,
   screen = TERMINAL_SCREEN (page_widget);
 
   g_assert (screen);
+  
+  /* This is so that we maintain the same grid */
+  new_widget = terminal_screen_get_widget (screen);
+  terminal_widget_set_size (new_widget, old_grid_width, old_grid_height);
 
   terminal_window_set_active (window, screen);
 
-  /* This is so we maintain the same grid moving among tabs with
-   * different fonts.
-   */
-#ifdef DEBUG_GEOMETRY
-  g_fprintf (stderr,"setting size in switch_page handler\n");
-#endif
-  terminal_window_set_size_force_grid (window, screen, TRUE, old_grid_width, old_grid_height);
-  
   update_tab_sensitivity (window);
   
   menu_item = screen_get_menuitem (screen);
@@ -1799,20 +1821,20 @@ notebook_tab_added_callback (GtkWidget       *notebook,
    */
   gtk_widget_realize (GTK_WIDGET (term));
 
-  {
-    /* Match size to current active screen */
-    int current_width, current_height;
-    if (window->priv->active_term)
-      terminal_widget_get_size (terminal_screen_get_widget(window->priv->active_term), 
-                                &current_width, &current_height);
-    else
-      {
-        current_width = 80;
-        current_height = 24;
-      }
+  /* If we have an active screen, match its size and zoom */
+  if (window->priv->active_term)
+    {
+      GtkWidget *widget;
+      int current_width, current_height;
+      double scale;
 
-    terminal_widget_set_size (term, current_width, current_height);
-  }
+      widget = terminal_screen_get_widget (window->priv->active_term);
+      terminal_widget_get_size (widget, &current_width, &current_height);
+      terminal_widget_set_size (term, current_width, current_height);
+
+      scale = terminal_screen_get_font_scale (window->priv->active_term);
+      terminal_screen_set_font_scale (screen, scale);
+    }
   
   /* Make the first-added screen the active one */
   if (window->priv->active_term == NULL)
@@ -2128,6 +2150,7 @@ reset_tab_menuitems (TerminalWindow *window)
   while (TRUE) /* should probably make us somewhat nervous */
     {
       GtkWidget *page;
+      GtkWidget *label;
       char *accel_path;
       
       page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (window->priv->notebook),
@@ -2140,6 +2163,11 @@ reset_tab_menuitems (TerminalWindow *window)
 
       menu_item = gtk_radio_menu_item_new_with_label (group,
                                                       terminal_screen_get_title (screen));
+      label = gtk_bin_get_child (GTK_BIN (menu_item));
+      gtk_label_set_use_underline (GTK_LABEL (label), FALSE);
+      gtk_label_set_ellipsize (GTK_LABEL (label), TAB_MENU_ELLIPSIZE);
+      gtk_label_set_max_width_chars (GTK_LABEL (label), TAB_MENU_WIDTH_CHARS); 
+
       group = gtk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM (menu_item));
       
       if (i < N_TABS_WITH_ACCEL && !single_page)
@@ -2319,8 +2347,7 @@ confirm_close_window (TerminalWindow *window)
 			  		    ngettext ("This window has one tab open. Closing "
 						      "the window will close it.",
 						      "This window has %d tabs open. Closing "
-						      "the window will also close all of its "
-						      "tabs.",
+						      "the window will also close all tabs.",
 						      n),
 					    n);
 

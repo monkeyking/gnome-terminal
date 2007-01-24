@@ -91,6 +91,7 @@ enum {
 static void terminal_screen_init        (TerminalScreen      *screen);
 static void terminal_screen_class_init  (TerminalScreenClass *klass);
 static void terminal_screen_finalize    (GObject             *object);
+static void terminal_screen_unrealize   (GtkWidget *widget);
 static void terminal_screen_size_allocate (GtkWidget *widget,
                                            GtkAllocation *allocation);
 static void terminal_screen_size_request (GtkWidget *widget,
@@ -120,6 +121,8 @@ static void terminal_screen_widget_encoding_changed  (GtkWidget      *term,
                                                       TerminalScreen *screen);
 
 static void terminal_screen_setup_dnd                (TerminalScreen *screen);
+
+static void update_color_scheme                      (TerminalScreen *screen);
 
 static gboolean cook_title  (TerminalScreen *screen, const char *raw_title, char **old_cooked_title);
 
@@ -369,6 +372,7 @@ terminal_screen_class_init (TerminalScreenClass *klass)
   
   object_class->finalize = terminal_screen_finalize;
 
+  widget_class->unrealize = terminal_screen_unrealize;
   widget_class->size_allocate = terminal_screen_size_allocate;
   widget_class->size_request = terminal_screen_size_request;
   widget_class->map = terminal_screen_map;
@@ -417,6 +421,25 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);  
+}
+
+static void
+terminal_screen_unrealize (GtkWidget *widget)
+{
+  TerminalScreen *screen;
+
+  screen = TERMINAL_SCREEN (widget);
+
+  if (screen->priv->popup_menu)
+    {
+      gtk_widget_destroy (screen->priv->popup_menu);
+      screen->priv->popup_menu = NULL;
+    }
+
+  if (GTK_WIDGET_CLASS (parent_class)->unrealize)
+    {
+      (* GTK_WIDGET_CLASS (parent_class)->unrealize) (widget);
+    }
 }
 
 static void
@@ -553,6 +576,8 @@ terminal_screen_reread_profile (TerminalScreen *screen)
   
   if (GTK_WIDGET_REALIZED (screen->priv->term))
     terminal_screen_change_font (screen);
+
+  update_color_scheme (screen);
 
   terminal_widget_set_cursor_blinks (term,
                                      terminal_profile_get_cursor_blink (profile));
@@ -728,8 +753,7 @@ update_color_scheme (TerminalScreen *screen)
   GdkColor fg, bg;
   GdkColor palette[TERMINAL_PALETTE_SIZE];
   
-  if (screen->priv->term == NULL ||
-      !GTK_WIDGET_REALIZED (screen->priv->term))
+  if (screen->priv->term == NULL)
     return;
 
   terminal_profile_get_palette (screen->priv->profile,
@@ -1629,6 +1653,7 @@ popup_clipboard_request_callback (GtkClipboard *clipboard,
   GList *tmp;
   GSList *group;
   gboolean has_tabs;
+  gboolean show_input_method_menu;
   
   screen = info->screen;
 
@@ -1695,7 +1720,7 @@ popup_clipboard_request_callback (GtkClipboard *clipboard,
 
   has_tabs = terminal_window_get_screen_count (terminal_screen_get_window (screen)) > 1;
   menu_item = append_menuitem (screen->priv->popup_menu,
-                               has_tabs ? _("C_lose Tab") : _("_Close Window"),
+                               has_tabs ? _("C_lose Tab") : _("C_lose Window"),
                                has_tabs ? G_CALLBACK (close_tab_callback) : G_CALLBACK (close_tab_callback),
                                screen);
 
@@ -1766,18 +1791,25 @@ popup_clipboard_request_callback (GtkClipboard *clipboard,
                                      G_CALLBACK (show_menubar_callback),
                                      screen);
  
-  menu_item = gtk_separator_menu_item_new ();
-  gtk_widget_show (menu_item);
-  gtk_menu_shell_append (GTK_MENU_SHELL (screen->priv->popup_menu), menu_item);
+  g_object_get (gtk_widget_get_settings (GTK_WIDGET (screen->priv->term)),
+                "gtk-show-input-method-menu", &show_input_method_menu,
+                NULL);
 
-  im_menu = gtk_menu_new ();
-  menu_item = gtk_menu_item_new_with_mnemonic (_("_Input Methods"));
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), im_menu);
-  terminal_widget_im_append_menuitems (screen->priv->term, GTK_MENU_SHELL (im_menu));
-  gtk_widget_show (im_menu);
-  gtk_widget_show (menu_item);
-  gtk_menu_shell_append (GTK_MENU_SHELL (screen->priv->popup_menu), menu_item);
- 
+  if (show_input_method_menu)
+    {
+      menu_item = gtk_separator_menu_item_new ();
+      gtk_widget_show (menu_item);
+      gtk_menu_shell_append (GTK_MENU_SHELL (screen->priv->popup_menu), menu_item);
+
+      im_menu = gtk_menu_new ();
+      menu_item = gtk_menu_item_new_with_mnemonic (_("_Input Methods"));
+      gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), im_menu);
+      terminal_widget_im_append_menuitems (screen->priv->term, GTK_MENU_SHELL (im_menu));
+      gtk_widget_show (im_menu);
+      gtk_widget_show (menu_item);
+      gtk_menu_shell_append (GTK_MENU_SHELL (screen->priv->popup_menu), menu_item);
+    }
+
   gtk_menu_popup (GTK_MENU (screen->priv->popup_menu),
                   NULL, NULL,
                   NULL, NULL, 
@@ -2607,7 +2639,10 @@ terminal_screen_update_scrollbar (TerminalScreen *screen)
   g_object_ref (G_OBJECT (screen->priv->scrollbar));
 
   if (screen->priv->scrollbar->parent)
-    gtk_container_remove (GTK_CONTAINER (screen->priv->hbox), screen->priv->scrollbar);
+    {
+      gtk_container_remove (GTK_CONTAINER (screen->priv->hbox), 
+                            screen->priv->scrollbar);
+    }
   
   switch (terminal_profile_get_scrollbar_position (profile))
     {

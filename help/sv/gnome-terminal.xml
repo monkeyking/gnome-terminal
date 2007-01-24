@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006.</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
+     </copyright><copyright><year>2006</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
      <publisher> 
         <publishername>Dokumentationsprojekt för GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -84,6 +84,9 @@
           </affiliation> 
         </author> 
      </authorgroup> 
+     <publisher role="maintainer">
+       <publishername>Dokumentationsprojekt för GNOME</publishername>
+     </publisher>
      <revhistory> 
         <revision> 
           <revnumber>Handbok för GNOME-terminal v2.8</revnumber> 
@@ -191,18 +194,14 @@
         <varlistentry> 
           <term>Kör valfritt program som är designat för att köras på terminaler av typen VT102, VT220, och <application>xterm</application></term> 
           <listitem> 
-             <para>
-                <application>GNOME Terminal</application> emulates the <application>xterm</application> application developed by the X Consortium. In turn, the <application>xterm</application> application emulates the DEC VT102 terminal and also supports the DEC VT220 escape sequences. An escape sequence is a series of characters that starts with the <keycap>Esc</keycap> character. <application>GNOME Terminal</application> accepts all of the escape sequences that the VT102 and VT220 terminals use for functions such as to position the cursor and to clear the screen. 
-             </para>
+             <para><application>GNOME-terminal</application> emulerar programmet <application>xterm</application> som utvecklats av X Consortium. Programmet <application>xterm</application> emulerar DEC VT102-terminalen och har även stöd för DEC VT220-kontrollsekvenser. En kontrollsekvens är en serie av tecken som börjar med tecknet <keycap>Esc</keycap>. <application>GNOME-terminal</application> tillåter alla kontrollsekvenser som VT102 och VT220-terminaler använder för funktioner såsom positionering av markören och för att rensa skärmen.</para>
           </listitem> 
         </varlistentry> 
      </variablelist> 
   </sect1> 
   <sect1 id="gnome-terminal-get-started"> 
      <title>Komma igång</title> 
-     <para>
-        The following sections describe how to start <application>GNOME Terminal</application>. 
-     </para>
+     <para>Följande avsnitt beskriver hur man startar <application>GNOME-terminal</application>.</para>
      <sect2 id="gnome-terminal-to-start"> 
         <title>Starta GNOME-terminal</title> 
         <para>Du kan starta <application>GNOME-terminal</application> på följande sätt:</para>
@@ -216,66 +215,51 @@
           <varlistentry> 
              <term>Kommandorad</term> 
              <listitem> 
-                <para>
-                  Execute the following command: <command>gnome-terminal</command>
-                </para>
-                <para>
-                  You can use command line options to modify the way in which you run <application>GNOME Terminal</application>. To view the command line options, execute the following command: <command>gnome-terminal --help</command>
-                </para>
+                <para>Kör följande kommando: <command>gnome-terminal</command></para>
+                <para>Du kan använda kommandoradsflaggor för att ändra sättet på vilket du kör <application>GNOME-terminal</application>. Kör följande kommando för att visa kommandoradsflaggorna: <command>gnome-terminal --help</command></para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
      </sect2> 
      <sect2 id="gnome-terminal-first-start"> 
         <title>När du först startar GNOME-terminal</title> 
-        <para>
-          When you start <application>GNOME Terminal</application> for the first time, the application opens a terminal window with a group of default settings. The group of default settings is called the Default profile. The profile name appears in the titlebar of the <application>GNOME Terminal</application> window.  </para>
+        <para>När du startar <application>GNOME-terminal</application> för första gången, öppnar programmet ett terminalfönster med en grupp av standardinställningar. Gruppen av standardinställningar kallas för Standard-profilen. Profilnamnet visas i titelraden i <application>GNOME-terminal</application>-fönstret.</para>
         <figure id="gnome-terminal_default"> 
-          <title>Example of a Default GNOME Terminal Window</title> 
+          <title>Exempel på ett standardfönster av GNOME-terminal</title> 
           <screenshot> 
-             <screeninfo>GNOME Terminal default window</screeninfo> 
+             <screeninfo>Standardfönster av GNOME-terminal</screeninfo> 
              <mediaobject> 
                 <imageobject>
                   <imagedata fileref="figures/gnome-terminal-default.png" format="PNG"/> 
                 </imageobject> 
                 <textobject> 
-                  <phrase>GNOME Terminal default window</phrase> 
+                  <phrase>Standardfönster av GNOME-terminal</phrase> 
                 </textobject> 
              </mediaobject> 
           </screenshot> 
         </figure> 
-        <para>
-          The terminal window displays a command prompt where you can type UNIX commands. The command prompt can be a %, #, &gt;, $, or any other special character. The cursor is positioned at the command prompt. When you type a UNIX command and press <keycap>Return</keycap>, the computer executes the command. By default, <application>GNOME Terminal</application> uses the default shell specified for the user who starts the application. 
-        </para>
-        <para>
-          <application>GNOME Terminal</application> also sets the following environment variables: 
-        </para>
+        <para>Terminalfönstret visar en kommandoprompt där du kan skriva in UNIX-kommandon. Kommandoprompten kan vara en %, #, &gt;, $, eller ett annat specialtecken. Markören är positionerad vid kommandoprompten. När du skriver in ett UNIX-kommando och trycker på <keycap>Return</keycap>, kör datorn kommandot. Som standard använder <application>GNOME-terminal</application> standardskalet som angivits för användaren som startar programmet.</para>
+        <para><application>GNOME-terminal</application> ställer även in följande miljövariabler:</para>
         <variablelist> 
           <varlistentry> 
              <term> 
                 <varname>TERM</varname></term> 
              <listitem> 
-                <para>
-                  Set to <literal>xterm</literal> by default. 
-                </para>
+                <para>Inställd till <literal>xterm</literal> som standard.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <varname>COLORTERM</varname></term> 
              <listitem> 
-                <para>
-                  Set to <literal>gnome-terminal</literal> by default. 
-                </para>
+                <para>Inställd till <literal>gnome-terminal</literal> som standard.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <varname>WINDOWID</varname></term> 
              <listitem> 
-                <para>
-                  Set to the X11 window identifier by default. 
-                </para>
+                <para>Inställd till X11-fönsteridentifieraren som standard.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -283,40 +267,33 @@
 
      <sect2 id="gnome-terminal-profiles"> 
         <title>Terminalprofiler</title> 
-        <para>
-          You can create a new profile, and apply the new profile to the terminal to modify characteristics such as font, color and effects, scroll behavior, window title, and compatibility. You can also specify a command that runs automatically when you start <application>GNOME Terminal</application> in the profile. </para>
-          <para>You define each terminal profile in the <guilabel>Edit Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
+        <para>Du kan skapa en ny profil, och använda den nya profilen i terminalen för att ändra egenskaper som till exempel typsnitt, färg och effekter, rullningsbeteende, fönstertitel, och kompatibilitet. Du kan även ange ett kommando som kör automatiskt när du startar <application>GNOME-terminal</application> i profilen.</para>
+          <para>Du kan definiera varje terminalprofil i dialogrutan <guilabel>Redigera profiler</guilabel>, vilken du kan komma åt från menyn <guimenu>Redigera</guimenu>. Du kan definiera så många olika profiler som du behöver. När du startar en terminal, kan du välja profilen som du vill använda för terminalen. Alternativt kan du ändra terminalprofilen under tiden du använder terminalen. Använd följande kommando för att ange en startprofil för en terminal när du startar programmet från en kommandorad:</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>profilnamn</replaceable></command> 
         </para>
-        <para>
-          The name of the current profile appears in the titlebar of the <application>GNOME Terminal</application>, unless you specify a different titlebar name in the <guilabel>Editing Profile</guilabel> dialog.  </para>
-        <para>
-          See <xref linkend="gnome-terminal-manage-profiles"/> for information about how to define and use a new terminal profile.  </para>
+        <para>Namnet på den aktuella profilen visas i titelraden för <application>GNOME-terminal</application>, såvida du inte angivit ett annat titelradsnamn i dialogrutan <guilabel>Redigerar profilen</guilabel>.</para>
+        <para>Se <xref linkend="gnome-terminal-manage-profiles"/> för information om hur man definierar och använder en ny terminalprofil.</para>
      </sect2> 
      <sect2 id="gnome-terminal-more-windows"> 
         <title>Arbeta med flera terminaler</title> 
-        <para>
-          <application>GNOME Terminal</application> provides a tab feature that enables you to open several terminals in a single window. Each terminal opens in a separate tab. Click on the appropriate tab to display the terminal in the window. Each tabbed terminal in a window is a separate subprocess, so you can use each terminal for different tasks. You can apply a different profile to each tabbed terminal in the window.  </para>
-       <para>
-          The titlebar of the terminal window shows either the name of the current profile, or the name specified by the current profile. <xref linkend="gnome-terminal-tabbed"/> shows a <application>GNOME Terminal</application> window with four tabs. In this case, each of the four tabs has a different profile. The name of the profile in the active tab, Profile 1, appears in the titlebar.  </para>
+        <para><application>GNOME-terminal</application> tillhandahåller en flikfunktion som låter dig öppna flera terminaler i ett och samma fönster. Varje terminal öppnas i en separat flik. Klicka på den lämpliga fliken för att visa terminalen i fönstret. Varje flikad terminal i ett fönster är en separat underprocess, så du kan använda varje terminal för olika uppgifter. Du kan använda olika profiler för varje flikad terminal i fönstret.</para>
+       <para>Titelraden i terminalfönstret visar antingen namnet på den aktuella profilen, eller namnet som angivits av den aktuella profilen. <xref linkend="gnome-terminal-tabbed"/> visar ett <application>GNOME-terminal</application>-fönster med fyra flikar. I det här fallet har alla fyra flikar olika profiler. Namnet på profilen i den aktiva fliken, Profil 1, visas i titelraden.</para>
         <figure id="gnome-terminal-tabbed"> 
-          <title>Example of a Terminal Window With Tabs</title> 
+          <title>Exempel på ett terminalfönster med flikar</title> 
           <screenshot> 
-             <screeninfo>GNOME Terminal default window</screeninfo> 
+             <screeninfo>Standardfönster av GNOME-terminal</screeninfo> 
              <mediaobject> 
                 <imageobject>
                   <imagedata fileref="figures/gnome-terminal-tabbed.png" format="PNG"/> 
                 </imageobject> 
                 <textobject> 
-                  <phrase>GNOME Terminal default window</phrase> 
+                  <phrase>Standardfönster av GNOME-terminal</phrase> 
                 </textobject> 
              </mediaobject> 
           </screenshot> 
         </figure> 
-        <para>
-          See <xref linkend="gnome-terminal-windows"/> for information about how to open a new tabbed terminal. 
-        </para>
+        <para>Se <xref linkend="gnome-terminal-windows"/> för information om hur man öppnar en ny flikad terminal.</para>
      </sect2> 
 
   </sect1> 
@@ -328,38 +305,30 @@
         <title>Öppna och stänga terminaler</title> 
         <variablelist> 
           <varlistentry> 
-             <term>To open a new terminal window:</term> 
+             <term>För att öppna ett nytt terminalfönster:</term> 
              <listitem> 
                 <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Öppna terminal</guimenuitem></menuchoice>.</para>
-                <para>
-                  The new terminal inherits the application settings and default shell from the parent terminal.  </para>
+                <para>Den nya terminalen ärver programinställningarna och standardskalet från förälderterminalen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term>För att stänga ett terminalfönster:</term> 
              <listitem> 
-                <para>
-                  Choose <menuchoice><guimenu>File</guimenu><guimenuitem>Close Window</guimenuitem></menuchoice>.  </para>
-                <para>
-                  This action closes the terminal and any subprocesses that you opened from the terminal. If you close the last terminal window, the <application>GNOME Terminal</application> application exits.  </para>
+                <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Stäng fönster</guimenuitem></menuchoice>.</para>
+                <para>Det här åtgärden stänger terminalen och alla underprocesser som du öppnat från terminalen. Om du stänger det sista terminalfönstret, kommer programmet <application>GNOME-terminal</application> att avslutas.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term>För att lägga till en flikad terminal till ett fönster:</term> 
              <listitem> 
-                <para>
-                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice>.  </para>
+                <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guisubmenu>Öppna flik</guisubmenu><guimenuitem>Standard</guimenuitem></menuchoice>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term>För att visa en flikad terminal:</term> 
              <listitem> 
-                <para>
-                  Click on the tab of the tabbed terminal that you want to display, or select a tab title from the <guimenu>Tabs</guimenu> menu.
-                </para>
-                <para>
-                  Alternatively, choose <menuchoice><guimenu>Tabs</guimenu><guimenuitem>Next Tab</guimenuitem></menuchoice> or <menuchoice><guimenu>Tabs</guimenu><guimenuitem>Previous Tab</guimenuitem></menuchoice> to navigate between tabs.
-                </para>
+                <para>Klicka på fliken för den flikade terminalen som du vill visa, eller välj en fliktitel från menyn <guimenu>Flikar</guimenu>.</para>
+                <para>Alternativt, välj <menuchoice><guimenu>Flikar</guimenu><guimenuitem>Nästa flik</guimenuitem></menuchoice> eller <menuchoice><guimenu>Flikar</guimenu><guimenuitem>Föregående flik</guimenuitem></menuchoice> för att navigera mellan flikar.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -368,13 +337,10 @@
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>
-                          Display the tabbed terminal that you want to close. 
-                        </para>
+                        <para>Visa den flikade terminalen som du vill stänga.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Choose <menuchoice><guimenu>File</guimenu><guimenuitem>Close Tab</guimenuitem></menuchoice>.  </para>
+                        <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Stäng flik</guimenuitem></menuchoice>.</para>
                      </listitem> 
                   </orderedlist> 
                 </para>
@@ -391,41 +357,34 @@
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>
-                          Choose <menuchoice><guimenu>File</guimenu><guimenuitem>New Profile</guimenuitem></menuchoice> to display the <guilabel>New Profile</guilabel> dialog.  </para>
+                        <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Ny profil</guimenuitem></menuchoice> för att visa dialogrutan <guilabel>Ny profil</guilabel>.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Type the new profile name in the <guilabel>Profile name</guilabel> text box.  </para>
+                        <para>Ange det nya profilnamnet i textrutan <guilabel>Profilnamn</guilabel>.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Use the <guilabel>Base on</guilabel> drop-down list to select the profile on which you want to base the new profile.  </para>
+                        <para>Använd rullgardinslistan <guilabel>Basera på</guilabel> för att välja den profil som du vill basera den nya profilen på.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Click <guibutton>Create</guibutton> to display the <guilabel>Editing Profile</guilabel> dialog.  </para>
+                        <para>Klicka på <guibutton>Skapa</guibutton> för att visa dialogrutan <guilabel>Redigerar profilen</guilabel>.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Click <guibutton>Close</guibutton>. <application>GNOME Terminal</application> adds the profile to the <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Change Profile</guisubmenu></menuchoice> submenu.  </para>
+                        <para>Klicka på <guibutton>Stäng</guibutton>. <application>GNOME-terminal</application> lägger till profilen till undermenyn <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Byt profil</guisubmenu></menuchoice>.</para>
                      </listitem> 
                   </orderedlist> 
                 </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>To change the profile of a tabbed terminal:</term> 
+             <term>För att ändra profilen för en flikad terminal:</term> 
              <listitem> 
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>
-                          Click on the tab of the tabbed terminal for which you want to change the profile.  </para>
+                        <para>Klicka på fliken för den flikade terminalen för vilken du vill byta profilen.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Choose <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Change Profile</guisubmenu><guimenuitem><replaceable>profilename</replaceable></guimenuitem></menuchoice>.  </para>
+                        <para>Välj <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Byt profil</guisubmenu><guimenuitem><replaceable>profilnamn</replaceable></guimenuitem></menuchoice>.</para>
                      </listitem> 
                   </orderedlist> 
                 </para>
@@ -434,20 +393,16 @@
           <varlistentry> 
              <term>För att redigera en profil:</term> 
              <listitem> 
-                <para>
-                  You edit profiles in the <guilabel>Editing Profile</guilabel> dialog. You can access the <guilabel>Editing Profile</guilabel> dialog in the following ways: </para>
+                <para>Du redigerar profiler i dialogrutan <guilabel>Redigerar profilen</guilabel>. Du kan komma åt dialogrutan <guilabel>Redigerar profilen</guilabel> på följande sätt:</para>
                 <itemizedlist> 
                   <listitem> 
-                     <para>
-                        Choose <menuchoice><guimenu>Edit</guimenu><guisubmenu>Current Profile</guisubmenu></menuchoice>.  </para>
+                     <para>Välj <menuchoice><guimenu>Redigera</guimenu><guisubmenu>Aktuell profil</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>
-                        Right-click in the terminal window, then choose <guimenuitem>Edit Current Profile</guimenuitem> from the popup menu.  </para>
+                     <para>Högerklicka på terminalfönstret, välj sedan <guimenuitem>Redigera aktuell profil</guimenuitem> från popuppmenyn.</para>
                   </listitem> 
                   <listitem> 
-                     <para>
-                        Choose <menuchoice><guimenu>Edit</guimenu><guisubmenu>Profiles</guisubmenu></menuchoice>, select the profile you want to edit, then click <guibutton>Edit</guibutton>. For information on the options you can set for profiles, see <xref linkend="gnome-terminal-prefs"/>.</para>
+                     <para>Välj <menuchoice><guimenu>Redigera</guimenu><guisubmenu>Profiler</guisubmenu></menuchoice>, välj profilen som du vill redigera, klicka sedan på <guibutton>Redigera</guibutton>. För information om vilka alternativ du kan ställa in för profiler, se <xref linkend="gnome-terminal-prefs"/>.</para>
                   </listitem> 
                 </itemizedlist> 
              </listitem> 
@@ -458,20 +413,16 @@
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>
-                          Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Profiles</guimenuitem></menuchoice>.  </para>
+                        <para>Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Profiler</guimenuitem></menuchoice>.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Select the name of the profile that you want to delete in the <guilabel>Profiles</guilabel> list, then click <guibutton>Delete</guibutton>. The <guilabel>Delete Profile</guilabel> dialog is displayed.  </para>
+                        <para>Välj namnet på profilen som du vill ta bort i <guilabel>Profiler</guilabel>-listan, klicka sedan på <guibutton>Ta bort</guibutton>. Dialogrutan <guilabel>Ta bort profil</guilabel> visas.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Click <guibutton>Delete</guibutton> to confirm the deletion.  </para>
+                        <para>Klicka på <guibutton>Ta bort</guibutton> för att bekräfta borttagningen.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Click <guibutton>Close</guibutton> to close the <guilabel>Edit Profiles</guilabel> dialog.  </para>
+                        <para>Klicka på <guibutton>Stäng</guibutton> för att stänga dialogrutan <guilabel>Redigera profiler</guilabel>.</para>
                      </listitem> 
                   </orderedlist> 
                 </para>
@@ -483,119 +434,99 @@
         <title>Ändra ett terminalfönster</title> 
         <variablelist> 
           <varlistentry> 
-             <term>To hide the menubar:</term> 
+             <term>För att dölja menyraden:</term> 
              <listitem> 
                 <para>Välj <menuchoice><guimenu>Visa</guimenu><guimenuitem>Visa menyrad</guimenuitem></menuchoice>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>To show a hidden menubar:</term> 
+             <term>För att visa en dolda menyrad:</term> 
              <listitem> 
-                <para>
-                  Right-click on the terminal window, then choose <guimenuitem>Show Menubar</guimenuitem> from the popup menu.  </para>
+                <para>Högerklicka på terminalfönstret, välj sedan <guimenuitem>Visa menyrad</guimenuitem> från popuppmenyn.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry><term>För att visa <application>GNOME-terminal</application>-fönstret i helskärmsläge:</term>
             <listitem>
-              <para>Choose <menuchoice><guimenu>View</guimenu><guimenuitem>Full Screen</guimenuitem></menuchoice>. Full-screen mode displays the text in a window that fills the full screen. The window does not contain a window frame or titlebar. To exit from this mode, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Full Screen</guimenuitem></menuchoice> again.</para>
+              <para>Välj <menuchoice><guimenu>Visa</guimenu><guimenuitem>Helskärmsläge</guimenuitem></menuchoice>. Helskärmsläge visar texten i ett fönster som fyller hela skärmen. Fönstret innehåller inte en fönsterram eller titelrad. För att lämna det här läget, välj <menuchoice><guimenu>Visa</guimenu><guimenuitem>Helskärmsläge</guimenuitem></menuchoice> igen.</para>
             </listitem>     
           </varlistentry>
           <varlistentry> 
-             <term>To change the appearance of the terminal window:</term> 
+             <term>För att ändra utseendet på terminalfönstret:</term> 
              <listitem> 
-                <para>
-                  See <xref linkend="gnome-terminal-prefs"/> for information about the options that you can choose in the <guilabel>Editing Profile</guilabel> dialog to change the appearance of the terminal window. For example, you can change the background color, or the location of the scrollbar.  </para>
+                <para>Se <xref linkend="gnome-terminal-prefs"/> för information om alternativen som du kan välja i dialogrutan <guilabel>Redigerar profilen</guilabel> för att ändra utseendet för terminalfönstret. Du kan till exempel ändra bakgrundsfärgen, eller platsen för rullningslisten.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
      </sect2> 
      <sect2 id="gnome-terminal-contents"> 
-        <title>Working with the Contents of Terminal Windows</title> 
+        <title>Arbeta med innehållet i terminalfönster</title> 
         <variablelist> 
           <varlistentry> 
-             <term>To scroll through previous commands and output:</term> 
+             <term>För att rulla genom föregående kommandon och utdata:</term> 
              <listitem> 
-                <para>
-                  Perform one of the following actions: 
-                </para>
+                <para>Genomför en av följande åtgärder:</para>
                 <itemizedlist> 
                   <listitem> 
-                     <para>
-                        Use the scrollbar, which is usually displayed on the right of the terminal window.  </para>
+                     <para>Använd rullningslisten, vilken vanligtvis visas på höger sida i terminalfönstret.</para>
                   </listitem> 
                   <listitem> 
                      <para>Tryck ned tangenterna <keycombo><keycap>Skift</keycap><keycap>Page Up</keycap></keycombo>, <keycombo><keycap>Skift</keycap><keycap>Page Down</keycap></keycombo>, <keycombo><keycap>Skift</keycap><keycap>Home</keycap></keycombo>, eller <keycombo><keycap>Skift</keycap><keycap>End</keycap></keycombo>.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>
-                  The number of lines that you can scroll back to in the terminal window is determined by the <guilabel>Scrollback</guilabel> setting in the <guilabel>Scrolling</guilabel> tabbed section of the <guilabel>Editing Profile</guilabel> dialog.  </para>
+                <para>Antalet rader som du kan rulla tillbaka till i terminalfönstret bestäms av inställningen <guilabel>Rullningshistorik</guilabel> i den flikade sektionen <guilabel>Rullning</guilabel> av dialogrutan <guilabel>Redigerar profilen</guilabel>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>To select and copy text:</term> 
+             <term>För att markera och kopiera text:</term> 
              <listitem> 
-                <para>
-                  You can select text in any of the following ways: 
-                </para>
+                <para>Du kan markera text på något av följande sätt:</para>
                 <itemizedlist> 
                   <listitem> 
-                     <para>
-                        To select a character at a time, click on the first character that you want to select and drag the mouse to the last character that you want to select.  </para>
+                     <para>För att markera ett tecken åt gången, klicka på det första tecknet som du vill markera och dra musen till det sista tecknet som du vill markera.</para>
                   </listitem> 
                   <listitem> 
-                     <para>
-                        To select a word at a time, double-click on the first word that you want to select and drag the mouse to the last word that you want to select. Symbols are selected individually.</para>
+                     <para>För att välja ett ord åt gången, dubbelklicka på det första ordet som du vill markera och dra musen till det sista ordet som du vill markera. Symboler markeras individuellt.</para>
                   </listitem> 
                   <listitem> 
-                     <para>
-                        To select a line at a time, triple-click on the first line that you want to select and drag the mouse to the last line that you want to select.  </para>
+                     <para>För att markera en rad åt gången, trippelklicka på första raden som du vill markera och dra musen till den sista raden som du vill markera.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>
-                  These actions select all text between the first and last items. For all text selections, <application>GNOME Terminal</application> copies the selected text into the clipboard when you release the mouse button. To explicitly copy the selected text, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice>.</para>
+                <para>Dessa åtgärder markerar all text mellan det första och sista objektet. För alla textmarkeringar, kopierar <application>GNOME-terminal</application> den markerade texten till urklipp när du släpper musknapen. För att uttryckligen kopiera den markerade texten, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Kopiera</guimenuitem></menuchoice>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term>För att klistra in text i en terminal:</term> 
              <listitem> 
-                <para>
-                  If you previously copied text to the clipboard, you can paste the text into a terminal by performing one of the following actions: </para>
+                <para>Om du tidigare kopierade text till urklipp, kan du klistra in texten i en terminal genom att genomföra en av följande åtgärder:</para>
                 <itemizedlist> 
                   <listitem> 
-                     <para>
-                        To paste text that you copied by selection only, middle-click at the command prompt. If you do not have a middle mouse button, refer to the X Server documentation for information about how to emulate the middle mouse button.  </para>
+                     <para>För att klistra in text som du kopierade genom att bara markera, mittenklicka på kommandoprompten. Om du inte har en mittenmusknapp, referera till X Server-dokumentationen för information om hur man emulerar mittenmusknappen.</para>
                   </listitem> 
                   <listitem> 
-                     <para>
-                        To paste text that you explicitly copied, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</guimenuitem></menuchoice>. </para>
+                     <para>För att klistra in text som du uttryckligen kopierade, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Klistra in</guimenuitem></menuchoice>.</para>
                   </listitem> 
                 </itemizedlist> 
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>To drag a file name into a terminal window:</term> 
+             <term>För att dra ett filnamn in i ett terminalfönster:</term> 
              <listitem> 
-                <para>
-                  You can drag a file name to a terminal from another application such as a file manager. The terminal displays the path and the full name of the file.  </para>
+                <para>Du kan dra ett filnamn till en terminal från ett annat program såsom en filhanterare. Terminalen visar sökvägen och det fullständiga namnet på filen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>To access a link:</term> 
+             <term>För att komma åt en länk:</term> 
              <listitem> 
-                <para>
-                  To access a Uniform Resource Locator (URL) that is displayed in a terminal, perform the following steps: </para>
+                <para>Genomför följande steg för att komma åt en Uniform Resource Locator (URL) som visas i en terminal:</para>
                   <orderedlist> 
                      <listitem> 
-                        <para>
-                          Move the mouse over the URL until the URL is underlined.  </para>
+                        <para>Flytta musen över url:en tills url:en är understruken.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Right-click on the URL to open a popup menu.  </para>
+                        <para>Högerklicka på url:en för att öppna en popuppmeny.</para>
                      </listitem> 
                      <listitem> 
-                        <para>
-                          Choose <guimenuitem>Open Link</guimenuitem> to start a link application and display the file located at the URL.  </para>
+                        <para>Välj <guimenuitem>Öppna länk</guimenuitem> för att starta ett länkprogram och visa filen som finns på url:en.</para>
                      </listitem> 
                   </orderedlist>                
              </listitem> 
@@ -604,30 +535,26 @@
      </sect2> 
      
      <sect2 id="gnome-terminal-shortcuts"> 
-        <title>Viewing the Keyboard Shortcut Settings</title> 
-        <para>
-          To view the keyboard shortcut settings that are defined for <application>GNOME Terminal</application>, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Keyboard Shortcuts</guimenuitem></menuchoice>. The <guilabel>Keyboard Shortcuts</guilabel> dialog contains the following items: </para>
+        <title>Visa inställningar för tangentbordsgenvägar</title> 
+        <para>För att visa inställningar för tangentbordsgenvägar som har definierats för <application>GNOME-terminal</application>, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Tangentbordsgenvägar</guimenuitem></menuchoice>. Dialogrutan <guilabel>Tangentbordsgenvägar</guilabel> innehåller följande objekt:</para>
         <variablelist> 
           <varlistentry> 
-             <term><guilabel>Disable all menu access keys (such as Alt+f to open File menu)</guilabel></term> 
+             <term><guilabel>Inaktivera alla menyåtkomsttangenter (exempelvis Alt+a för att öppna Arkiv-menyn)</guilabel></term> 
              <listitem> 
-                <para>
-                  Select this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Välj det här alternativet för att inaktivera åtkomsttangenter som är definierade för att låta dig använda tangentbordet istället för musen för att välja ett menyobjekt. Varje åtkomsttangent identifieras med en understruken bokstav på en meny eller ett dialogalternativ. I vissa fall måste du trycka på tangenten <keycap>Alt</keycap> i kombination med åtkomsttangenten för att genomföra åtgärden.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term><guilabel>Disable menu shortcut key (F10 by default)</guilabel></term> 
+             <term><guilabel>Inaktivera tangent för menyåtkomst (F10 som standard)</guilabel></term> 
              <listitem> 
-                <para>
-                  Select this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Välj det här alternativet för att inaktivera genvägstangenten som är definierad för att låta dig komma åt menyerna i <application>GNOME-terminal</application>. Standardtangenten för genvägen för att komma åt menyerna är <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Tangentgenvägar</guilabel></term> 
              <listitem> 
-                <para>
-                  The <guilabel>Shortcut Keys</guilabel> section of the dialog lists the shortcut keys that are defined for each menu item.</para>
-                <note><para>Not all keys can be used as shortcut keys, such as <keycap>Tab</keycap>.</para></note>
+                <para>Sektionen <guilabel>Genvägstangenter</guilabel> av dialoglistorna är snabbtangenterna som är definierade för varje menyobjekt.</para>
+                <note><para>Inte alla tangenter kan användas som genvägstangenter, exempelvis <keycap>Tab</keycap>.</para></note>
              </listitem> 
           </varlistentry>
         </variablelist> 
@@ -635,13 +562,13 @@
      
 	<sect2 id="gnome-terminal-resize">
 	<title>Textstorlek</title>
-	<para>You can use the following methods to resize the text in the GNOME Terminal window:</para>
+	<para>Du kan använda följande metoder för att förstora eller förminska texten i GNOME-terminal-fönstret.</para>
 		<itemizedlist>
-			<listitem><para>To increase the size of the text, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Zoom In</guimenuitem></menuchoice>.</para>
+			<listitem><para>För att förstora texten, välj <menuchoice><guimenu>Visa</guimenu><guimenuitem>Zooma in</guimenuitem></menuchoice>.</para>
 			</listitem>
-			<listitem><para>To decrease the size of the text, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Zoom Out</guimenuitem></menuchoice>.</para>
+			<listitem><para>För att förminska texten, välj <menuchoice><guimenu>Visa</guimenu><guimenuitem>Zooma ut</guimenuitem></menuchoice>.</para>
 			</listitem>
-			<listitem><para>To view the text at actual size, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Normal Size</guimenuitem></menuchoice>. </para>
+			<listitem><para>För att visa texten i normal storlek, välj <menuchoice><guimenu>Visa</guimenu><guimenuitem>Normal storlek</guimenuitem></menuchoice>.</para>
 			</listitem>
 		</itemizedlist>
 
@@ -649,47 +576,39 @@
 
      <sect2 id="gnome-terminal-title"> 
         <title>Ändra terminaltiteln</title> 
-        <para>
-          To change the title of the currently displayed terminal, perform the following steps:</para>
+        <para>Genomför följande steg för att ändra titeln på den för närvarande visade terminalen:</para>
         <orderedlist>
           <listitem>
-            <para>Choose <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Set Title</guimenuitem></menuchoice>. </para>
+            <para>Välj <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Ställ in titel</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>Type the new title in the <guilabel>Title</guilabel> text box. <application>GNOME Terminal</application> applies the change immediately. </para>
+            <para>Skriv in den nya titeln i textrutan <guilabel>Titel</guilabel>. <application>GNOME-terminal</application> verkställer ändringen med en gång.</para>
           </listitem>
           <listitem>
-            <para>Click <guibutton>Close</guibutton> to close the <guilabel>Set Title</guilabel> dialog.  </para>
+            <para>Klicka på <guibutton>Stäng</guibutton> för att stänga dialogrutan <guilabel>Ställ in titel</guilabel>.</para>
           </listitem>
         </orderedlist>
 	</sect2>	
 
      <sect2 id="gnome-terminal-encoding"> 
         <title>Ändra teckenkodningen</title> 
-        <para>
-          To change the character encoding, choose <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Set Character Encoding</guisubmenu></menuchoice>, then select the appropriate encoding. 
-        </para>
+        <para>För att ändra teckenkodningen, välj <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Ställ in teckenkodning</guisubmenu></menuchoice>, välj sedan den lämpliga kodningen.</para>
 
      <sect3 id="gnome-terminal-encoding-add"> 
-        <title>To Change the List of Character Encodings</title> 
-        <para>
-          To change the list of character encodings displayed in the <guisubmenu>Set Character Encoding</guisubmenu> menu, perform the following steps:
-        </para>
+        <title>Ändra listan över teckenkodningar</title> 
+        <para>Genomför följande steg för att ändra listan över teckenkodningar som visas i menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>:</para>
         <orderedlist>
           <listitem>
-            <para>Choose <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Set Character Encoding</guisubmenu><guimenuitem>Add or Remove</guimenuitem></menuchoice>.
-            </para>
+            <para>Välj <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Ställ in teckenkodning</guisubmenu><guimenuitem>Lägg till eller ta bort</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click <guibutton>Add</guibutton>.
-            </para>
+            <para>För att lägga till en kodning till menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>, välj kodningen i listrutan <guilabel>Tillgängliga kodningar</guilabel>, klicka sedan på <guibutton>Lägg till</guibutton>.</para>
           </listitem>
           <listitem>
-            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click <guibutton>Remove</guibutton>.
-            </para>
+            <para>För att ta bort en kodning från menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>, välj kodningen i listrutan <guilabel>Kodningar som visas i menyn</guilabel>, klicka sedan på <guibutton>Ta bort</guibutton>.</para>
           </listitem>
           <listitem>
-            <para>Click <guibutton>Close</guibutton> to close the <guilabel>Add or Remove Terminal Encodings</guilabel> dialog.  </para>
+            <para>Klicka på <guibutton>Stäng</guibutton> för att stänga dialogrutan <guilabel>Lägg till eller ta bort terminalkodningar</guilabel>.</para>
           </listitem>
         </orderedlist>
 	</sect3>	
@@ -697,26 +616,21 @@
 	</sect2>	
 
      <sect2 id="gnome-terminal-reset"> 
-        <title>Återhämta din terminal</title> 
-        <para>
-          This section provides some advice if you have problems with terminals. 
-        </para>
+        <title>Återställ din terminal</title> 
+        <para>Det här avsnittet ger ett par råd om du har problem med terminaler.</para>
         <variablelist> 
           <varlistentry> 
-             <term>To reset the state of the terminal:</term> 
+             <term>För att återställa tillståndet för terminalen:</term> 
              <listitem> 
-                <para>
-                  Choose <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Reset</guimenuitem></menuchoice>. 
-                </para>
+                <para>Välj <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Återställ</guimenuitem></menuchoice>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
         <variablelist> 
           <varlistentry> 
-             <term>To reset the terminal and clear the screen:</term> 
+             <term>För att återställa terminalen och tömma skärmen:</term> 
              <listitem> 
-                <para>
-                  Choose <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Reset and Clear</guimenuitem></menuchoice>.  </para>
+                <para>Välj <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Återställ och töm</guimenuitem></menuchoice>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -726,10 +640,8 @@
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Inställningar</title> 
-     <para>
-        To configure <application>GNOME Terminal</application>, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Current Profile</guimenuitem></menuchoice>. To configure another profile that you set up choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Profiles</guimenuitem></menuchoice>, select the profile you want to edit, then click <guibutton>Edit</guibutton>.  </para>
-     <para>  
-        The <guilabel>Editing Profile</guilabel> dialog contains the following tabbed sections that you can use to configure <application>GNOME Terminal</application>: </para>
+     <para>För att konfigurera <application>GNOME-terminal</application>, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Aktuell profil</guimenuitem></menuchoice>. För att konfigurera en annan profil som du ställt in, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Profiler</guimenuitem></menuchoice>, välj profilen som du vill redigera, klicka sedan på <guibutton>Redigera</guibutton>.</para>
+     <para>Dialogrutan <guilabel>Redigerar profilen</guilabel> innehåller följande flikade sektioner som du kan använda för att konfigurera <application>GNOME-terminal</application>:</para>
      <itemizedlist> 
 		<listitem><para><xref linkend="gnome-terminal-prefs-general"/></para>
 		</listitem>
@@ -753,79 +665,64 @@
              <term> 
                 <guilabel>Profilnamn</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this text box to specify the name of the current profile. 
-                </para>
+                <para>Använd den här textrutan för att ange namnet på den aktuella profilen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Use the system terminal font</guilabel> </term> 
+                <guilabel>Använd systemets terminaltypsnitt</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to use the standard application font that is specified in the <application>Font</application> preference tool. 
-                </para>
+                <para>Välj det här alternativet för att använda standardprogramtypsnittet som har angivits i inställningsverktyget <application>Typsnitt</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
              <term> 
                 <guilabel>Typsnitt</guilabel> </term> 
              <listitem> 
-                <para>
-                  Click on this button to select a font type and font size for the terminal. This button is only enabled if the <guilabel>Use the system terminal font</guilabel> option is unselected.  </para>
+                <para>Klicka på den här knappen för att välja en typsnittstyp och typsnittsstorlek för terminalen. Den här knappen är endast aktiverad om alternativet <guilabel>Använd systemets terminaltypsnitt</guilabel> inte har valts.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <guilabel>Profilikon</guilabel> </term> 
              <listitem> 
-                <para>
-                  Click on this button to select an icon to represent terminal windows that use the current profile. 
-                </para>
+                <para>Klicka på den här knappen för att välja en ikon som representerar terminalfönstren som använder den aktuella profilen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <guilabel>Tillåt fet text</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable the terminal to display bold text. 
-                </para>
+                <para>Välj det här alternativet för att terminalen ska visa fet text.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
              <term> 
-                <guilabel>Markörblinkningar</guilabel> </term> 
+                <guilabel>Markören blinkar</guilabel> </term> 
              <listitem> 
                 <para>Välj detta alternativ för att visa en markör som blinkar.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Show menubar by default in new terminals</guilabel>
+                <guilabel>Visa menyrad som standard i nya terminalfönster</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select this option to show the menubar on new terminal windows. 
-                </para>
+                <para>Välj det här alternativet för att visa menyraden på nya terminalfönster.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Terminal bell</guilabel> </term> 
+                <guilabel>Terminalljud</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to disable the terminal bell. 
-                </para>
+                <para>Välj det här alternativet för att inaktivera terminalljudet.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Select-by-word characters</guilabel> </term> 
+                <guilabel>Tecken för välj-per-ord</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this text box to specify characters or groups of characters that <application>GNOME Terminal</application> considers to be words when you select text by word. See <xref linkend="gnome-terminal-contents"/> for more information about how to select text by word. 
-                </para>
+                <para>Använd den här textrutan för att ange tecken eller grupper som <application>GNOME-terminal</application> anser vara ord när du markerar text efter ord. Se <xref linkend="gnome-terminal-contents"/> för mer information om hur man markerar text efter ord.</para>
              </listitem> 
           </varlistentry> 
           
@@ -836,57 +733,45 @@
         <variablelist> 
           <varlistentry> 
              <term> 
-                <guilabel>Initial titel</guilabel> </term> 
+                <guilabel>Starttitel</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this text box to specify the initial title of terminals that use the profile. New terminals that are started from the current terminal have the new initial title. 
-                </para>
+                <para>Använd den här textrutan för att ange starttiteln för terminaler som använder profilen. Ny terminaler som startas från den aktuella terminaler kommer att ha den nya starttiteln.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Dynamically-set title</guilabel> </term> 
+                <guilabel>Dynamiskt inställd titel</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify how to handle dynamically-set titles, that is, terminal titles set by commands that run in the terminal.
-                </para>
+                <para>Använd den här rullgardinslistan för att ange hur dynamiskt inställda titlar ska hanteras, alltså, terminaltitlar inställda av kommandon som kör i terminalen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <guilabel>Kör kommando som ett inloggningsskal</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to force the command that currently runs inside the terminal to run as a login shell. If the command is not a shell, the setting has no effect. 
-                </para>
+                <para>Välj det här alternativet för att tvinga kommandot som för närvarande kör i terminalen att köra som ett inloggningsskal. Om kommandot inte är ett skal, har den här inställningen ingen effekt.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Update utmp/wtmp records when command is launched</guilabel> </term> 
+                <guilabel>Uppdatera inloggningsposter då kommandot startas</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to insert a new entry in the utmp and wtmp records when a new shell is opened. 
-                </para>
+                <para>Välj det här alternativet för att infoga en ny post i utmp och wtmp när ett nytt skal öppnas.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Run a custom command instead of my shell</guilabel>
+                <guilabel>Kör ett eget kommando istället för mitt skal</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select this option to run a specified command, other than the normal shell, in the terminal. Specify the custom command in the <guilabel>Custom command</guilabel> text box. 
-                </para>
+                <para>Välj det här alternativet för att köra en angivet kommando, annat än det normala skalet, i terminalen. Ange det anpassade kommandot i textrutan <guilabel>Eget kommando</guilabel>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>When command exits</guilabel> </term> 
+                <guilabel>Då kommandot avslutar</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the terminal exits. 
-                </para>
+                <para>Använd den här rullgardinslistan för att ange vilken åtgärd som ska genomföras när terminalen avslutas.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -899,21 +784,17 @@
                 <guilabel>Förgrund och bakgrund</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Theme</application> preference tool</ulink>.  
-                </para>
-                <para>
-                  Use the <guilabel>Built-in schemes</guilabel> drop-down list to specify the foreground and background colors for the terminal. <application>GNOME Terminal</application> supports the following foreground and background color combinations: 
-                </para>
+                <para>Välj alternativet <guilabel>Använd färger från systemtemat</guilabel> för att använda färger som är angivna i temat för GNOME-skrivbordet, som har valts i inställningsverktyget <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Tema</application></ulink>.</para>
+                <para>Använd rullgardinslistan <guilabel>Inbyggda scheman</guilabel> för att ange förgrund- och bakgrundsfärger för terminalen. <application>GNOME-terminal</application> har stöd för följande förgrund- och bakgrundsfärgkombinationer:</para>
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Svart på ljusgul</guilabel> 
+                        <guilabel>Svart på ljusgult</guilabel> 
                      </para>
                   </listitem>
                   <listitem> 
                      <para>
-                        <guilabel>Svart på vit</guilabel> 
+                        <guilabel>Svart på vitt</guilabel> 
                      </para>
                   </listitem> 
                   <listitem> 
@@ -928,38 +809,28 @@
                   </listitem>             
                   <listitem> 
                      <para>
-                        <guilabel>Vit på svart</guilabel> 
+                        <guilabel>Vitt på svart</guilabel> 
                      </para>
                   </listitem> 
                   <listitem> 
                      <para>
                         <guilabel>Anpassad</guilabel> 
                      </para>
-                     <para>
-                        This option enables you to select colors that are not in the selected color scheme. 
-                     </para>
+                     <para>Det här alternativet låter dig välja färger som inte finns i det valda färgschemat.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>
-                  The actual display of the foreground and background colors can vary depending on the color scheme that you choose. For example, if you choose <guilabel>White on black</guilabel> and the <guilabel>Linux console</guilabel> color scheme, the application displays the foreground and background colors as light gray on black. The <guilabel>Built-in schemes</guilabel> drop-down list is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected. 
-                </para>
-                <para>
-                  Click on the <guibutton>Text colour</guibutton> button to display the <guilabel>Choose terminal text colour</guilabel> dialog. Use the color wheel or the spin boxes to customize the color that you want to use as the text color, then click <guibutton>OK</guibutton>. The <guibutton>Text colour</guibutton> button is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected.
-                </para>
-                <para>
-                  Click on the <guibutton>Background colour</guibutton> button to display the <guilabel>Choose terminal background colour</guilabel> dialog. Use the color wheel or the spin boxes to customize the color that you want to use as the background color, then click <guibutton>OK</guibutton>. The <guibutton>Background colour</guibutton> button is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected.
-                </para>
+                <para>Den faktiska visningen av förgrund- och bakgrundsfärger kan skilja sig beroende på färgschemat som du valde. Till exempel, om du väljer <guilabel>Vitt på svart</guilabel> och färgschemat <guilabel>Linux-konsoll</guilabel>, programmet visar förgrund- och bakgrundsfärger som ljusgrå på svart. Rullgardinslistan <guilabel>Inbyggda scheman</guilabel> är endast aktiverad om alternativet <guilabel>Använd färger från systemtemat</guilabel> inte har valts.</para>
+                <para>Klicka på knappen <guibutton>Textfärg</guibutton> för att visa dialogrutan <guilabel>Välj textfärg för terminalen</guilabel>. Använd färghjulet eller väljaren för att anpassa färgen som du vill använda som textfärgen, klicka sedan på <guibutton>OK</guibutton>. Knappen <guibutton>Textfärg</guibutton> är endast aktiverad om alternativet <guilabel>Använd färger från systemtemat</guilabel> inte har valts.</para>
+                <para>Klicka på knappen <guibutton>Bakgrundsfärg</guibutton> för att visa dialogrutan <guilabel>Välj bakgrundsfärg för terminalen</guilabel>. Använd färghjulet eller väljaren för att anpassa färgen som du vill använda som bakgrundsfärgen, klicka sedan på <guibutton>OK</guibutton>. Knappen <guibutton>Bakgrundsfärg</guibutton> är endast aktiverad om alternativet <guilabel>Använd färger från systemtemat</guilabel> inte har valts.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <guilabel>Palett</guilabel></term> 
              <listitem> 
-                <para>
-                  The terminal emulation can only use 16 colors at a time to draw text. The color palette specifies these 16 colors. Applications that run in the terminal use an index number to specify a color from this palette.</para>
-               <para>Use the <guilabel>Built-in schemes</guilabel> drop-down list to choose a preset color schemes. The color palette below and the contents of the terminal window both update to show the scheme.</para>
-               <para>Use the <guilabel>Colour palette</guilabel> to customize the 16 default colors in the custom color palette. To customize a color, click on the color to display the <guilabel>Palette entry</guilabel> dialog. Use the color wheel or the spin boxes to customize the color, then click <guibutton>OK</guibutton>. 
-                </para>
+                <para>Terminalemuleringen kan endast använda 16 färger samtidigt för att rita text. Färgpaletten anger dessa 16 färger. Program som kör i terminalen använder ett indexnummer för att ange en färg från den här paletten.</para>
+               <para>Använd rullgardinslistan <guilabel>Inbyggda scheman</guilabel> för att välja ett förinställt färgschema. Färgpaletten nedanför och innehållet i terminalen uppdateras för att visa schemat.</para>
+               <para>Använd <guilabel>Färgpalett</guilabel> för att anpassa de 16 standardfärgerna i den anpassade färgpaletten. För att anpassa en färg, klicka på färgen för att visa dialogrutan <guilabel>Välj palettfärg</guilabel>. Använd färghjulet eller väljaren för att anpassa färgen, klicka sedan på <guibutton>OK</guibutton>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -971,46 +842,36 @@
              <term> 
                 <guilabel>Bakgrund</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select a background for the terminal window. The options are as follows: 
-                </para>
+                <para>Välj en bakgrund för terminalfönstret. Alternativen är som följer:</para>
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>None (use solid colour)</guilabel> 
+                        <guilabel>Ingen (använd enfärgad bakgrund)</guilabel> 
                      </para>
-                     <para>
-                        Select this option to use the background color that is specified in the <guilabel>Colours</guilabel> tabbed section as the background color for the terminal. 
-                     </para>
+                     <para>Välj det här alternativet för att använda bakgrundsfärgen som är angiven i den flikade sektionen <guilabel>Färger</guilabel> som bakgrundsfärgen för terminalen.</para>
                   </listitem> 
                   <listitem> 
                      <para>
                         <guilabel>Bakgrundsbild</guilabel> 
                      </para>
-                     <para>
-                        Select this option to use an image file as the background for the terminal. Use the <guilabel>Image file</guilabel> drop-down combination box to specify the location and name of the image file. Alternatively, click <guibutton>Browse</guibutton> to search for and select the image file. 
-                     </para>
-                     <para>Select the <guilabel>Background image scrolls</guilabel> option to enable the background image to scroll with the text when you scroll through the terminal. If you do not select this option, the background image remains fixed on the terminal background and only the text scrolls. This option is only enabled if you select the <guilabel>Background image</guilabel> option.  </para>
+                     <para>Välj det här alternativet för att använda en bildfil som bakgrund för terminalen. Använd rullgardinskombinationsrutan <guilabel>Bildfil</guilabel> för att ange platsen och namnet på bildfilen. Alternativt, klicka på <guibutton>Bläddra</guibutton> för att söka efter och välja bildfilen.</para>
+                     <para>Välj alternativet <guilabel>Bakgrundsbilden rullar</guilabel> för att aktivera rullning av bakgrundsbilden med texten när du rullar genom terminalen. Om du inte väljer det här alternativet, kvarstår bakgrundsbilden som fast i terminalens bakgrund och endast texten rullar. Det här alternativet är endast aktiverat om du väljer alternativet <guilabel>Bakgrundsbild</guilabel>.</para>
                   </listitem> 
                   <listitem> 
                      <para>
-                        <guilabel>Transparent background</guilabel> 
+                        <guilabel>Genomskinlig bakgrund</guilabel> 
                      </para>
-                     <para>
-                        Select this option to use a transparent background for the terminal. 
-                     </para>
+                     <para>Välj det här alternativet för att använda en genomskinlig bakgrund för terminalen.</para>
                   </listitem> 
                 </itemizedlist> 
              </listitem> 
           </varlistentry>
           <varlistentry> 
              <term> 
-                <guilabel>Shade transparent or image background</guilabel>
+                <guilabel>Förmörka genomskinlig bakgrund eller bildbakgrund</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Use this slider to shade or dim the background of the terminal. This option is only enabled if you select the <guilabel>Background image</guilabel> or <guilabel>Transparent background</guilabel> options. 
-                </para>
+                <para>Använd den här draglisten för att mörka eller dimma bakgrunden i terminalen. Det här alternativet är endast aktiverat om du väljer alternativet <guilabel>Bakgrundsbild</guilabel> eller <guilabel>Genomskinlig bakgrund</guilabel>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -1021,47 +882,37 @@
      <variablelist>
      <varlistentry> 
              <term> 
-                <guilabel>Scrollbar is</guilabel> </term> 
+                <guilabel>Rullningslisten är</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify the position of the scrollbar on the terminal window. 
-                </para>
+                <para>Använd den här rullgardinslistan för att ange positionen för rullisten i terminalfönstret.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Scrollback ... lines</guilabel> </term> 
+                <guilabel>Rullningshistorik ... rader</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this spin box to specify the number of lines that you can scroll back using the scrollbar. For example, if you specify 100 you can scroll back the last 100 lines displayed in the terminal. 
-                </para>
+                <para>Använd den här väljaren för att ange antalet rader som du kan rulla tillbaka i med rullisten. Till exempel, om du anger 100 kan du rulla tillbaka de senaste 100 raderna som visas i terminalen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Scrollback ... kilobytes</guilabel> </term> 
+                <guilabel>Rullningshistorik ... kilobyte</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this spin box to specify the number of kilobytes that you can scroll back using the scrollbar. For example, if you specify 94 you can scroll back the last 94 kilobytes displayed in the terminal. 
-                </para>
+                <para>Använd den här väljaren för att ange antalet kilobyte som du kan rulla tillbaka i med rullisten. Till exempel, om du anger 94 kan du rulla tillbaka de senaste 94 kilobyten som visas i terminalen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Scroll on output</guilabel> </term> 
+                <guilabel>Rulla vid utdata</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable you to scroll the output on the terminal while the terminal continues to display more output from a command. 
-                </para>
+                <para>Välj det här alternativet för att låta dig rulla i utdatat på terminalen under tiden terminalen fortsätter att visa mer utdata från ett kommando.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Scroll on keystroke</guilabel> </term> 
+                <guilabel>Rulla vid tangentnedtryckning</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable you to press any key on the keyboard to scroll down the terminal window to the command prompt. This action only applies if you scrolled up the terminal window and you want to return to the command prompt. 	 
-                </para>
+                <para>Välj det här alternativet för att låta dig trycka på en tangent på tangentbordet för att rulla neråt i terminalfönstret till kommandoprompten. Det här åtgärden gäller endast om du rullat uppåt i terminalfönstret och vill återgå till kommandoprompten.</para>
              </listitem> 
           </varlistentry> 
           </variablelist>
@@ -1072,29 +923,23 @@
         <variablelist> 
           <varlistentry> 
              <term> 
-                <guilabel>Backspace key generates</guilabel> </term> 
+                <guilabel>Backstegstangenten genererar</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use the drop-down list to select the function that you want the <keycap>Backspace</keycap> key to perform. 
-                </para>
+                <para>Använd rullgardinslistan för att välja funktionen som du vill att tangenten <keycap>Backsteg</keycap> ska genomföra.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Delete key generates</guilabel> </term> 
+                <guilabel>Delete-tangenten genererar</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use the drop-down list to select the function that you want the <keycap>Delete</keycap> key to perform. 
-                </para>
+                <para>Använd rullgardinslistan för att välja funktionen som du vill att tangenten <keycap>Delete</keycap> ska genomföra.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guibutton>Reset compatibility options to defaults</guibutton> </term> 
+                <guibutton>Återställ kompatibilitetsalternativ till standardvärden</guibutton> </term> 
              <listitem> 
-                <para>
-                  Click on this button to reset the options on the <guilabel>Compatibility</guilabel> tabbed section to the default settings.
-                </para>
+                <para>Klicka på den här knappen för att återställa alternativen på den flikade sektionen <guilabel>Kompatibilitet</guilabel> till standardinställningarna.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
