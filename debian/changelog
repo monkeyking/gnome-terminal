@@ -1,3 +1,20 @@
+gnome-terminal (2.17.90-0ubuntu1) feisty; urgency=low
+
+  * New upstream release:
+    - Include the Tango color scheme.
+    - Remember the zoom setting for new tabs.
+    - Do not have clashing shortcuts in popups.
+    - Do not resize when switching between tabs, hopefully.
+    - Focus new terminals when they are created, always.
+    - Handle long terminal titles better.
+    - Do not paint initially terminals black.
+    - Various UI updates and inconsistencies eliminated.
+    - A few crashes fixed.
+  * debian/patches/02_autoconf.patch:
+    - updated.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Wed, 24 Jan 2007 12:27:25 +0100
+
 gnome-terminal (2.16.1-0ubuntu1) edgy; urgency=low
 
   * New upstream version:

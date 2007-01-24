@@ -1,4 +1,4 @@
-AC_INIT([GNOME Terminal],[2.16.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
+AC_INIT([GNOME Terminal],[2.17.90],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
 AC_CONFIG_SRCDIR([src/terminal.c])
 
 AC_CONFIG_HEADER([config.h])
@@ -19,33 +19,14 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 
-changequote(,)dnl
-if test "x$GCC" = "xyes"; then
-  case " $CFLAGS " in
-  *[\ \	]-Wall[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wall" ;;
-  esac
-
-  if test "x$enable_ansi" = "xyes"; then
-    case " $CFLAGS " in
-    *[\ \	]-ansi[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -ansi" ;;
-    esac
-
-    case " $CFLAGS " in
-    *[\ \	]-pedantic[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -pedantic" ;;
-    esac
-  fi
-fi
-changequote([,])dnl
+GNOME_COMPILE_WARNINGS([maximum])
 
 AM_GLIB_GNU_GETTEXT
 
 AC_PATH_XTRA
 
 GTK_REQUIRED=2.10.0
-GCONF_REQUIRED=1.1.9
+GCONF_REQUIRED=2.14.0
 STARTUP_NOTIFICATION_REQUIRED=0.8
 VTE_REQUIRED=0.13.4
 GNOMEVFS_REQUIRED=2.4
@@ -62,7 +43,7 @@ PKG_CHECK_MODULES(TERM, dnl
 
 TERM_LIBS="$X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS $TERM_LIBS"
 TERM_CFLAGS="$X_CFLAGS $TERM_CFLAGS"
-CPPFLAGS="$TERM_CFLAGS $CFLAGS"
+CPPFLAGS="$TERM_CFLAGS $CPPFLAGS"
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
@@ -75,9 +56,9 @@ AM_GCONF_SOURCE_2
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-if $PKG_CONFIG --atleast-version 2.0.0 xft && $PKG_CONFIG --atleast-version 1.1.1 pangoxft ; then
+if $PKG_CONFIG 'xft >= 2.0.0 pangoxft >= 1.1.1'; then
    using_xft2=yes
-   CFLAGS="`$PKG_CONFIG --cflags xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $CFLAGS"
+   CPPFLAGS="`$PKG_CONFIG --cflags xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $CPPFLAGS"
    LIBS="`$PKG_CONFIG --libs xft pangoxft` $LIBS"
 else
    using_xft2=no
@@ -94,8 +75,6 @@ help/Makefile
 help/bg/Makefile
 help/ro/Makefile
 help/de/Makefile
-help/es/Makefile
-help/it/Makefile
 help/ja/Makefile
 help/ko/Makefile
 help/uk/Makefile
