@@ -428,6 +428,7 @@ fill_in_config_picker_submenu (TerminalWindow *window)
     {
       gtk_widget_set_sensitive (window->priv->choose_config_menuitem, FALSE);
       gtk_menu_item_remove_submenu (GTK_MENU_ITEM (window->priv->choose_config_menuitem));
+      g_list_free (profiles);
 
       return;
     }
@@ -594,8 +595,8 @@ fill_in_new_term_submenu_real(GtkWidget *menuitem,
           
         }
 
-      g_list_free (profiles);
     }
+  g_list_free (profiles);
 }
 
 static void
@@ -1902,9 +1903,10 @@ notebook_tab_removed_callback (GtkWidget       *notebook,
 
 static void
 notebook_tabs_reordered_callback (GtkWidget       *notebook,
-                                 TerminalWindow  *window)
+                                  TerminalWindow  *window)
 {
-	reset_tab_menuitems(window);
+	reset_tab_menuitems (window);
+        update_tab_sensitivity (window);
 }
 
 void
