@@ -1,3 +1,16 @@
+gnome-terminal (2.17.91-0ubuntu1) feisty; urgency=low
+
+  * New upstream release:
+    - Plug a memory leak.
+    - Do not disable some keybindings when DnDing notebook pages. (LP: #81740)
+    - Updated translations: et, fr, ko, nl, pt_BT.
+  * debian/control.in:
+    - bumped vte Build-Dep.
+  * debian/patches/02_autoconf.patch:
+    - updated.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 13 Feb 2007 09:30:23 +0100
+
 gnome-terminal (2.17.90-0ubuntu1) feisty; urgency=low
 
   * New upstream release:
