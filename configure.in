@@ -1,4 +1,4 @@
-AC_INIT([GNOME Terminal],[2.17.91],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
+AC_INIT([GNOME Terminal],[2.17.92],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
 AC_CONFIG_SRCDIR([src/terminal.c])
 
 AC_CONFIG_HEADER([config.h])
@@ -58,8 +58,8 @@ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
 if $PKG_CONFIG 'xft >= 2.0.0 pangoxft >= 1.1.1'; then
    using_xft2=yes
-   CPPFLAGS="`$PKG_CONFIG --cflags xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $CPPFLAGS"
-   LIBS="`$PKG_CONFIG --libs xft pangoxft` $LIBS"
+   CPPFLAGS="`$PKG_CONFIG --cflags xft pangoxft` $CPPFLAGS"
+   LIBS="`$PKG_CONFIG --libs xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $LIBS"
 else
    using_xft2=no
 fi

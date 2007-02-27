@@ -40,7 +40,7 @@
 
       <locale name="bg">
          <short>Списък на профилите</short>
-         <long>Списък с известните на gnome-terminal профили. Съдържа имена на под-папки на папката /apps/gnome-terminal/profiles.</long>
+         <long>Списък с известните на gnome-terminal профили. Съдържа имена на подпапки на папката /apps/gnome-terminal/profiles.</long>
       </locale>
 
       <locale name="bn">
@@ -144,8 +144,8 @@
       </locale>
 
       <locale name="he">
-         <short>רשימה של פרופילים</short>
-         
+         <short>List of profiles</short>
+         <long>List of profiles known to gnome-terminal. The list contains strings naming subdirectories relative to /apps/gnome-terminal/profiles.</long>
       </locale>
 
       <locale name="hi">
@@ -489,8 +489,8 @@
       </locale>
 
       <locale name="he">
-         <short>פרופיל לשימוש  למסופים חדשים</short>
-         
+         <short>Profile to use for new terminals</short>
+         <long>Profile to be used when opening a new window or tab. Must be in profile_list.</long>
       </locale>
 
       <locale name="hi">
@@ -834,6 +834,11 @@
          <long>યાદીની પટ્ટી માટે Alt+letter નું ટીંકાણ છે કે નહિં. તેઓ કદાચ ટર્મિનલમા ચાલતા કેટલાક કાર્યક્રમો સાથે વપરાશ ગોઠવણી ધરાવે છે માટે તેમને બંધ કરવા શક્ય છે.</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether the menubar has access keys</short>
+         <long>Whether to have Alt+letter access keys for the menubar. They may interfere with some applications run inside the terminal so it&apos;s possible to turn them off.</long>
+      </locale>
+
       <locale name="hi">
          <short>क्या मेनू-पट्टी में पहुँच कुंजियाँ हैं</short>
          <long>क्या मेनूबार के लिये Alt+letter अभिगम कुंजी रखना है. वे टर्मिनल के अंदर चलने वाले अनुप्रयोग में व्यवधान कर सकते हैं इसलिये उन्हें ऑफ कर चलाना संभव है.</long>
@@ -1156,6 +1161,11 @@
          <long>સામાન્ય રીતે તમે F10 વડે યાદીની પટ્ટી વાપરી શકશો. gtkrc (gtk-menu-bar-accel = &quot;whatever&quot;) દ્વારા પણ જોઇએ એવા ફેરફાર કરી શકાય છે. આ વિકલ્પ પ્રમાણભૂત યાદીની પટ્ટીના પ્રવેગકને નિષ્ક્રય થવા દે છે.</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether the standard GTK shortcut for menubar access is enabled</short>
+         <long>Normally you can access the menubar with F10. This can also be customized via gtkrc (gtk-menu-bar-accel = &quot;whatever&quot;). This option allows the standard menubar accelerator to be disabled.</long>
+      </locale>
+
       <locale name="hi">
          <short>क्या मेनू-पट्टी पहुँच हेतु मानक जीटीके शॉर्टकट सक्षम है</short>
          <long>सामान्यतः आप मेनूबार को F10 से अभिगम कर सकते हैं. इसे gtkrc (gtk-menu-bar-accel = &quot;whatever&quot;) से होकर पसंदीदा किया जा सकता है. यह विकल्प मानक मेनूबार त्वरक को निष्क्रिय करने की अनुमति देता है.</long>
@@ -1192,7 +1202,7 @@
       </locale>
 
       <locale name="lt">
-         <short>Ar įjungtas standartinis GTK meniu iškvietimo klavišų susiejimas</short>
+         <short>Ar įjungtas standartinis GTK meniu prieigos klavišų susiejimas</short>
          <long>Paprastai Jūs galite pasiekti meniu juostą klavišu F10. Tai gali būti pakeista per gtkrc (gtk-menu-bar-accel = &quot;kažkas&quot;). Šis nustatymas leidžia atjungti įprastą meniu juostos susiejimo klavišą.</long>
       </locale>
 
@@ -1518,8 +1528,8 @@
 
       <locale name="he">
          <default>[UTF-8,current,WINDOWS-1255,ISO-8859-8,ISO-8859-8-I]</default>
-         <short>רשימה של קידודים זמינים</short>
-         <long>תת-מערכת של קידודים אפשריים נמצאת בתת-תפריט קידודים. זוהי הרשימה של של הקידודים שמופיעים שם. הקידוד המיוחד בשם &quot;נוכחי &quot; יציג את הקידוד של המיקום הנוכחי.</long>
+         <short>List of available encodings</short>
+         <long>A subset of possible encodings are presented in the Encoding submenu. This is a list of encodings to appear there. The special encoding name &quot;current&quot; means to display the encoding of the current locale.</long>
       </locale>
 
       <locale name="hi">
@@ -1909,6 +1919,11 @@
          <long>ટર્મિનલ વિન્ડો કે જેની પાસે એક કરતાં વધુ ટેબો ખૂલેલી હોય તેને બંધ કરતી વખતે ખાતરી માટે પૂછવું કે નહિં.</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether to ask for confirmation when closing terminal windows</short>
+         <long>Whether to ask for confirmation when closing a terminal window which has more than one open tab.</long>
+      </locale>
+
       <locale name="hi">
          <short>क्या जब टर्मिनल विंडो बन्द किया जाए तो पुष्टिकरण हेतु पूछें</short>
          <long>क्या जब टर्मिनल विंडो जिसमें एक से अधिक टैब हैं, बन्द किया जाए तो पुष्टिकरण हेतु पूछें</long>
@@ -2267,9 +2282,9 @@
       </locale>
 
       <locale name="he">
-         
-         <short>שם קריא לבני-אדם של הפרופיל</short>
-         <long>שם קריא לבני-אדם של הפרופיל.</long>
+         <default>Default</default>
+         <short>Human-readable name of the profile</short>
+         <long>Human-readable name of the profile.</long>
       </locale>
 
       <locale name="hi">
@@ -2405,7 +2420,7 @@
       </locale>
 
       <locale name="pl">
-         
+         <default>Domyślny</default>
          <short>Czytelna dla człowieka nazwa profilu</short>
          <long>Czytelna dla człowieka nazwa profilu.</long>
       </locale>
@@ -2666,8 +2681,8 @@
       </locale>
 
       <locale name="he">
-         <short>האם להבהב את הסמן</short>
-         
+         <short>Whether to blink the cursor</short>
+         <long>True if the cursor should blink when the terminal has focus, for windows/tabs with this profile.</long>
       </locale>
 
       <locale name="hi">
@@ -2999,6 +3014,11 @@
       <locale name="gu">
          <short>નવી વિન્ડો/ટૅબમાં યાદીની પટ્ટી દર્શાવવી કે નહિં</short>
          <long>આ રુપરેખા સાથેની વિન્ડો/ટૅબ માટે જો યાદીની પટ્ટીને નવી વિન્ડોમાં દર્શાવાતી હોય તો સાચું કરો.</long>
+      </locale>
+
+      <locale name="he">
+         <short>Whether to show menubar in new windows/tabs</short>
+         <long>True if the menubar should be shown in new windows, for windows/tabs with this profile.</long>
       </locale>
 
       <locale name="hi">
@@ -3338,8 +3358,8 @@
       </locale>
 
       <locale name="he">
-         <short>צבע ברירת מחדל של הטקסט במסוף</short>
-         <long>צבע ברירת מחדל של הטקסט במסוף, כציון צבע (יכול להיות בסגנון ספרות הקסאדצימליות של HTML, או שם צבע באנגלית כמו &quot;red&quot;).</long>
+         <short>Default color of text in the terminal</short>
+         <long>Default color of text in the terminal, as a color specification (can be HTML-style hex digits, or a color name such as &quot;red&quot;).</long>
       </locale>
 
       <locale name="hi">
@@ -3689,8 +3709,8 @@
       </locale>
 
       <locale name="he">
-         <short>צבע ברירת מחדל לרקע המסוף</short>
-         <long>צבע רקע ברירת מחדל של המסוף, כציון צבע (יכול להיות בסגנון ספרות הקסאדצימליות של HTML, או שם צבע באנגלית כמו &quot;red&quot;).</long>
+         <short>Default color of terminal background</short>
+         <long>Default color of terminal background, as a color specification (can be HTML-style hex digits, or a color name such as &quot;red&quot;).</long>
       </locale>
 
       <locale name="hi">
@@ -4038,8 +4058,8 @@
       </locale>
 
       <locale name="he">
-         <short>מה לעשות עם כותרת דינמית</short>
-         
+         <short>What to do with dynamic title</short>
+         <long>If the application in the terminal sets the title (most typically people have their shell set up to do this), the dynamically-set title can erase the configured title, go before it, go after it, or replace it. The possible values are &quot;replace&quot;, &quot;before&quot;, &quot;after&quot;, and &quot;ignore&quot;.</long>
       </locale>
 
       <locale name="hi">
@@ -4412,8 +4432,8 @@
 
       <locale name="he">
 	<default>מסוף</default>
-         <short>כותרת למסוף</short>
-         
+         <short>Title for terminal</short>
+         <long>Title to display for the terminal window or tab. This title may be replaced by or combined with the title set by the application inside the terminal, depending on the title_mode setting.</long>
       </locale>
 
       <locale name="hi">
@@ -4453,7 +4473,7 @@
       </locale>
 
       <locale name="ja">
-	<default>GNOME 端末</default>
+	<default>端末</default>
          <short>端末のタイトル</short>
          <long>端末ウィンドウやタブに表示するタイトルを指定します。このタイトルは、端末で実行中のアプリケーションによって置き換えられたり、追加されたりすることが可能で、title_mode の設定に依存します。</long>
       </locale>
@@ -4822,8 +4842,8 @@
       </locale>
 
       <locale name="he">
-         <short>האם לאפשר טקסט מודגש</short>
-         <long>אם אמת, אזי אפשר ליישומי המסוף להדגיש את הטקסט.</long>
+         <short>Whether to allow bold text</short>
+         <long>If true, allow applications in the terminal to make text boldface.</long>
       </locale>
 
       <locale name="hi">
@@ -5063,7 +5083,7 @@
 
       <locale name="bg">
          <short>Дали да се заглушава звукът от терминала</short>
-         <long>Ако е вярно, програмите няма да издават звуци когато изпращат escape sequence за терминалния звънец.</long>
+         <long>Ако е вярно, програмите няма да издават звуци когато изпращат екранираща последователност за терминалния звънец.</long>
       </locale>
 
       <locale name="bn">
@@ -5167,8 +5187,8 @@
       </locale>
 
       <locale name="he">
-         <short>האם להשקיט את פעמון המסוף</short>
-         
+         <short>Whether to silence terminal bell</short>
+         <long>If true, don&apos;t make a noise when applications send the escape sequence for the terminal bell.</long>
       </locale>
 
       <locale name="hi">
@@ -5509,8 +5529,8 @@
       </locale>
 
       <locale name="he">
-         <short>תווים הנחשבים &quot;חלק ממילה&quot;</short>
-         
+         <short>Characters that are considered &quot;part of a word&quot;</short>
+         <long>When selecting text by word, sequences of these characters are considered single words. Ranges can be given as &quot;A-Z&quot;. Literal hyphen (not expressing a range) should be the first character given.</long>
       </locale>
 
       <locale name="hi">
@@ -5850,7 +5870,7 @@
 
       <locale name="he">
          <short>מיקום פס הגלילה</short>
-         
+         <long>Where to put the terminal scrollbar. Possibilities are &quot;left&quot;, &quot;right&quot;, and &quot;disabled&quot;.</long>
       </locale>
 
       <locale name="hi">
@@ -6197,8 +6217,8 @@
       </locale>
 
       <locale name="he">
-         <short>מספר שורות לשמירה לגלילה אחורה</short>
-         
+         <short>Number of lines to keep in scrollback</short>
+         <long>Number of scrollback lines to keep around. You can scroll back in the terminal by this number of lines; lines that don&apos;t fit in the scrollback are discarded. Be careful with this setting; it&apos;s the primary factor in determining how much memory the terminal will use.</long>
       </locale>
 
       <locale name="hi">
@@ -6526,8 +6546,8 @@
       </locale>
 
       <locale name="he">
-         
-         <long>אם אמת, לחיצת מקש תקפיץ את פס הגלילה לתחתית.</long>
+         <short>Whether to scroll to the bottom when a key is pressed</short>
+         <long>If true, pressing a key jumps the scrollbar to the bottom.</long>
       </locale>
 
       <locale name="hi">
@@ -6865,6 +6885,11 @@
          <long>જો સાચુ હોય તો, જ્યારે નવું પરિણામ આવે ત્યારે ટર્મિનલ નીચે તરફ ખસશે.</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether to scroll to the bottom when there&apos;s new output</short>
+         <long>If true, whenever there&apos;s new output the terminal will scroll to the bottom.</long>
+      </locale>
+
       <locale name="hi">
          <short>जब नया आउटपुट हो तो क्या तल पर स्क्रॉल करें</short>
          <long>यदि सत्य है, जब भी वहाँ एक नया आउटपुट होगा, टर्मिनल तल पर स्क्रॉल करेगा.</long>
@@ -7188,6 +7213,11 @@
       <locale name="gu">
          <short>જ્યારે બાળ આદેશમાંથી બહાર નીકળે ત્યારે ટર્મિનલ સાથે શું કરવુ જોઇએ</short>
          <long>સંભવિત કિંમતો &quot;બંધ કરો&quot; આ ટર્મિનલને બંધ કરવા અને &quot;ફરીથી શરુ કરો&quot; એ આદેશને ફરી શરુ કરવા માટે છે.</long>
+      </locale>
+
+      <locale name="he">
+         <short>What to do with the terminal when the child command exits</short>
+         <long>Possible values are &quot;close&quot; to close the terminal, and &quot;restart&quot; to restart the command.</long>
       </locale>
 
       <locale name="hi">
@@ -7524,6 +7554,11 @@
          <long>જો સાચુ હોય તો, ટર્મિનલની અંદરનો આદેશ પ્રવેશ શૅલ તરીકે શરુ કરવો જોઇએ (argv[0] માટે તેની સામે હાઇફન હશે.)</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether to launch the command in the terminal as a login shell</short>
+         <long>If true, the command inside the terminal will be launched as a login shell. (argv[0] will have a hyphen in front of it.)</long>
+      </locale>
+
       <locale name="hi">
          <short>क्या लॉगइन शैल के रूप में टर्मिनल में कमांड चलाएँ</short>
          <long>अगर सही है, टर्मिनल के अंदर का समादेश एख लॉगिन शेल के रूप में लांच होगा. (argv[0] इसके सामने एक हाइफन रखेगा.)</long>
@@ -7751,7 +7786,7 @@
 
       <locale name="bg">
          <short>Дали да се обновяват журналите за влизане в системата при изпълнението на командата в терминала</short>
-         <long>Ако е истина, журналите за utmp и wtmp ще бъдат обновени при изпълнението на командата в терминала.</long>
+         <long>Ако е истина, дневниците за utmp и wtmp ще бъдат обновени при изпълнението на командата в терминала.</long>
       </locale>
 
       <locale name="bn">
@@ -7852,6 +7887,11 @@
       <locale name="gu">
          <short>જ્યારે ટર્મિનલમાંનો આદેશ શરુ થાય ત્યારે શું પ્રવેશ રેકોર્ડોમાં સુધારો કરવો</short>
          <long>જો સાચુ હોય તો, જ્યારે ટર્મિનલમાં રહેલા આદેશની શરુઆત થાય ત્યારે પ્રવેશ રેકોર્ડો utmp અને wtmp માં સુધારો થશે.</long>
+      </locale>
+
+      <locale name="he">
+         <short>Whether to update login records when launching terminal command</short>
+         <long>If true, the system login records utmp and wtmp will be updated when the command inside the terminal is launched.</long>
       </locale>
 
       <locale name="hi">
@@ -8175,8 +8215,8 @@
       </locale>
 
       <locale name="he">
-         <short>האם להפעיל פקודה מותאמת אישית במקום המעטפת</short>
-         
+         <short>Whether to run a custom command instead of the shell</short>
+         <long>If true, the value of the custom_command setting will be used in place of running a shell.</long>
       </locale>
 
       <locale name="hi">
@@ -8515,8 +8555,8 @@
       </locale>
 
       <locale name="he">
-         <short>פקודה מותאמת אישית לשימוש במקום המעטפת</short>
-         
+         <short>Custom command to use instead of the shell</short>
+         <long>Run this command in place of the shell, if use_custom_command is true.</long>
       </locale>
 
       <locale name="hi">
@@ -8864,8 +8904,8 @@
       </locale>
 
       <locale name="he">
-         <short>סמל לחלון המסוף</short>
-         <long>סמל לשימוש לכרטיסיות/חלונות המכילות את הפרופיל הזה.</long>
+         <short>Icon for terminal window</short>
+         <long>Icon to use for tabs/windows containing this profile.</long>
       </locale>
 
       <locale name="hi">
@@ -9211,8 +9251,8 @@
       </locale>
 
       <locale name="he">
-         <short>פלטה ליישומי מסוף</short>
-         
+         <short>Palette for terminal applications</short>
+         <long>Terminals have a 16-color palette that applications inside the terminal can use. This is that palette, in the form of a colon-separated list of color names. Color names should be in hex format e.g. &quot;#FF00FF&quot;</long>
       </locale>
 
       <locale name="hi">
@@ -9566,8 +9606,8 @@
       </locale>
 
       <locale name="he">
-         <short>גופן</short>
-         <long>שם גופן של X. ראה את עמוד המדריך של X (הקלד &quot;man X&quot;) לעוד פרטים על מבנה שמות גופנים של X.</long>
+         <short>Font</short>
+         <long>An X font name. See the X man page (type &quot;man X&quot;) for more details on the format of X font names.</long>
       </locale>
 
       <locale name="hi">
@@ -9931,8 +9971,8 @@
       </locale>
 
       <locale name="he">
-         <short>גופן</short>
-         <long>שם גופן של Pango. דוגמאות &quot;Sans 12&quot; או &quot;Monospace Bold 14&quot;</long>
+         <short>Font</short>
+         <long>An Pango font name. Examples are &quot;Sans 12&quot; or &quot;Monospace Bold 14&quot;.</long>
       </locale>
 
       <locale name="hi">
@@ -10291,8 +10331,8 @@
       </locale>
 
       <locale name="he">
-         <short>סוג רקע</short>
-         
+         <short>Background type</short>
+         <long>Type of terminal background. May be &quot;solid&quot; for a solid color, &quot;image&quot; for an image, or &quot;transparent&quot; for pseudo-transparency.</long>
       </locale>
 
       <locale name="hi">
@@ -10645,8 +10685,8 @@
       </locale>
 
       <locale name="he">
-         <short>תמונת רקע</short>
-         <long>שם הקובץ לתמונת הרקע.</long>
+         <short>Background image</short>
+         <long>Filename of a background image.</long>
       </locale>
 
       <locale name="hi">
@@ -11001,8 +11041,8 @@
       </locale>
 
       <locale name="he">
-         <short>האם לגלול את תמונת הרקע</short>
-         
+         <short>Whether to scroll background image</short>
+         <long>If true, scroll the background image with the foreground text; if false, keep the image in a fixed position and scroll the text above it.</long>
       </locale>
 
       <locale name="hi">
@@ -11240,7 +11280,7 @@
 
       <locale name="bg">
          <short>Степен на затъмняване на фоновото изображение</short>
-         <long>Стойност между 0.0 и 1.0 определя колко да бъде затъмнено фоновото изображение. 0.0 означава липса на затъмняване, 1.0 е за пълно затъмняване. В текущото прилагане има само две възможни нива на затъмняване, затова стойността се държи като boolean, където 0.0. изключва ефекта на затъмняване.</long>
+         <long>Стойност между 0.0 и 1.0 определя колко да бъде затъмнено фоновото изображение. 0.0 означава липса на затъмняване, 1.0 е за пълно затъмняване. В текущото прилагане има само две възможни нива на затъмняване, затова стойността се държи като булева стойност - 0.0 изключва ефекта на затъмняване.</long>
       </locale>
 
       <locale name="bn">
@@ -11344,8 +11384,8 @@
       </locale>
 
       <locale name="he">
-         <short>כמה להכהות את תמונת הרקע</short>
-         <long>ערך בין 0.0 ל 1.0 המציין כמה כהה תיהיה תמונת הרקע. 0.0 מציין ללא כהות, 1.0 מציין כהה לגמרי. בביצוע הנוכחי, ישנם רק שתי רמות של כהות אפשרית, לכן ההגדרה מתנהגת כמו בוליאנית, כאשר 0.0 מכבה את אפקט הכהות.</long>
+         <short>How much to darken the background image</short>
+         <long>A value between 0.0 and 1.0 indicating how much to darken the background image. 0.0 means no darkness, 1.0 means fully dark. In the current implementation, there are only two levels of darkness possible, so the setting behaves as a boolean, where 0.0 disables the darkening effect.</long>
       </locale>
 
       <locale name="hi">
@@ -11693,8 +11733,8 @@
       </locale>
 
       <locale name="he">
-         <short>השפעת מקש Backspace</short>
-         
+         <short>Effect of the Backspace key</short>
+         <long>Sets what code the backspace key generates. Possible values are &quot;ascii-del&quot; for the ASCII DEL character, &quot;control-h&quot; for Control-H (AKA the ASCII BS character), &quot;escape-sequence&quot; for the escape sequence typically bound to backspace or delete. &quot;ascii-del&quot; is normally considered the correct setting for the Backspace key.</long>
       </locale>
 
       <locale name="hi">
@@ -12051,8 +12091,8 @@
       </locale>
 
       <locale name="he">
-         <short>השפעת מקש Delete</short>
-         
+         <short>Effect of the Delete key</short>
+         <long>Sets what code the delete key generates. Possible values are &quot;ascii-del&quot; for the ASCII DEL character, &quot;control-h&quot; for Control-H (AKA the ASCII BS character), &quot;escape-sequence&quot; for the escape sequence typically bound to backspace or delete. &quot;escape-sequence&quot; is normally considered the correct setting for the Delete key.</long>
       </locale>
 
       <locale name="hi">
@@ -12404,6 +12444,11 @@
          <long>જો સાચુ હોય તો, વપરાશકર્તા દ્વારા પ્રાપ્ત થયેલા રંગોને બદલે ટર્મિનલ માટે લખાણના દાખલાની પેટી માટેની થીમની રંગ યોજનાનો ઉપયોગ કરો.</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether to use the colors from the theme for the terminal widget</short>
+         <long>If true, the theme color scheme used for text entry boxes will be used for the terminal, instead of colors provided by the user.</long>
+      </locale>
+
       <locale name="hi">
          <short>क्या टर्मिनल विज़ेट हेतु प्रसंग से रंगों का उपयोग करना है</short>
          <long>अगर सही है, थीम रंग स्कीम पाठ प्रविष्टि बाक्स के लिये प्रयुक्त टर्मिनल के प्रयुक्त होगा, उपयोक्ता द्वारा दिये गये रंग के बजाय.</long>
@@ -12719,6 +12764,11 @@
          <long>જો સાચું હોય, તો X સર્વરો માટે ફોન્ટ એન્ટી એલિઆઝીંગ નિષ્ક્રિય થઈ જશે RENDER એક્સટેન્સન વિના, કે જે આવી પરિસ્થિતિઓમાં સમજી શકાય તેવા પ્રભાવ સુધારાઓ આપે છે.</long>
       </locale>
 
+      <locale name="he">
+         <short>Whether to disable anti-aliasing without the X RENDER extension</short>
+         <long>If true, font anti-aliasing will be disabled when running without the X RENDER extension, which gives a considerable performance improvement in these situations.</long>
+      </locale>
+
       <locale name="hi">
          <short>क्या X RENDER विस्तार के बिना एंटी एलियासिंग निष्क्रिय किया जा सकता है</short>
          <long>अगर सही है, फंट एलियासिंग को निष्क्रिय होगा जब X RENDER विस्तार के बिना, जो इन स्थिति में अच्छा प्रदर्शन करता है.</long>
@@ -12787,6 +12837,11 @@
       <locale name="pa">
          <short>ਕੀ X RENDER ਐਕਸਟੇਸ਼ਨ ਬਿਨਾਂ ਐਟੀ-ਅਲਾਈਸਿੰਗ ਨੂੰ ਆਯੋਗ ਕੀਤਾ ਜਾਵੇ</short>
          <long>ਜੇਕਰ ਸੱਚ ਕੀਤਾ ਤਾਂ X RENDER ਐਕਸਟੇਸ਼ਨ ਬਿਨਾਂ ਚੱਲਣ ਦੌਰਾਨ  ਐਂਟੀ-ਅਲਾਈਸਿੰਗ ਨੂੰ ਯੋਗ ਕਰ ਦਿੱਤਾ ਜਾਵੇ, ਜਿਸ ਨਾਲ ਇਹਨਾਂ ਹਾਲਤਾਂ ਵਿੱਚ ਸਮਰੱਥਾ ਵਿੱਚ ਭਾਰੀ ਸੁਧਾਰ ਹੁੰਦਾ ਹੈ।</long>
+      </locale>
+
+      <locale name="pl">
+         <short>Określa czy wyłączyć wygładzanie bez rozszerzenia X RENDER</short>
+         <long>Jeśli włączone, wygładzanie czcionek będzie wyłączone podczas uruchomienia bez rozszerzenia X RENDER. Daje to znaczny wzrost wydajności w tych sytuacjach.</long>
       </locale>
 
       <locale name="pt">
@@ -12896,7 +12951,7 @@
       </locale>
 
       <locale name="bg">
-         <short>Дали да се използва системния шрифт</short>
+         <short>Дали да се използва системният шрифт</short>
          <long>Ако е истина, терминалът ще използва шрифта по подразбиране на графичната среда, ако шрифтът е равноширок. В противен случай ще се полза най-близкия шрифт.</long>
       </locale>
 
@@ -13001,8 +13056,8 @@
       </locale>
 
       <locale name="he">
-         <short>האם להשתמש בגופן המערכת</short>
-         
+         <short>Whether to use the system font</short>
+         <long>If true, the terminal will use the desktop-global standard font if it&apos;s monospace (and the most similar font it can come up with otherwise).</long>
       </locale>
 
       <locale name="hi">
@@ -13323,6 +13378,11 @@
          <long>જ્યારે s/કી શરત પ્રત્યુત્તર મળે અને તેના પર ક્લિક થાય ત્યારે સંવાદ પોપઅપ કરો. સંવાદમાં પાસવર્ડ લખવાનું તેને ટર્મિનલમાં મોકલશે.</long>
       </locale>
 
+      <locale name="he">
+         <short>Highlight S/Key challenges</short>
+         <long>Popup a dialog when an S/Key challenge response query is detected and clicked on. Typing a password into the dialog will send it to the terminal.</long>
+      </locale>
+
       <locale name="hi">
          <short>S/कुंजी चुनौती उभारें</short>
          <long>एक संवाद पॉपअप करें जब एक S/key चुनौती अनुक्रिया प्रश्न जांचा जाता है और क्लिक किया जाता है. संवाद पेटी में शब्दकूट टाइप करना इसे टर्मिनल में भेजेगा.</long>
@@ -13391,6 +13451,11 @@
       <locale name="pa">
          <short>ਸ਼ਾਰਟਕੱਟ ਜੋੜ ਉਘਾੜੋ</short>
          <long>ਵਾਰਤਾਲਾਪ ਖੋਲ੍ਹੋ, ਜਦੋ ਇੱਕ ਸ਼ਾਰਟਕੱਟ ਨਤੀਜਾ ਆਵੇ ਅਤੇ ਇਸ ਨੂੰ ਦਬਾਉ ਹੋਵੇ। ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਦਿੱਤਾ ਗਿਆ ਗੁਪਤ-ਕੋਡ ਟਰਮੀਨਲ ਨੂੰ ਭੇਜਿਆ ਜਾਵੇ|</long>
+      </locale>
+
+      <locale name="pl">
+         <short>Podświetl S/Key challenges</short>
+         <long>Wyświetlenie okna gdy zostanie wykryte i klikniete pytanie o hasło jednorazowe S/Key. Hasło wpisane w oknie zostanie wysłane do terminala.</long>
       </locale>
 
       <locale name="pt">
@@ -13618,8 +13683,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לפתיחת לשונית חדשה.</short>
-         <long>מקש קיצור דרך לפתיחת לשונית חדשה. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to open a new tab</short>
+         <long>Keyboard shortcut key for opening a new tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -13965,8 +14030,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לפתיחת חלון חדש.</short>
-         <long>מקש קיצור דרך לפתיחת חלון חדש. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to open a new window</short>
+         <long>Keyboard shortcut key for opening a new window. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -14312,8 +14377,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך ליצירת פרופיל חדש.</short>
-         <long>מקש קיצור דרך להעלאת תיבת הדו-שיח ליצירת פרופיל. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה שיוך מקש לפעולה זו.</long>
+         <short>Keyboard shortcut to create a new profile</short>
+         <long>Keyboard shortcut key for bringing up the dialog for profile creation. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -14659,8 +14724,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לסגירת לשונית</short>
-         <long>מקש קיצור דרך לסגירת לשונית. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to close a tab</short>
+         <long>Keyboard shortcut key for closing a tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -15006,8 +15071,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לסגירת חלון.</short>
-         <long>מקש קיצור דרך לסגירת חלון. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to close a window</short>
+         <long>Keyboard shortcut key for closing a window. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -15355,8 +15420,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להעתקת טקסט</short>
-         <long>מקש קיצור דרך להעתקת הטקסט הנבחר ללוח. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to copy text</short>
+         <long>Keyboard shortcut key for copying selected text to the clipboard. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -15704,8 +15769,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להדבקת טקסט</short>
-         <long>מקש קיצור דרך להדבקת הבחירה מהלוח. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to paste text</short>
+         <long>Keyboard shortcut key for pasting the contents of the clipboard into the terminal. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -16051,8 +16116,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך למיתוג מצב מסך-מלא</short>
-         <long>מקש קיצור דרך למיתוג מצב מסך-מלא. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to toggle full screen mode</short>
+         <long>Keyboard shortcut key for toggling full screen mode. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -16396,8 +16461,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך למיתוג ראות התפריט</short>
-         <long>מקש קיצור דרך למיתוג ראות התפריט. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to toggle the visibility of the menubar</short>
+         <long>Keyboard shortcut key to toggle the visibility of the menubar. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -16742,8 +16807,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לקביעת כותרת המסוף.</short>
-         <long>מקש קיצור דרך לקביעת כותרת המסוף. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to set the terminal title</short>
+         <long>Keyboard shortcut key to set the terminal title. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -17088,8 +17153,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לאיפוס המסוף.</short>
-         <long>מקש קיצור דרך לאיפוס המסוף. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to reset the terminal</short>
+         <long>Keyboard shortcut key to reset the terminal. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -17434,8 +17499,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך לאיפוס וניקוי המסוף.</short>
-         <long>מקש קיצור דרך לאיפוס וניקוי המסוף. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to reset and clear the terminal</short>
+         <long>Keyboard shortcut key to reset and clear the terminal. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -17781,8 +17846,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה לשונית הקודמת</short>
-         <long>מקש קיצור דרך למעבר ללשונית הקודמת. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to the previous tab</short>
+         <long>Keyboard shortcut key to switch to the previous tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -18128,8 +18193,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית הבאה</short>
-         <long>מקש קיצור דרך למעבר ללשונית הבאה. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to the next tab</short>
+         <long>Keyboard shortcut key to switch to the next tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -18459,6 +18524,11 @@
          <long>વર્તમાન ટેબને ડાબે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો, તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
       </locale>
 
+      <locale name="he">
+         <short>Accelerator to move the current tab to the left.</short>
+         <long>Accelerator key to move the current tab to the left. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
       <locale name="hi">
          <short>बांयीं ओर मौजूदा टैब चलाने के लिये त्वरक चलाये</short>
          <long>बांयीं ओर मौजूदा टैब चलाने के लिये त्वरक चलाये. जीटीके+ संसाधन फ़ाइलों में उपयोग में लिए जाने वाले स्ट्रिंग के रूप में अभिव्यक्त किए जाते हैं. यदि आप विकल्प को विशिष्ट स्ट्रिंग &quot;अक्षम&quot; पर नियत करते हैं तो फिर इस क्रिया हेतु कोई भी कुंजीपटल शॉर्टकट नहीं होगा.</long>
@@ -18537,6 +18607,11 @@
       <locale name="pa">
          <short>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਖੱਬੇ ਭੇਜਣ ਲਈ ਪਰਵੇਸ਼ਕ ਹੈ।</short>
          <long>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਖੱਬੇ ਕਰਨ ਲਈ ਲਈ ਕੀ-ਬੋਰਡ ਪਰਵੇਸ਼ਕ ਸਵਿੱਚ। ਉਸੇ ਫਾਰਮਿਟ ਵਿੱਚ ਲਿਖੋ, ਜਿਸ ਵਿੱਚ GTK+ ਸਰੋਤ ਫਾਇਲ ਵਿੱਚ ਵਰਤੀਆ ਹਨ ਜੇਕਰ ਤੁਸੀ ਚੋਣ ਸਮੇ ਖਾਸ ਸਤਰ ਨਿਰਧਾਰਿਤ ਕਰ ਦਿੱਤੀ &quot;ਅਯੋਗ&quot;, ਤਾਂ ਇਸ ਕਾਰਵਾਈ ਲਈ ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਨਹੀ ਹੋਵੇਗਾ।</long>
+      </locale>
+
+      <locale name="pl">
+         <short>Klawisz przesunięcia zakładki w lewo.</short>
+         <long>Klawisz skrótu przesuwający bieżącą zakładkę w lewo. Wyrażony jako ciąg znaków w takim samym formacie jak pliki zasobów GTK+. Klawisz skrótu można wyłączyć poprzez wpisanie specjalnego ciągu znaków: &quot;disabled&quot;.</long>
       </locale>
 
       <locale name="pt">
@@ -18746,6 +18821,11 @@
          <long>વર્તમાન ટેબને જમણે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો, તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
       </locale>
 
+      <locale name="he">
+         <short>Accelerator to move the current tab to the right.</short>
+         <long>Accelerator key to move the current tab to the right. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
+      </locale>
+
       <locale name="hi">
          <short>दायीं ओर मौजूदा टैब चलाने के लिये त्वरक चलाये</short>
          <long>दायीं ओर मौजूदा टैब चलाने के लिये त्वरक चलायें. जीटीके+ संसाधन फ़ाइल में उपयोग में लिए जाने वाले स्ट्रिंग के रूप में अभिव्यक्त किए जाते हैं. यदि आप विकल्प को विशिष्ट स्ट्रिंग &quot;निष्क्रिय&quot; पर नियत करते हैं तो फिर इस क्रिया हेतु कोई भी कुंजीपटल शॉर्टकट नहीं होगा.</long>
@@ -18824,6 +18904,11 @@
       <locale name="pa">
          <short>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਸੱਜੇ ਭੇਜਣ ਲਈ ਪਰਵੇਸ਼ਕ ਹੈ।</short>
          <long>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਸੱਜੇ ਭੇਜਣ ਲਈ ਕੀ-ਬੋਰਡ ਪਰਵੇਸ਼ਕ ਸਵਿੱਚ ਹੈ। ਉਸੇ ਫਾਰਮਿਟ ਵਿੱਚ ਲਿਖੋ, ਜਿਸ ਵਿੱਚ GTK+ ਸਰੋਤ ਫਾਇਲ ਵਿੱਚ ਵਰਤੀਆਂ ਹਨ ਜੇਕਰ ਤੁਸੀ ਚੋਣ ਸਮੇਂ ਖਾਸ ਸਤਰ ਦਿੱਤੀ &quot;ਅਯੋਗ&quot;, ਤਾਂ ਇਸ ਕਾਰਵਾਈ ਲਈ ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਨਹੀ ਹੋਵੇਗਾ।</long>
+      </locale>
+
+      <locale name="pl">
+         <short>Klawisz przesunięcia zakładki w prawo.</short>
+         <long>Klawisz skrótu przesuwający bieżącą zakładkę w prawo. Wyrażony jako ciąg znaków w takim samym formacie jak pliki zasobów GTK+. Klawisz skrótu można wyłączyć poprzez wpisanie specjalnego ciągu znaków: &quot;disabled&quot;.</long>
       </locale>
 
       <locale name="pt">
@@ -19032,6 +19117,11 @@
          <long>વર્તમાન ટૅબ પર જવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
       </locale>
 
+      <locale name="he">
+         <short>Accelerator to detach current tab.</short>
+         <long>Accelerator key to detach current tab. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.&quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+      </locale>
+
       <locale name="hi">
          <short>त्वरक को मौजूदा टैब से अलग करने के लिये</short>
          <long>मौजूदा टैब से अलग करने के लिये त्वरक. जीटीके+ संसाधन फ़ाइलों में उपयोग में लिए जाने वाले स्ट्रिंग के रूप में अभिव्यक्त किए जाते हैं. यदि आप विकल्प को विशिष्ट स्ट्रिंग &quot;निष्क्रिय&quot; पर नियत करते हैं तो फिर इस क्रिया हेतु कोई भी कुंजीपटल शॉर्टकट नहीं होगा.</long>
@@ -19110,6 +19200,11 @@
       <locale name="pa">
          <short>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਵੱਖ ਕਰਨ ਲਈ ਸ਼ਾਰਟਕੱਟ</short>
          <long>ਮੌਜੂਦਾ ਟੈਬ ਨੂੰ ਵੱਖ ਕਰਨ ਲਈ ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ। ਉਸੇ ਫਾਰਮਿਟ ਵਿੱਚ ਲਿਖੋ, ਜਿਸ ਵਿੱਚ GTK+ ਸਰੋਤ ਫਾਇਲ ਵਿੱਚ ਵਰਤੀਆਂ ਹਨ, ਜੇਕਰ ਤੁਸੀ ਚੋਣ ਸਮੇਂ ਖਾਸ ਸਤਰ ਨਿਰਧਾਰਿਤ ਕਰ ਦਿੱਤੀ &quot;ਅਯੋਗ&quot;, ਤਾਂ ਇਸ ਕਾਰਵਾਈ ਲਈ ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਨਹੀ ਹੋਵੇਗਾ।</long>
+      </locale>
+
+      <locale name="pl">
+         <short>Klawisz skrótu odłączający bieżąca zakładkę</short>
+         <long>Klawisz skrótu odłączający bieżącą zakładkę. Wyrażony jako ciąg znaków w takim samym formacie jak pliki zasobów GTK+. Klawisz skrótu można wyłączyć poprzez wpisanie specjalnego ciągu znaków: &quot;disabled&quot;.</long>
       </locale>
 
       <locale name="pt">
@@ -19340,8 +19435,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 1.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 1. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 1</short>
+         <long>Keyboard shortcut key for switch to tab 1. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -19687,8 +19782,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 2.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 2. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 2</short>
+         <long>Keyboard shortcut key for switch to tab 2. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -20034,8 +20129,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 3.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 3. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 3</short>
+         <long>Keyboard shortcut key for switch to tab 3. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -20381,8 +20476,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 4.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 4. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 4</short>
+         <long>Keyboard shortcut key for switch to tab 4. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -20728,8 +20823,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 5.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 5. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 5</short>
+         <long>Keyboard shortcut key for switch to tab 5. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -21075,8 +21170,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 6.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 6. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 6</short>
+         <long>Keyboard shortcut key for switch to tab 6. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -21422,8 +21517,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 7.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 7. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 7</short>
+         <long>Keyboard shortcut key for switch to tab 7. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -21769,8 +21864,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 8.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 8. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 8</short>
+         <long>Keyboard shortcut key for switch to tab 8. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -22116,8 +22211,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 9.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 9. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 9</short>
+         <long>Keyboard shortcut key for switch to tab 9. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -22463,8 +22558,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 10.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 10. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 10</short>
+         <long>Keyboard shortcut key for switch to tab 10. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -22810,8 +22905,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 11.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 11. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 11</short>
+         <long>Keyboard shortcut key for switch to tab 11. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -23157,8 +23252,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחלפה ללשונית 12.</short>
-         <long>מקש קיצור דרך להחלפה ללשונית 12. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to switch to tab 12</short>
+         <long>Keyboard shortcut key for switch to tab 12. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -23504,8 +23599,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להפעלת העזרה</short>
-         <long>מקש קיצור דרך להפעלת העזרה. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to launch help</short>
+         <long>Keyboard shortcut key for launching help. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -23851,8 +23946,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להגדלת הגופן.</short>
-         <long>מקש קיצור דרך להגדלת הגופן. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to make font larger</short>
+         <long>Keyboard shortcut key for making font larger. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -24198,8 +24293,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להקטנת הגופן.</short>
-         <long>מקש קיצור דרך להקטנת הגופן. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to make font smaller</short>
+         <long>Keyboard shortcut key for making font smaller. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
@@ -24545,8 +24640,8 @@
       </locale>
 
       <locale name="he">
-         <short>מקש קיצור דרך להחזרת הגופן לגודלו הרגיל.</short>
-         <long>מקש קיצור דרך להחזרת הגופן לגודלו הרגיל. מבוטא על-ידי מחרוזת באותה תבנית שבה משתמשים קבצי המשאבים של GTK+. אם אתה קובע באפשרות זו את המחרוזת המיוחדת &quot;disabled&quot;, אזי לא יהיה מקש קיצור דרך לפעולה זו.</long>
+         <short>Keyboard shortcut to make font normal-size</short>
+         <long>Keyboard shortcut key for making font the normal size. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keyboard shortcut for this action.</long>
       </locale>
 
       <locale name="hi">
