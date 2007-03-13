@@ -125,6 +125,7 @@ GCONF_SCHEMA_FILE_DIR = @GCONF_SCHEMA_FILE_DIR@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
+GREP = @GREP@
 HAVE_GNOME_DOC_UTILS_FALSE = @HAVE_GNOME_DOC_UTILS_FALSE@
 HAVE_GNOME_DOC_UTILS_TRUE = @HAVE_GNOME_DOC_UTILS_TRUE@
 HELP_DIR = @HELP_DIR@
@@ -187,7 +188,6 @@ POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
-SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -197,17 +197,14 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WARN_CFLAGS = @WARN_CFLAGS@
 XGETTEXT = @XGETTEXT@
+XMKMF = @XMKMF@
 X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
-ac_pt_PKG_CONFIG = @ac_pt_PKG_CONFIG@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -224,23 +221,30 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
 host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = @libdir@
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
@@ -251,7 +255,6 @@ _DOC_REAL_LINGUAS = $(if $(filter environment,$(origin LINGUAS)),		\
 	$(filter $(LINGUAS),$(DOC_LINGUAS)),					\
 	$(DOC_LINGUAS))
 
-_DOC_ABS_SRCDIR = @abs_srcdir@
 
 ################################################################################
 db2omf_args = \
@@ -263,11 +266,11 @@ db2omf_args = \
 	--stringparam db2omf.lang $(notdir $(patsubst %/$(notdir $(2)),%,$(2)))	\
 	--stringparam db2omf.omf_dir "$(OMF_DIR)"				\
 	--stringparam db2omf.help_dir "$(HELP_DIR)"				\
-	--stringparam db2omf.omf_in "$(_DOC_OMF_IN)"				\
+	--stringparam db2omf.omf_in "`pwd`/$(_DOC_OMF_IN)"			\
 	--stringparam db2omf.scrollkeeper_cl "$(_skcontentslist)"		\
 	$(_db2omf) $(2)
 
-_DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(_DOC_ABS_SRCDIR)/$(DOC_MODULE).omf.in))
+_DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(srcdir)/$(DOC_MODULE).omf.in))
 _DOC_OMF_DB = $(if $(_DOC_OMF_IN),						\
 	$(foreach lc,C $(_DOC_REAL_LINGUAS),$(DOC_MODULE)-$(lc).omf))
 
@@ -355,10 +358,10 @@ DOC_FIGURES = figures/gnome-terminal-default.png \
               figures/gnome-terminal-tabbed.png 
 
 #	      figures/terminal-window.png   This image is not used.
-DOC_LINGUAS = es fr it sv
+DOC_LINGUAS = es fr it sv uk
 
 # Move to DOC_LINGUAS in transition to gnome-doc-utils
-SUBDIRS = bg ro de ja ko uk zh_CN zh_TW
+SUBDIRS = bg ro de ja ko zh_CN zh_TW
 all: all-recursive
 
 .SUFFIXES:
@@ -791,7 +794,11 @@ $(_DOC_POFILES):
 	fi;
 	@docs=; \
 	list='$(_DOC_C_DOCS_NOENT)'; for doc in $$list; do \
-	  docs="$$docs $(_DOC_ABS_SRCDIR)/$$doc"; \
+	  if test -f $$doc; then \
+	    docs="$$docs ../$$doc"; \
+	  else \
+	    docs="$$docs ../$(srcdir)/$$doc"; \
+	  fi; \
 	done; \
 	if ! test -f $@; then \
 	  echo "(cd $(dir $@) && \
@@ -812,7 +819,8 @@ $(_DOC_POFILES):
 $(_DOC_LC_DOCS) : $(_DOC_POFILES)
 $(_DOC_LC_DOCS) : $(_DOC_C_DOCS)
 	if ! test -d $(dir $@); then mkdir $(dir $@); fi
-	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$(_DOC_ABS_SRCDIR)/"; fi; \
+	case "$(srcdir)" in /*) sd="$(srcdir)";; *) sd="../$(srcdir)";;	esac; \
+	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$$sd/"; fi; \
 	(cd $(dir $@) && \
 	  $(_xml2po) -e -p \
 	    "$${d}$(dir $@)$(patsubst %/$(notdir $@),%,$@).po" \
