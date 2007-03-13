@@ -116,8 +116,6 @@ _DOC_REAL_LINGUAS = $(if $(filter environment,$(origin LINGUAS)),		\
 	$(filter $(LINGUAS),$(DOC_LINGUAS)),					\
 	$(DOC_LINGUAS))
 
-_DOC_ABS_SRCDIR = @abs_srcdir@
-
 
 ################################################################################
 ## Variables for Bootstrapping
@@ -147,13 +145,13 @@ db2omf_args =									\
 	--stringparam db2omf.lang $(notdir $(patsubst %/$(notdir $(2)),%,$(2)))	\
 	--stringparam db2omf.omf_dir "$(OMF_DIR)"				\
 	--stringparam db2omf.help_dir "$(HELP_DIR)"				\
-	--stringparam db2omf.omf_in "$(_DOC_OMF_IN)"				\
+	--stringparam db2omf.omf_in "`pwd`/$(_DOC_OMF_IN)"			\
 	--stringparam db2omf.scrollkeeper_cl "$(_skcontentslist)"		\
 	$(_db2omf) $(2)
 
 ## @ _DOC_OMF_IN
 ## The OMF input file
-_DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(_DOC_ABS_SRCDIR)/$(DOC_MODULE).omf.in))
+_DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(srcdir)/$(DOC_MODULE).omf.in))
 
 ## @ _DOC_OMF_DB
 ## The OMF files for DocBook output
@@ -289,7 +287,11 @@ $(_DOC_POFILES):
 	fi;
 	@docs=; \
 	list='$(_DOC_C_DOCS_NOENT)'; for doc in $$list; do \
-	  docs="$$docs $(_DOC_ABS_SRCDIR)/$$doc"; \
+	  if test -f $$doc; then \
+	    docs="$$docs ../$$doc"; \
+	  else \
+	    docs="$$docs ../$(srcdir)/$$doc"; \
+	  fi; \
 	done; \
 	if ! test -f $@; then \
 	  echo "(cd $(dir $@) && \
@@ -310,7 +312,8 @@ $(_DOC_POFILES):
 $(_DOC_LC_DOCS) : $(_DOC_POFILES)
 $(_DOC_LC_DOCS) : $(_DOC_C_DOCS)
 	if ! test -d $(dir $@); then mkdir $(dir $@); fi
-	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$(_DOC_ABS_SRCDIR)/"; fi; \
+	case "$(srcdir)" in /*) sd="$(srcdir)";; *) sd="../$(srcdir)";;	esac; \
+	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$$sd/"; fi; \
 	(cd $(dir $@) && \
 	  $(_xml2po) -e -p \
 	    "$${d}$(dir $@)$(patsubst %/$(notdir $@),%,$@).po" \

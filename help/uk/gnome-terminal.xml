@@ -14,7 +14,10 @@
   -->
 <article id="index" lang="uk"> 
   <articleinfo> 
-     <title>Довідка з програми GNOME Terminal версії 2.8</title> 
+     <title>Довідка з GNOME Terminal</title> 
+     <abstract role="description">
+       <para>Довідка з програми GNOME Terminal</para>
+     </abstract>
      <copyright> 
         <year>2002</year> 
         <year>2003</year> 
@@ -35,7 +38,22 @@
      </copyright><copyright><year>2003,2005.</year><holder>Максим Дзюманенко (mvd@mylinux.com.ua)</holder></copyright>
      <publisher> 
         <publishername>Проект документування GNOME</publishername> 
-     </publisher> &legal; 
+     </publisher>    <legalnotice id="legalnotice">
+         <para>Дозволяється копіювати, розповсюджувати та/або змінювати цей документ на умовах ліцензії GNU Free Documentation License (GFDL), версії 1.1 або будь-якої старшої версії, що опублікована Free Software Foundation без інваріантних розділів, тексту титульної сторінки, та тексту фінальної сторінки. Копію GFDL можна знайти <ulink type="help" url="ghelp:fdl">за адресою</ulink> або у файлі COPYING-DOCS, що постачається з цією довідкою.</para>
+          <para>Ця довідка є частиною збірки документації з GNOME, що постачається на умовах ліцензіїGFDL. Якщо ви бажаєте розповсюджувати цю довідку окремо від збірки, можете це зробити додавши до довідки копію ліцензії, як описано у пункті 66 ліцензії.</para>
+ 
+         <para>Більшість назв, що використовуються компаніями для розповсюдження їх продуктів та послуг є торговими марками. Якщо такі назви зустрічаються у документації з GNOME та учасникам проекту документування GNOME відомо, що вони є торговими марками, тоді ці назви пишуться великими літерами або починаються з великої літери.</para>
+ 
+         <para>ДОКУМЕНТ ТА ЗМІНЕНІ ВЕРСІЇ ЦЬОГО ДОКУМЕНТУ ПОСТАЧАЮТЬСЯ НА УМОВАХ ВІЛЬНОЇ ЛІЦЕНЗІЇ ДЛЯ ДОКУМЕНТАЦІЇ GNU З ПОДАЛЬШИМ РОЗУМІННЯМ ЩО: <orderedlist>
+                 <listitem>
+                   <para>ДОКУМЕНТ НАДАЄТЬСЯ "ЯК Є", БЕЗ БУДЬ-ЯКИХ ГАРАНТІЇ, ЯВНИХ ЧИ НЕЯВНИХ, ВКЛЮЧАЮЧИ, АЛЕ НЕ ОБМЕЖУЮЧИСЬ, ГАРАНТІЙ ЩО ЦЕЙ ДОКУМЕНТ ЧИ ЗМІНЕНА ВЕРСІЯ ДОКУМЕНТА ВІЛЬНІ ВІД ДЕФЕКТІВ, ПРИДАТНІ ДО ПРОДАЖУ, ВІДПОВІДАЮТЬ ПЕВНІЙ МЕТІ АБО НЕ ПОРУШУЮТЬ ЧИЇСЬ ПРАВА. ВЕСЬ РИЗИК ЗА ЯКІСТЬ, ТОЧНІСТЬ, ТА ЧИННІСТЬ ЦЬОГО ДОКУМЕНТУ АБО ЙОГО ЗМІНЕНИХ ВЕРСІЙ ЛЕЖИТЬ НА ВАС.  ЯКЩО БУДЬ-ЯКИЙ ДОКУМЕНТ ЧИ ЗМІНЕНА ВЕРСІЯ БУДУТЬ ВИЗНАНІ ДЕФЕКТНИМИ У БУДЬ-ЯКОМУ ВІДНОШЕННІ, ВИ (НЕ ПОЧАТКОВИЙ УКЛАДАЧ, АВТОР АБО БУДЬ-ЯКИЙ СПІВАВТОР) БЕРЕТЕ НА СЕБЕ ВИТРАТИ ЗА БУДЬ-ЯКЕ НЕОБХІДНЕ ОБСЛУГОВУВАННЯ, РЕМОНТ ЧИ ВИПРАВЛЕННЯ. ЦЯ ВІДМОВА ВІД ГАРАНТІЙ СКЛАДАЄ ВАЖЛИВУ ЧАСТИНУ ЦІЄЇ ЛІЦЕНЗІЇ. НЕ ДОПУСКАЄТЬСЯ ВИКОРИСТАННЯ ЦЬОГО ДОКУМЕНТУ АБО ЙОГО ЗМІНЕНОЇ ВЕРСІЇ БЕЗ ПРИЙНЯТТЯ ЦІЄЇ ВІДМОВИ; ТА</para>
+                 </listitem>
+                 <listitem>
+                   <para>НІ ЗА ЯКИХ ОБСТАВИН ТА ЗА БУДЬ-ЯКОГО ЗАКОНОДАВСТВА, ЧИ ТО ГРОМАДЯНСЬКОЇ ВІДПОВІДАЛЬНОСТІ (ВКЛЮЧАЮЧИ ХАЛАТНІСТЬ), ДОГОВОРУ, ЧИ ЧОГОСЬ ІНШОГО, АВТОР, ПОЧАТКОВИЙ УКЛАДАЧ, БУДЬ-ЯКИЙ СПІВАВТОР, АБО ДИСТРИБ'ЮТОР ДОКУМЕНТУ ЧИ ЗМІНЕНОЇ ВЕРСІЇ ДОКУМЕНТУ, АБО БУДЬ-ЯКИЙ ПОСТАЧАЛЬНИК БУДЬ-ЯКОЇ З ЦИХ СТОРІН, НЕ НЕСЕ ВІДПОВІДАЛЬНІСТЬ ПЕРЕД БУДЬ-ЯКОЮ ОСОБОЮ ЗА БУДЬ-ЯКІ ПРЯМІ, НЕПРЯМІ, ОСОБЛИВІ, ВИПАДКОВІ, АБО ІСТОТНІ ЗБИТКИ БУДЬ-ЯКОГО ХАРАКТЕРУ ВКЛЮЧАЮЧИ, АЛЕ НЕ ОБМЕЖУЮЧИСЬ, ЗБИТКАМИ ВІД ВТРАТИ ПРЕСТИЖУ, ЗУПИНКИ РОБОТИ, ЗБОЇВ АБО НЕСПРАВНОСТЕЙ КОМП'ЮТЕРА, АБО БУДЬ-ЯКІ ІНШІ ЗБИТКИ АБО ВТРАТИ ЩО ВИНИКЛИ БЕЗВІДНОСНО АБО ВНАСЛІДОК ВИКОРИСТАННЯ ЦЬОГО ДОКУМЕНТУ ТА ЗМІНЕНИХ ВЕРСІЙ ЦЬОГО ДОКУМЕНТУ, НАВІТЬ ЯКЩО ЦІ СТОРОНИ, МОЖЛИВО, БУЛИ ПРОІНФОРМОВАНІ ПРО МОЖЛИВІСТЬ ТАКИХ ЗБИТКІВ.</para>
+                 </listitem>
+           </orderedlist></para>
+   </legalnotice>
+  
      <authorgroup> 
         <author> 
           <firstname>Sun</firstname> 
@@ -66,10 +84,13 @@
           </affiliation> 
         </author> 
      </authorgroup> 
+     <publisher role="maintainer">
+       <publishername>Проект документування GNOME</publishername>
+     </publisher>
      <revhistory> 
         <revision> 
           <revnumber>Довідка з програми GNOME Terminal версії 2.8</revnumber> 
-          <date>&date;</date> 
+          <date>Травень 2004</date> 
           <revdescription> 
              <para role="author">Sun команда документування GNOME</para>
              <para role="publisher">Проект документування GNOME</para>
@@ -151,11 +172,11 @@
      <releaseinfo>Цей посібник описує програму GNOME Terminal версії 2.5.90.</releaseinfo> 
      <legalnotice> 
         <title>Зворотній зв'язок</title> 
-        <para>Щоб сповістити про помилку або внести пропозицію відносно аплету GNOME Terminal або цієї довідки, дотримуйтесь інструкцій на сторінці <ulink url="ghelp:gnome-feedback" type="help">Сторінка зворотного зв'язку GNOME</ulink>.</para>
+        <para>Щоб сповістити про помилку або внести пропозицію відносно аплету GNOME Terminal або цієї довідки, дотримуйтесь інструкцій на сторінці <ulink url="ghelp:user-guide?feedback" type="help">Сторінка зворотного зв'язку GNOME</ulink>.</para>
      </legalnotice> 
   </articleinfo> 
   <indexterm> 
-     <primary>&app;</primary> 
+     <primary>Термінал GNOME</primary> 
   </indexterm> 
   <indexterm> 
      <primary>програма терміналу</primary> 
@@ -171,7 +192,7 @@
           </listitem> 
         </varlistentry> 
         <varlistentry> 
-          <term>Запуск будь-яких програм, призначених для запуску у терміналах  VT102, VT220 та <application>xterm</application>.</term> 
+          <term>Запуск будь-яких програм, призначених для запуску у терміналах  VT102, VT220 та <application>xterm</application></term> 
           <listitem> 
              <para><application>GNOME Terminal</application> імітує програму <application>xterm</application>, розроблену X Consortium. В свою чергу, програма xterm імітує DEC VT102 термінал та також підтримує escape-послідовності терміналу DEC VT220. Escape-послідовності - це серії символів, які починаються з символу Esc. <application>GNOME Terminal</application> підтримує всі escape-послідовності, які використовуються VT102 та VT220 переміщення курсору та очистки екрану.</para>
           </listitem> 
@@ -188,7 +209,7 @@
           <varlistentry> 
              <term>З меню <guimenu>Програми</guimenu></term> 
              <listitem>
-                <para>Виберіть <menuchoice><guimenu>Система</guimenu><guimenuitem>Термінал</guimenuitem></menuchoice>.</para>
+                <para>Виберіть <menuchoice><guimenu>Стандартні</guimenu><guimenuitem>Термінал</guimenuitem></menuchoice>.</para>
              </listitem>
           </varlistentry> 
           <varlistentry> 
@@ -286,7 +307,7 @@
           <varlistentry> 
              <term>Відкривання нового вікна терміналу:</term> 
              <listitem> 
-                <para>Виберіть <menuchoice><guimenu>Файл</guimenu><guisubmenu>Відкрити термінал</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice>.</para>
+                <para>Виберіть <menuchoice><guimenu>Файл</guimenu><guimenuitem>Закрити термінал</guimenuitem></menuchoice>.</para>
                 <para>Новий термінал успадковує від батьківського терміналу параметри програми та типову оболонку.</para>
              </listitem> 
           </varlistentry> 
@@ -381,7 +402,7 @@
                      <para>Клацніть правою кнопкою миші на вікні терміналу, потім виберіть <guimenuitem>Виправити поточний профіль</guimenuitem> з контекстного меню.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Виберіть <menuchoice><guimenu>Правка</guimenu><guisubmenu>Профілі</guisubmenu></menuchoice>, вкажіть профіль, який ви бажаєте відредагувати, потім натисніть <guibutton>Правка</guibutton>.</para>
+                     <para>Виберіть <menuchoice><guimenu>Правка</guimenu><guisubmenu>Профілі</guisubmenu></menuchoice>, вкажіть профіль, який ви бажаєте відредагувати, потім натисніть <guibutton>Правка</guibutton>. Інформацію про параметри, які можна змінити у профілях дивіться на <xref linkend="gnome-terminal-prefs"/>.</para>
                   </listitem> 
                 </itemizedlist> 
              </listitem> 
@@ -424,6 +445,11 @@
                 <para>Клацніть правою кнопкою миші у вікні термінала, потім у контекстному меню виберіть <guimenuitem>Показати панель меню</guimenuitem>.</para>
              </listitem> 
           </varlistentry> 
+          <varlistentry><term>Відображення <application>GNOME Terminal</application> у повноекранному режимі:</term>
+            <listitem>
+              <para>Виберіть <menuchoice><guimenu>Вигляд</guimenu><guimenuitem>На весь екран</guimenuitem></menuchoice>. У повноекранному режимі текст відображається у вікні, що займає весь екран. Це вікно не містить рамки чи заголовку. Для виходу з цього режиму знову виберіть <menuchoice><guimenu>Вигляд</guimenu><guimenuitem>На весь екран</guimenuitem></menuchoice>.</para>
+            </listitem>     
+          </varlistentry>
           <varlistentry> 
              <term>Зміна зовнішнього вигляду вікна терміналу:</term> 
              <listitem> 
@@ -527,14 +553,15 @@
           <varlistentry> 
              <term><guilabel>Комбінації клавіш</guilabel></term> 
              <listitem> 
-                <para>Розділ діалогового вікна <guilabel>Комбінації клавіш</guilabel> містить усі призначені пунктам меню комбінації клавіш. Комбінації клавіш дозволяють для вибору пункту меню користуватись клавіатурою, замість миші. Комбінація клавіш - це декілька клавіш, що натискаються одночасно.</para>
+                <para>У розділі <guilabel>Комбінації клавіш</guilabel> перелічені комбінації клавіш, визначені для кожного пункту меню.</para>
+                <note><para>Не всі клавіші можна використовувати у комбінаціях клавіш, наприклад, не можна використовувати <keycap>Tab</keycap>.</para></note>
              </listitem> 
           </varlistentry>
         </variablelist> 
      </sect2>
      
 	<sect2 id="gnome-terminal-resize">
-	<title>Зміна розміру тексту</title>
+	<title>Розмір тексту</title>
 	<para>Для зміни розміру тексту у вікні GNOME Terminal є кілька способів:</para>
 		<itemizedlist>
 			<listitem><para>Для збільшення тексту виберіть <menuchoice><guimenu>Вигляд</guimenu><guimenuitem>Збільшити</guimenuitem></menuchoice>.</para>
@@ -544,7 +571,7 @@
 			<listitem><para>Для повернення до оригінального розміру тексту виберіть <menuchoice><guimenu>Вигляд</guimenu><guimenuitem>Звичайний розмір</guimenuitem></menuchoice>.</para>
 			</listitem>
 		</itemizedlist>
-		<para>Для відображення вікна <application>GNOME Terminal</application> у повноекранному режимі, виберіть <menuchoice><guimenu>Вигляд</guimenu><guimenuitem>На весь екран</guimenuitem></menuchoice>. У повноекранному режимі текст відображається у вікні, що займає весь екран. Це вікно не містить рамки чи заголовку. Для виходу з цього режиму знову виберіть <menuchoice><guimenu>Вигляд</guimenu><guimenuitem>На весь екран</guimenuitem></menuchoice>.</para>
+
 	</sect2>	
 
      <sect2 id="gnome-terminal-title"> 
@@ -757,7 +784,7 @@
                 <guilabel>Текст та тло</guilabel>
                 </term> 
              <listitem> 
-                <para>Відмітьте параметр <guilabel>Використовувати кольори системної теми</guilabel>, щоб використовувались кольори, вказані у системній темі середовища GNOME. Ці кольори вибираються програмою налаштовування <application>Тема</application>.</para>
+                <para>Відмітьте параметр <guilabel>Використовувати кольори системної теми</guilabel>, щоб використовувались кольори, вказані у системній темі середовища GNOME. Ці кольори вибираються  <ulink type="help" url="ghelp:user-guide?prefs-theme">програмою налаштовування <application>Тема</application></ulink>.</para>
                 <para>Використовуючи список <guilabel>Вбудовані схеми</guilabel> вкажіть кольори тексту та тла терміналу. <application>GNOME Terminal</application> підтримує наступні комбінації кольорів тексту та тла:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -801,31 +828,9 @@
              <term> 
                 <guilabel>Палітра</guilabel></term> 
              <listitem> 
-                <para>Схема кольорів є палітрою з 16 кольорів. Використовуючи розкривний список <guilabel>Вбудовані схеми</guilabel> виберіть бажану схему кольорів. <application>GNOME Terminal</application> підтримує наступні схеми кольорів:</para>
-                <itemizedlist> 
-                  <listitem> 
-                     <para>
-                        <guilabel>Консоль Linux</guilabel> 
-                     </para>
-                  </listitem> 
-                  <listitem> 
-                     <para>
-                        <guilabel>Xterm</guilabel> 
-                     </para>
-                  </listitem> 
-                  <listitem> 
-                     <para>
-                        <guilabel>Rxvt</guilabel> 
-                     </para>
-                  </listitem> 
-                  <listitem> 
-                     <para>
-                        <guilabel>Інше</guilabel> 
-                     </para>
-                  </listitem> 
-                </itemizedlist> 
-                <para>Кожна схема кольорів дещо відрізняється. Наприклад, <guilabel>Консоль Linux</guilabel> використовує сірий замість білого. Схема кольорів <guilabel>Інша</guilabel> дозволяє створити власну палітру кольорів.</para>
-                <para>Використовуйте поле <guilabel>Палітра</guilabel>, щоб перевизначити 16 типових кольорів власної палітри кольорів. Щоб змінити колір, натисніть на відповідному кольорі, з'явиться діалогове вікно <guilabel>Елемент палітри</guilabel>. Виберіть колір, користуючись кольоровим колом чи полями зі стрілками, потім натисніть на <guibutton>Гаразд</guibutton>.</para>
+                <para>Емулятор терміналу може використовувати для виводу тексту лише 16 кольорів. Ці кольори визначаються у палітрі кольорів. Програми, що запускаються у терміналі використовують індексний номер для вказування кольору з цієї палітри.</para>
+               <para>Використовуючи розкривний список <guilabel>Вбудовані схеми</guilabel> виберіть бажану схему кольорів. <application>GNOME Terminal</application> підтримує наступні схеми кольорів:</para>
+               <para>Використовуйте поле <guilabel>Палітра</guilabel>, щоб перевизначити 16 типових кольорів власної палітри кольорів. Щоб змінити колір, натисніть на відповідному кольорі, з'явиться діалогове вікно <guilabel>Елемент палітри</guilabel>. Виберіть колір, користуючись кольоровим колом чи полями зі стрілками, потім натисніть на <guibutton>Гаразд</guibutton>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
