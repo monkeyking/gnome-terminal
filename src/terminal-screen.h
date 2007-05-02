@@ -22,6 +22,8 @@
 #ifndef TERMINAL_SCREEN_H
 #define TERMINAL_SCREEN_H
 
+#include <gtk/gtkbin.h>
+
 #include "terminal-profile.h"
 
 G_BEGIN_DECLS
@@ -42,14 +44,14 @@ typedef struct _TerminalScreenPrivate TerminalScreenPrivate;
 
 struct _TerminalScreen
 {
-  GObject parent_instance;
+  GtkBin parent_instance;
 
   TerminalScreenPrivate *priv;
 };
 
 struct _TerminalScreenClass
 {
-  GObjectClass parent_class;
+  GtkBinClass parent_class;
 
   void (* profile_set)        (TerminalScreen *screen);
   void (* title_changed)      (TerminalScreen *screen);
@@ -72,6 +74,8 @@ void terminal_screen_set_profile (TerminalScreen *screen,
                                   TerminalProfile *profile);
 TerminalProfile* terminal_screen_get_profile (TerminalScreen *screen);
 
+void terminal_screen_reread_profile (TerminalScreen *screen);
+
 void         terminal_screen_set_override_command (TerminalScreen  *screen,
                                                    char           **argv);
 const char** terminal_screen_get_override_command (TerminalScreen  *screen);
@@ -79,8 +83,6 @@ const char** terminal_screen_get_override_command (TerminalScreen  *screen);
 
 
 GtkWidget* terminal_screen_get_widget (TerminalScreen *screen);
-
-int terminal_screen_get_id (TerminalScreen *screen);
 
 void terminal_screen_launch_child (TerminalScreen *screen);
 
@@ -96,9 +98,14 @@ void terminal_screen_edit_title (TerminalScreen *screen,
                                  GtkWindow      *transient_parent);
 
 void        terminal_screen_set_dynamic_title      (TerminalScreen *screen,
-                                                    const char     *title);
+                                                    const char     *title,
+						    gboolean	   userset);
 void        terminal_screen_set_dynamic_icon_title (TerminalScreen *screen,
+                                                    const char     *title,
+						    gboolean	   userset);
+void        terminal_screen_set_title              (TerminalScreen *screen,
                                                     const char     *title);
+
 const char *terminal_screen_get_dynamic_title      (TerminalScreen *screen);
 const char *terminal_screen_get_dynamic_icon_title (TerminalScreen *screen);
 
@@ -106,9 +113,12 @@ void        terminal_screen_set_working_dir   (TerminalScreen *screen,
                                                const char     *dirname);
 const char *terminal_screen_get_working_dir   (TerminalScreen *screen);
 
+void        terminal_screen_set_font (TerminalScreen *screen);
 void        terminal_screen_set_font_scale    (TerminalScreen *screen,
                                                double          factor);
 double      terminal_screen_get_font_scale    (TerminalScreen *screen);
+
+void terminal_screen_update_scrollbar (TerminalScreen *screen);
 
 /* Allow scales a bit smaller and a bit larger than the usual pango ranges */
 #define TERMINAL_SCALE_XXX_SMALL   (PANGO_SCALE_XX_SMALL/1.2)

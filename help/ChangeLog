@@ -1,0 +1,91 @@
+2007-03-12  Maxim Dziumanenko <dziumanenko@gmail.com>
+        * uk/legal.xml:
+        * uk/gnome-terminal.xml:  
+        * uk/gnome-terminal-uk.omf:
+        * uk/Makefile.am: 
+        Removed
+        
+        * Makefile.am: Move uk from SUBDIRS to DOC_LINGUAS
+	* uk/uk.po: Updated Ukrainian translation.
+
+2007-01-08  Alessio Frusciante  <algol@firenze.linux.it>
+
+	* it/it.po: Updated Italian translation by
+	Milo Casagrande <milo_casagrande@yahoo.it>.
+	* Makefile.am: Added "it" (Italian) to DOC_LINGUAS. 
+
+2006-11-13  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	* es/es.po: Do not use &hellip; because docbook does not define
+	that (or any other) html character entity. Assuming this got in because
+	the translator cannot type a real ellipse, I just changed &hellip; into 
+	«...» (that's what the other translations are using).
+
+2006-11-13  Shaun McCance  <shaunm@gnome.org>
+
+	* C/gnome-terminal.xml:
+	- Added publisher with role="maintainer", #374767
+
+2006-11-12  Francisco Javier F. Serrador  <serrador@openshine.com>
+
+	* es/es.po: Updated Spanish translation.
+
+2006-10-06  Christophe Bliard <christophe.bliard@trux.info>
+
+	* fr/fr.po: Updated French translation.
+
+2006-10-06  Daniel Nylander <po@danielnylander.se>
+
+	* sv/sv.po: Updated Swedish translation.
+
+2006-10-05  Francisco Javier F. Serrador  <serrador@openshine.com>
+
+	* es/es.po: Migrated doc to gnome-doc-utils
+	* es/figures/terminal_window.png: Removed old screenshot
+	* es/gnome-terminal-es.omf, es/gnome-terminal.xml, es/legal.xml:
+	Removed due to migration to gettext.
+
+2006-09-03  Daniel Nylander <po@danielnylander.se>
+
+	* sv/sv.po: Updated Swedish translation.
+	* sv/figures/terminal_window.png: Removed old screenshot.
+	* sv/gnome-terminal-fr.omf, sv/gnome-terminal.xml, sv/legal.xml: 
+	Removed due to migration to gettext.
+
+2006-09-03  Joachim Noreiko  <jnoreiko@yahoo.com>
+
+	* C/gnome-terminal.xml: mention of symbols in word select. Fixes #353881
+
+2006-09-02  Christophe Bliard  <christophe.bliard@trux.info>
+
+	* fr/fr.po: Added French translation.
+	* fr/figures/*.png: Added screenshots.
+	* fr/figures/terminal_window.png: Removed old screenshot.
+	* fr/gnome-terminal-fr.omf, fr/gnome-terminal.xml, fr/legal.xml,
+	fr/Makefile.am: Removed due to migration to gettext.
+	* Makefile.am: Added fr to DOC_LINGUAS.
+
+2006-08-27  Joachim Noreiko  <jnoreiko@yahoo.com>
+
+	* C/gnome-terminal.xml: various updates, including fixing #123994 and #138239
+
+2006-08-20  Daniel Nylander <po@danielnylander.se>
+
+	* sv/sv.po: Added Swedish translation.
+
+2006-07-28 Joachim Noreiko <jnoreiko@yahoo.com>
+
+	* C/gnome-terminal.xml: updated mention of Applications menu. Fixes #348372
+
+
+2006-04-05  Tommi Vainikainen  <thv@iki.fi>
+
+	* .cvsignore, Makefile.am, gnome-terminal.omf.in,
+	C/gnome-terminal.xml: Migrated to gnome-doc-utils.
+	* C/Makefile.am, C/gnome-terminal-C.omf: Removed in migration.
+	* ChangeLog: Started.
+
+Local Variables:
+coding: utf-8
+End:
+vim: fileencoding=utf-8:

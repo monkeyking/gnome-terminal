@@ -70,6 +70,7 @@
 #define KEY_USE_SYSTEM_FONT "use_system_font"
 #define KEY_USE_SKEY "use_skey"
 #define KEY_FONT "font"
+#define KEY_NO_AA_WITHOUT_RENDER "no_aa_without_render" 
 
 struct _TerminalProfilePrivate
 {
@@ -128,6 +129,7 @@ struct _TerminalProfilePrivate
   guint scroll_background : 1;
   guint use_theme_colors : 1;
   guint use_system_font : 1;
+  guint no_aa_without_render : 1;
   guint use_skey : 1;
   guint forgotten : 1;
 };
@@ -291,6 +293,7 @@ terminal_profile_init (TerminalProfile *profile)
   profile->priv->delete_binding = TERMINAL_ERASE_ESCAPE_SEQUENCE;
   profile->priv->use_theme_colors = TRUE;
   profile->priv->use_system_font = TRUE;
+  profile->priv->no_aa_without_render = TRUE;
   profile->priv->use_skey = TRUE;
   profile->priv->font = pango_font_description_new ();
   pango_font_description_set_family (profile->priv->font,
@@ -1079,6 +1082,15 @@ terminal_profile_set_is_default (TerminalProfile *profile,
                            CONF_GLOBAL_PREFIX"/default_profile",
                            terminal_profile_get_name (profile),
                            NULL);
+
+  /* Even though the gconf change notification does this, it happens too late.
+   * In some cases, the default profile changes twice in quick succession,
+   * and update_default_profile must be called in sync with those changes.
+   */
+  update_default_profile (terminal_profile_get_name (profile),
+                          !gconf_client_key_is_writable (profile->priv->conf,
+                                                         CONF_GLOBAL_PREFIX"/default_profile",
+                                                         NULL));
 }
 
 void
@@ -1413,6 +1425,14 @@ terminal_profile_set_use_theme_colors (TerminalProfile *profile,
 }
 
 gboolean
+terminal_profile_get_no_aa_without_render (TerminalProfile *profile)
+{
+  g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), FALSE);
+
+  return profile->priv->no_aa_without_render;
+}
+
+gboolean
 terminal_profile_get_use_system_font (TerminalProfile *profile)
 {
   g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), FALSE);
@@ -1470,7 +1490,7 @@ terminal_profile_set_use_skey (TerminalProfile *profile,
 const PangoFontDescription*
 terminal_profile_get_font (TerminalProfile *profile)
 {
-  g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), FALSE);
+  g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), NULL);
 
   return profile->priv->font;
 }
@@ -1721,17 +1741,30 @@ set_palette (TerminalProfile *profile,
 {  
   if (candidate_str != NULL)
     {
+      int i;
       GdkColor new_palette[TERMINAL_PALETTE_SIZE];
 
       if (!terminal_palette_from_string (candidate_str,
                                          new_palette,
                                          TRUE))
-        return FALSE;
+        {
+          return FALSE;
+        }
 
-      if (memcmp (profile->priv->palette, new_palette,
-                  TERMINAL_PALETTE_SIZE * sizeof (GdkColor)) == 0)
-        return FALSE;
-
+      for (i = 0; i < TERMINAL_PALETTE_SIZE; i++)
+        {
+          if (!gdk_color_equal (&profile->priv->palette[i],
+                                &new_palette[i]))
+            {
+              break;
+            }
+        }
+      
+      if (i == TERMINAL_PALETTE_SIZE)
+        {
+          return FALSE;
+        }
+              
       memcpy (profile->priv->palette, new_palette,
               TERMINAL_PALETTE_SIZE * sizeof (GdkColor));
 
@@ -1982,6 +2015,7 @@ terminal_profile_update (TerminalProfile *profile)
   UPDATE_STRING  (KEY_DELETE_BINDING,       delete_binding);
   UPDATE_BOOLEAN (KEY_USE_THEME_COLORS,     use_theme_colors);
   UPDATE_BOOLEAN (KEY_USE_SYSTEM_FONT,      use_system_font);
+  UPDATE_BOOLEAN (KEY_NO_AA_WITHOUT_RENDER, no_aa_without_render);
   UPDATE_STRING  (KEY_FONT,                 font);
   
 #undef UPDATE_BOOLEAN
@@ -2128,6 +2162,7 @@ else if (strcmp (key, KName) == 0)                                      \
      UPDATE_STRING  (KEY_DELETE_BINDING,         delete_binding,         NULL);
      UPDATE_BOOLEAN (KEY_USE_THEME_COLORS,       use_theme_colors,       TRUE);
      UPDATE_BOOLEAN (KEY_USE_SYSTEM_FONT,        use_system_font,        TRUE);
+     UPDATE_BOOLEAN (KEY_NO_AA_WITHOUT_RENDER,	 no_aa_without_render,	 TRUE);
      UPDATE_STRING  (KEY_FONT,                   font,                   NULL);
    }
   
@@ -2863,6 +2898,14 @@ terminal_profile_create (TerminalProfile *base_profile,
 
   g_free (key);
   key = gconf_concat_dir_and_key (profile_dir,
+                                  KEY_NO_AA_WITHOUT_RENDER);
+  gconf_client_set_bool (base_profile->priv->conf,
+                         key, base_profile->priv->no_aa_without_render,
+                         &err);
+  BAIL_OUT_CHECK ();
+
+  g_free (key);
+  key = gconf_concat_dir_and_key (profile_dir,
                                   KEY_FONT);
   s = pango_font_description_to_string (base_profile->priv->font);
   gconf_client_set_string (base_profile->priv->conf,
@@ -2949,7 +2992,7 @@ terminal_profile_delete_list (GConfClient *conf,
   GList *current_profiles;
   GList *tmp;
   GSList *name_list;
-  GError *err;
+  GError *err = NULL;
 
   /* reentrancy paranoia */
   g_object_ref (G_OBJECT (transient_parent));
@@ -2960,37 +3003,49 @@ terminal_profile_delete_list (GConfClient *conf,
   tmp = deleted_profiles;
   while (tmp != NULL)
     {
+      gchar *dir;
       TerminalProfile *profile = tmp->data;
-      
+
+      dir = g_strdup_printf (CONF_PREFIX"/profiles/%s",
+			     terminal_profile_get_name (profile));
+      gconf_client_recursive_unset (conf, dir,
+				    GCONF_UNSET_INCLUDING_SCHEMA_NAMES,
+				    &err);
+      g_free (dir);
+
+      if (err)
+	break;
+
       current_profiles = g_list_remove (current_profiles, profile);
-      
+
       tmp = tmp->next;
     }
 
-  /* make list of profile names */
-  name_list = NULL;
-  tmp = current_profiles;
-  while (tmp != NULL)
+  if (!err)
     {
-      name_list = g_slist_prepend (name_list,
-                                   g_strdup (terminal_profile_get_name (tmp->data)));
-      
-      tmp = tmp->next;
+      /* make list of profile names */
+      name_list = NULL;
+      tmp = current_profiles;
+      while (tmp != NULL)
+	{
+	  name_list = g_slist_prepend (name_list,
+				       g_strdup (terminal_profile_get_name (tmp->data)));
+	  tmp = tmp->next;
+	}
+
+      g_list_free (current_profiles);
+
+      gconf_client_set_list (conf,
+			     CONF_GLOBAL_PREFIX"/profile_list",
+			     GCONF_VALUE_STRING,
+			     name_list,
+			     &err);
+
+      g_slist_foreach (name_list, (GFunc) g_free, NULL);
+      g_slist_free (name_list);
     }
 
-  g_list_free (current_profiles);
-
-  err = NULL;
-  gconf_client_set_list (conf,
-                         CONF_GLOBAL_PREFIX"/profile_list",
-                         GCONF_VALUE_STRING,
-                         name_list,
-                         &err);
-
-  g_slist_foreach (name_list, (GFunc) g_free, NULL);
-  g_slist_free (name_list);
-
-  if (err)
+  else
     {
       if (GTK_WIDGET_VISIBLE (transient_parent))
         {
@@ -3007,9 +3062,9 @@ terminal_profile_delete_list (GConfClient *conf,
 
           dialog_add_details (GTK_DIALOG (dialog),
                               err->message);
-          
+
           gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-          
+
           gtk_widget_show (dialog);
         }
 
@@ -3228,3 +3283,30 @@ terminal_palette_rxvt[TERMINAL_PALETTE_SIZE] =
   { 0, 0xffff, 0xffff, 0xffff }
 };
 
+const GdkColor
+terminal_palette_tango[TERMINAL_PALETTE_SIZE] =
+{
+  { 0, 0x2e2e, 0x3434, 0x3636 },
+  { 0, 0xcccc, 0x0000, 0x0000 },
+  { 0, 0x4e4e, 0x9a9a, 0x0606 },
+  { 0, 0xc4c4, 0xa0a0, 0x0000 },
+  { 0, 0x3434, 0x6565, 0xa4a4 },
+  { 0, 0x7575, 0x5050, 0x7b7b },
+  { 0, 0x0606, 0x9820, 0x9a9a },
+  { 0, 0xd3d3, 0xd7d7, 0xcfcf },
+  { 0, 0x5555, 0x5757, 0x5353 },
+  { 0, 0xefef, 0x2929, 0x2929 },
+  { 0, 0x8a8a, 0xe2e2, 0x3434 },
+  { 0, 0xfcfc, 0xe9e9, 0x4f4f },
+  { 0, 0x7272, 0x9f9f, 0xcfcf },
+  { 0, 0xadad, 0x7f7f, 0xa8a8 },
+  { 0, 0x3434, 0xe2e2, 0xe2e2 },
+  { 0, 0xeeee, 0xeeee, 0xecec }
+};
+
+void
+profile_name_entry_notify (TerminalProfile *profile)
+{
+  gconf_client_notify (profile->priv->conf,
+		       CONF_GLOBAL_PREFIX"/profile_list");
+}

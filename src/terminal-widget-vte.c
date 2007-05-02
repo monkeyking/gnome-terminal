@@ -24,6 +24,7 @@
 
 #include <string.h>
 #include <vte/vte.h>
+#include <gdk/gdkx.h>
 
 #define UNIMPLEMENTED /* g_warning (G_STRLOC": unimplemented") */
 
@@ -350,6 +351,7 @@ void
 terminal_widget_set_background_transparent (GtkWidget *widget,
 					    gboolean   setting)
 {
+    /* FIXME: Don't enable this if we have a compmgr. */
   vte_terminal_set_background_transparent(VTE_TERMINAL(widget), setting);
 }
 
@@ -360,6 +362,14 @@ terminal_widget_set_background_darkness (GtkWidget *widget,
 {
   g_return_if_fail(VTE_IS_TERMINAL(widget));
   vte_terminal_set_background_saturation(VTE_TERMINAL(widget), 1.0 - factor);
+}
+
+void
+terminal_widget_set_background_opacity (GtkWidget *widget,
+					double     factor)
+{
+  g_return_if_fail(VTE_IS_TERMINAL(widget));
+  vte_terminal_set_opacity(VTE_TERMINAL(widget), factor * 0xffff);
 }
 
 void
@@ -599,10 +609,31 @@ terminal_widget_write_data_to_child (GtkWidget  *widget,
 
 void
 terminal_widget_set_pango_font (GtkWidget                  *widget,
-                                const PangoFontDescription *font_desc)
+				const PangoFontDescription *font_desc,
+				gboolean no_aa_without_render)
 {
   g_return_if_fail (font_desc != NULL);
-  vte_terminal_set_font (VTE_TERMINAL (widget), font_desc);
+
+  if (!no_aa_without_render)
+    vte_terminal_set_font (VTE_TERMINAL (widget), font_desc);
+
+  else
+    {
+      Display *dpy;
+      gboolean has_render;
+      gint event_base, error_base;
+
+      dpy = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+      has_render = (XRenderQueryExtension (dpy, &event_base, &error_base) &&
+		    (XRenderFindVisualFormat (dpy, DefaultVisual (dpy, DefaultScreen (dpy))) != 0));
+
+      if (has_render)
+	vte_terminal_set_font (VTE_TERMINAL (widget), font_desc);
+      else 
+	vte_terminal_set_font_full (VTE_TERMINAL (widget),
+				    font_desc,
+				    VTE_ANTI_ALIAS_FORCE_DISABLE);
+    }
 }
 
 gboolean
