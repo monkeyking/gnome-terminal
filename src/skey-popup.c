@@ -28,6 +28,8 @@
 #include <string.h>
 
 #define SKEY_PREFIX "s/key "
+#define OTP_PREFIX  "otp-"
+
 static gboolean
 extract_seq_and_seed (const gchar  *skey_match,
 		      gint         *seq,
@@ -35,14 +37,68 @@ extract_seq_and_seed (const gchar  *skey_match,
 {
   gchar *end_ptr = NULL;
 
-  if (strncmp (SKEY_PREFIX, skey_match, strlen (SKEY_PREFIX)))
-    return FALSE;
-
   *seq = strtol (skey_match + strlen (SKEY_PREFIX), &end_ptr, 0);
 
   if (end_ptr == NULL || *end_ptr == '\000')
     return FALSE;
+
   *seed = g_strdup (end_ptr + 1);
+
+  return TRUE;
+}
+
+static gboolean
+extract_hash_seq_and_seed (const gchar  *otp_match,
+			   gint         *hash,
+	  	           gint         *seq,
+		           gchar       **seed)
+{
+  gchar *end_ptr = NULL;
+  const gchar *p = otp_match + strlen (OTP_PREFIX);
+  gint len = 3;
+
+  if (strncmp (p, "md4", 3) == 0)
+    *hash = MD4;
+
+  else if (strncmp (p, "md5", 3) == 0)
+    *hash = MD5;
+
+  else if (strncmp (p, "sha1", 4) == 0)
+    {
+      *hash = SHA1;
+      len++;
+    }
+
+  else
+    return FALSE;
+
+  p += len;
+
+  /* RFC mandates the following skipping */
+  while (*p == ' ' || *p == '\t')
+    {
+      if (*p == '\0')
+	return FALSE;
+
+      p++;
+    }
+
+  *seq = strtol (p, &end_ptr, 0);
+
+  if (end_ptr == NULL || *end_ptr == '\000')
+    return FALSE;
+
+  p = end_ptr;
+
+  while (*p == ' ' || *p == '\t')
+    {
+      if (*p == '\0')
+	return FALSE;
+      p++;
+    }
+
+  *seed = strdup (p);
+
   return TRUE;
 }
 
@@ -56,17 +112,36 @@ terminal_skey_do_popup (TerminalScreen *screen,
   GtkWidget *ok_button;
   gint seq;
   gchar *seed;
+  gint hash = MD5;
 
-  if (!extract_seq_and_seed (skey_match, &seq, &seed))
+  if (strncmp (SKEY_PREFIX, skey_match, strlen (SKEY_PREFIX)) == 0)
     {
-      terminal_util_show_error_dialog (GTK_WINDOW (transient_parent), NULL,
-                                       _("The text you clicked doesn't seem to be an S/Key challenge."));
-      return;
+      if (!extract_seq_and_seed (skey_match, &seq, &seed))
+	{
+	  terminal_util_show_error_dialog (GTK_WINDOW (transient_parent), NULL,
+					   _("The text you clicked on doesn't "
+					     "seem to be a valid S/Key "
+					     "challenge."));
+	  return;
+	}
+    }
+  else
+    {
+      if (!extract_hash_seq_and_seed (skey_match, &hash, &seq, &seed))
+	{
+	  terminal_util_show_error_dialog (GTK_WINDOW (transient_parent), NULL,
+					   _("The text you clicked on doesn't "
+					     "seem to be a valid OTP "
+					     "challenge."));
+	  return;
+	}
     }
 
   if (dialog == NULL)
     {
       GladeXML *xml;
+      GtkWidget *title;
+      gchar *title_text;
 
       xml = terminal_util_load_glade_file (TERM_GLADE_FILE,
                                            "skey-dialog",
@@ -74,10 +149,17 @@ terminal_skey_do_popup (TerminalScreen *screen,
 
       if (xml == NULL)
         return;
-      
+
       dialog = glade_xml_get_widget (xml, "skey-dialog");
+      title = glade_xml_get_widget (xml, "label61");
       entry = glade_xml_get_widget (xml, "skey-entry");
       ok_button = glade_xml_get_widget (xml, "skey-ok-button");
+
+      title_text = g_strdup_printf ("<big><b>%s</b></big>",
+				    gtk_label_get_text (GTK_LABEL (title)));
+      gtk_label_set_label (GTK_LABEL (title), title_text);
+      g_free (title_text);
+
       g_object_set_data (G_OBJECT (dialog), "skey-entry", entry);      
       g_object_set_data (G_OBJECT (dialog), "skey-ok-button", ok_button);
 
@@ -103,7 +185,7 @@ terminal_skey_do_popup (TerminalScreen *screen,
       gchar *response;
       
       password = gtk_entry_get_text (GTK_ENTRY (entry));
-      response = skey (MD5, seq, seed, password);
+      response = skey (hash, seq, seed, password);
       if (response)
 	{
 	  terminal_widget_write_data_to_child (terminal_screen_get_widget (screen),

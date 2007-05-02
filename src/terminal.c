@@ -25,6 +25,7 @@
 #include "terminal.h"
 #include "terminal-accels.h"
 #include "terminal-window.h"
+#include "terminal-notebook.h"
 #include "terminal-widget.h"
 #include "profile-editor.h"
 #include "encoding.h"
@@ -95,6 +96,7 @@ typedef struct
   GList *initial_windows;
   gboolean default_window_menubar_forced;
   gboolean default_window_menubar_state;
+  gboolean default_start_fullscreen;
   char *default_geometry;
   char *default_working_dir;
   char **post_execute_args;
@@ -155,6 +157,7 @@ enum {
   OPTION_ROLE,
   OPTION_SHOW_MENUBAR,
   OPTION_HIDE_MENUBAR,
+  OPTION_FULLSCREEN,
   OPTION_GEOMETRY,
   OPTION_DISABLE_FACTORY,
   OPTION_USE_FACTORY,
@@ -275,6 +278,15 @@ struct poptOption options[] = {
     NULL,
     OPTION_HIDE_MENUBAR,
     N_("Turn off the menubar for the last-specified window; applies to only one window; can be specified once for each window you create from the command line."),
+    NULL
+  },
+  {
+    "full-screen",
+    '\0',
+    POPT_ARG_NONE,
+    NULL,
+    OPTION_FULLSCREEN,
+    N_("Set the last-specified window into fullscreen mode; applies to only one window; can be specified once for each window you create from the command line."),
     NULL
   },
   {
@@ -560,6 +572,8 @@ typedef struct
   gboolean force_menubar_state;
   gboolean menubar_state;
 
+  gboolean start_fullscreen;
+
   char *geometry;
   char *role;
   
@@ -606,6 +620,7 @@ initial_window_new (const char *profile,
   iw->tabs = g_list_prepend (NULL, initial_tab_new (profile, is_id));
   iw->force_menubar_state = FALSE;
   iw->menubar_state = FALSE;
+  iw->start_fullscreen = FALSE;
   iw->geometry = NULL;
   iw->role = NULL;
   
@@ -641,6 +656,8 @@ apply_defaults (OptionParsingResults *results,
 
       results->default_window_menubar_forced = FALSE;
     }
+
+  iw->start_fullscreen = results->default_start_fullscreen;
 }
 
 static InitialWindow*
@@ -918,6 +935,23 @@ parse_options_callback (poptContext              ctx,
           {
             results->default_window_menubar_forced = TRUE;
             results->default_window_menubar_state = FALSE;
+          }
+      }
+      break;
+
+    case OPTION_FULLSCREEN:
+      {
+        InitialWindow *iw;
+            
+        if (results->initial_windows)
+          {
+            iw = g_list_last (results->initial_windows)->data;
+
+            iw->start_fullscreen = TRUE;
+          }
+        else
+          {
+            results->default_start_fullscreen = TRUE;
           }
       }
       break;
@@ -1399,8 +1433,10 @@ new_terminal_with_options (OptionParsingResults *results)
               terminal_app_new_terminal (app,
                                          profile,
                                          NULL,
+                                         NULL,
                                          iw->force_menubar_state,
                                          iw->menubar_state,
+                                         iw->start_fullscreen,
                                          it->exec_argv,
                                          iw->geometry,
                                          it->title,
@@ -1419,7 +1455,9 @@ new_terminal_with_options (OptionParsingResults *results)
               terminal_app_new_terminal (app,
                                          profile,
                                          current_window,
+                                         NULL,
                                          FALSE, FALSE,
+                                         FALSE/*not fullscreen*/,
                                          it->exec_argv,
                                          NULL,
                                          it->title,
@@ -1476,6 +1514,57 @@ insert_args (int        *argc,
   argv[*argc] = NULL;
 }
 
+/* Copied from libnautilus/nautilus-program-choosing.c; Needed in case
+ * we have no DESKTOP_STARTUP_ID (with its accompanying timestamp).
+ */
+static Time
+slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
+{
+  Window xwindow;
+  XEvent event;
+
+  {
+    XSetWindowAttributes attrs;
+    Atom atom_name;
+    Atom atom_type;
+    char *name;
+
+    attrs.override_redirect = True;
+    attrs.event_mask = PropertyChangeMask | StructureNotifyMask;
+
+    xwindow =
+      XCreateWindow (xdisplay,
+		     RootWindow (xdisplay, 0),
+		     -100, -100, 1, 1,
+		     0,
+		     CopyFromParent,
+		     CopyFromParent,
+		     CopyFromParent,
+		     CWOverrideRedirect | CWEventMask,
+		     &attrs);
+
+    atom_name = XInternAtom (xdisplay, "WM_NAME", TRUE);
+    g_assert (atom_name != None);
+    atom_type = XInternAtom (xdisplay, "STRING", TRUE);
+    g_assert (atom_type != None);
+
+    name = "Fake Window";
+    XChangeProperty (xdisplay, 
+		     xwindow, atom_name,
+		     atom_type,
+		     8, PropModeReplace, (unsigned char *)name, strlen (name));
+  }
+
+  XWindowEvent (xdisplay,
+		xwindow,
+		PropertyChangeMask,
+		&event);
+
+  XDestroyWindow(xdisplay, xwindow);
+
+  return event.xproperty.time;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -1515,8 +1604,6 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  g_set_application_name (_("Terminal"));
-  
   argc_copy = argc;
   /* we leave empty slots, for --startup-id, --display and --default-working-directory */
   argv_copy = g_new0 (char *, argc_copy + 7);
@@ -1538,6 +1625,18 @@ main (int argc, char **argv)
   
   gtk_init (&argc, &argv);
 
+  /* Do this here so that gdk_display is initialized */
+  if (results->startup_id == NULL)
+    {
+      /* Create a fake one containing a timestamp that we can use */
+      Time timestamp;
+      timestamp = slowly_and_stupidly_obtain_timestamp (gdk_display);
+      results->startup_id = g_strdup_printf ("_TIME%lu",
+                                             timestamp);
+    }
+
+  g_set_application_name (_("Terminal"));
+  
   display = gdk_display_get_default ();
   display_name = gdk_display_get_name (display);
   results->display_name = g_strdup (display_name);
@@ -1573,6 +1672,11 @@ main (int argc, char **argv)
 
   option_parsing_results_apply_directory_defaults (results);
   
+  gtk_rc_parse_string ("style \"hig-dialog\" {\n"
+                         "GtkDialog::action-area-border = 0\n"
+                         "GtkDialog::button-spacing = 12\n"
+                         "}\n");
+
   if (!terminal_factory_disabled)
     {
       char *cwd;
@@ -1783,8 +1887,10 @@ void
 terminal_app_new_terminal (TerminalApp     *app,
                            TerminalProfile *profile,
                            TerminalWindow  *window,
+                           TerminalScreen  *screen,
                            gboolean         force_menubar_state,
                            gboolean         forced_menubar_state,
+                           gboolean         start_fullscreen,
                            char           **override_command,
                            const char      *geometry,
                            const char      *title,
@@ -1795,15 +1901,15 @@ terminal_app_new_terminal (TerminalApp     *app,
                            const char      *display_name,
                            int              screen_number)
 {
-  TerminalScreen *screen;
   gboolean window_created;
+  gboolean screen_created;
   
   g_return_if_fail (profile);
 
   window_created = FALSE;
   if (window == NULL)
     {
-      GdkScreen *screen;
+      GdkScreen *gdk_screen;
       
       window_created = TRUE;
       window = terminal_window_new (conf);
@@ -1815,11 +1921,11 @@ terminal_app_new_terminal (TerminalApp     *app,
       
       app->windows = g_list_append (app->windows, window);
 
-      screen = find_screen_by_display_name (display_name, screen_number);
-      if (screen != NULL)
+      gdk_screen = find_screen_by_display_name (display_name, screen_number);
+      if (gdk_screen != NULL)
         {
-          gtk_window_set_screen (GTK_WINDOW (window), screen);
-          g_object_unref (G_OBJECT (screen));
+          gtk_window_set_screen (GTK_WINDOW (window), gdk_screen);
+          g_object_unref (G_OBJECT (gdk_screen));
         }
 
       if (startup_id != NULL)
@@ -1835,27 +1941,48 @@ terminal_app_new_terminal (TerminalApp     *app,
     {
       terminal_window_set_menubar_visible (window, forced_menubar_state);
     }
-  
-  screen = terminal_screen_new ();
-  
-  terminal_screen_set_profile (screen, profile);
 
-  if (title)
-    terminal_screen_set_dynamic_title (screen, title);
+  screen_created = FALSE;
+  if (screen == NULL)
+    {  
+      screen_created = TRUE;
+      screen = terminal_screen_new ();
+      
+      terminal_screen_set_profile (screen, profile);
+    
+      if (title)
+	{
+          terminal_screen_set_title (screen, title);
+	  terminal_screen_set_dynamic_title (screen, title, FALSE);
+	  terminal_screen_set_dynamic_icon_title (screen, title, FALSE);
+	}
 
-  if (working_dir)
-    terminal_screen_set_working_dir (screen, working_dir);
-  
-  if (override_command)    
-    terminal_screen_set_override_command (screen, override_command);
+      if (working_dir)
+        terminal_screen_set_working_dir (screen, working_dir);
+      
+      if (override_command)    
+        terminal_screen_set_override_command (screen, override_command);
+    
+      terminal_screen_set_font_scale (screen, zoom);
+      terminal_screen_set_font (screen);
+    
+      terminal_window_add_screen (window, screen);
 
-  terminal_screen_set_font_scale (screen, zoom);
-  
-  terminal_window_add_screen (window, screen);
+      terminal_screen_reread_profile (screen);
 
-  g_object_unref (G_OBJECT (screen));
-
-  terminal_window_set_active (window, screen);
+      g_object_unref (G_OBJECT (screen));
+    
+      terminal_window_set_active (window, screen);
+      gtk_widget_grab_focus (terminal_screen_get_widget (screen));
+    }
+  else
+   {
+      TerminalWindow *src_win = terminal_screen_get_window (screen);
+      TerminalNotebook *src_notebook = TERMINAL_NOTEBOOK (terminal_window_get_notebook (src_win));
+      TerminalNotebook *dest_notebook = TERMINAL_NOTEBOOK (terminal_window_get_notebook (window));
+      
+      terminal_notebook_move_tab (src_notebook, dest_notebook, screen, 0);
+    }
 
   if (geometry)
     {
@@ -1865,6 +1992,11 @@ terminal_app_new_terminal (TerminalApp     *app,
                     geometry);
     }
 
+  if (start_fullscreen)
+    {
+      terminal_window_set_fullscreen (window, TRUE);
+    }
+
   /* don't present on new tab, or we can accidentally make the
    * terminal jump workspaces.
    * http://bugzilla.gnome.org/show_bug.cgi?id=78253
@@ -1872,7 +2004,8 @@ terminal_app_new_terminal (TerminalApp     *app,
   if (window_created)
     gtk_window_present (GTK_WINDOW (window));
 
-  terminal_screen_launch_child (screen);
+  if (screen_created)
+    terminal_screen_launch_child (screen);
 }
 
 static GList*
@@ -2197,13 +2330,15 @@ new_profile_response_callback (GtkWidget *new_profile_dialog,
     {
       GtkWidget *name_entry;
       char *name;
+      char *escaped_name;
       GtkWidget *base_option_menu;
       TerminalProfile *base_profile = NULL;
       TerminalProfile *new_profile;
       GList *profiles;
       GList *tmp;
-      GSList n;
       GtkWindow *transient_parent;
+      GtkWidget *confirm_dialog;
+      gint retval;
       
       name_entry = g_object_get_data (G_OBJECT (new_profile_dialog), "name_entry");
       name = gtk_editable_get_chars (GTK_EDITABLE (name_entry), 0, -1);
@@ -2219,9 +2354,15 @@ new_profile_response_callback (GtkWidget *new_profile_dialog,
         }
       if (tmp)
         {
-          terminal_util_show_error_dialog (GTK_WINDOW (new_profile_dialog), NULL, 
-                                           _("You already have a profile called \"%s\""), name);
-          goto cleanup;
+          confirm_dialog = gtk_message_dialog_new (GTK_WINDOW (new_profile_dialog), 
+						   GTK_DIALOG_DESTROY_WITH_PARENT,
+                	 			   GTK_MESSAGE_QUESTION, 
+						   GTK_BUTTONS_YES_NO, 
+			 			   _("You already have a profile called \"%s\". Do you want to create another profile with the same name?"), name);
+          retval = gtk_dialog_run (GTK_DIALOG (confirm_dialog));
+          gtk_widget_destroy (confirm_dialog);
+          if (retval == GTK_RESPONSE_NO)   
+            goto cleanup;
         }
       g_list_free (profiles);
 
@@ -2241,16 +2382,23 @@ new_profile_response_callback (GtkWidget *new_profile_dialog,
       
       terminal_profile_create (base_profile, name, transient_parent);
 
-      n.next = NULL;
-      n.data = gconf_escape_key (name, -1);
-      sync_profile_list (TRUE, &n);
-      g_free (n.data);
+      escaped_name = gconf_escape_key (name, -1);
+      new_profile = terminal_profile_new (escaped_name, conf);
+      terminal_profile_update (new_profile);
+      sync_profile_list (FALSE, NULL);
+      g_free (escaped_name);
       
       new_profile = terminal_profile_lookup_by_visible_name (name);
 
-      g_assert (new_profile != NULL);
-
-      terminal_profile_edit (new_profile, transient_parent);
+      if (new_profile == NULL)
+        {
+          terminal_util_show_error_dialog (transient_parent, NULL, 
+                                           _("There was an error creating the profile \"%s\""), name);
+        }
+      else 
+        {
+          terminal_profile_edit (new_profile, transient_parent);
+        }
 
     cleanup:
       g_free (name);
@@ -2320,7 +2468,7 @@ terminal_app_new_profile (TerminalApp     *app,
       g_signal_connect (G_OBJECT (w), "changed", G_CALLBACK (new_profile_name_entry_changed_callback), create_button);
       gtk_entry_set_activates_default (GTK_ENTRY (w), TRUE);
       gtk_widget_grab_focus (w);
-      terminal_util_set_atk_name_description (w, _("Enter profile name"), NULL);
+      terminal_util_set_atk_name_description (w, NULL, _("Enter profile name"));
       gtk_size_group_add_widget (size_group, w);
 
       wl = glade_xml_get_widget (xml, "new-profile-name-label");
@@ -2330,7 +2478,7 @@ terminal_app_new_profile (TerminalApp     *app,
       /* the base profile option menu */
       w = glade_xml_get_widget (xml, "new-profile-base-option-menu");
       g_object_set_data (G_OBJECT (app->new_profile_dialog), "base_option_menu", w);
-      terminal_util_set_atk_name_description (w, _("Choose base profile"), NULL);
+      terminal_util_set_atk_name_description (w, NULL, _("Choose base profile"));
       profile_optionmenu_refill (w);
       gtk_size_group_add_widget (size_group, w);
 
@@ -2556,10 +2704,11 @@ profile_list_delete_selection (GtkWidget   *profile_list,
   if (count > 1)
     {
       str = g_string_new (NULL);
-      g_string_printf (str, ngettext ("Delete this profile?\n", 
-                                      "Delete these %d profiles?\n",
-                                      count), 
-                       count);
+      g_string_printf (str,
+		       ngettext ("Delete this profile?\n",
+				 "Delete these %d profiles?\n",
+				 count),
+		       count);
 
       tmp = deleted_profiles;
       while (tmp != NULL)
@@ -2569,7 +2718,7 @@ profile_list_delete_selection (GtkWidget   *profile_list,
                            terminal_profile_get_visible_name (tmp->data));
           if (tmp->next)
             g_string_append (str, "\n");
-          
+
           tmp = tmp->next;
         }
     }
@@ -2730,13 +2879,25 @@ static void
 fix_button_align (GtkWidget *button)
 {
   GtkWidget *child;
+  GtkWidget *alignment;
 
   child = gtk_bin_get_child (GTK_BIN (button));
 
-  if (GTK_IS_ALIGNMENT (child))
-    g_object_set (G_OBJECT (child), "xalign", 0.0, NULL);
-  else if (GTK_IS_LABEL (child))
-    g_object_set (G_OBJECT (child), "xalign", 0.0, NULL);    
+  g_object_ref (child);
+  gtk_container_remove (GTK_CONTAINER (button), child);
+
+  alignment = gtk_alignment_new (0.0, 0.5, 1.0, 1.0);
+  gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 12, 12);
+
+  gtk_container_add (GTK_CONTAINER (alignment), child);
+  g_object_unref (child);
+
+  gtk_container_add (GTK_CONTAINER (button), alignment);
+
+  if (GTK_IS_ALIGNMENT (child) || GTK_IS_LABEL (child))
+    {
+      g_object_set (G_OBJECT (child), "xalign", 0.0, NULL);
+    }
 }
 
 static void
@@ -2844,6 +3005,7 @@ terminal_app_manage_profiles (TerminalApp     *app,
 
   if (app->manage_profiles_dialog == NULL)
     {
+      GtkWidget *main_vbox;
       GtkWidget *vbox;
       GtkWidget *label;
       GtkWidget *sw;
@@ -2854,6 +3016,8 @@ terminal_app_manage_profiles (TerminalApp     *app,
       GtkSizeGroup *size_group;
       GtkTreeSelection *selection;
       
+      terminal_app_register_stock ();
+
       old_transient_parent = NULL;      
       
       app->manage_profiles_dialog =
@@ -2879,43 +3043,22 @@ terminal_app_manage_profiles (TerminalApp     *app,
 
       terminal_util_set_unique_role (GTK_WINDOW (app->manage_profiles_dialog), "gnome-terminal-profile-manager");
 
-#define PADDING 5
+      gtk_widget_set_name (app->manage_profiles_dialog, "profile-manager-dialog");
+      gtk_rc_parse_string ("widget \"profile-manager-dialog\" style \"hig-dialog\"\n");
 
-      vbox = gtk_vbox_new (FALSE, PADDING);
-      gtk_container_set_border_width (GTK_CONTAINER (vbox), PADDING);
-      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (app->manage_profiles_dialog)->vbox),
-                          vbox, TRUE, TRUE, 0);
+      gtk_dialog_set_has_separator (GTK_DIALOG (app->manage_profiles_dialog), FALSE);
+      gtk_container_set_border_width (GTK_CONTAINER (app->manage_profiles_dialog), 10);
+      gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (app->manage_profiles_dialog)->vbox), 12);
 
-      hbox = gtk_hbox_new (FALSE, PADDING);
-      gtk_box_pack_end (GTK_BOX (vbox),
-                        hbox, FALSE, FALSE, 0);
-
-      app->manage_profiles_default_menu = profile_optionmenu_new ();
-      if (terminal_profile_get_default ())
-        profile_optionmenu_set_selected (app->manage_profiles_default_menu,
-                                         terminal_profile_get_default ());
-      g_signal_connect (G_OBJECT (app->manage_profiles_default_menu),
-                        "changed", G_CALLBACK (default_menu_changed),
-                        app);
-      monitor_profiles_for_is_default_change (app->manage_profiles_default_menu);
+      main_vbox = gtk_vbox_new (FALSE, 12);
+      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (app->manage_profiles_dialog)->vbox), main_vbox, TRUE, TRUE, 0);
+     
+      // the top thing
+      hbox = gtk_hbox_new (FALSE, 12);
+      gtk_box_pack_start (GTK_BOX (main_vbox), hbox, TRUE, TRUE, 0);
       
-      label = gtk_label_new_with_mnemonic (_("Profile _used when launching a new terminal:"));
-      gtk_label_set_mnemonic_widget (GTK_LABEL (label),
-                                     app->manage_profiles_default_menu);
-
-      gtk_box_pack_start (GTK_BOX (hbox),
-                          label, TRUE, TRUE, 0);
-            
-      gtk_box_pack_end (GTK_BOX (hbox),
-                        app->manage_profiles_default_menu, FALSE, FALSE, 0);
-      
-      hbox = gtk_hbox_new (FALSE, PADDING);
-      gtk_box_pack_start (GTK_BOX (vbox),
-                          hbox, TRUE, TRUE, 0);
-      
-      vbox = gtk_vbox_new (FALSE, PADDING);
-      gtk_box_pack_start (GTK_BOX (hbox),
-                          vbox, TRUE, TRUE, 0);
+      vbox = gtk_vbox_new (FALSE, 6);
+      gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
       size_group = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
       
@@ -2926,72 +3069,66 @@ terminal_app_manage_profiles (TerminalApp     *app,
 
       app->manage_profiles_list = create_profile_list ();
 
-      g_signal_connect (G_OBJECT (app->manage_profiles_list),
-                        "row_activated",
-                        G_CALLBACK (profile_activated_callback),
-                        app);
+      g_signal_connect (G_OBJECT (app->manage_profiles_list), "row_activated",
+                        G_CALLBACK (profile_activated_callback), app);
       
       sw = gtk_scrolled_window_new (NULL, NULL);
-      
-      gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-                                      GTK_POLICY_AUTOMATIC,
-                                      GTK_POLICY_AUTOMATIC);
-      gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
-					   GTK_SHADOW_IN);
-      
+      gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+      gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw), GTK_SHADOW_IN);
       gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
-
       gtk_container_add (GTK_CONTAINER (sw), app->manage_profiles_list);      
       
-      gtk_dialog_set_default_response (GTK_DIALOG (app->manage_profiles_dialog),
-                                       RESPONSE_CREATE);
+      gtk_dialog_set_default_response (GTK_DIALOG (app->manage_profiles_dialog), RESPONSE_CREATE);
+      gtk_label_set_mnemonic_widget (GTK_LABEL (label), app->manage_profiles_list);
 
-      gtk_label_set_mnemonic_widget (GTK_LABEL (label),
-                                     app->manage_profiles_list);
-
-      vbox = gtk_vbox_new (FALSE, PADDING);
-      gtk_box_pack_start (GTK_BOX (hbox),
-                          vbox, FALSE, FALSE, 0);
+      vbox = gtk_vbox_new (FALSE, 6);
+      gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
       spacer = gtk_alignment_new (0.5, 0.5, 1.0, 1.0);
       gtk_size_group_add_widget (size_group, spacer);      
-      gtk_box_pack_start (GTK_BOX (vbox),
-                          spacer, FALSE, FALSE, 0);
+      gtk_box_pack_start (GTK_BOX (vbox), spacer, FALSE, FALSE, 0);
       
       button = gtk_button_new_from_stock (GTK_STOCK_NEW);
       fix_button_align (button);
-      gtk_box_pack_start (GTK_BOX (vbox),
-                          button, FALSE, FALSE, 0);
-      g_signal_connect (G_OBJECT (button), "clicked",
-                        G_CALLBACK (new_button_clicked), app);
+      gtk_box_pack_start (GTK_BOX (vbox), button, FALSE, FALSE, 0);
+      g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (new_button_clicked), app);
       app->manage_profiles_new_button = button;
       terminal_util_set_atk_name_description (app->manage_profiles_new_button, NULL,                             
                                               _("Click to open new profile dialog"));
-
-
-      terminal_app_register_stock ();
       
       button = gtk_button_new_from_stock (TERMINAL_STOCK_EDIT);
       fix_button_align (button);
-      gtk_box_pack_start (GTK_BOX (vbox),
-                          button, FALSE, FALSE, 0);
-      g_signal_connect (G_OBJECT (button), "clicked",
-                        G_CALLBACK (edit_button_clicked), app);
+      gtk_box_pack_start (GTK_BOX (vbox), button, FALSE, FALSE, 0);
+      g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (edit_button_clicked), app);
       app->manage_profiles_edit_button = button;
       terminal_util_set_atk_name_description (app->manage_profiles_edit_button, NULL,                            
                                               _("Click to open edit profile dialog"));
       
       button = gtk_button_new_from_stock (GTK_STOCK_DELETE);
       fix_button_align (button);
-      gtk_box_pack_start (GTK_BOX (vbox),
-                          button, FALSE, FALSE, 0);
-      g_signal_connect (G_OBJECT (button), "clicked",
-                        G_CALLBACK (delete_button_clicked), app);
+      gtk_box_pack_start (GTK_BOX (vbox), button, FALSE, FALSE, 0);
+      g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (delete_button_clicked), app);
       app->manage_profiles_delete_button = button;
       terminal_util_set_atk_name_description (app->manage_profiles_delete_button, NULL,                          
                                               _("Click to delete selected profile"));
+      // bottom line
+      hbox = gtk_hbox_new (FALSE, 12);
+      gtk_box_pack_start (GTK_BOX (main_vbox), hbox, FALSE, FALSE, 0);
 
-      
+      label = gtk_label_new_with_mnemonic (_("Profile _used when launching a new terminal:"));
+      gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+            
+      app->manage_profiles_default_menu = profile_optionmenu_new ();
+      gtk_label_set_mnemonic_widget (GTK_LABEL (label), app->manage_profiles_default_menu);
+      if (terminal_profile_get_default ())
+        {
+          profile_optionmenu_set_selected (app->manage_profiles_default_menu, terminal_profile_get_default ());
+        }
+      g_signal_connect (G_OBJECT (app->manage_profiles_default_menu), "changed", 
+                        G_CALLBACK (default_menu_changed), app);
+      monitor_profiles_for_is_default_change (app->manage_profiles_default_menu);
+      gtk_box_pack_start (GTK_BOX (hbox), app->manage_profiles_default_menu, TRUE, TRUE, 0);
+ 
       /* Set default size of profile list */
       gtk_window_set_geometry_hints (GTK_WINDOW (app->manage_profiles_dialog),
                                      app->manage_profiles_list,
@@ -2999,7 +3136,6 @@ terminal_app_manage_profiles (TerminalApp     *app,
 
       /* Incremental reflow makes this a bit useless, I guess. */
       gtk_widget_size_request (app->manage_profiles_list, &req);
-
       gtk_window_set_default_size (GTK_WINDOW (app->manage_profiles_dialog),
                                    MIN (req.width + 140, 450),
                                    MIN (req.height + 190, 400));
@@ -3011,10 +3147,7 @@ terminal_app_manage_profiles (TerminalApp     *app,
       /* Monitor selection for sensitivity */
       selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (app->manage_profiles_list));
       selection_changed_callback (selection, app);
-      g_signal_connect (G_OBJECT (selection), "changed",
-                        G_CALLBACK (selection_changed_callback),
-                        app);
-
+      g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (selection_changed_callback), app);
     }
   else 
     {
@@ -3253,7 +3386,7 @@ terminal_app_get_clone_command (TerminalApp *app,
 
           if (screen == active_screen)
             {
-              int w, h;
+              int w, h, x, y;
 
               /* FIXME saving the geometry is not great :-/ */
               argv[i] = g_strdup ("--active");
@@ -3261,7 +3394,8 @@ terminal_app_get_clone_command (TerminalApp *app,
               argv[i] = g_strdup ("--geometry");
               ++i;
               terminal_widget_get_size (terminal_screen_get_widget (screen), &w, &h);
-              argv[i] = g_strdup_printf ("%dx%d", w, h);
+              gtk_window_get_position (GTK_WINDOW (window), &x, &y);
+              argv[i] = g_strdup_printf ("%dx%d+%d+%d", w, h, x, y);
               ++i;
             }
 
@@ -3593,18 +3727,26 @@ handle_new_terminal_event (int          argc,
 static void
 handle_new_terminal_events (void)
 {
+  static gboolean currently_handling_events = FALSE;
+
+  if (currently_handling_events)
+    return;
+  currently_handling_events = TRUE;
+
   while (pending_new_terminal_events != NULL)
     {
-      GSList *next = pending_new_terminal_events->next;
+      GSList *next;
       NewTerminalEvent *event = pending_new_terminal_events->data;
 
       handle_new_terminal_event (event->argc, event->argv);
 
+      next = pending_new_terminal_events->next;
       g_strfreev (event->argv);
       g_free (event);
       g_slist_free_1 (pending_new_terminal_events);
       pending_new_terminal_events = next;
     }
+  currently_handling_events = FALSE;
 }
 
 /*
