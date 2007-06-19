@@ -1,3 +1,33 @@
+2007-06-18  Behdad Esfahbod  <behdad@gnome.org>
+
+	* NEWS:
+	* configure.in: Released 2.18.1
+
+2007-06-14  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 353632 – crash on Terminal
+
+	* src/profile-editor.c (profile_editor_update_background_image):
+	Don't call gtk_file_chooser_set_filename() if file name is empty
+	string.
+
+2007-05-28  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 428825 – Wrong copyright info in the about dialog
+
+	* src/terminal-window.c (about_callback): Update copyright info.
+
+2007-05-16  Christian Persch  <chpe@gnome.org>
+
+	* src/profile-editor.c: (create_preview_pixbuf): Don't crash when we
+	cannot determine the mime type of the profile image. Bug #434109.
+
+2007-03-12  Vincent Untz  <vuntz@gnome.org>
+
+	* configure.in: post-release bump to 2.18.1.
+
+==================== 2.18.0 ====================
+
 2007-03-12  Vincent Untz  <vuntz@gnome.org>
 
 	* NEWS:

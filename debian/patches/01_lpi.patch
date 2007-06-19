@@ -1,7 +1,7 @@
-diff -Nur gnome-terminal-2.11.2.orig/configure.in gnome-terminal-2.11.2/configure.in
---- gnome-terminal-2.11.2.orig/configure.in	2005-07-25 11:16:15.000000000 +0200
-+++ gnome-terminal-2.11.2/configure.in	2005-08-08 19:46:31.000000000 +0200
-@@ -54,6 +54,7 @@
+diff -Nur gnome-terminal-2.18.1/configure.in gnome-terminal-2.18.1.new/configure.in
+--- gnome-terminal-2.18.1/configure.in	2007-05-28 07:08:45.000000000 +0200
++++ gnome-terminal-2.18.1.new/configure.in	2007-06-19 12:34:52.000000000 +0200
+@@ -35,6 +35,7 @@
  PKG_CHECK_MODULES(TERM, dnl
   gtk+-2.0 >= $GTK_REQUIRED dnl
   gconf-2.0 >= $GCONF_REQUIRED dnl
@@ -9,10 +9,10 @@ diff -Nur gnome-terminal-2.11.2.orig/configure.in gnome-terminal-2.11.2/configur
   libglade-2.0 dnl
   libgnomeui-2.0 dnl
   libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED dnl
-diff -Nur gnome-terminal-2.11.2.orig/src/terminal-window.c gnome-terminal-2.11.2/src/terminal-window.c
---- gnome-terminal-2.11.2.orig/src/terminal-window.c	2005-08-08 16:19:23.000000000 +0200
-+++ gnome-terminal-2.11.2/src/terminal-window.c	2005-08-08 19:45:34.000000000 +0200
-@@ -29,6 +29,7 @@
+diff -Nur gnome-terminal-2.18.1/src/terminal-window.c gnome-terminal-2.18.1.new/src/terminal-window.c
+--- gnome-terminal-2.18.1/src/terminal-window.c	2007-05-28 07:14:13.000000000 +0200
++++ gnome-terminal-2.18.1.new/src/terminal-window.c	2007-06-19 12:34:52.000000000 +0200
+@@ -30,6 +30,7 @@
  #include <string.h>
  #include <stdlib.h>
  #include <libgnome/gnome-program.h>
@@ -20,7 +20,7 @@ diff -Nur gnome-terminal-2.11.2.orig/src/terminal-window.c gnome-terminal-2.11.2
  #include <gtk/gtklabel.h>
  #include <gdk/gdkx.h>
  #include <gdk/gdkkeysyms.h>
-@@ -1045,6 +1046,8 @@
+@@ -1106,6 +1107,8 @@
                                G_CALLBACK (about_callback), window);
    set_menuitem_text (mi, _("_About"), FALSE);
    menuitem_icon_visibility (mi, menus_have_icons);
