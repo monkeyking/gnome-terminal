@@ -1,3 +1,21 @@
+gnome-terminal (2.18.1-1ubuntu1) gutsy; urgency=low
+
+  * Resynchronize with Debian, remaining Ubuntu changes:
+    - debian/control.in, debian/patches/01_lpi.patch,
+      debian/patches/02_autoconf.patch,
+      debian/patches/03_ubuntu_lpi_fix_crash.diff: LPI.
+    - debian/patches/04_resized_on_tabs_switch.patch: Distro fix.
+  * debian/control.in: Maintainer: Ubuntu Desktop Team
+    <ubuntu-desktop@lists.ubuntu.com> 
+
+ -- Aron Sisak <aron@ubuntu.hu>  Tue, 19 Jun 2007 12:32:07 +0200
+
+gnome-terminal (2.18.1-1) unstable; urgency=low
+
+  * New upstream stable release.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 19 Jun 2007 11:55:31 +0200
+
 gnome-terminal (2.18.0-2ubuntu1) gutsy; urgency=low
 
   * Resynchronize with Debian, remaining Ubuntu changes:

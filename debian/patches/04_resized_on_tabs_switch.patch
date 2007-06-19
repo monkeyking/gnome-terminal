@@ -1,11 +1,7 @@
-Index: gnome-terminal-2.15.0/src/terminal-window.c
-===================================================================
-RCS file: /cvs/gnome/gnome-terminal/src/terminal-window.c,v
-retrieving revision 1.124
-diff -u -p -d -r1.124 terminal-window.c
---- gnome-terminal-2.15.0/src/terminal-window.c	4 Mar 2006 06:21:01 -0000	1.124
-+++ gnome-terminal-2.15.0/src/terminal-window.c	1 Apr 2006 03:11:46 -0000
-@@ -1536,6 +1536,14 @@ terminal_window_set_size_force_grid (Ter
+diff -Nur gnome-terminal-2.18.1/src/terminal-window.c gnome-terminal-2.18.1.new/src/terminal-window.c
+--- gnome-terminal-2.18.1/src/terminal-window.c	2007-06-19 12:36:55.000000000 +0200
++++ gnome-terminal-2.18.1.new/src/terminal-window.c	2007-06-19 12:36:56.000000000 +0200
+@@ -1585,6 +1585,14 @@
    app = gtk_widget_get_toplevel (widget);
    g_assert (app != NULL);
  
