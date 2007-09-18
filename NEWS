@@ -1,3 +1,56 @@
+2007-08-07  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 464410 – license confusion
+
+	"gnome-terminal states that it is GPL, and COPYING is the GPL,
+	but every single source file seems to have a LGPL header."
+
+	* src/eggaccelerators.c:
+	* src/eggcellrendererkeys.c:
+	* src/encoding.c:
+	* src/profile-editor.c:
+	* src/simple-x-font-selector.c:
+	* src/skey-popup.c:
+	* src/terminal-accels.c:
+	* src/terminal-notebook.c:
+	* src/terminal-profile.c:
+	* src/terminal-screen.c:
+	* src/terminal-widget-vte.c:
+	* src/terminal-window.c:
+	* src/terminal.c:
+	Replace LPGL header with GPL header.
+	Note that LPGL allows conversion to GPL, so this change is legal
+	anyway.
+
+2007-08-02  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* ChangeLog: Fix encodings and formatting.
+
+2007-07-30  Jan Arne Petersen  <jpetersen@jpetersen.org>
+
+	* configure.in: Remove help/de/Makefile from AC_CONFIG_FILES due to
+	gnome-doc-utils migration.
+
+2007-07-21  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* src/gnome-terminal.schemas.in:
+	* src/profile-editor.c:
+	* src/terminal-profile.c:
+
+	Use Tango terminal color scheme by default.
+	Fixes bug #458115.
+
+2007-07-15  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c (about_callback): fixed the wrong mention
+	of Nautilus on the license notice.
+
+2007-07-10  Changwoo Ryu  <cwryu@debian.org>
+
+	* configure.in: Removed help/ko/Makefile from AC_CONFIG_FILES for
+	gnome-doc-utils migration.
+	
+
 2.18.1
 ===
 - A couple of crasher fixes.
