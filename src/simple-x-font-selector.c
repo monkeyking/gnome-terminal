@@ -5,20 +5,20 @@
  * Based on the GnomeFontSelector widget, by Elliot Lee, but major changes.
  * The GnomeFontSelector was derived from app/text_tool.c in the GIMP.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This file is part of gnome-terminal.
  *
- * This library is distributed in the hope that it will be useful,
+ * Gnome-terminal is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Gnome-terminal is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -1719,8 +1719,8 @@ egg_xfont_selector_finalize (GObject *object)
 
   /* FIXME: can finalize be called multiple times? */
 
-  sel->filtered_font_index = 0;
-  sel->size_options_map = 0;
+  sel->filtered_font_index = NULL;
+  sel->size_options_map = NULL;
 
   if (parent_class->finalize) {
     parent_class->finalize (object);

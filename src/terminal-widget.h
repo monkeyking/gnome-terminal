@@ -90,6 +90,9 @@ void       terminal_widget_set_background_transparent (GtkWidget            *wid
 /* 0.0 = normal bg, 1.0 = all black bg, 0.5 = half darkened */
 void       terminal_widget_set_background_darkness    (GtkWidget            *widget,
                                                        double                factor);
+void	   terminal_widget_set_background_opacity     (GtkWidget            *widget,
+						       double                factor);
+
 void       terminal_widget_set_background_scrolls     (GtkWidget            *widget,
                                                        gboolean              setting);
 void       terminal_widget_set_normal_gdk_font        (GtkWidget            *widget,
@@ -161,7 +164,8 @@ void terminal_widget_write_data_to_child (GtkWidget  *widget,
                                           int         len);
 
 void terminal_widget_set_pango_font (GtkWidget                  *widget,
-                                     const PangoFontDescription *font_desc);
+				     const PangoFontDescription *font_desc,
+				     gboolean 			anti_alias);
 
 gboolean terminal_widget_supports_pango_fonts (void);
 

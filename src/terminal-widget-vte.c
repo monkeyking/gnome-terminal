@@ -3,20 +3,20 @@
 /*
  * Copyright (C) 2002 Anders Carlsson <andersca@gnu.org>
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This file is part of gnome-terminal.
  *
- * This library is distributed in the hope that it will be useful,
+ * Gnome-terminal is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Gnome-terminal is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "terminal-intl.h"
@@ -24,6 +24,7 @@
 
 #include <string.h>
 #include <vte/vte.h>
+#include <gdk/gdkx.h>
 
 #define UNIMPLEMENTED /* g_warning (G_STRLOC": unimplemented") */
 
@@ -350,6 +351,7 @@ void
 terminal_widget_set_background_transparent (GtkWidget *widget,
 					    gboolean   setting)
 {
+    /* FIXME: Don't enable this if we have a compmgr. */
   vte_terminal_set_background_transparent(VTE_TERMINAL(widget), setting);
 }
 
@@ -360,6 +362,14 @@ terminal_widget_set_background_darkness (GtkWidget *widget,
 {
   g_return_if_fail(VTE_IS_TERMINAL(widget));
   vte_terminal_set_background_saturation(VTE_TERMINAL(widget), 1.0 - factor);
+}
+
+void
+terminal_widget_set_background_opacity (GtkWidget *widget,
+					double     factor)
+{
+  g_return_if_fail(VTE_IS_TERMINAL(widget));
+  vte_terminal_set_opacity(VTE_TERMINAL(widget), factor * 0xffff);
 }
 
 void
@@ -599,10 +609,31 @@ terminal_widget_write_data_to_child (GtkWidget  *widget,
 
 void
 terminal_widget_set_pango_font (GtkWidget                  *widget,
-                                const PangoFontDescription *font_desc)
+				const PangoFontDescription *font_desc,
+				gboolean no_aa_without_render)
 {
   g_return_if_fail (font_desc != NULL);
-  vte_terminal_set_font (VTE_TERMINAL (widget), font_desc);
+
+  if (!no_aa_without_render)
+    vte_terminal_set_font (VTE_TERMINAL (widget), font_desc);
+
+  else
+    {
+      Display *dpy;
+      gboolean has_render;
+      gint event_base, error_base;
+
+      dpy = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
+      has_render = (XRenderQueryExtension (dpy, &event_base, &error_base) &&
+		    (XRenderFindVisualFormat (dpy, DefaultVisual (dpy, DefaultScreen (dpy))) != 0));
+
+      if (has_render)
+	vte_terminal_set_font (VTE_TERMINAL (widget), font_desc);
+      else 
+	vte_terminal_set_font_full (VTE_TERMINAL (widget),
+				    font_desc,
+				    VTE_ANTI_ALIAS_FORCE_DISABLE);
+    }
 }
 
 gboolean

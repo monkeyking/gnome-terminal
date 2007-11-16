@@ -1,12 +1,15 @@
-AC_INIT(src/terminal.c)
+AC_INIT([GNOME Terminal],[2.18.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
+AC_CONFIG_SRCDIR([src/terminal.c])
 
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE(gnome-terminal, 2.7.3)
+AM_INIT_AUTOMAKE([1.9 foreign])
 
 GETTEXT_PACKAGE=gnome-terminal
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[Gettext package])
+
+AC_C_BIGENDIAN
 
 AM_MAINTAINER_MODE
 
@@ -14,40 +17,33 @@ AC_PROG_CC
 AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
-AC_PROG_INTLTOOL
+IT_PROG_INTLTOOL([0.35.0])
 
-changequote(,)dnl
-if test "x$GCC" = "xyes"; then
-  case " $CFLAGS " in
-  *[\ \	]-Wall[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wall" ;;
-  esac
+GNOME_COMPILE_WARNINGS([maximum])
 
-  if test "x$enable_ansi" = "xyes"; then
-    case " $CFLAGS " in
-    *[\ \	]-ansi[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -ansi" ;;
-    esac
-
-    case " $CFLAGS " in
-    *[\ \	]-pedantic[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -pedantic" ;;
-    esac
-  fi
-fi
-changequote([,])dnl
-
-ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu id it ja ko lt lv mk ml mn ms nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 AC_PATH_XTRA
 
+GTK_REQUIRED=2.10.0
+GCONF_REQUIRED=2.14.0
+STARTUP_NOTIFICATION_REQUIRED=0.8
+VTE_REQUIRED=0.15.3
+GNOMEVFS_REQUIRED=2.4
+
 ## here we get the flags we'll actually use
-PKG_CHECK_MODULES(TERM, gtk+-2.0 >= 2.4.0 gconf-2.0 >= 1.1.9 libglade-2.0 libgnomeui-2.0 libstartup-notification-1.0 >= 0.4 vte >= 0.11.10 gnome-vfs-2.0 >= 2.4)
+PKG_CHECK_MODULES(TERM, dnl
+ gtk+-2.0 >= $GTK_REQUIRED dnl
+ gconf-2.0 >= $GCONF_REQUIRED dnl
+ libglade-2.0 dnl
+ libgnomeui-2.0 dnl
+ libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED dnl
+ vte >= $VTE_REQUIRED dnl
+ gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED)
 
 TERM_LIBS="$X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS $TERM_LIBS"
 TERM_CFLAGS="$X_CFLAGS $TERM_CFLAGS"
-CFLAGS="$TERM_CFLAGS $CFLAGS"
+CPPFLAGS="$TERM_CFLAGS $CPPFLAGS"
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
@@ -60,32 +56,30 @@ AM_GCONF_SOURCE_2
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-if $PKG_CONFIG --atleast-version 2.0.0 xft && $PKG_CONFIG --atleast-version 1.1.1 pangoxft ; then
+if $PKG_CONFIG 'xft >= 2.0.0 pangoxft >= 1.1.1'; then
    using_xft2=yes
+   CPPFLAGS="`$PKG_CONFIG --cflags xft pangoxft` $CPPFLAGS"
+   LIBS="`$PKG_CONFIG --libs xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $LIBS"
 else
    using_xft2=no
 fi
 
-AC_OUTPUT([
+GNOME_DOC_INIT
+
+AC_CONFIG_FILES([
 Makefile
 gnome-terminal.desktop.in
 src/Makefile
-src/eel/Makefile
 src/skey/Makefile
 help/Makefile
-help/C/Makefile
+help/bg/Makefile
 help/ro/Makefile
-help/de/Makefile
-help/es/Makefile
-help/fr/Makefile
-help/it/Makefile
-help/sv/Makefile
 help/ja/Makefile
-help/ko/Makefile
 help/zh_CN/Makefile
 help/zh_TW/Makefile
 po/Makefile.in
 ])
+AC_OUTPUT
 dnl ==========================================================================
 
 if test x$using_xft2 = xno; then

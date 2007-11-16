@@ -1,22 +1,21 @@
 /* Accelerator stuff */
-
 /*
  * Copyright (C) 2001, 2002 Havoc Pennington, Red Hat Inc.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This file is part of gnome-terminal.
  *
- * This library is distributed in the hope that it will be useful,
+ * Gnome-terminal is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Gnome-terminal is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "terminal-intl.h"
@@ -43,6 +42,9 @@
 #define KEY_RESET_AND_CLEAR CONF_KEYS_PREFIX"/reset_and_clear"
 #define KEY_PREV_TAB CONF_KEYS_PREFIX"/prev_tab"
 #define KEY_NEXT_TAB CONF_KEYS_PREFIX"/next_tab"
+#define KEY_MOVE_TAB_LEFT CONF_KEYS_PREFIX"/move_tab_left"
+#define KEY_MOVE_TAB_RIGHT CONF_KEYS_PREFIX"/move_tab_right"
+#define KEY_DETACH_TAB CONF_KEYS_PREFIX"/detach_tab"
 #define KEY_SET_TERMINAL_TITLE CONF_KEYS_PREFIX"/set_window_title"
 #define PREFIX_KEY_SWITCH_TO_TAB CONF_KEYS_PREFIX"/switch_to_tab_"
 #define KEY_HELP CONF_KEYS_PREFIX"/help"
@@ -122,6 +124,12 @@ static KeyEntry go_entries[] =
     KEY_PREV_TAB, ACCEL_PATH_PREV_TAB, 0, 0, NULL, FALSE },
   { N_("Switch to Next Tab"),
     KEY_NEXT_TAB, ACCEL_PATH_NEXT_TAB, 0, 0, NULL, FALSE },
+  { N_("Move Tab to the Left"),
+    KEY_MOVE_TAB_LEFT, ACCEL_PATH_MOVE_TAB_LEFT, 0, 0, NULL, FALSE },
+  { N_("Move Tab to the Right"),
+    KEY_MOVE_TAB_RIGHT, ACCEL_PATH_MOVE_TAB_RIGHT, 0, 0, NULL, FALSE },
+  { N_("Detach Tab"),
+    KEY_DETACH_TAB, ACCEL_PATH_DETACH_TAB, 0, 0, NULL, FALSE },
   { N_("Switch to Tab 1"),
     PREFIX_KEY_SWITCH_TO_TAB"1",
     PREFIX_ACCEL_PATH_SWITCH_TO_TAB"1", 0, 0, NULL, FALSE },
@@ -993,7 +1001,8 @@ accel_edited_callback (GtkCellRendererText *cell,
 
           /* set it back to its previous value. */
           egg_cell_renderer_keys_set_accelerator (EGG_CELL_RENDERER_KEYS (cell),
-                                                  ke->gconf_keyval, ke->gconf_mask);
+						  ke->gconf_keyval,
+						  ke->gconf_mask);
           gtk_tree_path_free (path);
 
           return;
