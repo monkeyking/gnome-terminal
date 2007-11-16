@@ -2,19 +2,20 @@
 # -*- mode: makefile; coding: utf-8 -*-
 
 include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/utils.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/class/gnome.mk
-
 include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
+include /usr/share/gnome-pkg-tools/1/rules/gnome-version.mk
+-include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
-DEB_INSTALL_MANPAGES_gnome-terminal := debian/gnome-terminal.1
+LDFLAGS += -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
+
+DEB_CONFIGURE_EXTRA_FLAGS += --disable-scrollkeeper
 
 build/gnome-terminal::
 	/usr/bin/docbook-to-man debian/gnome-terminal.sgml > debian/gnome-terminal.1
 
-binary-post-install/gnome-terminal::
-	cp debian/gnome-terminal.xpm debian/gnome-terminal/usr/share/pixmaps
-	install -m 0755 debian/gnome-terminal.wrapper debian/gnome-terminal/usr/bin
-
 clean::
 	rm -f debian/gnome-terminal.1
+

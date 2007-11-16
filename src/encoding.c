@@ -3,20 +3,20 @@
 /*
  * Copyright (C) 2002 Red Hat, Inc.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This file is part of gnome-terminal.
  *
- * This library is distributed in the hope that it will be useful,
+ * Gnome-terminal is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Gnome-terminal is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "terminal-intl.h"
@@ -119,7 +119,7 @@ static TerminalEncoding encodings[] = {
   { TERMINAL_ENCODING_GBK, FALSE,
     "GBK", N_("Chinese Simplified") },
   { TERMINAL_ENCODING_GEOSTD8, FALSE,
-    "GEORGIAN-ACADEMY", N_("Georgian") }, /* FIXME GEOSTD8 ? */
+    "GEORGIAN-PS", N_("Georgian") },
   { TERMINAL_ENCODING_HZ, FALSE,
     "HZ", N_("Chinese Simplified") },
 
@@ -145,9 +145,9 @@ static TerminalEncoding encodings[] = {
   { TERMINAL_ENCODING_JOHAB, FALSE,
     "JOHAB", N_("Korean") },
   { TERMINAL_ENCODING_KOI8_R, FALSE,
-    "KOI8R", N_("Cyrillic") },
+    "KOI8-R", N_("Cyrillic") },
   { TERMINAL_ENCODING_KOI8_U, FALSE,
-    "KOI8U", N_("Cyrillic/Ukrainian") },
+    "KOI8-U", N_("Cyrillic/Ukrainian") },
 
   { TERMINAL_ENCODING_MAC_ARABIC, FALSE,
     "MAC_ARABIC", N_("Arabic") },
