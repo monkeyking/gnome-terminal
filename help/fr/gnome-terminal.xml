@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006.</year><holder>Claude Paroz (paroz@email.ch)</holder></copyright>
+     </copyright><copyright><year>2006-2007.</year><holder>Claude Paroz (claude@2xlibre.net)</holder></copyright>
      <publisher> 
         <publishername>Projet de documentation GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -321,7 +321,7 @@
           <varlistentry> 
              <term>Pour ajouter un nouvel onglet de terminal dans la même fenêtre :</term> 
              <listitem> 
-                <para>Choisissez <menuchoice><guimenu>Fichier</guimenu><guisubmenu>Ouvrir un onglet</guisubmenu><guimenuitem>Défaut</guimenuitem></menuchoice>.</para>
+                <para>Choisissez <menuchoice><guimenu>Fichier</guimenu><guisubmenu>Ouvrir un onglet</guisubmenu><guimenuitem>Par défaut</guimenuitem></menuchoice> ou simplement .<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Ouvrir un onglet</guimenuitem></menuchoice> s'il n'y a pas de sous-menu.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +602,10 @@
             <para>Choisissez <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Définir le codage des caractères</guisubmenu><guimenuitem>Ajouter ou supprimer</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>Pour ajouter un codage au menu <guisubmenu>Définir le codage des caractères</guisubmenu>, sélectionnez un codage dans la liste des <guilabel>Codages disponibles</guilabel>, puis cliquez sur <guibutton>Ajouter</guibutton> (flèche vers la droite).</para>
+            <para>Pour ajouter un codage au menu <guisubmenu>Définir le codage des caractères</guisubmenu>, sélectionnez un codage dans la liste des <guilabel>Codages disponibles</guilabel>, puis cliquez sur le bouton « flèche droite ».</para>
           </listitem>
           <listitem>
-            <para>Pour supprimer un codage du menu <guisubmenu>Définir le codage des caractères</guisubmenu>, sélectionnez un codage dans la liste des <guilabel>Codages affichés dans le menu</guilabel>, puis cliquez sur <guibutton>Supprimer</guibutton> (flèche vers la gauche).</para>
+            <para>Pour supprimer un codage du menu <guisubmenu>Définir le codage des caractères</guisubmenu>, sélectionnez un codage dans la liste des <guilabel>Codages affichés dans le menu</guilabel>, puis cliquez sur le bouton « flèche gauche ».</para>
           </listitem>
           <listitem>
             <para>Cliquez sur <guibutton>Fermer</guibutton> pour fermer la boîte de dialogue <guilabel>Ajouter ou supprimer des codages du terminal</guilabel>.</para>
@@ -754,9 +754,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Mettre à jour les enregistrements utmp/wtmp au lancement de la commande</guilabel> </term> 
+                <guilabel>Mettre à jour les enregistrements de connexion lorsqu'une commande est lancée</guilabel> </term> 
              <listitem> 
-                <para>Cette option permet d'insérer une nouvelle entrée dans les enregistrements utmp et wtmp quand un nouveau shell est ouvert.</para>
+                <para>Cette option permet d'insérer une nouvelle entrée dans les enregistrements de connexion quand un nouveau shell est ouvert.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

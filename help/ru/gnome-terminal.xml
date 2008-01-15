@@ -321,7 +321,8 @@
           <varlistentry> 
              <term>Чтобы добавить новый терминал-вкладку:</term> 
              <listitem> 
-                <para>Выберите <menuchoice><guimenu>Файл</guimenu><guisubmenu>Открыть вкладку</guisubmenu><guimenuitem>По умолчанию</guimenuitem></menuchoice>.</para>
+                <para>
+                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +603,12 @@
             <para>Выберите <menuchoice><guimenu>Терминал</guimenu><guisubmenu>Установить кодировку символов</guisubmenu><guimenuitem>Добавить или удалить</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>Чтобы добавить кодировку в меню <guisubmenu>Установить кодировку символов</guisubmenu> выберите кодировку в списке <guilabel>Доступные кодировки</guilabel>, после чего щёлкните <guibutton>Добавить</guibutton>.</para>
+            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
+            </para>
           </listitem>
           <listitem>
-            <para>Чтобы удалить кодировку из меню <guisubmenu>Установить кодировку символов</guisubmenu>, выберите кодировку в списке <guilabel>Кодировки, показываемые в меню</guilabel>, затем щёлкните <guibutton>Удалить</guibutton>.</para>
+            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
+            </para>
           </listitem>
           <listitem>
             <para>Нажмите <guibutton>Закрыть</guibutton>, чтобы закрыть диалог <guilabel>Добавить или удалить кодировки терминала</guilabel>.</para>
@@ -754,9 +757,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Обновлять записи utmp/wtmp при запуске команды</guilabel> </term> 
+                <guilabel>Update login records when command is launched</guilabel> </term> 
              <listitem> 
-                <para>Выберите этот параметр, чтобы вносить новую запись в utmp и wtmp когда будет запущена новая командная строка.</para>
+                <para>
+                  Select this option to insert a new entry in the login records when a new shell is opened. 
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

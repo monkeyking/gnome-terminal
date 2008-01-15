@@ -1,55 +1,45 @@
-2007-08-07  Behdad Esfahbod  <behdad@gnome.org>
+2.21.5
+===
+- Adapt to new GChecksum API
+- Bug 336155 – [patch] port gnome-terminal to goption; based on patch
+  from Christian Kirbach
+- Fix cropped tab close buttons with gnome-icon-theme svn
+- Translation updates
 
+2.21.4
+===
+- Fix a crasher and some cleanup:
+	Bug 501635 – crash in Terminal: running gnome-session-sa...
+	Bug 501667 – Use GCheksum for md5 and sha1
+		Patch from Christian Persch
+	Bug 501665 – Remove simple-x-font-selector
+	Bug 144000 – encodings other than the current encoding are not listed
+		in gnome-terminal on Solaris.
+
+2.21.3
+===
+- Synch version number to GNOME release.
+- Fix a crasher and some cleanup:
+	Bug 499877 – Update terminal_app_get_clone_command() to use g_array
+		Patch from Dubon
+	Bug 499588 – remove menu icons handling code
+		Patch from Christian Persch
+	Bug 353775 – Use GtkNotebook instead of TerminalNotebook
+		Patch from Christian Persch and Mariano Suárez-Alvarez
+	Bug 441618 – Message-ID/news-Link crashes gnome-terminal
+
+2.18.3
+===
+- Updated translations.
+- Fix couple of crashers
+	Bug 494828 – crash in Terminal: Using elinks in a termin...
+	Bug 499797 – crash in Terminal: Creating a new profile b...
+
+2.18.2
+===
+- Misc bug fixes:
 	Bug 464410 – license confusion
-
-	"gnome-terminal states that it is GPL, and COPYING is the GPL,
-	but every single source file seems to have a LGPL header."
-
-	* src/eggaccelerators.c:
-	* src/eggcellrendererkeys.c:
-	* src/encoding.c:
-	* src/profile-editor.c:
-	* src/simple-x-font-selector.c:
-	* src/skey-popup.c:
-	* src/terminal-accels.c:
-	* src/terminal-notebook.c:
-	* src/terminal-profile.c:
-	* src/terminal-screen.c:
-	* src/terminal-widget-vte.c:
-	* src/terminal-window.c:
-	* src/terminal.c:
-	Replace LPGL header with GPL header.
-	Note that LPGL allows conversion to GPL, so this change is legal
-	anyway.
-
-2007-08-02  Wouter Bolsterlee  <wbolster@svn.gnome.org>
-
-	* ChangeLog: Fix encodings and formatting.
-
-2007-07-30  Jan Arne Petersen  <jpetersen@jpetersen.org>
-
-	* configure.in: Remove help/de/Makefile from AC_CONFIG_FILES due to
-	gnome-doc-utils migration.
-
-2007-07-21  Wouter Bolsterlee  <wbolster@svn.gnome.org>
-
-	* src/gnome-terminal.schemas.in:
-	* src/profile-editor.c:
-	* src/terminal-profile.c:
-
-	Use Tango terminal color scheme by default.
-	Fixes bug #458115.
-
-2007-07-15  Guilherme de S. Pastore  <gpastore@gnome.org>
-
-	* src/terminal-window.c (about_callback): fixed the wrong mention
-	of Nautilus on the license notice.
-
-2007-07-10  Changwoo Ryu  <cwryu@debian.org>
-
-	* configure.in: Removed help/ko/Makefile from AC_CONFIG_FILES for
-	gnome-doc-utils migration.
-	
+	Bug 458115 – Use tango color scheme by default
 
 2.18.1
 ===

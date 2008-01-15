@@ -3,7 +3,7 @@ Section: gnome
 Priority: optional
 XSBC-Original-Maintainer: Guilherme de S. Pastore <gpastore@debian.org>
 Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 Build-Depends: cdbs (>= 0.4.41),
                debhelper (>= 5),
                liborbit2-dev (>= 1:2.10.2-1.1),
@@ -22,8 +22,9 @@ Build-Depends: cdbs (>= 0.4.41),
                libgconf2-dev (>= 2.14.0),
                libxft-dev (>= 2.0.0),
                libpango1.0-dev (>= 1.1.1),
-               liblaunchpad-integration-dev
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Guilherme de S. Pastore <gpastore@debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>, Sebastian Dröge <slomo@debian.org>
+               liblaunchpad-integration-dev,
+               libglib2.0-dev (>= 2.15.2)
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastian Dröge <slomo@debian.org>
 
 Package: gnome-terminal
 Architecture: any

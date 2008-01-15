@@ -1,6 +1,6 @@
---- gnome-terminal-2.12.0.orig/src/terminal-accels.c
-+++ gnome-terminal-2.12.0/src/terminal-accels.c
-@@ -418,10 +418,9 @@
+--- gnome-terminal-2.21.3/src/terminal-accels.c	2007-08-07 19:59:15.000000000 +0100
++++ terminal/src/terminal-accels.c	2007-12-05 16:19:26.000000000 +0000
+@@ -426,10 +426,10 @@
    if (group == NULL)
      {
        group = gtk_accel_group_new ();
@@ -10,6 +10,7 @@
 -                              group,
 -                              (GDestroyNotify) g_object_unref);
 +                              group);
++                              
      }
-
+ 
    return group;
