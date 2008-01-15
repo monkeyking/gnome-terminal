@@ -326,7 +326,8 @@
           <varlistentry> 
              <term>So fügen Sie in ein Fenster ein neues Terminal im Registerformat hinzu:</term> 
              <listitem> 
-                <para>Wählen Sie <menuchoice><guimenu>Datei</guimenu><guisubmenu>Reiter öffnen</guisubmenu><guimenuitem>Standard</guimenuitem></menuchoice>.</para>
+                <para>
+                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -633,11 +634,11 @@
             </para>
           </listitem>
           <listitem>
-            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click <guibutton>Add</guibutton>.
+            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
             </para>
           </listitem>
           <listitem>
-            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click <guibutton>Remove</guibutton>.
+            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
             </para>
           </listitem>
           <listitem>
@@ -801,9 +802,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Aktualisieren utmp/wtmp records when command is launched</guilabel> </term> 
+                <guilabel>Update login records when command is launched</guilabel> </term> 
              <listitem> 
-                <para>Wählen Sie diese Option, um beim Öffnen einer neuen Shell in die utmp- und wtmp-Datensätze einen neuen Eintrag einzufügen.</para>
+                <para>
+                  Select this option to insert a new entry in the login records when a new shell is opened. 
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

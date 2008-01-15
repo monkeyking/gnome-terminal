@@ -59,7 +59,6 @@
 #define KEY_CUSTOM_COMMAND "custom_command"
 #define KEY_ICON "icon"
 #define KEY_PALETTE "palette"
-#define KEY_X_FONT "x_font"
 #define KEY_BACKGROUND_TYPE "background_type"
 #define KEY_BACKGROUND_IMAGE "background_image"
 #define KEY_SCROLL_BACKGROUND "scroll_background"
@@ -102,8 +101,6 @@ struct _TerminalProfilePrivate
   GdkPixbuf *icon;
 
   GdkColor palette[TERMINAL_PALETTE_SIZE];
-
-  char *x_font;
 
   TerminalBackgroundType background_type;
   char *background_image_file;
@@ -285,7 +282,6 @@ terminal_profile_init (TerminalProfile *profile)
   memcpy (profile->priv->palette,
           terminal_palette_linux,
           TERMINAL_PALETTE_SIZE * sizeof (GdkColor));
-  profile->priv->x_font = g_strdup ("fixed");
   profile->priv->background_type = TERMINAL_BACKGROUND_SOLID;
   profile->priv->background_image_file = g_strdup ("");
   profile->priv->background_darkness = 0.0;
@@ -352,7 +348,6 @@ terminal_profile_finalize (GObject *object)
   g_free (profile->priv->icon_file);
   if (profile->priv->icon)
     g_object_unref (G_OBJECT (profile->priv->icon));
-  g_free (profile->priv->x_font);
 
   g_free (profile->priv->background_image_file);
   if (profile->priv->background_image)
@@ -1125,33 +1120,6 @@ terminal_profile_set_palette (TerminalProfile *profile,
   g_free (str);
 }
 
-const char*
-terminal_profile_get_x_font (TerminalProfile *profile)
-{
-  g_return_val_if_fail (TERMINAL_IS_PROFILE (profile), NULL);
-
-  return profile->priv->x_font;
-}
-
-void
-terminal_profile_set_x_font (TerminalProfile *profile,
-                             const char      *name)
-{
-  char *key;
-
-  RETURN_IF_NOTIFYING (profile);
-  
-  key = gconf_concat_dir_and_key (profile->priv->profile_dir,
-                                  KEY_X_FONT);
-  
-  gconf_client_set_string (profile->priv->conf,
-                           key,
-                           name,
-                           NULL);
-
-  g_free (key);
-}
-
 TerminalBackgroundType
 terminal_profile_get_background_type (TerminalProfile *profile)
 {
@@ -1775,25 +1743,6 @@ set_palette (TerminalProfile *profile,
 }
 
 static gboolean
-set_x_font (TerminalProfile *profile,
-            const char      *candidate_font)
-{
-  if (candidate_font &&
-      strcmp (profile->priv->x_font, candidate_font) == 0)
-    return FALSE;
-  
-  if (candidate_font != NULL)
-    {
-      g_free (profile->priv->x_font);
-      profile->priv->x_font = g_strdup (candidate_font);
-      return TRUE;
-    }
-  /* otherwise just leave the old font */
-  
-  return FALSE;
-}
-
-static gboolean
 set_background_type (TerminalProfile *profile,
                      const char      *str_val)
 {
@@ -1923,6 +1872,8 @@ terminal_profile_update (TerminalProfile *profile)
   TerminalSettingMask locked;
   TerminalSettingMask old_locked;
   TerminalSettingMask mask;
+
+  g_return_if_fail (profile != NULL);
   
   terminal_setting_mask_clear (&mask);
   terminal_setting_mask_clear (&locked);
@@ -2006,7 +1957,6 @@ terminal_profile_update (TerminalProfile *profile)
   UPDATE_STRING  (KEY_CUSTOM_COMMAND,       custom_command);
   UPDATE_STRING  (KEY_ICON,                 icon_file);
   UPDATE_STRING  (KEY_PALETTE,              palette);
-  UPDATE_STRING  (KEY_X_FONT,               x_font);
   UPDATE_STRING  (KEY_BACKGROUND_TYPE,      background_type);
   UPDATE_STRING  (KEY_BACKGROUND_IMAGE,     background_image_file);
   UPDATE_BOOLEAN (KEY_SCROLL_BACKGROUND,    scroll_background);
@@ -2153,7 +2103,6 @@ else if (strcmp (key, KName) == 0)                                      \
      UPDATE_STRING  (KEY_CUSTOM_COMMAND,         custom_command,         NULL);
      UPDATE_STRING  (KEY_ICON,                   icon_file,              NULL);
      UPDATE_STRING  (KEY_PALETTE,                palette,                NULL);
-     UPDATE_STRING  (KEY_X_FONT,                 x_font,                 NULL);
      UPDATE_STRING  (KEY_BACKGROUND_TYPE,        background_type,        NULL);
      UPDATE_STRING  (KEY_BACKGROUND_IMAGE,       background_image_file,  NULL);
      UPDATE_BOOLEAN (KEY_SCROLL_BACKGROUND,      scroll_background,      FALSE);
@@ -2334,11 +2283,18 @@ static int
 alphabetic_cmp (gconstpointer a,
                 gconstpointer b)
 {
+  int result;
+
   TerminalProfile *ap = (TerminalProfile*) a;
   TerminalProfile *bp = (TerminalProfile*) b;
 
-  return g_utf8_collate (terminal_profile_get_visible_name (ap),
-                         terminal_profile_get_visible_name (bp));
+  result =  g_utf8_collate (terminal_profile_get_visible_name (ap),
+			    terminal_profile_get_visible_name (bp));
+  if (!result)
+    result = strcmp (terminal_profile_get_name (ap),
+		     terminal_profile_get_name (bp));
+
+  return result;
 }
 
 GList*
@@ -2503,7 +2459,7 @@ emit_changed (TerminalProfile           *profile,
 }
 
 /* Function I'm cut-and-pasting everywhere, this is from msm */
-void
+static void
 dialog_add_details (GtkDialog  *dialog,
                     const char *details)
 {
@@ -2556,7 +2512,8 @@ dialog_add_details (GtkDialog  *dialog,
   gtk_widget_hide (label);
 }
 
-void
+/* returns actual name used for created profile */
+char *
 terminal_profile_create (TerminalProfile *base_profile,
                          const char      *visible_name,
                          GtkWindow       *transient_parent)
@@ -2823,14 +2780,6 @@ terminal_profile_create (TerminalProfile *base_profile,
 
   g_free (key);
   key = gconf_concat_dir_and_key (profile_dir,
-                                  KEY_X_FONT);
-  gconf_client_set_string (base_profile->priv->conf,
-                           key, base_profile->priv->x_font,
-                           &err);
-  BAIL_OUT_CHECK ();
-
-  g_free (key);
-  key = gconf_concat_dir_and_key (profile_dir,
                                   KEY_BACKGROUND_TYPE);
   cs = gconf_enum_to_string (background_types, base_profile->priv->background_type);
   gconf_client_set_string (base_profile->priv->conf,
@@ -2941,7 +2890,6 @@ terminal_profile_create (TerminalProfile *base_profile,
   BAIL_OUT_CHECK ();
   
  cleanup:
-  g_free (profile_name);
   g_free (profile_dir);
   g_free (key);
 
@@ -2978,10 +2926,14 @@ terminal_profile_create (TerminalProfile *base_profile,
         }
 
       g_error_free (err);
+
+      g_free (profile_name);
+      profile_name = NULL;
     }
-  
+
   g_object_unref (G_OBJECT (base_profile));
   g_object_unref (G_OBJECT (transient_parent));
+  return profile_name;
 }
 
 void
@@ -3107,7 +3059,7 @@ terminal_profile_get_for_new_term (TerminalProfile *current)
  * does not carry all the bytes, and xterm's palette is messed up...
  */
 
-gchar*
+static gchar*
 color_selection_palette_to_string (const GdkColor *colors, gint n_colors)
 {
   gint i;

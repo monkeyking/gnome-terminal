@@ -1,3 +1,37 @@
+gnome-terminal (2.21.5-0ubuntu1) hardy; urgency=low
+
+  * New upstream release (LP: #174462)
+   - Adapt to new GChecksum API
+   - Bug 336155 – [patch] port gnome-terminal to goption; based on patch
+     from Christian Kirbach
+   - Fix cropped tab close buttons with gnome-icon-theme svn
+   - Translation updates
+  * Bumpd b-d on libglib2.0-dev (>= 2.15.2)
+  * 02_autconf.patch updated
+
+ -- Pedro Fragoso <emberez@gmail.com>  Tue, 15 Jan 2008 15:16:06 +0000
+
+gnome-terminal (2.21.4-0ubuntu1) hardy; urgency=low
+
+  * New upstream release
+  * Bump to Standards-Version 3.7.3
+  * debian/control:
+    - added libglib2.0-dev (>= 2.15.0)
+    - added esound-common (>= 0.2.38-0ubuntu5)
+
+ -- Pedro Fragoso <emberez@gmail.com>  Tue, 18 Dec 2007 12:36:55 +0000
+
+gnome-terminal (2.21.3-0ubuntu1) hardy; urgency=low
+
+  * New upstream release.
+    - debian/patches:
+     +  updated 01_lpi
+		02_autoconf
+		03_ubuntu_lpi_fix_crash
+		04_resized_on_tabs
+
+ -- Pedro Fragoso <emberez@gmail.com>  Wed, 05 Dec 2007 16:37:13 +0000
+
 gnome-terminal (2.18.2-1ubuntu1) hardy; urgency=low
 
   * Merge from Debian unstable, remaining changes:

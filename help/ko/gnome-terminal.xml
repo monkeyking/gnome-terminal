@@ -321,7 +321,8 @@
           <varlistentry> 
              <term>창에 새 탭 터미널을 추가하려면:</term> 
              <listitem> 
-                <para><menuchoice><guimenu>파일</guimenu><guisubmenu>탭 열기</guisubmenu><guimenuitem>기본값</guimenuitem></menuchoice>을 선택합니다.</para>
+                <para>
+                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +603,12 @@
             <para><menuchoice><guimenu>터미널</guimenu><guisubmenu>문자 인코딩 설정</guisubmenu><guimenuitem>추가/지우기</guimenuitem></menuchoice>를 선택하십시오.</para>
           </listitem>
           <listitem>
-            <para><guisubmenu>문자 인코딩 설정</guisubmenu> 메뉴에 인코딩을 추가하려면, <guilabel>사용할 수 있는 인코딩</guilabel> 목록에서 그 인코딩을 선택하고 <guibutton>추가</guibutton>를 누르십시오.</para>
+            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
+            </para>
           </listitem>
           <listitem>
-            <para><guisubmenu>문자 인코딩 설정</guisubmenu> 메뉴에서 인코딩을 지우려면, <guilabel>메뉴에 표시하는 인코딩</guilabel> 목록에서 그 인코딩을 선택하고 <guibutton>지우기</guibutton>를 누르십시오.</para>
+            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
+            </para>
           </listitem>
           <listitem>
             <para><guibutton>닫기</guibutton>를 눌러 <guilabel>터미널 인코딩 추가/지우기</guilabel> 대화 창을 닫으십시오.</para>
@@ -754,9 +757,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>명령을 실행하면 utmp/wtmp 기록을 업데이트</guilabel> </term> 
+                <guilabel>Update login records when command is launched</guilabel> </term> 
              <listitem> 
-                <para>이 옵션을 선택하면 새 쉘을 열 때마다 utmp 및 wtmp 레코드에 새로운 항목을 넣습니다.</para>
+                <para>
+                  Select this option to insert a new entry in the login records when a new shell is opened. 
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

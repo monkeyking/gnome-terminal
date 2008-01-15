@@ -137,9 +137,9 @@ static TerminalEncoding encodings[] = {
     "IBM864", N_("Arabic") },
 
   { TERMINAL_ENCODING_ISO_2022_JP, FALSE,
-    "ISO2022JP", N_("Japanese") },
+    "ISO-2022-JP", N_("Japanese") },
   { TERMINAL_ENCODING_ISO_2022_KR, FALSE,
-    "ISO2022KR", N_("Korean") },
+    "ISO-2022-KR", N_("Korean") },
   { TERMINAL_ENCODING_ISO_IR_111, FALSE,
     "ISO-IR-111", N_("Cyrillic") },
   { TERMINAL_ENCODING_JOHAB, FALSE,
@@ -181,7 +181,7 @@ static TerminalEncoding encodings[] = {
     "MAC_UKRAINIAN", N_("Cyrillic/Ukrainian") },
   
   { TERMINAL_ENCODING_SHIFT_JIS, FALSE,
-    "SHIFT-JIS", N_("Japanese") },
+    "SHIFT_JIS", N_("Japanese") },
   { TERMINAL_ENCODING_TCVN, FALSE,
     "TCVN", N_("Vietnamese") },
   { TERMINAL_ENCODING_TIS_620, FALSE,
@@ -292,7 +292,7 @@ terminal_encoding_free (TerminalEncoding *encoding)
 {
   g_free (encoding->name);
   g_free (encoding->charset);
-  g_free (encoding);
+  g_slice_free (TerminalEncoding, encoding);
 }
 
 static TerminalEncoding*
@@ -300,7 +300,7 @@ terminal_encoding_copy (const TerminalEncoding *src)
 {
   TerminalEncoding *c;
 
-  c = g_new (TerminalEncoding, 1);
+  c = g_slice_new (TerminalEncoding);
   c->index = src->index;
   c->valid = src->valid;
   c->name = g_strdup (src->name);
@@ -915,7 +915,7 @@ terminal_encoding_init (GConfClient *conf)
 
   /* Initialize the sample text with all of the printing ASCII characters
    * from space (32) to the tilde (126), 95 in all. */ 
-  for (i = 0; i < sizeof (ascii_sample); i++) 
+  for (i = 0; i < (int) sizeof (ascii_sample); i++) 
     ascii_sample[i] = i + 32;
 
   ascii_sample[sizeof(ascii_sample) - 1] = '\0';
@@ -937,7 +937,7 @@ terminal_encoding_init (GConfClient *conf)
        * which the underlying GIConv implementation can't support.
        */
       converted = g_convert (ascii_sample, sizeof (ascii_sample) - 1,
-		             encodings[i].charset, encodings[i].charset,
+		             encodings[i].charset, "ASCII",
 			     &bytes_read, &bytes_written, NULL);
       
       /* The encoding is only valid if ASCII passes through cleanly. */

@@ -46,10 +46,6 @@ gnome_terminal_SOURCES=				\
 	terminal-widget-vte.c			\
 	terminal-window.c			\
 	terminal-window.h			\
-	terminal-notebook.c			\
-	terminal-notebook.h			\
-	simple-x-font-selector.c		\
-	simple-x-font-selector.h		\
 	$(EGGFILES)
 
 gnome_terminal_LDADD= $(EFENCE) @TERM_LIBS@ skey/libskey.la
