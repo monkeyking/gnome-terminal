@@ -1,15 +1,17 @@
---- gnome-terminal-2.21.3/configure.in	2007-12-04 00:20:23.000000000 +0000
-+++ terminal/configure.in	2007-12-05 16:08:30.000000000 +0000
-@@ -35,6 +35,7 @@
- PKG_CHECK_MODULES(TERM, dnl
+diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure.in gnome-terminal-2.21.91.new/configure.in
+--- gnome-terminal-2.21.91/configure.in	2008-02-11 22:01:33.000000000 +0000
++++ gnome-terminal-2.21.91.new/configure.in	2008-02-11 23:14:14.000000000 +0000
+@@ -37,6 +37,7 @@
+  glib-2.0 >= $GLIB_REQUIRED dnl
   gtk+-2.0 >= $GTK_REQUIRED dnl
   gconf-2.0 >= $GCONF_REQUIRED dnl
 + launchpad-integration
+  gio-2.0 dnl
   libglade-2.0 dnl
   libgnomeui-2.0 dnl
-  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED dnl
---- gnome-terminal-2.21.3/src/terminal-window.c	2007-11-27 03:38:52.000000000 +0000
-+++ terminal/src/terminal-window.c	2007-12-05 16:17:41.000000000 +0000
+diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/src/terminal-window.c gnome-terminal-2.21.91.new/src/terminal-window.c
+--- gnome-terminal-2.21.91/src/terminal-window.c	2008-01-15 00:20:37.000000000 +0000
++++ gnome-terminal-2.21.91.new/src/terminal-window.c	2008-02-11 23:12:32.000000000 +0000
 @@ -29,6 +29,7 @@
  #include <string.h>
  #include <stdlib.h>
@@ -18,7 +20,7 @@
  #include <gtk/gtklabel.h>
  #include <gdk/gdkx.h>
  #include <gdk/gdkkeysyms.h>
-@@ -1074,7 +1075,9 @@
+@@ -1067,7 +1068,9 @@
    mi = append_stock_menuitem (menu, GTK_STOCK_ABOUT, NULL,
                                G_CALLBACK (about_callback), window);
    set_menuitem_text (mi, _("_About"), FALSE);

@@ -1,3 +1,20 @@
+gnome-terminal (2.21.91-0ubuntu1) hardy; urgency=low
+
+  * New upstream release (LP: #189568)
+    - Port to gio
+    - Use of explicit suffix in 'Icon' field of application
+      launcher (LP: #190688)
+    - crash launching g-t with specific args (LP: #186109)
+    - Disconnect from the settings notify on dispose
+      instead of finalise. (LP: #188565)
+  * debian/control{.in}:
+    + Changed b-d libgnomevfs2-dev to libgvfscommon-dev
+  * debian/patches/:
+    - 01_lpi: updated
+    - 02_autoconf: updated
+
+ -- Pedro Fragoso <emberez@gmail.com>  Mon, 11 Feb 2008 22:48:32 +0000
+
 gnome-terminal (2.21.90-0ubuntu1) hardy; urgency=low
 
   * New bugfix upstream release (LP: #187388)
