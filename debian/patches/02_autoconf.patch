@@ -1,10 +1,10 @@
-diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure gnome-terminal-2.21.91.new/configure
---- gnome-terminal-2.21.91/configure	2008-02-11 22:03:24.000000000 +0000
-+++ gnome-terminal-2.21.91.new/configure	2008-02-11 23:19:51.000000000 +0000
-@@ -24184,12 +24184,15 @@
-         pkg_cv_TERM_CFLAGS="$TERM_CFLAGS"
-     else
-         if test -n "$PKG_CONFIG" && \
+diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.92/configure gnome-terminal-2.21.92.new/configure
+--- gnome-terminal-2.21.92/configure	2008-02-26 18:18:19.000000000 +0000
++++ gnome-terminal-2.21.92.new/configure	2008-02-26 22:17:51.000000000 +0000
+@@ -24365,12 +24365,15 @@
+     pkg_cv_TERM_CFLAGS="$TERM_CFLAGS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
 -    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= \$LIBGNOME_REQUIRED  libstartup-notification-1.0 >= \$STARTUP_NOTIFICATION_REQUIRED  vte >= \$VTE_REQUIRED\"") >&5
 -  ($PKG_CONFIG --exists --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED") 2>&5
 +    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  launchpad-integration
@@ -20,10 +20,10 @@ diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure gnome-terminal-2.
  else
    pkg_failed=yes
  fi
-@@ -24202,12 +24205,15 @@
-         pkg_cv_TERM_LIBS="$TERM_LIBS"
-     else
-         if test -n "$PKG_CONFIG" && \
+@@ -24381,12 +24384,15 @@
+     pkg_cv_TERM_LIBS="$TERM_LIBS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
 -    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= \$LIBGNOME_REQUIRED  libstartup-notification-1.0 >= \$STARTUP_NOTIFICATION_REQUIRED  vte >= \$VTE_REQUIRED\"") >&5
 -  ($PKG_CONFIG --exists --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED") 2>&5
 +    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  launchpad-integration
@@ -39,17 +39,17 @@ diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure gnome-terminal-2.
  else
    pkg_failed=yes
  fi
-@@ -24226,14 +24232,17 @@
+@@ -24404,14 +24410,17 @@
          _pkg_short_errors_supported=no
  fi
          if test $_pkg_short_errors_supported = yes; then
--	        TERM_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED"`
-+	        TERM_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration
-+ gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED"`
+-	        TERM_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED" 2>&1`
++	        TERM_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration
++ gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED" 2>&1`
          else
--	        TERM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED"`
-+	        TERM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration
-+ gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED"`
+-	        TERM_PKG_ERRORS=`$PKG_CONFIG --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED" 2>&1`
++	        TERM_PKG_ERRORS=`$PKG_CONFIG --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration
++ gio-2.0  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED" 2>&1`
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$TERM_PKG_ERRORS" >&5
@@ -60,7 +60,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure gnome-terminal-2.
  
  $TERM_PKG_ERRORS
  
-@@ -24244,7 +24253,8 @@
+@@ -24422,7 +24431,8 @@
  and TERM_LIBS to avoid the need to call pkg-config.
  See the pkg-config man page for more details.
  " >&5
@@ -70,109 +70,3 @@ diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure gnome-terminal-2.
  
  $TERM_PKG_ERRORS
  
-diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.21.91/configure.rej gnome-terminal-2.21.91.new/configure.rej
---- gnome-terminal-2.21.91/configure.rej	1970-01-01 01:00:00.000000000 +0100
-+++ gnome-terminal-2.21.91.new/configure.rej	2008-02-11 23:19:51.000000000 +0000
-@@ -0,0 +1,102 @@
-+***************
-+*** 24186,24197 ****
-+          pkg_cv_TERM_CFLAGS="$TERM_CFLAGS"
-+      else
-+          if test -n "$PKG_CONFIG" && \
-+-     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= \$LIBGNOME_REQUIRED  libstartup-notification-1.0 >= \$STARTUP_NOTIFICATION_REQUIRED  vte >= \$VTE_REQUIRED  gnome-vfs-2.0 >= \$GNOMEVFS_REQUIRED  glib-2.0 >= \$GLIB_REQUIRED\"") >&5
-+-   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED") 2>&5
-+    ac_status=$?
-+    echo "$as_me:$LINENO: \$? = $ac_status" >&5
-+    (exit $ac_status); }; then
-+-   pkg_cv_TERM_CFLAGS=`$PKG_CONFIG --cflags " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED" 2>/dev/null`
-+  else
-+    pkg_failed=yes
-+  fi
-+--- 24186,24197 ----
-+          pkg_cv_TERM_CFLAGS="$TERM_CFLAGS"
-+      else
-+          if test -n "$PKG_CONFIG" && \
-++     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= \$LIBGNOME_REQUIRED  libstartup-notification-1.0 >= \$STARTUP_NOTIFICATION_REQUIRED  vte >= \$VTE_REQUIRED  gnome-vfs-2.0 >= \$GNOMEVFS_REQUIRED  glib-2.0 >= \$GLIB_REQUIRED\"") >&5
-++   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED") 2>&5
-+    ac_status=$?
-+    echo "$as_me:$LINENO: \$? = $ac_status" >&5
-+    (exit $ac_status); }; then
-++   pkg_cv_TERM_CFLAGS=`$PKG_CONFIG --cflags " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED" 2>/dev/null`
-+  else
-+    pkg_failed=yes
-+  fi
-+***************
-+*** 24204,24215 ****
-+          pkg_cv_TERM_LIBS="$TERM_LIBS"
-+      else
-+          if test -n "$PKG_CONFIG" && \
-+-     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= \$LIBGNOME_REQUIRED  libstartup-notification-1.0 >= \$STARTUP_NOTIFICATION_REQUIRED  vte >= \$VTE_REQUIRED  gnome-vfs-2.0 >= \$GNOMEVFS_REQUIRED  glib-2.0 >= \$GLIB_REQUIRED\"") >&5
-+-   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED") 2>&5
-+    ac_status=$?
-+    echo "$as_me:$LINENO: \$? = $ac_status" >&5
-+    (exit $ac_status); }; then
-+-   pkg_cv_TERM_LIBS=`$PKG_CONFIG --libs " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED" 2>/dev/null`
-+  else
-+    pkg_failed=yes
-+  fi
-+--- 24204,24215 ----
-+          pkg_cv_TERM_LIBS="$TERM_LIBS"
-+      else
-+          if test -n "$PKG_CONFIG" && \
-++     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= \$GLIB_REQUIRED  gtk+-2.0 >= \$GTK_REQUIRED  gconf-2.0 >= \$GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= \$LIBGNOME_REQUIRED  libstartup-notification-1.0 >= \$STARTUP_NOTIFICATION_REQUIRED  vte >= \$VTE_REQUIRED  gnome-vfs-2.0 >= \$GNOMEVFS_REQUIRED  glib-2.0 >= \$GLIB_REQUIRED\"") >&5
-++   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED") 2>&5
-+    ac_status=$?
-+    echo "$as_me:$LINENO: \$? = $ac_status" >&5
-+    (exit $ac_status); }; then
-++   pkg_cv_TERM_LIBS=`$PKG_CONFIG --libs " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED" 2>/dev/null`
-+  else
-+    pkg_failed=yes
-+  fi
-+***************
-+*** 24228,24241 ****
-+          _pkg_short_errors_supported=no
-+  fi
-+          if test $_pkg_short_errors_supported = yes; then
-+- 	        TERM_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED"`
-+          else
-+- 	        TERM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED"`
-+          fi
-+  	# Put the nasty error message in config.log where it belongs
-+  	echo "$TERM_PKG_ERRORS" >&5
-+  
-+- 	{ { echo "$as_me:$LINENO: error: Package requirements ( glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED) were not met:
-+  
-+  $TERM_PKG_ERRORS
-+  
-+--- 24228,24241 ----
-+          _pkg_short_errors_supported=no
-+  fi
-+          if test $_pkg_short_errors_supported = yes; then
-++ 	        TERM_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED"`
-+          else
-++ 	        TERM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED"`
-+          fi
-+  	# Put the nasty error message in config.log where it belongs
-+  	echo "$TERM_PKG_ERRORS" >&5
-+  
-++ 	{ { echo "$as_me:$LINENO: error: Package requirements ( glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED) were not met:
-+  
-+  $TERM_PKG_ERRORS
-+  
-+***************
-+*** 24246,24252 ****
-+  and TERM_LIBS to avoid the need to call pkg-config.
-+  See the pkg-config man page for more details.
-+  " >&5
-+- echo "$as_me: error: Package requirements ( glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED) were not met:
-+  
-+  $TERM_PKG_ERRORS
-+  
-+--- 24246,24252 ----
-+  and TERM_LIBS to avoid the need to call pkg-config.
-+  See the pkg-config man page for more details.
-+  " >&5
-++ echo "$as_me: error: Package requirements ( glib-2.0 >= $GLIB_REQUIRED  gtk+-2.0 >= $GTK_REQUIRED  gconf-2.0 >= $GCONF_REQUIRED  launchpad-integration libglade-2.0  libgnomeui-2.0  libgnome-2.0 >= $LIBGNOME_REQUIRED  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED  vte >= $VTE_REQUIRED  gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED  glib-2.0 >= $GLIB_REQUIRED) were not met:
-+  
-+  $TERM_PKG_ERRORS
-+  
