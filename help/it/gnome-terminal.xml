@@ -35,12 +35,12 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006</year><holder>Lorenzo Travaglio (ltarv02@yahoo.it)</holder></copyright>
+     </copyright><copyright><year>2006, 2008</year><holder>Lorenzo Travaglio (ltrav02@yahoo.it)</holder></copyright>
      <publisher> 
         <publishername>GNOME Documentation Project</publishername> 
      </publisher>    <legalnotice id="legalnotice">
          <para>Questo documento può essere copiato, distribuito e/o modificato solo in conformità con i termini della GNU Free Documentation License (GFDL) Versione 1.1 o delle versioni successive pubblicate dalla Free Software Foundation senza sezioni invariabili, frontespizi e testi di copertina. Una copia della GFDL è disponibile su questo <ulink type="help" url="ghelp:fdl">collegamento</ulink> o nel file COPYING-DOCS distribuito con questo manuale.</para>
-          <para>Questo manuale fa parte di una raccolta di manuali GNOME distribuita in conformità con la GFDL. Per poter distribuire questo manuale separatamente, è necessario inserirvi una copia della licenza, come descritto nella sezione 6 della licenza.</para>
+          <para>Questo manuale fa parte di una raccolta di manuali GNOME distribuita in conformità con la GFDL. Per poter distribuire questo manuale separatamente, è necessario inserirvi una copia della licenza, come descritto nella sezione 6 della licenza.</para>
  
          <para>Molti dei nomi usati dalle aziende per distinguere i propri prodotti e servizi sono rivendicati come marchi. Quando questi nomi compaiono nella documentazione di GNOME, e i partecipanti al GNOME Documentation Project sono consapevoli del loro utilizzo, essi vengono scritti in lettere maiuscole o con l'iniziale maiuscola.</para>
  
@@ -49,7 +49,7 @@
                    <para>IL DOCUMENTO VIENE FORNITO SENZA GARANZIE DI ALCUN TIPO, ESPLICITE O IMPLICITE, INCLUSE, MA SENZA LIMITAZIONE, LE GARANZIE ATTESTANTI CHE IL DOCUMENTO O LE SUE VERSIONI MODIFICATE SIANO PRIVI DI DIFETTI, COMMERCIALIZZABILI, IDONEI A UN DETERMINATO SCOPO O CHE NON VIOLINO DIRITTI DI TERZI. SI DECLINA QUALUNQUE RESPONSABILITÀ RIGUARDO AI RISCHI INERENTI LA QUALITÀ, L'ACCURATEZZA E LE PRESTAZIONI DEL DOCUMENTO O DI UNA SUA VERSIONE MODIFICATA. QUALORA UN DOCUMENTO O UNA SUA VERSIONE MODIFICATA DOVESSERO PRESENTARE QUALUNQUE TIPO DI DIFETTO, IL COSTO DI EVENTUALI INTERVENTI DI ASSISTENZA, RIPARAZIONE O CORREZIONE SARÀ A CARICO DELL'UTENTE (NON DEL REDATTORE INIZIALE, DELL'AUTORE O DI ALTRI COLLABORATORI). QUESTA LIMITAZIONE DELLA GARANZIA COSTITUISCE PARTE ESSENZIALE DELLA LICENZA. L'USO DEL DOCUMENTO O DELLE SUE VERSIONI MODIFICATE È CONSENTITO SOLO ENTRO I TERMINI DI QUESTA LIMITAZIONE DELLA GARANZIA;</para>
                  </listitem>
                  <listitem>
-                   <para>IN NESSUNA CIRCOSTANZA E PER NESSUNA RAGIONE LEGALE, INCLUSI I PRINCIPI DI COLPA (INCLUSA LA NEGLIGENZA), ACCORDO CONTRATTUALE O ALTRO, SARÃ POSSIBILE CONSIDERARE L'AUTORE, IL REDATTORE INIZIALE, GLI ALTRI COLLABORATORI, QUALUNQUE DISTRIBUTORE DEL DOCUMENTO O DI UNA SUA VERSIONE MODIFICATA O QUALUNQUE FORNITORE DELLE PERSONE CITATE, RESPONSABILE NEI CONFRONTI DI QUALUNQUE PERSONA PER DANNI DIRETTI, INDIRETTI, SPECIALI, INCIDENTALI O CONSEGUENTI DI QUALUNQUE NATURA, INCLUSI, MA SENZA LIMITAZIONE, I DANNI PER PERDITA DI AVVIAMENTO, INTERRUZIONE DEL LAVORO, GUASTO O MALFUNZIONAMENTO DEL COMPUTER O QUALUNQUE ALTRO DANNO O PERDITA DERIVANTE O CORRELATA ALL'USO DEL DOCUMENTO O DI UNA SUA VERSIONE MODIFICATA, ANCHE QUALORA LE PERSONE CITATE FOSSERO STATE INFORMATE DELLA POSSIBILITÀ DI TALI DANNI.</para>
+                   <para>IN NESSUNA CIRCOSTANZA E PER NESSUNA RAGIONE LEGALE, INCLUSI I PRINCIPI DI COLPA (INCLUSA LA NEGLIGENZA), ACCORDO CONTRATTUALE O ALTRO, SARÀ POSSIBILE CONSIDERARE L'AUTORE, IL REDATTORE INIZIALE, GLI ALTRI COLLABORATORI, QUALUNQUE DISTRIBUTORE DEL DOCUMENTO O DI UNA SUA VERSIONE MODIFICATA O QUALUNQUE FORNITORE DELLE PERSONE CITATE, RESPONSABILE NEI CONFRONTI DI QUALUNQUE PERSONA PER DANNI DIRETTI, INDIRETTI, SPECIALI, INCIDENTALI O CONSEGUENTI DI QUALUNQUE NATURA, INCLUSI, MA SENZA LIMITAZIONE, I DANNI PER PERDITA DI AVVIAMENTO, INTERRUZIONE DEL LAVORO, GUASTO O MALFUNZIONAMENTO DEL COMPUTER O QUALUNQUE ALTRO DANNO O PERDITA DERIVANTE O CORRELATA ALL'USO DEL DOCUMENTO O DI UNA SUA VERSIONE MODIFICATA, ANCHE QUALORA LE PERSONE CITATE FOSSERO STATE INFORMATE DELLA POSSIBILITÀ DI TALI DANNI.</para>
                  </listitem>
            </orderedlist></para>
    </legalnotice>
@@ -57,7 +57,7 @@
      <authorgroup> 
         <author> 
           <firstname>Sun</firstname> 
-          <surname>Progetto di documentazione GNOME</surname> 
+          <surname>GNOME Documentation Team</surname> 
           <affiliation> 
              <orgname>Sun Microsystems</orgname> 
           </affiliation> 
@@ -201,7 +201,7 @@
   </sect1> 
   <sect1 id="gnome-terminal-get-started"> 
      <title>Per iniziare</title> 
-     <para>Le sezioni seguenti descrivono i vari modo possibili per avviare il <application>Terminale GNOME </application>.</para>
+     <para>Le sezioni seguenti descrivono i possibili metodi per avviare il <application>Terminale GNOME </application>.</para>
      <sect2 id="gnome-terminal-to-start"> 
         <title>Avviare il Terminale GNOME</title> 
         <para>Il <application>Terminale GNOME</application> può essere avviato nei seguenti modi:</para>
@@ -267,7 +267,7 @@
 
      <sect2 id="gnome-terminal-profiles"> 
         <title>Profili del terminale</title> 
-        <para>È possibile creare un nuovo profilo e applicarlo al terminale per modificare caratteristiche come il tipo di carattere, il colore e gli effetti, le impostazione di scorrimento, il titolo della finestra e la compatibilità. È inoltre possibile definire nel profilo il comando per avviare il <application>Terminale GNOME</application>.</para>
+        <para>È possibile creare un nuovo profilo e applicarlo al terminale per modificare caratteristiche come il tipo di carattere, il colore e gli effetti, le impostazione di scorrimento, il titolo della finestra e la compatibilità. È inoltre possibile definire nel profilo un comando per avviare il <application>Terminale GNOME</application>.</para>
           <para>È possibile definire ogni profilo di terminale tramite il dialogo <guilabel>Profili...</guilabel> accessibile dal menù <guimenu>Modifica</guimenu>. È possibile definire il numero di profili desiderato. Quando si avvia un terminale, è possibile scegliere il profilo desiderato oppure modificarlo durante l'uso. Per specificare quale profilo iniziale utilizzare quando si avvia l'applicazione dalla riga di comando, usare la sintassi seguente:</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>nome_profilo</replaceable></command> 
@@ -299,7 +299,7 @@
   </sect1> 
 
   <sect1 id="gnome-terminal-usage"> 
-     <title>Utilizzo</title> 
+     <title>Uso</title> 
 
      <sect2 id="gnome-terminal-windows"> 
         <title>Aprire e chiudere i terminali</title> 
@@ -308,7 +308,7 @@
              <term>Per aprire una nuova finestra di terminale:</term> 
              <listitem> 
                 <para>Scegliere <menuchoice><guimenu>File</guimenu><guimenuitem>Apri terminale</guimenuitem></menuchoice>.</para>
-                <para>Il nuovo terminale eredita le impostazioni di applicazione e la shell di default dal terminale padre.</para>
+                <para>Il nuovo terminale eredita dal terminale padre le impostazioni di applicazione e la shell predefinita.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -321,8 +321,7 @@
           <varlistentry> 
              <term>Aggiungere una nuova scheda di terminale a una finestra:</term> 
              <listitem> 
-                <para>
-                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
+                <para>Scegliere <menuchoice><guimenu>File</guimenu><guisubmenu>Apri scheda</guisubmenu><guimenuitem>Predefinita&gt;</guimenuitem></menuchoice> o semplicemente <menuchoice><guimenu>File</guimenu><guimenuitem>Apri scheda</guimenuitem></menuchoice> se non c'è alcun sottomenù.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -338,7 +337,7 @@
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>Visualizzare la scheda di terminale che si desidera chiudere:</para>
+                        <para>Visualizzare la scheda di terminale che si desidera chiudere.</para>
                      </listitem> 
                      <listitem> 
                         <para>Scegliere <menuchoice><guimenu>File</guimenu><guimenuitem>Chiudi scheda</guimenuitem></menuchoice>.</para>
@@ -480,7 +479,7 @@
           <varlistentry> 
              <term>Per selezionare e copiare il testo:</term> 
              <listitem> 
-                <para>È possibile selezionare e copiare una porzione di testo in uno dei seguenti modi:</para>
+                <para>È possibile selezionare una porzione di testo in uno dei seguenti modi:</para>
                 <itemizedlist> 
                   <listitem> 
                      <para>Per selezionare un carattere alla volta, fare clic sul primo carattere che si intende selezionare e trascinare il mouse fino all'ultimo carattere desiderato.</para>
@@ -504,7 +503,7 @@
                      <para>Per incollare il testo selezionato, fare clic con il pulsante centrale del mouse alla riga di comando. Se il mouse non dispone di un tasto centrale, fare riferimento alla documentazione del server X per informazioni su come emulare il pulsante centrale.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Per incollare in modo esplicito il testo copiato, scegliere <menuchoice><guimenu>Modifica</guimenu><guimenuitem>Incolla</guimenuitem></menuchoice>.</para>
+                     <para>Per incollare il testo copiato, scegliere <menuchoice><guimenu>Modifica</guimenu><guimenuitem>Incolla</guimenuitem></menuchoice>.</para>
                   </listitem> 
                 </itemizedlist> 
              </listitem> 
@@ -569,7 +568,7 @@
 			</listitem>
 			<listitem><para>Per diminuire la dimensione del testo, scegliere <menuchoice><guimenu>Visualizza</guimenu><guimenuitem>Riduci ingrandimento</guimenuitem></menuchoice>.</para>
 			</listitem>
-			<listitem><para>Per tornare alla dimensione normale del testo, scegliere <menuchoice><guimenu>Visualizza</guimenu>Dimensione normale</menuchoice></para>
+			<listitem><para>Per tornare alla dimensione normale del testo, scegliere <menuchoice><guimenu>Visualizza</guimenu><guimenuitem>Dimensione normale</guimenuitem></menuchoice>.</para>
 			</listitem>
 		</itemizedlist>
 
@@ -603,12 +602,10 @@
             <para>Scegliere <menuchoice><guimenu>Terminale</guimenu><guisubmenu>Imposta codifica dei caratteri</guisubmenu><guimenuitem>Aggiungi o rimuovi...</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
-            </para>
+            <para>Per aggiungere una codifica al menù <guisubmenu>Imposta codifica dei caratteri</guisubmenu>, selezionare la codifica desiderata dall'elenco <guilabel>Codifiche disponibili</guilabel>, quindi fare clic sul tasto Freccia destra.</para>
           </listitem>
           <listitem>
-            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
-            </para>
+            <para>Per rimuovere una codifica dal menù <guisubmenu>Imposta codifica dei caratteri</guisubmenu>, selezionare la codifica dall'elenco <guilabel>Codifiche mostrate nel menù</guilabel>, quindi fare clic sul tasto Freccia sinistra.</para>
           </listitem>
           <listitem>
             <para>Fare clic su <guibutton>Chiudi</guibutton> per chiudere il dialogo <guilabel>Aggiunge o rimuove codifiche di terminale</guilabel>.</para>
@@ -625,7 +622,7 @@
           <varlistentry> 
              <term>Per ripristinare lo stato del terminale:</term> 
              <listitem> 
-                <para>Scegliere <menuchoice><guimenu>Terminale</guimenu><guimenuitem>Ripristina</guimenuitem>.</menuchoice></para>
+                <para>Scegliere <menuchoice><guimenu>Terminale</guimenu><guimenuitem>Ripristina</guimenuitem></menuchoice>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -675,7 +672,7 @@
              <term> 
                 <guilabel>Usare il carattere di sistema per il terminale</guilabel> </term> 
              <listitem> 
-                <para>Selezionare questa opzione per utilizzare il carattere standard specificato nello strumento  <application>Tipi di carattere</application> del menù di sistema.</para>
+                <para>Selezionare questa opzione per utilizzare il carattere standard specificato nello strumento <application>Tipi di carattere</application> del menù di sistema.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -725,7 +722,7 @@
              <term> 
                 <guilabel>Caratteri selezionabili come parola</guilabel> </term> 
              <listitem> 
-                <para>Usare questa casella di testo per specificare quali caratteri, o gruppi di caratteri, il <application>Terminale GNOME</application> riconosce come parole quando viene utilizzata la selezione di parole di testo. Consultare la sezione <xref linkend="gnome-terminal-contents"/> per ulteiori informazioni su come selezionare parole di testo.</para>
+                <para>Usare questa casella di testo per specificare quali caratteri, o gruppi di caratteri, il <application>Terminale GNOME</application> riconosce come parole quando viene utilizzata la selezione di parole di testo. Consultare la sezione <xref linkend="gnome-terminal-contents"/> per ulteriori informazioni su come selezionare parole di testo.</para>
              </listitem> 
           </varlistentry> 
           
@@ -757,11 +754,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Update login records when command is launched</guilabel> </term> 
+                <guilabel>Aggiornare i record di login quando il comando viene eseguito</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to insert a new entry in the login records when a new shell is opened. 
-                </para>
+                <para>Selezionare quest'opzione per inserire una nuova voce nei record di login quando si apre una nuova shell.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -789,7 +784,7 @@
                 <guilabel>Primo piano e sfondo</guilabel>
                 </term> 
              <listitem> 
-                <para>Selezionare l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> per usare i colori specificati nel tema del desktop GNOME, selezionato attraverso lo strumenti di preferenze <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Tema</application></ulink>.</para>
+                <para>Selezionare l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> per usare i colori specificati nel tema del desktop GNOME, selezionato attraverso lo strumento di preferenze <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Tema</application></ulink>.</para>
                 <para>Usare l'elenco a discesa <guilabel>Schemi predefiniti</guilabel> per specificare i colori di sfondo e primo piano del terminale. <application>Terminale GNOME</application> supporta le seguenti combinazioni di colori:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -825,8 +820,8 @@
                   </listitem> 
                 </itemizedlist> 
                 <para>La visualizzazione effettiva dei colori di primo piano e sfondo può variare in base allo schema di colori selezionato. Per esempio, selezionando <guilabel>Bianco su nero</guilabel> e lo schema incorporato <guilabel>Console di Linux</guilabel>, l'applicazione visualizza i colori di primo piano e sfondo come grigio chiaro su nero. L'elenco a discesa <guilabel>Schemi incorporati</guilabel> è abilitato solo se l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> non è selezionata.</para>
-                <para>Fare clic sul pulsante <guilabel>Colore del testo</guilabel> per visualizzare il dialogo <guilabel>Scelta colore del testo del terminale</guilabel>. Usare la ruota dei colori o i controlli di selezione per personalizzare il colore del testo, quindi fare clic su <guibutton>Ok<guilabel>. Il pulsante <guilabel>Colore del testo</guilabel> è abilitato solo se l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> non è selezionata.</guilabel></guibutton></para>
-                <para>Fare clic sul pulsante <guilabel>Colore dello sfondo</guilabel> per visualizzare il dialogo <guilabel>Scelta del colore dello sfondo del terminale</guilabel>. Usare la ruota dei colori o i controlli di selezione per personalizzare il colore dello sfondo, quindi fare clic su <guilabel>Ok</guilabel>. Il pulsante <guilabel>Colore dello sfondo</guilabel> è abilitato solo se l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> non è selezionata.</para>
+                <para>Fare clic sul pulsante <guilabel>Colore del testo</guilabel> per visualizzare il dialogo <guilabel>Scelta colore del testo del terminale</guilabel>. Usare la ruota dei colori o i controlli di selezione per personalizzare il colore del testo, quindi fare clic su <guibutton>OK</guibutton>. Il pulsante <guilabel>Colore del testo</guilabel> è abilitato solo se l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> non è selezionata.</para>
+                <para>Fare clic sul pulsante <guilabel>Colore dello sfondo</guilabel> per visualizzare il dialogo <guilabel>Scelta del colore dello sfondo del terminale</guilabel>. Usare la ruota dei colori o i controlli di selezione per personalizzare il colore dello sfondo, quindi fare clic su <guilabel>OK</guilabel>. Il pulsante <guilabel>Colore dello sfondo</guilabel> è abilitato solo se l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> non è selezionata.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -835,7 +830,7 @@
              <listitem> 
                 <para>L'emulazione di terminale può utilizzare solamente 16 colori per la visualizzazione del testo. La tavolozza dei colori specifica quali. Le applicazioni che vengono eseguite nel terminale usano un indice per specificare un colore all'interno della tavolozza.</para>
                <para>Usare l'elenco a discesa <guilabel>Schemi incorporati</guilabel> per selezionare uno schema di colori predefinito. La tavolozza dei colori e la finestra del terminale si aggiornano immediatamente con i colori dello schema.</para>
-               <para>Usare la <guilabel>Tavolozza dei colori</guilabel> per pesonalizzare i 16 colori predefiniti. Per modificare un colore, fare clic sul colore per visualizzare il dialogo <guilabel>Scelta colore della tavolozza</guilabel>. Usare la ruota dei colori o i controlli di selezione per la personalizzazione, quindi fare clic su <guilabel>Ok</guilabel>.</para>
+               <para>Usare la <guilabel>Tavolozza dei colori</guilabel> per personalizzare i 16 colori predefiniti. Per modificare un colore, fare clic sul colore per visualizzare il dialogo <guilabel>Scelta colore della tavolozza</guilabel>. Usare la ruota dei colori o i controlli di selezione per la personalizzazione, quindi fare clic su <guilabel>OK</guilabel>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -903,7 +898,7 @@
              <term> 
                 <guilabel>Scorrimento del buffer ... kilobyte</guilabel> </term> 
              <listitem> 
-                <para>Usare questo controllo di selezionre per specificare il numero di kilobyte di cui può essere eseguito lo scorrimento all'indietro con la barra. Per esempio, selezionando 94 verranno scorsi all'indietro gli ultimi 94 kilobyte visualizzati sul terminale.</para>
+                <para>Usare questo controllo di selezione per specificare il numero di kilobyte di cui può essere eseguito lo scorrimento all'indietro con la barra. Per esempio, selezionando 94 verranno scorsi all'indietro gli ultimi 94 kilobyte visualizzati sul terminale.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -930,7 +925,7 @@
              <term> 
                 <guilabel>Il tasto «Backspace» genera</guilabel> </term> 
              <listitem> 
-                <para>Usare l'elenco a discesa per selezionare la funzione che si desidera associare al tasto <keycap>Backspace.</keycap></para>
+                <para>Usare l'elenco a discesa per selezionare la funzione che si desidera associare al tasto <keycap>Backspace</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
