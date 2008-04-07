@@ -1125,7 +1125,7 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
                      0,
                      CopyFromParent,
                      CopyFromParent,
-                     CopyFromParent,
+                     (Visual *)CopyFromParent,
                      CWOverrideRedirect | CWEventMask,
                      &attrs);
 
@@ -1550,6 +1550,22 @@ terminal_app_new_terminal (TerminalApp     *app,
     
       terminal_window_set_active (window, screen);
       gtk_widget_grab_focus (GTK_WIDGET (screen));
+    }
+  else
+    {
+      TerminalWindow *source_window;
+
+      source_window = terminal_screen_get_window (screen);
+      if (source_window)
+        {
+          g_object_ref_sink (screen);
+          terminal_window_remove_screen (source_window, screen);
+          terminal_window_add_screen (window, screen, -1);
+          g_object_unref (screen);
+
+          terminal_window_set_active (window, screen);
+          gtk_widget_grab_focus (GTK_WIDGET (screen));
+        }
     }
 
   if (geometry)
