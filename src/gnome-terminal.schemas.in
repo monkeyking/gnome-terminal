@@ -283,7 +283,7 @@
       <applyto>/apps/gnome-terminal/profiles/Default/scrollback_lines</applyto>
       <owner>gnome-terminal</owner>
       <type>int</type>
-      <default>500</default>
+      <default>512</default>
       <locale name="C">
          <short>Number of lines to keep in scrollback</short>
          <long>
@@ -385,12 +385,27 @@
       </locale>
     </schema>
 
-    <schema>
+     <schema>
+       <key>/schemas/apps/gnome-terminal/profiles/Default/cursor_blink_mode</key>
+       <applyto>/apps/gnome-terminal/profiles/Default/cursor_blink_mode</applyto>
+       <owner>gnome-terminal</owner>
+       <type>string</type>
+       <default>system</default>
+       <locale name="C">
+          <short>Whether to blink the cursor</short>
+          <long>
+            The possible values are "system" to use the global cursor blinking
+            settings, or "on" or "off" to set the mode explicitly.
+          </long>
+       </locale>
+     </schema>
+    
+     <schema>
       <key>/schemas/apps/gnome-terminal/profiles/Default/custom_command</key>
       <applyto>/apps/gnome-terminal/profiles/Default/custom_command</applyto>
       <owner>gnome-terminal</owner>
       <type>string</type>
-      <default> </default>
+      <default></default>
       <locale name="C">
          <short>Custom command to use instead of the shell</short>
          <long>
@@ -405,7 +420,7 @@
       <applyto>/apps/gnome-terminal/profiles/Default/icon</applyto>
       <owner>gnome-terminal</owner>
       <type>string</type>
-      <default>gnome-terminal.png</default>
+      <default></default>
       <locale name="C">
          <short>Icon for terminal window</short>
          <long>
@@ -432,27 +447,11 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-terminal/profiles/Default/x_font</key>
-      <applyto>/apps/gnome-terminal/profiles/Default/x_font</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>-misc-fixed-medium-r-semicondensed--*-120-*-*-c-*-*-*</default>
-      <locale name="C">
-         <short>Font</short>
-         <long>
-          An X font name. See the X man page (type "man X") for more 
-          details on the format of X font names.
-         </long>
-      </locale>
-    </schema>
-
-
-    <schema>
       <key>/schemas/apps/gnome-terminal/profiles/Default/font</key>
       <applyto>/apps/gnome-terminal/profiles/Default/font</applyto>
       <owner>gnome-terminal</owner>
       <type>string</type>
-      <default>monospace 12</default>
+      <default>Monospace 12</default>
       <locale name="C">
          <short>Font</short>
          <long>
@@ -481,7 +480,7 @@
       <applyto>/apps/gnome-terminal/profiles/Default/background_image</applyto>
       <owner>gnome-terminal</owner>
       <type>string</type>
-      <default> </default>
+      <default></default>
       <locale name="C">
          <short>Background image</short>
          <long>
@@ -609,7 +608,6 @@
          </long>
       </locale>
     </schema>
-
 
     <schema>
       <key>/schemas/apps/gnome-terminal/profiles/Default/use_skey</key>
@@ -913,210 +911,6 @@
           in the same format used for GTK+ resource files.
           If you set the option to the special string "disabled", then there 
           will be no keybinding for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_1</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_1</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;1</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 1</short>
-         <long>
-          Keyboard shortcut key for switch to tab 1. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_2</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_2</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;2</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 2</short>
-         <long>
-          Keyboard shortcut key for switch to tab 2. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_3</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_3</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;3</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 3</short>
-         <long>
-          Keyboard shortcut key for switch to tab 3. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_4</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_4</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;4</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 4</short>
-         <long>
-          Keyboard shortcut key for switch to tab 4. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_5</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_5</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;5</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 5</short>
-         <long>
-          Keyboard shortcut key for switch to tab 5. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_6</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_6</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;6</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 6</short>
-         <long>
-          Keyboard shortcut key for switch to tab 6. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_7</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_7</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;7</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 7</short>
-         <long>
-          Keyboard shortcut key for switch to tab 7. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_8</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_8</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;8</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 8</short>
-         <long>
-          Keyboard shortcut key for switch to tab 8. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_9</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_9</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-      <default>&lt;Alt&gt;9</default>
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 9</short>
-         <long>
-          Keyboard shortcut key for switch to tab 9. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_10</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_10</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-<!-- no default -->
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 10</short>
-         <long>
-          Keyboard shortcut key for switch to tab 10. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_11</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_11</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-<!-- no default -->
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 11</short>
-         <long>
-          Keyboard shortcut key for switch to tab 11. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
-         </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-terminal/keybindings/switch_to_tab_12</key>
-      <applyto>/apps/gnome-terminal/keybindings/switch_to_tab_12</applyto>
-      <owner>gnome-terminal</owner>
-      <type>string</type>
-<!-- no default -->
-      <locale name="C">
-         <short>Keyboard shortcut to switch to tab 12</short>
-         <long>
-          Keyboard shortcut key for switch to tab 12. Expressed as a string
-          in the same format used for GTK+ resource files.
-          If you set the option to the special string "disabled", then there 
-          will be no keyboard shortcut for this action.
          </long>
       </locale>
     </schema>
