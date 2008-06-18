@@ -14,10 +14,11 @@
 
 #include <config.h>
 
+#include <string.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
 
-#include <glib/gchecksum.h>
+#include <glib.h>
 
 #include "skey.h"
 #include "skeyutil.h"
@@ -61,7 +62,7 @@ int SHA1Keycrunch(char *result, const char *seed, const char *passphrase)
 	guint32 *results;
 
 	len = strlen(seed) + strlen(passphrase);
-	if ((buf = (char *)malloc(len+1)) == NULL)
+	if ((buf = (char *)g_try_malloc(len+1)) == NULL)
 		return -1;
 
 	strcpy(buf, seed);
@@ -71,7 +72,7 @@ int SHA1Keycrunch(char *result, const char *seed, const char *passphrase)
 
         checksum = g_checksum_new (G_CHECKSUM_SHA1);
         g_checksum_update (checksum, (const guchar *) buf, len);
-	free(buf);
+	g_free(buf);
 
         g_checksum_get_digest (checksum, digest, &digest_len);
         g_assert (digest_len == 20);

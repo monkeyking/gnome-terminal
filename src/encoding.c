@@ -1,9 +1,6 @@
-/* Encoding stuff */
-
 /*
- * Copyright (C) 2002 Red Hat, Inc.
- *
- * This file is part of gnome-terminal.
+ * Copyright © 2002 Red Hat, Inc.
+ * Copyright © 2008 Christian Persch
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,19 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "terminal-intl.h"
-#include "terminal.h"
-
-#include "encoding.h"
-
-#include "terminal-profile.h"
-
-#include <glade/glade.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtkmessagedialog.h>
-#include <gtk/gtktreestore.h>
+#include <config.h>
 
 #include <string.h>
+
+#include <gtk/gtk.h>
+
+#include "encoding.h"
+#include "terminal-app.h"
+#include "terminal-intl.h"
+#include "terminal-profile.h"
+#include "terminal-util.h"
 
 /* Overview
  *
@@ -47,380 +42,359 @@
  * predetermined table, then that encoding is
  * labeled "user defined" but still appears in the menu.
  */
-static GConfClient *default_client = NULL;
 
-static TerminalEncoding encodings[] = {
-
-  { TERMINAL_ENCODING_CURRENT_LOCALE, TRUE,
-    NULL, N_("Current Locale") },
-
-  { TERMINAL_ENCODING_ISO_8859_1, FALSE,
-    "ISO-8859-1", N_("Western") },
-  { TERMINAL_ENCODING_ISO_8859_2, FALSE,
-    "ISO-8859-2", N_("Central European") },
-  { TERMINAL_ENCODING_ISO_8859_3, FALSE,
-    "ISO-8859-3", N_("South European") },
-  { TERMINAL_ENCODING_ISO_8859_4, FALSE,
-    "ISO-8859-4", N_("Baltic") },
-  { TERMINAL_ENCODING_ISO_8859_5, FALSE,
-    "ISO-8859-5", N_("Cyrillic") },
-  { TERMINAL_ENCODING_ISO_8859_6, FALSE,
-    "ISO-8859-6", N_("Arabic") },
-  { TERMINAL_ENCODING_ISO_8859_7, FALSE,
-    "ISO-8859-7", N_("Greek") },
-  { TERMINAL_ENCODING_ISO_8859_8, FALSE,
-    "ISO-8859-8", N_("Hebrew Visual") },
-  { TERMINAL_ENCODING_ISO_8859_8_I, FALSE,
-    "ISO-8859-8-I", N_("Hebrew") },
-  { TERMINAL_ENCODING_ISO_8859_9, FALSE,
-    "ISO-8859-9", N_("Turkish") },
-  { TERMINAL_ENCODING_ISO_8859_10, FALSE,
-    "ISO-8859-10", N_("Nordic") },
-  { TERMINAL_ENCODING_ISO_8859_13, FALSE,
-    "ISO-8859-13", N_("Baltic") },
-  { TERMINAL_ENCODING_ISO_8859_14, FALSE,
-    "ISO-8859-14", N_("Celtic") },
-  { TERMINAL_ENCODING_ISO_8859_15, FALSE,
-    "ISO-8859-15", N_("Western") },
-  { TERMINAL_ENCODING_ISO_8859_16, FALSE,
-    "ISO-8859-16", N_("Romanian") },
-
-  { TERMINAL_ENCODING_UTF_7, FALSE,
-    "UTF-7", N_("Unicode") },
-  { TERMINAL_ENCODING_UTF_8, FALSE,
-    "UTF-8", N_("Unicode") },
-  { TERMINAL_ENCODING_UTF_16, FALSE,
-    "UTF-16", N_("Unicode") },
-  { TERMINAL_ENCODING_UCS_2, FALSE,
-    "UCS-2", N_("Unicode") },
-  { TERMINAL_ENCODING_UCS_4, FALSE,
-    "UCS-4", N_("Unicode") },
-
-  { TERMINAL_ENCODING_ARMSCII_8, FALSE,
-    "ARMSCII-8", N_("Armenian") },
-  { TERMINAL_ENCODING_BIG5, FALSE,
-    "BIG5", N_("Chinese Traditional") },
-  { TERMINAL_ENCODING_BIG5_HKSCS, FALSE,
-    "BIG5-HKSCS", N_("Chinese Traditional") },
-  { TERMINAL_ENCODING_CP_866, FALSE,
-    "CP866", N_("Cyrillic/Russian") },
-
-  { TERMINAL_ENCODING_EUC_JP, FALSE,
-    "EUC-JP", N_("Japanese") },
-  { TERMINAL_ENCODING_EUC_KR, FALSE,
-    "EUC-KR", N_("Korean") },
-  { TERMINAL_ENCODING_EUC_TW, FALSE,
-    "EUC-TW", N_("Chinese Traditional") },
-
-  { TERMINAL_ENCODING_GB18030, FALSE,
-    "GB18030", N_("Chinese Simplified") },
-  { TERMINAL_ENCODING_GB2312, FALSE,
-    "GB2312", N_("Chinese Simplified") },
-  { TERMINAL_ENCODING_GBK, FALSE,
-    "GBK", N_("Chinese Simplified") },
-  { TERMINAL_ENCODING_GEOSTD8, FALSE,
-    "GEORGIAN-PS", N_("Georgian") },
-  { TERMINAL_ENCODING_HZ, FALSE,
-    "HZ", N_("Chinese Simplified") },
-
-  { TERMINAL_ENCODING_IBM_850, FALSE,
-    "IBM850", N_("Western") },
-  { TERMINAL_ENCODING_IBM_852, FALSE,
-    "IBM852", N_("Central European") },
-  { TERMINAL_ENCODING_IBM_855, FALSE,
-    "IBM855", N_("Cyrillic") },
-  { TERMINAL_ENCODING_IBM_857, FALSE,
-    "IBM857", N_("Turkish") },
-  { TERMINAL_ENCODING_IBM_862, FALSE,
-    "IBM862", N_("Hebrew") },
-  { TERMINAL_ENCODING_IBM_864, FALSE,
-    "IBM864", N_("Arabic") },
-
-  { TERMINAL_ENCODING_ISO_2022_JP, FALSE,
-    "ISO-2022-JP", N_("Japanese") },
-  { TERMINAL_ENCODING_ISO_2022_KR, FALSE,
-    "ISO-2022-KR", N_("Korean") },
-  { TERMINAL_ENCODING_ISO_IR_111, FALSE,
-    "ISO-IR-111", N_("Cyrillic") },
-  { TERMINAL_ENCODING_JOHAB, FALSE,
-    "JOHAB", N_("Korean") },
-  { TERMINAL_ENCODING_KOI8_R, FALSE,
-    "KOI8-R", N_("Cyrillic") },
-  { TERMINAL_ENCODING_KOI8_U, FALSE,
-    "KOI8-U", N_("Cyrillic/Ukrainian") },
-
-  { TERMINAL_ENCODING_MAC_ARABIC, FALSE,
-    "MAC_ARABIC", N_("Arabic") },
-  { TERMINAL_ENCODING_MAC_CE, FALSE,
-    "MAC_CE", N_("Central European") },
-  { TERMINAL_ENCODING_MAC_CROATIAN, FALSE,
-    "MAC_CROATIAN", N_("Croatian") },
-  { TERMINAL_ENCODING_MAC_CYRILLIC, FALSE,
-    "MAC-CYRILLIC", N_("Cyrillic") },
-  { TERMINAL_ENCODING_MAC_DEVANAGARI, FALSE,
-    "MAC_DEVANAGARI", N_("Hindi") },
-  { TERMINAL_ENCODING_MAC_FARSI, FALSE,
-    "MAC_FARSI", N_("Persian") },
-  { TERMINAL_ENCODING_MAC_GREEK, FALSE,
-    "MAC_GREEK", N_("Greek") },
-  { TERMINAL_ENCODING_MAC_GUJARATI, FALSE,
-    "MAC_GUJARATI", N_("Gujarati") },
-  { TERMINAL_ENCODING_MAC_GURMUKHI, FALSE,
-    "MAC_GURMUKHI", N_("Gurmukhi") },
-  { TERMINAL_ENCODING_MAC_HEBREW, FALSE,
-    "MAC_HEBREW", N_("Hebrew") },
-  { TERMINAL_ENCODING_MAC_ICELANDIC, FALSE,
-    "MAC_ICELANDIC", N_("Icelandic") },
-  { TERMINAL_ENCODING_MAC_ROMAN, FALSE,
-    "MAC_ROMAN", N_("Western") },
-  { TERMINAL_ENCODING_MAC_ROMANIAN, FALSE,
-    "MAC_ROMANIAN", N_("Romanian") },
-  { TERMINAL_ENCODING_MAC_TURKISH, FALSE,
-    "MAC_TURKISH", N_("Turkish") },
-  { TERMINAL_ENCODING_MAC_UKRAINIAN, FALSE,
-    "MAC_UKRAINIAN", N_("Cyrillic/Ukrainian") },
-  
-  { TERMINAL_ENCODING_SHIFT_JIS, FALSE,
-    "SHIFT_JIS", N_("Japanese") },
-  { TERMINAL_ENCODING_TCVN, FALSE,
-    "TCVN", N_("Vietnamese") },
-  { TERMINAL_ENCODING_TIS_620, FALSE,
-    "TIS-620", N_("Thai") },
-  { TERMINAL_ENCODING_UHC, FALSE,
-    "UHC", N_("Korean") },
-  { TERMINAL_ENCODING_VISCII, FALSE,
-    "VISCII", N_("Vietnamese") },
-
-  { TERMINAL_ENCODING_WINDOWS_1250, FALSE,
-    "WINDOWS-1250", N_("Central European") },
-  { TERMINAL_ENCODING_WINDOWS_1251, FALSE,
-    "WINDOWS-1251", N_("Cyrillic") },
-  { TERMINAL_ENCODING_WINDOWS_1252, FALSE,
-    "WINDOWS-1252", N_("Western") },
-  { TERMINAL_ENCODING_WINDOWS_1253, FALSE,
-    "WINDOWS-1253", N_("Greek") },
-  { TERMINAL_ENCODING_WINDOWS_1254, FALSE,
-    "WINDOWS-1254", N_("Turkish") },
-  { TERMINAL_ENCODING_WINDOWS_1255, FALSE,
-    "WINDOWS-1255", N_("Hebrew") },
-  { TERMINAL_ENCODING_WINDOWS_1256, FALSE,
-    "WINDOWS-1256", N_("Arabic") },
-  { TERMINAL_ENCODING_WINDOWS_1257, FALSE,
-    "WINDOWS-1257", N_("Baltic") },
-  { TERMINAL_ENCODING_WINDOWS_1258, FALSE,
-    "WINDOWS-1258", N_("Vietnamese") }
-};
-
-static GSList *active_encodings = NULL;
-
-static void update_active_encodings_from_string_list (GSList *strings);
-static void update_active_encoding_tree_models  (void);
-static void register_active_encoding_tree_model (GtkListStore *store);
-
-static void
-encodings_change_notify (GConfClient *client,
-                         guint        cnxn_id,
-                         GConfEntry  *entry,
-                         gpointer     user_data)
-{
-  GConfValue *val;
-  GSList *strings;
-  
-  /* FIXME handle whether the entry is writable
+static const struct {
+  const char *charset;
+  const char *name;
+} encodings[] = {
+//  { "UTF-8",	N_("Current Locale") },
+  { "ISO-8859-1",	N_("Western") },
+  { "ISO-8859-2",	N_("Central European") },
+  { "ISO-8859-3",	N_("South European") },
+  { "ISO-8859-4",	N_("Baltic") },
+  { "ISO-8859-5",	N_("Cyrillic") },
+  { "ISO-8859-6",	N_("Arabic") },
+  { "ISO-8859-7",	N_("Greek") },
+  { "ISO-8859-8",	N_("Hebrew Visual") },
+  { "ISO-8859-8-I",	N_("Hebrew") },
+  { "ISO-8859-9",	N_("Turkish") },
+  { "ISO-8859-10",	N_("Nordic") },
+  { "ISO-8859-13",	N_("Baltic") },
+  { "ISO-8859-14",	N_("Celtic") },
+  { "ISO-8859-15",	N_("Western") },
+  { "ISO-8859-16",	N_("Romanian") },
+  { "UTF-8",	N_("Unicode") },
+  { "ARMSCII-8",	N_("Armenian") },
+  { "BIG5",	N_("Chinese Traditional") },
+  { "BIG5-HKSCS",	N_("Chinese Traditional") },
+  { "CP866",	N_("Cyrillic/Russian") },
+  { "EUC-JP",	N_("Japanese") },
+  { "EUC-KR",	N_("Korean") },
+  { "EUC-TW",	N_("Chinese Traditional") },
+  { "GB18030",	N_("Chinese Simplified") },
+  { "GB2312",	N_("Chinese Simplified") },
+  { "GBK",	N_("Chinese Simplified") },
+  { "GEORGIAN-PS",	N_("Georgian") },
+  { "IBM850",	N_("Western") },
+  { "IBM852",	N_("Central European") },
+  { "IBM855",	N_("Cyrillic") },
+  { "IBM857",	N_("Turkish") },
+  { "IBM862",	N_("Hebrew") },
+  { "IBM864",	N_("Arabic") },
+  { "ISO-2022-JP",	N_("Japanese") },
+  { "ISO-2022-KR",	N_("Korean") },
+  { "ISO-IR-111",	N_("Cyrillic") },
+  { "KOI8-R",	N_("Cyrillic") },
+  { "KOI8-U",	N_("Cyrillic/Ukrainian") },
+  { "MAC_ARABIC",	N_("Arabic") },
+  { "MAC_CE",	N_("Central European") },
+  { "MAC_CROATIAN",	N_("Croatian") },
+  { "MAC-CYRILLIC",	N_("Cyrillic") },
+  { "MAC_DEVANAGARI",	N_("Hindi") },
+  { "MAC_FARSI",	N_("Persian") },
+  { "MAC_GREEK",	N_("Greek") },
+  { "MAC_GUJARATI",	N_("Gujarati") },
+  { "MAC_GURMUKHI",	N_("Gurmukhi") },
+  { "MAC_HEBREW",	N_("Hebrew") },
+  { "MAC_ICELANDIC",	N_("Icelandic") },
+  { "MAC_ROMAN",	N_("Western") },
+  { "MAC_ROMANIAN",	N_("Romanian") },
+  { "MAC_TURKISH",	N_("Turkish") },
+  { "MAC_UKRAINIAN",	N_("Cyrillic/Ukrainian") },
+  { "SHIFT_JIS",	N_("Japanese") },
+  { "TCVN",	N_("Vietnamese") },
+  { "TIS-620",	N_("Thai") },
+  { "UHC",	N_("Korean") },
+  { "VISCII",	N_("Vietnamese") },
+  { "WINDOWS-1250",	N_("Central European") },
+  { "WINDOWS-1251",	N_("Cyrillic") },
+  { "WINDOWS-1252",	N_("Western") },
+  { "WINDOWS-1253",	N_("Greek") },
+  { "WINDOWS-1254",	N_("Turkish") },
+  { "WINDOWS-1255",	N_("Hebrew") },
+  { "WINDOWS-1256",	N_("Arabic") },
+  { "WINDOWS-1257",	N_("Baltic") },
+  { "WINDOWS-1258",	N_("Vietnamese") },
+#if 0
+  /* These encodings do NOT pass-through ASCII, so are always rejected.
+   * FIXME: why are they in this table; or rather why do we need
+   * the ASCII pass-through requirement?
    */
+  { "UTF-7",  N_("Unicode") },
+  { "UTF-16", N_("Unicode") },
+  { "UCS-2",  N_("Unicode") },
+  { "UCS-4",  N_("Unicode") },
+  { "JOHAB",  N_("Korean") },
+#endif
+};
+                           
+static GHashTable *encodings_hashtable;
+static gboolean encodings_writable;
 
-  val = gconf_entry_get_value (entry);
-  if (val == NULL || val->type != GCONF_VALUE_LIST ||
-      gconf_value_get_list_type (val) != GCONF_VALUE_STRING)
-    strings = NULL;
-  else
-    {
-      GSList *tmp;
+typedef struct {
+  GtkWidget *dialog;
+  GtkListStore *base_store;
+  GtkTreeView *available_tree_view;
+  GtkTreeSelection *available_selection;
+  GtkTreeModel *available_model;
+  GtkTreeView *active_tree_view;
+  GtkTreeSelection *active_selection;
+  GtkTreeModel *active_model;
+  GtkWidget *add_button;
+  GtkWidget *remove_button;
+} EncodingDialogData;
 
-      strings = NULL;
-      tmp = gconf_value_get_list (val);
-      while (tmp != NULL)
-        {
-          GConfValue *v = tmp->data;
-          g_assert (v->type == GCONF_VALUE_STRING);
+static GtkWidget *encoding_dialog = NULL;
 
-          if (gconf_value_get_string (v))
-            {
-              strings = g_slist_prepend (strings,
-                                         (char*) gconf_value_get_string (v));
-            }
-          
-          tmp = tmp->next;
-        }
-    }
+static void update_active_encoding_tree_models (void);
 
-  update_active_encodings_from_string_list (strings);
+static void encodings_notify_cb (GConfClient *client,
+                                 guint        cnxn_id,
+                                 GConfEntry  *entry,
+                                 gpointer     user_data);
 
-  /* note we didn't copy the strings themselves, so don't free them */
-  g_slist_free (strings);
+static TerminalEncoding *
+terminal_encoding_new (const char *charset,
+                       const char *name,
+                       gboolean is_custom,
+                       gboolean force_valid)
+{
+  TerminalEncoding *encoding;
+
+  encoding = g_slice_new (TerminalEncoding);
+  encoding->refcount = 1;
+  encoding->charset = g_strdup (charset);
+  encoding->name = g_strdup (name);
+  encoding->valid = encoding->validity_checked = force_valid;
+  encoding->is_custom = is_custom;
+
+  return encoding;
 }
 
-static const TerminalEncoding*
-find_encoding_by_charset (const char *charset)
+TerminalEncoding*
+terminal_encoding_ref (TerminalEncoding *encoding)
 {
-  int i;
+  g_return_val_if_fail (encoding != NULL, NULL);
 
-  i = 1; /* skip current locale */
-  while (i < TERMINAL_ENCODING_LAST)
-    {
-      /* Note that the "current locale" encoding entry
-       * may have the same charset as other entries
-       */
-      
-      if (strcmp (charset, encodings[i].charset) == 0)
-        return &encodings[i];
-      
-      ++i;
-    }
-
-  /* Fall back to current locale if the current locale charset
-   * wasn't known.
-   */
-  if (strcmp (charset, encodings[TERMINAL_ENCODING_CURRENT_LOCALE].charset) == 0)
-    return &encodings[TERMINAL_ENCODING_CURRENT_LOCALE];
-  
-  return NULL;
+  encoding->refcount++;
+  return encoding;
 }
 
 void
-terminal_encoding_free (TerminalEncoding *encoding)
+terminal_encoding_unref (TerminalEncoding *encoding)
 {
+  if (--encoding->refcount > 0)
+    return;
+
   g_free (encoding->name);
   g_free (encoding->charset);
   g_slice_free (TerminalEncoding, encoding);
 }
 
-static TerminalEncoding*
-terminal_encoding_copy (const TerminalEncoding *src)
+static gboolean
+terminal_encoding_is_valid (TerminalEncoding *encoding)
 {
-  TerminalEncoding *c;
+  /* All of the printing ASCII characters from space (32) to the tilde (126) */
+  static const char ascii_sample[] =
+      " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+  char *converted;
+  gsize bytes_read = 0, bytes_written = 0;
+  GError *error = NULL;
 
-  c = g_slice_new (TerminalEncoding);
-  c->index = src->index;
-  c->valid = src->valid;
-  c->name = g_strdup (src->name);
-  c->charset = g_strdup (src->charset);
-  
-  return c;
+  if (encoding->validity_checked)
+    return encoding->valid;
+
+  /* Test that the encoding is a proper superset of ASCII (which naive
+   * apps are going to use anyway) by attempting to validate the text
+   * using the current encoding.  This also flushes out any encodings
+   * which the underlying GIConv implementation can't support.
+   */
+  converted = g_convert (ascii_sample, sizeof (ascii_sample) - 1,
+                         encoding->charset, "ASCII",
+                         &bytes_read, &bytes_written, &error);
+
+  /* The encoding is only valid if ASCII passes through cleanly. */
+  encoding->valid = (bytes_read == (sizeof (ascii_sample) - 1)) &&
+                    (converted != NULL) &&
+                    (strcmp (converted, ascii_sample) == 0);
+
+#ifdef DEBUG_ENCODINGS
+  if (!encoding->valid)
+    {
+      g_print("Rejecting encoding %s as invalid:\n", encoding->charset);
+      g_print(" input  \"%s\"\n", ascii_sample);
+      g_print(" output \"%s\" bytes read %u written %u\n",
+              converted ? converted : "(null)", bytes_read, bytes_written);
+      if (error)
+        g_print (" Error: %s\n", error->message);
+      g_print ("\n");
+    }
+  else
+    g_print ("Encoding %s is valid\n\n", encoding->charset);
+#endif
+
+  g_clear_error (&error);
+  g_free (converted);
+
+  encoding->validity_checked = TRUE;
+  return encoding->valid;
+}
+
+#define TERMINAL_TYPE_ENCODING (terminal_encoding_get_type ())
+
+static GType
+terminal_encoding_get_type (void)
+{
+  static GType type = 0;
+
+  if (G_UNLIKELY (type == 0)) {
+    type = g_boxed_type_register_static (I_("TerminalEncoding"),
+                                         (GBoxedCopyFunc) terminal_encoding_ref,
+                                         (GBoxedFreeFunc) terminal_encoding_unref);
+  }
+
+  return type;
 }
 
 static void
-update_active_encodings_from_string_list (GSList *strings)
+encoding_mark_active (gpointer key,
+                      gpointer value,
+                      gpointer data)
 {
-  GSList *tmp;
-  GHashTable *table;
+  TerminalEncoding *encoding = (TerminalEncoding *) value;
+  guint active = GPOINTER_TO_UINT (data);
+
+  encoding->is_active = active;
+}
+
+static void
+encodings_notify_cb (GConfClient *client,
+                     guint        cnxn_id,
+                     GConfEntry  *entry,
+                     gpointer     user_data)
+{
+  GConfValue *val;
+  GSList *strings, *tmp;
+  TerminalEncoding *encoding;
   const char *charset;
 
-#if 1
-  g_slist_foreach (active_encodings, (GFunc) terminal_encoding_free,
-                   NULL);
-  g_slist_free (active_encodings);
-#endif
-  active_encodings = NULL;
+  encodings_writable = gconf_entry_get_is_writable (entry);
 
-  table = g_hash_table_new (g_direct_hash, g_direct_equal);
-  
+  /* Mark all as non-active, then re-enable the active ones */
+  g_hash_table_foreach (encodings_hashtable, (GHFunc) encoding_mark_active, GUINT_TO_POINTER (FALSE));
+
   /* First add the local encoding. */
-  charset = encodings[TERMINAL_ENCODING_CURRENT_LOCALE].charset;
-  if (g_hash_table_lookup (table, GINT_TO_POINTER (g_quark_from_string (charset))) == NULL)
+  if (!g_get_charset (&charset))
     {
-      active_encodings = g_slist_prepend (active_encodings,
-                                          terminal_encoding_copy (&encodings[TERMINAL_ENCODING_CURRENT_LOCALE]));
-      g_hash_table_insert (table,
-		           GINT_TO_POINTER (g_quark_from_string (charset)),
-		           GINT_TO_POINTER (g_quark_from_string (charset)));
+      encoding = g_hash_table_lookup (encodings_hashtable, charset);
+      if (encoding)
+        encoding->is_active = TRUE;
     }
 
   /* Always ensure that UTF-8 is available. */
-  charset = encodings[TERMINAL_ENCODING_UTF_8].charset;
-  if (g_hash_table_lookup (table, GINT_TO_POINTER (g_quark_from_string (charset))) == NULL)
-    {
-      active_encodings = g_slist_prepend (active_encodings,
-                                          terminal_encoding_copy (&encodings[TERMINAL_ENCODING_UTF_8]));
-      g_hash_table_insert (table,
-		           GINT_TO_POINTER (g_quark_from_string (charset)),
-		           GINT_TO_POINTER (g_quark_from_string (charset)));
-    }
+  encoding = g_hash_table_lookup (encodings_hashtable, "UTF-8");
+  g_assert (encoding);
+  encoding->is_active = TRUE;
+
+  val = gconf_entry_get_value (entry);
+  if (val != NULL &&
+      val->type == GCONF_VALUE_LIST &&
+      gconf_value_get_list_type (val) == GCONF_VALUE_STRING)
+    strings = gconf_value_get_list (val);
+  else
+    strings = NULL;
 
   for (tmp = strings; tmp != NULL; tmp = tmp->next)
     {
-      const TerminalEncoding *e;
-      TerminalEncoding *encoding;
-      charset = tmp->data;
+      GConfValue *v = (GConfValue *) tmp->data;
       
+      charset = gconf_value_get_string (v);
+      if (!charset)
+        continue;
+
+      /* We already handled the locale charset above */
       if (strcmp (charset, "current") == 0)
-        g_get_charset (&charset);
-      
-      e = find_encoding_by_charset (charset);
+        continue; 
 
-      if (g_hash_table_lookup (table, GINT_TO_POINTER (g_quark_from_string (charset))) != NULL)
+      encoding = g_hash_table_lookup (encodings_hashtable, charset);
+      if (!encoding)
         {
-	  continue;
-        }
-
-      g_hash_table_insert (table,
-		           GINT_TO_POINTER (g_quark_from_string (charset)),
-		           GINT_TO_POINTER (g_quark_from_string (charset)));
-      
-      if (e == NULL)
-        {
-          encoding = g_new0 (TerminalEncoding, 1);
-          
-          encoding->index = -1;
-          encoding->valid = TRUE; /* scary! */
-          encoding->charset = g_strdup (charset);
-          encoding->name = g_strdup (_("User Defined"));
-        }
-      else
-        {
-          encoding = e->valid ? terminal_encoding_copy (e) : NULL;
+          encoding = terminal_encoding_new (charset,
+                                            _("User Defined"),
+                                            TRUE,
+                                            TRUE /* scary! */);
+          g_hash_table_insert (encodings_hashtable, encoding->charset, encoding);
         }
 
-      if (encoding != NULL)
-        {
-          active_encodings = g_slist_prepend (active_encodings, encoding);
-        }
+      if (!terminal_encoding_is_valid (encoding))
+        continue;
+
+      encoding->is_active = TRUE;
     }
 
-  /* Put it back in order, order is significant */
-  active_encodings = g_slist_reverse (active_encodings);
-  
-  g_hash_table_destroy (table);
-  
   update_active_encoding_tree_models ();
 }
 
+static void
+update_active_encodings_gconf (void)
+{
+  GSList *list, *l;
+  GSList *strings = NULL;
+  GConfClient *conf;
+
+  list = terminal_get_active_encodings ();
+  for (l = list; l != NULL; l = l->next)
+    {
+      TerminalEncoding *encoding = (TerminalEncoding *) l->data;
+
+      strings = g_slist_prepend (strings, encoding->charset);
+    }
+
+  conf = gconf_client_get_default ();
+  gconf_client_set_list (conf,
+                         CONF_GLOBAL_PREFIX"/active_encodings",
+                         GCONF_VALUE_STRING,
+                         strings,
+                         NULL);
+  g_object_unref (conf);
+
+  g_slist_free (strings);
+  g_slist_foreach (list, (GFunc) terminal_encoding_unref, NULL);
+  g_slist_free (list);
+}
+
+static void
+add_active_encoding_to_list (gpointer key,
+                             gpointer value,
+                             gpointer data)
+{
+  TerminalEncoding *encoding = (TerminalEncoding *) value;
+  GSList **list = (GSList **) data;
+
+  if (!encoding->is_active)
+    return;
+
+  *list = g_slist_prepend (*list, terminal_encoding_ref (encoding));
+}
+
+/**
+ * terminal_get_active_encodings:
+ *
+ * Returns: a newly allocated list of newly referenced #TerminalEncoding objects.
+ */
 GSList*
 terminal_get_active_encodings (void)
 {
-  GSList *copy;
-  GSList *tmp;
+  GSList *list = NULL;
 
-  copy = NULL;
-  tmp = active_encodings;
-  while (tmp != NULL)
-    {
-      copy = g_slist_prepend (copy,
-                              terminal_encoding_copy (tmp->data));
-      
-      tmp = tmp->next;
-    }
-
-  /* They should appear in order in the menus */
-  copy = g_slist_reverse (copy);
-
-  return copy;
+  g_hash_table_foreach (encodings_hashtable, (GHFunc) add_active_encoding_to_list, &list);
+  return g_slist_reverse (list); /* FIXME sort ! */
 }
 
 static void
 response_callback (GtkWidget *window,
                    int        id,
-                   void      *data)
+                   EncodingDialogData *data)
 {
   if (id == GTK_RESPONSE_HELP)
     terminal_util_show_help ("gnome-terminal-encoding-add", GTK_WINDOW (window));
@@ -432,571 +406,309 @@ enum
 {
   COLUMN_NAME,
   COLUMN_CHARSET,
+  COLUMN_DATA,
   N_COLUMNS
 };
 
 static void
-count_selected_items_func (GtkTreeModel      *model,
-                           GtkTreePath       *path,
-                           GtkTreeIter       *iter,
-                           gpointer           data)
+selection_changed_cb (GtkTreeSelection *selection,
+                      EncodingDialogData *data)
 {
-  int *count = data;
+  GtkWidget *button;
+  gboolean have_selection;
 
-  *count += 1;
+  if (selection == data->available_selection)
+    button = data->add_button;
+  else if (selection == data->active_selection)
+    button = data->remove_button;
+  else
+    g_assert_not_reached ();
+
+  have_selection = gtk_tree_selection_get_selected (selection, NULL, NULL);
+  gtk_widget_set_sensitive (button, have_selection);
 }
 
 static void
-available_selection_changed_callback (GtkTreeSelection *selection,
-                                      void             *data)
+button_clicked_cb (GtkWidget *button,
+                   EncodingDialogData *data)
 {
-  int count;
-  GtkWidget *add_button;
-  GtkWidget *dialog;
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GtkTreeIter filter_iter, iter;
+  TerminalEncoding *encoding;
 
-  dialog = data;
-  
-  count = 0;
-  gtk_tree_selection_selected_foreach (selection,
-                                       count_selected_items_func,
-                                       &count);
+  if (button == data->add_button)
+    selection = data->available_selection;
+  else if (button == data->remove_button)
+    selection = data->active_selection;
+  else
+    g_assert_not_reached ();
 
-  add_button = g_object_get_data (G_OBJECT (dialog), "encoding-dialog-add");
+  if (!gtk_tree_selection_get_selected (selection, &model, &filter_iter))
+    return;
+
+  gtk_tree_model_filter_convert_iter_to_child_iter (GTK_TREE_MODEL_FILTER (model),
+                                                    &iter,
+                                                    &filter_iter);
+
+  model = GTK_TREE_MODEL (data->base_store);
+  gtk_tree_model_get (model, &iter, COLUMN_DATA, &encoding, -1);
+  g_assert (encoding != NULL);
+
+  if (button == data->add_button)
+    encoding->is_active = TRUE;
+  else if (button == data->remove_button)
+    encoding->is_active = FALSE;
+  else
+    g_assert_not_reached ();
+
+  terminal_encoding_unref (encoding);
+
+  /* We don't need to emit row-changed here, since updating the gconf pref
+   * will update the models.
+   */
   
-  gtk_widget_set_sensitive (add_button, count > 0);
+  update_active_encodings_gconf ();
 }
 
 static void
-displayed_selection_changed_callback (GtkTreeSelection *selection,
-                                      void             *data)
+liststore_insert_encoding (gpointer key,
+                           TerminalEncoding *encoding,
+                           GtkListStore *store)
 {
-  int count;
-  GtkWidget *remove_button;
-  GtkWidget *dialog;
+  GtkTreeIter iter;
 
-  dialog = data;
-  
-  count = 0;
-  gtk_tree_selection_selected_foreach (selection,
-                                       count_selected_items_func,
-                                       &count);
+  if (!terminal_encoding_is_valid (encoding))
+    return;
 
-  remove_button = g_object_get_data (G_OBJECT (dialog), "encoding-dialog-remove");
-  
-  gtk_widget_set_sensitive (remove_button, count > 0);
-}
-
-static void
-get_selected_encodings_func (GtkTreeModel      *model,
-                             GtkTreePath       *path,
-                             GtkTreeIter       *iter,
-                             gpointer           data)
-{
-  GSList **list = data;
-  char *charset;
-
-  charset = NULL;
-  gtk_tree_model_get (model,
-                      iter,
-                      COLUMN_CHARSET,
-                      &charset,
-                      -1);
-
-  *list = g_slist_prepend (*list, charset);
+  gtk_list_store_insert_with_values (store, &iter, -1,
+                                     COLUMN_CHARSET, encoding->charset,
+                                     COLUMN_NAME, encoding->name,
+                                     COLUMN_DATA, encoding,
+                                     -1);
 }
 
 static gboolean
-charset_in_encoding_list (GSList     *list,
-                          const char *str)
+filter_active_encodings (GtkTreeModel *child_model,
+                         GtkTreeIter *child_iter,
+                         gpointer data)
 {
-  GSList *tmp;
+  TerminalEncoding *encoding;
+  gboolean active = GPOINTER_TO_UINT (data);
+  gboolean visible;
 
-  tmp = list;
-  while (tmp != NULL)
-    {
-      const TerminalEncoding *enc = tmp->data;
-      
-      if (strcmp (enc->charset, str) == 0)
-        return TRUE;
+  gtk_tree_model_get (child_model, child_iter, COLUMN_DATA, &encoding, -1);
+  visible = active ? encoding->is_active : !encoding->is_active;
+  terminal_encoding_unref (encoding);
 
-      tmp = tmp->next;
-    }
-
-  return FALSE;
+  return visible;
 }
 
-static GSList*
-remove_string_from_list (GSList     *list,
-                         const char *str)
+static GtkTreeModel *
+encodings_create_treemodel (GtkListStore *base_store,
+                            gboolean active)
 {
-  GSList *tmp;
+  GtkTreeModel *model;
 
-  tmp = list;
-  while (tmp != NULL)
-    {
-      if (strcmp (tmp->data, str) == 0)
-        break;
+  model = gtk_tree_model_filter_new (GTK_TREE_MODEL (base_store), NULL);
+  gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (model),
+                                          filter_active_encodings,
+                                          GUINT_TO_POINTER (active), NULL);
 
-      tmp = tmp->next;
-    }
-
-  if (tmp != NULL)
-    {
-      g_free (tmp->data);
-      list = g_slist_remove (list, tmp->data);
-    }
-  
-  return list;
-}
-
-static GSList*
-encoding_list_to_charset_list (GSList *src)
-{
-  GSList *list;
-  GSList *tmp;
-  
-  list = NULL;
-  tmp = src;
-  while (tmp != NULL)
-    {
-      const TerminalEncoding *enc = tmp->data;
-      
-      list = g_slist_prepend (list, g_strdup (enc->charset));
-      tmp = tmp->next;
-    }
-  list = g_slist_reverse (list);
-
-  return list;
-}
-
-
-static void
-add_button_clicked_callback (GtkWidget *button,
-                             void      *data)
-{
-  GtkWidget *dialog;
-  GtkWidget *treeview;
-  GtkTreeSelection *selection;
-  GSList *encodings;
-  GSList *tmp;
-  GSList *new_active_list;
-  
-  dialog = data;
-
-  treeview = g_object_get_data (G_OBJECT (dialog),
-                                "encoding-dialog-available-treeview");
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-  encodings = NULL;
-  gtk_tree_selection_selected_foreach (selection,
-                                       get_selected_encodings_func,
-                                       &encodings);
-
-  new_active_list = encoding_list_to_charset_list (active_encodings);
-  tmp = encodings;
-  while (tmp != NULL)
-    {
-      /* appending is less efficient but produces user-expected
-       * result
-       */
-      if (!charset_in_encoding_list (active_encodings, tmp->data))
-        new_active_list = g_slist_append (new_active_list,
-                                          g_strdup (tmp->data));
-      
-      tmp = tmp->next;
-    }
-
-  /* this is reentrant, but only after it's done using the list
-   * values, so should be safe
-   */
-  gconf_client_set_list (default_client,
-                         CONF_GLOBAL_PREFIX"/active_encodings",
-                         GCONF_VALUE_STRING,
-                         new_active_list,
-                         NULL);
-
-  g_slist_foreach (new_active_list, (GFunc) g_free, NULL);
-  g_slist_free (new_active_list);
-  
-  g_slist_foreach (encodings, (GFunc) g_free, NULL);
-  g_slist_free (encodings);
+  return model;
 }
 
 static void
-remove_button_clicked_callback (GtkWidget *button,
-                                void      *data)
+update_single_liststore (EncodingDialogData *data)
 {
-  GtkWidget *dialog;
-  GtkWidget *treeview;
-  GtkTreeSelection *selection;
-  GSList *encodings;
-  GSList *tmp;
-  GSList *new_active_list;
-  
-  dialog = data;
-
-  treeview = g_object_get_data (G_OBJECT (dialog),
-                                "encoding-dialog-displayed-treeview");
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-  encodings = NULL;
-  gtk_tree_selection_selected_foreach (selection,
-                                       get_selected_encodings_func,
-                                       &encodings);
-
-  new_active_list = encoding_list_to_charset_list (active_encodings);
-  tmp = encodings;
-  while (tmp != NULL)
-    {
-      /* appending is less efficient but produces user-expected
-       * result
-       */
-      new_active_list =
-        remove_string_from_list (new_active_list, tmp->data);
-      
-      tmp = tmp->next;
-    }
-
-  /* this is reentrant, but only after it's done using the list
-   * values, so should be safe
-   */
-  gconf_client_set_list (default_client,
-                         CONF_GLOBAL_PREFIX"/active_encodings",
-                         GCONF_VALUE_STRING,
-                         new_active_list,
-                         NULL);
-
-  g_slist_foreach (new_active_list, (GFunc) g_free, NULL);
-  g_slist_free (new_active_list);  
-  
-  g_slist_foreach (encodings, (GFunc) g_free, NULL);
-  g_slist_free (encodings);
+  gtk_list_store_clear (data->base_store);
+  g_hash_table_foreach (encodings_hashtable, (GHFunc) liststore_insert_encoding, data->base_store);
 }
 
-GtkWidget*
-terminal_encoding_dialog_new (GtkWindow *transient_parent)
-{
-  GladeXML *xml;
-  GtkWidget *w;
-  GtkCellRenderer *cell_renderer;
-  int i;
-  GtkTreeModel *sort_model;
-  GtkListStore *tree;
-  GtkTreeViewColumn *column;
-  GtkTreeIter parent_iter;
-  GtkTreeSelection *selection;
-  GtkWidget *dialog;
-
-  xml = terminal_util_load_glade_file (TERM_GLADE_FILE,
-                                       "encodings-dialog",
-                                       transient_parent);
-  if (xml == NULL)
-    return NULL;
-
-  /* The dialog itself */
-  dialog = glade_xml_get_widget (xml, "encodings-dialog");
-
-  terminal_util_set_unique_role (GTK_WINDOW (dialog), "gnome-terminal-encodings");
-
-  g_signal_connect (G_OBJECT (dialog), "response",
-                    G_CALLBACK (response_callback),
-                    NULL);
-
-  /* buttons */
-  w = glade_xml_get_widget (xml, "add-button");
-  g_object_set_data (G_OBJECT (dialog),
-                     "encoding-dialog-add",
-                     w);
-
-  g_signal_connect (G_OBJECT (w), "clicked",
-                    G_CALLBACK (add_button_clicked_callback),
-                    dialog);
-
-  w = glade_xml_get_widget (xml, "remove-button");
-  g_object_set_data (G_OBJECT (dialog),
-                     "encoding-dialog-remove",
-                     w);
-
-  g_signal_connect (G_OBJECT (w), "clicked",
-                    G_CALLBACK (remove_button_clicked_callback),
-                    dialog);
-  
-  /* Tree view of available encodings */
-  
-  w = glade_xml_get_widget (xml, "available-treeview");
-  g_object_set_data (G_OBJECT (dialog),
-                     "encoding-dialog-available-treeview",
-                     w);
-  
-  tree = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
-
-  /* Column 1 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Description"),
-						     cell_renderer,
-						     "text", COLUMN_NAME,
-						     NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (w), column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME);
-  
-  /* Column 2 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Encoding"),
-						     cell_renderer,
-						     "text", COLUMN_CHARSET,
-						     NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (w), column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);  
-
-  /* Add the data */
-
-  i = 0;
-  while (i < (int) G_N_ELEMENTS (encodings))
-    {
-      if (encodings[i].valid)
-        {
-          gtk_list_store_append (tree, &parent_iter);
-          gtk_list_store_set (tree, &parent_iter,
-                              COLUMN_CHARSET,
-                              encodings[i].charset,
-                              COLUMN_NAME,
-                              encodings[i].name,
-                              -1);
-        }
-      ++i;
-    }
-
-  /* Sort model */
-  sort_model = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (tree));
-  
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (sort_model),
-                                        COLUMN_NAME,
-                                        GTK_SORT_ASCENDING);
-  
-  gtk_tree_view_set_model (GTK_TREE_VIEW (w), sort_model);
-  g_object_unref (G_OBJECT (tree));
-
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (w));    
-  gtk_tree_selection_set_mode (GTK_TREE_SELECTION (selection),
-			       GTK_SELECTION_MULTIPLE);
-
-  available_selection_changed_callback (selection, dialog);
-  g_signal_connect (G_OBJECT (selection), "changed",                    
-                    G_CALLBACK (available_selection_changed_callback),
-                    dialog);
-
-  /* Tree view of selected encodings */
-  
-  w = glade_xml_get_widget (xml, "displayed-treeview");
-  g_object_set_data (G_OBJECT (dialog),
-                     "encoding-dialog-displayed-treeview",
-                     w);
-  
-  tree = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
-
-  /* Column 1 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Description"),
-						     cell_renderer,
-						     "text", COLUMN_NAME,
-						     NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (w), column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME);
-  
-  /* Column 2 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Encoding"),
-						     cell_renderer,
-						     "text", COLUMN_CHARSET,
-						     NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (w), column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);  
-
-  /* Add the data */
-  register_active_encoding_tree_model (tree);
-
-  /* Sort model */
-  sort_model = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (tree));
-  
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (sort_model),
-                                        COLUMN_NAME,
-                                        GTK_SORT_ASCENDING);
-  
-  gtk_tree_view_set_model (GTK_TREE_VIEW (w), sort_model);
-  g_object_unref (G_OBJECT (tree));  
-
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (w));    
-  gtk_tree_selection_set_mode (GTK_TREE_SELECTION (selection),
-			       GTK_SELECTION_MULTIPLE);
-
-  displayed_selection_changed_callback (selection, dialog);
-  g_signal_connect (G_OBJECT (selection), "changed",
-                    G_CALLBACK (displayed_selection_changed_callback),
-                    dialog);
-
-  g_object_unref (G_OBJECT (xml));
-  
-  return dialog;
-}
+static GSList *encoding_dialogs_data = NULL;
 
 static void
-update_single_tree_model (GtkListStore *store)
+unregister_liststore (void    *data,
+                      GObject *where_object_was)
 {
-  GSList *tmp;
-  GtkTreeIter parent_iter;
-
-  gtk_list_store_clear (store);
-  
-  tmp = active_encodings;
-  while (tmp != NULL)
-    {
-      TerminalEncoding *e = tmp->data;
-      
-      gtk_list_store_append (store, &parent_iter);
-      gtk_list_store_set (store, &parent_iter,
-                          COLUMN_CHARSET,
-                          e->charset,
-                          COLUMN_NAME,
-                          e->name,
-                          -1);
-
-      tmp = tmp->next;
-    }
-}
-
-static GSList *stores = NULL;
-
-static void
-unregister_store (void    *data,
-                  GObject *where_object_was)
-{
-  stores = g_slist_remove (stores, where_object_was);
+  encoding_dialogs_data = g_slist_remove (encoding_dialogs_data, data);
 }
 
 static void
 update_active_encoding_tree_models (void)
 {
-  GSList *tmp;
-  tmp = stores;
-  while (tmp != NULL)
-    {
-      update_single_tree_model (tmp->data);
-      tmp = tmp->next;
-    }
+  g_slist_foreach (encoding_dialogs_data, (GFunc) update_single_liststore, NULL);
 }
 
 static void
-register_active_encoding_tree_model (GtkListStore *store)
+register_liststore (EncodingDialogData *data)
 {
-  update_single_tree_model (store);
-  stores = g_slist_prepend (stores, store);
-  g_object_weak_ref (G_OBJECT (store), unregister_store, NULL);
+  update_single_liststore (data);
+  encoding_dialogs_data = g_slist_prepend (encoding_dialogs_data, data);
+  g_object_weak_ref (G_OBJECT (data->dialog), unregister_liststore, data);
 }
 
 void
-terminal_encoding_init (GConfClient *conf)
+terminal_encoding_dialog_show (GtkWindow *transient_parent)
 {
-  int i;
-  GError *err;
-  GSList *strings;
-  gsize bytes_read, bytes_written;
-  gchar *converted;
-  gchar ascii_sample[96];
-  
-  g_return_if_fail (GCONF_IS_CLIENT (conf));
+  GtkCellRenderer *cell_renderer;
+  GtkTreeViewColumn *column;
+  GtkTreeModel *model;
+  EncodingDialogData *data;
 
-  default_client = conf;
-  g_object_ref (G_OBJECT (default_client));
-  
-  g_get_charset ((const char**)
-                 &encodings[TERMINAL_ENCODING_CURRENT_LOCALE].charset);
-
-  g_assert (G_N_ELEMENTS (encodings) == TERMINAL_ENCODING_LAST);
-
-  /* Initialize the sample text with all of the printing ASCII characters
-   * from space (32) to the tilde (126), 95 in all. */ 
-  for (i = 0; i < (int) sizeof (ascii_sample); i++) 
-    ascii_sample[i] = i + 32;
-
-  ascii_sample[sizeof(ascii_sample) - 1] = '\0';
-  
-  i = 0;
-  while (i < TERMINAL_ENCODING_LAST)
+  if (encoding_dialog)
     {
-      bytes_read = 0;
-      bytes_written = 0;
-      
-      g_assert (encodings[i].index == i);
-
-      /* Translate the names */
-      encodings[i].name = _(encodings[i].name);
-
-      /* Test that the encoding is a proper superset of ASCII (which naive
-       * apps are going to use anyway) by attempting to validate the text
-       * using the current encoding.  This also flushes out any encodings
-       * which the underlying GIConv implementation can't support.
-       */
-      converted = g_convert (ascii_sample, sizeof (ascii_sample) - 1,
-		             encodings[i].charset, "ASCII",
-			     &bytes_read, &bytes_written, NULL);
-      
-      /* The encoding is only valid if ASCII passes through cleanly. */
-      if (i == TERMINAL_ENCODING_CURRENT_LOCALE)
-        encodings[i].valid = TRUE;
-      else
-        encodings[i].valid =
-          (bytes_read == (sizeof (ascii_sample) - 1)) &&
-          (converted != NULL) &&
-          (strcmp (converted, ascii_sample) == 0);
-
-#ifdef DEBUG_ENCODINGS
-      if (!encodings[i].valid)
-        {
-          g_print("Rejecting encoding %s as invalid:\n", encodings[i].charset);
-          g_print(" input  \"%s\"\n", ascii_sample);
-          g_print(" output \"%s\"\n\n", converted ? converted : "(null)");
-        }
-#endif
-
-      /* Discard the converted string. */
-      if (converted != NULL)
-        g_free (converted);
-
-      ++i;
+      gtk_window_set_transient_for (GTK_WINDOW (encoding_dialog), transient_parent);
+      gtk_window_present (GTK_WINDOW (encoding_dialog));
+      return;
     }
 
-  err = NULL;
-  gconf_client_notify_add (conf,
-                           CONF_GLOBAL_PREFIX"/active_encodings",
-                           encodings_change_notify,
-                           NULL, /* user_data */
-                           NULL, &err);
-  
-  if (err)
+  data = g_new (EncodingDialogData, 1);
+
+  if (!terminal_util_load_builder_file ("encodings-dialog.ui",
+                                        "encodings-dialog", &data->dialog,
+                                        "add-button", &data->add_button,
+                                        "remove-button", &data->remove_button,
+                                        "available-treeview", &data->available_tree_view,
+                                        "displayed-treeview", &data->active_tree_view,
+                                        NULL))
     {
-      g_printerr (_("There was an error subscribing to notification of terminal encoding list changes. (%s)\n"),
-                  err->message);
-      g_error_free (err);
+      g_free (data);
+      return;
     }
 
-  strings = gconf_client_get_list (conf,
-                                   CONF_GLOBAL_PREFIX"/active_encodings",
-                                   GCONF_VALUE_STRING, NULL);
+  g_object_set_data_full (G_OBJECT (data->dialog), "GT::Data", data, (GDestroyNotify) g_free);
 
-  update_active_encodings_from_string_list (strings);
+  gtk_window_set_transient_for (GTK_WINDOW (data->dialog), transient_parent);
+  terminal_util_set_unique_role (GTK_WINDOW (data->dialog), "gnome-terminal-encodings");
+  g_signal_connect (data->dialog, "response",
+                    G_CALLBACK (response_callback), data);
 
-  g_slist_foreach (strings, (GFunc) g_free, NULL);
-  g_slist_free (strings);                                   
+  /* buttons */
+  g_signal_connect (data->add_button, "clicked",
+                    G_CALLBACK (button_clicked_cb), data);
+
+  g_signal_connect (data->remove_button, "clicked",
+                    G_CALLBACK (button_clicked_cb), data);
+  
+  /* Tree view of available encodings */
+  /* Column 1 */
+  cell_renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new_with_attributes (_("_Description"),
+						     cell_renderer,
+						     "text", COLUMN_NAME,
+						     NULL);
+  gtk_tree_view_append_column (data->available_tree_view, column);
+  gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME);
+  
+  /* Column 2 */
+  cell_renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new_with_attributes (_("_Encoding"),
+						     cell_renderer,
+						     "text", COLUMN_CHARSET,
+						     NULL);
+  gtk_tree_view_append_column (data->available_tree_view, column);
+  gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);  
+
+  data->available_selection = gtk_tree_view_get_selection (data->available_tree_view);
+  gtk_tree_selection_set_mode (data->available_selection, GTK_SELECTION_BROWSE);
+
+  g_signal_connect (data->available_selection, "changed",
+                    G_CALLBACK (selection_changed_cb), data);
+
+  /* Tree view of selected encodings */
+  /* Column 1 */
+  cell_renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new_with_attributes (_("_Description"),
+						     cell_renderer,
+						     "text", COLUMN_NAME,
+						     NULL);
+  gtk_tree_view_append_column (data->active_tree_view, column);
+  gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME);
+  
+  /* Column 2 */
+  cell_renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new_with_attributes (_("_Encoding"),
+						     cell_renderer,
+						     "text", COLUMN_CHARSET,
+						     NULL);
+  gtk_tree_view_append_column (data->active_tree_view, column);
+  gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);  
+
+  /* Add the data */
+
+  data->active_selection = gtk_tree_view_get_selection (data->active_tree_view);
+  gtk_tree_selection_set_mode (data->active_selection, GTK_SELECTION_BROWSE);
+
+  g_signal_connect (data->active_selection, "changed",
+                    G_CALLBACK (selection_changed_cb), data);
+
+  data->base_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, TERMINAL_TYPE_ENCODING);
+  register_liststore (data);
+  /* Now turn on sorting */
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (data->base_store),
+                                        COLUMN_NAME,
+                                        GTK_SORT_ASCENDING);
+  
+  model = encodings_create_treemodel (data->base_store, FALSE);
+  gtk_tree_view_set_model (data->available_tree_view, model);
+  g_object_unref (model);
+
+  model = encodings_create_treemodel (data->base_store, TRUE);
+  gtk_tree_view_set_model (data->active_tree_view, model);
+  g_object_unref (model);
+
+  g_object_unref (data->base_store);
+
+  gtk_window_present (GTK_WINDOW (data->dialog));
+
+  encoding_dialog = data->dialog;
+  g_signal_connect (data->dialog, "destroy",
+                    G_CALLBACK (gtk_widget_destroyed), &encoding_dialog);
 }
 
-char*
-terminal_encoding_get_name (const char *charset)
+void
+terminal_encoding_init (void)
 {
-  const TerminalEncoding *e;
+  GConfClient *conf;
+  guint i;
+  const char *locale_charset = NULL;
 
-  e = find_encoding_by_charset (charset);
-  if (e != NULL)
-    return g_strdup_printf ("%s (%s)", e->name, e->charset);
-  else
-    return g_strdup (charset);
+  conf = gconf_client_get_default ();
+
+  encodings_hashtable = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                               NULL,
+                                               (GDestroyNotify) terminal_encoding_unref);
+
+  if (!g_get_charset (&locale_charset))
+    {
+      TerminalEncoding *encoding;
+
+      encoding = terminal_encoding_new (locale_charset,
+                                        _("Current Locale"),
+                                        FALSE,
+                                        TRUE);
+      g_hash_table_insert (encodings_hashtable, encoding->charset, encoding);
+    }
+
+  for (i = 0; i < G_N_ELEMENTS (encodings); ++i)
+    {
+      TerminalEncoding *encoding;
+
+      encoding = terminal_encoding_new (encodings[i].charset,
+                                        _(encodings[i].name),
+                                        FALSE,
+                                        FALSE);
+      g_hash_table_insert (encodings_hashtable, encoding->charset, encoding);
+    }
+
+  gconf_client_notify_add (conf,
+                           CONF_GLOBAL_PREFIX"/active_encodings",
+                           encodings_notify_cb,
+                           NULL /* user_data */, NULL,
+                           NULL);
+
+  gconf_client_notify (conf, CONF_GLOBAL_PREFIX"/active_encodings");
+
+  g_object_unref (conf);
 }
