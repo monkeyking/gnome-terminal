@@ -673,9 +673,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Використовувати системний термінальний шрифт</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Виберіть цей параметр, щоб програма використовувала системний термінальний шрифт, який вказано у програмі налаштовування <application>Шрифт</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -684,29 +686,15 @@
              <listitem> 
                 <para>Натисніть на цю кнопку, щоб вибрати тип та розмір шрифту терміналу. Ця кнопка доступна лише якщо не відмічений параметр <guilabel>Використовувати системний термінальний шрифт</guilabel>.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Значок профіля</guilabel> </term> 
-             <listitem> 
-                <para>Натисніть на цю кнопку, щоб вибрати значок вікон терміналу, які використовують цей профіль.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Дозволити жирний текст</guilabel> </term> 
              <listitem> 
                 <para>Цей параметр дозволяє ввімкнути у терміналі відображення жирного тексту.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Курсор блимає</guilabel> </term> 
-             <listitem> 
-                <para>Вивдмітьте цей параметр, щоб курсор блимав.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Показувати панель меню у нових терміналах</guilabel>
                 </term> 
@@ -743,7 +731,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Динамічний заголовок</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Цей розкривний список використовується для вказування способу обробки динамічних заголовків, тобто, заголовків терміналів які встановлюються командами, що запускаються у терміналі.</para>
              </listitem> 
@@ -851,9 +839,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Немає (суцільний колір)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Виберіть цей параметр, щоб використовувати колір тла, вказаний як колір тла терміналу у вкладці <guilabel>Кольори</guilabel>.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>

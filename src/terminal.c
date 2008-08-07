@@ -82,7 +82,8 @@ typedef struct
   GList   *initial_windows;
   gboolean default_window_menubar_forced;
   gboolean default_window_menubar_state;
-  gboolean default_start_fullscreen;
+  gboolean default_fullscreen;
+  gboolean default_maximize;
   char    *default_role;
   char    *default_geometry;
   char    *default_working_dir;
@@ -119,6 +120,7 @@ typedef struct
   gboolean menubar_state;
 
   gboolean start_fullscreen;
+  gboolean start_maximized;
 
   char *geometry;
   char *role;
@@ -167,6 +169,7 @@ initial_window_new (const char *profile,
   iw->force_menubar_state = FALSE;
   iw->menubar_state = FALSE;
   iw->start_fullscreen = FALSE;
+  iw->start_maximized = FALSE;
   iw->geometry = NULL;
   iw->role = NULL;
   
@@ -204,7 +207,8 @@ apply_defaults (OptionParsingResults *results,
       results->default_window_menubar_forced = FALSE;
     }
 
-  iw->start_fullscreen = results->default_start_fullscreen;
+  iw->start_fullscreen |= results->default_fullscreen;
+  iw->start_maximized |= results->default_maximize;
 }
 
 static InitialWindow*
@@ -283,12 +287,9 @@ option_command_callback (const gchar *option_name,
 {
   OptionParsingResults *results = data;
   InitialTab *it;
-  GError *err;
-  char   **exec_argv;
-  error = NULL;
-  exec_argv = NULL;
+  GError *err = NULL;
+  char  **exec_argv;
 
-  err = NULL;
   if (!g_shell_parse_argv (value, NULL, &exec_argv, &err))
     {
       g_set_error(error,
@@ -521,6 +522,26 @@ option_hide_menubar_callback (const gchar *option_name,
 }
 
 static gboolean
+option_maximize_callback (const gchar *option_name,
+                          const gchar *value,
+                          gpointer     data,
+                          GError     **error)
+{
+  OptionParsingResults *results = data;
+  InitialWindow *iw;
+
+  if (results->initial_windows)
+    {
+      iw = g_list_last (results->initial_windows)->data;
+      iw->start_maximized = TRUE;
+    }
+  else
+    results->default_maximize = TRUE;
+
+  return TRUE;
+}
+
+static gboolean
 option_fullscreen_callback (const gchar *option_name,
                             const gchar *value,
                             gpointer     data,
@@ -535,7 +556,7 @@ option_fullscreen_callback (const gchar *option_name,
       iw->start_fullscreen = TRUE;
     }
   else
-    results->default_start_fullscreen = TRUE;
+    results->default_fullscreen = TRUE;
 
   return TRUE;
 }
@@ -708,10 +729,11 @@ option_parsing_results_new (int *argc, char **argv)
 
   results = g_slice_new0 (OptionParsingResults);
 
-  results->default_window_menubar_forced = 0;
-  results->default_window_menubar_state = 1;
-  results->default_start_fullscreen = 0;
-  results->execute = 0;
+  results->default_window_menubar_forced = FALSE;
+  results->default_window_menubar_state = TRUE;
+  results->default_fullscreen = FALSE;
+  results->default_maximize = FALSE;
+  results->execute = FALSE;
   results->use_factory = TRUE;
 
   results->startup_id = NULL;
@@ -993,6 +1015,8 @@ new_terminal_with_options (TerminalApp *app,
 
       if (iw->start_fullscreen)
         gtk_window_fullscreen (GTK_WINDOW (window));
+      if (iw->start_maximized)
+        gtk_window_maximize (GTK_WINDOW (window));
 
       /* Now add the tabs */
       for (lt = iw->tabs; lt != NULL; lt = lt->next)
@@ -1137,10 +1161,10 @@ main (int argc, char **argv)
 
   parsing_results = option_parsing_results_new (&argc, argv);
   startup_id = g_getenv ("DESKTOP_STARTUP_ID");
-  if (startup_id != NULL && *startup_id != '\0')
+  if (startup_id != NULL && startup_id[0] != '\0')
     {
       parsing_results->startup_id = g_strdup (startup_id);
-      putenv ((char *) "DESKTOP_STARTUP_ID=");
+      g_unsetenv ("DESKTOP_STARTUP_ID");
     }
   
   gtk_window_set_auto_startup_notification (FALSE); /* we'll do it ourselves due
@@ -1352,6 +1376,15 @@ get_goption_context (OptionParsingResults *parsing_results)
       G_OPTION_ARG_CALLBACK,
       option_hide_menubar_callback,
       N_("Turn off the menubar for the last-specified window; applies to only one window; can be specified once for each window you create from the command line."),
+      NULL
+    },
+    {
+      "maximize",
+      0,
+      G_OPTION_FLAG_NO_ARG,
+      G_OPTION_ARG_CALLBACK,
+      option_maximize_callback,
+      N_("Set the last-specified window into maximized mode; applies to only one window; can be specified once for each window you create from the command line."),
       NULL
     },
     {

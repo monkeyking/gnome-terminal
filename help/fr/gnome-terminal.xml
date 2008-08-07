@@ -670,9 +670,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Utiliser la police système du terminal</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Cette option permet d'utiliser la police standard définie pour les applications dans le panneau de préférences <application>Polices</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -681,29 +683,15 @@
              <listitem> 
                 <para>Ce bouton permet de sélectionner un type et une taille de police pour le terminal. Il n'est disponible que si vous n'avez pas coché l'option <guilabel>Utiliser la police système du terminal</guilabel>.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Icône du profil</guilabel> </term> 
-             <listitem> 
-                <para>Ce bouton permet de sélectionner une icône afin de représenter les fenêtres de terminal utilisant le profil actuel.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Activer le texte en gras</guilabel> </term> 
              <listitem> 
                 <para>Cette option permet au terminal d'afficher du texte en gras.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Curseur clignotant</guilabel> </term> 
-             <listitem> 
-                <para>Cette option permet d'afficher un curseur clignotant.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Afficher la barre de menus par défaut dans les nouveaux terminaux</guilabel>
                 </term> 
@@ -740,7 +728,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Un titre modifié dynamiquement</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Cette liste déroulante permet de définir ce qui se passe lorsqu'un titre est modifié dynamiquement, au moyen de commandes exécutées dans le terminal.</para>
              </listitem> 
@@ -846,9 +834,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Aucun (utiliser une couleur unie)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Sélectionnez cette option pour utiliser la couleur spécifiée dans l'onglet <guilabel>Couleurs</guilabel> en tant que couleur d'arrière-plan du terminal.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>

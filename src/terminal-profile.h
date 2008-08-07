@@ -56,13 +56,6 @@ typedef enum
   TERMINAL_BACKGROUND_TRANSPARENT
 } TerminalBackgroundType;
 
-typedef enum
-{
-  TERMINAL_CURSOR_BLINK_SYSTEM,
-  TERMINAL_CURSOR_BLINK_ON,
-  TERMINAL_CURSOR_BLINK_OFF
-} TerminalCursorBlinkMode;
-
 #define TERMINAL_PALETTE_SIZE 16
 
 #define TERMINAL_PALETTE_TANGO 0
@@ -161,7 +154,7 @@ gconstpointer     terminal_profile_get_property_boxed     (TerminalProfile *prof
 double            terminal_profile_get_property_double    (TerminalProfile *profile,
                                                            const char *prop_name);
 
-glong             terminal_profile_get_property_enum      (TerminalProfile *profile,
+int               terminal_profile_get_property_enum      (TerminalProfile *profile,
                                                            const char *prop_name);
 
 int               terminal_profile_get_property_int       (TerminalProfile *profile,
