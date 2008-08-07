@@ -673,9 +673,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Использовать системный терминальный шрифт</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Выберите этот параметр, чтобы использовать стандартный шрифт приложений, который определён в установках <application>Шрифт</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -684,29 +686,15 @@
              <listitem> 
                 <para>Нажмите эту кнопку чтобы выбрать тип и размер шрифта для терминала. Эта кнопка доступна в том случае, если не выбран параметр <guilabel>Использовать системный терминальный шрифт</guilabel>.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Значок профиля</guilabel> </term> 
-             <listitem> 
-                <para>Нажмите эту кнопку чтобы выбрать значок (иконку), символизирующую окна терминала, которые используют текущий профиль.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Разрешать полужирный текст</guilabel> </term> 
              <listitem> 
                 <para>Выберите этот параметр для возможности отображения терминалом полужирного текста.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Мигающий курсор</guilabel> </term> 
-             <listitem> 
-                <para>Выберите этот параметр для отображения мигающего курсора.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Показывать в новых терминалах строку меню</guilabel>
                 </term> 
@@ -743,7 +731,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Динамически устанавливаемый заголовок</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Используйте этот выпадающий список, чтобы установить, как обходиться с динамически устанавливаемыми заголовками, то есть, заголовками терминала, устанавливаемыми командами, запущенными в терминале.</para>
              </listitem> 
@@ -851,9 +839,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Нет (использовать сплошной цвет)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Выберите этот параметр для использования цвета фона, который определён во вкладке <guilabel>Цвета</guilabel> как цвет фона терминала.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>

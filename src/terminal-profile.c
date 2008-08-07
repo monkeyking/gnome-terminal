@@ -27,6 +27,7 @@
 #include <gconf/gconf-client.h>
 #include <libgnome/gnome-program.h>
 
+#include "terminal-screen.h"
 #include "terminal-intl.h"
 #include "terminal-profile.h"
 #include "terminal-app.h"
@@ -128,7 +129,6 @@ enum
 #define DEFAULT_BACKGROUND_IMAGE      (NULL)
 #define DEFAULT_BACKGROUND_TYPE       (TERMINAL_BACKGROUND_SOLID)
 #define DEFAULT_BACKSPACE_BINDING     (VTE_ERASE_ASCII_DELETE)
-#define DEFAULT_CURSOR_BLINK_MODE     (TERMINAL_CURSOR_BLINK_SYSTEM)
 #define DEFAULT_CUSTOM_COMMAND        ("")
 #define DEFAULT_DEFAULT_SHOW_MENUBAR  (TRUE)
 #define DEFAULT_DELETE_BINDING        (VTE_ERASE_DELETE_SEQUENCE)
@@ -154,6 +154,10 @@ enum
 #define DEFAULT_USE_THEME_COLORS      (TRUE)
 #define DEFAULT_VISIBLE_NAME          (N_("Unnamed"))
 #define DEFAULT_WORD_CHARS            ("-A-Za-z0-9,./?%&#:_")
+
+#if VTE_CHECK_VERSION (0, 16, 15)
+#define DEFAULT_CURSOR_BLINK_MODE     (VTE_CURSOR_BLINK_SYSTEM)
+#endif
 
 struct _TerminalProfilePrivate
 {
@@ -741,17 +745,18 @@ terminal_profile_gconf_changeset_add (TerminalProfile *profile,
       const char *string;
 
       eval = g_enum_get_value (G_PARAM_SPEC_ENUM (pspec)->enum_class, g_value_get_enum (value));
-      if (eval)
-        string = eval->value_nick;
-      else if (G_PARAM_SPEC_VALUE_TYPE (pspec) == vte_terminal_erase_binding_get_type ())
+
+      if (G_PARAM_SPEC_VALUE_TYPE (pspec) == vte_terminal_erase_binding_get_type ())
         {
           /* Backward compatibility */
           string = gconf_enum_to_string ((GConfEnumStringPair*) erase_bindings, g_value_get_enum (value));
           if (!string)
             goto cleanup;
         }
+      else if (eval)
+        string = eval->value_nick;
       else
-        return;
+        goto cleanup;
 
       gconf_change_set_set_string (changeset, key, string);
     }
@@ -1268,7 +1273,9 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (ALLOW_BOLD, DEFAULT_ALLOW_BOLD, KEY_ALLOW_BOLD);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (DEFAULT_SHOW_MENUBAR, DEFAULT_DEFAULT_SHOW_MENUBAR, KEY_DEFAULT_SHOW_MENUBAR);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (LOGIN_SHELL, DEFAULT_LOGIN_SHELL, KEY_LOGIN_SHELL);
+#if !VTE_CHECK_VERSION (0, 16, 15)
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (NO_AA_WITHOUT_RENDER, DEFAULT_NO_AA_WITHOUT_RENDER, KEY_NO_AA_WITHOUT_RENDER);
+#endif
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_BACKGROUND, DEFAULT_SCROLL_BACKGROUND, KEY_SCROLL_BACKGROUND);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_KEYSTROKE, DEFAULT_SCROLL_ON_KEYSTROKE, KEY_SCROLL_ON_KEYSTROKE);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_OUTPUT, DEFAULT_SCROLL_ON_OUTPUT, KEY_SCROLL_ON_OUTPUT);
@@ -1288,7 +1295,9 @@ terminal_profile_class_init (TerminalProfileClass *klass)
 
   TERMINAL_PROFILE_PROPERTY_ENUM (BACKGROUND_TYPE, TERMINAL_TYPE_BACKGROUND_TYPE, DEFAULT_BACKGROUND_TYPE, KEY_BACKGROUND_TYPE);
   TERMINAL_PROFILE_PROPERTY_ENUM (BACKSPACE_BINDING,  vte_terminal_erase_binding_get_type (), DEFAULT_BACKSPACE_BINDING, KEY_BACKSPACE_BINDING);
-  TERMINAL_PROFILE_PROPERTY_ENUM (CURSOR_BLINK_MODE, TERMINAL_TYPE_CURSOR_BLINK_MODE, DEFAULT_CURSOR_BLINK_MODE, KEY_CURSOR_BLINK_MODE);
+#if VTE_CHECK_VERSION (0, 16, 15)
+  TERMINAL_PROFILE_PROPERTY_ENUM (CURSOR_BLINK_MODE, VTE_TYPE_TERMINAL_CURSOR_BLINK_MODE, DEFAULT_CURSOR_BLINK_MODE, KEY_CURSOR_BLINK_MODE);
+#endif
   TERMINAL_PROFILE_PROPERTY_ENUM (DELETE_BINDING, vte_terminal_erase_binding_get_type (), DEFAULT_DELETE_BINDING, KEY_DELETE_BINDING);
   TERMINAL_PROFILE_PROPERTY_ENUM (EXIT_ACTION, TERMINAL_TYPE_EXIT_ACTION, DEFAULT_EXIT_ACTION, KEY_EXIT_ACTION);
   TERMINAL_PROFILE_PROPERTY_ENUM (SCROLLBAR_POSITION, TERMINAL_TYPE_SCROLLBAR_POSITION, DEFAULT_SCROLLBAR_POSITION, KEY_SCROLLBAR_POSITION);
@@ -1473,7 +1482,7 @@ terminal_profile_get_property_double (TerminalProfile *profile,
   return g_value_get_double (value);
 }
 
-glong
+int
 terminal_profile_get_property_enum (TerminalProfile *profile,
                                     const char *prop_name)
 {

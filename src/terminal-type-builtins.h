@@ -17,8 +17,6 @@ GType terminal_exit_action_get_type (void);
 #define TERMINAL_TYPE_EXIT_ACTION (terminal_exit_action_get_type ())
 GType terminal_background_type_get_type (void);
 #define TERMINAL_TYPE_BACKGROUND_TYPE (terminal_background_type_get_type ())
-GType terminal_cursor_blink_mode_get_type (void);
-#define TERMINAL_TYPE_CURSOR_BLINK_MODE (terminal_cursor_blink_mode_get_type ())
 
 G_END_DECLS
 

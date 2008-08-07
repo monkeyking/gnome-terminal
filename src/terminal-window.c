@@ -87,7 +87,7 @@ struct _TerminalWindowPrivate
 
 #define STOCK_NEW_WINDOW  "tab-new"
 #define STOCK_NEW_TAB     "window-new"
- 
+
 static void terminal_window_init        (TerminalWindow      *window);
 static void terminal_window_class_init  (TerminalWindowClass *klass);
 static void terminal_window_dispose     (GObject             *object);
@@ -99,8 +99,13 @@ static gboolean terminal_window_delete_event (GtkWidget *widget,
                                               GdkEvent *event,
                                               gpointer data);
 
+static gboolean notebook_button_press_cb     (GtkWidget *notebook,
+                                              GdkEventButton *event,
+                                              TerminalWindow *window);
+static gboolean notebook_popup_menu_cb       (GtkWidget *notebook,
+                                              TerminalWindow *window);
 static void notebook_page_selected_callback  (GtkWidget       *notebook,
-                                              GtkNotebookPage *useless_crap,
+                                              GtkNotebookPage *page,
                                               guint            page_num,
                                               TerminalWindow  *window);
 static void notebook_page_added_callback     (GtkWidget       *notebook,
@@ -259,6 +264,102 @@ escape_underscores (const char *name)
     }
 
   return g_string_free (escaped_name, FALSE);
+}
+
+static int
+find_tab_num_at_pos (GtkNotebook *notebook,
+                     int screen_x, 
+                     int screen_y)
+{
+  GtkPositionType tab_pos;
+  int page_num = 0;
+  GtkNotebook *nb = GTK_NOTEBOOK (notebook);
+  GtkWidget *page;
+
+  tab_pos = gtk_notebook_get_tab_pos (GTK_NOTEBOOK (notebook));
+
+  if (GTK_NOTEBOOK (notebook)->first_tab == NULL)
+    return -1;
+
+  while ((page = gtk_notebook_get_nth_page (nb, page_num)))
+    {
+      GtkWidget *tab;
+      int max_x, max_y, x_root, y_root;
+
+      tab = gtk_notebook_get_tab_label (nb, page);
+      g_return_val_if_fail (tab != NULL, -1);
+
+      if (!GTK_WIDGET_MAPPED (GTK_WIDGET (tab)))
+        {
+          page_num++;
+          continue;
+        }
+
+      gdk_window_get_origin (tab->window, &x_root, &y_root);
+
+      max_x = x_root + tab->allocation.x + tab->allocation.width;
+      max_y = y_root + tab->allocation.y + tab->allocation.height;
+
+      if ((tab_pos == GTK_POS_TOP || tab_pos == GTK_POS_BOTTOM) && screen_x <= max_x)
+        return page_num;
+
+      if ((tab_pos == GTK_POS_LEFT || tab_pos == GTK_POS_RIGHT) && screen_y <= max_y)
+        return page_num;
+
+      page_num++;
+    }
+
+  return -1;
+}
+
+static void
+position_menu_under_widget (GtkMenu *menu,
+                            int *x,
+                            int *y,
+                            gboolean *push_in,
+                            gpointer user_data)
+{
+  /* Adapted from gtktoolbar.c */
+  GtkWidget *widget = GTK_WIDGET (user_data);
+  GtkWidget *container;
+  GtkRequisition req;
+  GtkRequisition menu_req;
+  GdkRectangle monitor;
+  int monitor_num;
+  GdkScreen *screen;
+
+  container = gtk_widget_get_ancestor (widget, GTK_TYPE_CONTAINER);
+
+  gtk_widget_size_request (widget, &req);
+  gtk_widget_size_request (GTK_WIDGET (menu), &menu_req);
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (menu));
+  monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
+  if (monitor_num < 0)
+          monitor_num = 0;
+  gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
+
+  gdk_window_get_origin (widget->window, x, y);
+  if (GTK_WIDGET_NO_WINDOW (widget))
+    {
+      *x += widget->allocation.x;
+      *y += widget->allocation.y;
+    }
+  if (gtk_widget_get_direction (container) == GTK_TEXT_DIR_LTR) 
+    *x += widget->allocation.width - req.width;
+  else 
+    *x += req.width - menu_req.width;
+
+  if ((*y + widget->allocation.height + menu_req.height) <= monitor.y + monitor.height)
+    *y += widget->allocation.height;
+  else if ((*y - menu_req.height) >= monitor.y)
+    *y -= menu_req.height;
+  else if (monitor.y + monitor.height - (*y + widget->allocation.height) > *y)
+    *y += widget->allocation.height;
+  else
+    *y -= menu_req.height;
+
+  *push_in = FALSE;
 }
 
 static void
@@ -999,7 +1100,7 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
 
   can_paste = targets != NULL && gtk_targets_include_text (targets, n_targets);
   can_paste_uris = targets != NULL && gtk_targets_include_uri (targets, n_targets);
-  show_link = info->string != NULL && info->flavour != FLAVOR_EMAIL && info->flavour != FLAVOR_VOIP_CALL;
+  show_link = info->string != NULL && (info->flavour == FLAVOR_AS_IS || info->flavour == FLAVOR_DEFAULT_TO_HTTP);
   show_email_link = info->string != NULL && info->flavour == FLAVOR_EMAIL;
   show_call_link = info->string != NULL && info->flavour == FLAVOR_VOIP_CALL;
 
@@ -1084,32 +1185,31 @@ screen_show_popup_menu_callback (TerminalScreen *screen,
                                   terminal_screen_popup_info_ref (info));
 }
 
-static void
-screen_skey_clicked_cb (TerminalScreen *screen,
-                        const char *skey_challenge,
-                        TerminalWindow *window)
+static gboolean
+screen_match_clicked_cb (TerminalScreen *screen,
+                         const char *match,
+                         int flavour,
+                         guint state,
+                         TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
 
   if (screen != priv->active_screen)
-    return;
+    return FALSE;
 
-  terminal_skey_do_popup (GTK_WINDOW (window), screen, skey_challenge);
-}
+  switch (flavour)
+    {
+      case FLAVOR_SKEY:
+        terminal_skey_do_popup (GTK_WINDOW (window), screen, match);
+        break;
+      default:
+        gtk_widget_grab_focus (GTK_WIDGET (screen));
+        terminal_util_open_url (GTK_WIDGET (window), match, flavour,
+                                gtk_get_current_event_time ());
+        break;
+    }
 
-static void
-screen_url_clicked_cb (TerminalScreen *screen,
-                       const char *url,
-                       int flavour,
-                       TerminalWindow *window)
-{
-  TerminalWindowPrivate *priv = window->priv;
-
-  if (screen != priv->active_screen)
-    return;
-
-  terminal_util_open_url (GTK_WIDGET (window), url, flavour,
-                          gtk_get_current_event_time ());
+  return TRUE;
 }
 
 static void
@@ -1236,6 +1336,7 @@ terminal_window_init (TerminalWindow *window)
       { "Tabs", NULL, N_("_Tabs") },
       { "Help", NULL, N_("_Help") },
       { "Popup", NULL, NULL },
+      { "NotebookPopup", NULL, "" },
 
       /* File menu */
       { "FileNewWindow", STOCK_NEW_WINDOW, N_("Open _Terminal"), "<shift><control>N",
@@ -1420,7 +1521,11 @@ terminal_window_init (TerminalWindow *window)
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
   gtk_notebook_set_group (GTK_NOTEBOOK (priv->notebook), GUINT_TO_POINTER (1));
   gtk_notebook_set_scrollable (GTK_NOTEBOOK (priv->notebook),
-                               TRUE);                                      
+                               TRUE);
+  g_signal_connect (priv->notebook, "button-press-event",
+                    G_CALLBACK (notebook_button_press_cb), window);	
+  g_signal_connect (priv->notebook, "popup-menu",
+                    G_CALLBACK (notebook_popup_menu_cb), window);	
   g_signal_connect_after (priv->notebook, "switch-page",
                           G_CALLBACK (notebook_page_selected_callback), window);
   g_signal_connect_after (priv->notebook, "page-added",
@@ -1692,6 +1797,11 @@ profile_set_callback (TerminalScreen *screen,
                       TerminalProfile *old_profile,
                       TerminalWindow *window)
 {
+  TerminalWindowPrivate *priv = window->priv;
+
+  if (screen != priv->active_screen)
+    return;
+
   terminal_window_update_set_profile_menu_active_profile (window);
 }
 
@@ -2128,6 +2238,71 @@ terminal_window_get_active (TerminalWindow *window)
   return priv->active_screen;
 }
 
+static gboolean
+notebook_button_press_cb (GtkWidget *widget,
+                          GdkEventButton *event,
+                          TerminalWindow *window)
+{
+  TerminalWindowPrivate *priv = window->priv;
+  GtkNotebook *notebook = GTK_NOTEBOOK (widget);
+  GtkWidget *menu;
+  GtkAction *action;
+  int tab_clicked;
+
+  if (event->type != GDK_BUTTON_PRESS ||
+      event->button != 3 ||
+      (event->state & gtk_accelerator_get_default_mod_mask ()) != 0)
+    return FALSE;
+
+  tab_clicked = find_tab_num_at_pos (notebook, event->x_root, event->y_root);
+  if (tab_clicked < 0)
+    return FALSE;
+
+  /* switch to the page the mouse is over */
+  gtk_notebook_set_current_page (notebook, tab_clicked);
+
+  action = gtk_action_group_get_action (priv->action_group, "NotebookPopup");
+  gtk_action_activate (action);
+
+  menu = gtk_ui_manager_get_widget (priv->ui_manager, "/NotebookPopup");
+  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, 
+                  NULL, NULL, 
+                  event->button, event->time);
+
+  return TRUE;
+}
+
+static gboolean
+notebook_popup_menu_cb (GtkWidget *widget,
+                        TerminalWindow *window)
+{
+  TerminalWindowPrivate *priv = window->priv;
+  GtkNotebook *notebook = GTK_NOTEBOOK (priv->notebook);
+  GtkWidget *focus_widget, *tab, *tab_label, *menu;
+  GtkAction *action;
+  int page_num;
+
+  focus_widget = gtk_window_get_focus (GTK_WINDOW (window));
+  /* Only respond if the notebook is the actual focus */
+  if (focus_widget != priv->notebook)
+    return FALSE;
+
+  page_num = gtk_notebook_get_current_page (notebook);
+  tab = gtk_notebook_get_nth_page (notebook, page_num);
+  tab_label = gtk_notebook_get_tab_label (notebook, tab);
+
+  action = gtk_action_group_get_action (priv->action_group, "NotebookPopup");
+  gtk_action_activate (action);
+
+  menu = gtk_ui_manager_get_widget (priv->ui_manager, "/NotebookPopup");
+  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, 
+                  position_menu_under_widget, tab_label,
+                  0, gtk_get_current_event_time ());
+  gtk_menu_shell_select_first (GTK_MENU_SHELL (menu), FALSE);
+
+  return TRUE;
+}
+
 static void
 notebook_page_selected_callback (GtkWidget       *notebook,
                                  GtkNotebookPage *useless_crap,
@@ -2190,10 +2365,8 @@ notebook_page_added_callback (GtkWidget       *notebook,
 
   g_signal_connect (screen, "show-popup-menu",
                     G_CALLBACK (screen_show_popup_menu_callback), window);
-  g_signal_connect (screen, "skey-clicked",
-                    G_CALLBACK (screen_skey_clicked_cb), window);
-  g_signal_connect (screen, "url-clicked",
-                    G_CALLBACK (screen_url_clicked_cb), window);
+  g_signal_connect (screen, "match-clicked",
+                    G_CALLBACK (screen_match_clicked_cb), window);
 
   g_signal_connect (screen, "close-screen",
                     G_CALLBACK (screen_close_cb), window);
@@ -2277,11 +2450,7 @@ notebook_page_removed_callback (GtkWidget       *notebook,
                                         window);
 
   g_signal_handlers_disconnect_by_func (screen,
-                                        G_CALLBACK (screen_skey_clicked_cb),
-                                        window);
-
-  g_signal_handlers_disconnect_by_func (screen,
-                                        G_CALLBACK (screen_url_clicked_cb),
+                                        G_CALLBACK (screen_match_clicked_cb),
                                         window);
 
   g_signal_handlers_disconnect_by_func (screen,
@@ -2388,8 +2557,6 @@ file_new_window_callback (GtkAction *action,
   TerminalApp *app;
   TerminalWindow *new_window;
   TerminalProfile *profile;
-  char *geometry;
-  int width, height;
 
   app = terminal_app_get ();
 
@@ -2402,19 +2569,12 @@ file_new_window_callback (GtkAction *action,
   if (_terminal_profile_get_forgotten (profile))
     return;
 
-  /* FIXME: this seems wrong if tabs are shown in the window */
-  terminal_screen_get_size (priv->active_screen, &width, &height);
-  geometry = g_strdup_printf ("%dx%d", width, height);
-
   new_window = terminal_app_new_window (app, gtk_widget_get_screen (GTK_WIDGET (window)));
 
   terminal_app_new_terminal (app, new_window, profile,
                              NULL, NULL,
                              terminal_screen_get_working_dir (priv->active_screen),
                              1.0);
-
-  gtk_window_parse_geometry (GTK_WINDOW (new_window), geometry);
-  g_free (geometry);
 
   gtk_window_present (GTK_WINDOW (new_window));
 }
@@ -2540,13 +2700,20 @@ typedef struct {
 
 static void
 clipboard_uris_received_cb (GtkClipboard *clipboard,
+#if GTK_CHECK_VERSION (2, 13, 4)
+                            char **uris,
+#else
                             GtkSelectionData *selection_data,
+#endif /* GTK 2.13.4 */
                             PasteData *data)
 {
-  char **uris;
   char *text;
+#if !GTK_CHECK_VERSION (2, 13, 4)
+  char **uris;
 
   uris = gtk_selection_data_get_uris (selection_data);
+#endif /* ! GTK 2.13.4 */
+
   if (!uris) {
     g_object_unref (data->screen);
     g_slice_free (PasteData, data);
@@ -2579,10 +2746,16 @@ clipboard_targets_received_cb (GtkClipboard *clipboard,
   }
 
   if (gtk_targets_include_uri (targets, n_targets)) {
+#if GTK_CHECK_VERSION (2, 13, 4)
+    gtk_clipboard_request_uris (clipboard,
+                                (GtkClipboardURIReceivedFunc) clipboard_uris_received_cb,
+                                data);
+#else
     gtk_clipboard_request_contents (clipboard,
                                     gdk_atom_intern ("text/uri-list", FALSE),
                                     (GtkClipboardReceivedFunc) clipboard_uris_received_cb,
                                     data);
+#endif /* GTK 2.13.4 */
     return;
   } else /* if (gtk_targets_include_text (targets, n_targets)) */ {
     vte_terminal_paste_clipboard (VTE_TERMINAL (data->screen));
