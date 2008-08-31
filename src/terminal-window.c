@@ -972,14 +972,6 @@ handle_tab_droped_on_desktop (GtkNotebook *source_notebook,
   return GTK_NOTEBOOK (new_priv->notebook);
 }
 
-static void
-terminal_window_realized_callback (GtkWidget *window,
-                                   gpointer   user_data)
-{
-  gdk_window_set_group (window->window, window->window);
-  g_signal_handlers_disconnect_by_func (window, terminal_window_realized_callback, NULL);
-}
-
 /* Terminal screen popup menu handling */
 
 static void
@@ -1501,9 +1493,6 @@ terminal_window_init (TerminalWindow *window)
   g_signal_connect (G_OBJECT (window), "delete_event",
                     G_CALLBACK(terminal_window_delete_event),
                     NULL);
-  g_signal_connect (G_OBJECT (window), "realize",
-                    G_CALLBACK (terminal_window_realized_callback),
-                    NULL);
 
   gtk_window_set_title (GTK_WINDOW (window), _("Terminal"));
 
@@ -1612,7 +1601,7 @@ terminal_window_init (TerminalWindow *window)
   gtk_window_group_add_window (window_group, GTK_WINDOW (window));
   g_object_unref (window_group);
 
-  terminal_util_set_unique_role (GTK_WINDOW (window), "gnome-terminal");
+  terminal_util_set_unique_role (GTK_WINDOW (window), "gnome-terminal-window");
 }
 
 static void
@@ -2700,19 +2689,11 @@ typedef struct {
 
 static void
 clipboard_uris_received_cb (GtkClipboard *clipboard,
-#if GTK_CHECK_VERSION (2, 13, 4)
-                            char **uris,
-#else
-                            GtkSelectionData *selection_data,
-#endif /* GTK 2.13.4 */
+                            /* const */ char **uris,
                             PasteData *data)
 {
   char *text;
-#if !GTK_CHECK_VERSION (2, 13, 4)
-  char **uris;
-
-  uris = gtk_selection_data_get_uris (selection_data);
-#endif /* ! GTK 2.13.4 */
+  gsize len;
 
   if (!uris) {
     g_object_unref (data->screen);
@@ -2720,14 +2701,13 @@ clipboard_uris_received_cb (GtkClipboard *clipboard,
     return;
   }
 
+  /* This potentially modifies the strings in |uris| but that's ok */
   if (data->uris_as_paths)
     terminal_util_transform_uris_to_quoted_fuse_paths (uris);
 
-  text = g_strjoinv (" ", uris);
-  vte_terminal_feed_child (VTE_TERMINAL (data->screen), text, strlen (text));
+  text = terminal_util_concat_uris (uris, &len);
+  vte_terminal_feed_child (VTE_TERMINAL (data->screen), text, len);
   g_free (text);
-
-  g_strfreev (uris);
 
   g_object_unref (data->screen);
   g_slice_free (PasteData, data);
@@ -2746,16 +2726,9 @@ clipboard_targets_received_cb (GtkClipboard *clipboard,
   }
 
   if (gtk_targets_include_uri (targets, n_targets)) {
-#if GTK_CHECK_VERSION (2, 13, 4)
     gtk_clipboard_request_uris (clipboard,
                                 (GtkClipboardURIReceivedFunc) clipboard_uris_received_cb,
                                 data);
-#else
-    gtk_clipboard_request_contents (clipboard,
-                                    gdk_atom_intern ("text/uri-list", FALSE),
-                                    (GtkClipboardReceivedFunc) clipboard_uris_received_cb,
-                                    data);
-#endif /* GTK 2.13.4 */
     return;
   } else /* if (gtk_targets_include_text (targets, n_targets)) */ {
     vte_terminal_paste_clipboard (VTE_TERMINAL (data->screen));

@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[2])
 m4_define([gt_version_minor],[23])
-m4_define([gt_version_micro],[6])
+m4_define([gt_version_micro],[91])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -34,13 +34,11 @@ GNOME_MAINTAINER_MODE_DEFINES
 
 AM_GLIB_GNU_GETTEXT
 
-AC_PATH_XTRA
-
 GLIB_REQUIRED=2.16.0
-GTK_REQUIRED=2.12.0
+GTK_REQUIRED=2.13.6
 GCONF_REQUIRED=2.14.0
 STARTUP_NOTIFICATION_REQUIRED=0.8
-VTE_REQUIRED=0.15.3
+VTE_REQUIRED=0.17.0
 LIBGNOME_REQUIRED=2.14.0
 
 ## here we get the flags we'll actually use
@@ -53,9 +51,6 @@ PKG_CHECK_MODULES(TERM, dnl
  libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
  libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED dnl
  vte >= $VTE_REQUIRED)
-
-TERM_LIBS="$TERM_LIBS $X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
-TERM_CFLAGS="$TERM_CFLAGS $X_CFLAGS"
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
