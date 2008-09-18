@@ -1,0 +1,108 @@
+AC_INIT([GNOME Terminal],[2.22.3],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
+AC_CONFIG_SRCDIR([src/terminal.c])
+
+AC_CONFIG_HEADER([config.h])
+
+AM_INIT_AUTOMAKE([1.9 foreign no-dist-gzip dist-bzip2])
+
+GETTEXT_PACKAGE=gnome-terminal
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[Gettext package])
+
+AC_C_BIGENDIAN
+
+AM_MAINTAINER_MODE
+
+AC_PROG_CC
+AC_ISC_POSIX
+AC_HEADER_STDC
+AM_PROG_LIBTOOL
+IT_PROG_INTLTOOL([0.35.0])
+
+GNOME_COMPILE_WARNINGS([maximum])
+
+AM_GLIB_GNU_GETTEXT
+
+AC_PATH_XTRA
+
+GLIB_REQUIRED=2.15.2
+GTK_REQUIRED=2.12.0
+GCONF_REQUIRED=2.14.0
+STARTUP_NOTIFICATION_REQUIRED=0.8
+VTE_REQUIRED=0.15.3
+LIBGNOME_REQUIRED=2.14.0
+
+## here we get the flags we'll actually use
+PKG_CHECK_MODULES(TERM, dnl
+ glib-2.0 >= $GLIB_REQUIRED dnl
+ gtk+-2.0 >= $GTK_REQUIRED dnl
+ gconf-2.0 >= $GCONF_REQUIRED dnl
+ gio-2.0 dnl
+ libglade-2.0 dnl
+ libgnomeui-2.0 dnl
+ libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
+ libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED dnl
+ vte >= $VTE_REQUIRED)
+
+TERM_LIBS="$X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS $TERM_LIBS"
+TERM_CFLAGS="$X_CFLAGS $TERM_CFLAGS"
+CPPFLAGS="$TERM_CFLAGS $CPPFLAGS"
+
+AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
+
+if test x"$GCONFTOOL" = xno; then
+  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+fi
+
+AM_GCONF_SOURCE_2
+
+# Honor aclocal flags
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
+if $PKG_CONFIG 'xft >= 2.0.0 pangoxft >= 1.1.1'; then
+   using_xft2=yes
+   CPPFLAGS="`$PKG_CONFIG --cflags xft pangoxft` $CPPFLAGS"
+   LIBS="`$PKG_CONFIG --libs xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $LIBS"
+else
+   using_xft2=no
+fi
+
+GNOME_DOC_INIT
+
+AC_CONFIG_FILES([
+Makefile
+gnome-terminal.desktop.in
+src/Makefile
+src/skey/Makefile
+help/Makefile
+help/bg/Makefile
+help/ro/Makefile
+help/ja/Makefile
+help/zh_CN/Makefile
+help/zh_TW/Makefile
+po/Makefile.in
+])
+AC_OUTPUT
+dnl ==========================================================================
+
+if test x$using_xft2 = xno; then
+        echo "*** WARNING WARNING WARNING WARNING WARNING"
+        echo "*** Building with VTE widget but not Xft2"
+        echo "*** This won't be as optimal as fontconfig/Xft2"
+fi
+
+#echo "
+#*** WARNING WARNING WARNING WARNING WARNING
+#*** This is the unstable branch of gnome-terminal
+#*** The stable branch is version 2.4.x
+#"
+
+echo "
+gnome-terminal-$VERSION:
+
+	prefix:                 ${prefix}
+	source code location:	${srcdir}
+	compiler:		${CC}
+
+        using fontconfig/Xft2:  ${using_xft2}
+"
