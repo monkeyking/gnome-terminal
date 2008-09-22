@@ -238,7 +238,7 @@
              </mediaobject> 
           </screenshot> 
         </figure> 
-        <para>La fenêtre de terminal affiche une ligne de commande dans laquelle vous pouvez entrer des commandes UNIX. L'invite de commande peut contenir %, #,&gt;, $ ou des caractères spéciaux. Le pointeur est positionné sur l'invite de commande. Lorsque vous tapez une commande UNIX et appuyez sur <keycap>Entrée</keycap>, l'ordinateur exécute la commande. Par défaut, le <application>Terminal GNOME</application> utilise le shell par défaut spécifié par l'utilisateur qui lance l'application.</para>
+        <para>La fenêtre de terminal affiche une ligne de commande dans laquelle vous pouvez entrer des commandes UNIX. L'invite de commande peut contenir %, #,&gt;, $ ou des caractères spéciaux. Le pointeur est positionné sur l'invite de commande. Lorsque vous tapez une commande UNIX et appuyez sur <keycap>Entrée</keycap>, l'ordinateur exécute la commande. Par défaut, le <application>Terminal GNOME</application> utilise le shell par défaut indiqué par l'utilisateur qui lance l'application.</para>
         <para>Le <application>Terminal GNOME</application> définit également les variables d'environnement suivantes :</para>
         <variablelist> 
           <varlistentry> 
@@ -268,17 +268,17 @@
      <sect2 id="gnome-terminal-profiles"> 
         <title>Profils du terminal</title> 
         <para>Vous pouvez créer un nouveau profil et l'appliquer au terminal pour modifier des caractéristiques telles que la police, la couleur et les effets, le comportement pendant le défilement, le titre de la fenêtre et la compatibilité. Vous pouvez également définir dans le profil une commande qui s'exécute automatiquement au lancement du <application>Terminal GNOME</application>.</para>
-          <para>Vous définissez chaque profil de terminal dans la boîte de dialogue <guilabel>Profils</guilabel> à laquelle vous avez accès depuis le menu <guimenu>Édition</guimenu>. Vous pouvez définir autant de profils que nécessaire. Lorsque vous lancez un terminal, vous pouvez choisir le profil à utiliser pour le terminal ou modifier le profil du terminal lorsque vous utilisez celui-ci. Pour spécifier le profil de terminal initial lorsque vous démarrez l'application depuis une ligne de commande, utilisez la commande suivante :</para>
+          <para>Vous définissez chaque profil de terminal dans la boîte de dialogue <guilabel>Profils</guilabel> à laquelle vous avez accès depuis le menu <guimenu>Édition</guimenu>. Vous pouvez définir autant de profils que nécessaire. Lorsque vous lancez un terminal, vous pouvez choisir le profil à utiliser pour le terminal ou modifier le profil du terminal lorsque vous utilisez celui-ci. Pour indiquer le profil de terminal initial lorsque vous démarrez l'application depuis une ligne de commande, utilisez la commande suivante :</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>nomduprofil</replaceable></command> 
         </para>
-        <para>Le nom du profil courant apparaît dans la barre de titre du <application>Terminal GNOME</application>, à moins que vous ne spécifiez un autre nom de barre de titre dans la boîte de dialogue <guilabel>Édition du profil</guilabel>.</para>
+        <para>Le nom du profil actuel apparaît dans la barre de titre du <application>Terminal GNOME</application>, à moins que vous ne indiquez un autre nom de barre de titre dans la boîte de dialogue <guilabel>Édition du profil</guilabel>.</para>
         <para>Reportez-vous à <xref linkend="gnome-terminal-manage-profiles"/> pour des informations sur la définition et l'utilisation d'un nouveau profil pour le terminal.</para>
      </sect2> 
      <sect2 id="gnome-terminal-more-windows"> 
         <title>Utilisation de plusieurs terminaux</title> 
         <para>Le <application>Terminal GNOME</application> propose une fonction de génération d'onglets permettant d'ajouter d'autres terminaux à une fenêtre. Chaque terminal s'ouvre dans un onglet séparé. Cliquez sur l'onglet approprié pour que le terminal s'affiche dans la fenêtre. Chaque terminal représenté par un onglet dans une fenêtre constitue un sous-processus distinct. Ainsi, vous pouvez utiliser chacun d'entre eux pour des travaux différents. Vous pouvez appliquer à chacun un profil différent.</para>
-       <para>La barre de titre de la fenêtre de terminal indique le nom du profil courant ou le nom spécifié par le profil courant. La <xref linkend="gnome-terminal-tabbed"/> affiche une fenêtre du <application>Terminal GNOME</application> avec quatre onglets. Dans ce cas, chacun des onglets possède un profil différent. Le nom du profil actuel, Profil1, apparaît dans la barre de titre.</para>
+       <para>La barre de titre de la fenêtre de terminal indique le nom du profil actuel ou le nom indiqué par le profil actuel. La <xref linkend="gnome-terminal-tabbed"/> affiche une fenêtre du <application>Terminal GNOME</application> avec quatre onglets. Dans ce cas, chacun des onglets possède un profil différent. Le nom du profil actuel, Profil1, apparaît dans la barre de titre.</para>
         <figure id="gnome-terminal-tabbed"> 
           <title>Exemple de fenêtre de terminal avec des onglets</title> 
           <screenshot> 
@@ -396,10 +396,10 @@
                 <para>Vous pouvez éditer les profils dans la boîte de dialogue <guilabel>Édition du profil</guilabel>. Pour ouvrir cette boîte de dialogue, utilisez l'une des procédures suivantes :</para>
                 <itemizedlist> 
                   <listitem> 
-                     <para>Choisissez <menuchoice><guimenu>Édition</guimenu><guisubmenu>Profil courant</guisubmenu></menuchoice>.</para>
+                     <para>Choisissez <menuchoice><guimenu>Édition</guimenu><guisubmenu>Profil actuel</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Cliquez avec le bouton droit dans la fenêtre du terminal, puis choisissez <guimenuitem>Éditer le profil courant</guimenuitem> dans le menu contextuel.</para>
+                     <para>Cliquez avec le bouton droit dans la fenêtre du terminal, puis choisissez <guimenuitem>Éditer le profil actuel</guimenuitem> dans le menu contextuel.</para>
                   </listitem> 
                   <listitem> 
                      <para>Choisissez <menuchoice><guimenu>Édition</guimenu><guisubmenu>Profils</guisubmenu></menuchoice>, puis sélectionnez le profil à éditer et cliquez sur <guibutton>Éditer</guibutton>. Pour plus d'informations sur les options configurables des profils, consultez <xref linkend="gnome-terminal-prefs"/>.</para>
@@ -640,7 +640,7 @@
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Préférences</title> 
-     <para>Pour configurer le <application>Terminal GNOME</application>, choisissez <menuchoice><guimenu>Édition</guimenu><guimenuitem>Profil courant</guimenuitem></menuchoice>. Pour configurer un autre profil, choisissez <menuchoice><guimenu>Édition</guimenu><guimenuitem>Profils</guimenuitem></menuchoice>, sélectionnez le profil à éditer, puis cliquez sur <guibutton>Édition</guibutton>.</para>
+     <para>Pour configurer le <application>Terminal GNOME</application>, choisissez <menuchoice><guimenu>Édition</guimenu><guimenuitem>Profil actuel</guimenuitem></menuchoice>. Pour configurer un autre profil, choisissez <menuchoice><guimenu>Édition</guimenu><guimenuitem>Profils</guimenuitem></menuchoice>, sélectionnez le profil à éditer, puis cliquez sur <guibutton>Édition</guibutton>.</para>
      <para>La boîte de dialogue <guilabel>Édition du profil</guilabel> contient plusieurs onglets qui vous permettent de configurer le <application>Terminal GNOME</application> :</para>
      <itemizedlist> 
 		<listitem><para><xref linkend="gnome-terminal-prefs-general"/></para>
@@ -665,16 +665,14 @@
              <term> 
                 <guilabel>Nom du profil</guilabel> </term> 
              <listitem> 
-                <para>Cette zone de texte permet de spécifier le nom du profil courant.</para>
+                <para>Cette zone de texte permet d'indiquer le nom du profil actuel.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Use the system fixed width font</guilabel> </term>
+                <guilabel>Utiliser la police à chasse fixe du système</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
-                </para>
+                <para>Cette option permet d'utiliser la police à chasse fixe standard définie dans le panneau de préférences <application>Polices</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -710,7 +708,7 @@
              <term> 
                 <guilabel>Sélection par mot des caractères</guilabel> </term> 
              <listitem> 
-                <para>Cette zone de texte permet de spécifier les caractères ou groupes de caractères que le <application>Terminal GNOME</application> doit considérer comme des mots lorsque vous sélectionnez du texte mot par mot. Reportez-vous à <xref linkend="gnome-terminal-contents"/> pour plus d'informations sur la sélection de texte mot par mot.</para>
+                <para>Cette zone de texte permet d'indiquer les caractères ou groupes de caractères que le <application>Terminal GNOME</application> doit considérer comme des mots lorsque vous sélectionnez du texte mot par mot. Reportez-vous à <xref linkend="gnome-terminal-contents"/> pour plus d'informations sur la sélection de texte mot par mot.</para>
              </listitem> 
           </varlistentry> 
           
@@ -723,12 +721,12 @@
              <term> 
                 <guilabel>Titre initial</guilabel> </term> 
              <listitem> 
-                <para>Cette zone de texte permet de spécifier le titre initial des terminaux qui utilisent ce profil. Les nouveaux terminaux démarrés depuis le terminal actuel reçoivent le nouveau titre initial.</para>
+                <para>Cette zone de texte permet d'indiquer le titre initial des terminaux qui utilisent ce profil. Les nouveaux terminaux démarrés depuis le terminal actuel reçoivent le nouveau titre initial.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>When terminal commands set their own titles</guilabel> </term>
+                <guilabel>Lorsque les commandes du terminal définissent leurs propres titres</guilabel> </term>
              <listitem> 
                 <para>Cette liste déroulante permet de définir ce qui se passe lorsqu'un titre est modifié dynamiquement, au moyen de commandes exécutées dans le terminal.</para>
              </listitem> 
@@ -752,7 +750,7 @@
                 <guilabel>Exécuter une commande personnalisée au lieu de mon shell</guilabel>
                 </term> 
              <listitem> 
-                <para>Cette option permet d'exécuter une commande autre que le shell normal sur le terminal. Spécifiez la commande personnalisée dans la zone de texte <guilabel>Commande personnalisée</guilabel>.</para>
+                <para>Cette option permet d'exécuter une commande autre que le shell normal sur le terminal. Indiquez la commande personnalisée dans la zone de texte <guilabel>Commande personnalisée</guilabel>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -772,8 +770,8 @@
                 <guilabel>Premier et arrière-plan</guilabel>
                 </term> 
              <listitem> 
-                <para>Cochez l'option <guilabel>Utiliser les couleurs du thème système</guilabel> pour utiliser les couleurs spécifiées dans le thème GNOME sélectionné dans le <ulink type="help" url="ghelp:user-guide?prefs-theme">panneau de préférences <application>Thèmes</application></ulink>.</para>
-                <para>Cette liste déroulante permet de spécifier les couleurs de premier plan et d'arrière-plan du terminal. Le <application>Terminal GNOME</application> prend en charge les combinaisons de couleurs suivantes pour le premier plan et l'arrière-plan :</para>
+                <para>Cochez l'option <guilabel>Utiliser les couleurs du thème système</guilabel> pour utiliser les couleurs indiquées dans le thème GNOME sélectionné dans le <ulink type="help" url="ghelp:user-guide?prefs-theme">panneau de préférences <application>Thèmes</application></ulink>.</para>
+                <para>Cette liste déroulante permet d'indiquer les couleurs de premier plan et d'arrière-plan du terminal. Le <application>Terminal GNOME</application> prend en charge les combinaisons de couleurs suivantes pour le premier plan et l'arrière-plan :</para>
                 <itemizedlist> 
                   <listitem> 
                      <para>
@@ -834,17 +832,15 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Solid color</guilabel>
+                        <guilabel>Couleur unie</guilabel>
                      </para>
-                     <para>
-                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
-                     </para>
+                     <para>Sélectionnez cette option pour utiliser la couleur d'arrière-plan indiquée dans l'onglet <guilabel>Couleurs</guilabel> en tant que couleur d'arrière-plan du terminal.</para>
                   </listitem> 
                   <listitem> 
                      <para>
                         <guilabel>Image d'arrière-plan</guilabel> 
                      </para>
-                     <para>Cette option permet d'utiliser un fichier image comme arrière-plan du terminal. La liste déroulante <guilabel>Fichier image</guilabel> permet de spécifier l'emplacement et le nom du fichier. Vous pouvez également cliquer sur le bouton <guibutton>Parcourir</guibutton> pour rechercher et sélectionner un fichier.</para>
+                     <para>Cette option permet d'utiliser un fichier image comme arrière-plan du terminal. La liste déroulante <guilabel>Fichier image</guilabel> permet d'indiquer l'emplacement et le nom du fichier. Vous pouvez également cliquer sur le bouton <guibutton>Parcourir</guibutton> pour rechercher et sélectionner un fichier.</para>
                      <para>L'option <guilabel>L'image d'arrière-plan défile</guilabel> permet de faire défiler l'image d'arrière-plan en même temps que le texte dans le terminal. Si vous ne cochez pas cette option, l'image reste statique et seul le texte défile. Cette option n'est disponible que si l'option <guilabel>Image d'arrière-plan</guilabel> est sélectionnée.</para>
                   </listitem> 
                   <listitem> 
@@ -881,7 +877,7 @@
              <term> 
                 <guilabel>Lignes d'historique ... lignes</guilabel> </term> 
              <listitem> 
-                <para>Cette zone de sélection numérique permet de spécifier le nombre de lignes d'historique qui peuvent être consultées à l'aide de la barre de défilement. Par exemple, si vous spécifiez 100, vous pouvez faire défiler les 100 dernières lignes affichées dans le terminal.</para>
+                <para>Cette zone de sélection numérique permet d'indiquer le nombre de lignes d'historique qui peuvent être consultées à l'aide de la barre de défilement. Par exemple, si vous indiquez 100, vous pouvez faire défiler les 100 dernières lignes affichées dans le terminal.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry>
