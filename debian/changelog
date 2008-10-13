@@ -1,3 +1,15 @@
+gnome-terminal (2.24.0-0ubuntu2) intrepid; urgency=low
+
+  * debian/patches/05_restore_tab_switching_shortcuts.patch: Backport patch
+    from GNOME SVN to restore previously removed switch-to-tab keybnindings
+    (LP: #272199).
+    References:
+      + http://svn.gnome.org/viewvc/gnome-terminal?view=revision&revision=3170
+      + http://svn.gnome.org/viewvc/gnome-terminal?view=revision&revision=3171
+      + http://bugzilla.gnome.org/show_bug.cgi?id=548600
+
+ -- Iain Lane <laney@ubuntu.com>  Mon, 13 Oct 2008 21:24:44 +0100
+
 gnome-terminal (2.24.0-0ubuntu1) intrepid; urgency=low
 
   * New upstream version
