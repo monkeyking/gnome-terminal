@@ -8,7 +8,7 @@
 
 G_BEGIN_DECLS
 
-/* enumerations from "../../../src/terminal-profile.h" */
+/* enumerations from "../../src/terminal-profile.h" */
 GType terminal_title_mode_get_type (void);
 #define TERMINAL_TYPE_TITLE_MODE (terminal_title_mode_get_type ())
 GType terminal_scrollbar_position_get_type (void);

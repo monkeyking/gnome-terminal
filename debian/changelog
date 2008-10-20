@@ -1,3 +1,19 @@
+gnome-terminal (2.24.1-0ubuntu1) intrepid; urgency=low
+
+  * New upstream release
+    - accels sent to the terminal if the corresponding gtkaction
+      is insensitive (lp: #208291) (lp: #279480)
+    - Set title dialog should activate with Enter (lp: #268286)
+    - In main menu, Terminal and Tabs have same mnemonic (lp: #279046)
+  * debian/patches/05_restore_tab_switching_shortcuts.patch:
+    - Dropped, the change is in the release
+  * debian/patches/06_add_locale_to_schemas.patch:
+    - Add <locale> tag to .schemas
+  * debian/patches/99_autoreconf.patch:
+    - Refreshed
+
+ -- Pedro Fragoso <ember@ubuntu.com>  Mon, 20 Oct 2008 21:13:52 +0100
+
 gnome-terminal (2.24.0-0ubuntu2) intrepid; urgency=low
 
   * debian/patches/05_restore_tab_switching_shortcuts.patch: Backport patch
