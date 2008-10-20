@@ -541,13 +541,15 @@
           <varlistentry> 
              <term><guilabel>Desabilitar todos as teclas de acessos ao menu (como Alt+A para abrir o menu Arquivo)</guilabel></term> 
              <listitem> 
-                <para>Selecione esta opção para desabilitar as teclas de acesso que foram definidas para permitir a você usar o teclado ao invés do mouse para selecionar um item do menu. Cada tecla de acesso é identificada por uma letra sublinhada no menu ou na opção do diálogo. Em alguns casos, você deve pressionar a tecla <keycap>Alt</keycap> combinada com a tecla de acesso para que a ação ocorra.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Desabilitar a tecla de atalho do menu (F10 por padrão)</guilabel></term> 
              <listitem> 
-                <para>Selecione este opção para desabilitar a tecla de atalho que foi definida para permitir a você acessar os menus do <application>Terminal GNOME</application>. A telha de atalho padrão para acessar os menus é <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -673,7 +675,7 @@
                 <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
                 <para>
-                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
                 </para>
              </listitem> 
           </varlistentry>
@@ -759,7 +761,9 @@
              <term> 
                 <guilabel>Quando o comando terminar</guilabel> </term> 
              <listitem> 
-                <para>Use esta lista de rolagem abaixo para especificar qual ação efetuar após o terminal sair.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -772,7 +776,9 @@
                 <guilabel>Texto e Fundo</guilabel>
                 </term> 
              <listitem> 
-                <para>Selecione a opção <guilabel>Usar cores do tema do sistema</guilabel> para usar as cores que são especificadas no tema GNOME selecionado na <ulink type="help" url="ghelp:user-guide?prefs-theme">ferramenta de preferências de <application>Tema</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Use a lista <guilabel>Esquemas embutidos</guilabel> para especificar as cores do texto e fundo para o terminal. O <application>Terminal GNOME</application> aceita as seguintes combinações de fundo e texto:</para>
                 <itemizedlist> 
                   <listitem> 

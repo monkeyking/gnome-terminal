@@ -49,12 +49,12 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(builderdir)" \
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_1 =
-am_gnome_terminal_OBJECTS = gnome_terminal-encoding.$(OBJEXT) \
-	gnome_terminal-profile-editor.$(OBJEXT) \
+am_gnome_terminal_OBJECTS = gnome_terminal-profile-editor.$(OBJEXT) \
 	gnome_terminal-skey-popup.$(OBJEXT) \
 	gnome_terminal-terminal.$(OBJEXT) \
 	gnome_terminal-terminal-accels.$(OBJEXT) \
 	gnome_terminal-terminal-app.$(OBJEXT) \
+	gnome_terminal-terminal-encoding.$(OBJEXT) \
 	gnome_terminal-terminal-marshal.$(OBJEXT) \
 	gnome_terminal-terminal-profile.$(OBJEXT) \
 	gnome_terminal-terminal-screen.$(OBJEXT) \
@@ -280,8 +280,6 @@ top_srcdir = @top_srcdir@
 NULL = 
 SUBDIRS = skey
 gnome_terminal_SOURCES = \
-	encoding.c \
-	encoding.h \
 	profile-editor.c \
 	profile-editor.h \
 	skey-popup.c \
@@ -291,6 +289,8 @@ gnome_terminal_SOURCES = \
 	terminal-accels.h \
 	terminal-app.c \
 	terminal-app.h \
+	terminal-encoding.c \
+	terminal-encoding.h \
 	terminal-intl.h \
 	terminal-marshal.c \
 	terminal-marshal.h \
@@ -461,11 +461,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-encoding.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-profile-editor.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-skey-popup.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-accels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-app.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-encoding.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-marshal.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-profile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-screen-container.Po@am__quote@
@@ -496,20 +496,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-gnome_terminal-encoding.o: encoding.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-encoding.o -MD -MP -MF $(DEPDIR)/gnome_terminal-encoding.Tpo -c -o gnome_terminal-encoding.o `test -f 'encoding.c' || echo '$(srcdir)/'`encoding.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-encoding.Tpo $(DEPDIR)/gnome_terminal-encoding.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='encoding.c' object='gnome_terminal-encoding.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-encoding.o `test -f 'encoding.c' || echo '$(srcdir)/'`encoding.c
-
-gnome_terminal-encoding.obj: encoding.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-encoding.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-encoding.Tpo -c -o gnome_terminal-encoding.obj `if test -f 'encoding.c'; then $(CYGPATH_W) 'encoding.c'; else $(CYGPATH_W) '$(srcdir)/encoding.c'; fi`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-encoding.Tpo $(DEPDIR)/gnome_terminal-encoding.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='encoding.c' object='gnome_terminal-encoding.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-encoding.obj `if test -f 'encoding.c'; then $(CYGPATH_W) 'encoding.c'; else $(CYGPATH_W) '$(srcdir)/encoding.c'; fi`
 
 gnome_terminal-profile-editor.o: profile-editor.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-profile-editor.o -MD -MP -MF $(DEPDIR)/gnome_terminal-profile-editor.Tpo -c -o gnome_terminal-profile-editor.o `test -f 'profile-editor.c' || echo '$(srcdir)/'`profile-editor.c
@@ -580,6 +566,20 @@ gnome_terminal-terminal-app.obj: terminal-app.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-app.c' object='gnome_terminal-terminal-app.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-app.obj `if test -f 'terminal-app.c'; then $(CYGPATH_W) 'terminal-app.c'; else $(CYGPATH_W) '$(srcdir)/terminal-app.c'; fi`
+
+gnome_terminal-terminal-encoding.o: terminal-encoding.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-encoding.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo -c -o gnome_terminal-terminal-encoding.o `test -f 'terminal-encoding.c' || echo '$(srcdir)/'`terminal-encoding.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo $(DEPDIR)/gnome_terminal-terminal-encoding.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-encoding.c' object='gnome_terminal-terminal-encoding.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-encoding.o `test -f 'terminal-encoding.c' || echo '$(srcdir)/'`terminal-encoding.c
+
+gnome_terminal-terminal-encoding.obj: terminal-encoding.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-encoding.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo -c -o gnome_terminal-terminal-encoding.obj `if test -f 'terminal-encoding.c'; then $(CYGPATH_W) 'terminal-encoding.c'; else $(CYGPATH_W) '$(srcdir)/terminal-encoding.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo $(DEPDIR)/gnome_terminal-terminal-encoding.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-encoding.c' object='gnome_terminal-terminal-encoding.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-encoding.obj `if test -f 'terminal-encoding.c'; then $(CYGPATH_W) 'terminal-encoding.c'; else $(CYGPATH_W) '$(srcdir)/terminal-encoding.c'; fi`
 
 gnome_terminal-terminal-marshal.o: terminal-marshal.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c

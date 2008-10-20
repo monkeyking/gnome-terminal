@@ -541,13 +541,15 @@
           <varlistentry> 
              <term><guilabel>Inhabilita totes les tecles d'accés dels menús (com ara Alt+f per obrir el menú Fitxer)</guilabel></term> 
              <listitem> 
-                <para>Seleccioneu aquesta opció per a inhabilitar les tecles d'accés definides per a utilitzar el teclat enlloc del ratolí per a seleccionar un element del menú. Cada tecla d'accés està identificada per una lletra subratllada en una opció del menú o del diàleg. En alguns casos, heu de prémer la tecla <keycap>Alt</keycap> en combinació amb la tecla d'accés per a realitzar l'acció.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Inhabilita la tecla d'accés al menú (F10 per defecte)</guilabel></term> 
              <listitem> 
-                <para>Seleccioneu aquesta opció per a inhabilitar la tecla de drecera definida per a accedir als menús del <application>terminal del GNOME</application>. Per defecte la tecla de drecera per a accedir als menús és <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -673,7 +675,7 @@
                 <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
                 <para>
-                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
                 </para>
              </listitem> 
           </varlistentry>
@@ -759,7 +761,9 @@
              <term> 
                 <guilabel>Quan l'ordre surt</guilabel> </term> 
              <listitem> 
-                <para>Utilitzeu aquesta llista desplegable per a especificar quina acció realitzar quan el terminal surti.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -772,7 +776,9 @@
                 <guilabel>Primer pla i fons</guilabel>
                 </term> 
              <listitem> 
-                <para>Seleccioneu l'opció <guilabel>Empra els colors del tema del sistema</guilabel> per a utilitzar els colors especificats en el tema de l'escriptori del GNOME seleccionat en l'<ulink type="help" url="ghelp:user-guide?prefs-theme">eina de preferències <application>Tema</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Utilitzeu la llista desplegable <guilabel>Esquemes integrats</guilabel> per a especificar els colors de primer pla i de fons del terminal. El <application>terminal del GNOME</application> admet les combinacions de color de primer pla i de fons següents:</para>
                 <itemizedlist> 
                   <listitem> 

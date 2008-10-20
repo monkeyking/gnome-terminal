@@ -26,10 +26,10 @@
 #include <gdk/gdkkeysyms.h>
 #include <libsn/sn-launchee.h>
 
-#include "encoding.h"
 #include "skey-popup.h"
 #include "terminal-accels.h"
 #include "terminal-app.h"
+#include "terminal-encoding.h"
 #include "terminal-intl.h"
 #include "terminal-screen-container.h"
 #include "terminal-tabs-menu.h"
@@ -729,7 +729,7 @@ terminal_window_update_encoding_menu (TerminalWindow *window)
   else
     charset = NULL;
   
-  encodings = terminal_get_active_encodings ();
+  encodings = terminal_app_get_active_encodings (terminal_app_get ());
 
   group = NULL;
   n = 0;
@@ -885,10 +885,25 @@ terminal_window_update_tabs_menu_sensitivity (TerminalWindow *window)
   not_first = page_num > 0;
   not_last = page_num + 1 < num_pages;
 
+#if 1
+  /* NOTE: We always make next/prev actions sensitive except in
+   * single-tab windows, so the corresponding shortcut key escape code
+   * isn't sent to the terminal. See bug #453193 and bug #138609.
+   * This also makes tab cycling work, bug #92139.
+   * FIXME: Find a better way to do this.
+   */
+  action = gtk_action_group_get_action (action_group, "TabsPrevious");
+  gtk_action_set_sensitive (action, num_pages > 1);
+  action = gtk_action_group_get_action (action_group, "TabsNext");
+  gtk_action_set_sensitive (action, num_pages > 1);
+#else
+  /* This would be correct, but see the comment above. */
   action = gtk_action_group_get_action (action_group, "TabsPrevious");
   gtk_action_set_sensitive (action, not_first);
   action = gtk_action_group_get_action (action_group, "TabsNext");
   gtk_action_set_sensitive (action, not_last);
+#endif
+
   action = gtk_action_group_get_action (action_group, "TabsMoveLeft");
   gtk_action_set_sensitive (action, not_first);
   action = gtk_action_group_get_action (action_group, "TabsMoveRight");
@@ -1314,6 +1329,13 @@ terminal_window_profile_list_changed_cb (TerminalApp *app,
 }
 
 static void
+terminal_window_encoding_list_changed_cb (TerminalApp *app,
+                                          TerminalWindow *window)
+{
+  terminal_window_update_encoding_menu (window);
+}
+
+static void
 terminal_window_init (TerminalWindow *window)
 {
   const GtkActionEntry menu_entries[] =
@@ -1563,6 +1585,12 @@ terminal_window_init (TerminalWindow *window)
   g_signal_connect (action, "activate",
                     G_CALLBACK (edit_menu_activate_callback), window);
 
+  /* Set this action invisible so the Edit menu doesn't flash the first
+   * time it's shown and there's no text/uri-list on the clipboard.
+   */
+  action = gtk_action_group_get_action (priv->action_group, "EditPasteURIPaths");
+  gtk_action_set_visible (action, FALSE);
+
   /* Load the UI */
   error = NULL;
   priv->ui_id = gtk_ui_manager_add_ui_from_file (manager,
@@ -1587,10 +1615,12 @@ terminal_window_init (TerminalWindow *window)
   g_signal_connect (app, "profile-list-changed",
                     G_CALLBACK (terminal_window_profile_list_changed_cb), window);
   
+  terminal_window_encoding_list_changed_cb (app, window);
+  g_signal_connect (app, "encoding-list-changed",
+                    G_CALLBACK (terminal_window_encoding_list_changed_cb), window);
+
   terminal_window_set_menubar_visible (window, TRUE);
   priv->use_default_menubar_visibility = TRUE;
-
-  terminal_window_update_encoding_menu (window);
 
   /* We have to explicitly call this, since screen-changed is NOT
    * emitted for the toplevel the first time!
@@ -2134,8 +2164,8 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   
   vte_terminal_get_padding (VTE_TERMINAL (screen), &xpad, &ypad);
   
-  w += xpad + char_width * grid_width;
-  h += ypad + char_height * grid_height;
+  w += xpad * 2 + char_width * grid_width;
+  h += ypad * 2 + char_height * grid_height;
 
 #ifdef DEBUG_GEOMETRY
   g_printerr ("set size: grid %dx%d force %dx%d setting %dx%d pixels\n",
@@ -2551,6 +2581,8 @@ file_new_window_callback (GtkAction *action,
 
   profile = g_object_get_data (G_OBJECT (action), PROFILE_DATA_KEY);
   if (!profile)
+    profile = terminal_screen_get_profile (priv->active_screen);
+  if (!profile)
     profile = terminal_app_get_profile_for_new_term (app);
   if (!profile)
     return;
@@ -2578,6 +2610,8 @@ file_new_tab_callback (GtkAction *action,
 
   app = terminal_app_get ();
   profile = g_object_get_data (G_OBJECT (action), PROFILE_DATA_KEY);
+  if (!profile)
+    profile = terminal_screen_get_profile (priv->active_screen);
   if (!profile)
     profile = terminal_app_get_profile_for_new_term (app);
   if (!profile)
@@ -2932,12 +2966,15 @@ terminal_set_title_dialog_response_cb (GtkWidget *dialog,
                                        int response,
                                        TerminalScreen *screen)
 {
-  GtkEntry *entry;
-  const char *text;
+  if (response == GTK_RESPONSE_OK)
+    {
+      GtkEntry *entry;
+      const char *text;
 
-  entry = GTK_ENTRY (g_object_get_data (G_OBJECT (dialog), "title-entry"));
-  text = gtk_entry_get_text (entry);
-  terminal_screen_set_user_title (screen, text);
+      entry = GTK_ENTRY (g_object_get_data (G_OBJECT (dialog), "title-entry"));
+      text = gtk_entry_get_text (entry);
+      terminal_screen_set_user_title (screen, text);
+    }
 
   gtk_widget_destroy (dialog);
 }
@@ -2963,7 +3000,7 @@ terminal_set_title_callback (GtkAction *action,
   gtk_window_set_title (GTK_WINDOW (dialog), _("Set Title"));
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
   gtk_window_set_role (GTK_WINDOW (dialog), "gnome-terminal-change-title");
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
   g_signal_connect (dialog, "response",
                     G_CALLBACK (terminal_set_title_dialog_response_cb), priv->active_screen);

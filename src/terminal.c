@@ -33,7 +33,6 @@
 #include "terminal-window.h"
 #include "terminal-util.h"
 #include "profile-editor.h"
-#include "encoding.h"
 #include <bonobo-activation/bonobo-activation-activate.h>
 #include <bonobo-activation/bonobo-activation-register.h>
 #include <bonobo/bonobo-exception.h>
@@ -932,8 +931,9 @@ find_screen_by_display_name (const char *display_name,
         {
           GdkDisplay *disp = l->data;
 
-          /* compare without the screen number part */
-          if (strncmp (gdk_display_get_name (disp), display_name, period - display_name) == 0)
+          /* compare without the screen number part, if present */
+          if ((period && strncmp (gdk_display_get_name (disp), display_name, period - display_name) == 0) ||
+              (period == NULL && strcmp (gdk_display_get_name (disp), display_name) == 0))
             {
               display = disp;
               break;

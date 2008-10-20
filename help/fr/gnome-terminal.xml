@@ -541,13 +541,15 @@
           <varlistentry> 
              <term><guilabel>Désactiver tous les raccourcis clavier des menus (comme Alt+F pour ouvrir le menu Fichier)</guilabel></term> 
              <listitem> 
-                <para>Cochez cette case pour désactiver les touches d'accès permettant de sélectionner un élément de menu à l'aide du clavier plutôt qu'à l'aide de la souris. Chacune d'entre elles est identifiée par une lettre soulignée dans l'option de menu ou de boîte de dialogue. Dans certains cas, vous devez appuyer à la fois sur la touche d'accès et sur la touche <keycap>Alt</keycap> pour exécuter l'action.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Désactiver le raccourci clavier d'accès au menu (F10 par défaut)</guilabel></term> 
              <listitem> 
-                <para>Cochez cette case pour désactiver la touche de raccourci vous permettant d'accéder aux menus du <application>Terminal GNOME</application>. Par défaut, il s'agit de <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -672,7 +674,9 @@
              <term> 
                 <guilabel>Utiliser la police à chasse fixe du système</guilabel> </term>
              <listitem> 
-                <para>Cette option permet d'utiliser la police à chasse fixe standard définie dans le panneau de préférences <application>Polices</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -757,7 +761,9 @@
              <term> 
                 <guilabel>Quand la commande se termine</guilabel> </term> 
              <listitem> 
-                <para>Cette liste déroulante permet de choisir une commande à exécuter quand le terminal se ferme.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -770,7 +776,9 @@
                 <guilabel>Premier et arrière-plan</guilabel>
                 </term> 
              <listitem> 
-                <para>Cochez l'option <guilabel>Utiliser les couleurs du thème système</guilabel> pour utiliser les couleurs indiquées dans le thème GNOME sélectionné dans le <ulink type="help" url="ghelp:user-guide?prefs-theme">panneau de préférences <application>Thèmes</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Cette liste déroulante permet d'indiquer les couleurs de premier plan et d'arrière-plan du terminal. Le <application>Terminal GNOME</application> prend en charge les combinaisons de couleurs suivantes pour le premier plan et l'arrière-plan :</para>
                 <itemizedlist> 
                   <listitem> 

@@ -1,3 +1,497 @@
+commit 023076dffad037019305d6bc2533005f560772d5
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Oct 19 12:42:20 2008 +0000
+
+    Version 2.24.1.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3182 e32f9464-e525-0410-8908-8a3b6990da27
+
+ NEWS         |    2 +-
+ configure.ac |    4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 4f3858ac5295d4714e1d81d302524635cd1fde60
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Oct 19 12:40:42 2008 +0000
+
+    Bug 548600 – Can no longer configure keyboard shortcuts for switching tabs
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3181 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/gnome-terminal.schemas.in |   96 +++++++++++++++++++++++++++++++++++++++++
+ src/terminal-accels.c         |   52 +++++++++++++++++++++-
+ src/terminal-tabs-menu.c      |   55 ++++++++----------------
+ 3 files changed, 164 insertions(+), 39 deletions(-)
+
+commit c56868849350f87890f7cf62240ceca3be3ef32c
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Oct 19 12:40:36 2008 +0000
+
+    Update.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3180 e32f9464-e525-0410-8908-8a3b6990da27
+
+ NEWS |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 20aff2b3d9f92c8de32a6df62a73967a322a73ac
+Author: djihed <djihed@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Oct 19 11:42:19 2008 +0000
+
+    * Updated Arabic Translation by Djihed Afifi.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3178 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ar.po | 1270 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 files changed, 809 insertions(+), 461 deletions(-)
+
+commit 79007b2f5d5fc3f8752f4f7424dd790f0259d185
+Author: ogmaciel <ogmaciel@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 15 17:08:48 2008 +0000
+
+    s/Aba/aba
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3175 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/pt_BR.po |  581 ++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 295 insertions(+), 286 deletions(-)
+
+commit 2407e6eec85f182518e5e35dc57cdda0e27fd79b
+Author: ogmaciel <ogmaciel@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 15 17:00:52 2008 +0000
+
+    Updated Brazilian Portuguese translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3173 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ChangeLog.pre-2-23 |    4 ++++
+ po/pt_BR.po           |    6 +++---
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+commit 87ea421458aa7382b94a5814907c60be952f83ac
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 13 18:52:14 2008 +0000
+
+    Hide the paste-as-uri action by default, so the Edit menu doesn't flash
+    the first time it's shown and there's no text/uri-list on the clipboard.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3169 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
+
+commit 152cef991919348dbd5f9cdfe6a80c368de129ea
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 13 18:52:10 2008 +0000
+
+    Try to fix the keybinding editor sometimes not displaying the updated
+    accel until an explicit expose event happens. Still doesn't completely
+    fix the problem...
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3168 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-accels.c |   73 +++++++++++++++++++++++++++++++++++++++++--------
+ 1 files changed, 61 insertions(+), 12 deletions(-)
+
+commit 19a5ded960a910ab5313255f972df00c08031dff
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 13 18:52:06 2008 +0000
+
+    Rename variable.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3167 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-accels.c |   14 +++++++-------
+ 1 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 9ba62e716153dc53bc51f6a98d7b2a3641fc08ae
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 13 18:52:01 2008 +0000
+
+    Add 2 * xpad to width and 2 * ypad to height in
+    terminal_window_set_size_force_grid, since that's also how
+    vte_terminal_size_request works.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3166 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit dd90bf8a5965e55f016417f7eb7f6027a87f6724
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 13 18:51:56 2008 +0000
+
+    Bug 555824 – gnome-terminal's character encoding menu not updated
+    Update the encoding menus when the list changes.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3165 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-app.c      |  174 +++++++++++++++++++++++++++++++++++++++----
+ src/terminal-app.h      |    6 +-
+ src/terminal-encoding.c |  188 +++++++----------------------------------------
+ src/terminal-encoding.h |   19 ++++-
+ src/terminal-window.c   |   15 +++-
+ 5 files changed, 214 insertions(+), 188 deletions(-)
+
+commit 4057aab15cc5f8048d5c1c7749343218fb93f91a
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 13 18:51:51 2008 +0000
+
+    Rename files.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3164 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/POTFILES.in          |    2 +-
+ src/Makefile.am         |    4 +-
+ src/encoding.c          |  714 -----------------------------------------------
+ src/encoding.h          |   48 ----
+ src/terminal-app.c      |    2 +-
+ src/terminal-encoding.c |  714 +++++++++++++++++++++++++++++++++++++++++++++++
+ src/terminal-encoding.h |   48 ++++
+ src/terminal-window.c   |    2 +-
+ src/terminal.c          |    1 -
+ 9 files changed, 767 insertions(+), 768 deletions(-)
+
+commit 841ddf638d284a2ce7260e094b43292ba2ff30f6
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Oct 9 14:00:35 2008 +0000
+
+    Fix off-by-one error in the clone command argc
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3150 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-app.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 90a0e4f841e070b02c79aeb7bfdc213a570e8eb9
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Oct 9 13:36:13 2008 +0000
+
+    Make sure we always get a system font and default profile name, falling
+    back to the default when getting the gconf key fails.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3148 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-app.c |   21 +++++++++++++++------
+ 1 files changed, 15 insertions(+), 6 deletions(-)
+
+commit 5ce81fd584642adec83398570e28fcad2445f2ef
+Author: jorgegonz <jorgegonz@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 8 18:55:07 2008 +0000
+
+    Updated spanish translation
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3145 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/ChangeLog.pre-2-23 |    6 +++++-
+ help/es/es.po           |   32 ++++++++++++++++----------------
+ 2 files changed, 21 insertions(+), 17 deletions(-)
+
+commit 0b2727b3a52a60ecc044073b786a57d0ec678cce
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 8 13:02:09 2008 +0000
+
+    Bug 548388 – Set title dialog should activate with Enter
+    Patch by Ian Hands.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3142 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |   15 +++++++++------
+ 1 files changed, 9 insertions(+), 6 deletions(-)
+
+commit 9b1ced79f08d07caebccebf8bae5a8fec27e8271
+Author: ogmaciel <ogmaciel@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Oct 7 16:14:14 2008 +0000
+
+    Fixed Hide not the same as Exibir
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3140 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ChangeLog.pre-2-23 |    4 ++
+ po/pt_BR.po           |  130 +++++++++++++++++++++++++------------------------
+ 2 files changed, 70 insertions(+), 64 deletions(-)
+
+commit d517e4f86617fe5059b9c1cfa16146d0cc21b37b
+Author: baptistem <baptistem@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Oct 7 08:41:21 2008 +0000
+
+        Update the screenshots for French documentation to match GNOME
+        current official theme.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3124 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/fr/figures/gnome-terminal-default.png |  Bin 13655 -> 13784 bytes
+ help/fr/figures/gnome-terminal-tabbed.png  |  Bin 13204 -> 18573 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 0e01c92c6f6dbc1cff72741e625a21d005887cd2
+Author: kelemeng <kelemeng@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Oct 5 23:40:40 2008 +0000
+
+    Hungarian translation updated
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3123 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/hu.po |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 86a98a114b394a4af35ca963166d1f7e10f1edb2
+Author: dnylande <dnylande@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Oct 5 22:41:13 2008 +0000
+
+    Updated sv translation (Daniel Nylander)
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3122 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/sv.po |  208 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 104 insertions(+), 104 deletions(-)
+
+commit 3b875f8239a1c3ab70f0908951930a05833328a1
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 1 16:38:21 2008 +0000
+
+    Bug 552950 – Wrong string in docs, section 4.2. Title and Command
+    Patch by Lucas Lommer.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3119 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/C/gnome-terminal.xml |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 4afaedf73a526535eea0e5fc4ec8e263bf97ac67
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 1 16:38:17 2008 +0000
+
+    Bug 552938 – Wrong string in doc, 3.5. Viewing the Keyboard Shortcut Settings
+    Patch by Lucas Lommer.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3118 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/C/gnome-terminal.xml |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 86cabd2df7c452b65f3c62d943438507607b0d10
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 1 16:38:12 2008 +0000
+
+    Bug 554485 – regression: open new tab using keyboard shortcut does not open new tab with profile of parent window
+    Patch by Alexander Sack.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3117 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit 8bdc8f5f9389996f470f70961e895d035516056d
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 1 16:38:07 2008 +0000
+
+    Bug 453193 – accels sent to the terminal if the corresponding gtkaction is insensitive
+    Bug 138609 – Next/prev TAB keybindings should not be passed through on first/last tab
+    Bug 92139 – Selecting "next tab" on rightmost tab should cycle to leftmost tab
+    Set the next/previous-tab actions always sensitive except when there's
+    only a single tab in the window. That prevents their shortcut key
+    sequences to end up in the terminal window (bug 453193, bug 138609).
+    Also fixes tab cycling (bug 92139).
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3116 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |   15 +++++++++++++++
+ 1 files changed, 15 insertions(+), 0 deletions(-)
+
+commit de6deedc6f7dfc6bae35f505736803a7a0dba58e
+Author: plaes <plaes@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 1 06:12:34 2008 +0000
+
+    2008-10-01  Priit Laes  <plaes at svn dot gnome dot org>
+    
+    	* et.po: Translation updated by Ivar Smolin
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3111 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/et.po |   46 +++++++++++++++++++++++-----------------------
+ 1 files changed, 23 insertions(+), 23 deletions(-)
+
+commit 94592e275462a5fd891e046f674949affddd08d8
+Author: jorgegonz <jorgegonz@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Sep 26 20:12:21 2008 +0000
+
+    Updated Spanish translation
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3106 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/ChangeLog.pre-2-23 |    4 +
+ help/es/es.po           |  666 +++++++++++++++++++++++------------------------
+ 2 files changed, 325 insertions(+), 345 deletions(-)
+
+commit 4c877dd687930a0546f9cdbbdee68b510c9f5b8c
+Author: mariobl <mariobl@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Sep 26 09:42:09 2008 +0000
+
+    2008-09-26  Mario Blättermann <mariobl@svn.gnome.org>
+    
+    	* de/de.po: Updated german translation.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3099 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/de/de.po | 1385 +++++++++++++++++++++++++++++++++++++++++++++------------
+ 1 files changed, 1094 insertions(+), 291 deletions(-)
+
+commit ac7940a57473221be6d66ae39889a1cd02ed71de
+Author: pgeyleg <pgeyleg@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Sep 26 05:26:56 2008 +0000
+
+    Updated Dzongkha Translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3098 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ChangeLog.pre-2-23 |    4 +
+ po/dz.po              | 1102 +++++++++++++++++++++++--------------------------
+ 2 files changed, 528 insertions(+), 578 deletions(-)
+
+commit 040d2e02d3a642fd0f988144e1b022348ccd89aa
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Sep 25 18:48:19 2008 +0000
+
+    Fix finding the display when the display name has no period in it.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3095 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal.c |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
+
+commit ee59a751126c9b82d7ca1e1ec889b9992e72aecf
+Author: jovanna <jovanna@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Sep 25 17:06:15 2008 +0000
+
+    2008-09-25 Jovan Naumovski <jovanna@svn.gnome.org> *mk.po: Updated Macedonian translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3092 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/mk.po | 2428 ++++++++++++++++++++++++--------------------------------------
+ 1 files changed, 929 insertions(+), 1499 deletions(-)
+
+commit 6f2ffe15fbda480c07466e1dbbec9354a1877873
+Author: aklapper <aklapper@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Sep 24 12:16:53 2008 +0000
+
+    2008-09-24  Andre Klapper  <a9016009@gmx.de>
+    
+    	* help/C/gnome-terminal.xml: Fix the build break introduced
+    	by my last patch. See bug #552952 comment 6.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3070 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/C/gnome-terminal.xml |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 77610ca2719adb269937f2cac8b859e3d0a86c06
+Author: plaes <plaes@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Sep 24 09:36:43 2008 +0000
+
+    2008-09-24  Priit Laes  <plaes at svn dot gnome dot org>
+    
+    	* et.po: Translation updated by Ivar Smolin
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3069 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/et.po |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+commit c26f006dea59d973d2ef776406ca1ad32be969f5
+Author: jorgegonz <jorgegonz@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Sep 24 04:41:57 2008 +0000
+
+    Updated Spanish translation
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3068 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/es/es.po |  680 ++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 355 insertions(+), 325 deletions(-)
+
+commit 758b92039828a849a425ddfece7760a9e7149e32
+Author: aklapper <aklapper@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Sep 23 21:47:27 2008 +0000
+
+    2008-08-23  Andre Klapper  <a9016009@gmx.de>
+    
+    	* /help/C/gnome-terminal.xml: Fixed one sentence on behalf of
+    	Lucas Lommer. Fixes bug #552943.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3067 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/C/gnome-terminal.xml |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit ff70da88b8334c12f10086cb81513feacb42390d
+Author: aklapper <aklapper@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Sep 23 21:09:31 2008 +0000
+
+    2008-08-23  Andre Klapper  <a9016009@gmx.de>
+    
+    	* /help/C/gnome-terminal.xml: Fixed one sentence on behalf of
+    	Lucas Lommer. Fixes bug #552952.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3064 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/C/gnome-terminal.xml |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit b363d03ce9c8a74bb845eb3f46d70cfb61c6da41
+Author: kennethn <kennethn@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Sep 23 16:32:03 2008 +0000
+
+    Updated Danish translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3063 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ChangeLog.pre-2-23 |    4 +
+ po/da.po              | 2945 ++++++++++++++++++++++++-------------------------
+ 2 files changed, 1460 insertions(+), 1489 deletions(-)
+
+commit b417e0b5954c2d898fbce43d5a3dd9d3abb0938c
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Sep 22 12:48:39 2008 +0000
+
+    Post release version bump
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3061 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit b5ddc3928fd48d09125f47c2ff359903f6a7a0d1
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Sep 22 12:46:36 2008 +0000
+
+    Branching for Gnome 2.24
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3059 e32f9464-e525-0410-8908-8a3b6990da27
+
+commit 119aedef5f2916232f92a83853a277af13880f54
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Sep 22 12:45:40 2008 +0000
+
+    Version 2.24.0.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3056 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
 commit d7e3e77c74c29db2084d2deac317c64b88c01bb6
 Author: ankitp <ankitp@e32f9464-e525-0410-8908-8a3b6990da27>
 Date:   Mon Sep 22 05:53:55 2008 +0000
