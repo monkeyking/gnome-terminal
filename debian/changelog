@@ -1,3 +1,27 @@
+gnome-terminal (2.24.1.1-0ubuntu2) jaunty; urgency=low
+
+  * Upload latest version to jaunty too
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Wed, 05 Nov 2008 16:06:53 +0100
+
+gnome-terminal (2.24.1.1-0ubuntu1) intrepid-proposed; urgency=low
+
+  [ Pedro Fragoso ]
+  * New upstream release
+    - Revert the partial fix for bug #548600 due to regression
+      it causes
+  * debian/patches/06_add_locale_to_schemas.patch:
+    - Removed due to regression
+  * debian/patches/99_autoreconf.patch:
+    - Refreshed
+
+  [ Iain Lane ]
+  * debian/patches/05_restore_tab_switching_shortcuts.patch:
+    - Re-add patch dropped by upstream due to missing commit in stable branch
+      and crasher regression. Fix for crasher is already in 2.24.1.1.
+
+ -- Iain Lane <laney@ubuntu.com>  Thu, 23 Oct 2008 10:20:55 +0100
+
 gnome-terminal (2.24.1-0ubuntu1) intrepid; urgency=low
 
   * New upstream release

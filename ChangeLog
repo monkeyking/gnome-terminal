@@ -1,3 +1,38 @@
+commit 3bf87e02744af8058c7d74527e33638c851ee8ee
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Oct 22 14:04:42 2008 +0200
+
+    Revert "Bug 548600 – Can no longer configure keyboard shortcuts for switching tabs"
+    
+    This reverts commit 4f3858ac5295d4714e1d81d302524635cd1fde60.
+
+ src/gnome-terminal.schemas.in |   96 -----------------------------------------
+ src/terminal-accels.c         |   52 +---------------------
+ src/terminal-tabs-menu.c      |   55 ++++++++++++++++--------
+ 3 files changed, 39 insertions(+), 164 deletions(-)
+
+commit f09900d2169337b649e98c4069e08bb29eadc013
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Oct 22 09:54:16 2008 +0000
+
+    Version 2.24.1.1.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3189 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 96208f1fa6038ccd61d81aa072180fc00ec8356b
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Oct 20 18:22:32 2008 +0000
+
+    Post release version bump.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/branches/gnome-2-24@3184 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
 commit 023076dffad037019305d6bc2533005f560772d5
 Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
 Date:   Sun Oct 19 12:42:20 2008 +0000
