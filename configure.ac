@@ -1,11 +1,11 @@
 m4_define([gt_version_major],[2])
-m4_define([gt_version_minor],[24])
-m4_define([gt_version_micro],[1])
-m4_define([gt_version_extra],[.1])
+m4_define([gt_version_minor],[25])
+m4_define([gt_version_micro],[3])
+m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
 # This can be either "trunk" or "branches/gnome-x-y"
-m4_define([gt_branch],["branches/gnome-2-24"])
+m4_define([gt_branch],["trunk"])
 
 AC_INIT([GNOME Terminal],[gt_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
 AC_CONFIG_SRCDIR([src/terminal.c])
@@ -19,7 +19,10 @@ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[Gettext package])
 
 AC_C_BIGENDIAN
 
-AM_MAINTAINER_MODE
+if test -z "$enable_maintainer_mode"; then
+  enable_maintainer_mode=yes
+fi
+AM_MAINTAINER_MODE([enable])
 
 PKG_PROG_PKG_CONFIG
 AC_PROG_CC
@@ -29,6 +32,7 @@ AM_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.40.0])
 
 GNOME_COMMON_INIT
+GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
 GNOME_MAINTAINER_MODE_DEFINES
 
@@ -38,20 +42,42 @@ GLIB_REQUIRED=2.16.0
 GTK_REQUIRED=2.13.6
 GCONF_REQUIRED=2.14.0
 STARTUP_NOTIFICATION_REQUIRED=0.8
-VTE_REQUIRED=0.17.0
-LIBGNOME_REQUIRED=2.14.0
+DBUS_GLIB_REQUIRED=0.6
+VTE_REQUIRED=0.19.1
 
-## here we get the flags we'll actually use
-PKG_CHECK_MODULES(TERM, dnl
- glib-2.0 >= $GLIB_REQUIRED dnl
- gtk+-2.0 >= $GTK_REQUIRED dnl
- gconf-2.0 >= $GCONF_REQUIRED dnl
- gio-2.0 dnl
- libgnomeui-2.0 dnl
- libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
- libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED dnl
- vte >= $VTE_REQUIRED)
+PKG_CHECK_MODULES([TERM],
+  [vte >= $VTE_REQUIRED
+   glib-2.0 >= $GLIB_REQUIRED
+   gio-2.0
+   gtk+-2.0 >= $GTK_REQUIRED
+   gconf-2.0 >= $GCONF_REQUIRED
+   dbus-glib-1 >= $DBUS_GLIB_REQUIRED
+   libstartup-notification-1.0 >= $STARTUP_NOTIFICATION_REQUIRED])
 
+# Check the smclient backend
+GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
+
+AC_MSG_CHECKING([which smclient backend to use])
+AC_ARG_WITH([smclient],
+  [AS_HELP_STRING([--with-smclient-backend],[which smclient backend to use (xsmp/win32/quartz)])],
+  [],
+  [case "$GDK_TARGET" in
+    x11) with_smclient=xsmp ;;
+    win32|quartz) with_smclient=$GDK_TARGET ;;
+    *) with_smclient=no ;;
+   esac])
+AC_MSG_RESULT([$with_smclient])
+
+if test "$with_smclient" != "no"; then
+  AC_DEFINE([WITH_SMCLIENT],[1],[Define if smclient is enabled])
+fi
+
+AM_CONDITIONAL([WITH_SMCLIENT],[test "$with_smclient" != "no"])
+AM_CONDITIONAL([WITH_SMCLIENT_XSMP],[test "$with_smclient" = "xsmp"])
+AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
+AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
+
+# GConf
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
 if test x"$GCONFTOOL" = xno; then
@@ -59,14 +85,6 @@ if test x"$GCONFTOOL" = xno; then
 fi
 
 AM_GCONF_SOURCE_2
-
-if $PKG_CONFIG 'xft >= 2.0.0 pangoxft >= 1.1.1'; then
-   using_xft2=yes
-   CPPFLAGS="`$PKG_CONFIG --cflags xft pangoxft` $CPPFLAGS"
-   LIBS="`$PKG_CONFIG --libs xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $LIBS"
-else
-   using_xft2=no
-fi
 
 GLIB_GENMARSHAL="$($PKG_CONFIG --variable=glib_genmarshal glib-2.0)"
 AC_SUBST([GLIB_GENMARSHAL])
@@ -76,6 +94,11 @@ AC_SUBST([GLIB_MKENUMS])
 AC_PATH_PROG([GTK_BUILDER_CONVERT],[gtk-builder-convert],[false])
 if test "$GTK_BUILDER_CONVERT" = "false"; then
   AC_MSG_ERROR([gtk-builder-convert not found])
+fi
+
+AC_PATH_PROG([DBUS_BINDING_TOOL],[dbus-binding-tool],[false])
+if test "$DBUS_BINDING_TOOL" = "false"; then
+  AC_MSG_ERROR([dbus-binding-tool not found])
 fi
 
 GNOME_DOC_INIT
@@ -107,12 +130,6 @@ AC_OUTPUT
 
 # ****************************
 
-if test x$using_xft2 = xno; then
-        echo "*** WARNING WARNING WARNING WARNING WARNING"
-        echo "*** Building with VTE widget but not Xft2"
-        echo "*** This won't be as optimal as fontconfig/Xft2"
-fi
-
 echo "
 gnome-terminal-$VERSION:
 
@@ -120,5 +137,5 @@ gnome-terminal-$VERSION:
 	source code location:	${srcdir}
 	compiler:		${CC}
 
-        using fontconfig/Xft2:  ${using_xft2}
+        using smclient:         ${with_smclient}
 "

@@ -16,7 +16,7 @@
   <articleinfo> 
      <title>GNOME-Terminal-Handbuch</title> 
      <abstract role="description">
-       <para>Benutzerhandbuch für das GNOME-Terminal</para>
+       <para>Benutzerhandbuch für das GNOME-Terminal.</para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2007</year><holder>Jan Arne Petersen (jap@gnome.org)</holder></copyright>
+     </copyright><copyright><year>2007</year><holder>Jan Arne Petersen (jap@gnome.org)</holder></copyright><copyright><year>2008</year><holder>Mario Blättermann (mario.blaettermann@t-online.de)</holder></copyright>
      <publisher> 
         <publishername>GNOME-Dokumentationsprojekt</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -90,7 +90,7 @@
      <revhistory> 
         <revision> 
           <revnumber>GNOME-Terminal-Handbuch V2.8</revnumber> 
-          <date>März 2004</date> 
+          <date>March 2004</date> 
           <revdescription> 
              <para role="author">Sun GNOME-Dokumentationsteam</para>
              <para role="publisher">GNOME-Dokumentationsprojekt</para>
@@ -259,7 +259,7 @@
              <term> 
                 <varname>WINDOWID</varname></term> 
              <listitem> 
-                <para>Standardmäßig auf die X11-Fenster-ID eingestellt.</para>
+                <para>Standardmäßig auf die X11-Fensterkennung eingestellt.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -308,7 +308,7 @@
              <term>So öffnen Sie ein neues Terminalfenster:</term> 
              <listitem> 
                 <para>Wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Terminal öffnen</guimenuitem></menuchoice>.</para>
-                <para>Das neue Terminal erbt die Anwendungsinstellungen und die Standard-Shell von dem bereits geöffneten Terminal.</para>
+                <para>Das neue Terminal erbt die Anwendungsinstellungen und die Standard-Shell des bereits geöffneten Terminals.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -453,7 +453,7 @@
           <varlistentry> 
              <term>So ändern Sie das Aussehen eines Terminalfensters:</term> 
              <listitem> 
-                <para>Unter <xref linkend="gnome-terminal-prefs"/> finden Sie Informationen über die Optionen, die Sie im Dialogfeld <guilabel>Profil bearbeiten</guilabel> verwenden können um das Aussehen des Terminalfensters anzupassen. Zum Beispiel können Sie die Hintergrundfarbe oder die Position der Bildlaufleiste ändern</para>
+                <para>In <xref linkend="gnome-terminal-prefs"/> finden Sie Informationen über die Optionen, die Sie im Dialogfeld <guilabel>Profil bearbeiten</guilabel> verwenden können, um das Aussehen des Terminalfensters anzupassen. Zum Beispiel können Sie die Hintergrundfarbe oder die Position der Bildlaufleiste ändern</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -541,15 +541,13 @@
           <varlistentry> 
              <term><guilabel>Alle Menükürzelbuchstaben deaktivieren (z.B. Alt+D um das Dateimenü zu öffnen)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Deaktivieren Sie dieses Kontrollkästchen, um die Zugriffstasten zu deaktivieren, die Ihnen die Möglichkeit geben, einen Menüeintrag mit der Tastatur anstatt mit der Maus auszuwählen. Jede Zugriffstaste für ein Menü oder eine Menüoption wird durch einen unterstrichenen Buchstaben gekennzeichnet. In bestimmten Fällen müssen Sie neben der Zugriffstaste zusätzlich die Taste <keycap>Alt</keycap> drücken, um die Aktion auszuführen.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Menütastenkombinationen deaktivieren (Vorgabe: F10)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Deaktivieren Sie dieses Kontrollkästchen, um die Tastenkombination zu deaktivieren, die Ihnen den Zugriff auf die <application>GNOME Terminal</application>-Menüs ermöglicht. Die Standardtaste für den Zugriff auf die Menüs ist <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -610,7 +608,7 @@
             <para>Um eine Zeichenkodierung aus dem Menü <guisubmenu>Zeichenkodierung festlegen</guisubmenu> zu entfernen, wählen Sie die gewünschte Kodierung in der Liste <guilabel>Im Menü angezeigte Zeichenkodierungen</guilabel> und klicken dann auf den Knopf mit dem nach links zeigenden Pfeil.</para>
           </listitem>
           <listitem>
-            <para>Klicken Sie auf die <guilabel>Schließen</guilabel>-Schaltfläche, um den <guilabel>Terminal-Zeichenkodierungen hinzufügen oder entfernen</guilabel>-Dialog zu schließen.</para>
+            <para>Klicken Sie auf den <guilabel>Schließen</guilabel>-Knopf, um den <guilabel>Terminal-Zeichenkodierungen hinzufügen oder entfernen</guilabel>-Dialog zu schließen.</para>
           </listitem>
         </orderedlist>
 	</sect3>	
@@ -681,7 +679,7 @@
              <term> 
                 <guilabel>Schrift</guilabel> </term> 
              <listitem> 
-                <para>Klicken Sie auf diese Schaltfläche, um für das Terminal eine Standardschriftart und eine Standardschriftgröße auszuwählen. Diese Schaltfläche ist nur verfügbar, wenn die Option <guilabel>Die dicktengleiche Systemschrift verwenden</guilabel> nicht aktiviert ist.</para>
+                <para>Klicken Sie auf diesen Knopf, um für das Terminal eine Standardschriftart und eine Standardschriftgröße auszuwählen. Dieser Knopf ist nur verfügbar, wenn die Option <guilabel>Die dicktengleiche Systemschrift verwenden</guilabel> nicht aktiviert ist.</para>
              </listitem> 
           </varlistentry>
           <varlistentry>
@@ -703,7 +701,9 @@
              <term> 
                 <guilabel>Terminalglocke</guilabel> </term> 
              <listitem> 
-                <para>Wählen Sie diese Option, um das akustische Terminalsignal zu deaktivieren.</para>
+                <para>
+                  Select this option to enable the terminal bell.
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -759,9 +759,7 @@
              <term> 
                 <guilabel>Wenn Befehl beendet </guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>Wählen Sie in dieser Aufklappliste die Aktion aus, die beim Beenden des Befehls ausgeführt werden soll.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -810,8 +808,8 @@
                   </listitem> 
                 </itemizedlist> 
                 <para>Die tatsächliche Darstellung der Vorder- und Hintergrundfarbe hängt von dem ausgewählten Farbschema ab. Wenn Sie z. B. <guilabel>Weiß auf schwarz</guilabel> und das Farbschema <guilabel>Linux-Konsole</guilabel> wählen, werden die Vorder- und Hintergrundfarbe als Hellgrau auf Schwarz dargestellt. Die Aufklappliste <guilabel>Integrierte Schemata</guilabel> wird nur aktiviert, wenn die Option <guilabel>Farben vom Systemthema verwenden</guilabel> nicht ausgewählt ist.</para>
-                <para>Klicken Sie auf die Schaltfläche <guibutton>Textfarbe</guibutton>, um das Dialogfeld <guilabel>Terminal-Textfarbe auswählen</guilabel> zu öffnen. Wählen Sie in der Farbpalette oder den Einstellfeldern die Farbe, die Sie als Vordergrundfarbe verwenden möchten und klicken dann auf <guibutton>OK</guibutton>. Diese Schaltfläche ist nur verfügbar, wenn die Option <guilabel>Farben vom Systemthema verwenden</guilabel> nicht ausgewählt ist.</para>
-                <para>Klicken Sie auf die Schaltfläche <guibutton>Hintergrundfarbe</guibutton>, um das Dialogfeld <guilabel>Terminal-Hintergrundfarbe auswählen</guilabel> zu öffnen. Wählen Sie in der Farbpalette oder den Einstellfeldern die Farbe, die Sie als Hintergrundfarbe verwenden möchten. Diese Schaltfläche ist nur verfügbar, wenn die Option <guilabel>Farben vom Systemthema verwenden</guilabel> nicht ausgewählt ist.</para>
+                <para>Klicken Sie auf den Knopf <guibutton>Textfarbe</guibutton>, um das Dialogfeld <guilabel>Terminal-Textfarbe auswählen</guilabel> zu öffnen. Wählen Sie in der Farbpalette oder den Einstellfeldern die Farbe, die Sie als Vordergrundfarbe verwenden möchten und klicken dann auf <guibutton>OK</guibutton>. Dieser Knopf ist nur verfügbar, wenn die Option <guilabel>Farben vom Systemthema verwenden</guilabel> nicht ausgewählt ist.</para>
+                <para>Klicken Sie auf den Knopf <guibutton>Hintergrundfarbe</guibutton>, um das Dialogfeld <guilabel>Terminal-Hintergrundfarbe auswählen</guilabel> zu öffnen. Wählen Sie in der Farbpalette oder den Einstellfeldern die Farbe, die Sie als Hintergrundfarbe verwenden möchten. Dieser Knopf ist nur verfügbar, wenn die Option <guilabel>Farben vom Systemthema verwenden</guilabel> nicht ausgewählt ist.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -922,7 +920,7 @@
              <term> 
                 <guibutton>Kompatibilitätseinstellungen auf Vorgabewerte zurücksetzen</guibutton> </term> 
              <listitem> 
-                <para>Klicken Sie auf diese Schaltfläche, um die Optionen im Reiter <guilabel>Kompatibilität</guilabel> auf die Standardeinstellungen zurückzusetzen.</para>
+                <para>Klicken Sie auf diesen Knopf, um die Optionen im Reiter <guilabel>Kompatibilität</guilabel> auf die Standardeinstellungen zurückzusetzen.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
