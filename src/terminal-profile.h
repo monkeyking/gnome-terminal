@@ -73,6 +73,7 @@ typedef enum
 #define TERMINAL_PROFILE_BACKGROUND_TYPE        "background-type"
 #define TERMINAL_PROFILE_BACKSPACE_BINDING      "backspace-binding"
 #define TERMINAL_PROFILE_CURSOR_BLINK_MODE      "cursor-blink-mode"
+#define TERMINAL_PROFILE_CURSOR_SHAPE           "cursor-shape"
 #define TERMINAL_PROFILE_CUSTOM_COMMAND         "custom-command"
 #define TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR   "default-show-menubar"
 #define TERMINAL_PROFILE_DELETE_BINDING         "delete-binding"
@@ -81,7 +82,6 @@ typedef enum
 #define TERMINAL_PROFILE_FOREGROUND_COLOR       "foreground-color"
 #define TERMINAL_PROFILE_LOGIN_SHELL            "login-shell"
 #define TERMINAL_PROFILE_NAME                   "name"
-#define TERMINAL_PROFILE_NO_AA_WITHOUT_RENDER   "no-aa-without-render"
 #define TERMINAL_PROFILE_PALETTE                "palette"
 #define TERMINAL_PROFILE_SCROLL_BACKGROUND      "scroll-background"
 #define TERMINAL_PROFILE_SCROLLBACK_LINES       "scrollback-lines"
@@ -177,7 +177,7 @@ void              terminal_profile_set_palette_builtin    (TerminalProfile *prof
                                                            guint n);
 
 gboolean          terminal_profile_modify_palette_entry   (TerminalProfile *profile,
-                                                           int              i,
+                                                           guint            i,
                                                            const GdkColor  *color);
 
 G_END_DECLS

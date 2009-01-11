@@ -20,17 +20,14 @@
 
 #include <string.h>
 
+#include <gdk/gdkkeysyms.h>
+
 #include "terminal-accels.h"
 #include "terminal-app.h"
+#include "terminal-debug.h"
 #include "terminal-intl.h"
 #include "terminal-profile.h"
 #include "terminal-util.h"
-
-#ifdef DEBUG_ACCELS
-#define D(x) x
-#else
-#define D(x)
-#endif
 
 /* NOTES
  *
@@ -71,6 +68,7 @@
 #define ACCEL_PATH_MOVE_TAB_LEFT        ACCEL_PATH_ROOT "TabsMoveLeft"
 #define ACCEL_PATH_MOVE_TAB_RIGHT       ACCEL_PATH_ROOT "TabsMoveRight"
 #define ACCEL_PATH_DETACH_TAB           ACCEL_PATH_ROOT "TabsDetach"
+#define ACCEL_PATH_SWITCH_TAB_PREFIX    ACCEL_PATH_ROOT "TabsSwitch"
 
 #define KEY_CLOSE_TAB           CONF_KEYS_PREFIX "/close_tab"
 #define KEY_CLOSE_WINDOW        CONF_KEYS_PREFIX "/close_window"
@@ -93,6 +91,7 @@
 #define KEY_ZOOM_IN             CONF_KEYS_PREFIX "/zoom_in"
 #define KEY_ZOOM_NORMAL         CONF_KEYS_PREFIX "/zoom_normal"
 #define KEY_ZOOM_OUT            CONF_KEYS_PREFIX "/zoom_out"
+#define KEY_SWITCH_TAB_PREFIX   CONF_KEYS_PREFIX "/switch_to_tab_"
 
 typedef struct
 {
@@ -111,7 +110,7 @@ typedef struct
 typedef struct
 {
   KeyEntry *key_entry;
-  gint n_elements;
+  guint n_elements;
   gchar *user_visible_name;
 } KeyEntryList;
 
@@ -173,6 +172,42 @@ static KeyEntry tabs_entries[] =
     KEY_MOVE_TAB_RIGHT, ACCEL_PATH_MOVE_TAB_RIGHT, 0, 0, NULL, FALSE, TRUE },
   { N_("Detach Tab"),
     KEY_DETACH_TAB, ACCEL_PATH_DETACH_TAB, 0, 0, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 1"),
+    KEY_SWITCH_TAB_PREFIX "1",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "1", GDK_1, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 2"),
+    KEY_SWITCH_TAB_PREFIX "2",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "2", GDK_2, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 3"),
+    KEY_SWITCH_TAB_PREFIX "3",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "3", GDK_3, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 4"),
+    KEY_SWITCH_TAB_PREFIX "4",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "4", GDK_4, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 5"),
+    KEY_SWITCH_TAB_PREFIX "5",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "5", GDK_5, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 6"),
+    KEY_SWITCH_TAB_PREFIX "6",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "6", GDK_6, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 7"),
+    KEY_SWITCH_TAB_PREFIX "7",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "7", GDK_7, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 8"),
+    KEY_SWITCH_TAB_PREFIX "8",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "8", GDK_8, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 9"),
+    KEY_SWITCH_TAB_PREFIX "9",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "9", GDK_9, GDK_MOD1_MASK, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 10"),
+    KEY_SWITCH_TAB_PREFIX "10",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "10", 0, 0, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 11"),
+    KEY_SWITCH_TAB_PREFIX "11",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "11", 0, 0, NULL, FALSE, TRUE },
+  { N_("Switch to Tab 12"),
+    KEY_SWITCH_TAB_PREFIX "12",
+    ACCEL_PATH_SWITCH_TAB_PREFIX "12", 0, 0, NULL, FALSE, TRUE }
 };
 
 static KeyEntry help_entries[] = {
@@ -186,7 +221,7 @@ static KeyEntryList all_entries[] =
   { view_entries, G_N_ELEMENTS (view_entries), N_("View") },
   { terminal_entries, G_N_ELEMENTS (terminal_entries), N_("Terminal") },
   { tabs_entries, G_N_ELEMENTS (tabs_entries), N_("Tabs") },
-  { help_entries, G_N_ELEMENTS (help_entries), N_("Help") }
+  { help_entries, G_N_ELEMENTS (help_entries), N_("Help") },
 };
 
 enum
@@ -259,7 +294,7 @@ void
 terminal_accels_init (void)
 {
   GConfClient *conf;
-  int i, j;
+  guint i, j;
 
   conf = gconf_client_get_default ();
   
@@ -318,10 +353,16 @@ terminal_accels_shutdown (void)
   if (sync_idle_id != 0)
     {
       g_source_remove (sync_idle_id);
+      sync_idle_id = 0;
+
       sync_idle_cb (NULL);
     }
 
   g_hash_table_destroy (gconf_key_to_entry);
+  gconf_key_to_entry = NULL;
+
+  g_object_unref (notification_group);
+  notification_group = NULL;
 }
 
 static gboolean
@@ -356,22 +397,34 @@ keys_change_notify (GConfClient *client,
   guint keyval;
   gboolean gconf_writable;
 
-  D (g_print ("key %s changed\n", gconf_entry_get_key (entry)));
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "key %s changed\n",
+                         gconf_entry_get_key (entry));
   
   val = gconf_entry_get_value (entry);
 
-  D (if (val == NULL)
-     g_print (" changed to be unset\n");
-     else if (val->type != GCONF_VALUE_STRING)
-     g_print (" changed to non-string value\n");
-     else
-     g_print (" changed to \"%s\"\n",
-              gconf_value_get_string (val)));
+#ifdef GNOME_ENABLE_DEBUG
+  _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_GEOMETRY)
+    {
+      if (val == NULL)
+        _terminal_debug_print (TERMINAL_DEBUG_ACCELS, " changed to be unset\n");
+      else if (val->type != GCONF_VALUE_STRING)
+        _terminal_debug_print (TERMINAL_DEBUG_ACCELS, " changed to non-string value\n");
+      else
+        _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                               " changed to \"%s\"\n",
+                               gconf_value_get_string (val));
+    }
+#endif
 
   key_entry = g_hash_table_lookup (gconf_key_to_entry, key_from_gconf_key (gconf_entry_get_key (entry)));
-  D (if (!key_entry) g_print ("  WARNING: KeyEntry for changed key not found, bailing out\n"));
   if (!key_entry)
-    return; /* shouldn't really happen, but let's be safe */
+    {
+      /* shouldn't really happen, but let's be safe */
+      _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                             "  WARNING: KeyEntry for changed key not found, bailing out\n");
+      return;
+    }
 
   if (!binding_from_value (val, &keyval, &mask))
     {
@@ -396,9 +449,10 @@ keys_change_notify (GConfClient *client,
   key_entry->gconf_writable = gconf_writable;
 
   /* sync over to GTK */
-  D (g_print ("changing path %s to %s\n",
-              key_entry->accel_path,
-              binding_name (keyval, mask))); /* memleak */
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "changing path %s to %s\n",
+                         key_entry->accel_path,
+                         binding_name (keyval, mask)); /* memleak */
   inside_gconf_notify += 1;
   /* Note that this may return FALSE, e.g. when the entry was already set correctly. */
   gtk_accel_map_change_entry (key_entry->accel_path,
@@ -434,13 +488,15 @@ accel_changed_callback (GtkAccelGroup  *accel_group,
    */
   KeyEntry *key_entry;
   
-  D (g_print ("Changed accel %s closure %p\n",
-              binding_name (keyval, modifier), /* memleak */
-              accel_closure));
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "Changed accel %s closure %p\n",
+                         binding_name (keyval, modifier), /* memleak */
+                         accel_closure);
 
   if (inside_gconf_notify)
     {
-      D (g_print ("Ignoring change from gtk because we're inside a gconf notify\n"));
+      _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                             "Ignoring change from gtk because we're inside a gconf notify\n");
       return;
     }
 
@@ -526,7 +582,8 @@ sync_idle_cb (gpointer data)
   GConfChangeSet *changeset;
   GError *error = NULL;
 
-  D (g_print ("gconf sync handler\n"));
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "gconf sync handler\n");
   
   sync_idle_id = 0;
 
@@ -636,7 +693,6 @@ treeview_accel_changed_cb (GtkAccelGroup  *accel_group,
                            GClosure *accel_closure,
                            GtkTreeModel *model)
 {
-g_print("TREEVIEW ACCEL-CHANGED keyval %s mask %x\n", gdk_keyval_name (keyval), modifier);
   gtk_tree_model_foreach (model, update_model_foreach, accel_closure->data);
 }
 
@@ -708,17 +764,27 @@ accel_edited_callback (GtkCellRendererAccel *cell,
 
   str = binding_name (keyval, mask);
 
-  D (g_print ("Edited path %s keyval %s, setting gconf to %s\n",
-              ke->accel_path,
-              gdk_keyval_name (keyval) ? gdk_keyval_name (keyval) : "null",
-              str));
-  D({
-    GtkAccelKey old_key;
-    if (gtk_accel_map_lookup_entry (ke->accel_path, &old_key)) {
-      g_print ("  Old entry of path %s is keyval %s mask %x\n", ke->accel_path, gdk_keyval_name (old_key.accel_key), old_key.accel_mods);
-    } else
-      g_print ("  Failed to look up the old entry of path %s\n", ke->accel_path);
-    })
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "Edited path %s keyval %s, setting gconf to %s\n",
+                         ke->accel_path,
+                         gdk_keyval_name (keyval) ? gdk_keyval_name (keyval) : "null",
+                         str);
+#ifdef GNOME_ENABLE_DEBUG
+  _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_GEOMETRY)
+    {
+      GtkAccelKey old_key;
+
+      if (gtk_accel_map_lookup_entry (ke->accel_path, &old_key)) {
+        _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                               "  Old entry of path %s is keyval %s mask %x\n",
+                               ke->accel_path, gdk_keyval_name (old_key.accel_key), old_key.accel_mods);
+      } else {
+        _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                               "  Failed to look up the old entry of path %s\n",
+                               ke->accel_path);
+      }
+    }
+#endif
 
   conf = gconf_client_get_default ();
   gconf_client_set_string (conf,
@@ -764,7 +830,10 @@ accel_cleared_callback (GtkCellRendererAccel *cell,
   ke->needs_gconf_sync = TRUE;
 
   str = binding_name (0, 0);
-  D (g_print ("Cleared keybinding for gconf %s", ke->gconf_key));
+
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "Cleared keybinding for gconf %s",
+                         ke->gconf_key);
 
   conf = gconf_client_get_default ();
   gconf_client_set_string (conf,
@@ -798,14 +867,15 @@ edit_keys_dialog_response_cb (GtkWidget *editor,
   gtk_widget_destroy (editor);
 }
 
-#ifdef DEBUG_ACCELS 
+#ifdef GNOME_ENABLE_DEBUG
 static void
 row_changed (GtkTreeModel *tree_model,
              GtkTreePath  *path,
              GtkTreeIter  *iter,
              gpointer      user_data)
 {
-  g_print ("ROW-CHANGED [%s]\n", gtk_tree_path_to_string (path));
+  _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
+                         "ROW-CHANGED [%s]\n", gtk_tree_path_to_string (path) /* leak */);
 }
 #endif
 
@@ -817,7 +887,7 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
   GtkTreeViewColumn *column;
   GtkCellRenderer *cell_renderer;
   GtkTreeStore *tree;
-  int i;
+  guint i;
 
   if (edit_keys_dialog != NULL)
     goto done;
@@ -866,14 +936,16 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
   /* Add the data */
 
   tree = edit_keys_store = gtk_tree_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
-#ifdef DEBUG_ACCELS
-  g_signal_connect (tree, "row-changed", G_CALLBACK (row_changed), NULL);
+
+#ifdef GNOME_ENABLE_DEBUG
+  _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_GEOMETRY)
+    g_signal_connect (tree, "row-changed", G_CALLBACK (row_changed), NULL);
 #endif
 
   for (i = 0; i < G_N_ELEMENTS (all_entries); ++i)
     {
       GtkTreeIter parent_iter;
-      int j;
+      guint j;
 
       gtk_tree_store_append (tree, &parent_iter, NULL);
       gtk_tree_store_set (tree, &parent_iter,

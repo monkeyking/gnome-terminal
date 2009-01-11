@@ -96,26 +96,22 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXDEPMODE = @CXXDEPMODE@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
+DBUS_BINDING_TOOL = @DBUS_BINDING_TOOL@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DISABLE_DEPRECATED = @DISABLE_DEPRECATED@
 DISTCHECK_CONFIGURE_FLAGS = @DISTCHECK_CONFIGURE_FLAGS@
 DOC_USER_FORMATS = @DOC_USER_FORMATS@
 DSYMUTIL = @DSYMUTIL@
-ECHO = @ECHO@
+DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-F77 = @F77@
-FFLAGS = @FFLAGS@
+FGREP = @FGREP@
 GCONFTOOL = @GCONFTOOL@
 GCONF_SCHEMA_CONFIG_SOURCE = @GCONF_SCHEMA_CONFIG_SOURCE@
 GCONF_SCHEMA_FILE_DIR = @GCONF_SCHEMA_FILE_DIR@
@@ -157,10 +153,12 @@ INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
 INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
 INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
 INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
+LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
+LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
@@ -170,9 +168,12 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 OMF_DIR = @OMF_DIR@
+OTOOL = @OTOOL@
+OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -204,8 +205,7 @@ abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_CC = @ac_ct_CC@
-ac_ct_CXX = @ac_ct_CXX@
-ac_ct_F77 = @ac_ct_F77@
+ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -236,6 +236,7 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
+lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -981,14 +982,13 @@ install-doc-docs:
 install-doc-figs:
 	@list='$(patsubst C/%,%,$(_DOC_C_FIGURES))'; for fig in $$list; do \
 	  for lc in C $(_DOC_REAL_LINGUAS); do \
+	    figsymlink=false; \
 	    if test -f "$$lc/$$fig"; then \
 	      figfile="$$lc/$$fig"; \
 	    elif test -f "$(srcdir)/$$lc/$$fig"; then \
 	      figfile="$(srcdir)/$$lc/$$fig"; \
-	    elif test -f "C/$$fig"; then \
-	      figfile="C/$$fig"; \
 	    else \
-	      figfile="$(srcdir)/C/$$fig"; \
+	      figsymlink=true; \
 	    fi; \
 	    figdir="$$lc/"`echo $$fig | sed -e 's/^\(.*\/\).*/\1/' -e '/\//!s/.*//'`; \
 	    figdir="$(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$figdir"; \
@@ -997,8 +997,13 @@ install-doc-figs:
 	      $(mkinstalldirs) "$$figdir"; \
 	    fi; \
 	    figbase=`echo $$fig | sed -e 's/^.*\///'`; \
-	    echo "$(INSTALL_DATA) $$figfile $$figdir$$figbase"; \
-	    $(INSTALL_DATA) "$$figfile" "$$figdir$$figbase"; \
+	    if $$figsymlink; then \
+	      echo "cd $$figdir && $(LN_S) -f ../../C/$$fig $$figbase"; \
+	      ( cd "$$figdir" && $(LN_S) -f "../../C/$$fig" "$$figbase" ); \
+	    else \
+	      echo "$(INSTALL_DATA) $$figfile $$figdir$$figbase"; \
+	      $(INSTALL_DATA) "$$figfile" "$$figdir$$figbase"; \
+	    fi; \
 	  done; \
 	done
 

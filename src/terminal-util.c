@@ -141,8 +141,8 @@ terminal_util_show_help (const char *topic,
       continue;
     }
  
-    uri = g_build_filename (TERM_DATADIR,
-                            "gnome", "help", "gnome-terminal",
+    uri = g_build_filename (TERM_HELPDIR,
+                            "gnome-terminal", /* DOC_MODULE */
                             lang,
                             "gnome-terminal.xml",
                             NULL);
@@ -310,6 +310,26 @@ terminal_util_concat_uris (char **uris,
   return g_string_free (string, FALSE);
 }
 
+char *
+terminal_util_get_licence_text (void)
+{
+  const gchar *license[] = {
+    N_("GNOME Terminal is free software; you can redistribute it and/or modify "
+       "it under the terms of the GNU General Public License as published by "
+       "the Free Software Foundation; either version 2 of the License, or "
+       "(at your option) any later version."),
+    N_("GNOME Terminal is distributed in the hope that it will be useful, "
+       "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+       "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+       "GNU General Public License for more details."),
+    N_("You should have received a copy of the GNU General Public License "
+       "along with GNOME Terminal; if not, write to the Free Software Foundation, "
+       "Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA")
+  };
+
+  return g_strjoin ("\n\n", _(license[0]), _(license[1]), _(license[2]), NULL);
+}
+
 gboolean
 terminal_util_load_builder_file (const char *filename,
                                  const char *object_name,
@@ -357,6 +377,230 @@ terminal_util_dialog_response_on_delete (GtkWindow *widget)
 {
   gtk_dialog_response (GTK_DIALOG (widget), GTK_RESPONSE_DELETE_EVENT);
   return TRUE;
+}
+
+/* Like g_key_file_set_string, but escapes characters so that
+ * the stored string is ASCII. Use when the input string may not
+ * be UTF-8.
+ */
+void
+terminal_util_key_file_set_string_escape (GKeyFile *key_file,
+                                          const char *group,
+                                          const char *key,
+                                          const char *string)
+{
+  char *escaped;
+
+  /* FIXMEchpe: be more intelligent and only escape characters that aren't UTF-8 */
+  escaped = g_strescape (string, NULL);
+  g_key_file_set_string (key_file, group, key, escaped);
+  g_free (escaped);
+}
+
+char *
+terminal_util_key_file_get_string_unescape (GKeyFile *key_file,
+                                            const char *group,
+                                            const char *key,
+                                            GError **error)
+{
+  char *escaped, *unescaped;
+
+  escaped = g_key_file_get_string (key_file, group, key, error);
+  if (!escaped)
+    return NULL;
+
+  unescaped = g_strcompress (escaped);
+  g_free (escaped);
+
+  return unescaped;
+}
+
+void
+terminal_util_key_file_set_argv (GKeyFile *key_file,
+                                 const char *group,
+                                 const char *key,
+                                 int argc,
+                                 char **argv)
+{
+  char **quoted_argv;
+  char *flat;
+  int i;
+
+  if (argc < 0)
+    argc = g_strv_length (argv);
+
+  quoted_argv = g_new (char*, argc + 1);
+  for (i = 0; i < argc; ++i)
+    quoted_argv[i] = g_shell_quote (argv[i]);
+  quoted_argv[argc] = NULL;
+
+  flat = g_strjoinv (" ", quoted_argv);
+  terminal_util_key_file_set_string_escape (key_file, group, key, flat);
+
+  g_free (flat);
+  g_strfreev (quoted_argv);
+}
+
+char **
+terminal_util_key_file_get_argv (GKeyFile *key_file,
+                                 const char *group,
+                                 const char *key,
+                                 int *argc,
+                                 GError **error)
+{
+  char **argv;
+  char *flat;
+  gboolean retval;
+
+  flat = terminal_util_key_file_get_string_unescape (key_file, group, key, error);
+  if (!flat)
+    return NULL;
+
+  retval = g_shell_parse_argv (flat, argc, &argv, error);
+  g_free (flat);
+
+  if (retval)
+    return argv;
+
+  return NULL;
+}
+
+/* Why? Because dbus-glib sucks, that's why! */
+
+/**
+ * terminal_util_string_to_array:
+ * @string:
+ *
+ * Converts the string @string into a #GArray.
+ * 
+ * Returns: a newly allocated #GArray containing @string's bytes.
+ */
+GArray *
+terminal_util_string_to_array (const char *string)
+{
+  GArray *array;
+  gsize len = 0;
+
+  if (string)
+    len = strlen (string);
+
+  array = g_array_sized_new (FALSE, FALSE, sizeof (guchar), len);
+  return g_array_append_vals (array, string, len);
+}
+
+/**
+ * terminal_util_strv_to_array:
+ * @argc: the length of @argv
+ * @argv: a string array
+ *
+ * Converts the string array @argv of length @argc into a #GArray.
+ * 
+ * Returns: a newly allocated #GArray
+ */
+GArray *
+terminal_util_strv_to_array (int argc,
+                             char **argv)
+{
+  GArray *array;
+  gsize len = 0;
+  int i;
+  const char nullbyte = 0;
+
+  for (i = 0; i < argc; ++i)
+    len += strlen (argv[i]);
+  if (argc > 0)
+    len += argc - 1;
+
+  array = g_array_sized_new (FALSE, FALSE, sizeof (guchar), len);
+
+  for (i = 0; i < argc; ++i) {
+    g_array_append_vals (array, argv[i], strlen (argv[i]));
+    if (i < argc)
+      g_array_append_val (array, nullbyte);
+  }
+
+  return array;
+}
+
+/**
+ * terminal_util_array_to_string:
+ * @array:
+ * @error: a #GError to fill in
+ *
+ * Converts @array into a string.
+ * 
+ * Returns: a newly allocated string, or %NULL on error
+ */
+char *
+terminal_util_array_to_string (const GArray *array,
+                               GError **error)
+{
+  char *string;
+  g_return_val_if_fail (array != NULL, NULL);
+
+  string = g_strndup (array->data, array->len);
+
+  /* Validate */
+  if (strlen (string) < array->len) {
+    g_set_error_literal (error,
+                         g_quark_from_static_string ("terminal-error"),
+                         0,
+                         "String is shorter than claimed");
+    return NULL;
+  }
+
+  return string;
+}
+
+/**
+ * terminal_util_array_to_strv:
+ * @array:
+ * @argc: a location to store the length of the returned string array
+ * @error: a #GError to fill in
+ *
+ * Converts @array into a string.
+ * 
+ * Returns: a newly allocated string array of length *@argc, or %NULL on error
+ */
+char **
+terminal_util_array_to_strv (const GArray *array,
+                             int *argc,
+                             GError **error)
+{
+  GPtrArray *argv;
+  const char *data, *nullbyte;
+  gsize len;
+
+  g_return_val_if_fail (array != NULL, NULL);
+
+  if (array->len == 0) {
+    *argc = 0;
+    return NULL;
+  }
+
+  argv = g_ptr_array_new ();
+
+  len = array->len;
+  data = array->data;
+
+  do {
+    gsize string_len;
+
+    nullbyte = memchr (data, '\0', len);
+
+    string_len = nullbyte ? nullbyte - data : len;
+    g_ptr_array_add (argv, g_strndup (data, string_len));
+
+    len -= string_len + 1;
+    data += string_len + 1;
+  } while (len > 0);
+
+  if (argc)
+    *argc = argv->len;
+
+  /* NULL terminate */
+  g_ptr_array_add (argv, NULL);
+  return (char **) g_ptr_array_free (argv, FALSE);
 }
 
 /* Bidirectional object/widget binding */
@@ -626,3 +870,4 @@ terminal_util_bind_object_property_to_widget (GObject *object,
   object_change_notify_cb (change);
   change->object_notify_id = g_signal_connect_swapped (object, notify_signal, G_CALLBACK (object_change_notify_cb), change);
 }
+

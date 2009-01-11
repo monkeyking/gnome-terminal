@@ -29,8 +29,6 @@
 #include "profile-editor.h"
 #include "terminal-util.h"
 
-#include <libgnomeui/gnome-thumbnail.h>
-
 /* One slot in the ring buffer, plus the array which holds the data for
   * the line, plus about 80 vte_charcell structures. */
 #define BYTES_PER_LINE (sizeof(gpointer) + sizeof(GArray) + (80 * (sizeof(gunichar) + 4)))
@@ -282,7 +280,7 @@ color_scheme_combo_changed_cb (GtkWidget *combo,
                                GParamSpec *pspec,
                                TerminalProfile *profile)
 {
-  int i;
+  guint i;
   
   i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo));
   
@@ -307,7 +305,7 @@ profile_colors_notify_scheme_combo_cb (TerminalProfile *profile,
                                        GtkComboBox *combo)
 {
   const GdkColor *fg, *bg;
-  int i;
+  guint i;
 
   fg = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
   bg = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
@@ -369,10 +367,10 @@ palette_color_notify_cb (GtkColorButton *button,
 {
   GtkWidget *editor;
   GdkColor color;
-  int i;
+  guint i;
 
   gtk_color_button_get_color (button, &color);
-  i = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (button), "palette-entry-index"));
+  i = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (button), "palette-entry-index"));
 
   editor = gtk_widget_get_toplevel (GTK_WIDGET (button));
   g_signal_handlers_block_by_func (profile, G_CALLBACK (profile_palette_notify_colorpickers_cb), editor);
@@ -535,6 +533,7 @@ editor_response_cb (GtkWidget *editor,
   gtk_widget_destroy (editor);
 }
 
+#if 0
 static GdkPixbuf *
 create_preview_pixbuf (const gchar *filename)
 {
@@ -600,19 +599,24 @@ update_image_preview (GtkFileChooser *chooser)
   }
   gtk_file_chooser_set_preview_widget_active (chooser, file != NULL);
 }
+#endif
 
 static void
 setup_background_filechooser (GtkWidget *filechooser, 
                               TerminalProfile *profile)
 {
   GtkFileFilter *filter;
-  GtkWidget *image_preview;
-  GdkPixbuf *pixbuf = NULL;
   
   filter = gtk_file_filter_new ();
   gtk_file_filter_add_pixbuf_formats (filter);
   gtk_file_filter_set_name (filter, _("Images"));
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (filechooser), filter);
+
+  gtk_file_chooser_set_local_only (GTK_FILE_CHOOSER (filechooser), TRUE);
+
+#if 0
+  GtkWidget *image_preview;
+  GdkPixbuf *pixbuf = NULL;
 
   image_preview = gtk_image_new ();
   /* FIXMchpe this is bogus */
@@ -633,12 +637,12 @@ setup_background_filechooser (GtkWidget *filechooser,
                                        image_preview);
   gtk_file_chooser_set_use_preview_label (GTK_FILE_CHOOSER (filechooser),
                                           FALSE);
-  gtk_file_chooser_set_local_only (GTK_FILE_CHOOSER (filechooser), TRUE);
-  gtk_widget_set_size_request (image_preview, 128, -1);  
+  gtk_widget_set_size_request (image_preview, 128, -1);
   gtk_widget_show (image_preview); 
 
   g_signal_connect (filechooser, "update-preview",
                     G_CALLBACK (update_image_preview), NULL);
+#endif
 }
 
 static void
@@ -721,10 +725,10 @@ terminal_profile_edit (TerminalProfile *profile,
       char name[32];
       char *text;
 
-      g_snprintf (name, sizeof (name), "palette-colorpicker-%d", i + 1);
+      g_snprintf (name, sizeof (name), "palette-colorpicker-%u", i + 1);
       w = (GtkWidget *) gtk_builder_get_object  (builder, name);
 
-      g_object_set_data (G_OBJECT (w), "palette-entry-index", GINT_TO_POINTER (i));
+      g_object_set_data (G_OBJECT (w), "palette-entry-index", GUINT_TO_POINTER (i));
 
       text = g_strdup_printf (_("Choose Palette Color %d"), i + 1);
       gtk_color_button_set_title (GTK_COLOR_BUTTON (w), text);
@@ -795,6 +799,7 @@ terminal_profile_edit (TerminalProfile *profile,
   CONNECT ("background-colorpicker", TERMINAL_PROFILE_BACKGROUND_COLOR);
   CONNECT ("background-image-filechooser", TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE);
   CONNECT ("backspace-binding-combobox", TERMINAL_PROFILE_BACKSPACE_BINDING);
+  CONNECT ("cursor-shape-combobox", TERMINAL_PROFILE_CURSOR_SHAPE);
   CONNECT ("custom-command-entry", TERMINAL_PROFILE_CUSTOM_COMMAND);
   CONNECT ("darken-background-scale", TERMINAL_PROFILE_BACKGROUND_DARKNESS);
   CONNECT ("delete-binding-combobox", TERMINAL_PROFILE_DELETE_BINDING);
