@@ -42,10 +42,12 @@ bin_PROGRAMS = gnome-terminal$(EXEEXT)
 @WITH_SMCLIENT_TRUE@	eggsmclient-private.h \
 @WITH_SMCLIENT_TRUE@	$(NULL)
 
-@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_2 = eggsmclient-xsmp.c
-@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_3 = -DEGG_SM_CLIENT_BACKEND_XSMP
-@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_WIN32_TRUE@am__append_4 = eggsmclient-win32.c
-@WITH_SMCLIENT_QUARTZ_TRUE@@WITH_SMCLIENT_TRUE@am__append_5 = eggsmclient-osx.c
+@WITH_SMCLIENT_TRUE@am__append_2 = $(SMCLIENT_CFLAGS)
+@WITH_SMCLIENT_TRUE@am__append_3 = $(SMCLIENT_LIBS)
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_4 = eggsmclient-xsmp.c
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_5 = -DEGG_SM_CLIENT_BACKEND_XSMP
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_WIN32_TRUE@am__append_6 = eggsmclient-win32.c
+@WITH_SMCLIENT_QUARTZ_TRUE@@WITH_SMCLIENT_TRUE@am__append_7 = eggsmclient-osx.c
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -107,7 +109,9 @@ am_gnome_terminal_OBJECTS = gnome_terminal-eggshell.$(OBJEXT) \
 	$(am__objects_5)
 gnome_terminal_OBJECTS = $(am_gnome_terminal_OBJECTS)
 am__DEPENDENCIES_1 =
-gnome_terminal_DEPENDENCIES = skey/libskey.la $(am__DEPENDENCIES_1)
+@WITH_SMCLIENT_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+gnome_terminal_DEPENDENCIES = skey/libskey.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_2)
 gnome_terminal_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(gnome_terminal_CFLAGS) \
 	$(CFLAGS) $(gnome_terminal_LDFLAGS) $(LDFLAGS) -o $@
@@ -259,6 +263,8 @@ RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
+SMCLIENT_CFLAGS = @SMCLIENT_CFLAGS@
+SMCLIENT_LIBS = @SMCLIENT_LIBS@
 STRIP = @STRIP@
 SVN_BRANCH = @SVN_BRANCH@
 SVN_MODULE = @SVN_MODULE@
@@ -336,7 +342,7 @@ gnome_terminal_SOURCES = eggshell.c eggshell.h profile-editor.c \
 	terminal-tabs-menu.h terminal-type-builtins.c \
 	terminal-type-builtins.h terminal-util.c terminal-util.h \
 	terminal-window.c terminal-window.h $(NULL) $(am__append_1) \
-	$(am__append_2) $(am__append_4) $(am__append_5)
+	$(am__append_4) $(am__append_6) $(am__append_7)
 gnome_terminal_CPPFLAGS = -DEXECUTABLE_NAME=\"gnome-terminal\" \
 	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
@@ -347,17 +353,11 @@ gnome_terminal_CPPFLAGS = -DEXECUTABLE_NAME=\"gnome-terminal\" \
 	-DGDK_DISABLE_SINGLE_INCLUDES \
 	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES \
 	-DGTK_DISABLE_SINGLE_INCLUDES $(DISABLE_DEPRECATED) \
-	$(AM_CPPFLAGS) $(am__append_3)
-gnome_terminal_CFLAGS = \
-	$(TERM_CFLAGS) \
-	$(WARN_CFLAGS) \
-	$(AM_CFLAGS)
-
+	$(AM_CPPFLAGS) $(am__append_5)
+gnome_terminal_CFLAGS = $(TERM_CFLAGS) $(WARN_CFLAGS) $(AM_CFLAGS) \
+	$(am__append_2)
 gnome_terminal_LDFLAGS = 
-gnome_terminal_LDADD = \
-	skey/libskey.la \
-	$(TERM_LIBS)
-
+gnome_terminal_LDADD = skey/libskey.la $(TERM_LIBS) $(am__append_3)
 BUILT_SOURCES = \
 	terminal-factory-client.h \
 	terminal-factory-server.h \
