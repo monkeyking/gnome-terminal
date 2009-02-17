@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[2])
 m4_define([gt_version_minor],[25])
-m4_define([gt_version_micro],[5])
+m4_define([gt_version_micro],[91])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -48,6 +48,7 @@ VTE_REQUIRED=0.19.1
 PKG_CHECK_MODULES([TERM],
   [vte >= $VTE_REQUIRED
    glib-2.0 >= $GLIB_REQUIRED
+   gthread-2.0
    gio-2.0
    gtk+-2.0 >= $GTK_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
