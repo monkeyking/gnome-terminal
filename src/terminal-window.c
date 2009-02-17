@@ -1,7 +1,7 @@
 /*
  * Copyright © 2001 Havoc Pennington
  * Copyright © 2002 Red Hat, Inc.
- * Copyright © 2007, 2008 Christian Persch
+ * Copyright © 2007, 2008, 2009 Christian Persch
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1551,8 +1551,8 @@ terminal_window_init (TerminalWindow *window)
     {
       /* Toplevel */
       { "File", NULL, N_("_File") },
-      { "FileNewWindowProfiles", NULL, N_("Open _Terminal")},
-      { "FileNewTabProfiles", NULL, N_("Open Ta_b") },
+      { "FileNewWindowProfiles", STOCK_NEW_WINDOW, N_("Open _Terminal")},
+      { "FileNewTabProfiles", STOCK_NEW_TAB, N_("Open Ta_b") },
       { "Edit", NULL, N_("_Edit") },
       { "View", NULL, N_("_View") },
       { "Terminal", NULL, N_("_Terminal") },
@@ -2751,6 +2751,7 @@ file_new_window_callback (GtkAction *action,
   TerminalApp *app;
   TerminalWindow *new_window;
   TerminalProfile *profile;
+  char *new_working_directory;
 
   app = terminal_app_get ();
 
@@ -2767,11 +2768,13 @@ file_new_window_callback (GtkAction *action,
 
   new_window = terminal_app_new_window (app, gtk_widget_get_screen (GTK_WIDGET (window)));
 
+  new_working_directory = terminal_screen_get_current_dir (priv->active_screen);
   terminal_app_new_terminal (app, new_window, profile,
                              NULL, NULL,
-                             terminal_screen_get_working_dir (priv->active_screen),
+                             new_working_directory,
                              terminal_screen_get_initial_environment (priv->active_screen),
                              1.0);
+  g_free (new_working_directory);
 
   gtk_window_present (GTK_WINDOW (new_window));
 }
@@ -2783,6 +2786,7 @@ file_new_tab_callback (GtkAction *action,
   TerminalWindowPrivate *priv = window->priv;
   TerminalApp *app;
   TerminalProfile *profile;
+  char *new_working_directory;
 
   app = terminal_app_get ();
   profile = g_object_get_data (G_OBJECT (action), PROFILE_DATA_KEY);
@@ -2796,11 +2800,13 @@ file_new_tab_callback (GtkAction *action,
   if (_terminal_profile_get_forgotten (profile))
     return;
 
+  new_working_directory = terminal_screen_get_current_dir (priv->active_screen);
   terminal_app_new_terminal (app, window, profile,
                              NULL, NULL,
-                             terminal_screen_get_working_dir (priv->active_screen),
+                             new_working_directory,
                              terminal_screen_get_initial_environment (priv->active_screen),
                              1.0);
+  g_free (new_working_directory);
 }
 
 static void
@@ -3415,7 +3421,7 @@ help_about_callback (GtkAction *action,
     "Copyright © 2002–2004 Havoc Pennington\n"
     "Copyright © 2003–2004, 2007 Mariano Suárez-Alvarez\n"
     "Copyright © 2006 Guilherme de S. Pastore\n"
-    "Copyright © 2007–2008 Christian Persch";
+    "Copyright © 2007–2009 Christian Persch";
   char *licence_text;
   GKeyFile *key_file;
   GError *error = NULL;
