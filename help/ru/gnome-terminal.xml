@@ -542,13 +542,15 @@
           <varlistentry> 
              <term><guilabel>Отключить все клавиши для доступа в меню (такие, как Alt+Ф для меню "Файл")</guilabel></term> 
              <listitem> 
-                <para>Выберите этот пункт для отключения клавиш доступа, которые определены для предоставления возможности использовать клавиатуру вместо мыши для выделения пункта меню. Каждая клавиша доступа определена подчёркнутой буквой на меню или в параметре диалога. Во всяком случае, вы должны нажать клавишу <keycap>Alt</keycap> в комбинации с клавишей доступа для совершения действия.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Отключить клавишу для доступа в меню (F10 по умолчанию)</guilabel></term> 
              <listitem> 
-                <para>Выберите этот пункт для отключения клавиши доступа в меню, которая определена для доступа в меню <application>Терминала среды GNOME</application>. Клавиша доступа в меню по умолчанию <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -673,9 +675,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Использовать системный терминальный шрифт</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Выберите этот параметр, чтобы использовать стандартный шрифт приложений, который определён в установках <application>Шрифт</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -684,29 +688,15 @@
              <listitem> 
                 <para>Нажмите эту кнопку чтобы выбрать тип и размер шрифта для терминала. Эта кнопка доступна в том случае, если не выбран параметр <guilabel>Использовать системный терминальный шрифт</guilabel>.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Значок профиля</guilabel> </term> 
-             <listitem> 
-                <para>Нажмите эту кнопку чтобы выбрать значок (иконку), символизирующую окна терминала, которые используют текущий профиль.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Разрешать полужирный текст</guilabel> </term> 
              <listitem> 
                 <para>Выберите этот параметр для возможности отображения терминалом полужирного текста.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Мигающий курсор</guilabel> </term> 
-             <listitem> 
-                <para>Выберите этот параметр для отображения мигающего курсора.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Показывать в новых терминалах строку меню</guilabel>
                 </term> 
@@ -743,7 +733,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Динамически устанавливаемый заголовок</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Используйте этот выпадающий список, чтобы установить, как обходиться с динамически устанавливаемыми заголовками, то есть, заголовками терминала, устанавливаемыми командами, запущенными в терминале.</para>
              </listitem> 
@@ -776,7 +766,9 @@
              <term> 
                 <guilabel>При выходе из команды</guilabel> </term> 
              <listitem> 
-                <para>Используйте этот выпадающий список чтобы установить, какое действие выполнить при закрытии терминала.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -789,7 +781,9 @@
                 <guilabel>Текст и фон</guilabel>
                 </term> 
              <listitem> 
-                <para>Выберите параметр <guilabel>Использовать цвета из системной темы</guilabel> чтобы использовать цвета, определённые в теме рабочего стола GNOME, которая выбрана в <ulink type="help" url="ghelp:user-guide?prefs-theme">настройках <application>Тема</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Используйте выпадающий список <guilabel>Встроенные схемы</guilabel> чтобы определить цвета текста и фона для терминала. <application>Терминал среды GNOME</application> поддерживает следующие комбинации цвета текста и фона:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -851,9 +845,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Нет (использовать сплошной цвет)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Выберите этот параметр для использования цвета фона, который определён во вкладке <guilabel>Цвета</guilabel> как цвет фона терминала.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -899,14 +895,7 @@
                 <para>Используйте этот прокручиваемый список для установки количества линий, которое вы сможете прокрутить назад, используя прокрутку. Например, если вы установите 100, вы сможете прокрутить назад последние 100 линий, отображённых в терминале.</para>
              </listitem> 
           </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Обратная прокрутка ... килобайт</guilabel> </term> 
-             <listitem> 
-                <para>Используйте этот прокручиваемый список для установки килобайт, которые вы сможете прокрутить назад, используя прокрутку. Например, если вы установите 94, вы сможете прокрутить назад последние 94 килобайт информации, отображённой в терминале.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Прокручивать при выводе</guilabel> </term> 
              <listitem> 

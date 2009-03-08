@@ -37,28 +37,38 @@ bin_PROGRAMS = gnome-terminal$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.in
+am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(gladedir)" \
-	"$(DESTDIR)$(icondir)" "$(DESTDIR)$(schemadir)" \
-	"$(DESTDIR)$(serverdir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(builderdir)" \
+	"$(DESTDIR)$(schemadir)" "$(DESTDIR)$(serverdir)" \
+	"$(DESTDIR)$(uimanagerdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am__objects_1 = eggaccelerators.$(OBJEXT) \
-	eggcellrendererkeys.$(OBJEXT)
-am_gnome_terminal_OBJECTS = encoding.$(OBJEXT) \
-	profile-editor.$(OBJEXT) skey-popup.$(OBJEXT) \
-	terminal.$(OBJEXT) terminal-accels.$(OBJEXT) \
-	terminal-profile.$(OBJEXT) terminal-screen.$(OBJEXT) \
-	terminal-widget-vte.$(OBJEXT) terminal-window.$(OBJEXT) \
-	$(am__objects_1)
+am__objects_1 =
+am_gnome_terminal_OBJECTS = gnome_terminal-profile-editor.$(OBJEXT) \
+	gnome_terminal-skey-popup.$(OBJEXT) \
+	gnome_terminal-terminal.$(OBJEXT) \
+	gnome_terminal-terminal-accels.$(OBJEXT) \
+	gnome_terminal-terminal-app.$(OBJEXT) \
+	gnome_terminal-terminal-encoding.$(OBJEXT) \
+	gnome_terminal-terminal-marshal.$(OBJEXT) \
+	gnome_terminal-terminal-profile.$(OBJEXT) \
+	gnome_terminal-terminal-screen.$(OBJEXT) \
+	gnome_terminal-terminal-screen-container.$(OBJEXT) \
+	gnome_terminal-terminal-tabs-menu.$(OBJEXT) \
+	gnome_terminal-terminal-type-builtins.$(OBJEXT) \
+	gnome_terminal-terminal-util.$(OBJEXT) \
+	gnome_terminal-terminal-window.$(OBJEXT) $(am__objects_1)
 gnome_terminal_OBJECTS = $(am_gnome_terminal_OBJECTS)
 am__DEPENDENCIES_1 =
-gnome_terminal_DEPENDENCIES = $(am__DEPENDENCIES_1) skey/libskey.la
+gnome_terminal_DEPENDENCIES = skey/libskey.la $(am__DEPENDENCIES_1)
+gnome_terminal_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(gnome_terminal_CFLAGS) \
+	$(CFLAGS) $(gnome_terminal_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -86,11 +96,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-gladeDATA_INSTALL = $(INSTALL_DATA)
-iconDATA_INSTALL = $(INSTALL_DATA)
+builderDATA_INSTALL = $(INSTALL_DATA)
 schemaDATA_INSTALL = $(INSTALL_DATA)
 serverDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(glade_DATA) $(icon_DATA) $(schema_DATA) $(server_DATA)
+uimanagerDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(builder_DATA) $(schema_DATA) $(server_DATA) $(uimanager_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -98,6 +108,7 @@ CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ACLOCAL_AMFLAGS = @ACLOCAL_AMFLAGS@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AR = @AR@
@@ -112,32 +123,31 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXDEPMODE = @CXXDEPMODE@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DISABLE_DEPRECATED = @DISABLE_DEPRECATED@
 DISTCHECK_CONFIGURE_FLAGS = @DISTCHECK_CONFIGURE_FLAGS@
 DOC_USER_FORMATS = @DOC_USER_FORMATS@
 DSYMUTIL = @DSYMUTIL@
-ECHO = @ECHO@
+DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-F77 = @F77@
-FFLAGS = @FFLAGS@
+FGREP = @FGREP@
 GCONFTOOL = @GCONFTOOL@
 GCONF_SCHEMA_CONFIG_SOURCE = @GCONF_SCHEMA_CONFIG_SOURCE@
 GCONF_SCHEMA_FILE_DIR = @GCONF_SCHEMA_FILE_DIR@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+GLIB_GENMARSHAL = @GLIB_GENMARSHAL@
+GLIB_MKENUMS = @GLIB_MKENUMS@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
+GTK_BUILDER_CONVERT = @GTK_BUILDER_CONVERT@
 HELP_DIR = @HELP_DIR@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -169,10 +179,12 @@ INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
 INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
 INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
 INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
+LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
+LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
@@ -182,9 +194,12 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 OMF_DIR = @OMF_DIR@
+OTOOL = @OTOOL@
+OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -202,24 +217,21 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SVN_BRANCH = @SVN_BRANCH@
+SVN_MODULE = @SVN_MODULE@
+SVN_ROOT = @SVN_ROOT@
 TERM_CFLAGS = @TERM_CFLAGS@
 TERM_LIBS = @TERM_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WARN_CFLAGS = @WARN_CFLAGS@
 XGETTEXT = @XGETTEXT@
-XMKMF = @XMKMF@
-X_CFLAGS = @X_CFLAGS@
-X_EXTRA_LIBS = @X_EXTRA_LIBS@
-X_LIBS = @X_LIBS@
-X_PRE_LIBS = @X_PRE_LIBS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_CC = @ac_ct_CC@
-ac_ct_CXX = @ac_ct_CXX@
-ac_ct_F77 = @ac_ct_F77@
+ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -250,6 +262,7 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
+lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -264,69 +277,120 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EFENCE = 
+NULL = 
 SUBDIRS = skey
-INCLUDES = @TERM_CFLAGS@ \
-	-DTERM_LOCALEDIR=\"$(datadir)/locale\" -DEXECUTABLE_NAME=\"gnome-terminal\" \
-	-DTERM_GLADE_DIR=\"$(gladedir)\" \
-	-DTERM_GLADE_FILE=\"gnome-terminal.glade2\" \
-	-DTERM_DATADIR=\"$(datadir)\" \
-	-DTERM_LIBDIR=\"$(libdir)\" \
-	-DTERM_PREFIX=\"$(prefix)\" \
-	-DTERM_SYSCONFDIR=\"$(sysconfdir)\" \
-	-DTERM_PKGDATADIR=\"$(pkgdatadir)\" \
-	-DGDK_DISABLE_DEPRECATED -DG_DISABLE_DEPRECATED	\
-	-DSN_API_NOT_YET_FROZEN
-
-EGGFILES = \
-	eggaccelerators.c	\
-	eggaccelerators.h	\
-	eggcellrendererkeys.h 	\
-	eggcellrendererkeys.c
-
 gnome_terminal_SOURCES = \
-	encoding.c				\
-	encoding.h				\
-	profile-editor.c			\
-	profile-editor.h			\
-	skey-popup.c				\
-	skey-popup.h				\
-	terminal.c				\
-	terminal.h				\
-	terminal-accels.c			\
-	terminal-accels.h			\
-	terminal-intl.h				\
-	terminal-profile.c			\
-	terminal-profile.h			\
-	terminal-screen.c			\
-	terminal-screen.h			\
-	terminal-widget.h			\
-	terminal-widget-vte.c			\
-	terminal-window.c			\
-	terminal-window.h			\
-	$(EGGFILES)
+	profile-editor.c \
+	profile-editor.h \
+	skey-popup.c \
+	skey-popup.h \
+	terminal.c \
+	terminal-accels.c \
+	terminal-accels.h \
+	terminal-app.c \
+	terminal-app.h \
+	terminal-encoding.c \
+	terminal-encoding.h \
+	terminal-intl.h \
+	terminal-marshal.c \
+	terminal-marshal.h \
+	terminal-profile.c \
+	terminal-profile.h \
+	terminal-screen.c \
+	terminal-screen.h \
+	terminal-screen-container.c \
+	terminal-screen-container.h \
+	terminal-tabs-menu.c \
+	terminal-tabs-menu.h \
+	terminal-type-builtins.c \
+	terminal-type-builtins.h \
+	terminal-util.c \
+	terminal-util.h \
+	terminal-window.c \
+	terminal-window.h \
+	$(NULL)
 
-gnome_terminal_LDADD = $(EFENCE) @TERM_LIBS@ skey/libskey.la
-gladedir = $(pkgdatadir)/glade
-glade_DATA = gnome-terminal.glade2
-schemadir = @GCONF_SCHEMA_FILE_DIR@
+gnome_terminal_CPPFLAGS = \
+	-DEXECUTABLE_NAME=\"gnome-terminal\" \
+	-DTERM_DATADIR="\"$(datadir)\"" \
+	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
+	-DTERM_LIBDIR="\"$(pkglibdir)\"" \
+	-DTERM_PREFIX="\"$(prefix)\"" \
+	-DTERM_SYSCONFDIR="\"$(sysconfdir)\"" \
+	-DTERM_PKGDATADIR="\"$(pkgdatadir)\"" \
+	-DSN_API_NOT_YET_FROZEN \
+	-DGDK_MULTIHEAD_SAFE \
+	-DG_DISABLE_SINGLE_INCLUDES \
+	-DPANGO_DISABLE_SINGLE_INCLUDES \
+	-DATK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_DISABLE_SINGLE_INCLUDES \
+	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES \
+	-DGTK_DISABLE_SINGLE_INCLUDES \
+	$(DISABLE_DEPRECATED) \
+	$(AM_CPPFLAGS)
+
+gnome_terminal_CFLAGS = \
+	$(TERM_CFLAGS) \
+	$(WARN_CFLAGS) \
+	$(AM_CFLAGS)
+
+gnome_terminal_LDFLAGS = 
+gnome_terminal_LDADD = \
+	skey/libskey.la \
+	$(TERM_LIBS)
+
+BUILT_SOURCES = \
+	terminal-marshal.c \
+	terminal-marshal.h \
+	terminal-type-builtins.c \
+	terminal-type-builtins.h \
+	$(NULL)
+
+TYPES_H_FILES = \
+	terminal-profile.h \
+	$(NULL)
+
+schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_in_files = gnome-terminal.schemas.in
 schema_DATA = gnome-terminal.schemas
-icondir = $(datadir)/pixmaps
-icon_DATA = gnome-terminal.png
-CLEANFILES = gnome-terminal.schemas
-EXTRA_DIST = \
-	$(icon_DATA)			\
-	$(glade_DATA)			\
-	$(schema_in_files)		\
-	$(server_DATA)			\
-	update-from-egg.sh		\
-	terminal-widget-vte.c
+uimanagerdir = $(pkgdatadir)
+uimanager_DATA = \
+	terminal.xml \
+	$(NULL)
 
-EGGDIR = $(srcdir)/../../libegg/libegg
+builder_in_files = \
+	encodings-dialog.glade \
+	keybinding-editor.glade \
+	profile-manager.glade \
+	profile-new-dialog.glade \
+	profile-preferences.glade \
+	skey-challenge.glade \
+	$(NULL)
+
+builderdir = $(pkgdatadir)
+builder_DATA = $(builder_in_files:.glade=.ui)
+CLEANFILES = \
+	stamp-terminal-type-builtins.h \
+	gnome-terminal.schemas \
+	stamp-terminal-type-builtins.h \
+	$(builder_DATA) \
+	$(BUILT_SOURCES)
+
+EXTRA_DIST = \
+	terminal-marshal.list \
+	terminal-type-builtins.c.template \
+	terminal-type-builtins.h.template \
+	$(icon_DATA) \
+	$(schema_in_files) \
+	$(server_DATA) \
+	$(uimanager_DATA) \
+	$(builder_in_files) \
+	$(NULL)
+
 serverdir = $(libdir)/bonobo/servers
 server_DATA = gnome-terminal.server
-all: all-recursive
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
@@ -389,7 +453,7 @@ clean-binPROGRAMS:
 	done
 gnome-terminal$(EXEEXT): $(gnome_terminal_OBJECTS) $(gnome_terminal_DEPENDENCIES) 
 	@rm -f gnome-terminal$(EXEEXT)
-	$(LINK) $(gnome_terminal_OBJECTS) $(gnome_terminal_LDADD) $(LIBS)
+	$(gnome_terminal_LINK) $(gnome_terminal_OBJECTS) $(gnome_terminal_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -397,17 +461,20 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/eggaccelerators.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/eggcellrendererkeys.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/encoding.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/profile-editor.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skey-popup.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-accels.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-profile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-screen.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-widget-vte.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal-window.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-profile-editor.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-skey-popup.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-accels.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-app.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-encoding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-marshal.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-profile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-screen-container.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-screen.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-tabs-menu.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-type-builtins.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-util.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-window.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -430,44 +497,223 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
+gnome_terminal-profile-editor.o: profile-editor.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-profile-editor.o -MD -MP -MF $(DEPDIR)/gnome_terminal-profile-editor.Tpo -c -o gnome_terminal-profile-editor.o `test -f 'profile-editor.c' || echo '$(srcdir)/'`profile-editor.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-profile-editor.Tpo $(DEPDIR)/gnome_terminal-profile-editor.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='profile-editor.c' object='gnome_terminal-profile-editor.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-profile-editor.o `test -f 'profile-editor.c' || echo '$(srcdir)/'`profile-editor.c
+
+gnome_terminal-profile-editor.obj: profile-editor.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-profile-editor.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-profile-editor.Tpo -c -o gnome_terminal-profile-editor.obj `if test -f 'profile-editor.c'; then $(CYGPATH_W) 'profile-editor.c'; else $(CYGPATH_W) '$(srcdir)/profile-editor.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-profile-editor.Tpo $(DEPDIR)/gnome_terminal-profile-editor.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='profile-editor.c' object='gnome_terminal-profile-editor.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-profile-editor.obj `if test -f 'profile-editor.c'; then $(CYGPATH_W) 'profile-editor.c'; else $(CYGPATH_W) '$(srcdir)/profile-editor.c'; fi`
+
+gnome_terminal-skey-popup.o: skey-popup.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-skey-popup.o -MD -MP -MF $(DEPDIR)/gnome_terminal-skey-popup.Tpo -c -o gnome_terminal-skey-popup.o `test -f 'skey-popup.c' || echo '$(srcdir)/'`skey-popup.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-skey-popup.Tpo $(DEPDIR)/gnome_terminal-skey-popup.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='skey-popup.c' object='gnome_terminal-skey-popup.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-skey-popup.o `test -f 'skey-popup.c' || echo '$(srcdir)/'`skey-popup.c
+
+gnome_terminal-skey-popup.obj: skey-popup.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-skey-popup.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-skey-popup.Tpo -c -o gnome_terminal-skey-popup.obj `if test -f 'skey-popup.c'; then $(CYGPATH_W) 'skey-popup.c'; else $(CYGPATH_W) '$(srcdir)/skey-popup.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-skey-popup.Tpo $(DEPDIR)/gnome_terminal-skey-popup.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='skey-popup.c' object='gnome_terminal-skey-popup.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-skey-popup.obj `if test -f 'skey-popup.c'; then $(CYGPATH_W) 'skey-popup.c'; else $(CYGPATH_W) '$(srcdir)/skey-popup.c'; fi`
+
+gnome_terminal-terminal.o: terminal.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal.Tpo -c -o gnome_terminal-terminal.o `test -f 'terminal.c' || echo '$(srcdir)/'`terminal.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal.Tpo $(DEPDIR)/gnome_terminal-terminal.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal.c' object='gnome_terminal-terminal.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal.o `test -f 'terminal.c' || echo '$(srcdir)/'`terminal.c
+
+gnome_terminal-terminal.obj: terminal.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal.Tpo -c -o gnome_terminal-terminal.obj `if test -f 'terminal.c'; then $(CYGPATH_W) 'terminal.c'; else $(CYGPATH_W) '$(srcdir)/terminal.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal.Tpo $(DEPDIR)/gnome_terminal-terminal.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal.c' object='gnome_terminal-terminal.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal.obj `if test -f 'terminal.c'; then $(CYGPATH_W) 'terminal.c'; else $(CYGPATH_W) '$(srcdir)/terminal.c'; fi`
+
+gnome_terminal-terminal-accels.o: terminal-accels.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-accels.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-accels.Tpo -c -o gnome_terminal-terminal-accels.o `test -f 'terminal-accels.c' || echo '$(srcdir)/'`terminal-accels.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-accels.Tpo $(DEPDIR)/gnome_terminal-terminal-accels.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-accels.c' object='gnome_terminal-terminal-accels.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-accels.o `test -f 'terminal-accels.c' || echo '$(srcdir)/'`terminal-accels.c
+
+gnome_terminal-terminal-accels.obj: terminal-accels.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-accels.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-accels.Tpo -c -o gnome_terminal-terminal-accels.obj `if test -f 'terminal-accels.c'; then $(CYGPATH_W) 'terminal-accels.c'; else $(CYGPATH_W) '$(srcdir)/terminal-accels.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-accels.Tpo $(DEPDIR)/gnome_terminal-terminal-accels.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-accels.c' object='gnome_terminal-terminal-accels.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-accels.obj `if test -f 'terminal-accels.c'; then $(CYGPATH_W) 'terminal-accels.c'; else $(CYGPATH_W) '$(srcdir)/terminal-accels.c'; fi`
+
+gnome_terminal-terminal-app.o: terminal-app.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-app.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-app.Tpo -c -o gnome_terminal-terminal-app.o `test -f 'terminal-app.c' || echo '$(srcdir)/'`terminal-app.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-app.Tpo $(DEPDIR)/gnome_terminal-terminal-app.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-app.c' object='gnome_terminal-terminal-app.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-app.o `test -f 'terminal-app.c' || echo '$(srcdir)/'`terminal-app.c
+
+gnome_terminal-terminal-app.obj: terminal-app.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-app.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-app.Tpo -c -o gnome_terminal-terminal-app.obj `if test -f 'terminal-app.c'; then $(CYGPATH_W) 'terminal-app.c'; else $(CYGPATH_W) '$(srcdir)/terminal-app.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-app.Tpo $(DEPDIR)/gnome_terminal-terminal-app.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-app.c' object='gnome_terminal-terminal-app.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-app.obj `if test -f 'terminal-app.c'; then $(CYGPATH_W) 'terminal-app.c'; else $(CYGPATH_W) '$(srcdir)/terminal-app.c'; fi`
+
+gnome_terminal-terminal-encoding.o: terminal-encoding.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-encoding.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo -c -o gnome_terminal-terminal-encoding.o `test -f 'terminal-encoding.c' || echo '$(srcdir)/'`terminal-encoding.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo $(DEPDIR)/gnome_terminal-terminal-encoding.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-encoding.c' object='gnome_terminal-terminal-encoding.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-encoding.o `test -f 'terminal-encoding.c' || echo '$(srcdir)/'`terminal-encoding.c
+
+gnome_terminal-terminal-encoding.obj: terminal-encoding.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-encoding.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo -c -o gnome_terminal-terminal-encoding.obj `if test -f 'terminal-encoding.c'; then $(CYGPATH_W) 'terminal-encoding.c'; else $(CYGPATH_W) '$(srcdir)/terminal-encoding.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-encoding.Tpo $(DEPDIR)/gnome_terminal-terminal-encoding.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-encoding.c' object='gnome_terminal-terminal-encoding.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-encoding.obj `if test -f 'terminal-encoding.c'; then $(CYGPATH_W) 'terminal-encoding.c'; else $(CYGPATH_W) '$(srcdir)/terminal-encoding.c'; fi`
+
+gnome_terminal-terminal-marshal.o: terminal-marshal.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo $(DEPDIR)/gnome_terminal-terminal-marshal.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-marshal.c' object='gnome_terminal-terminal-marshal.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c
+
+gnome_terminal-terminal-marshal.obj: terminal-marshal.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.obj `if test -f 'terminal-marshal.c'; then $(CYGPATH_W) 'terminal-marshal.c'; else $(CYGPATH_W) '$(srcdir)/terminal-marshal.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo $(DEPDIR)/gnome_terminal-terminal-marshal.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-marshal.c' object='gnome_terminal-terminal-marshal.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-marshal.obj `if test -f 'terminal-marshal.c'; then $(CYGPATH_W) 'terminal-marshal.c'; else $(CYGPATH_W) '$(srcdir)/terminal-marshal.c'; fi`
+
+gnome_terminal-terminal-profile.o: terminal-profile.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-profile.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-profile.Tpo -c -o gnome_terminal-terminal-profile.o `test -f 'terminal-profile.c' || echo '$(srcdir)/'`terminal-profile.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-profile.Tpo $(DEPDIR)/gnome_terminal-terminal-profile.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-profile.c' object='gnome_terminal-terminal-profile.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-profile.o `test -f 'terminal-profile.c' || echo '$(srcdir)/'`terminal-profile.c
+
+gnome_terminal-terminal-profile.obj: terminal-profile.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-profile.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-profile.Tpo -c -o gnome_terminal-terminal-profile.obj `if test -f 'terminal-profile.c'; then $(CYGPATH_W) 'terminal-profile.c'; else $(CYGPATH_W) '$(srcdir)/terminal-profile.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-profile.Tpo $(DEPDIR)/gnome_terminal-terminal-profile.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-profile.c' object='gnome_terminal-terminal-profile.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-profile.obj `if test -f 'terminal-profile.c'; then $(CYGPATH_W) 'terminal-profile.c'; else $(CYGPATH_W) '$(srcdir)/terminal-profile.c'; fi`
+
+gnome_terminal-terminal-screen.o: terminal-screen.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-screen.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-screen.Tpo -c -o gnome_terminal-terminal-screen.o `test -f 'terminal-screen.c' || echo '$(srcdir)/'`terminal-screen.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-screen.Tpo $(DEPDIR)/gnome_terminal-terminal-screen.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-screen.c' object='gnome_terminal-terminal-screen.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-screen.o `test -f 'terminal-screen.c' || echo '$(srcdir)/'`terminal-screen.c
+
+gnome_terminal-terminal-screen.obj: terminal-screen.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-screen.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-screen.Tpo -c -o gnome_terminal-terminal-screen.obj `if test -f 'terminal-screen.c'; then $(CYGPATH_W) 'terminal-screen.c'; else $(CYGPATH_W) '$(srcdir)/terminal-screen.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-screen.Tpo $(DEPDIR)/gnome_terminal-terminal-screen.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-screen.c' object='gnome_terminal-terminal-screen.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-screen.obj `if test -f 'terminal-screen.c'; then $(CYGPATH_W) 'terminal-screen.c'; else $(CYGPATH_W) '$(srcdir)/terminal-screen.c'; fi`
+
+gnome_terminal-terminal-screen-container.o: terminal-screen-container.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-screen-container.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-screen-container.Tpo -c -o gnome_terminal-terminal-screen-container.o `test -f 'terminal-screen-container.c' || echo '$(srcdir)/'`terminal-screen-container.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-screen-container.Tpo $(DEPDIR)/gnome_terminal-terminal-screen-container.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-screen-container.c' object='gnome_terminal-terminal-screen-container.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-screen-container.o `test -f 'terminal-screen-container.c' || echo '$(srcdir)/'`terminal-screen-container.c
+
+gnome_terminal-terminal-screen-container.obj: terminal-screen-container.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-screen-container.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-screen-container.Tpo -c -o gnome_terminal-terminal-screen-container.obj `if test -f 'terminal-screen-container.c'; then $(CYGPATH_W) 'terminal-screen-container.c'; else $(CYGPATH_W) '$(srcdir)/terminal-screen-container.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-screen-container.Tpo $(DEPDIR)/gnome_terminal-terminal-screen-container.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-screen-container.c' object='gnome_terminal-terminal-screen-container.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-screen-container.obj `if test -f 'terminal-screen-container.c'; then $(CYGPATH_W) 'terminal-screen-container.c'; else $(CYGPATH_W) '$(srcdir)/terminal-screen-container.c'; fi`
+
+gnome_terminal-terminal-tabs-menu.o: terminal-tabs-menu.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-tabs-menu.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-tabs-menu.Tpo -c -o gnome_terminal-terminal-tabs-menu.o `test -f 'terminal-tabs-menu.c' || echo '$(srcdir)/'`terminal-tabs-menu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-tabs-menu.Tpo $(DEPDIR)/gnome_terminal-terminal-tabs-menu.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-tabs-menu.c' object='gnome_terminal-terminal-tabs-menu.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-tabs-menu.o `test -f 'terminal-tabs-menu.c' || echo '$(srcdir)/'`terminal-tabs-menu.c
+
+gnome_terminal-terminal-tabs-menu.obj: terminal-tabs-menu.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-tabs-menu.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-tabs-menu.Tpo -c -o gnome_terminal-terminal-tabs-menu.obj `if test -f 'terminal-tabs-menu.c'; then $(CYGPATH_W) 'terminal-tabs-menu.c'; else $(CYGPATH_W) '$(srcdir)/terminal-tabs-menu.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-tabs-menu.Tpo $(DEPDIR)/gnome_terminal-terminal-tabs-menu.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-tabs-menu.c' object='gnome_terminal-terminal-tabs-menu.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-tabs-menu.obj `if test -f 'terminal-tabs-menu.c'; then $(CYGPATH_W) 'terminal-tabs-menu.c'; else $(CYGPATH_W) '$(srcdir)/terminal-tabs-menu.c'; fi`
+
+gnome_terminal-terminal-type-builtins.o: terminal-type-builtins.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-type-builtins.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo -c -o gnome_terminal-terminal-type-builtins.o `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo $(DEPDIR)/gnome_terminal-terminal-type-builtins.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-type-builtins.c' object='gnome_terminal-terminal-type-builtins.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-type-builtins.o `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
+
+gnome_terminal-terminal-type-builtins.obj: terminal-type-builtins.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-type-builtins.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo -c -o gnome_terminal-terminal-type-builtins.obj `if test -f 'terminal-type-builtins.c'; then $(CYGPATH_W) 'terminal-type-builtins.c'; else $(CYGPATH_W) '$(srcdir)/terminal-type-builtins.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo $(DEPDIR)/gnome_terminal-terminal-type-builtins.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-type-builtins.c' object='gnome_terminal-terminal-type-builtins.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-type-builtins.obj `if test -f 'terminal-type-builtins.c'; then $(CYGPATH_W) 'terminal-type-builtins.c'; else $(CYGPATH_W) '$(srcdir)/terminal-type-builtins.c'; fi`
+
+gnome_terminal-terminal-util.o: terminal-util.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-util.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-util.Tpo -c -o gnome_terminal-terminal-util.o `test -f 'terminal-util.c' || echo '$(srcdir)/'`terminal-util.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-util.Tpo $(DEPDIR)/gnome_terminal-terminal-util.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-util.c' object='gnome_terminal-terminal-util.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-util.o `test -f 'terminal-util.c' || echo '$(srcdir)/'`terminal-util.c
+
+gnome_terminal-terminal-util.obj: terminal-util.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-util.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-util.Tpo -c -o gnome_terminal-terminal-util.obj `if test -f 'terminal-util.c'; then $(CYGPATH_W) 'terminal-util.c'; else $(CYGPATH_W) '$(srcdir)/terminal-util.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-util.Tpo $(DEPDIR)/gnome_terminal-terminal-util.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-util.c' object='gnome_terminal-terminal-util.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-util.obj `if test -f 'terminal-util.c'; then $(CYGPATH_W) 'terminal-util.c'; else $(CYGPATH_W) '$(srcdir)/terminal-util.c'; fi`
+
+gnome_terminal-terminal-window.o: terminal-window.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-window.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-window.Tpo -c -o gnome_terminal-terminal-window.o `test -f 'terminal-window.c' || echo '$(srcdir)/'`terminal-window.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-window.Tpo $(DEPDIR)/gnome_terminal-terminal-window.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-window.c' object='gnome_terminal-terminal-window.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-window.o `test -f 'terminal-window.c' || echo '$(srcdir)/'`terminal-window.c
+
+gnome_terminal-terminal-window.obj: terminal-window.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-window.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-window.Tpo -c -o gnome_terminal-terminal-window.obj `if test -f 'terminal-window.c'; then $(CYGPATH_W) 'terminal-window.c'; else $(CYGPATH_W) '$(srcdir)/terminal-window.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-window.Tpo $(DEPDIR)/gnome_terminal-terminal-window.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-window.c' object='gnome_terminal-terminal-window.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-window.obj `if test -f 'terminal-window.c'; then $(CYGPATH_W) 'terminal-window.c'; else $(CYGPATH_W) '$(srcdir)/terminal-window.c'; fi`
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-gladeDATA: $(glade_DATA)
+install-builderDATA: $(builder_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(gladedir)" || $(MKDIR_P) "$(DESTDIR)$(gladedir)"
-	@list='$(glade_DATA)'; for p in $$list; do \
+	test -z "$(builderdir)" || $(MKDIR_P) "$(DESTDIR)$(builderdir)"
+	@list='$(builder_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(gladeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(gladedir)/$$f'"; \
-	  $(gladeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(gladedir)/$$f"; \
+	  echo " $(builderDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(builderdir)/$$f'"; \
+	  $(builderDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(builderdir)/$$f"; \
 	done
 
-uninstall-gladeDATA:
+uninstall-builderDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(glade_DATA)'; for p in $$list; do \
+	@list='$(builder_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(gladedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(gladedir)/$$f"; \
-	done
-install-iconDATA: $(icon_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(icondir)" || $(MKDIR_P) "$(DESTDIR)$(icondir)"
-	@list='$(icon_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(iconDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(icondir)/$$f'"; \
-	  $(iconDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(icondir)/$$f"; \
-	done
-
-uninstall-iconDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(icon_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(icondir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(icondir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(builderdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(builderdir)/$$f"; \
 	done
 install-schemaDATA: $(schema_DATA)
 	@$(NORMAL_INSTALL)
@@ -502,6 +748,23 @@ uninstall-serverDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(serverdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(serverdir)/$$f"; \
+	done
+install-uimanagerDATA: $(uimanager_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(uimanagerdir)" || $(MKDIR_P) "$(DESTDIR)$(uimanagerdir)"
+	@list='$(uimanager_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(uimanagerDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(uimanagerdir)/$$f'"; \
+	  $(uimanagerDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(uimanagerdir)/$$f"; \
+	done
+
+uninstall-uimanagerDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(uimanager_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(uimanagerdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(uimanagerdir)/$$f"; \
 	done
 
 # This directory's subdirectories are mostly independent; you can cd
@@ -678,14 +941,16 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-recursive
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-recursive
 all-am: Makefile $(PROGRAMS) $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(gladedir)" "$(DESTDIR)$(icondir)" "$(DESTDIR)$(schemadir)" "$(DESTDIR)$(serverdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(builderdir)" "$(DESTDIR)$(schemadir)" "$(DESTDIR)$(serverdir)" "$(DESTDIR)$(uimanagerdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-recursive
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-recursive
 install-exec: install-exec-recursive
 install-data: install-data-recursive
 uninstall: uninstall-recursive
@@ -710,6 +975,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 @GCONF_SCHEMAS_INSTALL_FALSE@install-data-local:
 clean: clean-recursive
 
@@ -731,8 +997,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-gladeDATA install-iconDATA \
-	install-schemaDATA install-serverDATA
+install-data-am: install-builderDATA install-data-local \
+	install-schemaDATA install-serverDATA install-uimanagerDATA
 
 install-dvi: install-dvi-recursive
 
@@ -768,8 +1034,9 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-gladeDATA \
-	uninstall-iconDATA uninstall-schemaDATA uninstall-serverDATA
+uninstall-am: uninstall-binPROGRAMS uninstall-builderDATA \
+	uninstall-schemaDATA uninstall-serverDATA \
+	uninstall-uimanagerDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -779,28 +1046,57 @@ uninstall-am: uninstall-binPROGRAMS uninstall-gladeDATA \
 	clean-generic clean-libtool ctags ctags-recursive distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-binPROGRAMS install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-gladeDATA install-html \
-	install-html-am install-iconDATA install-info install-info-am \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-schemaDATA install-serverDATA \
-	install-strip installcheck installcheck-am installdirs \
+	install install-am install-binPROGRAMS install-builderDATA \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-schemaDATA install-serverDATA install-strip \
+	install-uimanagerDATA installcheck installcheck-am installdirs \
 	installdirs-am maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
 	uninstall uninstall-am uninstall-binPROGRAMS \
-	uninstall-gladeDATA uninstall-iconDATA uninstall-schemaDATA \
-	uninstall-serverDATA
+	uninstall-builderDATA uninstall-schemaDATA \
+	uninstall-serverDATA uninstall-uimanagerDATA
 
 
-regenerate-built-sources:
-	EGGFILES="$(EGGFILES)" EGGDIR="$(EGGDIR)" $(srcdir)/update-from-egg.sh
+terminal-type-builtins.h: stamp-terminal-type-builtins.h
+	@true
+
+stamp-terminal-type-builtins.h: terminal-type-builtins.h.template $(TYPES_H_FILES)
+	$(GLIB_MKENUMS) --template $< $(filter-out $<,$^) > xgen-ttbh \
+	&& (cmp -s xgen-ttbh terminal-type-builtins.h || cp xgen-ttbh terminal-type-builtins.h ) \
+	&& rm -f xgen-ttbh \
+	&& echo timestamp > $(@F)
+
+terminal-type-builtins.c: terminal-type-builtins.c.template $(TYPES_H_FILES)
+	$(GLIB_MKENUMS) --template $< $(filter-out $<,$^) > xgen-ttbc \
+	&& (cmp -s xgen-ttbc terminal-type-builtins.c || cp xgen-ttbc terminal-type-builtins.c ) \
+	&& rm -f xgen-ttbc
+
+terminal-marshal.h: $(srcdir)/terminal-marshal.list
+	( $(GLIB_GENMARSHAL) --prefix=_terminal_marshal $(srcdir)/terminal-marshal.list \
+			--header \
+			--internal > terminal-marshal.h.tmp \
+	&& mv terminal-marshal.h.tmp terminal-marshal.h ) \
+	|| ( rm -f terminal-marshal.h.tmp && exit 1 )
+
+terminal-marshal.c: $(srcdir)/terminal-marshal.list
+	( $(GLIB_GENMARSHAL) --prefix=_terminal_marshal $(srcdir)/terminal-marshal.list \
+				--header \
+				--body \
+				--internal > terminal-marshal.c.tmp \
+		&& mv terminal-marshal.c.tmp terminal-marshal.c ) \
+	|| ( rm -f terminal-marshal.c.tmp && exit 1 )
 
 @INTLTOOL_SCHEMAS_RULE@
 
 @GCONF_SCHEMAS_INSTALL_TRUE@install-data-local:
 @GCONF_SCHEMAS_INSTALL_TRUE@	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/src/$(schema_DATA)
+
+%.ui: %.glade
+	$(GTK_BUILDER_CONVERT) $< $@
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
