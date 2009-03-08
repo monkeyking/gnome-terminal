@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2007-2008.</year><holder>Jorge González (jorgegonz@svn.gnome.org)</holder></copyright><copyright><year>2001-2006.</year><holder>Francisco Javier F. Serrador (serrador@gnome.org)</holder></copyright><copyright><year>2000.</year><holder>Pablo Gonzalo del Campo</holder></copyright>
+     </copyright><copyright><year>2007-2008</year><holder>Jorge González (jorgegonz@svn.gnome.org)</holder></copyright><copyright><year>2001-2006</year><holder>Francisco Javier F. Serrador (serrador@gnome.org)</holder></copyright><copyright><year>2000</year><holder>Pablo Gonzalo del Campo</holder></copyright>
      <publisher> 
         <publishername>Proyecto de documentación de GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -541,13 +541,13 @@
           <varlistentry> 
              <term><guilabel>Desactivar todas las teclas de acceso de menú (Como Alt+f para abrir el menú Archivo)</guilabel></term> 
              <listitem> 
-                <para>Seleccione esta opción para desactivar las teclas de acceso que se han definido con el fin de permitirle usar el teclado en lugar del ratón para seleccionar un elemento del menú.Cada tecla de acceso se identifica mediante una letra subrayada en una opción de menú o de cuadro de diálogo. En algunos casos, debe pulsar la tecla <keycap>Alt</keycap> en combinación con la tecla de acceso para ejecutar la acción.</para>
+                <para>Deseleccione esta opción para desactivar las teclas de acceso que se han definido con el fin de permitirle usar el teclado en lugar del ratón para seleccionar un elemento del menú.Cada tecla de acceso se identifica mediante una letra subrayada en una opción de menú o de cuadro de diálogo. En algunos casos, debe pulsar la tecla <keycap>Alt</keycap> en combinación con la tecla de acceso para ejecutar la acción.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Desactivar la tecla de acceso al menú (F10 por omisión)</guilabel></term> 
              <listitem> 
-                <para>Seleccione esta opción para desactivar la tecla de acceso directo que se ha definido para que pueda acceder a los menús del <application>Terminal de GNOME</application>.La tecla de acceso directo predeterminada para acceder a los menús es <keycap>F10</keycap>.</para>
+                <para>Deseleccione esta opción para desactivar la tecla de acceso directo que se ha definido para que pueda acceder a los menús del <application>Terminal de GNOME</application>.La tecla de acceso directo predeterminada para acceder a los menús es <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -670,9 +670,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Usar la tipografía de terminal del sistema</guilabel> </term> 
+                <guilabel>Usar la tipografía de anchura fija del sistema</guilabel> </term>
              <listitem> 
-                <para>Seleccione esta opción para usar la tipografía estándar de aplicación especificada en la herramienta de preferencias <application>Tipografía</application>.</para>
+                <para>Seleccione esta opción para usar la tipografía estándar de anchura fija especificada en la solapa <guilabel>Tipografía</guilabel> de la herramienta de preferencias <application>Apariencia</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -681,29 +681,15 @@
              <listitem> 
                 <para>Pulse en este botón para seleccionar un tipo predeterminado de tipografía y de tamaño de tipografía para el terminal. Este botón sólo está disponible si la opción <guilabel>Usar la tipografía del sistema</guilabel> no está seleccionada.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Icono de perfil</guilabel> </term> 
-             <listitem> 
-                <para>Pulse en este botón para seleccionar un icono que represente el perfil actual.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Permitir texto resaltado</guilabel> </term> 
              <listitem> 
                 <para>Seleccione esta opción para permitir que el terminal muestre el texto resaltado.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Cursor parpadeante</guilabel> </term> 
-             <listitem> 
-                <para>Seleccione esta opción para visualizar un cursor parpadeante.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Mostrar la barra de menús en las terminales nuevas por omisión</guilabel>
                 </term> 
@@ -740,7 +726,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Título dinámicamente configurado</guilabel> </term> 
+                <guilabel>Cuando los comandos de terminal establecen sus propios títulos</guilabel> </term>
              <listitem> 
                 <para>Utilice esta lista desplegable para establecer el directorio de trabajo actual como título de la ventana del terminal.</para>
              </listitem> 
@@ -771,7 +757,7 @@
              <term> 
                 <guilabel>Cuando el comando sale</guilabel> </term> 
              <listitem> 
-                <para>Use esta lista desplegable para especificar qué acción efectuar cuando el terminal sale.</para>
+                <para>Use esta lista desplegable para especificar qué acción realizar cuando el comando termina.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -784,7 +770,7 @@
                 <guilabel>Primer plano y fondo</guilabel>
                 </term> 
              <listitem> 
-                <para>Seleccione la opción <guilabel>Usar colores del tema del sistema</guilabel> para usar los colores especificados en el tema de escritorio de GNOME que esté seleccionado en la herramienta de preferencias <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Tema</application></ulink>.</para>
+                <para>Seleccione la opción <guilabel>Usar colores del tema del sistema</guilabel> para usar los colores especificados en el tema de escritorio de GNOME que esté seleccionado en la solapa <guilabel>Tema</guilabel> de la <ulink type="help" url="ghelp:user-guide?prefs-theme">herramienta de preferencias <application>Apariencia</application></ulink>.</para>
                 <para>Utilice el cuadro de lista desplegable <guilabel>Esquemas integrados</guilabel> para especificar los colores de primer plano y fondo para el terminal. <application>Terminal de GNOME</application> admite las siguientes combinaciones de color de primer plano y fondo:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -846,9 +832,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Ninguno (usar color sólido)</guilabel> 
+                        <guilabel>Color sólido</guilabel>
                      </para>
-                     <para>Seleccione esta opción para usar el color de fondo que se ha especificado en la sección de la solapa <guilabel>Colores</guilabel> como color de fondo del terminal.</para>
+                     <para>Seleccione esta opción para usar el color de fondo especificado en la sección de la solapa <guilabel>Colores</guilabel> como color de fondo del terminal.</para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -894,14 +880,7 @@
                 <para>Utilice este marcador incrementable para especificar el número de líneas que puede desplazarse hacia atrás mediante la barra de desplazamiento. Por ejemplo, si especifica 100, puede desplazarse hacia atrás las últimas 100 líneas mostradas en el terminal.</para>
              </listitem> 
           </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Desplazarse hacia atrás ... kilobytes</guilabel> </term> 
-             <listitem> 
-                <para>Utilice este marcador incrementable para especificar el número de kilobytes que puede desplazarse hacia atrás mediante la barra de desplazamiento. Por ejemplo, si especifica 94, puede desplazarse hasta los últimos 94 kilobytes que se hayan mostrado en el terminal.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Desplazar en salida</guilabel> </term> 
              <listitem> 

@@ -1,10 +1,7 @@
-/* dialog for editing a profile */
-
 /*
- * Copyright (C) 2002 Havoc Pennington
- * Copyright (C) 2002 Mathias Hasselmann
- *
- * This file is part of gnome-terminal.
+ * Copyright © 2002 Havoc Pennington
+ * Copyright © 2002 Mathias Hasselmann
+ * Copyright © 2008 Christian Persch
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,31 +17,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "profile-editor.h"
-#include "terminal-intl.h"
-#include "terminal.h"
-#include <glade/glade.h>
-#include <gio/gio.h>
-#include <libgnomeui/gnome-file-entry.h>
-#include <libgnomeui/gnome-icon-entry.h>
-#include <libgnomeui/gnome-thumbnail.h>
+#include <config.h>
+
 #include <string.h>
 #include <math.h>
-#include "terminal-widget.h"
 
-#define BYTES_PER_LINE (terminal_widget_get_estimated_bytes_per_scrollback_line ())
+#include <glib.h>
+#include <gio/gio.h>
+
+#include "terminal-intl.h"
+#include "profile-editor.h"
+#include "terminal-util.h"
+
+#include <libgnomeui/gnome-thumbnail.h>
+
+/* One slot in the ring buffer, plus the array which holds the data for
+  * the line, plus about 80 vte_charcell structures. */
+#define BYTES_PER_LINE (sizeof(gpointer) + sizeof(GArray) + (80 * (sizeof(gunichar) + 4)))
 
 typedef struct _TerminalColorScheme TerminalColorScheme;
 
 struct _TerminalColorScheme
 {
   const char *name;
-  GdkColor foreground;
-  GdkColor background;
+  const GdkColor foreground;
+  const GdkColor background;
 };
 
-/* alphabetized */
-static TerminalColorScheme color_schemes[] = {
+static const TerminalColorScheme color_schemes[] = {
   { N_("Black on light yellow"),
     { 0, 0x0000, 0x0000, 0x0000 }, { 0, 0xFFFF, 0xFFFF, 0xDDDD } },
   { N_("Black on white"),
@@ -57,689 +57,434 @@ static TerminalColorScheme color_schemes[] = {
     { 0, 0xFFFF, 0xFFFF, 0xFFFF }, { 0, 0x0000, 0x0000, 0x0000 } }
 };
 
-typedef struct _TerminalPaletteScheme TerminalPaletteScheme;
+static void profile_forgotten_cb (TerminalProfile           *profile,
+                                  GtkWidget                 *editor);
 
-struct _TerminalPaletteScheme
+static void profile_notify_sensitivity_cb (TerminalProfile *profile,
+                                           GParamSpec *pspec,
+                                           GtkWidget *editor);
+
+static void profile_colors_notify_scheme_combo_cb (TerminalProfile *profile,
+                                                   GParamSpec *pspec,
+                                                   GtkComboBox *combo);
+
+static void profile_palette_notify_scheme_combo_cb (TerminalProfile *profile,
+                                                    GParamSpec *pspec,
+                                                    GtkComboBox *combo);
+
+static void profile_palette_notify_colorpickers_cb (TerminalProfile *profile,
+                                                    GParamSpec *pspec,
+                                                    GtkWidget *editor);
+
+static GtkWidget*
+profile_editor_get_widget (GtkWidget  *editor,
+                           const char *widget_name)
 {
-  const char *name;
-  const GdkColor *palette;
-};
+  GtkBuilder *builder;
 
-static TerminalPaletteScheme palette_schemes[] = {
-  { N_("Tango"), terminal_palette_tango },
-  { N_("Linux console"), terminal_palette_linux },
-  { N_("XTerm"), terminal_palette_xterm },
-  { N_("Rxvt"), terminal_palette_rxvt }
-};
-
-static GtkWidget* profile_editor_get_widget                  (GtkWidget       *editor,
-                                                              const char      *widget_name);
-static void       profile_editor_update_sensitivity          (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_visible_name         (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_icon                 (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_default_show_menubar (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_color_pickers        (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_color_scheme_menu    (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_title                (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_title_mode           (GtkWidget       *editor,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_allow_bold           (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_silent_bell          (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_word_chars           (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_scrollbar_position   (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_scrollback_lines     (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_scroll_on_keystroke  (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_scroll_on_output     (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_exit_action          (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_login_shell          (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_update_records       (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_use_custom_command   (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_custom_command       (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_palette              (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_background_type      (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_background_image     (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_scroll_background    (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_background_darkness  (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_backspace_binding    (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_delete_binding       (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-
-static void       profile_editor_update_use_theme_colors     (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_use_system_font      (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-static void       profile_editor_update_font                 (GtkWidget       *widget,
-                                                              TerminalProfile *profile);
-
-
-static void profile_forgotten (TerminalProfile           *profile,
-                               GtkWidget                 *editor);
-static void profile_changed   (TerminalProfile           *profile,
-                               const TerminalSettingMask *mask,
-                               GtkWidget                 *editor);
-
-
-
-static void
-entry_set_text_if_changed (GtkEntry   *entry,
-                           const char *text)
-{
-  char *s;
-
-  s = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-  if (strcmp (s, text) != 0)
-    gtk_entry_set_text (GTK_ENTRY (entry), text);
-
-  g_free (s);
-}
-
-static void
-colorpicker_set_if_changed (GtkWidget      *colorpicker,
-                            const GdkColor *color)
-{
-  GdkColor old_color;
-
-  gtk_color_button_get_color (GTK_COLOR_BUTTON (colorpicker), &old_color);
-
-  if (!gdk_color_equal (color, &old_color))
-    gtk_color_button_set_color (GTK_COLOR_BUTTON (colorpicker), color);
-}
-
-static void
-profile_editor_destroyed (GtkWidget       *editor,
-                          TerminalProfile *profile)
-{
-  g_signal_handlers_disconnect_by_func (G_OBJECT (profile),
-                                        G_CALLBACK (profile_forgotten),
-                                        editor);
-
-  g_signal_handlers_disconnect_by_func (G_OBJECT (profile),
-                                        G_CALLBACK (profile_changed),
-                                        editor);
+  builder = g_object_get_data (G_OBJECT (editor), "builder");
+  g_assert (builder != NULL);
   
-  g_object_set_data (G_OBJECT (profile), "editor-window", NULL);
-  g_object_set_data (G_OBJECT (editor), "glade-xml", NULL);
-  profile_name_entry_notify (profile);
-}
-
-static PangoFontDescription*
-fontpicker_get_desc (GtkWidget *font_picker)
-{
-  const char *current_name;
-  PangoFontDescription *current_desc;
-
-  current_name = gtk_font_button_get_font_name (GTK_FONT_BUTTON (font_picker));
-  if (current_name)
-    current_desc = pango_font_description_from_string (current_name);
-  else
-    current_desc = NULL;
-
-  return current_desc;
+  return (GtkWidget *) gtk_builder_get_object  (builder, widget_name);
 }
 
 static void
-fontpicker_set_if_changed (GtkWidget                  *font_picker,
-                           const PangoFontDescription *font_desc)
+widget_and_labels_set_sensitive (GtkWidget *widget, gboolean sensitive)
 {
-  PangoFontDescription *current_desc;
+  GList *labels, *i;
 
-  current_desc = fontpicker_get_desc (font_picker);
-
-  if (current_desc == NULL || !pango_font_description_equal (font_desc, current_desc))
+  labels = gtk_widget_list_mnemonic_labels (widget);
+  for (i = labels; i; i = i->next)
     {
-      char *str;
-
-      str = pango_font_description_to_string (font_desc);
-      gtk_font_button_set_font_name (GTK_FONT_BUTTON (font_picker),
-                                       str);
-
-      g_free (str);
+      gtk_widget_set_sensitive (GTK_WIDGET (i->data), sensitive);
     }
+  g_list_free (labels);
 
-  if (current_desc)
-    pango_font_description_free (current_desc);
+  gtk_widget_set_sensitive (widget, sensitive);
 }
 
-/*
- * Profile callbacks
- */
-
 static void
-profile_forgotten (TerminalProfile *profile,
-                   GtkWidget       *editor)
+profile_forgotten_cb (TerminalProfile *profile,
+                      GtkWidget *editor)
 {
-  /* FIXME this might confuse users a bit, if it ever happens (unlikely
-   * to actually happen much)
-   */
   gtk_widget_destroy (editor);
 }
 
 static void
-profile_changed (TerminalProfile           *profile,
-                 const TerminalSettingMask *mask,
-                 GtkWidget                 *editor)
+profile_notify_sensitivity_cb (TerminalProfile *profile,
+                               GParamSpec *pspec,
+                               GtkWidget *editor)
 {
-  if (mask->visible_name)
-    profile_editor_update_visible_name (editor, profile);
+  TerminalBackgroundType bg_type;
+  gboolean use_custom_locked, palette_locked, bg_type_locked, scrollback_lines_locked;
+  const char *prop_name;
 
-  if (mask->icon_file)
-    profile_editor_update_icon (editor, profile);
-  
-  if (mask->default_show_menubar)
-    profile_editor_update_default_show_menubar (editor, profile);
-
-  if ((mask->foreground_color) ||
-      (mask->background_color))
-    {
-      profile_editor_update_color_scheme_menu (editor, profile);
-      profile_editor_update_color_pickers (editor, profile);
-    }
-
-  if (mask->title)
-    profile_editor_update_title (editor, profile);
-  
-  if (mask->title_mode)
-    profile_editor_update_title_mode (editor, profile);
-
-  if (mask->allow_bold)
-    profile_editor_update_allow_bold (editor, profile);
-
-  if (mask->silent_bell)
-    profile_editor_update_silent_bell (editor, profile);
-
-  if (mask->word_chars)
-    profile_editor_update_word_chars (editor, profile);
-
-  if (mask->scrollbar_position)
-    profile_editor_update_scrollbar_position (editor, profile);
-
-  if (mask->scrollback_lines)
-    profile_editor_update_scrollback_lines (editor, profile);
-
-  if (mask->scroll_on_keystroke)
-    profile_editor_update_scroll_on_keystroke (editor, profile);
-
-  if (mask->scroll_on_output)
-    profile_editor_update_scroll_on_output (editor, profile);
-
-  if (mask->exit_action)
-    profile_editor_update_exit_action (editor, profile);
-
-  if (mask->login_shell)
-    profile_editor_update_login_shell (editor, profile);
-
-  if (mask->update_records)
-    profile_editor_update_update_records (editor, profile);
-
-  if (mask->use_custom_command)
-    profile_editor_update_use_custom_command (editor, profile);
-
-  if (mask->custom_command)
-    profile_editor_update_custom_command (editor, profile);
-
-  if (mask->palette)
-    profile_editor_update_palette (editor, profile);
-
-  if (mask->background_type)
-    profile_editor_update_background_type (editor, profile);
-  
-  if (mask->background_image_file)
-    profile_editor_update_background_image (editor, profile);
-
-  if (mask->scroll_background)
-    profile_editor_update_scroll_background (editor, profile);
-
-  if (mask->background_darkness)
-    profile_editor_update_background_darkness (editor, profile);
-
-  if (mask->backspace_binding)
-    profile_editor_update_backspace_binding (editor, profile);
-
-  if (mask->delete_binding)
-    profile_editor_update_delete_binding (editor, profile);
-
-  if (mask->use_theme_colors)
-    profile_editor_update_use_theme_colors (editor, profile);
-    
-  if (mask->use_system_font)
-    profile_editor_update_use_system_font (editor, profile);
-
-  if (mask->font)
-    profile_editor_update_font (editor, profile);
-  
-  profile_editor_update_sensitivity (editor, profile);
-}
-
-/*
- * Widget callbacks
- */
-
-static void
-visible_name_changed (GtkWidget       *entry,
-                      TerminalProfile *profile)
-{
-  char *text;
-
-  text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-  
-  terminal_profile_set_visible_name (profile, text);
-
-  g_free (text);
-}
-
-static void
-icon_changed (GtkWidget       *icon_entry,
-              TerminalProfile *profile)
-{
-  char *filename;
-
-  filename = gnome_icon_entry_get_filename (GNOME_ICON_ENTRY (icon_entry));
-
-  /* NULL filename happens here to unset */
-  terminal_profile_set_icon_file (profile, filename);
-  
-  g_free (filename);
-}
-
-static void
-show_menubar_toggled (GtkWidget       *checkbutton,
-                      TerminalProfile *profile)
-{
-  terminal_profile_set_default_show_menubar (profile,
-                                             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-foreground_color_set (GtkWidget       *colorpicker,
-                      TerminalProfile *profile)
-{
-  GdkColor color;
-  GdkColor bg;
-
-  gtk_color_button_get_color (GTK_COLOR_BUTTON (colorpicker), &color);
-
-  terminal_profile_get_color_scheme (profile, NULL, &bg);
-  
-  terminal_profile_set_color_scheme (profile, &color, &bg);
-}
-
-static void
-background_color_set (GtkWidget       *colorpicker,
-                      TerminalProfile *profile)
-{
-  GdkColor color;
-  GdkColor fg;
-
-  gtk_color_button_get_color (GTK_COLOR_BUTTON (colorpicker), &color);
-
-  terminal_profile_get_color_scheme (profile, &fg, NULL);
-  
-  terminal_profile_set_color_scheme (profile, &fg, &color);
-}
-
-static void
-color_scheme_changed (GtkWidget       *combo_box,
-                      TerminalProfile *profile)
-{
-  unsigned int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-  
-  if (i < G_N_ELEMENTS (color_schemes))
-    terminal_profile_set_color_scheme (profile,
-                                       &color_schemes[i].foreground,
-                                       &color_schemes[i].background);
+  if (pspec)
+    prop_name = pspec->name;
   else
+    prop_name = NULL;
+  
+#define SET_SENSITIVE(name, setting) widget_and_labels_set_sensitive (profile_editor_get_widget (editor, name), setting)
+
+  use_custom_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND);
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_USE_CUSTOM_COMMAND) ||
+      prop_name == I_(TERMINAL_PROFILE_CUSTOM_COMMAND))
     {
-      /* "custom" selected, no change */
+      SET_SENSITIVE ("use-custom-command-checkbutton", !use_custom_locked);
+      SET_SENSITIVE ("custom-command-box",
+                     terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND) &&
+                     !terminal_profile_property_locked (profile, TERMINAL_PROFILE_CUSTOM_COMMAND));
     }
-}
 
-static void
-title_changed (GtkWidget       *entry,
-               TerminalProfile *profile)
-{
-  char *text;
-
-  text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-  
-  terminal_profile_set_title (profile, text);
-
-  g_free (text);
-}
-
-static void
-title_mode_changed (GtkWidget       *combo_box,
-                    TerminalProfile *profile)
-{
-  int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));  
-
-  terminal_profile_set_title_mode (profile, i);
-}
-
-static void
-allow_bold_toggled (GtkWidget       *checkbutton,
-                    TerminalProfile *profile)
-{
-  terminal_profile_set_allow_bold (profile,
-                                   gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-bell_toggled (GtkWidget       *checkbutton,
-              TerminalProfile *profile)
-{
-  terminal_profile_set_silent_bell (profile,
-                                    !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-word_chars_changed (GtkWidget       *entry,
-                    TerminalProfile *profile)
-{
-  char *text;
-  
-  text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-  
-  terminal_profile_set_word_chars (profile, text);
-
-  g_free (text);
-}
-
-static void
-scrollbar_position_changed (GtkWidget       *combo_box,
-                            TerminalProfile *profile)
-{
-  int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-
-  terminal_profile_set_scrollbar_position (profile, i);
-}
-
-static void
-scrollback_lines_value_changed (GtkWidget       *spin,
-                                TerminalProfile *profile)
-{
-  double val;
-  
-  val = gtk_spin_button_get_value (GTK_SPIN_BUTTON (spin));
-
-  terminal_profile_set_scrollback_lines (profile, val);
-}
-
-static void
-scrollback_kilobytes_value_changed (GtkWidget       *spin,
-                                    TerminalProfile *profile)
-{
-  double val;
-  
-  val = gtk_spin_button_get_value (GTK_SPIN_BUTTON (spin));
-
-  terminal_profile_set_scrollback_lines (profile,
-                                         (val * 1024) / BYTES_PER_LINE);
-}
-
-static void
-scroll_on_keystroke_toggled (GtkWidget       *checkbutton,
-                             TerminalProfile *profile)
-{
-  terminal_profile_set_scroll_on_keystroke (profile,
-                                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-scroll_on_output_toggled (GtkWidget       *checkbutton,
-                          TerminalProfile *profile)
-{
-  terminal_profile_set_scroll_on_output (profile,
-                                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-exit_action_changed (GtkWidget       *combo_box,
-                     TerminalProfile *profile)
-{
-  int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-
-  terminal_profile_set_exit_action (profile, i);
-}
-
-static void
-login_shell_toggled (GtkWidget       *checkbutton,
-                     TerminalProfile *profile)
-{
-  terminal_profile_set_login_shell (profile,
-                                    gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-update_records_toggled (GtkWidget       *checkbutton,
-                        TerminalProfile *profile)
-{
-  terminal_profile_set_update_records (profile,
-                                       gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-use_custom_command_toggled (GtkWidget       *checkbutton,
-                            TerminalProfile *profile)
-{
-  terminal_profile_set_use_custom_command (profile,
-                                           gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-custom_command_changed (GtkWidget       *entry,
-                        TerminalProfile *profile)
-{
-  char *text;
-
-  text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-  
-  terminal_profile_set_custom_command (profile, text);
-
-  g_free (text);
-}
-
-static void
-palette_scheme_changed (GtkWidget       *combo_box,
-                      TerminalProfile *profile)
-{
-  unsigned int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-  
-  if (i < G_N_ELEMENTS (palette_schemes))
-    terminal_profile_set_palette (profile,
-                                  palette_schemes[i].palette);
-  else
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TYPE))
     {
-      /* "custom" selected, no change */
+      bg_type_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
+      SET_SENSITIVE ("solid-radiobutton", !bg_type_locked);
+      SET_SENSITIVE ("image-radiobutton", !bg_type_locked);
+      SET_SENSITIVE ("transparent-radiobutton", !bg_type_locked);
+
+      bg_type = terminal_profile_get_property_enum (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
+      if (bg_type == TERMINAL_BACKGROUND_IMAGE)
+        {
+          SET_SENSITIVE ("background-image-filechooser", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE));
+          SET_SENSITIVE ("scroll-background-checkbutton", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLL_BACKGROUND));
+          SET_SENSITIVE ("darken-background-vbox", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
+        }
+      else if (bg_type == TERMINAL_BACKGROUND_TRANSPARENT)
+        {
+          SET_SENSITIVE ("background-image-filechooser", FALSE);
+          SET_SENSITIVE ("scroll-background-checkbutton", FALSE);
+          SET_SENSITIVE ("darken-background-vbox", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
+        }
+      else
+        {
+          SET_SENSITIVE ("background-image-filechooser", FALSE);
+          SET_SENSITIVE ("scroll-background-checkbutton", FALSE);
+          SET_SENSITIVE ("darken-background-vbox", FALSE);
+        }
     }
-}
 
-static void
-palette_color_set (GtkWidget       *colorpicker,
-                   TerminalProfile *profile)
-{
-  int i;
-  GdkColor color;
-
-  gtk_color_button_get_color (GTK_COLOR_BUTTON (colorpicker), &color);
-
-  i = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (colorpicker), "palette-entry-index"));
-
-  terminal_profile_set_palette_entry (profile, i, &color);
-}
-
-static void
-solid_radio_toggled (GtkWidget       *radiobutton,
-                     TerminalProfile *profile)
-{
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radiobutton)))
-    terminal_profile_set_background_type (profile,
-                                          TERMINAL_BACKGROUND_SOLID);
-}
-
-static void
-image_radio_toggled (GtkWidget       *radiobutton,
-                     TerminalProfile *profile)
-{
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radiobutton)))
-    terminal_profile_set_background_type (profile,
-                                          TERMINAL_BACKGROUND_IMAGE);
-}
-
-static void
-transparent_radio_toggled (GtkWidget       *radiobutton,
-                           TerminalProfile *profile)
-{
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radiobutton)))
-    terminal_profile_set_background_type (profile,
-                                          TERMINAL_BACKGROUND_TRANSPARENT);
-}
-
-static void
-background_image_changed (GtkWidget       *entry,
-                          TerminalProfile *profile)
-{
-  char *text;
-  
-  text = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (entry));
-
-  if (text == NULL)
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_USE_SYSTEM_FONT) ||
+      prop_name == I_(TERMINAL_PROFILE_FONT))
     {
-      return;
+      SET_SENSITIVE ("font-hbox",
+                    !terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_SYSTEM_FONT) &&
+                    !terminal_profile_property_locked (profile, TERMINAL_PROFILE_FONT));
+      SET_SENSITIVE ("system-font-checkbutton",
+                     !terminal_profile_property_locked (profile, TERMINAL_PROFILE_USE_SYSTEM_FONT));
+    }
+
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_FOREGROUND_COLOR) ||
+      prop_name == I_(TERMINAL_PROFILE_BACKGROUND_COLOR) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_THEME_COLORS))
+    {
+      gboolean fg_locked, bg_locked, use_theme_colors;
+
+      fg_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
+      bg_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
+      use_theme_colors = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_COLORS);
+
+      SET_SENSITIVE ("foreground-colorpicker", !use_theme_colors && !fg_locked);
+      SET_SENSITIVE ("foreground-colorpicker-label", !use_theme_colors && !fg_locked);
+      SET_SENSITIVE ("background-colorpicker", !use_theme_colors && !bg_locked);
+      SET_SENSITIVE ("background-colorpicker-label", !use_theme_colors && !bg_locked);
+      SET_SENSITIVE ("color-scheme-combobox", !use_theme_colors && !fg_locked && !bg_locked);
+      SET_SENSITIVE ("color-scheme-combobox-label", !use_theme_colors && !fg_locked && !bg_locked);
+    }
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_VISIBLE_NAME))
+    SET_SENSITIVE ("profile-name-entry",
+                  !terminal_profile_property_locked (profile, TERMINAL_PROFILE_VISIBLE_NAME));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR))
+    SET_SENSITIVE ("show-menubar-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_TITLE))
+    SET_SENSITIVE ("title-entry",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_TITLE));
+  
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_TITLE_MODE))
+    SET_SENSITIVE ("title-mode-combobox",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_TITLE_MODE));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_ALLOW_BOLD))
+    SET_SENSITIVE ("allow-bold-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_ALLOW_BOLD));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SILENT_BELL))
+    SET_SENSITIVE ("bell-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SILENT_BELL));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_WORD_CHARS))
+    SET_SENSITIVE ("word-chars-entry",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_WORD_CHARS));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLLBAR_POSITION))
+    SET_SENSITIVE ("scrollbar-position-combobox",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLLBAR_POSITION));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_LINES))
+    {
+      scrollback_lines_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLLBACK_LINES);
+
+      SET_SENSITIVE ("scrollback-label", !scrollback_lines_locked);
+      SET_SENSITIVE ("scrollback-box", !scrollback_lines_locked);
     }
   
-  terminal_profile_set_background_image_file (profile, text);
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE))
+    SET_SENSITIVE ("scroll-on-keystroke-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE));
 
-  g_free (text);
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLL_ON_OUTPUT))
+    SET_SENSITIVE ("scroll-on-output-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLL_ON_OUTPUT));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_EXIT_ACTION))
+    SET_SENSITIVE ("exit-action-combobox",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_EXIT_ACTION));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_LOGIN_SHELL))
+    SET_SENSITIVE ("login-shell-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_LOGIN_SHELL));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_UPDATE_RECORDS))
+    SET_SENSITIVE ("update-records-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_UPDATE_RECORDS));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_PALETTE))
+    {
+      palette_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_PALETTE);
+      SET_SENSITIVE ("palette-combobox", !palette_locked);
+      SET_SENSITIVE ("palette-table", !palette_locked);
+    }
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_BACKSPACE_BINDING))
+    SET_SENSITIVE ("backspace-binding-combobox",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKSPACE_BINDING));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_DELETE_BINDING))
+    SET_SENSITIVE ("delete-binding-combobox",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_DELETE_BINDING));
+
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_USE_THEME_COLORS))
+    SET_SENSITIVE ("use-theme-colors-checkbutton",
+                   !terminal_profile_property_locked (profile, TERMINAL_PROFILE_USE_THEME_COLORS));
+
+#undef SET_INSENSITIVE
 }
 
 static void
-scroll_background_toggled (GtkWidget       *checkbutton,
-                           TerminalProfile *profile)
-{
-  terminal_profile_set_scroll_background (profile,
-                                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
-}
-
-static void
-darken_background_value_changed (GtkWidget       *scale,
-                                 TerminalProfile *profile)
-{
-  double new_val;
-  double old_val;
-
-  new_val = gtk_range_get_value (GTK_RANGE (scale));
-  old_val = terminal_profile_get_background_darkness (profile);
-
-  /* The epsilon here is some anti-infinite-loop paranoia */
-  if (fabs (new_val - old_val) > 1e-6)
-    terminal_profile_set_background_darkness (profile, new_val);
-}
-
-static void
-backspace_binding_changed (GtkWidget       *combo_box,
-                           TerminalProfile *profile)
-{
-  int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-
-  terminal_profile_set_backspace_binding (profile, i);
-}
-
-static void
-delete_binding_changed (GtkWidget       *combo_box,
-                        TerminalProfile *profile)
-{
-  int i;
-  
-  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-
-  terminal_profile_set_delete_binding (profile, i);
-}
-
-static void
-reset_compat_defaults_clicked (GtkWidget       *button,
+color_scheme_combo_changed_cb (GtkWidget *combo,
+                               GParamSpec *pspec,
                                TerminalProfile *profile)
 {
-  terminal_profile_reset_compat_defaults (profile);
+  int i;
+  
+  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo));
+  
+  if (i < G_N_ELEMENTS (color_schemes))
+    {
+      g_signal_handlers_block_by_func (profile, G_CALLBACK (profile_colors_notify_scheme_combo_cb), combo);
+      g_object_set (profile,
+                    TERMINAL_PROFILE_FOREGROUND_COLOR, &color_schemes[i].foreground,
+                    TERMINAL_PROFILE_BACKGROUND_COLOR, &color_schemes[i].background,
+                    NULL);
+      g_signal_handlers_unblock_by_func (profile, G_CALLBACK (profile_colors_notify_scheme_combo_cb), combo);
+    }
+  else
+    {
+      /* "custom" selected, no change */
+    }
 }
 
 static void
-use_theme_colors_toggled (GtkWidget       *checkbutton,
-                          TerminalProfile *profile)
+profile_colors_notify_scheme_combo_cb (TerminalProfile *profile,
+                                       GParamSpec *pspec,
+                                       GtkComboBox *combo)
 {
-  terminal_profile_set_use_theme_colors (profile,
-                                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
+  const GdkColor *fg, *bg;
+  int i;
+
+  fg = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
+  bg = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
+
+  for (i = 0; i < G_N_ELEMENTS (color_schemes); ++i)
+    {
+      if (fg && gdk_color_equal (fg, &color_schemes[i].foreground) &&
+          bg && gdk_color_equal (bg, &color_schemes[i].background))
+        break;
+    }
+  /* If we didn't find a match, then we get the last combo box item which is "custom" */
+
+  g_signal_handlers_block_by_func (combo, G_CALLBACK (color_scheme_combo_changed_cb), profile);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (combo), i);
+  g_signal_handlers_unblock_by_func (combo, G_CALLBACK (color_scheme_combo_changed_cb), profile);
 }
 
 static void
-use_system_font_toggled (GtkWidget       *checkbutton,
+palette_scheme_combo_changed_cb (GtkComboBox *combo,
+                                 GParamSpec *pspec,
+                                 TerminalProfile *profile)
+{
+  int i;
+
+  i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo));
+
+  g_signal_handlers_block_by_func (profile, G_CALLBACK (profile_colors_notify_scheme_combo_cb), combo);
+  if (i < TERMINAL_PALETTE_N_BUILTINS)
+    terminal_profile_set_palette_builtin (profile, i);
+  else
+    {
+      /* "custom" selected, no change */
+    }
+  g_signal_handlers_unblock_by_func (profile, G_CALLBACK (profile_colors_notify_scheme_combo_cb), combo);
+}
+
+static void
+profile_palette_notify_scheme_combo_cb (TerminalProfile *profile,
+                                        GParamSpec *pspec,
+                                        GtkComboBox *combo)
+{
+  guint i;
+
+  if (!terminal_profile_get_palette_is_builtin (profile, &i))
+    /* If we didn't find a match, then we want the last combo
+     * box item which is "custom"
+     */
+    i = TERMINAL_PALETTE_N_BUILTINS;
+
+  g_signal_handlers_block_by_func (combo, G_CALLBACK (palette_scheme_combo_changed_cb), profile);
+  gtk_combo_box_set_active (combo, i);
+  g_signal_handlers_unblock_by_func (combo, G_CALLBACK (palette_scheme_combo_changed_cb), profile);
+}
+
+static void
+palette_color_notify_cb (GtkColorButton *button,
+                         GParamSpec *pspec,
                          TerminalProfile *profile)
 {
-  terminal_profile_set_use_system_font (profile,
-                                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton)));
+  GtkWidget *editor;
+  GdkColor color;
+  int i;
+
+  gtk_color_button_get_color (button, &color);
+  i = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (button), "palette-entry-index"));
+
+  editor = gtk_widget_get_toplevel (GTK_WIDGET (button));
+  g_signal_handlers_block_by_func (profile, G_CALLBACK (profile_palette_notify_colorpickers_cb), editor);
+  terminal_profile_modify_palette_entry (profile, i, &color);
+  g_signal_handlers_unblock_by_func (profile, G_CALLBACK (profile_palette_notify_colorpickers_cb), editor);
 }
 
 static void
-font_set (GtkWidget       *fontpicker,
-          TerminalProfile *profile)
+profile_palette_notify_colorpickers_cb (TerminalProfile *profile,
+                                        GParamSpec *pspec,
+                                        GtkWidget *editor)
 {
-  PangoFontDescription *desc;
-  PangoFontDescription *tmp;
-  const char *font_name;
-  
-  font_name = gtk_font_button_get_font_name (GTK_FONT_BUTTON (fontpicker));
-  desc = pango_font_description_from_string (font_name);
-  if (desc == NULL)
+  GtkWidget *w;
+  GdkColor colors[TERMINAL_PALETTE_SIZE];
+  guint n_colors, i;
+
+  n_colors = G_N_ELEMENTS (colors);
+  terminal_profile_get_palette (profile, colors, &n_colors);
+
+  n_colors = MIN (n_colors, TERMINAL_PALETTE_SIZE);
+  for (i = 0; i < n_colors; i++)
     {
-      g_warning ("Font name \"%s\" from font picker can't be parsed", font_name);
-      return;
+      char name[32];
+      GdkColor old_color;
+
+      g_snprintf (name, sizeof (name), "palette-colorpicker-%d", i + 1);
+      w = profile_editor_get_widget (editor, name);
+
+      gtk_color_button_get_color (GTK_COLOR_BUTTON (w), &old_color);
+      if (!gdk_color_equal (&old_color, &colors[i]))
+        {
+          g_signal_handlers_block_by_func (w, G_CALLBACK (palette_color_notify_cb), profile);
+          gtk_color_button_set_color (GTK_COLOR_BUTTON (w), &colors[i]);
+          g_signal_handlers_unblock_by_func (w, G_CALLBACK (palette_color_notify_cb), profile);
+        }
     }
+}
 
-  /* Merge as paranoia against fontpicker giving us some junk */
-  tmp = pango_font_description_copy (terminal_profile_get_font (profile));
-  pango_font_description_merge (tmp, desc, TRUE);
-  pango_font_description_free (desc);
-  desc = tmp;
+static void
+custom_command_entry_changed_cb (GtkWidget *entry)
+{
+  const char *command;
+  GError *error = NULL;
+
+  command = gtk_entry_get_text (GTK_ENTRY (entry));
+
+  if (g_shell_parse_argv (command, NULL, NULL, &error))
+    {
+      GtkRcStyle *mod;
+
+      gtk_widget_set_tooltip_text (entry, NULL);
+
+      mod = gtk_widget_get_modifier_style (entry);
+      if (mod)
+        mod->color_flags[GTK_STATE_NORMAL] &= ~GTK_RC_TEXT;
+
+      gtk_widget_modify_style (entry, mod);
+      /* caution, mod is potentially destroyed at this point */
+    }
+  else
+    {
+      GdkColor color;
+      char *tooltip;
+
+      tooltip = g_strdup_printf (_("Error parsing command: %s"), error->message);
+      g_error_free (error);
+
+      gtk_widget_set_tooltip_text (entry, tooltip);
+      g_free (tooltip);
+    
+      gdk_color_parse ("red", &color);
+      gtk_widget_modify_text (entry, GTK_STATE_NORMAL, &color);
+    }
+}
+
+static void
+visible_name_entry_changed_cb (GtkEntry *entry,
+                               GtkWindow *window)
+{
+  const char *visible_name;
+  char *text;
   
-  terminal_profile_set_font (profile, desc);
+  visible_name = gtk_entry_get_text (entry);
 
-  pango_font_description_free (desc);
+  text = g_strdup_printf (_("Editing Profile “%s”"), visible_name);
+  gtk_window_set_title (window, text);
+  g_free (text);
+}
+
+static void
+scrollback_lines_spin_button_changed_cb (GtkSpinButton *button,
+                                         GParamSpec *pspec,
+                                         GtkLabel *label)
+{
+  double lines;
+  char *kbtext, *text;
+
+  lines = gtk_spin_button_get_value (button);
+  kbtext = g_format_size_for_display (lines * BYTES_PER_LINE);
+  /* Translators: %s will be a data size, e.g. "(about 500kB)" */
+  text = g_strdup_printf (_("(about %s)"), kbtext);
+  gtk_label_set_text (label, text);
+  g_free (kbtext);
+  g_free (text);
+}
+
+static void
+reset_compat_defaults_cb (GtkWidget       *button,
+                          TerminalProfile *profile)
+{
+  terminal_profile_reset_property (profile, TERMINAL_PROFILE_DELETE_BINDING);
+  terminal_profile_reset_property (profile, TERMINAL_PROFILE_BACKSPACE_BINDING);
 }
 
 /*
@@ -759,19 +504,6 @@ init_color_scheme_menu (GtkWidget *combo_box)
     }
 }
 
-static void
-init_palette_scheme_menu (GtkWidget *combo_box)
-{
-  int i;
-
-  i = G_N_ELEMENTS (palette_schemes);
-  while (i > 0)
-    {
-      gtk_combo_box_prepend_text (GTK_COMBO_BOX (combo_box), 
-                                  _(palette_schemes[--i].name));
-    }
-}
-
 static char*
 format_percent_value (GtkScale *scale,
                       double    val,
@@ -783,58 +515,60 @@ format_percent_value (GtkScale *scale,
 static void
 init_background_darkness_scale (GtkWidget *scale)
 {
-  g_signal_connect (G_OBJECT (scale), "format_value",
+  g_signal_connect (scale, "format-value",
                     G_CALLBACK (format_percent_value),
                     NULL);
 }
 
 
 static void
-editor_response_cb (GtkDialog *editor,
-                    int        id,
-                    void      *data)
+editor_response_cb (GtkWidget *editor,
+                    int response,
+                    gpointer use_data)
 {  
-  if (id == GTK_RESPONSE_HELP)
-    terminal_util_show_help ("gnome-terminal-prefs", GTK_WINDOW (editor));
-  else
-    gtk_widget_destroy (GTK_WIDGET (editor));
+  if (response == GTK_RESPONSE_HELP)
+    {
+      terminal_util_show_help ("gnome-terminal-prefs", GTK_WINDOW (editor));
+      return;
+    }
+    
+  gtk_widget_destroy (editor);
 }
 
 static GdkPixbuf *
-create_preview_pixbuf (const gchar *file) 
+create_preview_pixbuf (const gchar *filename)
 {
   GdkPixbuf *pixbuf = NULL;
+  GnomeThumbnailFactory *thumbs;
+  const char *mime_type = NULL;
+  GFile *gfile;
+  GFileInfo *file_info;
 
-  if (file != NULL) {
+  if (filename == NULL)
+    return NULL;
 
-    if (g_file_test (file, G_FILE_TEST_EXISTS) == TRUE) {
+  gfile = g_file_new_for_uri (filename);
+  file_info = g_file_query_info (gfile,
+                                  G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+                                  0, NULL, NULL);
+  if (file_info != NULL)
+    mime_type = g_file_info_get_content_type (file_info);
 
-      GnomeThumbnailFactory *thumbs;
-      const char *mime_type = NULL;
-      GFile *file1;
-      GFileInfo *file_info;
+  g_object_unref (gfile);
 
-      file1 = g_file_new_for_uri (file);
-      file_info = g_file_query_info (file1, 
-                                     G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
-                                     0, NULL, NULL);
-      if (file_info != NULL) {
-        mime_type = g_file_info_get_content_type (file_info);
-      }
-      g_object_unref (file1);
+  if (mime_type != NULL)
+    {
+      thumbs = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
 
-      if (mime_type != NULL) {
-        thumbs = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
-
-        pixbuf = gnome_thumbnail_factory_generate_thumbnail (thumbs,
-                                                             file,
-                                                             mime_type);
-        g_object_unref (thumbs);
-      }
-      if (file_info != NULL)
-        g_object_unref (file_info);
+      pixbuf = gnome_thumbnail_factory_generate_thumbnail (thumbs,
+                                                           filename,
+                                                           mime_type);
+      g_object_unref (thumbs);
     }
-  }				
+
+  if (file_info != NULL)
+    g_object_unref (file_info);
+
   return pixbuf;
 }
 
@@ -845,7 +579,7 @@ update_image_preview (GtkFileChooser *chooser)
   gchar *file;
 
   image = gtk_file_chooser_get_preview_widget (GTK_FILE_CHOOSER (chooser));
-  file = gtk_file_chooser_get_preview_filename (chooser);
+  file = gtk_file_chooser_get_preview_uri (chooser);
   
   if (file != NULL) {
 
@@ -863,8 +597,8 @@ update_image_preview (GtkFileChooser *chooser)
                                 "gtk-dialog-question",
       	                        GTK_ICON_SIZE_DIALOG);
     }
-  }				
-  gtk_file_chooser_set_preview_widget_active (chooser, TRUE);
+  }
+  gtk_file_chooser_set_preview_widget_active (chooser, file != NULL);
 }
 
 static void
@@ -878,23 +612,23 @@ setup_background_filechooser (GtkWidget *filechooser,
   filter = gtk_file_filter_new ();
   gtk_file_filter_add_pixbuf_formats (filter);
   gtk_file_filter_set_name (filter, _("Images"));
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (filechooser), filter);
-
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("All Files"));
-  gtk_file_filter_add_pattern (filter, "*");
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (filechooser), filter);
+  gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (filechooser), filter);
 
   image_preview = gtk_image_new ();
-  pixbuf = create_preview_pixbuf (terminal_profile_get_background_image_file (profile));
-  if (pixbuf != NULL) {
-    gtk_image_set_from_pixbuf (GTK_IMAGE (image_preview), pixbuf);
-  }
-  else {
-    gtk_image_set_from_stock (GTK_IMAGE (image_preview),
-                              "gtk-dialog-question",
-                              GTK_ICON_SIZE_DIALOG);
-  }
+  /* FIXMchpe this is bogus */
+  pixbuf = create_preview_pixbuf (terminal_profile_get_property_string (profile, TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE));
+  if (pixbuf != NULL)
+    {
+      gtk_image_set_from_pixbuf (GTK_IMAGE (image_preview), pixbuf);
+      g_object_unref (pixbuf);
+    }
+  else
+    {
+      gtk_image_set_from_stock (GTK_IMAGE (image_preview),
+                                "gtk-dialog-question",
+                                GTK_ICON_SIZE_DIALOG);
+    }
+
   gtk_file_chooser_set_preview_widget (GTK_FILE_CHOOSER (filechooser),
                                        image_preview);
   gtk_file_chooser_set_use_preview_label (GTK_FILE_CHOOSER (filechooser),
@@ -907,1075 +641,200 @@ setup_background_filechooser (GtkWidget *filechooser,
                     G_CALLBACK (update_image_preview), NULL);
 }
 
+static void
+profile_editor_destroyed (GtkWidget       *editor,
+                          TerminalProfile *profile)
+{
+  g_signal_handlers_disconnect_by_func (profile, G_CALLBACK (profile_forgotten_cb), editor);
+  g_signal_handlers_disconnect_by_func (profile, G_CALLBACK (profile_notify_sensitivity_cb), editor);
+  g_signal_handlers_disconnect_matched (profile, G_SIGNAL_MATCH_FUNC, 0, 0, NULL,
+                                        G_CALLBACK (profile_colors_notify_scheme_combo_cb), NULL);
+  g_signal_handlers_disconnect_matched (profile, G_SIGNAL_MATCH_FUNC, 0, 0, NULL,
+                                        G_CALLBACK (profile_palette_notify_scheme_combo_cb), NULL);
+  g_signal_handlers_disconnect_matched (profile, G_SIGNAL_MATCH_FUNC, 0, 0, NULL,
+                                        G_CALLBACK (profile_palette_notify_colorpickers_cb), NULL);
+  
+  g_object_set_data (G_OBJECT (profile), "editor-window", NULL);
+  g_object_set_data (G_OBJECT (editor), "builder", NULL);
+}
+
 void
 terminal_profile_edit (TerminalProfile *profile,
                        GtkWindow       *transient_parent)
 {
-  GtkWidget *editor, *fontsel;
-  GtkWindow *old_transient_parent;
+  char *path;
+  GtkBuilder *builder;
+  GError *error = NULL;
+  GtkWidget *editor, *w;
+  guint i;
 
-  editor = g_object_get_data (G_OBJECT (profile),
-                              "editor-window");
-
-  if (editor == NULL)
-    {
-      GladeXML *xml;
-      GtkWidget *w;
-      double num1, num2;
-      gint i;
-      GtkSizeGroup *size_group;
-      GtkWidget *font_label;
-
-      xml = terminal_util_load_glade_file (TERM_GLADE_FILE,
-                                           "profile-editor-dialog",
-                                           transient_parent);
-      if (xml == NULL)
-        return;
-      
-      old_transient_parent = NULL;
-      
-      editor = glade_xml_get_widget (xml, "profile-editor-dialog");
-	         
-      g_object_set_data (G_OBJECT (profile),
-                         "editor-window",
-                         editor);      
-
-      g_object_set_data_full (G_OBJECT (editor),
-                              "glade-xml",
-                              xml,
-                              (GDestroyNotify) g_object_unref);
-      
-      g_signal_connect (G_OBJECT (editor),
-                        "destroy",
-                        G_CALLBACK (profile_editor_destroyed),
-                        profile);
-
-      g_signal_connect (G_OBJECT (editor),
-                        "response",
-                        G_CALLBACK (editor_response_cb),
-                        NULL);
-      
-      gtk_window_set_destroy_with_parent (GTK_WINDOW (editor), TRUE);
-
-      g_signal_connect (G_OBJECT (profile),
-                        "changed",
-                        G_CALLBACK (profile_changed),
-                        editor);
-      
-      g_signal_connect (G_OBJECT (profile),
-                        "forgotten",
-                        G_CALLBACK (profile_forgotten),
-                        editor);      
-
-      profile_editor_update_sensitivity (editor, profile);
-
-      /* Autoconnect is just too scary for me. */
-      w = glade_xml_get_widget (xml, "profile-name-entry");
-      profile_editor_update_visible_name (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (visible_name_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "profile-icon-entry");
-      profile_editor_update_icon (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (icon_changed),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "show-menubar-checkbutton");
-      profile_editor_update_default_show_menubar (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (show_menubar_toggled),
-                        profile);
-
-      profile_editor_update_color_pickers (editor, profile);
-      
-      w = glade_xml_get_widget (xml, "foreground-colorpicker");
-      g_signal_connect (G_OBJECT (w), "color_set",
-                        G_CALLBACK (foreground_color_set),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "background-colorpicker");
-      g_signal_connect (G_OBJECT (w), "color_set",
-                        G_CALLBACK (background_color_set),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "color-scheme-combobox");
-      init_color_scheme_menu (w);
-      profile_editor_update_color_scheme_menu (editor, profile);
-      profile_editor_update_palette (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (color_scheme_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "title-entry");
-      profile_editor_update_title (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (title_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "title-mode-combobox");
-      profile_editor_update_title_mode (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (title_mode_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "allow-bold-checkbutton");
-      profile_editor_update_allow_bold (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (allow_bold_toggled),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "bell-checkbutton");
-      profile_editor_update_silent_bell (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (bell_toggled),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "word-chars-entry");
-      profile_editor_update_word_chars (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (word_chars_changed),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "scrollbar-position-combobox");
-      profile_editor_update_scrollbar_position (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (scrollbar_position_changed),
-                        profile);
-
-      size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-      
-      w = glade_xml_get_widget (xml, "scrollback-lines-spinbutton");
-      profile_editor_update_scrollback_lines (editor, profile);
-      g_signal_connect (G_OBJECT (w), "value_changed",
-                        G_CALLBACK (scrollback_lines_value_changed),
-                        profile);
-      gtk_size_group_add_widget (size_group, w);
-      
-      gtk_spin_button_get_range (GTK_SPIN_BUTTON (w), &num1, &num2);
-
-      w = glade_xml_get_widget (xml, "scrollback-kilobytes-spinbutton");
-
-      /* Sync kilobytes spinbutton range with the lines spinbutton */
-      gtk_spin_button_set_range (GTK_SPIN_BUTTON (w),
-                                 (num1 * BYTES_PER_LINE) / 1024,
-                                 (num2 * BYTES_PER_LINE) / 1024);
-      
-      profile_editor_update_scrollback_lines (editor, profile);      
-      g_signal_connect (G_OBJECT (w), "value_changed",
-                        G_CALLBACK (scrollback_kilobytes_value_changed),
-                        profile);
-      gtk_size_group_add_widget (size_group, w);
-
-      g_object_unref (G_OBJECT (size_group));
-      
-      w = glade_xml_get_widget (xml, "scroll-on-keystroke-checkbutton");
-      profile_editor_update_scroll_on_keystroke (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (scroll_on_keystroke_toggled),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "scroll-on-output-checkbutton");
-      profile_editor_update_scroll_on_output (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (scroll_on_output_toggled),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "exit-action-combobox");
-      profile_editor_update_exit_action (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (exit_action_changed),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "login-shell-checkbutton");
-      profile_editor_update_login_shell (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (login_shell_toggled),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "update-records-checkbutton");
-      profile_editor_update_update_records (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (update_records_toggled),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "use-custom-command-checkbutton");
-      profile_editor_update_use_custom_command (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (use_custom_command_toggled),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "custom-command-entry");
-      profile_editor_update_custom_command (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (custom_command_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "palette-combobox");
-      g_assert (w);
-      init_palette_scheme_menu (w);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (palette_scheme_changed),
-                        profile);
-
-      profile_editor_update_background_type (editor, profile);
-      w = glade_xml_get_widget (xml, "solid-radiobutton");
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (solid_radio_toggled),
-                        profile);
-      w = glade_xml_get_widget (xml, "image-radiobutton");
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (image_radio_toggled),
-                        profile);
-      w = glade_xml_get_widget (xml, "transparent-radiobutton");
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (transparent_radio_toggled),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "background-image-filechooser");
-      profile_editor_update_background_image (editor, profile);
-      g_signal_connect (G_OBJECT (w), "selection-changed",
-                        G_CALLBACK (background_image_changed),
-                        profile);
-      setup_background_filechooser (w, profile);
-
-      w = glade_xml_get_widget (xml, "scroll-background-checkbutton");
-      profile_editor_update_scroll_background (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (scroll_background_toggled),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "darken-background-scale");
-      init_background_darkness_scale (w);
-      profile_editor_update_background_darkness (editor, profile);
-      g_signal_connect (G_OBJECT (w), "value_changed",
-                        G_CALLBACK (darken_background_value_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "backspace-binding-combobox");
-      profile_editor_update_backspace_binding (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (backspace_binding_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "delete-binding-combobox");
-      profile_editor_update_delete_binding (editor, profile);
-      g_signal_connect (G_OBJECT (w), "changed",
-                        G_CALLBACK (delete_binding_changed),
-                        profile);
-
-      w = glade_xml_get_widget (xml, "use-theme-colors-checkbutton");
-      profile_editor_update_use_theme_colors (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (use_theme_colors_toggled),
-                        profile);
-      
-      w = glade_xml_get_widget (xml, "system-font-checkbutton");
-      profile_editor_update_use_system_font (editor, profile);
-      g_signal_connect (G_OBJECT (w), "toggled",
-                        G_CALLBACK (use_system_font_toggled),
-                        profile);
-
-      
-      i = 0;
-      while (i < TERMINAL_PALETTE_SIZE)
-        {
-	  gchar *t;
-	  gchar *s = g_strdup_printf ("palette-colorpicker-%d", i+1);
-
-	  w = glade_xml_get_widget (xml, s);
-	  g_assert (w);
-
-	  t = g_strdup_printf (_("Choose Palette Color %d"), i+1);
-	  gtk_color_button_set_title (GTK_COLOR_BUTTON (w), t);
-	  g_free (t);
-
-	  t = g_strdup_printf (_("Palette entry %d"), i+1);
-          gtk_widget_set_tooltip_text (w, t);
-	  g_free (t);
-
-	  g_object_set_data (G_OBJECT (w),
-			     "palette-entry-index",
-			     GINT_TO_POINTER (i));
-
-	  g_signal_connect (G_OBJECT (w), "color_set",
-			    G_CALLBACK (palette_color_set),
-			    profile);
-
-	  g_free (s);
-
-	  ++i;
-        }
-
-      profile_editor_update_palette (editor, profile);
-
-      w = glade_xml_get_widget (xml, "font-hbox");
-
-      fontsel = gtk_font_button_new ();
-      g_object_set_data (G_OBJECT (editor), "font-selector", fontsel);
-
-      gtk_font_button_set_title (GTK_FONT_BUTTON (fontsel), _("Choose A Terminal Font"));
-      gtk_font_button_set_show_size (GTK_FONT_BUTTON (fontsel), TRUE);
-      gtk_font_button_set_show_style (GTK_FONT_BUTTON (fontsel), FALSE);
-      gtk_font_button_set_use_font (GTK_FONT_BUTTON (fontsel), TRUE);
-      gtk_font_button_set_use_size (GTK_FONT_BUTTON (fontsel), FALSE);
-
-      profile_editor_update_font (editor, profile);
-      g_signal_connect (G_OBJECT (fontsel), "font_set",
-			G_CALLBACK (font_set),
-			profile);
-
-      font_label = gtk_label_new_with_mnemonic (_("_Font:"));
-      gtk_misc_set_alignment (GTK_MISC (font_label), 0.0, 0.5);
-      gtk_label_set_mnemonic_widget (GTK_LABEL (font_label), fontsel);
-
-      gtk_box_set_spacing (GTK_BOX (w), 12);
-      
-      gtk_box_pack_start (GTK_BOX (w), GTK_WIDGET (font_label), FALSE, FALSE, 0);
-      gtk_box_pack_start (GTK_BOX (w), GTK_WIDGET (fontsel), FALSE, FALSE, 0);
-
-      size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-      gtk_size_group_add_widget (size_group,
-				 font_label);
-      gtk_size_group_add_widget (size_group,
-				 glade_xml_get_widget (xml,
-						       "profile-name-label"));
-      gtk_size_group_add_widget (size_group,
-				 glade_xml_get_widget (xml,
-						       "profile-icon-label"));
-      g_object_unref (G_OBJECT (size_group));
-      
-      gtk_widget_show_all (w);
-      
-      w = glade_xml_get_widget (xml, "reset-compat-defaults-button");
-      g_signal_connect (G_OBJECT (w), "clicked",
-			G_CALLBACK (reset_compat_defaults_clicked),
-			profile);
-
-      terminal_util_set_unique_role (GTK_WINDOW (editor), "gnome-terminal-profile-editor");
-    }
-  else
-    {
-      old_transient_parent = gtk_window_get_transient_for (GTK_WINDOW (editor));
-    }
-
-  if (old_transient_parent != transient_parent)
+  editor = g_object_get_data (G_OBJECT (profile), "editor-window");
+  if (editor)
     {
       gtk_window_set_transient_for (GTK_WINDOW (editor),
                                     GTK_WINDOW (transient_parent));
-      gtk_widget_hide (editor); /* re-show the window on its new parent */
-    }
-  
-  /*   gtk_widget_show_all (editor);*/
-  gtk_window_present (GTK_WINDOW (editor));
-}
-
-static void
-widget_and_labels_set_sensitive (GtkWidget *widget, gboolean sensitive)
-{
-  GList *labels, *i;
-
-  labels = gtk_widget_list_mnemonic_labels (widget);
-  for (i = labels; i; i = i->next)
-    {
-      gtk_widget_set_sensitive (GTK_WIDGET (i->data), sensitive);
-    }
-  g_list_free (labels);
-
-  gtk_widget_set_sensitive (widget, sensitive);
-}
-
-static void
-set_insensitive (GtkWidget  *editor,
-                 const char *widget_name,
-                 gboolean    setting)
-{
-  GtkWidget *w;  
-
-  w = profile_editor_get_widget (editor, widget_name);
-
-  widget_and_labels_set_sensitive (w, !setting);
-}
-
-static void
-profile_editor_update_sensitivity (GtkWidget       *editor,
-                                   TerminalProfile *profile)
-{
-  const TerminalSettingMask *mask;
-  GtkWidget *w;
-  
-  /* the first time in this function the object data is unset
-   * thus the last mask is 0, which means everything is sensitive,
-   * which is what we want.
-   */
-  /* disabled for now for testing */
-#if 0
-  TerminalSettingMask last_mask;
-  last_mask = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (editor),
-                                                  "cached-lock-mask"));
-#endif
-  
-  mask = terminal_profile_get_locked_settings (profile);
-
-  /* This one can't be short-circuited by the cache, since
-   * it depends on settings
-   */
-  set_insensitive (editor, "custom-command-entry",
-                   mask->custom_command ||
-                     !terminal_profile_get_use_custom_command (profile));
-
-  w = profile_editor_get_widget (editor, "custom-command-entry-label");
-  gtk_widget_set_sensitive (w,
-                            !((mask->custom_command) ||
-                              !terminal_profile_get_use_custom_command (profile))); 
-  if (terminal_profile_get_background_type (profile) == TERMINAL_BACKGROUND_IMAGE)
-    {
-      set_insensitive (editor, "background-image-filechooser", mask->background_image_file);
-      set_insensitive (editor, "scroll-background-checkbutton", mask->scroll_background);
-      set_insensitive (editor, "darken-background-vbox", mask->background_darkness);
-    }
-  else if (terminal_profile_get_background_type (profile) == TERMINAL_BACKGROUND_TRANSPARENT) 
-    {
-      set_insensitive (editor, "background-image-filechooser", TRUE);
-      set_insensitive (editor, "scroll-background-checkbutton", TRUE);
-      set_insensitive (editor, "darken-background-vbox", mask->background_darkness);
-    }
-  else
-    {
-      set_insensitive (editor, "background-image-filechooser", TRUE);
-      set_insensitive (editor, "scroll-background-checkbutton", TRUE);
-      set_insensitive (editor, "darken-background-vbox", TRUE);
+      gtk_window_present (GTK_WINDOW (editor));
+      return;
     }
 
-  if (!terminal_profile_get_use_system_font (profile))
-    {
-      set_insensitive (editor, "font-hbox", mask->font);
-    }
-  else
-    {
-      set_insensitive (editor, "font-hbox", TRUE);
-    }
-
-
-  if (terminal_profile_get_use_theme_colors (profile))
-    {
-      set_insensitive (editor, "foreground-colorpicker", TRUE);
-      set_insensitive (editor, "foreground-colorpicker-label", TRUE);
-      set_insensitive (editor, "background-colorpicker", TRUE);
-      set_insensitive (editor, "background-colorpicker-label", TRUE);
-      set_insensitive (editor, "color-scheme-combobox", TRUE);
-      set_insensitive (editor, "color-scheme-combobox-label", TRUE);
-    }
-  else
-    {      
-      set_insensitive (editor, "foreground-colorpicker",
-                       mask->foreground_color);
-      
-      set_insensitive (editor, "foreground-colorpicker-label",
-                       mask->foreground_color);
-		             
-      set_insensitive (editor, "background-colorpicker",
-                       mask->background_color);
-      
-      set_insensitive (editor, "background-colorpicker-label",
-                       mask->background_color);      
-
-      set_insensitive (editor, "color-scheme-combobox",
-                       (mask->background_color) ||
-                       (mask->foreground_color));
-
-      set_insensitive (editor, "color-scheme-combobox-label",
-                       (mask->background_color) ||
-                       (mask->foreground_color));		       
-		       
-    }
-  
-#if 0 /* uncomment once we've tested the sensitivity code */
-  if (mask == last_mask)
+  path = g_build_filename (TERM_PKGDATADIR, "profile-preferences.ui", NULL);
+  builder = gtk_builder_new ();
+  if (!gtk_builder_add_from_file (builder, path, &error)) {
+    g_warning ("Failed to load %s: %s\n", path, error->message);
+    g_error_free (error);
+    g_free (path);
+    g_object_unref (builder);
     return;
-  g_object_set_data (G_OBJECT (editor), "cached-lock-mask",
-                     GINT_TO_POINTER (mask));
-#endif
-  
-  set_insensitive (editor, "profile-name-entry",
-                   mask->visible_name);
-
-  set_insensitive (editor, "profile-icon-entry",
-                   mask->icon_file);
-  
-  set_insensitive (editor, "show-menubar-checkbutton",
-                   mask->default_show_menubar);
-
-  set_insensitive (editor, "title-entry",
-                   mask->title);
-  
-  set_insensitive (editor, "title-mode-combobox",
-                   mask->title_mode);
-
-  set_insensitive (editor, "allow-bold-checkbutton",
-                   mask->allow_bold);
-
-  set_insensitive (editor, "bell-checkbutton",
-                   mask->silent_bell);
-
-  set_insensitive (editor, "word-chars-entry",
-                   mask->word_chars);
-
-  set_insensitive (editor, "scrollbar-position-combobox",
-                   mask->scrollbar_position);
-
-  set_insensitive (editor, "scrollback-lines-spinbutton",
-                   mask->scrollback_lines);
-
-  set_insensitive (editor, "scrollback-kilobytes-spinbutton",
-                   mask->scrollback_lines);
-  
-  set_insensitive (editor, "scroll-on-keystroke-checkbutton",
-                   mask->scroll_on_keystroke);
-
-  set_insensitive (editor, "scroll-on-output-checkbutton",
-                   mask->scroll_on_output);
-
-  set_insensitive (editor, "exit-action-combobox",
-                   mask->exit_action);
-
-  set_insensitive (editor, "login-shell-checkbutton",
-                   mask->login_shell);
-
-  set_insensitive (editor, "update-records-checkbutton",
-                   mask->update_records);
-
-  set_insensitive (editor, "use-custom-command-checkbutton",
-                   mask->use_custom_command);
-
-  set_insensitive (editor, "palette-combobox",
-                   mask->palette);
-
-  set_insensitive (editor, "solid-radiobutton",
-                   mask->background_type);
-  set_insensitive (editor, "image-radiobutton",
-                   mask->background_type);
-  set_insensitive (editor, "transparent-radiobutton",
-                   mask->background_type);
-
-  set_insensitive (editor, "backspace-binding-combobox",
-                   mask->backspace_binding);
-  set_insensitive (editor, "delete-binding-combobox",
-                   mask->delete_binding);
-
-  set_insensitive (editor, "use-theme-colors-checkbutton",
-                   mask->use_theme_colors);
-
-  set_insensitive (editor, "system-font-checkbutton",
-                   mask->use_system_font);
-
-  
-  {
-    int i;
-
-    i = 0;
-    while (i < TERMINAL_PALETTE_SIZE)
-      {
-        char *s = g_strdup_printf ("palette-colorpicker-%d", i+1);
-
-        set_insensitive (editor, s, mask->palette);
-
-        g_free (s);
-
-        ++i;
-      }
   }
-}
+  g_free (path);
 
+  editor = (GtkWidget *) gtk_builder_get_object  (builder, "profile-editor-dialog");
+  g_object_set_data_full (G_OBJECT (editor), "builder",
+                          builder, (GDestroyNotify) g_object_unref);
 
-static void
-profile_editor_update_visible_name (GtkWidget       *editor,
-                                    TerminalProfile *profile)
-{
-  char *s;
-  GtkWidget *w;
-  
-  s = g_strdup_printf (_("Editing Profile \"%s\""),
-                       terminal_profile_get_visible_name (profile));
-  
-  gtk_window_set_title (GTK_WINDOW (editor), s);
-  
-  g_free (s);
-
-  w = profile_editor_get_widget (editor, "profile-name-entry");
-
-  entry_set_text_if_changed (GTK_ENTRY (w),
-                             terminal_profile_get_visible_name (profile));
-}
-
-static void
-profile_editor_update_icon (GtkWidget       *editor,
-                            TerminalProfile *profile)
-{
-  GtkWidget *w;
-  char *current_filename;
-  const char *profile_filename;
-  
-  w = profile_editor_get_widget (editor, "profile-icon-entry");
-
-  current_filename = gnome_icon_entry_get_filename (GNOME_ICON_ENTRY (w));
-
-  profile_filename = terminal_profile_get_icon_file (profile);
-  
-  if (current_filename && profile_filename &&
-      strcmp (current_filename, profile_filename) == 0)
-    return;
-
-  g_free (current_filename);
-  
-  gnome_icon_entry_set_filename (GNOME_ICON_ENTRY (w), profile_filename);
-}
-
-static void
-profile_editor_update_default_show_menubar (GtkWidget       *editor,
-                                            TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "show-menubar-checkbutton");
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_default_show_menubar (profile));
-}
-
-static void
-profile_editor_update_color_pickers (GtkWidget       *editor,
-                                     TerminalProfile *profile)
-{
-  GtkWidget *w;
-  GdkColor color1, color2;
-  
-  terminal_profile_get_color_scheme (profile, &color1, &color2);
-  
-  w = profile_editor_get_widget (editor, "foreground-colorpicker");
-  colorpicker_set_if_changed (w, &color1);
-  
-  w = profile_editor_get_widget (editor, "background-colorpicker");
-  colorpicker_set_if_changed (w, &color2);
-}
-
-static void
-profile_editor_update_color_scheme_menu (GtkWidget       *editor,
-                                         TerminalProfile *profile)
-{
-  GdkColor fg, bg;
-  unsigned int i;
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "color-scheme-combobox");
-  
-  terminal_profile_get_color_scheme (profile, &fg, &bg);
-
-  for (i = 0; i < G_N_ELEMENTS (color_schemes); i++)
-    {
-      if (gdk_color_equal (&color_schemes[i].foreground,
-                           &fg) &&
-          gdk_color_equal (&color_schemes[i].background,
-                           &bg))
-        break;
-    }
-
-  /* If we didn't find a match, then we want the last combo
-   * box item which is "custom"
+  /* Store the dialogue on the profile, so we can acccess it above to check if
+   * there's already a profile editor for this profile.
    */
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w), i);
-}
+  g_object_set_data (G_OBJECT (profile), "editor-window", editor);
 
-static void
-profile_editor_update_title (GtkWidget       *editor,
-                             TerminalProfile *profile)
-{
-  GtkWidget *w;
+  g_signal_connect (editor, "destroy",
+                    G_CALLBACK (profile_editor_destroyed),
+                    profile);
 
-  w = profile_editor_get_widget (editor, "title-entry");
+  g_signal_connect (editor, "response",
+                    G_CALLBACK (editor_response_cb),
+                    NULL);
 
-  entry_set_text_if_changed (GTK_ENTRY (w),
-                             terminal_profile_get_title (profile));
-}
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "color-scheme-combobox");
+  init_color_scheme_menu (w);
 
-static void
-profile_editor_update_title_mode (GtkWidget       *editor,
-                                  TerminalProfile *profile)
-{
-  GtkWidget *w;
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "darken-background-scale");
+  init_background_darkness_scale (w);
 
-  w = profile_editor_get_widget (editor, "title-mode-combobox");
-  
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w),
-                            terminal_profile_get_title_mode (profile));
-}
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "background-image-filechooser");
+  setup_background_filechooser (w, profile);
 
-static void
-profile_editor_update_allow_bold (GtkWidget       *editor,
-                                  TerminalProfile *profile)
-{
-  GtkWidget *w;
+  /* Hook up the palette colorpickers and combo box */
 
-  w = profile_editor_get_widget (editor, "allow-bold-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_allow_bold (profile));
-}
-
-static void
-profile_editor_update_silent_bell (GtkWidget       *editor,
-                                   TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "bell-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                !terminal_profile_get_silent_bell (profile));
-}
-
-static void
-profile_editor_update_word_chars (GtkWidget       *editor,
-                                  TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "word-chars-entry");
-
-  entry_set_text_if_changed (GTK_ENTRY (w),
-                             terminal_profile_get_word_chars (profile));
-}
-
-static void
-profile_editor_update_scrollbar_position   (GtkWidget       *editor,
-                                            TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "scrollbar-position-combobox");
-  
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w),
-                            terminal_profile_get_scrollbar_position (profile));
-}
-
-static void
-profile_editor_update_scrollback_lines (GtkWidget       *editor,
-                                        TerminalProfile *profile)
-{
-  GtkWidget *w;
-  int lines;
-
-  lines = terminal_profile_get_scrollback_lines (profile);
-  
-  w = profile_editor_get_widget (editor, "scrollback-lines-spinbutton");
-
-  gtk_spin_button_set_value (GTK_SPIN_BUTTON (w), lines);
-
-  w = profile_editor_get_widget (editor, "scrollback-kilobytes-spinbutton");
-  
-  gtk_spin_button_set_value (GTK_SPIN_BUTTON (w), (BYTES_PER_LINE * lines) / 1024);
-}
-
-static void
-profile_editor_update_scroll_on_keystroke  (GtkWidget       *editor,
-                                            TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "scroll-on-keystroke-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_scroll_on_keystroke (profile));
-}
-
-static void
-profile_editor_update_scroll_on_output (GtkWidget       *editor,
-                                        TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "scroll-on-output-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_scroll_on_output (profile));
-}
-
-static void
-profile_editor_update_exit_action (GtkWidget       *editor,
-                                   TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "exit-action-combobox");
-  
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w),
-                            terminal_profile_get_exit_action (profile));
-}
-
-static void
-profile_editor_update_login_shell (GtkWidget       *editor,
-                                   TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "login-shell-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_login_shell (profile));
-}
-
-static void
-profile_editor_update_update_records (GtkWidget       *editor,
-                                      TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "update-records-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                               terminal_profile_get_update_records (profile));
-
-}
-
-static void
-profile_editor_update_use_custom_command (GtkWidget       *editor,
-                                          TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "use-custom-command-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                               terminal_profile_get_use_custom_command (profile));
-
-}
-
-static void
-profile_editor_update_custom_command (GtkWidget       *editor,
-                                      TerminalProfile *profile)
-{
-  GtkWidget *w;
-  const char *command;
-
-  w = profile_editor_get_widget (editor, "custom-command-entry");
-
-  command = terminal_profile_get_custom_command (profile);
-  
-  entry_set_text_if_changed (GTK_ENTRY (w), command);
-
-  /* FIXME get error from this and display it in a tooltip
-   * or label
-   */
-  if (g_shell_parse_argv (command, NULL, NULL, NULL))
+  for (i = 0; i < TERMINAL_PALETTE_SIZE; ++i)
     {
-      GtkRcStyle *mod;
+      char name[32];
+      char *text;
 
-      mod = gtk_widget_get_modifier_style (w);
-      if (mod)
-        mod->color_flags[GTK_STATE_NORMAL] &= ~GTK_RC_TEXT;
+      g_snprintf (name, sizeof (name), "palette-colorpicker-%d", i + 1);
+      w = (GtkWidget *) gtk_builder_get_object  (builder, name);
 
-      gtk_widget_modify_style (w, mod);
-      /* caution, mod destroyed at this point */
-    }
-  else
-    {
-      GdkColor color;
-      gdk_color_parse ("red", &color);
-      gtk_widget_modify_text (w, GTK_STATE_NORMAL, &color);
-    }            
-}
+      g_object_set_data (G_OBJECT (w), "palette-entry-index", GINT_TO_POINTER (i));
 
-static void
-profile_editor_update_palette (GtkWidget       *editor,
-                               TerminalProfile *profile)
-{
-  GtkWidget *w;
-  unsigned int i;
-  GdkColor palette[TERMINAL_PALETTE_SIZE];
+      text = g_strdup_printf (_("Choose Palette Color %d"), i + 1);
+      gtk_color_button_set_title (GTK_COLOR_BUTTON (w), text);
+      g_free (text);
 
-  terminal_profile_get_palette (profile, palette);
-  
-  for (i = 0; i < TERMINAL_PALETTE_SIZE; i++)
-    {
-      char *s = g_strdup_printf ("palette-colorpicker-%d", i+1);
-      w = profile_editor_get_widget (editor, s);
-      g_free (s);
-      
-      colorpicker_set_if_changed (w, &palette[i]);
+      text = g_strdup_printf (_("Palette entry %d"), i + 1);
+      gtk_widget_set_tooltip_text (w, text);
+      g_free (text);
+
+      g_signal_connect (w, "notify::color",
+                        G_CALLBACK (palette_color_notify_cb),
+                        profile);
     }
 
-  w = profile_editor_get_widget (editor, "palette-combobox");
+  profile_palette_notify_colorpickers_cb (profile, NULL, editor);
+  g_signal_connect (profile, "notify::" TERMINAL_PROFILE_PALETTE,
+                    G_CALLBACK (profile_palette_notify_colorpickers_cb),
+                    editor);
 
-  for (i = 0; i < G_N_ELEMENTS (palette_schemes); i++)
-    {
-      int j;
-      gboolean match;
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "palette-combobox");
+  g_signal_connect (w, "notify::active",
+                    G_CALLBACK (palette_scheme_combo_changed_cb),
+                    profile);
 
-      match = TRUE;
-      j = 0;
-      while (j < TERMINAL_PALETTE_SIZE)
-        {
-          if (!gdk_color_equal (&palette_schemes[i].palette[j],
-                                &palette[j]))
-            {
-              match = FALSE;
-              break;
-            }
-          
-          ++j;
-        }
+  profile_palette_notify_scheme_combo_cb (profile, NULL, GTK_COMBO_BOX (w));
+  g_signal_connect (profile, "notify::" TERMINAL_PROFILE_PALETTE,
+                    G_CALLBACK (profile_palette_notify_scheme_combo_cb),
+                    w);
 
-      if (match)
-        break;
-    }
+  /* Hook up the color scheme pickers and combo box */
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "color-scheme-combobox");
+  g_signal_connect (w, "notify::active",
+                    G_CALLBACK (color_scheme_combo_changed_cb),
+                    profile);
 
-  /* If we didn't find a match, then we want the last combo
-   * box item which is "custom"
-   */
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w), i);
-}
+  profile_colors_notify_scheme_combo_cb (profile, NULL, GTK_COMBO_BOX (w));
+  g_signal_connect (profile, "notify::" TERMINAL_PROFILE_FOREGROUND_COLOR,
+                    G_CALLBACK (profile_colors_notify_scheme_combo_cb),
+                    w);
+  g_signal_connect (profile, "notify::" TERMINAL_PROFILE_BACKGROUND_COLOR,
+                    G_CALLBACK (profile_colors_notify_scheme_combo_cb),
+                    w);
 
-static void
-profile_editor_update_background_type (GtkWidget       *editor,
-                                       TerminalProfile *profile)
-{
-  GtkWidget *w;
+#define CONNECT_WITH_FLAGS(name, prop, flags) terminal_util_bind_object_property_to_widget (G_OBJECT (profile), prop, (GtkWidget *) gtk_builder_get_object (builder, name), flags)
+#define CONNECT(name, prop) CONNECT_WITH_FLAGS (name, prop, 0)
+#define SET_ENUM_VALUE(name, value) g_object_set_data (gtk_builder_get_object (builder, name), "enum-value", GINT_TO_POINTER (value))
 
-  switch (terminal_profile_get_background_type (profile))
-    {
-    case TERMINAL_BACKGROUND_SOLID:
-      w = profile_editor_get_widget (editor, "solid-radiobutton");
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w), TRUE);
-      break;
-    case TERMINAL_BACKGROUND_IMAGE:
-      w = profile_editor_get_widget (editor, "image-radiobutton");
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w), TRUE);
-      break;
-    case TERMINAL_BACKGROUND_TRANSPARENT:
-      w = profile_editor_get_widget (editor, "transparent-radiobutton");
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w), TRUE);
-      break;
-    default:
-      g_assert_not_reached ();
-    }
-}
+  g_signal_connect (GTK_WIDGET (gtk_builder_get_object (builder, "profile-name-entry")),
+                    "changed",
+                    G_CALLBACK (custom_command_entry_changed_cb), NULL);
+  g_signal_connect (GTK_WIDGET (gtk_builder_get_object (builder, "profile-name-entry")),
+                    "changed",
+                    G_CALLBACK (visible_name_entry_changed_cb), editor);
+  g_signal_connect (GTK_WIDGET (gtk_builder_get_object  (builder, "scrollback-lines-spinbutton")),
+                    "notify::value",
+                    G_CALLBACK (scrollback_lines_spin_button_changed_cb),
+                    GTK_WIDGET (gtk_builder_get_object  (builder, "scrollback-kb-label")));
 
-static void
-profile_editor_update_background_image (GtkWidget       *editor,
-                                        TerminalProfile *profile)
-{
-  GtkWidget *w;
-  const char *f;
+  g_signal_connect (gtk_builder_get_object  (builder, "reset-compat-defaults-button"),
+                    "clicked",
+                    G_CALLBACK (reset_compat_defaults_cb),
+                    profile);
 
-  w = profile_editor_get_widget (editor, "background-image-filechooser");
+  SET_ENUM_VALUE ("image-radiobutton", TERMINAL_BACKGROUND_IMAGE);
+  SET_ENUM_VALUE ("solid-radiobutton", TERMINAL_BACKGROUND_SOLID);
+  SET_ENUM_VALUE ("transparent-radiobutton", TERMINAL_BACKGROUND_TRANSPARENT);
+  CONNECT ("allow-bold-checkbutton", TERMINAL_PROFILE_ALLOW_BOLD);
+  CONNECT ("background-colorpicker", TERMINAL_PROFILE_BACKGROUND_COLOR);
+  CONNECT ("background-image-filechooser", TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE);
+  CONNECT ("backspace-binding-combobox", TERMINAL_PROFILE_BACKSPACE_BINDING);
+  CONNECT ("custom-command-entry", TERMINAL_PROFILE_CUSTOM_COMMAND);
+  CONNECT ("darken-background-scale", TERMINAL_PROFILE_BACKGROUND_DARKNESS);
+  CONNECT ("delete-binding-combobox", TERMINAL_PROFILE_DELETE_BINDING);
+  CONNECT ("exit-action-combobox", TERMINAL_PROFILE_EXIT_ACTION);
+  CONNECT ("font-selector", TERMINAL_PROFILE_FONT);
+  CONNECT ("foreground-colorpicker", TERMINAL_PROFILE_FOREGROUND_COLOR);
+  CONNECT ("image-radiobutton", TERMINAL_PROFILE_BACKGROUND_TYPE);
+  CONNECT ("login-shell-checkbutton", TERMINAL_PROFILE_LOGIN_SHELL);
+  CONNECT ("profile-name-entry", TERMINAL_PROFILE_VISIBLE_NAME);
+  CONNECT ("scroll-background-checkbutton", TERMINAL_PROFILE_SCROLL_BACKGROUND);
+  CONNECT ("scrollbar-position-combobox", TERMINAL_PROFILE_SCROLLBAR_POSITION);
+  CONNECT ("scroll-on-keystroke-checkbutton", TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE);
+  CONNECT ("scroll-on-output-checkbutton", TERMINAL_PROFILE_SCROLL_ON_OUTPUT);
+  CONNECT ("show-menubar-checkbutton", TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR);
+  CONNECT ("solid-radiobutton", TERMINAL_PROFILE_BACKGROUND_TYPE);
+  CONNECT ("system-font-checkbutton", TERMINAL_PROFILE_USE_SYSTEM_FONT);
+  CONNECT ("title-entry", TERMINAL_PROFILE_TITLE);
+  CONNECT ("title-mode-combobox", TERMINAL_PROFILE_TITLE_MODE);
+  CONNECT ("transparent-radiobutton", TERMINAL_PROFILE_BACKGROUND_TYPE);
+  CONNECT ("update-records-checkbutton", TERMINAL_PROFILE_UPDATE_RECORDS);
+  CONNECT ("use-custom-command-checkbutton", TERMINAL_PROFILE_USE_CUSTOM_COMMAND);
+  CONNECT ("use-theme-colors-checkbutton", TERMINAL_PROFILE_USE_THEME_COLORS);
+  CONNECT ("word-chars-entry", TERMINAL_PROFILE_WORD_CHARS);
+  CONNECT_WITH_FLAGS ("bell-checkbutton", TERMINAL_PROFILE_SILENT_BELL, FLAG_INVERT_BOOL);
+  CONNECT_WITH_FLAGS ("scrollback-lines-spinbutton", TERMINAL_PROFILE_SCROLLBACK_LINES, 0);
 
-  f = terminal_profile_get_background_image_file (profile);
-  if (f && *f)
-    gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (w), f);
-}
+#undef CONNECT
+#undef CONNECT_WITH_FLAGS
+#undef SET_ENUM_VALUE
 
-static void
-profile_editor_update_scroll_background (GtkWidget       *editor,
-                                         TerminalProfile *profile)
-{
-  GtkWidget *w;
+  profile_notify_sensitivity_cb (profile, NULL, editor);
+  g_signal_connect (profile, "notify",
+                    G_CALLBACK (profile_notify_sensitivity_cb),
+                    editor);
+  g_signal_connect (profile,
+                    "forgotten",
+                    G_CALLBACK (profile_forgotten_cb),
+                    editor);
 
-  w = profile_editor_get_widget (editor, "scroll-background-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                               terminal_profile_get_scroll_background (profile));
-}
-
-static void
-profile_editor_update_background_darkness (GtkWidget       *editor,
-                                           TerminalProfile *profile)
-{
-  GtkWidget *w;
-  double v;
-
-  w = profile_editor_get_widget (editor, "darken-background-scale");
-
-  v = terminal_profile_get_background_darkness (profile);
-  
-  gtk_range_set_value (GTK_RANGE (w), v);
-}
-
-static void
-profile_editor_update_backspace_binding (GtkWidget       *editor,
-                                         TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "backspace-binding-combobox");
-  
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w),
-                            terminal_profile_get_backspace_binding (profile));
-}
-
-static void
-profile_editor_update_delete_binding (GtkWidget       *editor,
-                                      TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "delete-binding-combobox");
-  
-  gtk_combo_box_set_active (GTK_COMBO_BOX (w),
-                            terminal_profile_get_delete_binding (profile));
-}
-
-static void
-profile_editor_update_use_theme_colors (GtkWidget       *editor,
-                                        TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "use-theme-colors-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_use_theme_colors (profile));
-}
-
-static void
-profile_editor_update_use_system_font (GtkWidget       *editor,
-                                       TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = profile_editor_get_widget (editor, "system-font-checkbutton");
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (w),
-                                terminal_profile_get_use_system_font (profile));
-}
-
-static void
-profile_editor_update_font (GtkWidget       *editor,
-                            TerminalProfile *profile)
-{
-  GtkWidget *w;
-
-  w = g_object_get_data (G_OBJECT (editor), "font-selector");
-
-  fontpicker_set_if_changed (w,
-                             terminal_profile_get_font (profile));
-}
-
-static GtkWidget*
-profile_editor_get_widget (GtkWidget  *editor,
-                           const char *widget_name)
-{
-  GladeXML *xml;
-  GtkWidget *w;
-  
-  xml = g_object_get_data (G_OBJECT (editor),
-                           "glade-xml");
-
-  g_return_val_if_fail (xml, NULL);
-  
-  w = glade_xml_get_widget (xml, widget_name);
-
-  if (w == NULL)
-    g_error ("No such widget %s", widget_name);
-  
-  return w;
+  gtk_window_set_transient_for (GTK_WINDOW (editor),
+                                GTK_WINDOW (transient_parent));
+  gtk_window_present (GTK_WINDOW (editor));
 }

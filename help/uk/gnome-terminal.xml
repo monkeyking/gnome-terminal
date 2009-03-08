@@ -542,13 +542,15 @@
           <varlistentry> 
              <term><guilabel>Вимкнути всі комбінації клавіш для меню (такі як Alt+ф для меню Файл)</guilabel></term> 
              <listitem> 
-                <para>Відмітьте це поле, щоб вимкнути клавіші доступу до елементів меню, які дозволяють користуватись клавіатурою замість миші. Кожна клавіша доступу виділяється підкресленим символом у меню або елементах діалогового вікна. У деяких випадках, для виконання дії необхідно натиснути клавішу <keycap>Alt</keycap> у комбінації з клавішею доступу.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Вимкнути клавішу доступу до меню (зазвичай F10)</guilabel></term> 
              <listitem> 
-                <para>Відмітьте це поле, щоб вимкнути клавішу швидкого доступу, яка дозволяє отримати доступ до меню <application>GNOME Terminal</application>. Типова клавіша швидкого доступу - <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -673,9 +675,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Використовувати системний термінальний шрифт</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Виберіть цей параметр, щоб програма використовувала системний термінальний шрифт, який вказано у програмі налаштовування <application>Шрифт</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -684,29 +688,15 @@
              <listitem> 
                 <para>Натисніть на цю кнопку, щоб вибрати тип та розмір шрифту терміналу. Ця кнопка доступна лише якщо не відмічений параметр <guilabel>Використовувати системний термінальний шрифт</guilabel>.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Значок профіля</guilabel> </term> 
-             <listitem> 
-                <para>Натисніть на цю кнопку, щоб вибрати значок вікон терміналу, які використовують цей профіль.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Дозволити жирний текст</guilabel> </term> 
              <listitem> 
                 <para>Цей параметр дозволяє ввімкнути у терміналі відображення жирного тексту.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Курсор блимає</guilabel> </term> 
-             <listitem> 
-                <para>Вивдмітьте цей параметр, щоб курсор блимав.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Показувати панель меню у нових терміналах</guilabel>
                 </term> 
@@ -743,7 +733,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Динамічний заголовок</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Цей розкривний список використовується для вказування способу обробки динамічних заголовків, тобто, заголовків терміналів які встановлюються командами, що запускаються у терміналі.</para>
              </listitem> 
@@ -776,7 +766,9 @@
              <term> 
                 <guilabel>При завершенні команди</guilabel> </term> 
              <listitem> 
-                <para>Використовуючи цей розкривний список, вкажіть яку дію виконувати при завершенні команди.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -789,7 +781,9 @@
                 <guilabel>Текст та тло</guilabel>
                 </term> 
              <listitem> 
-                <para>Відмітьте параметр <guilabel>Використовувати кольори системної теми</guilabel>, щоб використовувались кольори, вказані у системній темі середовища GNOME. Ці кольори вибираються  <ulink type="help" url="ghelp:user-guide?prefs-theme">програмою налаштовування <application>Тема</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Використовуючи список <guilabel>Вбудовані схеми</guilabel> вкажіть кольори тексту та тла терміналу. <application>GNOME Terminal</application> підтримує наступні комбінації кольорів тексту та тла:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -851,9 +845,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Немає (суцільний колір)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Виберіть цей параметр, щоб використовувати колір тла, вказаний як колір тла терміналу у вкладці <guilabel>Кольори</guilabel>.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -899,14 +895,7 @@
                 <para>Використовуйте це поле, щоб вказати кількість рядків які можна прокрутити назад користуючись панеллю прокрутки. Наприклад, якщо ви вкажете 100, ви зможете прокрутити назад 100 останніх рядків відображених у терміналі.</para>
              </listitem> 
           </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Зворотна прокрутка ... кілобайти</guilabel> </term> 
-             <listitem> 
-                <para>Використовуйте це поле, щоб вказати кількість кілобайт, які можна прокрутити назад використовуючи панель прокрутки. Наприклад, якщо ви вкажете 94, ви зможете прокрутити останні 94 кілобайти відображеної у терміналі інформації.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Прокручувати при виводі</guilabel> </term> 
              <listitem> 

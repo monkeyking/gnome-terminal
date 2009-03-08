@@ -1,7 +1,5 @@
-/* widget for a toplevel terminal window, possibly containing multiple terminals */
-
 /*
- * Copyright (C) 2001 Havoc Pennington
+ * Copyright © 2001 Havoc Pennington
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,7 +20,8 @@
 #ifndef TERMINAL_WINDOW_H
 #define TERMINAL_WINDOW_H
 
-#include <gtk/gtkwindow.h>
+#include <gtk/gtk.h>
+
 #include "terminal-screen.h"
 
 G_BEGIN_DECLS
@@ -54,12 +53,19 @@ GType terminal_window_get_type (void) G_GNUC_CONST;
 
 TerminalWindow* terminal_window_new (void);
 
+GtkUIManager *terminal_window_get_ui_manager (TerminalWindow *window);
+
 void terminal_window_add_screen (TerminalWindow *window,
                                  TerminalScreen *screen,
-                                 gint            position);
+                                 int position);
 
 void terminal_window_remove_screen (TerminalWindow *window,
                                     TerminalScreen *screen);
+
+void terminal_window_move_screen (TerminalWindow *source_window,
+                                  TerminalWindow *dest_window,
+                                  TerminalScreen *screen,
+                                  int dest_position);
 
 /* Menubar visibility is part of session state, except that
  * if it isn't restored from session, the window gets the setting
@@ -69,15 +75,12 @@ void terminal_window_set_menubar_visible     (TerminalWindow *window,
                                               gboolean        setting);
 gboolean terminal_window_get_menubar_visible (TerminalWindow *window);
 
-void            terminal_window_set_active (TerminalWindow *window,
-                                            TerminalScreen *screen);
+void            terminal_window_switch_screen (TerminalWindow *window,
+                                               TerminalScreen *screen);
 TerminalScreen* terminal_window_get_active (TerminalWindow *window);
 
-/* In order of their tabs in the notebook */
-GList* terminal_window_list_screens (TerminalWindow *window);
-int    terminal_window_get_screen_count (TerminalWindow *window);
+GList* terminal_window_list_screen_containers (TerminalWindow *window);
 
-void terminal_window_update_icon      (TerminalWindow *window);
 void terminal_window_update_geometry  (TerminalWindow *window);
 void terminal_window_set_size         (TerminalWindow *window,
                                        TerminalScreen *screen,
@@ -88,13 +91,7 @@ void terminal_window_set_size_force_grid (TerminalWindow *window,
                                           int             force_grid_width,
                                           int             force_grid_height);
 
-void     terminal_window_set_fullscreen (TerminalWindow *window,
-                                         gboolean        setting);
-gboolean terminal_window_get_fullscreen (TerminalWindow *window);
-
 GtkWidget* terminal_window_get_notebook (TerminalWindow *window);
-
-void terminal_window_reread_profile_list (TerminalWindow *window);
 
 void terminal_window_set_startup_id (TerminalWindow *window,
                                      const char     *startup_id);

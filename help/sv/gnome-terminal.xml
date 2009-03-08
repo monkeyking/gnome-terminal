@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006, 2007</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
+     </copyright><copyright><year>2006, 2007, 2008</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
      <publisher> 
         <publishername>Dokumentationsprojekt för GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -541,13 +541,15 @@
           <varlistentry> 
              <term><guilabel>Inaktivera alla menyåtkomsttangenter (exempelvis Alt+a för att öppna Arkiv-menyn)</guilabel></term> 
              <listitem> 
-                <para>Välj det här alternativet för att inaktivera åtkomsttangenter som är definierade för att låta dig använda tangentbordet istället för musen för att välja ett menyobjekt. Varje åtkomsttangent identifieras med en understruken bokstav på en meny eller ett dialogalternativ. I vissa fall måste du trycka på tangenten <keycap>Alt</keycap> i kombination med åtkomsttangenten för att genomföra åtgärden.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Inaktivera tangent för menyåtkomst (F10 som standard)</guilabel></term> 
              <listitem> 
-                <para>Välj det här alternativet för att inaktivera genvägstangenten som är definierad för att låta dig komma åt menyerna i <application>GNOME-terminal</application>. Standardtangenten för genvägen för att komma åt menyerna är <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -670,9 +672,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Använd systemets terminaltypsnitt</guilabel> </term> 
+                <guilabel>Använd systemets typsnitt med fast breddsteg</guilabel> </term>
              <listitem> 
-                <para>Välj det här alternativet för att använda standardprogramtypsnittet som har angivits i inställningsverktyget <application>Typsnitt</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -681,29 +685,15 @@
              <listitem> 
                 <para>Klicka på den här knappen för att välja en typsnittstyp och typsnittsstorlek för terminalen. Den här knappen är endast aktiverad om alternativet <guilabel>Använd systemets terminaltypsnitt</guilabel> inte har valts.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Profilikon</guilabel> </term> 
-             <listitem> 
-                <para>Klicka på den här knappen för att välja en ikon som representerar terminalfönstren som använder den aktuella profilen.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Tillåt fet text</guilabel> </term> 
              <listitem> 
                 <para>Välj det här alternativet för att terminalen ska visa fet text.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Markören blinkar</guilabel> </term> 
-             <listitem> 
-                <para>Välj detta alternativ för att visa en markör som blinkar.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Visa menyrad som standard i nya terminalfönster</guilabel>
                 </term> 
@@ -740,7 +730,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Dynamiskt inställd titel</guilabel> </term> 
+                <guilabel>När terminalkommandon ställer in sina egna titlar</guilabel> </term>
              <listitem> 
                 <para>Använd den här rullgardinslistan för att ange hur dynamiskt inställda titlar ska hanteras, alltså, terminaltitlar inställda av kommandon som kör i terminalen.</para>
              </listitem> 
@@ -771,7 +761,9 @@
              <term> 
                 <guilabel>Då kommandot avslutar</guilabel> </term> 
              <listitem> 
-                <para>Använd den här rullgardinslistan för att ange vilken åtgärd som ska genomföras när terminalen avslutas.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -784,7 +776,9 @@
                 <guilabel>Förgrund och bakgrund</guilabel>
                 </term> 
              <listitem> 
-                <para>Välj alternativet <guilabel>Använd färger från systemtemat</guilabel> för att använda färger som är angivna i temat för GNOME-skrivbordet, som har valts i inställningsverktyget <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Tema</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Använd rullgardinslistan <guilabel>Inbyggda scheman</guilabel> för att ange förgrund- och bakgrundsfärger för terminalen. <application>GNOME-terminal</application> har stöd för följande förgrund- och bakgrundsfärgkombinationer:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -846,9 +840,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Ingen (använd enfärgad bakgrund)</guilabel> 
+                        <guilabel>Enfärgad</guilabel>
                      </para>
-                     <para>Välj det här alternativet för att använda bakgrundsfärgen som är angiven i den flikade sektionen <guilabel>Färger</guilabel> som bakgrundsfärgen för terminalen.</para>
+                     <para>Välj det här alternativet för att använda bakgrundsfärgen som är angiven i den flikade sektionen <guilabel>Färger</guilabel> som bakgrundsfärg för terminalen.</para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -894,14 +888,7 @@
                 <para>Använd den här väljaren för att ange antalet rader som du kan rulla tillbaka i med rullisten. Till exempel, om du anger 100 kan du rulla tillbaka de senaste 100 raderna som visas i terminalen.</para>
              </listitem> 
           </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Rullningshistorik ... kilobyte</guilabel> </term> 
-             <listitem> 
-                <para>Använd den här väljaren för att ange antalet kilobyte som du kan rulla tillbaka i med rullisten. Till exempel, om du anger 94 kan du rulla tillbaka de senaste 94 kilobyten som visas i terminalen.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Rulla vid utdata</guilabel> </term> 
              <listitem> 
