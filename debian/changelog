@@ -1,3 +1,13 @@
+gnome-terminal (2.26.0-0ubuntu1) jaunty; urgency=low
+
+  * New upstream release (LP: #343715)
+  * debian/patches/30_SVNr3329_fix_memory_corruption.patch:
+    - Removed, the change is in the tarball
+  * debian/patches/99_autoreconf.patch:
+    - Refreshed
+
+ -- Pedro Fragoso <ember@ubuntu.com>  Mon, 16 Mar 2009 10:59:29 +0000
+
 gnome-terminal (2.25.91-0ubuntu2) jaunty; urgency=low
 
   * debian/patches/30_SVNr3329_fix_memory_corruption.patch: apply patch from 
@@ -67,7 +77,6 @@ gnome-terminal (2.24.1.1-0ubuntu1) intrepid-proposed; urgency=low
   [ Iain Lane ]
   * debian/patches/05_restore_tab_switching_shortcuts.patch:
     - Re-add patch dropped by upstream due to missing commit in stable branch
-    log = files.LogFile()
       and crasher regression. Fix for crasher is already in 2.24.1.1.
       (LP: #272199)
 

@@ -1,8 +1,580 @@
-commit ebaceb54f6bb8102fb3f3e9823a370a6bb53aa97
+commit fe757a4da8cbb1e69db60ca5988417a8c28a1bae
 Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Feb 16 18:51:36 2009 +0100
+Date:   Sun Mar 15 14:14:11 2009 +0100
+
+    Fix ChangeLog generation
+
+ Makefile.am |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
+
+commit b04a04a860fad713a7687f03f2225fa1d2d5dbcb
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Mar 15 14:05:31 2009 +0100
+
+    Prepare 2.26.0
+
+ Makefile.am  |   17 ++++-------------
+ configure.ac |   15 ++-------------
+ 2 files changed, 6 insertions(+), 26 deletions(-)
+
+commit 66c2cbc546072817bf3f2cbe0f3559c39fc9eb67
+Author: apravi <apravi@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Mar 15 08:04:01 2009 +0000
+
+    Malayalam translation updated
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3358 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ml.po |  376 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 189 insertions(+), 187 deletions(-)
+
+commit 5ef30b19999b05baa346dc8e9cddff1446c835a9
+Author: kennethn <kennethn@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Mar 14 23:44:56 2009 +0000
+
+    Added Danish translation of the dokumentation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3357 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/ChangeLog.pre-2-23 |    4 +
+ help/Makefile.am        |    2 +-
+ help/da/da.po           | 1878 +++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 1883 insertions(+), 1 deletions(-)
+
+commit d84fd44d3aa9c01fb7cc081c751e56cba7d98b87
+Author: ifelix <ifelix@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Mar 14 17:11:03 2009 +0000
+
+    tamil translation updated
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3356 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ta.po | 1709 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 974 insertions(+), 735 deletions(-)
+
+commit 4593d937f2514417612bcd247511da5279731ec0
+Author: aklapper <aklapper@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Mar 13 20:59:25 2009 +0000
+
+    2009-03-13  Andre Klapper  <a9016009@gmx.de>
+    
+    	* help/cs/cs.po: Updated Czech translation by Lucas Lommer.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3355 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/cs/cs.po | 1275 ++++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 files changed, 1000 insertions(+), 275 deletions(-)
+
+commit ef542c6910709a57c3cc40c9a075ce4c7feec6b2
+Author: rranjan <rranjan@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Mar 13 10:03:29 2009 +0000
+
+    hindi updated by Rajesh Ranjan, applying evaluation FUEL for this mod
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3354 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/hi.po |  286 +++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 145 insertions(+), 141 deletions(-)
+
+commit 4973079deca79ce0ca968bcc625d5484b068277d
+Author: amitakhya <amitakhya@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Mar 13 06:47:48 2009 +0000
+
+    Updated assamese translations
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3353 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/as.po | 3833 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 1988 insertions(+), 1845 deletions(-)
+
+commit d3dbde7b8409ae0f6d2e9a980c1726802234ee5a
+Author: dnloreto <dnloreto@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 12 23:10:07 2009 +0000
+
+    Duarte Loreto <happyguy_pt@hotmail.com> Fixed an error on the Portuguese translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3352 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/pt.po |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 84d2d574780f76255260fa98ef8d00a2c8cd6f10
+Author: rranjan <rranjan@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 12 21:25:37 2009 +0000
+
+    hindi updated by Rajesh Ranjan
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3351 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/hi.po | 1608 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 908 insertions(+), 700 deletions(-)
+
+commit 0116954285001c71eafad02e7a59f50f8085976f
+Author: miloc <miloc@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 12 12:10:58 2009 +0000
+
+    Updated Italian translation by Lorenzo Travaglio
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3350 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/it/it.po |  713 +++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 369 insertions(+), 344 deletions(-)
+
+commit 4178dfce51809ef8120bbad76ad7f28475642735
+Author: anipeter <anipeter@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 12 11:23:23 2009 +0000
+
+    Updated Malayalam Translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3349 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ml.po | 2888 +++++++++++++++++++++++++++++---------------------------------
+ 1 files changed, 1365 insertions(+), 1523 deletions(-)
+
+commit 1f648e0d09c3788b2d4b8e17773d6ef614187091
+Author: runab <runab@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 12 11:00:16 2009 +0000
+
+    Updated Bengali India Translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3348 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/bn_IN.po | 1563 ++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 899 insertions(+), 664 deletions(-)
+
+commit 7930f7669bf81c06a75d13759a1d062e59ad2af0
+Author: kkrothap <kkrothap@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Mar 11 13:35:43 2009 +0000
+
+    Updated Telugu Translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3347 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/te.po | 2579 ++++++++++++++++++++++++++++----------------------------------
+ 1 files changed, 1154 insertions(+), 1425 deletions(-)
+
+commit 4ee8ef31025513f0cf7def8b9a26a8bab303094b
+Author: mgiri <mgiri@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Mar 10 21:57:16 2009 +0000
+
+    Updated Oriya Translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3346 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/or.po |  749 ++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 393 insertions(+), 356 deletions(-)
+
+commit fe826ddd191926e7743cc7b7b99abe066f5130fd
+Author: dplanella <dplanella@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Mar 9 20:21:40 2009 +0000
+
+    2009-03-09  David Planella <david.planella@gmail.com>
+    
+            * ca.po: Updated Catalan translation by Joan Duran.
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3345 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ca.po | 1947 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 1071 insertions(+), 876 deletions(-)
+
+commit 26f247d6d49d6ca71002737e8d6a70acde89645d
+Author: yairhr <yairhr@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Mar 8 23:16:29 2009 +0000
+
+    updated hebrew translation by Yaron Sharabani
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3344 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/he.po |  370 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 197 insertions(+), 173 deletions(-)
+
+commit a0cc7874143584764d38a0d5ffa1aea015f05809
+Author: dnylande <dnylande@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Mar 8 21:00:43 2009 +0000
+
+    sv.po: Updated Swedish translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3343 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/sv.po | 1070 +++++++++++++++++++++++++++++++++++++++++++++-----------------
+ 1 files changed, 777 insertions(+), 293 deletions(-)
+
+commit ffc398254e0aea9e3920e89cd883e411c31d5f87
+Author: pmkovar <pmkovar@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Mar 8 03:34:25 2009 +0000
+
+    2009-03-08  Petr Kovar  <pknbe@volny.cz>
+    
+    	* cs.po: Updated Czech translation by Lucas Lommer
+    	and Petr Kovar.
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3342 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/cs.po | 1577 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 914 insertions(+), 663 deletions(-)
+
+commit 21acf26bb2a5af7516c134bf9793c63e3adeac66
+Author: gintas <gintas@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Mar 7 22:43:45 2009 +0000
+
+    2009-03-08  Gintautas Miliauskas  <gintas@akl.lt>
+    
+    	* lt.po: Updated Lithuanian translation.
+    
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3341 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/lt.po | 1880 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 1038 insertions(+), 842 deletions(-)
+
+commit 7741d47e5adcfe19d6ed8ce1293119e8ddc61384
+Author: aman <aman@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Mar 6 02:11:24 2009 +0000
+
+    updating translation for Punjabi
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3340 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/pa.po | 2231 ++++++++++++++++++++++++++------------------------------------
+ 1 files changed, 940 insertions(+), 1291 deletions(-)
+
+commit 03d9d23241d18bf3348c859506b823b39b43ae49
+Author: gforcada <gforcada@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 5 20:44:51 2009 +0000
+
+    Updated Catalan translation by Joan Duran
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3339 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/ca/ca.po |  299 +++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 153 insertions(+), 146 deletions(-)
+
+commit 42de189191b99872cce3049959895eadaf951528
+Author: ogmaciel <ogmaciel@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Mar 5 03:41:24 2009 +0000
+
+    Updated Brazilian Portuguese translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3338 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/pt_BR.po | 1700 ++++++++++++++++++++++-------------------------------------
+ 1 files changed, 631 insertions(+), 1069 deletions(-)
+
+commit daab2147e26fc3c89cfa2aeecff1ae7c17bc20c6
+Author: sprasad <sprasad@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Mar 4 06:47:28 2009 +0000
+
+    Updated Kannada(kn.po) translations
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3337 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/kn.po | 1485 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 859 insertions(+), 626 deletions(-)
+
+commit d8978d117870abc849f99873ea6b74ffd3641b1f
+Author: mgiri <mgiri@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Mar 2 10:01:01 2009 +0000
+
+    Updated Oriya Translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3336 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/or.po | 2288 ++++++++++++++++++++++++++------------------------------------
+ 1 files changed, 952 insertions(+), 1336 deletions(-)
+
+commit 99083374acec45327065d048f1fcc8d3c1eeee07
+Author: swkothar <swkothar@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Mar 2 06:40:31 2009 +0000
+
+    Updated gujarati translations
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3335 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/gu.po |  242 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 121 insertions(+), 121 deletions(-)
+
+commit af34deef0b2ebd0cb5d5d79088a01d8ecf25de47
+Author: ogmaciel <ogmaciel@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Feb 28 18:30:47 2009 +0000
+
+    Updated Italian translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3334 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/it.po |  128 ++++++++++++-------------------------------------------------
+ 1 files changed, 25 insertions(+), 103 deletions(-)
+
+commit ae59d5517255ea5621efc09b50aa2b3d2cfd2986
+Author: dnloreto <dnloreto@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Feb 28 17:21:22 2009 +0000
+
+    2009-02-28 Duarte Loreto <happyguy_pt@hotmail.com> Updated Portuguese translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3333 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/pt.po | 1920 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 1055 insertions(+), 865 deletions(-)
+
+commit 8d3b62324925d18b6e256ce7b06c9966ee52ff0f
+Author: ogmaciel <ogmaciel@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Feb 28 15:52:47 2009 +0000
+
+    Updated Italian translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3332 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/it.po | 1967 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 files changed, 1247 insertions(+), 720 deletions(-)
+
+commit 98dde4486d17a9c6fb44b89a56bef43f79a6568e
+Author: aihana <aihana@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Feb 26 15:20:27 2009 +0000
+
+    2009-02-27  Takeshi AIHANA <takeshi.aihana@gmail.com>
+    
+    	* ja.po: Updated Japanese translation.
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3331 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ja.po | 1564 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 909 insertions(+), 655 deletions(-)
+
+commit d50bbafcd0fefc837922eb4d783ab863031a6678
+Author: ituohela <ituohela@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Feb 26 09:35:14 2009 +0000
+
+    Updated Finnish translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3330 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/fi.po |  137 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 73 insertions(+), 64 deletions(-)
+
+commit 417dddb1bdc8bd991a484ffe9ef1f9b29fb8d5cd
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Feb 24 15:56:11 2009 +0000
+
+    Bug 572549 – Memory corruption in gnome-terminal
+    Make sure to return a string dup.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3329 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-screen.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 76de873011be68728183c221ea13c7db1211e672
+Author: mateju <mateju@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Feb 24 14:46:24 2009 +0000
+
+    Updated Slovenian translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3328 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/sl.po | 1552 +++++++++++++++++++++++++++++++++++++------------------------
+ 1 files changed, 941 insertions(+), 611 deletions(-)
+
+commit e7c4be2cb63e86a80488dce07105af8089471b6f
+Author: pwithnall <pwithnall@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Feb 23 18:52:42 2009 +0000
+
+    2009-02-23  Philip Withnall  <philip@tecnocode.co.uk>
+    
+    	* en_GB.po: Updated British English translation.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3327 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/en_GB.po | 1900 ++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 1039 insertions(+), 861 deletions(-)
+
+commit e91dfbcd9953d24667b75167d2e0ef6d39c44aca
+Author: wadimd <wadimd@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Feb 22 22:37:14 2009 +0000
+
+    Updated Polish translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3326 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/pl.po | 2638 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 1349 insertions(+), 1289 deletions(-)
+
+commit 03315ec9d302524e2284d1e321608f5e3138bc7b
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Feb 22 18:46:53 2009 +0000
+
+    Correct the pspec ID; issue noticed by Mateus César Gröess
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3325 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-screen.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 37b086bfcaf502e91392731a3c0264adfcde66c8
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Feb 22 18:45:14 2009 +0000
+
+    Fix possible gsize wraparound issue when demarshaling the data
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3324 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-util.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 83a262273490b6e392198ec7dd60f9a064c413ca
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Feb 22 18:45:07 2009 +0000
+
+    Bug 572414 – 'Close this terminal' warning labels button as 'Close
+    Window'
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3323 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit da69138cb8b81cd1a5c0611a6f7d8b90c317a588
+Author: al_shopov <al_shopov@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Feb 22 12:53:30 2009 +0000
+
+    2009-02-22  Alexander Shopov  <ash@contact.bg>
+    
+    	* bg.po: Updated Bulgarian translation by
+    	Alexander Shopov <ash@contact.bg>
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3322 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/bg.po | 1625 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 913 insertions(+), 712 deletions(-)
+
+commit 5d19aacde74430caebb225766bdedf52b71769d8
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Feb 21 22:00:11 2009 +0000
+
+    Bug 570591 — running 'reset' shrinks the terminal window
+    Correctly use the broken vte_terminal_get_padding() API.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3321 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-screen.c |   10 +++++-----
+ src/terminal-window.c |   34 +++++++++++++++++++++-------------
+ 2 files changed, 26 insertions(+), 18 deletions(-)
+
+commit 5e3fbed96aa1b79d319c61a33a70f17536c84416
+Author: tkaroonb <tkaroonb@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Feb 20 14:22:23 2009 +0000
+
+    2009-02-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+    
+    	* po/th.po: Updated Thai translation.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3320 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/th.po | 1819 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 1003 insertions(+), 816 deletions(-)
+
+commit 156b94cff2aed1ec0736409985e517a10eb3409d
+Author: dnylande <dnylande@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Fri Feb 20 12:53:24 2009 +0000
+
+    sv.po: Updated Swedish translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3319 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/sv.po |  242 ++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 127 insertions(+), 115 deletions(-)
+
+commit 874f7c98a754a900bc44c964bf2560dda43dd6b8
+Author: nshmyrev <nshmyrev@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Feb 19 01:05:34 2009 +0000
+
+    Updated Russian translation by  Yuriy Penkin <yuriy.penkin@gmail.com>
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3318 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ru.po | 1666 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 952 insertions(+), 714 deletions(-)
+
+commit ba4999308246631879361e37c2f7735e17b3206a
+Author: ituohela <ituohela@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Feb 18 17:13:47 2009 +0000
+
+    Updated Finnish translation
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3317 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/fi.po | 1906 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 1042 insertions(+), 864 deletions(-)
+
+commit 73122c83897efe77d020c3754324bc6b527ccc2b
+Author: sandeeps <sandeeps@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Feb 18 11:54:42 2009 +0000
+
+    Bug fix for #571925
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3316 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/mr.po | 1558 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 904 insertions(+), 654 deletions(-)
+
+commit e34e6e5fe049ee0d32fd07158ee1549483c0ac33
+Author: aklapper <aklapper@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Feb 17 19:05:48 2009 +0000
+
+    2009-02-17  Andre Klapper  <a9016009@gmx.de>
+    
+    	* cs/cs.po: Updated Czech Translation by Lucas Lommer.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3315 e32f9464-e525-0410-8908-8a3b6990da27
+
+ help/cs/cs.po |   31 +++++++++++++------------------
+ 1 files changed, 13 insertions(+), 18 deletions(-)
+
+commit 0b62f433dd826445bccf50c650ed4f1562d270a4
+Author: chliao <chliao@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Feb 17 14:16:05 2009 +0000
+
+    2.25.91
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3314 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/zh_HK.po |    9 +++++----
+ po/zh_TW.po |    9 +++++----
+ 2 files changed, 10 insertions(+), 8 deletions(-)
+
+commit f982115f0cbc4133d517e7e9351e31a28035b950
+Author: janimo <janimo@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Feb 16 19:53:45 2009 +0000
+
+    Updated Romanian translations from Adi Roiban
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3313 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ro.po | 2735 ++++++++++++++++++++++++++------------------------------------
+ 1 files changed, 1156 insertions(+), 1579 deletions(-)
+
+commit e6329a2dee960e516fde3691a7b642e6106a1a06
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Feb 16 18:27:34 2009 +0000
 
     Version 2.25.91
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3311 e32f9464-e525-0410-8908-8a3b6990da27
 
  configure.ac |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
