@@ -193,9 +193,6 @@ SHELL = @SHELL@
 SMCLIENT_CFLAGS = @SMCLIENT_CFLAGS@
 SMCLIENT_LIBS = @SMCLIENT_LIBS@
 STRIP = @STRIP@
-SVN_BRANCH = @SVN_BRANCH@
-SVN_MODULE = @SVN_MODULE@
-SVN_ROOT = @SVN_ROOT@
 TERM_CFLAGS = @TERM_CFLAGS@
 TERM_LIBS = @TERM_LIBS@
 USE_NLS = @USE_NLS@
@@ -255,7 +252,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = src po help
 desktopdir = $(datadir)/applications
-desktop_in_files = gnome-terminal.desktop.in.in
+desktop_in_files = @PACKAGE@.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 EXTRA_DIST = \
 	ChangeLog.pre-2-23	\
@@ -751,17 +748,10 @@ uninstall-am: uninstall-desktopDATA
 
 @INTLTOOL_DESKTOP_RULE@
 
-# Build ChangeLog from GIT or SVN history
-# (SVN r2446 was the first ChangeLog-less checkin).
-# Only build this when in a git or svn checkout.
-
+# Build ChangeLog from GIT  history
 ChangeLog:
 	@if test -f $(top_srcdir)/.git/HEAD; then \
 		git log --stat > $@; \
-	elif test -f $(top_srcdir)/.svn/entries; then \
-		svn log -v --xml -r HEAD:2446 $(SVN_ROOT)/$(SVN_MODULE)/$(SVN_BRANCH) | \
-			xsltproc --stringparam strip-prefix "$(SVN_MODULE)/$(SVN_BRANCH)" \
-				 --stringparam include-rev "yes" $(top_srcdir)/svn2cl.xsl - > $@; \
 	fi
 
 dist: ChangeLog
