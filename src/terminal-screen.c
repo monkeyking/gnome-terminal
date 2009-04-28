@@ -1065,9 +1065,14 @@ terminal_screen_set_font (TerminalScreen *screen)
     g_object_get (profile, TERMINAL_PROFILE_FONT, &desc, NULL);
   g_assert (desc);
 
-  pango_font_description_set_size (desc,
-				   priv->font_scale *
-				   pango_font_description_get_size (desc));
+  if (pango_font_description_get_size_is_absolute (desc))
+    pango_font_description_set_absolute_size (desc,
+                                              priv->font_scale *
+                                              pango_font_description_get_size (desc));
+  else
+    pango_font_description_set_size (desc,
+                                     priv->font_scale *
+                                     pango_font_description_get_size (desc));
 
   vte_terminal_set_font (VTE_TERMINAL (screen), desc);
 
@@ -1224,6 +1229,7 @@ show_command_error_dialog (TerminalScreen *screen,
 
 static gboolean
 get_child_command (TerminalScreen *screen,
+                   const char     *shell_env,
                    char          **file_p,
                    char         ***argv_p,
                    GError        **err)
@@ -1262,7 +1268,7 @@ get_child_command (TerminalScreen *screen,
       const char *only_name;
       char *shell;
 
-      shell = egg_shell ();
+      shell = egg_shell (shell_env);
 
       file = g_strdup (shell);
       
@@ -1298,7 +1304,8 @@ get_child_command (TerminalScreen *screen,
 }
 
 static char**
-get_child_environment (TerminalScreen *screen)
+get_child_environment (TerminalScreen *screen,
+                       char **shell)
 {
   TerminalScreenPrivate *priv = screen->priv;
   GtkWidget *term = GTK_WIDGET (screen);
@@ -1359,7 +1366,7 @@ get_child_environment (TerminalScreen *screen)
   g_free (proxymode);
 
   /* Do we already have a proxy setting? */
-  if (getenv ("http_proxy"))
+  if (g_hash_table_lookup (env_table, "http_proxy") != NULL)
     use_proxy = FALSE;
 
   /* Do we have no proxy host or an empty string? */
@@ -1469,6 +1476,8 @@ get_child_environment (TerminalScreen *screen)
     g_ptr_array_add (retval, g_strdup_printf ("%s=%s", e, v ? v : ""));
   g_ptr_array_add (retval, NULL);
 
+  *shell = g_strdup (g_hash_table_lookup (env_table, "SHELL"));
+
   g_hash_table_destroy (env_table);
   return (char **) g_ptr_array_free (retval, FALSE);
 }
@@ -1480,21 +1489,23 @@ terminal_screen_launch_child (TerminalScreen *screen)
   VteTerminal *terminal = VTE_TERMINAL (screen);
   TerminalProfile *profile;
   char **env, **argv;
-  char *path;
-  GError *err;
+  char *path, *shell = NULL;
+  GError *err = NULL;
   gboolean update_records;
 
   profile = priv->profile;
 
-  err = NULL;
-  if (!get_child_command (screen, &path, &argv, &err))
+  env = get_child_environment (screen, &shell);
+
+  if (!get_child_command (screen, shell, &path, &argv, &err))
     {
       show_command_error_dialog (screen, err);
       g_error_free (err);
+
+      g_strfreev (env);
+      g_free (shell);
       return;
     }
-
-  env = get_child_environment (screen);
 
   update_records = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_UPDATE_RECORDS);
 
@@ -1516,6 +1527,7 @@ terminal_screen_launch_child (TerminalScreen *screen)
   
   priv->pty_fd = vte_terminal_get_pty (terminal);
 
+  g_free (shell);
   g_free (path);
   g_strfreev (argv);
   g_strfreev (env);
@@ -1747,6 +1759,11 @@ terminal_screen_get_current_dir (TerminalScreen *screen)
 
   /* Get the foreground process ID */
   fgpid = tcgetpgrp (priv->pty_fd);
+
+  /* If that didn't work, try falling back to the primary child. See bug #575184. */
+  if (fgpid == -1)
+    fgpid = priv->child_pid;
+
   if (fgpid == -1)
     return g_strdup (priv->initial_working_directory);
 
@@ -2260,13 +2277,12 @@ gboolean
 terminal_screen_has_foreground_process (TerminalScreen *screen)
 {
   TerminalScreenPrivate *priv = screen->priv;
-  int master_fd, fgpid;
+  int fgpid;
 
-  master_fd = vte_terminal_get_pty (VTE_TERMINAL (screen));
-  if (master_fd == -1)
+  if (priv->pty_fd == -1)
     return FALSE;
 
-  fgpid = tcgetpgrp (master_fd);
+  fgpid = tcgetpgrp (priv->pty_fd);
   if (fgpid == -1 || fgpid == priv->child_pid)
     return FALSE;
 
