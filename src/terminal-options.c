@@ -496,7 +496,8 @@ option_load_save_config_cb (const gchar *option_name,
 
   if (options->config_file)
     {
-      g_set_error (error, 0, 0, "X"); /* FIXME */
+      g_set_error_literal (error, TERMINAL_OPTION_ERROR, TERMINAL_OPTION_ERROR_EXCLUSIVE_OPTIONS,
+                           "Options \"--load-config\" and \"--save-config\" are mutually exclusive");
       return FALSE;
     }
 
@@ -635,10 +636,6 @@ digest_options_callback (GOptionContext *context,
   TerminalOptions *options = data;
   InitialTab    *it;
 
-  /* make sure we have some window in case no options were given */
-  if (options->initial_windows == NULL)
-    it = ensure_top_tab (options);
-
   if (options->execute)
     {
       if (options->exec_argv == NULL)
@@ -661,6 +658,25 @@ digest_options_callback (GOptionContext *context,
   return TRUE;
 }
 
+/**
+ * terminal_options_parse:
+ * @working_directory: the default working directory
+ * @display_name: the default X display name
+ * @startup_id: the startup notification ID
+ * @env: the environment as variable=value pairs
+ * @ignore_unknown_options: whether to ignore unknown options when parsing
+ *   the arguments
+ * @argcp: (inout) address of the argument count. Changed if any arguments were handled
+ * @argvp: (inout) address of the argument vector. Any parameters understood by
+ *   the terminal #GOptionContext are removed
+ * @error: a #GError to fill in
+ * @...: a %NULL terminated list of extra #GOptionGroup<!-- -->s
+ *
+ * Parses the argument vector *@argvp.
+ *
+ * Returns: a new #TerminalOptions containing the windows and tabs to open,
+ *   or %NULL on error.
+ */
 TerminalOptions *
 terminal_options_parse (const char *working_directory,
                         const char *display_name,
@@ -757,6 +773,17 @@ terminal_options_parse (const char *working_directory,
   return NULL;
 }
 
+/**
+ * terminal_options_merge_config:
+ * @options:
+ * @key_file: a #GKeyFile containing to merge the options from
+ * @error: a #GError to fill in
+ *
+ * Merges the saved options from @key_file into @options.
+ *
+ * Returns: %TRUE if @key_file was a valid key file containing a stored
+ *   terminal configuration, or %FALSE on error
+ */
 gboolean
 terminal_options_merge_config (TerminalOptions *options,
                                GKeyFile *key_file,
@@ -770,7 +797,8 @@ terminal_options_merge_config (TerminalOptions *options,
 
   if (!g_key_file_has_group (key_file, TERMINAL_CONFIG_GROUP))
     {
-      g_set_error_literal (error, G_KEY_FILE_ERROR, G_KEY_FILE_ERROR_GROUP_NOT_FOUND,
+      g_set_error_literal (error, TERMINAL_OPTION_ERROR,
+                           TERMINAL_OPTION_ERROR_INVALID_CONFIG_FILE,
                            _("Not a valid terminal config file."));
       return FALSE;
     }
@@ -782,7 +810,8 @@ terminal_options_merge_config (TerminalOptions *options,
       compat_version <= 0 ||
       compat_version > TERMINAL_CONFIG_COMPAT_VERSION)
     {
-      g_set_error_literal (error, 0 /* FIXME */, 0,
+      g_set_error_literal (error, TERMINAL_OPTION_ERROR,
+                           TERMINAL_OPTION_ERROR_INCOMPATIBLE_CONFIG_FILE,
                            _("Incompatible terminal config file version."));
       return FALSE;
     }
@@ -861,6 +890,24 @@ terminal_options_merge_config (TerminalOptions *options,
   return TRUE;
 }
 
+/**
+ * terminal_options_ensure_window:
+ * @options:
+ *
+ * Ensure that @options will contain at least one window to open.
+ */
+void
+terminal_options_ensure_window (TerminalOptions *options)
+{
+  ensure_top_window (options);
+}
+
+/**
+ * terminal_options_free:
+ * @options:
+ *
+ * Frees @options.
+ */
 void
 terminal_options_free (TerminalOptions *options)
 {

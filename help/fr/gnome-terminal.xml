@@ -2,10 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.5.90">
+<!ENTITY appversion "2.24.3">
 <!ENTITY manrevision "2.8">
-<!ENTITY date "March 2004">
+<!ENTITY date "March 2009">
 ]>
+<!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   Template version: 2.0 beta
@@ -16,7 +17,10 @@
   <articleinfo> 
      <title>Manuel du terminal GNOME</title> 
      <abstract role="description">
-       <para>Manuel d'utilisation de l'application Terminal GNOME.</para>
+       <para>
+	 The Terminal gives users the power to communicate with their system using
+text-based commands through a shell such as Bash.
+       </para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +39,15 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006-2007.</year><holder>Claude Paroz (claude@2xlibre.net)</holder></copyright>
+     </copyright>
+     <copyright> 
+        <year>2008</year> 
+        <holder>Christian Persch</holder> 
+     </copyright>
+     <copyright> 
+        <year>2009</year> 
+        <holder>Paul Cutler</holder> 
+     </copyright><copyright><year>2006-2009.</year><holder>Claude Paroz (claude@2xlibre.net)</holder></copyright>	 
      <publisher> 
         <publishername>Projet de documentation GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -87,15 +99,18 @@
      <publisher role="maintainer">
        <publishername>Projet de documentation GNOME</publishername>
      </publisher>
+	<releaseinfo revision="2.26" role="review">
+		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+    </releaseinfo>
      <revhistory> 
-        <revision> 
+	<revision> 
           <revnumber>Manuel du Terminal GNOME V2.8</revnumber> 
-          <date>Mars 2004</date> 
+          <date>March 2009</date> 
           <revdescription> 
-             <para role="author">Équipe de documentation GNOME de Sun</para>
+             <para role="author">Paul Cutler</para>
              <para role="publisher">Projet de documentation GNOME</para>
           </revdescription> 
-        </revision> 
+        </revision>
 	<revision> 
           <revnumber>Manuel du Terminal GNOME V2.7</revnumber> 
           <date>Novembre 2003</date> 
@@ -169,7 +184,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Ce manuel documente la version 2.5.90 du Terminal GNOME.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>Votre avis</title> 
         <para>Pour rapporter une anomalie ou émettre une suggestion concernant l'application Terminal GNOME ou ce manuel, procédez comme indiqué sur la <ulink url="ghelp:user-guide?feedback" type="help">page de réactions sur GNOME</ulink>.</para>
@@ -181,6 +197,8 @@
   <indexterm> 
      <primary>application terminal</primary> 
   </indexterm> 
+  
+  <!-- ============= Introduction ============================== -->
   <sect1 id="gnome-terminal-introduction"> 
      <title>Introduction</title> 
      <para>Le <application>Terminal GNOME</application> est une application d'émulation de terminal permettant d'effectuer les opérations suivantes :</para>
@@ -199,6 +217,9 @@
         </varlistentry> 
      </variablelist> 
   </sect1> 
+
+  <!--=========== Getting Started ============================== -->
+  
   <sect1 id="gnome-terminal-get-started"> 
      <title>Premiers pas</title> 
      <para>Les sections suivantes expliquent comment lancer le <application>Terminal GNOME</application>.</para>
@@ -297,6 +318,8 @@
      </sect2> 
 
   </sect1> 
+  
+  <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
      <title>Utilisation</title> 
@@ -541,15 +564,13 @@
           <varlistentry> 
              <term><guilabel>Désactiver tous les raccourcis clavier des menus (comme Alt+F pour ouvrir le menu Fichier)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Décochez cette case pour désactiver les touches d'accès permettant de sélectionner un élément de menu à l'aide du clavier plutôt qu'à l'aide de la souris. Chacune d'entre elles est identifiée par une lettre soulignée dans l'option de menu ou de boîte de dialogue. Dans certains cas, vous devez appuyer à la fois sur la touche d'accès et sur la touche <keycap>Alt</keycap> pour exécuter l'action.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Désactiver le raccourci clavier d'accès au menu (F10 par défaut)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Décochez cette case pour désactiver la touche de raccourci vous permettant d'accéder aux menus du <application>Terminal GNOME</application>. Par défaut, il s'agit de <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -639,6 +660,8 @@
      </sect2>   
 
   </sect1> 
+  
+  <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Préférences</title> 
@@ -674,9 +697,7 @@
              <term> 
                 <guilabel>Utiliser la police à chasse fixe du système</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
-                </para>
+                <para>Cette option permet d'utiliser la police à chasse fixe standard définie dans l'onglet <guilabel>Polices</guilabel> du panneau de préférences <application>Apparence</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -705,9 +726,7 @@
              <term> 
                 <guilabel>« Bip » du terminal</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable the terminal bell.
-                </para>
+                <para>Cette option permet de désactiver le signal sonore du terminal.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -763,9 +782,7 @@
              <term> 
                 <guilabel>Quand la commande se termine</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>Cette liste déroulante permet de choisir une action à exécuter lorsque la commande prend fin.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -778,9 +795,7 @@
                 <guilabel>Premier et arrière-plan</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
-                </para>
+                <para>Cochez l'option <guilabel>Utiliser les couleurs du thème système</guilabel> pour utiliser les couleurs indiquées dans le thème GNOME sélectionné dans l'onglet <guilabel>Thème</guilabel> du <ulink type="help" url="ghelp:user-guide?prefs-theme">panneau de préférences <application>Apparence</application></ulink>.</para>
                 <para>Cette liste déroulante permet d'indiquer les couleurs de premier plan et d'arrière-plan du terminal. Le <application>Terminal GNOME</application> prend en charge les combinaisons de couleurs suivantes pour le premier plan et l'arrière-plan :</para>
                 <itemizedlist> 
                   <listitem> 
