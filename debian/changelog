@@ -1,3 +1,48 @@
+gnome-terminal (2.26.2-1ubuntu1) karmic; urgency=low
+
+  * Re-base on Debian unstable (LP: #388048), remaining changes:
+    - debian/control:
+      + Add Vcs-Bzr info.
+      + Build-depend on liblaunchpad-integration-dev.
+    - debian/watch:
+      + Watch unstable series.
+    - debian/patches/01_lpi.patch:
+      + Launchpad integration.
+    - debian/patches/20_add_alt_screen_toggle_ui.patch:
+      + Hook new vte alternate screen scrolling toggle via UI, 
+        thanks to Heath Caldwell (LP: #106995).
+    - debian/patches/99_autoreconf.patch:
+      + Autotools update.
+
+ -- Chris Coulson <chrisccoulson@googlemail.com>  Wed, 17 Jun 2009 00:35:48 +0100
+
+gnome-terminal (2.26.2-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Stop mentioning GNOME 2.
+  * Remove scrollkeeper dependency.
+
+  [ Deng Xiyue ]
+  * New upstream release.
+    + Bump b-dep: libgtk2.0-dev (>= 2.14.0), libvte-dev (>= 0.20.0).
+    + New b-dep: libdbus-glib-1-dev (>= 0.6).
+    + Drop 01_tabs_shortcuts.patch, 02_tabs_shortcuts_translations.patch.
+      Merged upstream.
+    + Refresh 04_resized_on_tabs_switch.patch to apply cleanly.
+  * Drop bonobo path in gnome-terminal-data.install.  DBus is used instead.
+  * Split Copyright holder section to silence lintian warning, and add missing
+    copyright holders.
+  * Point to versioned license files.
+  * Update Standard-Version to 3.8.1.
+
+  [ Josselin Mouette ]
+  * Drop unnecessary build-deps, add libsm-dev.
+  * 01_onlyshowin.patch: new patch. Only show gnome-terminal in GNOME 
+    menus, other desktop environments already have their terminal 
+    emulators.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 01 Jun 2009 11:28:01 +0200
+
 gnome-terminal (2.24.3-3) unstable; urgency=low
 
   * Recommend gvfs. Closes: #519159.

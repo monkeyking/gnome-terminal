@@ -98,6 +98,7 @@ CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
+DBUS_BINDING_TOOL = @DBUS_BINDING_TOOL@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DISABLE_DEPRECATED = @DISABLE_DEPRECATED@
@@ -129,29 +130,10 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 INSTOBJEXT = @INSTOBJEXT@
 INTLLIBS = @INTLLIBS@
-INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
-INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
-INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
 INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
-INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
-INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
 INTLTOOL_MERGE = @INTLTOOL_MERGE@
-INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
 INTLTOOL_PERL = @INTLTOOL_PERL@
-INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
-INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
-INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
-INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
-INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
-INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
-INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
-INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
-INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
-INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
 INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
-INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
-INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
-INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -189,10 +171,9 @@ RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
+SMCLIENT_CFLAGS = @SMCLIENT_CFLAGS@
+SMCLIENT_LIBS = @SMCLIENT_LIBS@
 STRIP = @STRIP@
-SVN_BRANCH = @SVN_BRANCH@
-SVN_MODULE = @SVN_MODULE@
-SVN_ROOT = @SVN_ROOT@
 TERM_CFLAGS = @TERM_CFLAGS@
 TERM_LIBS = @TERM_LIBS@
 USE_NLS = @USE_NLS@
@@ -252,15 +233,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = src po help
 desktopdir = $(datadir)/applications
-desktop_in_files = gnome-terminal.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+desktop_in_files = @PACKAGE@.desktop.in.in
+desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 EXTRA_DIST = \
 	ChangeLog.pre-2-23	\
 	po/ChangeLog.pre-2-23	\
 	help/ChangeLog.pre-2-23	\
 	ChangeLog.README	\
 	HACKING			\
-	$(desktop_in_files) 	\
 	$(desktop_DATA)		\
 	gnome-doc-utils.make	\
 	xmldocs.make		\
@@ -749,17 +729,10 @@ uninstall-am: uninstall-desktopDATA
 
 @INTLTOOL_DESKTOP_RULE@
 
-# Build ChangeLog from GIT or SVN history
-# (SVN r2446 was the first ChangeLog-less checkin).
-# Only build this when in a git or svn checkout.
-
+# Build ChangeLog from GIT  history
 ChangeLog:
 	@if test -f $(top_srcdir)/.git/HEAD; then \
 		git log --stat > $@; \
-	elif test -f $(top_srcdir)/.svn/entries; then \
-		svn log -v --xml -r HEAD:2446 $(SVN_ROOT)/$(SVN_MODULE)/$(SVN_BRANCH) | \
-			xsltproc --stringparam strip-prefix "$(SVN_MODULE)/$(SVN_BRANCH)" \
-				 --stringparam include-rev "yes" $(top_srcdir)/svn2cl.xsl - > $@; \
 	fi
 
 dist: ChangeLog

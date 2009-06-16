@@ -2,10 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.5.90">
+<!ENTITY appversion "2.24.3">
 <!ENTITY manrevision "2.8">
-<!ENTITY date "March 2004">
+<!ENTITY date "March 2009">
 ]>
+<!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   Template version: 2.0 beta
@@ -16,7 +17,10 @@
   <articleinfo> 
      <title>Handbok för GNOME-terminal</title> 
      <abstract role="description">
-       <para>Användarhandbok för programmet GNOME-terminal.</para>
+       <para>
+	 The Terminal gives users the power to communicate with their system using
+text-based commands through a shell such as Bash.
+       </para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +39,15 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006, 2007, 2008</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
+     </copyright>
+     <copyright> 
+        <year>2008</year> 
+        <holder>Christian Persch</holder> 
+     </copyright>
+     <copyright> 
+        <year>2009</year> 
+        <holder>Paul Cutler</holder> 
+     </copyright><copyright><year>2006, 2007, 2008, 2009</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>	 
      <publisher> 
         <publishername>Dokumentationsprojekt för GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -87,15 +99,18 @@
      <publisher role="maintainer">
        <publishername>Dokumentationsprojekt för GNOME</publishername>
      </publisher>
+	<releaseinfo revision="2.26" role="review">
+		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+    </releaseinfo>
      <revhistory> 
-        <revision> 
+	<revision> 
           <revnumber>Handbok för GNOME-terminal v2.8</revnumber> 
-          <date>Mars 2004</date> 
+          <date>March 2009</date> 
           <revdescription> 
-             <para role="author">Suns GNOME-dokumentationsteam</para>
+             <para role="author">Paul Cutler</para>
              <para role="publisher">Dokumentationsprojekt för GNOME</para>
           </revdescription> 
-        </revision> 
+        </revision>
 	<revision> 
           <revnumber>Handbok för GNOME-terminal v2.7</revnumber> 
           <date>November 2003</date> 
@@ -169,7 +184,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Denna handbok beskriver version 2.5.90 av GNOME-terminal.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>Återkoppling</title> 
         <para>För att rapportera ett fel eller komma med ett förslag angående programmet <application>GNOME-terminal</application> eller denna handbok, följ instruktionerna på <ulink url="ghelp:user-guide?feedback" type="help">GNOME:s återkopplingssida</ulink>.</para>
@@ -181,6 +197,8 @@
   <indexterm> 
      <primary>terminalprogram</primary> 
   </indexterm> 
+  
+  <!-- ============= Introduction ============================== -->
   <sect1 id="gnome-terminal-introduction"> 
      <title>Introduktion</title> 
      <para><application>GNOME-terminal</application> är ett terminalemuleringsprogram som du kan använda för att genomföra följande uppgifter:</para>
@@ -199,6 +217,9 @@
         </varlistentry> 
      </variablelist> 
   </sect1> 
+
+  <!--=========== Getting Started ============================== -->
+  
   <sect1 id="gnome-terminal-get-started"> 
      <title>Komma igång</title> 
      <para>Följande avsnitt beskriver hur man startar <application>GNOME-terminal</application>.</para>
@@ -297,6 +318,8 @@
      </sect2> 
 
   </sect1> 
+  
+  <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
      <title>Användning</title> 
@@ -541,15 +564,13 @@
           <varlistentry> 
              <term><guilabel>Inaktivera alla menyåtkomsttangenter (exempelvis Alt+a för att öppna Arkiv-menyn)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Avmarkera det här alternativet för att inaktivera åtkomsttangenter som är definierade för att låta dig använda tangentbordet istället för musen för att välja ett menyobjekt. Varje åtkomsttangent identifieras med en understruken bokstav på en meny eller ett dialogalternativ. I vissa fall måste du trycka på tangenten <keycap>Alt</keycap> i kombination med åtkomsttangenten för att genomföra åtgärden.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Inaktivera tangent för menyåtkomst (F10 som standard)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Avmarkera det här alternativet för att inaktivera genvägstangenten som är definierad för att låta dig komma åt menyerna i <application>GNOME-terminal</application>. Standardtangenten för genvägen för att komma åt menyerna är <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -639,6 +660,8 @@
      </sect2>   
 
   </sect1> 
+  
+  <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Inställningar</title> 
@@ -674,9 +697,7 @@
              <term> 
                 <guilabel>Använd systemets typsnitt med fast breddsteg</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
-                </para>
+                <para>Välj det här alternativet för att använda standardtypsnittet med fast breddsteg som har angivits under fliken <guilabel>Typsnitt</guilabel> i inställningsverktyget <application>Utseende</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -705,7 +726,7 @@
              <term> 
                 <guilabel>Terminalljud</guilabel> </term> 
              <listitem> 
-                <para>Välj det här alternativet för att inaktivera terminalljudet.</para>
+                <para>Välj det här alternativet för att aktivera terminalljudet.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -761,9 +782,7 @@
              <term> 
                 <guilabel>Då kommandot avslutar</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>Använd den här rullgardinslistan för att ange vilken åtgärd som ska genomföras när kommandot avslutas.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -776,9 +795,7 @@
                 <guilabel>Förgrund och bakgrund</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
-                </para>
+                <para>Välj alternativet <guilabel>Använd färger från systemtemat</guilabel> för att använda färger som är angivna i temat för GNOME-skrivbordet, som har valts under fliken <guilabel>Tema</guilabel> i <ulink type="help" url="ghelp:user-guide?prefs-theme">inställningsverktyget <application>Utseende</application></ulink>.</para>
                 <para>Använd rullgardinslistan <guilabel>Inbyggda scheman</guilabel> för att ange förgrund- och bakgrundsfärger för terminalen. <application>GNOME-terminal</application> har stöd för följande förgrund- och bakgrundsfärgkombinationer:</para>
                 <itemizedlist> 
                   <listitem> 

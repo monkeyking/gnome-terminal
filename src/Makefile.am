@@ -5,6 +5,8 @@ SUBDIRS = skey
 bin_PROGRAMS = gnome-terminal
 
 gnome_terminal_SOURCES= \
+	eggshell.c \
+	eggshell.h \
 	profile-editor.c \
 	profile-editor.h \
 	skey-popup.c \
@@ -14,17 +16,25 @@ gnome_terminal_SOURCES= \
 	terminal-accels.h \
 	terminal-app.c \
 	terminal-app.h \
+	terminal-debug.c \
+	terminal-debug.h \
 	terminal-encoding.c \
 	terminal-encoding.h \
+	terminal-factory-client.h \
+	terminal-factory-server.h \
 	terminal-intl.h \
 	terminal-marshal.c \
 	terminal-marshal.h \
+	terminal-options.c \
+	terminal-options.h \
 	terminal-profile.c \
 	terminal-profile.h \
 	terminal-screen.c \
 	terminal-screen.h \
 	terminal-screen-container.c \
 	terminal-screen-container.h \
+	terminal-tab-label.c \
+	terminal-tab-label.h \
 	terminal-tabs-menu.c \
 	terminal-tabs-menu.h \
 	terminal-type-builtins.c \
@@ -39,10 +49,8 @@ gnome_terminal_CPPFLAGS = \
 	-DEXECUTABLE_NAME=\"gnome-terminal\" \
 	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
-	-DTERM_LIBDIR="\"$(pkglibdir)\"" \
-	-DTERM_PREFIX="\"$(prefix)\"" \
-	-DTERM_SYSCONFDIR="\"$(sysconfdir)\"" \
 	-DTERM_PKGDATADIR="\"$(pkgdatadir)\"" \
+	-DTERM_HELPDIR="\"$(HELP_DIR)\"" \
 	-DSN_API_NOT_YET_FROZEN \
 	-DGDK_MULTIHEAD_SAFE \
 	-DG_DISABLE_SINGLE_INCLUDES \
@@ -65,7 +73,32 @@ gnome_terminal_LDADD = \
 	skey/libskey.la \
 	$(TERM_LIBS)
 
+if WITH_SMCLIENT
+gnome_terminal_SOURCES += \
+	eggdesktopfile.c \
+	eggdesktopfile.h \
+	eggsmclient.c \
+	eggsmclient.h \
+	eggsmclient-private.h \
+	$(NULL)
+gnome_terminal_CFLAGS += $(SMCLIENT_CFLAGS)
+gnome_terminal_LDADD += $(SMCLIENT_LIBS)
+
+if WITH_SMCLIENT_XSMP
+gnome_terminal_SOURCES += eggsmclient-xsmp.c
+gnome_terminal_CPPFLAGS += -DEGG_SM_CLIENT_BACKEND_XSMP
+endif
+if WITH_SMCLIENT_WIN32
+gnome_terminal_SOURCES += eggsmclient-win32.c
+endif
+if WITH_SMCLIENT_QUARTZ
+gnome_terminal_SOURCES += eggsmclient-osx.c
+endif
+endif
+
 BUILT_SOURCES = \
+	terminal-factory-client.h \
+	terminal-factory-server.h \
 	terminal-marshal.c \
 	terminal-marshal.h \
 	terminal-type-builtins.c \
@@ -105,9 +138,20 @@ terminal-marshal.c: $(srcdir)/terminal-marshal.list
 		&& mv terminal-marshal.c.tmp terminal-marshal.c ) \
 	|| ( rm -f terminal-marshal.c.tmp && exit 1 )
 
+terminal-factory-client.h: terminal-factory-service.xml
+	$(DBUS_BINDING_TOOL) --mode=glib-client --output=$@ $<
+
+terminal-factory-server.h: terminal-factory-service.xml
+	$(DBUS_BINDING_TOOL) --mode=glib-server --prefix=terminal_factory --output=$@ $<
+
 schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_in_files = gnome-terminal.schemas.in
 schema_DATA = gnome-terminal.schemas
+
+aboutdir = $(pkgdatadir)
+about_DATA = \
+	terminal.about \
+	$(NULL)
 
 uimanagerdir = $(pkgdatadir)
 uimanager_DATA = \
@@ -134,18 +178,15 @@ CLEANFILES = \
 	$(BUILT_SOURCES)
 
 EXTRA_DIST = \
+	terminal-factory-service.xml \
 	terminal-marshal.list \
 	terminal-type-builtins.c.template \
 	terminal-type-builtins.h.template \
-	$(icon_DATA) \
+	$(about_DATA) \
 	$(schema_in_files) \
-	$(server_DATA) \
 	$(uimanager_DATA) \
 	$(builder_in_files) \
 	$(NULL)
-
-serverdir = $(libdir)/bonobo/servers
-server_DATA = gnome-terminal.server
 
 @INTLTOOL_SCHEMAS_RULE@
 
