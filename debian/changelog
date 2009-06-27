@@ -1,3 +1,39 @@
+gnome-terminal (2.26.2-2) unstable; urgency=low
+
+  * 02_let_gconf_autostart.patch: Don’t exit if there is no GConf daemon 
+    running. Instead, let dbus-daemon and gconfd be autostarted as they 
+    should be if this is needed. Thanks to Sean Finney for the 
+    suggestion. Closes: #531734 and some duplicates.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 27 Jun 2009 14:53:33 +0200
+
+gnome-terminal (2.26.2-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Stop mentioning GNOME 2.
+  * Remove scrollkeeper dependency.
+
+  [ Deng Xiyue ]
+  * New upstream release.
+    + Bump b-dep: libgtk2.0-dev (>= 2.14.0), libvte-dev (>= 0.20.0).
+    + New b-dep: libdbus-glib-1-dev (>= 0.6).
+    + Drop 01_tabs_shortcuts.patch, 02_tabs_shortcuts_translations.patch.
+      Merged upstream.
+    + Refresh 04_resized_on_tabs_switch.patch to apply cleanly.
+  * Drop bonobo path in gnome-terminal-data.install.  DBus is used instead.
+  * Split Copyright holder section to silence lintian warning, and add missing
+    copyright holders.
+  * Point to versioned license files.
+  * Update Standard-Version to 3.8.1.
+
+  [ Josselin Mouette ]
+  * Drop unnecessary build-deps, add libsm-dev.
+  * 01_onlyshowin.patch: new patch. Only show gnome-terminal in GNOME 
+    menus, other desktop environments already have their terminal 
+    emulators.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 01 Jun 2009 11:28:01 +0200
+
 gnome-terminal (2.24.3-3) unstable; urgency=low
 
   * Recommend gvfs. Closes: #519159.
