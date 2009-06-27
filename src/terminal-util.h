@@ -51,11 +51,45 @@ void terminal_util_transform_uris_to_quoted_fuse_paths (char **uris);
 char *terminal_util_concat_uris (char **uris,
                                  gsize *length);
 
+char *terminal_util_get_licence_text (void);
+
 gboolean terminal_util_load_builder_file (const char *filename,
                                           const char *object_name,
                                           ...);
 
 gboolean terminal_util_dialog_response_on_delete (GtkWindow *widget);
+
+void terminal_util_key_file_set_string_escape    (GKeyFile *key_file,
+                                                  const char *group,
+                                                  const char *key,
+                                                  const char *string);
+char *terminal_util_key_file_get_string_unescape (GKeyFile *key_file,
+                                                  const char *group,
+                                                  const char *key,
+                                                  GError **error);
+
+void terminal_util_key_file_set_argv      (GKeyFile *key_file,
+                                           const char *group,
+                                           const char *key,
+                                           int argc,
+                                           char **argv);
+char **terminal_util_key_file_get_argv    (GKeyFile *key_file,
+                                           const char *group,
+                                           const char *key,
+                                           int *argc,
+                                           GError **error);
+
+GArray *terminal_util_string_to_array (const char *string);
+
+GArray *terminal_util_strv_to_array (int argc,
+                                     char **argv);
+
+char *terminal_util_array_to_string (const GArray *array,
+                                     GError **error);
+
+char **terminal_util_array_to_strv (const GArray *array,
+                                    int *argc,
+                                    GError **error);
 
 typedef enum {
   FLAG_INVERT_BOOL  = 1 << 0,

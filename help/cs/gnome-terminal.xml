@@ -2,10 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.5.90">
+<!ENTITY appversion "2.24.3">
 <!ENTITY manrevision "2.8">
-<!ENTITY date "March 2004">
+<!ENTITY date "March 2009">
 ]>
+<!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   Template version: 2.0 beta
@@ -16,7 +17,10 @@
   <articleinfo> 
      <title>Příručka Terminálu GNOME</title> 
      <abstract role="description">
-       <para>Uživatelská příručka aplikace GNOME Terminal.</para>
+       <para>
+	 The Terminal gives users the power to communicate with their system using
+text-based commands through a shell such as Bash.
+       </para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +39,15 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2008.</year><holder>Lucas Lommer (llommer@svn.gnome.org)</holder></copyright>
+     </copyright>
+     <copyright> 
+        <year>2008</year> 
+        <holder>Christian Persch</holder> 
+     </copyright>
+     <copyright> 
+        <year>2009</year> 
+        <holder>Paul Cutler</holder> 
+     </copyright><copyright><year>2008.</year><holder>Lucas Lommer (llommer@svn.gnome.org)</holder></copyright>	 
      <publisher> 
         <publishername>Dokumentační projekt GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -103,15 +115,18 @@
      <publisher role="maintainer">
        <publishername>Dokumentační projekt GNOME</publishername>
      </publisher>
+	<releaseinfo revision="2.26" role="review">
+		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+    </releaseinfo>
      <revhistory> 
-        <revision> 
+	<revision> 
           <revnumber>Příručka Terminálu GNOME verze 2.8</revnumber> 
-          <date>Březen 2004</date> 
+          <date>March 2009</date> 
           <revdescription> 
-             <para role="author">Dokumentační tým GNOME společnosti Sun</para>
+             <para role="author">Paul Cutler</para>
              <para role="publisher">Dokumentační projekt GNOME</para>
           </revdescription> 
-        </revision> 
+        </revision>
 	<revision> 
           <revnumber>Příručka Terminálu GNOME verze 2.7</revnumber> 
           <date>Listopad 2003</date> 
@@ -185,10 +200,11 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Tato příručka popisuje Terminál GNOME ve verzi 2.5.90.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
-        <title>Zpětná vazba</title> 
-        <para>Pokud chcete oznámit chybu nebo navrhnout vylepšení vztahující se k aplikaci Terminál GNOME nebo této příručce, postupujte dle instrukcí na stránce <ulink url="ghelp:gnome-feedback" type="help">Zpětná vazba GNOME</ulink>.</para>
+        <title>Ohlasy</title> 
+        <para>Pokud chcete oznámit chybu nebo navrhnout vylepšení vztahující se k aplikaci Terminál GNOME nebo této příručce, postupujte dle instrukcí na stránce <ulink url="ghelp:user-guide?feedback" type="help">Stránka s ohlasy na GNOME</ulink>.</para>
      </legalnotice> 
   </articleinfo> 
   <indexterm> 
@@ -197,6 +213,8 @@
   <indexterm> 
      <primary>terminálová aplikace</primary> 
   </indexterm> 
+  
+  <!-- ============= Introduction ============================== -->
   <sect1 id="gnome-terminal-introduction"> 
      <title>Úvod</title> 
      <para><application>Terminál GNOME</application> je aplikace emulující terminál, která vám umožňuje provádět následující věci:</para>
@@ -215,6 +233,9 @@
         </varlistentry> 
      </variablelist> 
   </sect1> 
+
+  <!--=========== Getting Started ============================== -->
+  
   <sect1 id="gnome-terminal-get-started"> 
      <title>Začínáme</title> 
      <para>Následující části popisují způsoby spuštění <application>Terminálu GNOME</application>.</para>
@@ -313,6 +334,8 @@
      </sect2> 
 
   </sect1> 
+  
+  <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
      <title>Používání</title> 
@@ -557,15 +580,13 @@
           <varlistentry> 
              <term><guilabel>Povolit klávesové zkratky v hlavní nabídce (např. Alt-S pro otevření nabídky Soubor)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Tato volba slouží k (de)aktivaci definovaných akcelerátorů, které umožňují používat klávesnici pro výběr položek nabídky namísto myši. Každý akcelerátor je reprezentován podtrženým písmenem v názvu nabídky nebo volbě okna. V některých případech je nutné zmáčknout kombinaci klávesy <keycap>Alt</keycap> s akcelerátorem, aby byla akce provedena.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Povolit klávesovou zkratku hlavní nabídky (F10 je výchozí)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Tato volba slouží k (de)aktivaci klávesové zkratky, která v <application>Terminálu GNOME</application> slouží k přístupu do nabídky. Výchozí klávesová zkratka pro přístup k nabídce je klávesa <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -655,6 +676,8 @@
      </sect2>   
 
   </sect1> 
+  
+  <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Nastavení</title> 
@@ -690,9 +713,7 @@
              <term> 
                 <guilabel>Používat systémové písmo s pevnou šířkou</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
-                </para>
+                <para>Zaškrtněte tuto volbu, pokud chcete použít výchozí systémové písmo s pevnou šířkou, které lze nastavit v kartě <guilabel>Písma</guilabel> aplikace <application>Nastavení vzhledu</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -721,7 +742,7 @@
              <term> 
                 <guilabel>Pípání terminálu</guilabel> </term> 
              <listitem> 
-                <para>Vypnutím této volby zakážete pípání terminálu.</para>
+                <para>Zapnutím této volby povolíte pípání terminálu.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -777,9 +798,7 @@
              <term> 
                 <guilabel>Po skončení příkazu</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>Z roletového seznamu vyberte akci, která se provede po skončení příkazu.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -792,9 +811,7 @@
                 <guilabel>Popředí a pozadí</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
-                </para>
+                <para>Zaškrtněte volbu <guilabel>Používat barvy systémového motivu</guilabel>, pokud chcete použít barvy určené motivem prostředí GNOME. Nastavení vzhledu lze provést na kartě <guilabel>Motiv</guilabel> v <ulink type="help" url="ghelp:user-guide?prefs-theme">nástroji <application>Nastavení vzhledu</application></ulink>.</para>
                 <para>Pomocí rolovacího seznamu <guilabel>Zabudovaná schémata</guilabel> můžete nastavit popředí a pozadí terminálu. <application>Terminál GNOME</application> podporuje tyto barevné kombinace popředí a pozadí:</para>
                 <itemizedlist> 
                   <listitem> 
