@@ -1,3 +1,10 @@
+gnome-terminal (2.26.0-0ubuntu2.1) jaunty-proposed; urgency=low
+
+  * Backport f41c3d14 from upstream to try to start gconf before assuming
+    it's not there (LP: #328575)
+
+ -- Evan Broder <broder@mit.edu>  Sat, 22 Aug 2009 13:00:55 -0400
+
 gnome-terminal (2.26.0-0ubuntu2) jaunty; urgency=low
 
   * src/terminal-screen.c: honour point and pixel sized system
