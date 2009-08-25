@@ -137,6 +137,12 @@ enum
   NUM_COLUMNS
 };
 
+enum
+{
+  SOURCE_DEFAULT = 0,
+  SOURCE_SESSION = 1
+};
+
 static TerminalApp *global_app = NULL;
 
 #define MONOSPACE_FONT_DIR "/desktop/gnome/interface"
@@ -1104,6 +1110,7 @@ new_profile_response_cb (GtkWidget *new_profile_dialog,
                                                    GTK_MESSAGE_QUESTION,
                                                    GTK_BUTTONS_YES_NO,
                                                    _("You already have a profile called “%s”. Do you want to create another profile with the same name?"), name);
+          /* Alternative button order was set automatically by GtkMessageDialog */
           retval = gtk_dialog_run (GTK_DIALOG (confirm_dialog));
           gtk_widget_destroy (confirm_dialog);
           if (retval == GTK_RESPONSE_NO)
@@ -1208,6 +1215,10 @@ terminal_app_new_profile (TerminalApp     *app,
 
       gtk_label_set_mnemonic_widget (GTK_LABEL (base_label), combo);
 
+      gtk_dialog_set_alternative_button_order (GTK_DIALOG (app->new_profile_dialog),
+                                               GTK_RESPONSE_ACCEPT,
+                                               GTK_RESPONSE_CANCEL,
+                                               -1);
       gtk_dialog_set_default_response (GTK_DIALOG (app->new_profile_dialog), GTK_RESPONSE_ACCEPT);
       gtk_dialog_set_response_sensitive (GTK_DIALOG (app->new_profile_dialog), GTK_RESPONSE_ACCEPT, FALSE);
     }
@@ -1664,10 +1675,10 @@ terminal_app_handle_options (TerminalApp *app,
                              GError **error)
 {
   GList *lw;
-  GdkScreen *screen;
+  GdkScreen *gdk_screen;
 
-  screen = terminal_app_get_screen_by_display_name (options->display_name,
-                                                    options->screen_number);
+  gdk_screen = terminal_app_get_screen_by_display_name (options->display_name,
+                                                        options->screen_number);
 
   if (options->save_config)
     return terminal_app_save_config_file (app, options->config_file, error);
@@ -1679,7 +1690,7 @@ terminal_app_handle_options (TerminalApp *app,
 
       key_file = g_key_file_new ();
       result = g_key_file_load_from_file (key_file, options->config_file, 0, error) &&
-               terminal_options_merge_config (options, key_file, error);
+               terminal_options_merge_config (options, key_file, SOURCE_DEFAULT, error);
       g_key_file_free (key_file);
 
       if (!result)
@@ -1700,7 +1711,7 @@ terminal_app_handle_options (TerminalApp *app,
 
       key_file = egg_sm_client_get_state_file (sm_client);
       if (key_file != NULL &&
-          !terminal_options_merge_config (options, key_file, error))
+          !terminal_options_merge_config (options, key_file, SOURCE_SESSION, error))
         return FALSE;
     }
 }
@@ -1718,7 +1729,11 @@ terminal_app_handle_options (TerminalApp *app,
       g_assert (iw->tabs);
 
       /* Create & setup new window */
-      window = terminal_app_new_window (app, screen);
+      window = terminal_app_new_window (app, gdk_screen);
+
+      /* Restored windows shouldn't demand attention; see bug #586308. */
+      if (iw->source_tag == SOURCE_SESSION)
+        terminal_window_set_is_restored (window);
 
       if (options->startup_id)
         terminal_window_set_startup_id (window, options->startup_id);

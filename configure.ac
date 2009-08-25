@@ -1,14 +1,18 @@
 m4_define([gt_version_major],[2])
-m4_define([gt_version_minor],[26])
-m4_define([gt_version_micro],[3])
-m4_define([gt_version_extra],[.1])
+m4_define([gt_version_minor],[27])
+m4_define([gt_version_micro],[91])
+m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
+
+m4_define([gt_api_version],[0])
 
 AC_INIT([GNOME Terminal],[gt_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
 AC_CONFIG_SRCDIR([src/terminal.c])
 AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([1.9 foreign no-dist-gzip dist-bzip2])
+
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([no])])
 
 GETTEXT_PACKAGE=gnome-terminal
 AC_SUBST([GETTEXT_PACKAGE])
@@ -110,10 +114,18 @@ GNOME_DOC_INIT
 
 # ****************************
 
+AC_SUBST([TERMINAL_MAJOR_VERSION],[gt_version_major])
+AC_SUBST([TERMINAL_MINOR_VERSION],[gt_version_minor])
+AC_SUBST([TERMINAL_MICRO_VERSION],[gt_version_micro])
+AC_SUBST([TERMINAL_API_VERSION],[gt_api_version])
+
+# ****************************
+
 AC_CONFIG_FILES([
 Makefile
 gnome-terminal.desktop.in
 src/Makefile
+src/terminal-version.h
 src/skey/Makefile
 help/Makefile
 help/bg/Makefile
