@@ -11,11 +11,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal 2.26\n"
+"Project-Id-Version: gnome-terminal HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "terminal&component=general\n"
-"POT-Creation-Date: 2009-05-15 15:00+0000\n"
-"PO-Revision-Date: 2009-05-29 09:20+0300\n"
+"POT-Creation-Date: 2009-08-17 10:43+0000\n"
+"PO-Revision-Date: 2009-08-17 18:06+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -797,8 +797,8 @@ msgid ""
 "compositing window manager is running, or pseudo-transparency otherwise."
 msgstr ""
 "Terminali tausta liik. Võimalikud väärtused on \"solid\" ühtlase värvuse "
-"jaoks, \"image\" pildi jaoks ja \"transparent\" läbipaistvuse jaoks "
-"(kui ei kasutata komposiitaknahaldurit, siis pseudoläbipaistvuse jaoks)."
+"jaoks, \"image\" pildi jaoks ja \"transparent\" läbipaistvuse jaoks (Kui ei "
+"kasutata komposiitaknahaldurit, siis pseudoläbipaistvuse jaoks)."
 
 msgid "What to do with dynamic title"
 msgstr "Mida teha dünaamilise pealkirjaga"
@@ -1052,6 +1052,7 @@ msgstr "Ühilduvus"
 msgid "Cursor _shape:"
 msgstr "_Kursori kuju:"
 
+#. Translators: This is the name of a colour scheme
 msgid "Custom"
 msgstr "Oma"
 
@@ -1326,6 +1327,7 @@ msgstr "Kaardid"
 msgid "Help"
 msgstr "Abi"
 
+#. Translators: Scrollbar is: ...
 msgid "Disabled"
 msgstr "Keelatud"
 
@@ -1374,9 +1376,8 @@ msgstr "Profiili \"%s\" pole, kasutatakse vaikimisi profiili\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Lubamatu geomeetriastring \"%s\"\n"
 
-#, c-format
-msgid "Could not open link: %s"
-msgstr "Viita pole võimalik avada: %s"
+msgid "Could not open link"
+msgstr "Viita pole võimalik avada"
 
 #, c-format
 msgid "Failed to parse arguments: %s\n"
@@ -1661,9 +1662,8 @@ msgstr "Terminalipõhiste valikute näitamine"
 msgid "Unnamed"
 msgstr "Nimetu"
 
-#, c-format
-msgid "There was a problem with the command for this terminal: %s"
-msgstr "Selle terminali käsuga tekkis probleem: %s"
+msgid "There was a problem with the command for this terminal"
+msgstr "Selle terminali käsuga tekkis probleem"
 
 msgid "There was an error creating the child process for this terminal"
 msgstr "Sellele terminalile lapsprotsessi loomisel tekkis viga"
@@ -1674,17 +1674,12 @@ msgstr "Kaardi sulgemine"
 msgid "Switch to this tab"
 msgstr "Liikumine sellele kaardile"
 
-#, c-format
-msgid "There was an error displaying help: %s"
-msgstr "Abiinfo kuvamisel tekkis viga: %s"
+msgid "There was an error displaying help"
+msgstr "Abiteabe kuvamisel tekkis viga"
 
 #, c-format
-msgid ""
-"Could not open the address “%s”:\n"
-"%s"
-msgstr ""
-"Aadressi „%s“ pole võimalik avada:\n"
-"%s"
+msgid "Could not open the address “%s”"
+msgstr "Aadressi „%s“ pole võimalik avada"
 
 msgid ""
 "GNOME Terminal is free software; you can redistribute it and/or modify it "
@@ -1861,11 +1856,11 @@ msgstr "Näita m_enüüriba"
 msgid "_Full Screen"
 msgstr "_Täisekraan"
 
-msgid "Close this terminal?"
-msgstr "Kas sulgeda see terminal?"
-
 msgid "Close this window?"
 msgstr "Kas sulgeda see aken?"
+
+msgid "Close this terminal?"
+msgstr "Kas sulgeda see terminal?"
 
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
@@ -1881,7 +1876,7 @@ msgstr ""
 "Terminalis töötab siiamaani vähemalt üks protsess. Terminali sulgemine "
 "kõrvaldab ka protsessi."
 
-msgid "_Close Terminal"
+msgid "C_lose Terminal"
 msgstr "Sul_ge terminal"
 
 msgid "_Title:"
@@ -1898,3 +1893,80 @@ msgstr ""
 "Tõivo Leedjärv <toivo@linux.ee>, 2002.\n"
 "Priit Laes <amd@store20.com>, 2004-2006.\n"
 "Ivar Smolin <okul@linux.ee>, 2005-2009."
+
+#. Translators: This refers to the Delete keybinding option
+msgid "Automatic"
+msgstr "Automaatne"
+
+#. Translators: This refers to the Delete keybinding option
+msgid "Control-H"
+msgstr "Control-H"
+
+#. Translators: This refers to the Delete keybinding option
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#. Translators: This refers to the Delete keybinding option
+msgid "Escape sequence"
+msgstr "Paojada"
+
+#. Translators: Cursor shape: ...
+msgid "Block"
+msgstr "Kast"
+
+#. Translators: Cursor shape: ...
+msgid "I-Beam"
+msgstr "Püstkriips"
+
+#. Translators: Cursor shape: ...
+msgid "Underline"
+msgstr "Allkriips"
+
+msgid "Exit the terminal"
+msgstr "Terminalist väljumine"
+
+msgid "Restart the command"
+msgstr "Käsu taaskäivitamine"
+
+msgid "Hold the terminal open"
+msgstr "Terminali hoidmine avatuna"
+
+#. Translators: Scrollbar is: ...
+msgid "On the left side"
+msgstr "Vasakus servas"
+
+#. Translators: Scrollbar is: ...
+msgid "On the right side"
+msgstr "Paremas servas"
+
+#. Translators: When terminal commands set their own titles: ...
+msgid "Replace initial title"
+msgstr "Asendab algse pealkirja"
+
+#. Translators: When terminal commands set their own titles: ...
+msgid "Append initial title"
+msgstr "Paigutatakse algse pealkirja järele"
+
+#. Translators: When terminal commands set their own titles: ...
+msgid "Prepend initial title"
+msgstr "Paigutatakse algse pealkirja ette"
+
+#. Translators: When terminal commands set their own titles: ...
+msgid "Keep initial title"
+msgstr "Jäetakse kuvamata"
+
+#. Translators: This is the name of a colour scheme
+msgid "Tango"
+msgstr "Tango"
+
+#. Translators: This is the name of a colour scheme
+msgid "Linux console"
+msgstr "Linuxi konsool"
+
+#. Translators: This is the name of a colour scheme
+msgid "XTerm"
+msgstr "XTerm"
+
+#. Translators: This is the name of a colour scheme
+msgid "Rxvt"
+msgstr "Rxvt"

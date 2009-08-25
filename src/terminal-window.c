@@ -22,7 +22,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
+#endif
 #include <gdk/gdkkeysyms.h>
 #include <libsn/sn-launchee.h>
 
@@ -75,8 +77,16 @@ struct _TerminalWindowPrivate
   /* Compositing manager integration */
   guint have_argb_visual : 1;
 
+  /* Used to clear stray "demands attention" flashing on our window when we
+   * unmap and map it to switch to an ARGB visual.
+   */
+  guint clear_demands_attention : 1;
+
   guint disposed : 1;
   guint present_on_insert : 1;
+
+  /* Workaround until gtk+ bug #535557 is fixed */
+  guint icon_title_set : 1;
 };
 
 #define PROFILE_DATA_KEY "GT::Profile"
@@ -95,8 +105,6 @@ struct _TerminalWindowPrivate
 #define STOCK_NEW_WINDOW  "window-new"
 #define STOCK_NEW_TAB     "tab-new"
 
-static void terminal_window_init        (TerminalWindow      *window);
-static void terminal_window_class_init  (TerminalWindowClass *klass);
 static void terminal_window_dispose     (GObject             *object);
 static void terminal_window_finalize    (GObject             *object);
 static gboolean terminal_window_state_event (GtkWidget            *widget,
@@ -921,7 +929,7 @@ terminal_window_update_zoom_sensitivity (TerminalWindow *window)
 
   current = terminal_screen_get_font_scale (screen);
 
-  action = gtk_action_group_get_action (priv->action_group, "ViewZoomIn");
+  action = gtk_action_group_get_action (priv->action_group, "ViewZoomOut");
   gtk_action_set_sensitive (action, find_smaller_zoom_factor (current, &zoom));
   action = gtk_action_group_get_action (priv->action_group, "ViewZoomIn");
   gtk_action_set_sensitive (action, find_larger_zoom_factor (current, &zoom));
@@ -974,6 +982,12 @@ screen_resize_window_cb (TerminalScreen *screen,
   GtkWidget *widget = GTK_WIDGET (screen);
   guint grid_width, grid_height;
   int xpad_total, ypad_total, char_width, char_height;
+
+  /* Don't do anything if we're maximised or fullscreened */
+  // FIXME: realized && ... instead? 
+  if (!GTK_WIDGET_REALIZED (widget) ||
+      (gdk_window_get_state (widget->window) & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) != 0)
+    return;
 
   /* NOTE: width and height already include the VteTerminal's padding! */
 
@@ -1130,6 +1144,13 @@ popup_copy_url_callback (GtkAction *action,
 
   clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
   gtk_clipboard_set_text (clipboard, info->string, -1);
+}
+
+static void
+popup_leave_fullscreen_callback (GtkAction *action,
+                                 TerminalWindow *window)
+{
+    gtk_window_unfullscreen (GTK_WINDOW (window));
 }
 
 static void
@@ -1413,6 +1434,32 @@ terminal_window_realize (GtkWidget *widget)
 
   GTK_WIDGET_CLASS (terminal_window_parent_class)->realize (widget);
 }
+
+static gboolean
+terminal_window_map_event (GtkWidget    *widget,
+			   GdkEventAny  *event)
+{
+  gboolean (* map_event) (GtkWidget *, GdkEventAny *) =
+      GTK_WIDGET_CLASS (terminal_window_parent_class)->map_event;
+
+  TerminalWindow *window = TERMINAL_WINDOW (widget);
+  TerminalWindowPrivate *priv = window->priv;
+
+  if (priv->clear_demands_attention)
+    {
+#ifdef GDK_WINDOWING_X11
+      terminal_util_x11_clear_demands_attention (widget->window);
+#endif
+
+      priv->clear_demands_attention = FALSE;
+    }
+
+  if (map_event)
+    return map_event (widget, event);
+
+  return FALSE;
+}
+
     
 static gboolean
 terminal_window_state_event (GtkWidget            *widget,
@@ -1432,6 +1479,9 @@ terminal_window_state_event (GtkWidget            *widget,
 
       action = gtk_action_group_get_action (priv->action_group, "ViewFullscreen");
       gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), is_fullscreen);
+  
+      action = gtk_action_group_get_action (priv->action_group, "PopupLeaveFullscreen");
+      gtk_action_set_visible (action, is_fullscreen);
     }
   
   if (window_state_event)
@@ -1469,15 +1519,57 @@ terminal_window_composited_changed_cb (GdkScreen *screen,
     {
       GtkWidget *widget = GTK_WIDGET (window);
       guint32 user_time;
+      gboolean have_desktop;
+      guint32 desktop = 0; /* Quiet GCC */
+      gboolean was_minimized;
+      int x, y;
 
       user_time = gdk_x11_display_get_user_time (gtk_widget_get_display (widget));
 
       /* If compositing changed, re-realize the window. Bug #563561 */
+
+      /* Save the position; this isn't perfect, because the position
+       * that gtk_window_get_position() returns is the position of the
+       * frame window, and we are racing with the new window manager
+       * framing our window, so we might see a funky intermediate state.
+       * But at worst, we'll be off by a few pixels (the frame size). */
+      gtk_window_get_position (GTK_WINDOW (window), &x, &y);
+
+      /* GtkWindow tries to save whether the window was iconified
+       * and restore it, but that doesn't work because of problems
+       * GDK_WINDOW_STATE_ICONIFIED. For details, see comment for
+       * terminal_util_x11_window_is_minimized()
+       */
+      was_minimized = terminal_util_x11_window_is_minimized (widget->window);
+
+      /* And the desktop */
+      have_desktop = terminal_util_x11_get_net_wm_desktop (widget->window, &desktop);
+
       gtk_widget_hide (widget);
       gtk_widget_unrealize (widget);
+
+      /* put the window back where it was before */
+      gtk_window_move (GTK_WINDOW (window), x, y);
       gtk_widget_realize (widget);
       gdk_x11_window_set_user_time (widget->window, user_time);
+
+      if (was_minimized)
+	gtk_window_iconify (GTK_WINDOW (window));
+      else
+	gtk_window_deiconify (GTK_WINDOW (window));
+
       gtk_widget_show (widget);
+      if (have_desktop)
+        terminal_util_x11_set_net_wm_desktop (widget->window, desktop);
+
+      /* Mapping the window is likely to have set the "demands-attention" state.
+       * In particular, Metacity will always set the state if a window is mapped,
+       * is not given the focus (because of an old user time), and is covered
+       * by some other window. We have no way of preventing this, so we just
+       * wait for our window to be mapped, and then tell the window manager
+       * to turn off the bit. If it wasn't set, no harm.
+       */
+      priv->clear_demands_attention = TRUE;
     }
 }
 
@@ -1713,6 +1805,9 @@ terminal_window_init (TerminalWindow *window)
       { "PopupCloseTab", NULL, N_("C_lose Tab"), NULL,
         NULL,
         G_CALLBACK (file_close_tab_callback) },
+      { "PopupLeaveFullscreen", NULL, N_("L_eave Full Screen"), NULL,
+        NULL,
+        G_CALLBACK (popup_leave_fullscreen_callback) },
       { "PopupInputMethods", NULL, N_("_Input Methods") }
     };
   
@@ -1823,6 +1918,10 @@ terminal_window_init (TerminalWindow *window)
   action = gtk_action_group_get_action (priv->action_group, "EditPasteURIPaths");
   gtk_action_set_visible (action, FALSE);
 
+  /* Idem for this action, since the window is not fullscreen. */
+  action = gtk_action_group_get_action (priv->action_group, "PopupLeaveFullscreen");
+  gtk_action_set_visible (action, FALSE);
+
   /* Load the UI */
   error = NULL;
   priv->ui_id = gtk_ui_manager_add_ui_from_file (manager,
@@ -1879,6 +1978,7 @@ terminal_window_class_init (TerminalWindowClass *klass)
 
   widget_class->show = terminal_window_show;
   widget_class->realize = terminal_window_realize;
+  widget_class->map_event = terminal_window_map_event;
   widget_class->window_state_event = terminal_window_state_event;
   widget_class->screen_changed = terminal_window_screen_changed;
 
@@ -1992,9 +2092,13 @@ terminal_window_show (GtkWidget *widget)
   GdkScreen *screen;
   GdkDisplay *display;
 
-  if (!GTK_WIDGET_REALIZED (widget))
-    gtk_widget_realize (widget);
-  
+  if (priv->active_screen != NULL)
+    {
+      /* At this point, we have our GdkScreen, and hence the right
+       * font size, so we can go ahead and size the window. */
+      terminal_window_set_size (window, priv->active_screen, FALSE);
+    }
+
   context = NULL;
   sn_display = NULL;
   if (priv->startup_id != NULL)
@@ -2051,6 +2155,21 @@ terminal_window_new (void)
   return g_object_new (TERMINAL_TYPE_WINDOW, NULL);
 }
 
+/**
+ * terminal_window_set_is_restored:
+ * @window:
+ *
+ * Marks the window as restored from session.
+ */
+void
+terminal_window_set_is_restored (TerminalWindow *window)
+{
+  g_return_if_fail (TERMINAL_IS_WINDOW (window));
+  g_return_if_fail (!GTK_WIDGET_MAPPED (window));
+
+  window->priv->clear_demands_attention = TRUE;
+}
+
 static void
 update_notebook (TerminalWindow *window)
 {
@@ -2068,6 +2187,9 @@ profile_set_callback (TerminalScreen *screen,
                       TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
+
+  if (!GTK_WIDGET_REALIZED (window))
+    return;
 
   if (screen != priv->active_screen)
     return;
@@ -2102,6 +2224,8 @@ sync_screen_icon_title (TerminalScreen *screen,
     return;
 
   gdk_window_set_icon_name (GTK_WIDGET (window)->window, terminal_screen_get_icon_title (screen));
+
+  priv->icon_title_set = TRUE;
 }
 
 static void
@@ -2110,6 +2234,13 @@ sync_screen_icon_title_set (TerminalScreen *screen,
                             TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
+
+  if (!GTK_WIDGET_REALIZED (window))
+    return;
+
+  /* No need to restore the title if we never set an icon title */
+  if (!priv->icon_title_set)
+    return;
 
   if (screen != priv->active_screen)
     return;
@@ -2120,7 +2251,12 @@ sync_screen_icon_title_set (TerminalScreen *screen,
   /* Need to reset the icon name */
   /* FIXME: Once gtk+ bug 535557 is fixed, use that to unset the icon title. */
 
-  gdk_window_set_icon_name (GTK_WIDGET (window)->window, terminal_screen_get_title (screen));
+  g_object_set_qdata (G_OBJECT (GTK_WIDGET (window)->window),
+                      g_quark_from_static_string ("gdk-icon-name-set"),
+                      GUINT_TO_POINTER (FALSE));
+  priv->icon_title_set = FALSE;
+
+  /* Re-setting the right title will be done by the notify::title handler which comes after this one */
 }
 
 /* Notebook callbacks */
@@ -2416,9 +2552,9 @@ terminal_window_set_active (TerminalWindow *window,
       terminal_window_set_menubar_visible (window, setting);
     }
 
-  sync_screen_title (screen, NULL, window);
   sync_screen_icon_title_set (screen, NULL, window);
   sync_screen_icon_title (screen, NULL, window);
+  sync_screen_title (screen, NULL, window);
 
   /* set size of window to current grid size */
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
@@ -2790,7 +2926,7 @@ file_new_window_callback (GtkAction *action,
 
   new_window = terminal_app_new_window (app, gtk_widget_get_screen (GTK_WIDGET (window)));
 
-  new_working_directory = terminal_screen_get_current_dir (priv->active_screen);
+  new_working_directory = terminal_screen_get_current_dir_with_fallback (priv->active_screen);
   terminal_app_new_terminal (app, new_window, profile,
                              NULL, NULL,
                              new_working_directory,
@@ -2822,7 +2958,7 @@ file_new_tab_callback (GtkAction *action,
   if (_terminal_profile_get_forgotten (profile))
     return;
 
-  new_working_directory = terminal_screen_get_current_dir (priv->active_screen);
+  new_working_directory = terminal_screen_get_current_dir_with_fallback (priv->active_screen);
   terminal_app_new_terminal (app, window, profile,
                              NULL, NULL,
                              new_working_directory,
@@ -2893,10 +3029,10 @@ confirm_close_window_or_tab (TerminalWindow *window,
 
       for (t = tabs; t != NULL; t = t->next)
         {
-          TerminalScreen *screen;
+          TerminalScreen *terminal_screen;
 
-          screen = terminal_screen_container_get_screen ((GtkWidget *) t->data);
-          if (terminal_screen_has_foreground_process (screen))
+          terminal_screen = terminal_screen_container_get_screen ((GtkWidget *) t->data);
+          if (terminal_screen_has_foreground_process (terminal_screen))
             {
               do_confirm = TRUE;
               break;
@@ -2913,7 +3049,7 @@ confirm_close_window_or_tab (TerminalWindow *window,
                             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                             GTK_MESSAGE_WARNING,
                             GTK_BUTTONS_CANCEL,
-                            "%s", screen ? _("Close this terminal?") : _("Close this window?"));
+                            "%s", n_tabs > 1 ? _("Close this window?") : _("Close this terminal?"));
 
   if (n_tabs > 1)
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
@@ -2926,8 +3062,13 @@ confirm_close_window_or_tab (TerminalWindow *window,
 
   gtk_window_set_title (GTK_WINDOW (dialog), ""); 
 
-  gtk_dialog_add_button (GTK_DIALOG (dialog), n_tabs > 1 ? _("_Close Window") : _("_Close Terminal"), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_add_button (GTK_DIALOG (dialog), n_tabs > 1 ? _("C_lose Window") : _("C_lose Terminal"), GTK_RESPONSE_ACCEPT);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
+
+  gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
+                                           GTK_RESPONSE_ACCEPT,
+                                           GTK_RESPONSE_CANCEL,
+                                           -1);
 
   g_object_set_data (G_OBJECT (dialog), "close-screen", screen);
 
@@ -3276,6 +3417,7 @@ terminal_set_title_callback (GtkAction *action,
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
   gtk_window_set_role (GTK_WINDOW (dialog), "gnome-terminal-change-title");
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+  /* Alternative button order was set automatically by GtkMessageDialog */
 
   g_signal_connect (dialog, "response",
                     G_CALLBACK (terminal_set_title_dialog_response_cb), priv->active_screen);

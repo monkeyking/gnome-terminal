@@ -5,14 +5,15 @@
 # Mikko Rauhala <mjr@iki.fi>, 1999
 # Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2005
 # Ilkka Tuohela <hile@iki.fi>, 2005-2009
+# Tommi Vainikainen <thv@iki.fi>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-26 12:30+0300\n"
-"PO-Revision-Date: 2009-02-26 12:30+0300\n"
-"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
+"POT-Creation-Date: 2009-08-18 12:33+0300\n"
+"PO-Revision-Date: 2009-08-18 12:28+0300\n"
+"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,8 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
 #: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:119
-#: ../src/terminal-accels.c:222 ../src/terminal.c:292
-#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1738
+#: ../src/terminal-accels.c:222 ../src/terminal.c:296
+#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1842
 msgid "Terminal"
 msgstr "Pääte"
 
@@ -29,32 +30,32 @@ msgstr "Pääte"
 msgid "Use the command line"
 msgstr "Käytä komentoriviä"
 
-#: ../src/eggsmclient.c:224
+#: ../src/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Estä yhteys istunnonhallintaan"
 
-#: ../src/eggsmclient.c:227
+#: ../src/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Anna tiedosto, joka sisältää tallennetut asetukset"
 
-#: ../src/eggsmclient.c:227 ../src/terminal-options.c:905
-#: ../src/terminal-options.c:914
+#: ../src/eggsmclient.c:228 ../src/terminal-options.c:954
+#: ../src/terminal-options.c:963
 msgid "FILE"
 msgstr "TIEDOSTO"
 
-#: ../src/eggsmclient.c:230
+#: ../src/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Anna istunnonhallinnan tunniste"
 
-#: ../src/eggsmclient.c:230
+#: ../src/eggsmclient.c:231
 msgid "ID"
 msgstr "TUNNISTE"
 
-#: ../src/eggsmclient.c:244
+#: ../src/eggsmclient.c:252
 msgid "Session management options:"
 msgstr "Istunnonhallinnan valitsimet:"
 
-#: ../src/eggsmclient.c:245
+#: ../src/eggsmclient.c:253
 msgid "Show session management options"
 msgstr "Näytä istunnonhallinnan valitsimet"
 
@@ -910,8 +911,8 @@ msgid ""
 "The possible values are \"block\" to use a block cursor, \"ibeam\" to use a "
 "vertical line cursor, or \"underline\" to use an underline cursor."
 msgstr ""
-"Mahdolliset arvot ovat \"block\" (lohkokohdistin), \"ibeam\" (pystyviiva) "
-"ja \"underline\" (alleviivaus)."
+"Mahdolliset arvot ovat \"block\" (lohkokohdistin), \"ibeam\" (pystyviiva) ja "
+"\"underline\" (alleviivaus)."
 
 #: ../src/gnome-terminal.schemas.in.h:123
 msgid ""
@@ -1119,16 +1120,16 @@ msgstr "Muokataan profiilia \"%s\""
 msgid "(about %s)"
 msgstr "(noin %s)"
 
-#: ../src/profile-editor.c:612
+#: ../src/profile-editor.c:613
 msgid "Images"
 msgstr "Kuvat"
 
-#: ../src/profile-editor.c:733
+#: ../src/profile-editor.c:739
 #, c-format
 msgid "Choose Palette Color %d"
 msgstr "Valitse paletin väri %d"
 
-#: ../src/profile-editor.c:737
+#: ../src/profile-editor.c:743
 #, c-format
 msgid "Palette entry %d"
 msgstr "Paletin väri %d"
@@ -1267,7 +1268,8 @@ msgstr "Yhteensopivuus"
 msgid "Cursor _shape:"
 msgstr "_Kohdistimen _muoto:"
 
-#: ../src/profile-preferences.glade.h:27
+#. Translators: This is the name of a colour scheme
+#: ../src/profile-preferences.glade.h:27 ../src/extra-strings.c:71
 msgid "Custom"
 msgstr "Mukautettu"
 
@@ -1503,7 +1505,7 @@ msgstr "Näytä tai piilota valikkopalkki"
 
 #: ../src/terminal-accels.c:143
 msgid "Full Screen"
-msgstr "Koko ruutu"
+msgstr "Kokoruututila"
 
 #: ../src/terminal-accels.c:145
 msgid "Zoom In"
@@ -1517,7 +1519,7 @@ msgstr "Pienennä"
 msgid "Normal Size"
 msgstr "Tavallinen koko"
 
-#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3261
+#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3416
 msgid "Set Title"
 msgstr "Aseta otsikko"
 
@@ -1621,7 +1623,8 @@ msgstr "Välilehdet"
 msgid "Help"
 msgstr "Ohje"
 
-#: ../src/terminal-accels.c:281
+#. Translators: Scrollbar is: ...
+#: ../src/terminal-accels.c:281 ../src/extra-strings.c:51
 msgid "Disabled"
 msgstr "Ei käytössä"
 
@@ -1638,28 +1641,28 @@ msgstr "_Toiminto"
 msgid "Shortcut _Key"
 msgstr "Pika_näppäin"
 
-#: ../src/terminal-app.c:475
+#: ../src/terminal-app.c:481
 msgid "Click button to choose profile"
 msgstr "Napsauta painiketta valitaksesi profiilin"
 
-#: ../src/terminal-app.c:560
+#: ../src/terminal-app.c:566
 msgid "Profile list"
 msgstr "Profiililuettelo"
 
-#: ../src/terminal-app.c:621
+#: ../src/terminal-app.c:627
 #, c-format
 msgid "Delete profile “%s”?"
 msgstr "Poista profiili \"%s\"?"
 
-#: ../src/terminal-app.c:637
+#: ../src/terminal-app.c:643
 msgid "Delete Profile"
 msgstr "Poista profiili"
 
-#: ../src/terminal-app.c:951
+#: ../src/terminal-app.c:957
 msgid "User Defined"
 msgstr "Käyttäjän määrittelemä"
 
-#: ../src/terminal-app.c:1106
+#: ../src/terminal-app.c:1112
 #, c-format
 msgid ""
 "You already have a profile called “%s”. Do you want to create another "
@@ -1668,38 +1671,37 @@ msgstr ""
 "Profiilin \"%s\" on jo olemassa. Haluatko luoda toisen profiilin samalla "
 "nimellä?"
 
-#: ../src/terminal-app.c:1207
+#: ../src/terminal-app.c:1214
 msgid "Choose base profile"
 msgstr "Valitse perusprofiili"
 
-#: ../src/terminal-app.c:1730
+#: ../src/terminal-app.c:1781
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr "Profiilia \"%s\" ei ole: käytetään oletusprofiilia\n"
 
-#: ../src/terminal-app.c:1750
+#: ../src/terminal-app.c:1801
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Virheellinen mittamerkkijono \"%s\"\n"
 
 # , c-format
-#: ../src/terminal.c:191
-#, c-format
-msgid "Could not open link: %s"
-msgstr "Linkkiä ei toitu avata: %s"
+#: ../src/terminal.c:195
+msgid "Could not open link"
+msgstr "Linkkiä ei voitu avata"
 
-#: ../src/terminal.c:287
+#: ../src/terminal.c:291
 #, c-format
 msgid "Failed to parse arguments: %s\n"
 msgstr "Virhe tulkittaessa argumentteja: %s\n"
 
 #. Incompatible factory version, fall back, to new instance
-#: ../src/terminal.c:417
+#: ../src/terminal.c:421
 #, c-format
 msgid "Incompatible factory version; creating a new instance.\n"
 msgstr "Tehtaan versio ei ole yhteensopiva, luodaan uusi instanssi.\n"
 
-#: ../src/terminal.c:423
+#: ../src/terminal.c:427
 #, c-format
 msgid "Factory error: %s\n"
 msgstr "Tehtaan virhe: %s\n"
@@ -1858,7 +1860,7 @@ msgstr "_Merkistö"
 msgid "Current Locale"
 msgstr "Nykyinen maa-asetusto"
 
-#: ../src/terminal-options.c:174
+#: ../src/terminal-options.c:175
 #, c-format
 msgid ""
 "Option \"%s\" is no longer supported in this version of gnome-terminal; you "
@@ -1869,7 +1871,7 @@ msgstr ""
 "luoda uuden profiilin halutuilla asetuksilla ja käyttää uutta valitsinta \"--"
 "profile\".\n"
 
-#: ../src/terminal-options.c:187 ../src/terminal-window.c:3480
+#: ../src/terminal-options.c:188 ../src/terminal-window.c:3636
 msgid "GNOME Terminal"
 msgstr "Gnomen pääte"
 
@@ -1887,22 +1889,22 @@ msgstr "Samalle ikkunalle on annet kaksi eri roolia"
 msgid "\"%s\" option given twice for the same window\n"
 msgstr "Valitsin \"%s\" annettu kahdesti samaa ikkunaa kohden\n"
 
-#: ../src/terminal-options.c:595
+#: ../src/terminal-options.c:596
 #, c-format
 msgid "\"%s\" is not a valid zoom factor"
 msgstr "\"%s\" ei ole kelvollinen suurennoskerroin"
 
-#: ../src/terminal-options.c:602
+#: ../src/terminal-options.c:603
 #, c-format
 msgid "Zoom factor \"%g\" is too small, using %g\n"
 msgstr "Suurennoskerroin \"%g\" on liian pieni: sen sijaan on käytössä %g\n"
 
-#: ../src/terminal-options.c:610
+#: ../src/terminal-options.c:611
 #, c-format
 msgid "Zoom factor \"%g\" is too large, using %g\n"
 msgstr "Suurennoskerroin \"%g\" on liian suuri: sen sijaan on käytössä %g\n"
 
-#: ../src/terminal-options.c:649
+#: ../src/terminal-options.c:646
 #, c-format
 msgid ""
 "Option \"%s\" requires specifying the command to run on the rest of the "
@@ -1910,55 +1912,54 @@ msgid ""
 msgstr ""
 "Valitsin \"%s\" vaatii ajettavan komennon annettavaksi komentorivin lopussa"
 
-#: ../src/terminal-options.c:774
+#: ../src/terminal-options.c:804
 msgid "Not a valid terminal config file."
 msgstr "Ei ole kelvollinen päätteen asetustiedosto."
 
-#. FIXME
-#: ../src/terminal-options.c:786
+#: ../src/terminal-options.c:817
 msgid "Incompatible terminal config file version."
 msgstr "Epäyhteensopiva päätteen asetustiedoston versio."
 
-#: ../src/terminal-options.c:895
+#: ../src/terminal-options.c:944
 msgid ""
 "Do not register with the activation nameserver, do not re-use an active "
 "terminal"
 msgstr ""
 "Älä rekisteröidy aktivointinimipalvelimeen tai käytä jo aktiivista päätettä"
 
-#: ../src/terminal-options.c:904
+#: ../src/terminal-options.c:953
 msgid "Load a terminal configuration file"
 msgstr "Lataa päätteen asetustiedosto"
 
-#: ../src/terminal-options.c:913
+#: ../src/terminal-options.c:962
 msgid "Save the terminal configuration to a file"
 msgstr "Tallenna päätteen asetukset tiedostoon"
 
-#: ../src/terminal-options.c:927
+#: ../src/terminal-options.c:976
 msgid "Open a new window containing a tab with the default profile"
 msgstr "Avaa uusi ikkuna, jossa on välilehti oletusprofiililla"
 
-#: ../src/terminal-options.c:936
+#: ../src/terminal-options.c:985
 msgid "Open a new tab in the last-opened window with the default profile"
 msgstr "Avaa uusi välilehti viimeksi avattuun ikkunaan oletusprofiililla"
 
-#: ../src/terminal-options.c:949
+#: ../src/terminal-options.c:998
 msgid "Turn on the menubar"
 msgstr "Näytä valikkopalkki"
 
-#: ../src/terminal-options.c:958
+#: ../src/terminal-options.c:1007
 msgid "Turn off the menubar"
 msgstr "Piilota valikkopalkki"
 
-#: ../src/terminal-options.c:967
+#: ../src/terminal-options.c:1016
 msgid "Maximise the window"
 msgstr "Suurenna ikkuna"
 
-#: ../src/terminal-options.c:976
+#: ../src/terminal-options.c:1025
 msgid "Full-screen the window"
 msgstr "Ikkuna kokoruututilassa"
 
-#: ../src/terminal-options.c:985
+#: ../src/terminal-options.c:1034
 msgid ""
 "Set the window geometry from the provided X geometry specification; see the "
 "\"X\" man page for more information"
@@ -1966,67 +1967,67 @@ msgstr ""
 "Aseta ikkunan geometria annetun X-geometrian perusteella. Lue lisätietoja "
 "manuaalisivulta \"X\""
 
-#: ../src/terminal-options.c:986
+#: ../src/terminal-options.c:1035
 msgid "GEOMETRY"
 msgstr "MITAT"
 
-#: ../src/terminal-options.c:994
+#: ../src/terminal-options.c:1043
 msgid "Set the window role"
 msgstr "Aseta päätteen rooli"
 
-#: ../src/terminal-options.c:995
+#: ../src/terminal-options.c:1044
 msgid "ROLE"
 msgstr "ROOLI"
 
-#: ../src/terminal-options.c:1003
+#: ../src/terminal-options.c:1052
 msgid "Set the last specified tab as the active one in its window"
 msgstr "Säädä viimeksi annettu välilehti aktiiviseksi omassa ikkunassaan"
 
-#: ../src/terminal-options.c:1016
+#: ../src/terminal-options.c:1065
 msgid "Execute the argument to this option inside the terminal"
 msgstr "Suorita valitsimessa annettu komento päätteessä"
 
-#: ../src/terminal-options.c:1025
+#: ../src/terminal-options.c:1074
 msgid "Use the given profile instead of the default profile"
 msgstr "Käytä annettua profiilia oletusprofiilin sijasta"
 
-#: ../src/terminal-options.c:1026
+#: ../src/terminal-options.c:1075
 msgid "PROFILE-NAME"
 msgstr "PROFIILINIMI"
 
-#: ../src/terminal-options.c:1034
+#: ../src/terminal-options.c:1083
 msgid "Set the terminal title"
 msgstr "Aseta päätteen otsikko"
 
-#: ../src/terminal-options.c:1035
+#: ../src/terminal-options.c:1084
 msgid "TITLE"
 msgstr "OTSIKKO"
 
-#: ../src/terminal-options.c:1043
+#: ../src/terminal-options.c:1092
 msgid "Set the working directory"
 msgstr "Aseta työkansio"
 
-#: ../src/terminal-options.c:1044
+#: ../src/terminal-options.c:1093
 msgid "DIRNAME"
 msgstr "TYÖKANSIO"
 
-#: ../src/terminal-options.c:1052
+#: ../src/terminal-options.c:1101
 msgid "Set the terminalx's zoom factor (1.0 = normal size)"
 msgstr "Aseta päätteen suurennoskerroin (1.0 = tavallinen koko)"
 
-#: ../src/terminal-options.c:1053
+#: ../src/terminal-options.c:1102
 msgid "ZOOM"
 msgstr "ZOOMAUS"
 
-#: ../src/terminal-options.c:1303 ../src/terminal-options.c:1306
+#: ../src/terminal-options.c:1352 ../src/terminal-options.c:1355
 msgid "GNOME Terminal Emulator"
 msgstr "Gnomen pääte"
 
-#: ../src/terminal-options.c:1307
+#: ../src/terminal-options.c:1356
 msgid "Show GNOME Terminal options"
 msgstr "Näytä Gnomen päätteen valitsimet"
 
-#: ../src/terminal-options.c:1317
+#: ../src/terminal-options.c:1366
 msgid ""
 "Options to open new windows or terminal tabs; more than one of these may be "
 "specified:"
@@ -2034,31 +2035,31 @@ msgstr ""
 "Valitsimet uusien ikkunoiden ja välilehtien avaamiseksi. Useampi kuin yksi "
 "valitsin seuraavista voidaan antaa:"
 
-#: ../src/terminal-options.c:1318
+#: ../src/terminal-options.c:1367
 msgid "Show terminal options"
 msgstr "Näytä päätteen valitsimet"
 
-#: ../src/terminal-options.c:1326
+#: ../src/terminal-options.c:1375
 msgid ""
 "Window options; if used before the first --window or --tab argument, sets "
 "the default for all windows:"
 msgstr ""
-"Ikkunavalitsimet. Jos käytetään ennen ensimmäistä --window tai --tab "
-"-valitsinta, asettaa oletusikkunan kaikille ikkunoille:"
+"Ikkunavalitsimet. Jos käytetään ennen ensimmäistä --window tai --tab -"
+"valitsinta, asettaa oletusikkunan kaikille ikkunoille:"
 
-#: ../src/terminal-options.c:1327
+#: ../src/terminal-options.c:1376
 msgid "Show per-window options"
 msgstr "Näytä ikkunakohtaiset valitsimet"
 
-#: ../src/terminal-options.c:1335
+#: ../src/terminal-options.c:1384
 msgid ""
 "Terminal options; if used before the first --window or --tab argument, sets "
 "the default for all terminals:"
 msgstr ""
-"Päätevalitsimet. Jos käytetään ennen ensimmäistä --window tai --tab "
-"-valitsinta, asettaa oletusikkunan kaikille ikkunoille:"
+"Päätevalitsimet. Jos käytetään ennen ensimmäistä --window tai --tab -"
+"valitsinta, asettaa oletusikkunan kaikille ikkunoille:"
 
-#: ../src/terminal-options.c:1336
+#: ../src/terminal-options.c:1385
 msgid "Show per-terminal options"
 msgstr "Näytä päätekohtaiset valitsimet"
 
@@ -2066,12 +2067,11 @@ msgstr "Näytä päätekohtaiset valitsimet"
 msgid "Unnamed"
 msgstr "Nimeämätön"
 
-#: ../src/terminal-screen.c:1222
-#, c-format
-msgid "There was a problem with the command for this terminal: %s"
-msgstr "Virhe tämän päätteen komennossa: %s"
+#: ../src/terminal-screen.c:1276
+msgid "There was a problem with the command for this terminal"
+msgstr "Virhe tämän päätteen komennossa"
 
-#: ../src/terminal-screen.c:1514
+#: ../src/terminal-screen.c:1581
 msgid "There was an error creating the child process for this terminal"
 msgstr "Virhe luodessa lapsiprosessia tätä päätettä varten"
 
@@ -2079,25 +2079,20 @@ msgstr "Virhe luodessa lapsiprosessia tätä päätettä varten"
 msgid "Close tab"
 msgstr "Sulje välilehti"
 
-#: ../src/terminal-tabs-menu.c:200
+#: ../src/terminal-tabs-menu.c:198
 msgid "Switch to this tab"
 msgstr "Siirry tähän välilehteen"
 
-#: ../src/terminal-util.c:170
-#, c-format
-msgid "There was an error displaying help: %s"
-msgstr "Virhe ohjetta näyttäessä: %s"
+#: ../src/terminal-util.c:181
+msgid "There was an error displaying help"
+msgstr "Virhe ohjetta näyttäessä"
 
-#: ../src/terminal-util.c:242
+#: ../src/terminal-util.c:254
 #, c-format
-msgid ""
-"Could not open the address “%s”:\n"
-"%s"
-msgstr ""
-"Osoitetta \"%s\" ei voitu avata:\n"
-"%s"
+msgid "Could not open the address “%s”"
+msgstr "Osoitetta ”%s” ei voitu avata"
 
-#: ../src/terminal-util.c:317
+#: ../src/terminal-util.c:329
 msgid ""
 "GNOME Terminal is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -2109,7 +2104,7 @@ msgstr ""
 "software foundation on ne julkaissut; joko lisenssin version 2, tai "
 "(valinnan mukaan) minkä tahansa myöhemmän version mukaisesti. "
 
-#: ../src/terminal-util.c:321
+#: ../src/terminal-util.c:333
 msgid ""
 "GNOME Terminal is distributed in the hope that it will be useful, but "
 "WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
@@ -2121,7 +2116,7 @@ msgstr ""
 "hyväksyttävästä laadusta tai soveltuvuudesta tiettyyn tarkoitukseen. Katso "
 "GPL lisenssistä lisää yksityiskohtia."
 
-#: ../src/terminal-util.c:325
+#: ../src/terminal-util.c:337
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "GNOME Terminal; if not, write to the Free Software Foundation, Inc., 51 "
@@ -2131,199 +2126,211 @@ msgstr ""
 "kirjoita osoitteeseen Free Software Foundation Inc., 51 Franklin St, Fifth "
 "Floor, Boston, MA 02110-1301, USA."
 
-#: ../src/terminal-window.c:419
+#. Translators: This is the label of a menu item to choose a profile.
+#. * _%d is used as the accelerator (with d between 1 and 9), and
+#. * the %s is the name of the terminal profile.
+#.
+#: ../src/terminal-window.c:431
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
 
-#: ../src/terminal-window.c:421
+#. Translators: This is the label of a menu item to choose a profile.
+#. * _%c is used as the accelerator (it will be a character between A and Z),
+#. * and the %s is the name of the terminal profile.
+#.
+#: ../src/terminal-window.c:437
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1561
+#: ../src/terminal-window.c:1662
 msgid "_File"
 msgstr "_Tiedosto"
 
 #. File menu
-#: ../src/terminal-window.c:1562 ../src/terminal-window.c:1573
-#: ../src/terminal-window.c:1695
+#: ../src/terminal-window.c:1663 ../src/terminal-window.c:1674
+#: ../src/terminal-window.c:1796
 msgid "Open _Terminal"
 msgstr "Avaa _pääte"
 
-#: ../src/terminal-window.c:1563 ../src/terminal-window.c:1576
-#: ../src/terminal-window.c:1698
+#: ../src/terminal-window.c:1664 ../src/terminal-window.c:1677
+#: ../src/terminal-window.c:1799
 msgid "Open Ta_b"
 msgstr "Avaa _välilehti"
 
-#: ../src/terminal-window.c:1564
+#: ../src/terminal-window.c:1665
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/terminal-window.c:1565
+#: ../src/terminal-window.c:1666
 msgid "_View"
 msgstr "_Näytä"
 
-#: ../src/terminal-window.c:1566
+#: ../src/terminal-window.c:1667
 msgid "_Terminal"
 msgstr "_Pääte"
 
-#: ../src/terminal-window.c:1567
+#: ../src/terminal-window.c:1668
 msgid "Ta_bs"
 msgstr "_Välilehdet"
 
-#: ../src/terminal-window.c:1568
+#: ../src/terminal-window.c:1669
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../src/terminal-window.c:1579
+#: ../src/terminal-window.c:1680
 msgid "New _Profile…"
 msgstr "Uusi _profiili..."
 
-#: ../src/terminal-window.c:1582 ../src/terminal-window.c:1704
+#: ../src/terminal-window.c:1683 ../src/terminal-window.c:1805
 msgid "C_lose Tab"
 msgstr "S_ulje välilehti"
 
-#: ../src/terminal-window.c:1585 ../src/terminal-window.c:2915
+#: ../src/terminal-window.c:1686
 msgid "_Close Window"
 msgstr "_Sulje ikkuna"
 
-#: ../src/terminal-window.c:1596 ../src/terminal-window.c:1692
+#: ../src/terminal-window.c:1697 ../src/terminal-window.c:1793
 msgid "Paste _Filenames"
 msgstr "Liitä _tiedostonimet"
 
-#: ../src/terminal-window.c:1602
+#: ../src/terminal-window.c:1703
 msgid "P_rofiles…"
 msgstr "P_rofiilit..."
 
-#: ../src/terminal-window.c:1605
+#: ../src/terminal-window.c:1706
 msgid "_Keyboard Shortcuts…"
 msgstr "_Pikanäppäimet..."
 
-#: ../src/terminal-window.c:1608
+#: ../src/terminal-window.c:1709
 msgid "Pr_ofile Preferences"
 msgstr "Profiilin _asetukset"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1624
+#: ../src/terminal-window.c:1725
 msgid "Change _Profile"
 msgstr "Vaihda pro_fiilia"
 
-#: ../src/terminal-window.c:1625
+#: ../src/terminal-window.c:1726
 msgid "_Set Title…"
 msgstr "Aseta otsikko..."
 
-#: ../src/terminal-window.c:1628
+#: ../src/terminal-window.c:1729
 msgid "Set _Character Encoding"
 msgstr "Aseta _merkistö"
 
-#: ../src/terminal-window.c:1629
+#: ../src/terminal-window.c:1730
 msgid "_Reset"
 msgstr "_Alusta"
 
-#: ../src/terminal-window.c:1632
+#: ../src/terminal-window.c:1733
 msgid "Reset and C_lear"
 msgstr "Alusta ja t_yhjennä"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1637
+#: ../src/terminal-window.c:1738
 msgid "_Add or Remove…"
 msgstr "_Lisää tai poista..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1642
+#: ../src/terminal-window.c:1743
 msgid "_Previous Tab"
 msgstr "_Edellinen välilehti"
 
-#: ../src/terminal-window.c:1645
+#: ../src/terminal-window.c:1746
 msgid "_Next Tab"
 msgstr "_Seuraava välilehti"
 
-#: ../src/terminal-window.c:1648
+#: ../src/terminal-window.c:1749
 msgid "Move Tab _Left"
 msgstr "Siirrä välilehteä _vasemmalle"
 
-#: ../src/terminal-window.c:1651
+#: ../src/terminal-window.c:1752
 msgid "Move Tab _Right"
 msgstr "Siirrä välilehteä _oikealle"
 
-#: ../src/terminal-window.c:1654
+#: ../src/terminal-window.c:1755
 msgid "_Detach tab"
 msgstr "_Irrota välilehti"
 
 #. Help menu
-#: ../src/terminal-window.c:1659
+#: ../src/terminal-window.c:1760
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../src/terminal-window.c:1662
+#: ../src/terminal-window.c:1763
 msgid "_About"
 msgstr "_Tietoja"
 
 #. Popup menu
-#: ../src/terminal-window.c:1667
+#: ../src/terminal-window.c:1768
 msgid "_Send Mail To…"
 msgstr "_Lähetä sähköpostia..."
 
-#: ../src/terminal-window.c:1670
+#: ../src/terminal-window.c:1771
 msgid "_Copy E-mail Address"
 msgstr "Kopioi _sähköpostiosoite"
 
-#: ../src/terminal-window.c:1673
+#: ../src/terminal-window.c:1774
 msgid "C_all To…"
 msgstr "_Soita..."
 
-#: ../src/terminal-window.c:1676
+#: ../src/terminal-window.c:1777
 msgid "_Copy Call Address"
 msgstr "Kopioi soitto-osoite"
 
-#: ../src/terminal-window.c:1679
+#: ../src/terminal-window.c:1780
 msgid "_Open Link"
 msgstr "_Avaa linkki"
 
-#: ../src/terminal-window.c:1682
+#: ../src/terminal-window.c:1783
 msgid "_Copy Link Address"
 msgstr "Kopioi _linkin kohde"
 
-#: ../src/terminal-window.c:1685
+#: ../src/terminal-window.c:1786
 msgid "P_rofiles"
 msgstr "P_rofiilit"
 
-#: ../src/terminal-window.c:1701
+#: ../src/terminal-window.c:1802 ../src/terminal-window.c:3065
 msgid "C_lose Window"
 msgstr "_Sulje ikkuna"
 
-#: ../src/terminal-window.c:1707
+#: ../src/terminal-window.c:1808
+msgid "L_eave Full Screen"
+msgstr "Lop_eta kokoruututila"
+
+#: ../src/terminal-window.c:1811
 msgid "_Input Methods"
 msgstr "Sy_öttötavat"
 
 #. View Menu
-#: ../src/terminal-window.c:1713
+#: ../src/terminal-window.c:1817
 msgid "Show _Menubar"
 msgstr "Näytä valikkopalkki"
 
-#: ../src/terminal-window.c:1717
+#: ../src/terminal-window.c:1821
 msgid "_Full Screen"
-msgstr "_Koko ruutu"
+msgstr "_Kokoruututila"
 
-#: ../src/terminal-window.c:2902
-msgid "Close this terminal?"
-msgstr "Suljetaanko tämä pääte?"
-
-#: ../src/terminal-window.c:2902
+#: ../src/terminal-window.c:3052
 msgid "Close this window?"
 msgstr "Suljetaanko tämä ikkuna?"
 
-#: ../src/terminal-window.c:2906
+#: ../src/terminal-window.c:3052
+msgid "Close this terminal?"
+msgstr "Suljetaanko tämä pääte?"
+
+#: ../src/terminal-window.c:3056
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
 msgstr ""
 "Joissain tämän ikkunan päätteissä on vielä prosesseja käynnissä. Ikkunan "
-"sulkeminen lopttaa kaikki nämä prosessit."
+"sulkeminen lopettaa kaikki nämä prosessit."
 
-#: ../src/terminal-window.c:2910
+#: ../src/terminal-window.c:3060
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2331,23 +2338,23 @@ msgstr ""
 "Tässä päätteessä on vielä käynnissä prosessi. Päätteen sulkeminen lopettaa "
 "tämän prosessin."
 
-#: ../src/terminal-window.c:2915
-msgid "_Close Terminal"
+#: ../src/terminal-window.c:3065
+msgid "C_lose Terminal"
 msgstr "S_ulje pääte"
 
-#: ../src/terminal-window.c:3277
+#: ../src/terminal-window.c:3433
 msgid "_Title:"
 msgstr "_Otsikko:"
 
-#: ../src/terminal-window.c:3463
+#: ../src/terminal-window.c:3619
 msgid "Contributors:"
 msgstr "Osallistujat:"
 
-#: ../src/terminal-window.c:3482
+#: ../src/terminal-window.c:3638
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "Pääteikkuna Gnome-työpöydälle"
 
-#: ../src/terminal-window.c:3489
+#: ../src/terminal-window.c:3645
 msgid "translator-credits"
 msgstr ""
 "Ilkka Tuohela, 2005-2009\n"
@@ -2356,6 +2363,106 @@ msgstr ""
 "Mikko Rauhala, 1999\n"
 "\n"
 "http://gnome.fi/"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:24
+msgid "Automatic"
+msgstr "Automaattinen"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:26
+msgid "Control-H"
+msgstr "Control-H"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:28
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:30
+msgid "Escape sequence"
+msgstr "Escape-sarja"
+
+#. Translators: Cursor shape: ...
+#: ../src/extra-strings.c:33
+msgid "Block"
+msgstr "Lohko"
+
+#. Translators: Cursor shape: ...
+#: ../src/extra-strings.c:35
+msgid "I-Beam"
+msgstr "I-viiva"
+
+#. Translators: Cursor shape: ...
+#: ../src/extra-strings.c:37
+msgid "Underline"
+msgstr "Alleviivaus"
+
+#. Translators: When command exits: ...
+#: ../src/extra-strings.c:40
+msgid "Exit the terminal"
+msgstr "Poistu päätteestä"
+
+#. Translators: When command exits: ...
+#: ../src/extra-strings.c:42
+msgid "Restart the command"
+msgstr "Käynnistä komento uudelleen"
+
+#. Translators: When command exits: ...
+#: ../src/extra-strings.c:44
+msgid "Hold the terminal open"
+msgstr "Säilytä pääte avoinna"
+
+#. Translators: Scrollbar is: ...
+#: ../src/extra-strings.c:47
+msgid "On the left side"
+msgstr "Vasemmalla"
+
+#. Translators: Scrollbar is: ...
+#: ../src/extra-strings.c:49
+msgid "On the right side"
+msgstr "Oikealla"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:54
+msgid "Replace initial title"
+msgstr "Korvaa alkuperäinen otsikko"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:56
+msgid "Append initial title"
+msgstr "Lisää alkuperäisen otsikon perään"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:58
+msgid "Prepend initial title"
+msgstr "Lisää alkuperäisen otsikon eteen"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:60
+msgid "Keep initial title"
+msgstr "Pidä alkuperäinen otsikko"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:63
+msgid "Tango"
+msgstr "Tango"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:65
+msgid "Linux console"
+msgstr "Linux-konsoli"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:67
+msgid "XTerm"
+msgstr "XTerm"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:69
+msgid "Rxvt"
+msgstr "Rxvt"
 
 #~ msgid ""
 #~ "If true, font anti-aliasing will be disabled when running without the X "
@@ -2579,18 +2686,6 @@ msgstr ""
 #~ msgstr ""
 #~ "X-kirjasinnimi. Lisätietoja niiden muodosta on X:n manuaalisivuilla "
 #~ "(kirjoita \"man X\")."
-
-#~ msgid "Tango"
-#~ msgstr "Tango"
-
-#~ msgid "Linux console"
-#~ msgstr "Linux-konsoli"
-
-#~ msgid "XTerm"
-#~ msgstr "XTerm"
-
-#~ msgid "Rxvt"
-#~ msgstr "Rxvt"
 
 #~ msgid "All Files"
 #~ msgstr "Kaikki tiedostot"
@@ -3056,9 +3151,6 @@ msgstr ""
 #~ msgid "Palette entry 8"
 #~ msgstr "Väri 8"
 
-#~ msgid "ASCII DEL"
-#~ msgstr "ASCII DEL"
-
 #~ msgid "Built-in foreground and background color schemes:"
 #~ msgstr "Sisäänrakennetut edusta- ja taustaväriteemat:"
 
@@ -3068,35 +3160,17 @@ msgstr ""
 #~ msgid "Color Selector"
 #~ msgstr "Värivalitsin"
 
-#~ msgid "Control-H"
-#~ msgstr "Control-H"
-
 #~ msgid "Goes after initial title"
 #~ msgstr "On alkuperäisen otsikon jälkeen"
 
 #~ msgid "Goes before initial title"
 #~ msgstr "Edeltää alkuperäistä otsikkoa"
 
-#~ msgid "Hold the terminal open"
-#~ msgstr "Säilytä pääte avoinna"
-
 #~ msgid "Isn't displayed"
 #~ msgstr "Ei näy"
 
-#~ msgid "On the left side"
-#~ msgstr "Vasemmalla"
-
-#~ msgid "On the right side"
-#~ msgstr "Oikealla"
-
 #~ msgid "Open a dialog to specify the color"
 #~ msgstr "Avaa valintaikkuna, jolla voi valita värin"
-
-#~ msgid "Replaces initial title"
-#~ msgstr "Korvaa alkuperäisen otsikon"
-
-#~ msgid "Restart the command"
-#~ msgstr "Käynnistä komento uudelleen"
 
 #~ msgid "kilobytes"
 #~ msgstr "kilotavua"
