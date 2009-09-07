@@ -1,4 +1,4 @@
-# GNOME Terminal eesti keele tõlge.
+# GNOME Terminali eesti keele tõlge.
 # Estonian translation of GNOME Terminal.
 #
 # Copyright (C) 2002, 2004-2006 Free Software Foundation, Inc.
@@ -11,11 +11,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal HEAD\n"
+"Project-Id-Version: gnome-terminal 2.28\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "terminal&component=general\n"
-"POT-Creation-Date: 2009-08-17 10:43+0000\n"
-"PO-Revision-Date: 2009-08-17 18:06+0300\n"
+"POT-Creation-Date: 2009-08-28 07:31+0000\n"
+"PO-Revision-Date: 2009-08-26 08:49+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -1029,7 +1029,7 @@ msgid "Built-in _schemes:"
 msgstr "Sisse_ehitatud teemad:"
 
 msgid "Built-in sche_mes:"
-msgstr "S_isseehitatud teemad:"
+msgstr "_Sisseehitatud teemad:"
 
 msgid "Choose A Terminal Font"
 msgstr "Terminali kirjatüübi valimine"
@@ -1050,7 +1050,7 @@ msgid "Compatibility"
 msgstr "Ühilduvus"
 
 msgid "Cursor _shape:"
-msgstr "_Kursori kuju:"
+msgstr "K_ursori kuju:"
 
 #. Translators: This is the name of a colour scheme
 msgid "Custom"
@@ -1075,7 +1075,7 @@ msgid "Image _file:"
 msgstr "_Pildifail:"
 
 msgid "Initial _title:"
-msgstr "Algne _pealkiri:"
+msgstr "_Algne pealkiri:"
 
 msgid ""
 "On the left side\n"
@@ -1113,7 +1113,7 @@ msgid "Scroll on _output"
 msgstr "Kerimine _väljundi saamisel"
 
 msgid "Scroll_back:"
-msgstr "_Kerimispuhver:"
+msgstr "Kerimis_puhver:"
 
 msgid "Scrolling"
 msgstr "Kerimine"
@@ -1141,7 +1141,7 @@ msgstr ""
 "Kohandatud"
 
 msgid "Terminal _bell"
-msgstr "Terminali _kõll"
+msgstr "Terminali kõ_ll"
 
 msgid "Title and Command"
 msgstr "Pealkiri ja käsk"
@@ -1177,10 +1177,10 @@ msgid "_Reset Compatibility Options to Defaults"
 msgstr "Taasta ühilduvusvalikute _algväärtused"
 
 msgid "_Run command as a login shell"
-msgstr "Käsk käivitatakse _login kestana"
+msgstr "_Käsk käivitatakse login kestana"
 
 msgid "_Scrollbar is:"
-msgstr "K_erimisriba asukoht:"
+msgstr "_Kerimisriba asukoht:"
 
 msgid "_Solid color"
 msgstr "Ü_htlane värv"
@@ -1894,6 +1894,26 @@ msgstr ""
 "Priit Laes <amd@store20.com>, 2004-2006.\n"
 "Ivar Smolin <okul@linux.ee>, 2005-2009."
 
+#.
+#. * Copyright © 2009 Christian Persch
+#. *
+#. * Gnome-terminal is free software; you can redistribute it and/or modify
+#. * it under the terms of the GNU General Public License as published by
+#. * the Free Software Foundation; either version 2 of the License, or
+#. * (at your option) any later version.
+#. *
+#. * Gnome-terminal is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. * GNU General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public License
+#. * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#.
+#. This file contains extra strings that need to be translated, but
+#. * can't be extracted by intltool since the ui files aren't in git, and
+#. * the glade files don't contain them in the right form. See bug #553357.
+#.
 #. Translators: This refers to the Delete keybinding option
 msgid "Automatic"
 msgstr "Automaatne"
@@ -1922,14 +1942,17 @@ msgstr "Püstkriips"
 msgid "Underline"
 msgstr "Allkriips"
 
+#. Translators: When command exits: ...
 msgid "Exit the terminal"
-msgstr "Terminalist väljumine"
+msgstr "Väljutakse terminalist"
 
+#. Translators: When command exits: ...
 msgid "Restart the command"
-msgstr "Käsu taaskäivitamine"
+msgstr "Käivitatakse käsk uuesti"
 
+#. Translators: When command exits: ...
 msgid "Hold the terminal open"
-msgstr "Terminali hoidmine avatuna"
+msgstr "Jätetakse terminal avatuks"
 
 #. Translators: Scrollbar is: ...
 msgid "On the left side"
