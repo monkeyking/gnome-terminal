@@ -35,8 +35,6 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = gnome-terminal$(EXEEXT)
 @WITH_SMCLIENT_TRUE@am__append_1 = \
-@WITH_SMCLIENT_TRUE@	eggdesktopfile.c \
-@WITH_SMCLIENT_TRUE@	eggdesktopfile.h \
 @WITH_SMCLIENT_TRUE@	eggsmclient.c \
 @WITH_SMCLIENT_TRUE@	eggsmclient.h \
 @WITH_SMCLIENT_TRUE@	eggsmclient-private.h \
@@ -44,7 +42,12 @@ bin_PROGRAMS = gnome-terminal$(EXEEXT)
 
 @WITH_SMCLIENT_TRUE@am__append_2 = $(SMCLIENT_CFLAGS)
 @WITH_SMCLIENT_TRUE@am__append_3 = $(SMCLIENT_LIBS)
-@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_4 = eggsmclient-xsmp.c
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_4 = \
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@	eggdesktopfile.c \
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@	eggdesktopfile.h \
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@	eggsmclient-xsmp.c \
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@	$(NULL)
+
 @WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__append_5 = -DEGG_SM_CLIENT_BACKEND_XSMP
 @WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_WIN32_TRUE@am__append_6 = eggsmclient-win32.c
 @WITH_SMCLIENT_QUARTZ_TRUE@@WITH_SMCLIENT_TRUE@am__append_7 = eggsmclient-osx.c
@@ -66,25 +69,23 @@ am__gnome_terminal_SOURCES_DIST = eggshell.c eggshell.h \
 	profile-editor.c profile-editor.h skey-popup.c skey-popup.h \
 	terminal.c terminal-accels.c terminal-accels.h terminal-app.c \
 	terminal-app.h terminal-debug.c terminal-debug.h \
-	terminal-encoding.c terminal-encoding.h \
-	terminal-factory-client.h terminal-factory-server.h \
-	terminal-intl.h terminal-marshal.c terminal-marshal.h \
+	terminal-encoding.c terminal-encoding.h terminal-intl.h \
 	terminal-options.c terminal-options.h terminal-profile.c \
 	terminal-profile.h terminal-screen.c terminal-screen.h \
 	terminal-screen-container.c terminal-screen-container.h \
 	terminal-tab-label.c terminal-tab-label.h terminal-tabs-menu.c \
-	terminal-tabs-menu.h terminal-type-builtins.c \
-	terminal-type-builtins.h terminal-util.c terminal-util.h \
-	terminal-window.c terminal-window.h eggdesktopfile.c \
-	eggdesktopfile.h eggsmclient.c eggsmclient.h \
-	eggsmclient-private.h eggsmclient-xsmp.c eggsmclient-win32.c \
+	terminal-tabs-menu.h terminal-util.c terminal-util.h \
+	terminal-window.c terminal-window.h eggsmclient.c \
+	eggsmclient.h eggsmclient-private.h eggdesktopfile.c \
+	eggdesktopfile.h eggsmclient-xsmp.c eggsmclient-win32.c \
 	eggsmclient-osx.c
 am__objects_1 =
 @WITH_SMCLIENT_TRUE@am__objects_2 =  \
-@WITH_SMCLIENT_TRUE@	gnome_terminal-eggdesktopfile.$(OBJEXT) \
 @WITH_SMCLIENT_TRUE@	gnome_terminal-eggsmclient.$(OBJEXT) \
 @WITH_SMCLIENT_TRUE@	$(am__objects_1)
-@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__objects_3 = gnome_terminal-eggsmclient-xsmp.$(OBJEXT)
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@am__objects_3 = gnome_terminal-eggdesktopfile.$(OBJEXT) \
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@	gnome_terminal-eggsmclient-xsmp.$(OBJEXT) \
+@WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_XSMP_TRUE@	$(am__objects_1)
 @WITH_SMCLIENT_TRUE@@WITH_SMCLIENT_WIN32_TRUE@am__objects_4 = gnome_terminal-eggsmclient-win32.$(OBJEXT)
 @WITH_SMCLIENT_QUARTZ_TRUE@@WITH_SMCLIENT_TRUE@am__objects_5 = gnome_terminal-eggsmclient-osx.$(OBJEXT)
 am_gnome_terminal_OBJECTS = gnome_terminal-eggshell.$(OBJEXT) \
@@ -95,19 +96,22 @@ am_gnome_terminal_OBJECTS = gnome_terminal-eggshell.$(OBJEXT) \
 	gnome_terminal-terminal-app.$(OBJEXT) \
 	gnome_terminal-terminal-debug.$(OBJEXT) \
 	gnome_terminal-terminal-encoding.$(OBJEXT) \
-	gnome_terminal-terminal-marshal.$(OBJEXT) \
 	gnome_terminal-terminal-options.$(OBJEXT) \
 	gnome_terminal-terminal-profile.$(OBJEXT) \
 	gnome_terminal-terminal-screen.$(OBJEXT) \
 	gnome_terminal-terminal-screen-container.$(OBJEXT) \
 	gnome_terminal-terminal-tab-label.$(OBJEXT) \
 	gnome_terminal-terminal-tabs-menu.$(OBJEXT) \
-	gnome_terminal-terminal-type-builtins.$(OBJEXT) \
 	gnome_terminal-terminal-util.$(OBJEXT) \
 	gnome_terminal-terminal-window.$(OBJEXT) $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5)
-gnome_terminal_OBJECTS = $(am_gnome_terminal_OBJECTS)
+am__objects_6 = gnome_terminal-terminal-marshal.$(OBJEXT) \
+	gnome_terminal-terminal-type-builtins.$(OBJEXT) \
+	$(am__objects_1)
+nodist_gnome_terminal_OBJECTS = $(am__objects_6)
+gnome_terminal_OBJECTS = $(am_gnome_terminal_OBJECTS) \
+	$(nodist_gnome_terminal_OBJECTS)
 am__DEPENDENCIES_1 =
 @WITH_SMCLIENT_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
 gnome_terminal_DEPENDENCIES = skey/libskey.la $(am__DEPENDENCIES_1) \
@@ -127,7 +131,7 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(gnome_terminal_SOURCES)
+SOURCES = $(gnome_terminal_SOURCES) $(nodist_gnome_terminal_SOURCES)
 DIST_SOURCES = $(am__gnome_terminal_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
@@ -306,21 +310,28 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 NULL = 
 SUBDIRS = skey
+BUILT_SOURCES = \
+	terminal-factory-client.h \
+	terminal-factory-server.h \
+	terminal-marshal.c \
+	terminal-marshal.h \
+	terminal-type-builtins.c \
+	terminal-type-builtins.h \
+	$(NULL)
+
 gnome_terminal_SOURCES = eggshell.c eggshell.h profile-editor.c \
 	profile-editor.h skey-popup.c skey-popup.h terminal.c \
 	terminal-accels.c terminal-accels.h terminal-app.c \
 	terminal-app.h terminal-debug.c terminal-debug.h \
-	terminal-encoding.c terminal-encoding.h \
-	terminal-factory-client.h terminal-factory-server.h \
-	terminal-intl.h terminal-marshal.c terminal-marshal.h \
+	terminal-encoding.c terminal-encoding.h terminal-intl.h \
 	terminal-options.c terminal-options.h terminal-profile.c \
 	terminal-profile.h terminal-screen.c terminal-screen.h \
 	terminal-screen-container.c terminal-screen-container.h \
 	terminal-tab-label.c terminal-tab-label.h terminal-tabs-menu.c \
-	terminal-tabs-menu.h terminal-type-builtins.c \
-	terminal-type-builtins.h terminal-util.c terminal-util.h \
+	terminal-tabs-menu.h terminal-util.c terminal-util.h \
 	terminal-window.c terminal-window.h $(NULL) $(am__append_1) \
 	$(am__append_4) $(am__append_6) $(am__append_7)
+nodist_gnome_terminal_SOURCES = $(BUILT_SOURCES)
 gnome_terminal_CPPFLAGS = -DEXECUTABLE_NAME=\"gnome-terminal\" \
 	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
@@ -336,15 +347,6 @@ gnome_terminal_CFLAGS = $(TERM_CFLAGS) $(WARN_CFLAGS) $(AM_CFLAGS) \
 	$(am__append_2)
 gnome_terminal_LDFLAGS = 
 gnome_terminal_LDADD = skey/libskey.la $(TERM_LIBS) $(am__append_3)
-BUILT_SOURCES = \
-	terminal-factory-client.h \
-	terminal-factory-server.h \
-	terminal-marshal.c \
-	terminal-marshal.h \
-	terminal-type-builtins.c \
-	terminal-type-builtins.h \
-	$(NULL)
-
 TYPES_H_FILES = \
 	terminal-profile.h \
 	$(NULL)
@@ -620,20 +622,6 @@ gnome_terminal-terminal-encoding.obj: terminal-encoding.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-encoding.obj `if test -f 'terminal-encoding.c'; then $(CYGPATH_W) 'terminal-encoding.c'; else $(CYGPATH_W) '$(srcdir)/terminal-encoding.c'; fi`
 
-gnome_terminal-terminal-marshal.o: terminal-marshal.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo $(DEPDIR)/gnome_terminal-terminal-marshal.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-marshal.c' object='gnome_terminal-terminal-marshal.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c
-
-gnome_terminal-terminal-marshal.obj: terminal-marshal.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.obj `if test -f 'terminal-marshal.c'; then $(CYGPATH_W) 'terminal-marshal.c'; else $(CYGPATH_W) '$(srcdir)/terminal-marshal.c'; fi`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo $(DEPDIR)/gnome_terminal-terminal-marshal.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-marshal.c' object='gnome_terminal-terminal-marshal.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-marshal.obj `if test -f 'terminal-marshal.c'; then $(CYGPATH_W) 'terminal-marshal.c'; else $(CYGPATH_W) '$(srcdir)/terminal-marshal.c'; fi`
-
 gnome_terminal-terminal-options.o: terminal-options.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-options.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-options.Tpo -c -o gnome_terminal-terminal-options.o `test -f 'terminal-options.c' || echo '$(srcdir)/'`terminal-options.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-options.Tpo $(DEPDIR)/gnome_terminal-terminal-options.Po
@@ -718,20 +706,6 @@ gnome_terminal-terminal-tabs-menu.obj: terminal-tabs-menu.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-tabs-menu.obj `if test -f 'terminal-tabs-menu.c'; then $(CYGPATH_W) 'terminal-tabs-menu.c'; else $(CYGPATH_W) '$(srcdir)/terminal-tabs-menu.c'; fi`
 
-gnome_terminal-terminal-type-builtins.o: terminal-type-builtins.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-type-builtins.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo -c -o gnome_terminal-terminal-type-builtins.o `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo $(DEPDIR)/gnome_terminal-terminal-type-builtins.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-type-builtins.c' object='gnome_terminal-terminal-type-builtins.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-type-builtins.o `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
-
-gnome_terminal-terminal-type-builtins.obj: terminal-type-builtins.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-type-builtins.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo -c -o gnome_terminal-terminal-type-builtins.obj `if test -f 'terminal-type-builtins.c'; then $(CYGPATH_W) 'terminal-type-builtins.c'; else $(CYGPATH_W) '$(srcdir)/terminal-type-builtins.c'; fi`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo $(DEPDIR)/gnome_terminal-terminal-type-builtins.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-type-builtins.c' object='gnome_terminal-terminal-type-builtins.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-type-builtins.obj `if test -f 'terminal-type-builtins.c'; then $(CYGPATH_W) 'terminal-type-builtins.c'; else $(CYGPATH_W) '$(srcdir)/terminal-type-builtins.c'; fi`
-
 gnome_terminal-terminal-util.o: terminal-util.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-util.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-util.Tpo -c -o gnome_terminal-terminal-util.o `test -f 'terminal-util.c' || echo '$(srcdir)/'`terminal-util.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-util.Tpo $(DEPDIR)/gnome_terminal-terminal-util.Po
@@ -760,20 +734,6 @@ gnome_terminal-terminal-window.obj: terminal-window.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-window.obj `if test -f 'terminal-window.c'; then $(CYGPATH_W) 'terminal-window.c'; else $(CYGPATH_W) '$(srcdir)/terminal-window.c'; fi`
 
-gnome_terminal-eggdesktopfile.o: eggdesktopfile.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-eggdesktopfile.o -MD -MP -MF $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo -c -o gnome_terminal-eggdesktopfile.o `test -f 'eggdesktopfile.c' || echo '$(srcdir)/'`eggdesktopfile.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo $(DEPDIR)/gnome_terminal-eggdesktopfile.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='eggdesktopfile.c' object='gnome_terminal-eggdesktopfile.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-eggdesktopfile.o `test -f 'eggdesktopfile.c' || echo '$(srcdir)/'`eggdesktopfile.c
-
-gnome_terminal-eggdesktopfile.obj: eggdesktopfile.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-eggdesktopfile.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo -c -o gnome_terminal-eggdesktopfile.obj `if test -f 'eggdesktopfile.c'; then $(CYGPATH_W) 'eggdesktopfile.c'; else $(CYGPATH_W) '$(srcdir)/eggdesktopfile.c'; fi`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo $(DEPDIR)/gnome_terminal-eggdesktopfile.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='eggdesktopfile.c' object='gnome_terminal-eggdesktopfile.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-eggdesktopfile.obj `if test -f 'eggdesktopfile.c'; then $(CYGPATH_W) 'eggdesktopfile.c'; else $(CYGPATH_W) '$(srcdir)/eggdesktopfile.c'; fi`
-
 gnome_terminal-eggsmclient.o: eggsmclient.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-eggsmclient.o -MD -MP -MF $(DEPDIR)/gnome_terminal-eggsmclient.Tpo -c -o gnome_terminal-eggsmclient.o `test -f 'eggsmclient.c' || echo '$(srcdir)/'`eggsmclient.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-eggsmclient.Tpo $(DEPDIR)/gnome_terminal-eggsmclient.Po
@@ -787,6 +747,20 @@ gnome_terminal-eggsmclient.obj: eggsmclient.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='eggsmclient.c' object='gnome_terminal-eggsmclient.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-eggsmclient.obj `if test -f 'eggsmclient.c'; then $(CYGPATH_W) 'eggsmclient.c'; else $(CYGPATH_W) '$(srcdir)/eggsmclient.c'; fi`
+
+gnome_terminal-eggdesktopfile.o: eggdesktopfile.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-eggdesktopfile.o -MD -MP -MF $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo -c -o gnome_terminal-eggdesktopfile.o `test -f 'eggdesktopfile.c' || echo '$(srcdir)/'`eggdesktopfile.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo $(DEPDIR)/gnome_terminal-eggdesktopfile.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='eggdesktopfile.c' object='gnome_terminal-eggdesktopfile.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-eggdesktopfile.o `test -f 'eggdesktopfile.c' || echo '$(srcdir)/'`eggdesktopfile.c
+
+gnome_terminal-eggdesktopfile.obj: eggdesktopfile.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-eggdesktopfile.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo -c -o gnome_terminal-eggdesktopfile.obj `if test -f 'eggdesktopfile.c'; then $(CYGPATH_W) 'eggdesktopfile.c'; else $(CYGPATH_W) '$(srcdir)/eggdesktopfile.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-eggdesktopfile.Tpo $(DEPDIR)/gnome_terminal-eggdesktopfile.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='eggdesktopfile.c' object='gnome_terminal-eggdesktopfile.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-eggdesktopfile.obj `if test -f 'eggdesktopfile.c'; then $(CYGPATH_W) 'eggdesktopfile.c'; else $(CYGPATH_W) '$(srcdir)/eggdesktopfile.c'; fi`
 
 gnome_terminal-eggsmclient-xsmp.o: eggsmclient-xsmp.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-eggsmclient-xsmp.o -MD -MP -MF $(DEPDIR)/gnome_terminal-eggsmclient-xsmp.Tpo -c -o gnome_terminal-eggsmclient-xsmp.o `test -f 'eggsmclient-xsmp.c' || echo '$(srcdir)/'`eggsmclient-xsmp.c
@@ -829,6 +803,34 @@ gnome_terminal-eggsmclient-osx.obj: eggsmclient-osx.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='eggsmclient-osx.c' object='gnome_terminal-eggsmclient-osx.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-eggsmclient-osx.obj `if test -f 'eggsmclient-osx.c'; then $(CYGPATH_W) 'eggsmclient-osx.c'; else $(CYGPATH_W) '$(srcdir)/eggsmclient-osx.c'; fi`
+
+gnome_terminal-terminal-marshal.o: terminal-marshal.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo $(DEPDIR)/gnome_terminal-terminal-marshal.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-marshal.c' object='gnome_terminal-terminal-marshal.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-marshal.o `test -f 'terminal-marshal.c' || echo '$(srcdir)/'`terminal-marshal.c
+
+gnome_terminal-terminal-marshal.obj: terminal-marshal.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-marshal.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo -c -o gnome_terminal-terminal-marshal.obj `if test -f 'terminal-marshal.c'; then $(CYGPATH_W) 'terminal-marshal.c'; else $(CYGPATH_W) '$(srcdir)/terminal-marshal.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-marshal.Tpo $(DEPDIR)/gnome_terminal-terminal-marshal.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-marshal.c' object='gnome_terminal-terminal-marshal.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-marshal.obj `if test -f 'terminal-marshal.c'; then $(CYGPATH_W) 'terminal-marshal.c'; else $(CYGPATH_W) '$(srcdir)/terminal-marshal.c'; fi`
+
+gnome_terminal-terminal-type-builtins.o: terminal-type-builtins.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-type-builtins.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo -c -o gnome_terminal-terminal-type-builtins.o `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo $(DEPDIR)/gnome_terminal-terminal-type-builtins.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-type-builtins.c' object='gnome_terminal-terminal-type-builtins.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-type-builtins.o `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
+
+gnome_terminal-terminal-type-builtins.obj: terminal-type-builtins.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-type-builtins.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo -c -o gnome_terminal-terminal-type-builtins.obj `if test -f 'terminal-type-builtins.c'; then $(CYGPATH_W) 'terminal-type-builtins.c'; else $(CYGPATH_W) '$(srcdir)/terminal-type-builtins.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/gnome_terminal-terminal-type-builtins.Tpo $(DEPDIR)/gnome_terminal-terminal-type-builtins.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='terminal-type-builtins.c' object='gnome_terminal-terminal-type-builtins.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-type-builtins.obj `if test -f 'terminal-type-builtins.c'; then $(CYGPATH_W) 'terminal-type-builtins.c'; else $(CYGPATH_W) '$(srcdir)/terminal-type-builtins.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

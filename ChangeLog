@@ -1,3 +1,97 @@
+commit 24a9dd8b0c44ef4cc60411b609962c5717f41dfb
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 29 15:51:39 2009 +0200
+
+    Version 2.26.3.1
+
+ NEWS         |    5 +++++
+ configure.ac |    2 +-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+commit 6180b55d063f7e3a8da9cfd671ab8f41be175f24
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 22 13:46:30 2009 +0200
+
+    Don't dist built sources
+
+ src/Makefile.am |   26 +++++++++++---------------
+ 1 files changed, 11 insertions(+), 15 deletions(-)
+
+commit 70ebd6755fee1f5cfbc0c4a20716d0e8327b588d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 29 14:09:07 2009 +0200
+
+    NEWS update
+
+ NEWS |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit aaa44392395c10718326d918200433d6e676d5ad
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 29 14:06:30 2009 +0200
+
+    Fix profile editor on new profile being greyed out
+    
+    Bug #584943.
+
+ src/terminal-profile.c |    6 ------
+ 1 files changed, 0 insertions(+), 6 deletions(-)
+
+commit 0cd8324d7b78b94a36bc74c1bb8ae753d9099d13
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 29 14:06:22 2009 +0200
+
+    Version 2.26.3
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 129570f981a915ad5acc6ec324d897b5cfd41d05
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jun 14 15:42:37 2009 +0200
+
+    Use eggdesktopfile only on x11
+
+ src/Makefile.am |    8 +++++---
+ src/terminal.c  |    4 +++-
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+commit e5dc4060a9204ced0123b57f46a4a6cf08b71a1f
+Author: A S Alam <aalam@users.sf.net>
+Date:   Fri Jun 12 20:06:19 2009 +0530
+
+    updating for Gnome Terminal 2-26
+
+ po/pa.po |  487 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 256 insertions(+), 231 deletions(-)
+
+commit a43c4a8b329fd6b3f6bc389a8645641a5f98fa54
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Mon Jun 1 09:26:46 2009 +0300
+
+    Updating Estonian translation
+
+ po/et.po |   22 +++++++++++++++++-----
+ 1 files changed, 17 insertions(+), 5 deletions(-)
+
+commit 1fa559f95f96d12284acfa09663c7aa7dfe4f9e1
+Author: Seán de Búrca <leftmostcat@gmail.com>
+Date:   Fri May 29 07:38:48 2009 +0100
+
+    Updated Irish translation
+
+ po/ga.po | 1396 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 821 insertions(+), 575 deletions(-)
+
+commit 09305563008cf72e7dc3ae595ba88cf777386891
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon May 18 19:01:09 2009 +0200
+
+    Update
+
+ NEWS |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
 commit 7725e144eb0fc8a7e71fd51b432cb0b9aeba0ea2
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon May 18 18:52:37 2009 +0200
