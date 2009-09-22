@@ -1,4 +1,4 @@
-# translation of gnome-terminal.HEAD.po to Tamil
+# translation of gnome-terminal.master.ta.po to Tamil
 # translation of gnome-terminal.HEAD.ta.po to
 # Tamil translation of Gnome Terminal.
 # Copyright (C) 2003 Gnome Terminal's copyright holder
@@ -7,15 +7,15 @@
 # Dinesh Nadarajah <n_dinesh@yahoo.com>, 2003.
 # Jayaradha N <jaya@pune.redhat.com>, 2004.
 # Felix <ifelix@redhat.com>, 2006.
-# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007.
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2009.
 # Dr.T.vasudevan <agnihot3@gmail.com>, 2009.
 # I. Felix <ifelix@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal&amp;component=general\n"
-"POT-Creation-Date: 2008-12-15 21:26+0000\n"
-"PO-Revision-Date: 2009-03-14 22:37+0530\n"
+"Project-Id-Version: gnome-terminal.master.ta\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal&component=general\n"
+"POT-Creation-Date: 2009-08-25 02:36+0000\n"
+"PO-Revision-Date: 2009-08-26 12:42+0530\n"
 "Last-Translator: I. Felix <ifelix@redhat.com>\n"
 "Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,10 +25,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
 "\n"
 "\n"
+"\n"
+"\n"
+"\n"
+"\n"
 
 #: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:119
-#: ../src/terminal-accels.c:222 ../src/terminal.c:261
-#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1728
+#: ../src/terminal-accels.c:222 ../src/terminal.c:304
+#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1842
 msgid "Terminal"
 msgstr "முனையம்"
 
@@ -36,32 +40,32 @@ msgstr "முனையம்"
 msgid "Use the command line"
 msgstr "கட்டளை வரியை பயன்படுத்து"
 
-#: ../src/eggsmclient.c:224
+#: ../src/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "அமர்வு மேலாளருக்கு இணைப்பை செயல் நீக்கு"
 
-#: ../src/eggsmclient.c:227
+#: ../src/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "சேமித்த வடிவமைப்பு கூடிய கோப்பை குறிப்பிடுக"
 
-#: ../src/eggsmclient.c:227 ../src/terminal-options.c:905
-#: ../src/terminal-options.c:914
+#: ../src/eggsmclient.c:228 ../src/terminal-options.c:957
+#: ../src/terminal-options.c:966
 msgid "FILE"
 msgstr "FILE"
 
-#: ../src/eggsmclient.c:230
+#: ../src/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "அமர்வு மேலாண்மை அடையாளத்தை குறிப்பிடுக"
 
-#: ../src/eggsmclient.c:230
+#: ../src/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
-#: ../src/eggsmclient.c:244
+#: ../src/eggsmclient.c:252
 msgid "Session management options:"
 msgstr "அமர்வு மேலாண்மை தேர்வுகள்:"
 
-#: ../src/eggsmclient.c:245
+#: ../src/eggsmclient.c:253
 msgid "Show session management options"
 msgstr "அமர்வு மேலாணமை தேர்வுகளை காட்டு"
 
@@ -313,8 +317,8 @@ msgid ""
 "keyboard shortcut for this action."
 msgstr ""
 "விவரங்களை உருவாக்குவதற்கான உரையாடலை அமைக்க பயன்படும் விசைப்பலகை குறுக்கு விசைகள். GTK"
-"+ மூல கோப்பில் பயன்படுத்தப்பட்ட ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற "
-"தேர்வை நீங்கள் பயன்படுத்தி இருந்தால் குறுக்கு விசைகள் செயல்படாது"
+"+ மூல கோப்பில் பயன்படுத்தப்பட்ட ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" "
+"என்ற தேர்வை நீங்கள் பயன்படுத்தி இருந்தால் குறுக்கு விசைகள் செயல்படாது"
 
 #: ../src/gnome-terminal.schemas.in.h:43
 msgid ""
@@ -323,8 +327,8 @@ msgid ""
 "string \"disabled\", then there will be no keyboard shortcut for this action."
 msgstr ""
 "கீற்று  ஐ மூடுவதற்கான விசைப்பலகை குறுக்கு விசைகள்.GTK+ மூல கோப்பில் பயன்படுத்தப்பட்ட "
-"ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் பயன்படுத்தி இருந்தால் "
-"குறுக்கு விசைகள் செயல்படாது"
+"ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் பயன்படுத்தி "
+"இருந்தால் குறுக்கு விசைகள் செயல்படாது"
 
 #: ../src/gnome-terminal.schemas.in.h:44
 msgid ""
@@ -334,8 +338,8 @@ msgid ""
 "this action."
 msgstr ""
 "சாளரத்தை மூடுவதற்கான விசைப்பலகை குறுக்கு விசைகள்.GTK+ மூல கோப்பில் பயன்படுத்தப்பட்ட "
-"ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் பயன்படுத்தி இருந்தால் "
-"குறுக்கு விசைகள் செயல்படாது"
+"ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் பயன்படுத்தி "
+"இருந்தால் குறுக்கு விசைகள் செயல்படாது"
 
 #: ../src/gnome-terminal.schemas.in.h:45
 msgid ""
@@ -399,8 +403,8 @@ msgid ""
 "this action."
 msgstr ""
 "புதிய கீற்றை திறப்பதற்கான விசைப்பலகை குறுக்கு விசை .GTK+ மூல கோப்பில் பயன்படுத்தப்பட்ட "
-"ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் பயன்படுத்தி இருந்தால் "
-"குறுக்கு விசைகள் செயல்படாது"
+"ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் பயன்படுத்தி "
+"இருந்தால் குறுக்கு விசைகள் செயல்படாது"
 
 #: ../src/gnome-terminal.schemas.in.h:51
 msgid ""
@@ -421,8 +425,8 @@ msgid ""
 "will be no keyboard shortcut for this action."
 msgstr ""
 "தற்காலிக நினைவிடத்தில் சேமித்தவைகளை ஒட்ட பயன்படும் விசைப்பலகை குறுக்கு விசை. GTK+ மூல "
-"கோப்பில் பயன்படுத்தப்பட்ட ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை "
-"நீங்கள் பயன்படுத்தி இருந்தால் குறுக்கு விசைகள் செயல்படாது"
+"கோப்பில் பயன்படுத்தப்பட்ட ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற "
+"தேர்வை நீங்கள் பயன்படுத்தி இருந்தால் குறுக்கு விசைகள் செயல்படாது"
 
 #: ../src/gnome-terminal.schemas.in.h:53
 msgid ""
@@ -431,8 +435,8 @@ msgid ""
 "string \"disabled\", then there will be no keyboard shortcut for this action."
 msgstr ""
 " கீற்று 1 க்கு நகர்த்த பயன்படும் விசைப்பலகை குறுக்கு விசை. GTK+ மூல கோப்பில் "
-"பயன்படுத்தப்பட்ட  ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை நீங்கள் "
-"பயன்படுத்தி இருந்தால் குறுக்கு விசைகள் செயல்படா"
+"பயன்படுத்தப்பட்ட  ஒழுங்கில் சரம் பயன்படுத்தப்படும். சிறப்பு சரங்களை \"மறை\" என்ற தேர்வை "
+"நீங்கள் பயன்படுத்தி இருந்தால் குறுக்கு விசைகள் செயல்படா"
 
 #: ../src/gnome-terminal.schemas.in.h:54
 msgid ""
@@ -863,7 +867,10 @@ msgstr "நிலைக்காட்டி தோற்றம்"
 msgid ""
 "The possible values are \"block\" to use a block cursor, \"ibeam\" to use a "
 "vertical line cursor, or \"underline\" to use an underline cursor."
-msgstr "மதிப்புகள் இப்படி இருக்கலாம்: \"தொகுதி\" ஒரு தொகுதி நிலைக்காட்டியை பயன்படுத்த, \"ஐபீம்\" ஒரு செங்குத்தான கோடு நிலைக்காட்டியை பயன்படுத்த, \"கீழ்கோடு\" ஒரு கீழ்கோடு நிலைக்காட்டியை பயன்படுத்த,"
+msgstr ""
+"மதிப்புகள் இப்படி இருக்கலாம்: \"தொகுதி\" ஒரு தொகுதி நிலைக்காட்டியை பயன்படுத்த, \"ஐபீம்"
+"\" ஒரு செங்குத்தான கோடு நிலைக்காட்டியை பயன்படுத்த, \"கீழ்கோடு\" ஒரு கீழ்கோடு "
+"நிலைக்காட்டியை பயன்படுத்த,"
 
 #: ../src/gnome-terminal.schemas.in.h:123
 msgid ""
@@ -899,8 +906,8 @@ msgid ""
 "compositing window manager is running, or pseudo-transparency otherwise."
 msgstr ""
 "முனையத்தின் பின்னணி வகை. \"solid\" நிலையான வண்ணம் \"image\" பிம்பம் அல்லது "
-"\"transparent\" கட்டுமான சாளர மேலாளர் நடப்பில் இருப்பின் உண்மையில் ஒளி புகும் தன்மை"
-"அல்லது போலி ஒளி புகும் தன்மை"
+"\"transparent\" கட்டுமான சாளர மேலாளர் நடப்பில் இருப்பின் உண்மையில் ஒளி புகும் "
+"தன்மைஅல்லது போலி ஒளி புகும் தன்மை"
 
 #: ../src/gnome-terminal.schemas.in.h:128
 msgid "What to do with dynamic title"
@@ -1067,16 +1074,16 @@ msgstr "விபரங்களை தொகுக்கவும் “%s”"
 msgid "(about %s)"
 msgstr "( %s பற்றி)"
 
-#: ../src/profile-editor.c:612
+#: ../src/profile-editor.c:613
 msgid "Images"
 msgstr "படங்கள்"
 
-#: ../src/profile-editor.c:733
+#: ../src/profile-editor.c:739
 #, c-format
 msgid "Choose Palette Color %d"
 msgstr "நிறத்தட்டு நிறத்தை தேர்வு செய் %d"
 
-#: ../src/profile-editor.c:737
+#: ../src/profile-editor.c:743
 #, c-format
 msgid "Palette entry %d"
 msgstr "நிறத்தட்டு உள்ளீடு %d"
@@ -1214,7 +1221,8 @@ msgstr "ஏற்புடைமை"
 msgid "Cursor _shape:"
 msgstr "_s நிலைக்காட்டி வடிவம்:"
 
-#: ../src/profile-preferences.glade.h:27
+#. Translators: This is the name of a colour scheme
+#: ../src/profile-preferences.glade.h:27 ../src/extra-strings.c:71
 msgid "Custom"
 msgstr "தனிப்பயன்"
 
@@ -1464,7 +1472,7 @@ msgstr "பெரிதாக்கு"
 msgid "Normal Size"
 msgstr "சாதாரண அளவு"
 
-#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3245
+#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3416
 msgid "Set Title"
 msgstr "தலைப்பை அமைக்க"
 
@@ -1568,7 +1576,8 @@ msgstr "கீற்றுகள்"
 msgid "Help"
 msgstr "உதவி"
 
-#: ../src/terminal-accels.c:281
+#. Translators: Scrollbar is: ...
+#: ../src/terminal-accels.c:281 ../src/extra-strings.c:51
 msgid "Disabled"
 msgstr "முடமாகியது"
 
@@ -1585,28 +1594,28 @@ msgstr "செயல் (_A)"
 msgid "Shortcut _Key"
 msgstr "குறுக்கு விசை (_K)"
 
-#: ../src/terminal-app.c:475
+#: ../src/terminal-app.c:481
 msgid "Click button to choose profile"
 msgstr "விபரத்தை தெரிவு செய்த பொத்தானை அமுத்தவும்"
 
-#: ../src/terminal-app.c:560
+#: ../src/terminal-app.c:566
 msgid "Profile list"
 msgstr "விபரம் பட்டி"
 
-#: ../src/terminal-app.c:621
+#: ../src/terminal-app.c:627
 #, c-format
 msgid "Delete profile “%s”?"
 msgstr "“%s” விவரங்களை நீக்க வேண்டுமா?"
 
-#: ../src/terminal-app.c:637
+#: ../src/terminal-app.c:643
 msgid "Delete Profile"
 msgstr "விபரத்தை அழிக்கவும்"
 
-#: ../src/terminal-app.c:951
+#: ../src/terminal-app.c:957
 msgid "User Defined"
 msgstr "உபயோகிப்பாளர் அமைப்புகள்"
 
-#: ../src/terminal-app.c:1106
+#: ../src/terminal-app.c:1112
 #, c-format
 msgid ""
 "You already have a profile called “%s”. Do you want to create another "
@@ -1615,37 +1624,36 @@ msgstr ""
 "நீங்கள் இந்த “%s” விவரக்குறிப்பினை ஏற்கனவே கொண்டுள்ளீர்கள். அதே பெயரில் வேறு "
 "விவரக்குறிப்பினை உருவாக்க வேண்டுமா?"
 
-#: ../src/terminal-app.c:1207
+#: ../src/terminal-app.c:1214
 msgid "Choose base profile"
 msgstr "விவரத்தை தேர்வு செய்"
 
-#: ../src/terminal-app.c:1730
+#: ../src/terminal-app.c:1788
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr "\"%s\" என்ற வரியுரு கிடையாது, முன்னிருப்பு வரியுரு பயன்படுத்தப்படும்\n"
 
-#: ../src/terminal-app.c:1750
+#: ../src/terminal-app.c:1808
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "செல்லாத வடிவியல் சரம் \"%s\"\n"
 
-#: ../src/terminal.c:188
-#, c-format
-msgid "Could not open link: %s"
-msgstr "இந்த இணைப்பை திறக்க முடியவில்லை: %s"
+#: ../src/terminal.c:195
+msgid "Could not open link"
+msgstr "இணைப்பை திறக்க முடியவில்லை"
 
-#: ../src/terminal.c:256
+#: ../src/terminal.c:299
 #, c-format
 msgid "Failed to parse arguments: %s\n"
 msgstr "துணையலகுகளை பகுக்க முடியவில்லை: %s\n"
 
 #. Incompatible factory version, fall back, to new instance
-#: ../src/terminal.c:382
+#: ../src/terminal.c:427
 #, c-format
 msgid "Incompatible factory version; creating a new instance.\n"
 msgstr "செல்லுபடியாகாத தொழிற்சாலை பதிப்பு, புதிய உருப்படியை துவக்குகிறது .\n"
 
-#: ../src/terminal.c:388
+#: ../src/terminal.c:433
 #, c-format
 msgid "Factory error: %s\n"
 msgstr "தொழிற்சாலை பிழை: %s\n"
@@ -1804,21 +1812,23 @@ msgstr "_E குறியிடுகள்"
 msgid "Current Locale"
 msgstr "தற்போதைய மொழி"
 
-#: ../src/terminal-options.c:174
+#: ../src/terminal-options.c:175
+#, c-format
 msgid ""
 "Option \"%s\" is no longer supported in this version of gnome-terminal; you "
 "might want to create a profile with the desired setting, and use the new '--"
 "profile' option\n"
 msgstr ""
 "தேர்வு \"%s\" க்கு இந்த பதிப்பு க்னோம் முனையத்தில் ஆதரவு இல்லை ; தேவையான அமைப்பில் நீங்கள் "
-"விவரக்குறிப்பை உருவாக்க வேண்டும் எனில் மேலும் புதிய சாளர --new '--"
-"profile'தேர்வை பயன்படுத்தவும்\n"
+"விவரக்குறிப்பை உருவாக்க வேண்டும் எனில் மேலும் புதிய சாளர --new '--profile'தேர்வை "
+"பயன்படுத்தவும்\n"
 
-#: ../src/terminal-options.c:187 ../src/terminal-window.c:3464
+#: ../src/terminal-options.c:188 ../src/terminal-window.c:3637
 msgid "GNOME Terminal"
 msgstr "கனோம் முனையம்"
 
 #: ../src/terminal-options.c:208
+#, c-format
 msgid "Argument to \"%s\" is not a valid command: %s"
 msgstr "அளவுரு \"%s\"செல்லாத கட்டளை: %s"
 
@@ -1831,166 +1841,175 @@ msgstr "ஒரு சாளரத்துக்கு 2 பங்களிப�
 msgid "\"%s\" option given twice for the same window\n"
 msgstr "\"%s\" தேர்வு ஒரே சாளரத்தில் இரண்டு முறை தரப்பட்டது\n"
 
-#: ../src/terminal-options.c:595
+#: ../src/terminal-options.c:596
+#, c-format
 msgid "\"%s\" is not a valid zoom factor"
 msgstr "\"%s\" செல்லாத பெரிதாக்க விகிதம் "
 
-#: ../src/terminal-options.c:602
+#: ../src/terminal-options.c:603
 #, c-format
 msgid "Zoom factor \"%g\" is too small, using %g\n"
 msgstr "பெரிதாக்க விகிதம் \"%g\" மிகவும் சிறிதாக உள்ளது %g பயனாகிறது\n"
 
-#: ../src/terminal-options.c:610
+#: ../src/terminal-options.c:611
 #, c-format
 msgid "Zoom factor \"%g\" is too large, using %g\n"
 msgstr "பெரிதாக்க விகிதம் \"%g\" மிகவும் பெரிதாக உள்ளது %g பயனாகிறது\n"
 
-#: ../src/terminal-options.c:649
+#: ../src/terminal-options.c:646
+#, c-format
 msgid ""
 "Option \"%s\" requires specifying the command to run on the rest of the "
 "command line"
-msgstr "தேர்வு \"%s\" இயங்க  கட்டளை வரியில் மீதி கட்டளை இயங்க  தேவையான கட்டளையை குறிப்பிடவேண்டும்"
+msgstr ""
+"தேர்வு \"%s\" இயங்க  கட்டளை வரியில் மீதி கட்டளை இயங்க  தேவையான கட்டளையை "
+"குறிப்பிடவேண்டும்"
 
-#: ../src/terminal-options.c:774
+#: ../src/terminal-options.c:807
 msgid "Not a valid terminal config file."
 msgstr "செல்லுபடியாகும் முனைய அமைப்பு கோப்பு அல்ல"
 
-#. FIXME
-#: ../src/terminal-options.c:786
+#: ../src/terminal-options.c:820
 msgid "Incompatible terminal config file version."
 msgstr "ஒத்திசைவில்லா முனைய அமைப்பு கோப்பு பதிப்பு"
 
-#: ../src/terminal-options.c:895
+#: ../src/terminal-options.c:947
 msgid ""
 "Do not register with the activation nameserver, do not re-use an active "
 "terminal"
 msgstr "செயல்பாட்டு பெயர் சேவகனை பதிவு செய்ய வேண்டாம், செயல்பாட்டு முனையத்தை மீண்டும் பயன்படுத்தாதே"
 
-#: ../src/terminal-options.c:904
+#: ../src/terminal-options.c:956
 msgid "Load a terminal configuration file"
 msgstr "முனைய அமைப்பு கோப்பு ஒன்றை ஏற்றவும்"
 
-#: ../src/terminal-options.c:913
+#: ../src/terminal-options.c:965
 msgid "Save the terminal configuration to a file"
 msgstr "முனையத்தின் அமைப்பை கோப்புக்கு சேமிக்கவும்."
 
-#: ../src/terminal-options.c:927
+#: ../src/terminal-options.c:979
 msgid "Open a new window containing a tab with the default profile"
 msgstr "இயல்பான விவரத்துடன் கூடிய தத்தல் விசை ஒன்றை புதிய சாளரத்தில் உருவாக்கு."
 
-#: ../src/terminal-options.c:936
+#: ../src/terminal-options.c:988
 msgid "Open a new tab in the last-opened window with the default profile"
 msgstr "முன்னிருப்பு விவரத்துடன் கடைசியாக திறந்த சாளரத்தில் புதிய கீற்றை திற."
 
-#: ../src/terminal-options.c:949
+#: ../src/terminal-options.c:1001
 msgid "Turn on the menubar"
 msgstr "பட்டி-பட்டையை காட்டுக"
 
-#: ../src/terminal-options.c:958
+#: ../src/terminal-options.c:1010
 msgid "Turn off the menubar"
 msgstr "பட்டி-பட்டையை காட்டாதே"
 
-#: ../src/terminal-options.c:967
+#: ../src/terminal-options.c:1019
 msgid "Maximise the window"
 msgstr "சாளரத்தை பெரிதாக்கு"
 
-#: ../src/terminal-options.c:976
+#: ../src/terminal-options.c:1028
 msgid "Full-screen the window"
 msgstr "முழுதிரை சாளரம்"
 
-#: ../src/terminal-options.c:985
+#: ../src/terminal-options.c:1037
 msgid ""
 "Set the window geometry from the provided X geometry specification; see the "
 "\"X\" man page for more information"
-msgstr "சாளர வடிவத்தை கொடுக்கப்பட்ட x சாளர குறிப்பு கொண்டு அமை.\"X\" மான் பக்கத்தை மேலதிக தகவலுக்கு காண்க"
+msgstr ""
+"சாளர வடிவத்தை கொடுக்கப்பட்ட x சாளர குறிப்பு கொண்டு அமை.\"X\" மான் பக்கத்தை மேலதிக "
+"தகவலுக்கு காண்க"
 
-#: ../src/terminal-options.c:986
+#: ../src/terminal-options.c:1038
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
-#: ../src/terminal-options.c:994
+#: ../src/terminal-options.c:1046
 msgid "Set the window role"
 msgstr "சாளரத்தின் செயலை அமைக்கவும்"
 
-#: ../src/terminal-options.c:995
+#: ../src/terminal-options.c:1047
 msgid "ROLE"
 msgstr "ROLE"
 
-#: ../src/terminal-options.c:1003
+#: ../src/terminal-options.c:1055
 msgid "Set the last specified tab as the active one in its window"
 msgstr "கடைசியாக குறிப்பிட்ட கீற்று  ஐ செயல்பாட்டு சாளரத்தில் அமைக்கவும்"
 
-#: ../src/terminal-options.c:1016
+#: ../src/terminal-options.c:1068
 msgid "Execute the argument to this option inside the terminal"
 msgstr "இந்த தேர்வை முனையத்தில் இயக்கவும்"
 
-#: ../src/terminal-options.c:1025
+#: ../src/terminal-options.c:1077
 msgid "Use the given profile instead of the default profile"
 msgstr "கொடுத்த வரியுருவை முன்னிருப்பு வரியுருக்கு பதில் பயன்படுத்துக "
 
-#: ../src/terminal-options.c:1026
+#: ../src/terminal-options.c:1078
 msgid "PROFILE-NAME"
 msgstr "PROFILE-NAME"
 
-#: ../src/terminal-options.c:1034
+#: ../src/terminal-options.c:1086
 msgid "Set the terminal title"
 msgstr "முனையத்தின் தலைப்பை அமைக்கவும்"
 
-#: ../src/terminal-options.c:1035
+#: ../src/terminal-options.c:1087
 msgid "TITLE"
 msgstr "TITLE"
 
-#: ../src/terminal-options.c:1043
+#: ../src/terminal-options.c:1095
 msgid "Set the working directory"
 msgstr "முனையத்தின் பணி அடைவை அமை"
 
-#: ../src/terminal-options.c:1044
+#: ../src/terminal-options.c:1096
 msgid "DIRNAME"
 msgstr "DIRNAME"
 
-#: ../src/terminal-options.c:1052
+#: ../src/terminal-options.c:1104
 msgid "Set the terminalx's zoom factor (1.0 = normal size)"
 msgstr "முனையம்x இன் அளவு மாற்ற விகிதத்தை அமை (1.0 = இயல்பான அளவு)"
 
-#: ../src/terminal-options.c:1053
+#: ../src/terminal-options.c:1105
 msgid "ZOOM"
 msgstr "ZOOM"
 
-#: ../src/terminal-options.c:1303 ../src/terminal-options.c:1306
+#: ../src/terminal-options.c:1355 ../src/terminal-options.c:1358
 msgid "GNOME Terminal Emulator"
 msgstr "க்னோம் முனைய போன்றி"
 
-#: ../src/terminal-options.c:1307
+#: ../src/terminal-options.c:1359
 msgid "Show GNOME Terminal options"
 msgstr "க்னோம் முனைய தேர்வுகளை காட்டுக"
 
-#: ../src/terminal-options.c:1317
+#: ../src/terminal-options.c:1369
 msgid ""
 "Options to open new windows or terminal tabs; more than one of these may be "
 "specified:"
 msgstr "புதிய முனைய கீற்று அல்லது சாளரத்தை திறக்க  தேர்வுகள், ஒன்றுக்கு மேற்பட்டவை குறிக்கப்படலாம்"
 
-#: ../src/terminal-options.c:1318
+#: ../src/terminal-options.c:1370
 msgid "Show terminal options"
 msgstr "முனைய தேர்வுகளை காட்டுக"
 
-#: ../src/terminal-options.c:1326
+#: ../src/terminal-options.c:1378
 msgid ""
 "Window options; if used before the first --window or --tab argument, sets "
 "the default for all windows:"
-msgstr "சாளர தேர்வுகள்: முதல் --window அல்லது --tab துணையலகுக்கு முன் பயன்படுத்தினால் அனைத்து சாளரங்களுக்கும் முன்னிருப்பாக அமைக்கும்:"
+msgstr ""
+"சாளர தேர்வுகள்: முதல் --window அல்லது --tab துணையலகுக்கு முன் பயன்படுத்தினால் அனைத்து "
+"சாளரங்களுக்கும் முன்னிருப்பாக அமைக்கும்:"
 
-#: ../src/terminal-options.c:1327
+#: ../src/terminal-options.c:1379
 msgid "Show per-window options"
 msgstr "ஒவ்வொரு   தனி சாளர தேர்வுகளை காட்டுக"
 
-#: ../src/terminal-options.c:1335
+#: ../src/terminal-options.c:1387
 msgid ""
 "Terminal options; if used before the first --window or --tab argument, sets "
 "the default for all terminals:"
-msgstr "சாளர தேர்வுகள்: முதல் --window அல்லது --tab துணையலகுக்கு முன் பயன்படுத்தினால் அனைத்து முனையங்களுக்கும் முன்னிருப்பாக அமைக்கும்:"
+msgstr ""
+"சாளர தேர்வுகள்: முதல் --window அல்லது --tab துணையலகுக்கு முன் பயன்படுத்தினால் அனைத்து "
+"முனையங்களுக்கும் முன்னிருப்பாக அமைக்கும்:"
 
-#: ../src/terminal-options.c:1336
+#: ../src/terminal-options.c:1388
 msgid "Show per-terminal options"
 msgstr "ஒவ்வொரு   தனி  முனைய தேர்வுகளை காட்டுக"
 
@@ -1998,12 +2017,11 @@ msgstr "ஒவ்வொரு   தனி  முனைய தேர்வுக
 msgid "Unnamed"
 msgstr "பெயரில்லாத"
 
-#: ../src/terminal-screen.c:1230
-#, c-format
-msgid "There was a problem with the command for this terminal: %s"
-msgstr "முனையத்திற்கான கட்டளையில் பிரச்சனை: %s"
+#: ../src/terminal-screen.c:1276
+msgid "There was a problem with the command for this terminal"
+msgstr "முனையத்திற்கான கட்டளையில் பிரச்சனை"
 
-#: ../src/terminal-screen.c:1521
+#: ../src/terminal-screen.c:1585
 msgid "There was an error creating the child process for this terminal"
 msgstr "சேய் செயலை முனையத்தில் உருவாக்குவதில் பிழை நேர்ந்தது."
 
@@ -2011,25 +2029,20 @@ msgstr "சேய் செயலை முனையத்தில் உரு
 msgid "Close tab"
 msgstr "கீற்றை மூடவும்"
 
-#: ../src/terminal-tabs-menu.c:200
+#: ../src/terminal-tabs-menu.c:198
 msgid "Switch to this tab"
 msgstr "இந்த கீற்றுக்கு மாற்றவும்"
 
-#: ../src/terminal-util.c:170
-#, c-format
-msgid "There was an error displaying help: %s"
-msgstr "உதவியை காட்ட தொடங்கும் போது பிழை:%s"
+#: ../src/terminal-util.c:181
+msgid "There was an error displaying help"
+msgstr "உதவியை காட்டும் போது பிழை"
 
-#: ../src/terminal-util.c:242
+#: ../src/terminal-util.c:254
 #, c-format
-msgid ""
-"Could not open the address “%s”:\n"
-"%s"
-msgstr ""
-"முகவரியை திறக்க முடியவில்லை “%s”:\n"
-"%s"
+msgid "Could not open the address “%s”"
+msgstr "“%s” முகவரியை திறக்க முடியவில்லை "
 
-#: ../src/terminal-util.c:317
+#: ../src/terminal-util.c:362
 msgid ""
 "GNOME Terminal is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -2040,7 +2053,7 @@ msgstr ""
 "ஜிஎன்யு பொது அனுமதிக்கான விதிகளின் படி இந்த 2ம் பதிப்பையோ அல்லது அடுத்த பதிப்புகளையோ "
 "நீங்கள் (விருப்பப்படி) மாற்றலாம். அல்லது மீண்டும் பறிமாறலாம்."
 
-#: ../src/terminal-util.c:321
+#: ../src/terminal-util.c:366
 msgid ""
 "GNOME Terminal is distributed in the hope that it will be useful, but "
 "WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
@@ -2051,7 +2064,7 @@ msgstr ""
 "குறிப்பிட்ட  செயலுக்கான தகுதி உள்பட எந்த உத்திரவாதமும் அளிக்கப்படவில்லை. மேற் கொண்டு "
 "விவரங்களுக்கு ஜிஎன்யு பொது அனுமதிக்கான விதிகளை பார்க்கவும்."
 
-#: ../src/terminal-util.c:325
+#: ../src/terminal-util.c:370
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "GNOME Terminal; if not, write to the Free Software Foundation, Inc., 51 "
@@ -2061,219 +2074,363 @@ msgstr ""
 "இல்லையானால்  கீழ் கண்ட முகவரிக்கு கடிதம் எழுதவும். Free Software Foundation, Inc., "
 "59 Temple Place, Suite 330, Boston, MA  02111-1307  USA"
 
-#: ../src/terminal-window.c:419
+#. Translators: This is the label of a menu item to choose a profile.
+#. * _%d is used as the accelerator (with d between 1 and 9), and
+#. * the %s is the name of the terminal profile.
+#.
+#: ../src/terminal-window.c:431
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
 
-#: ../src/terminal-window.c:421
+#. Translators: This is the label of a menu item to choose a profile.
+#. * _%c is used as the accelerator (it will be a character between A and Z),
+#. * and the %s is the name of the terminal profile.
+#.
+#: ../src/terminal-window.c:437
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1551
+#: ../src/terminal-window.c:1662
 msgid "_File"
 msgstr "_கோப்பு"
 
 #. File menu
-#: ../src/terminal-window.c:1552 ../src/terminal-window.c:1563
-#: ../src/terminal-window.c:1685
+#: ../src/terminal-window.c:1663 ../src/terminal-window.c:1674
+#: ../src/terminal-window.c:1796
 msgid "Open _Terminal"
 msgstr "(_T)முனையத்தை திற"
 
-#: ../src/terminal-window.c:1553 ../src/terminal-window.c:1566
-#: ../src/terminal-window.c:1688
+#: ../src/terminal-window.c:1664 ../src/terminal-window.c:1677
+#: ../src/terminal-window.c:1799
 msgid "Open Ta_b"
 msgstr "(_b)கீற்றை திற"
 
-#: ../src/terminal-window.c:1554
+#: ../src/terminal-window.c:1665
 msgid "_Edit"
 msgstr "_E தொகு"
 
-#: ../src/terminal-window.c:1555
+#: ../src/terminal-window.c:1666
 msgid "_View"
 msgstr "_V காட்சி"
 
-#: ../src/terminal-window.c:1556
+#: ../src/terminal-window.c:1667
 msgid "_Terminal"
 msgstr "_Tமுனையம்"
 
-#: ../src/terminal-window.c:1557
+#: ../src/terminal-window.c:1668
 msgid "Ta_bs"
 msgstr "_b கீற்றுகள்"
 
-#: ../src/terminal-window.c:1558
+#: ../src/terminal-window.c:1669
 msgid "_Help"
 msgstr "_H உதவி"
 
-#: ../src/terminal-window.c:1569
+#: ../src/terminal-window.c:1680
 msgid "New _Profile…"
 msgstr "(_P) புதிய வரியுரு..."
 
-#: ../src/terminal-window.c:1572 ../src/terminal-window.c:1694
+#: ../src/terminal-window.c:1683 ../src/terminal-window.c:1805
 msgid "C_lose Tab"
 msgstr "_l கீற்றை மூடுக"
 
-#: ../src/terminal-window.c:1575 ../src/terminal-window.c:2899
+#: ../src/terminal-window.c:1686
 msgid "_Close Window"
 msgstr "_C சாளரத்தை மூடுக"
 
-#: ../src/terminal-window.c:1586 ../src/terminal-window.c:1682
+#: ../src/terminal-window.c:1697 ../src/terminal-window.c:1793
 msgid "Paste _Filenames"
 msgstr "(_F) கோப்பு பெயர்களை ஒட்டு"
 
-#: ../src/terminal-window.c:1592
+#: ../src/terminal-window.c:1703
 msgid "P_rofiles…"
 msgstr "(_r) வரியுருக்கள்..."
 
-#: ../src/terminal-window.c:1595
+#: ../src/terminal-window.c:1706
 msgid "_Keyboard Shortcuts…"
 msgstr "(_K) விசைப்பலகை குறுக்கு விசைகள்..."
 
-#: ../src/terminal-window.c:1598
+#: ../src/terminal-window.c:1709
 msgid "Pr_ofile Preferences"
 msgstr "(_o) வரியுரு தேர்வுகள்"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1614
+#: ../src/terminal-window.c:1725
 msgid "Change _Profile"
 msgstr "(_P)விவரத்தை மாற்று"
 
-#: ../src/terminal-window.c:1615
+#: ../src/terminal-window.c:1726
 msgid "_Set Title…"
 msgstr "(_S) தலைப்பை அமைக்க..."
 
-#: ../src/terminal-window.c:1618
+#: ../src/terminal-window.c:1729
 msgid "Set _Character Encoding"
 msgstr "(_C)எழுத்துரு குறிமுறையை அமை"
 
-#: ../src/terminal-window.c:1619
+#: ../src/terminal-window.c:1730
 msgid "_Reset"
 msgstr "நிலை மீள் "
 
-#: ../src/terminal-window.c:1622
+#: ../src/terminal-window.c:1733
 msgid "Reset and C_lear"
 msgstr "_l நிலை மீட்டு துப்புரவு செய்"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1627
+#: ../src/terminal-window.c:1738
 msgid "_Add or Remove…"
 msgstr "(_A) சேர் அல்லது நீக்கு..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1632
+#: ../src/terminal-window.c:1743
 msgid "_Previous Tab"
 msgstr "முந்தைய கீற்று (_P)"
 
-#: ../src/terminal-window.c:1635
+#: ../src/terminal-window.c:1746
 msgid "_Next Tab"
 msgstr "அடுத்த கீற்று (_N)"
 
-#: ../src/terminal-window.c:1638
+#: ../src/terminal-window.c:1749
 msgid "Move Tab _Left"
 msgstr "இடப்பக்கம் கீற்றை நகர்த்து (_L)"
 
-#: ../src/terminal-window.c:1641
+#: ../src/terminal-window.c:1752
 msgid "Move Tab _Right"
 msgstr "வலப்பக்கம் கீற்றை நகர்த்து (_R)"
 
-#: ../src/terminal-window.c:1644
+#: ../src/terminal-window.c:1755
 msgid "_Detach tab"
 msgstr "கீற்றை பிரிக்கவும். (_D)"
 
 #. Help menu
-#: ../src/terminal-window.c:1649
+#: ../src/terminal-window.c:1760
 msgid "_Contents"
 msgstr "_உள்ளடக்கங்கள்"
 
-#: ../src/terminal-window.c:1652
+#: ../src/terminal-window.c:1763
 msgid "_About"
 msgstr "_A பற்றி"
 
 #. Popup menu
-#: ../src/terminal-window.c:1657
+#: ../src/terminal-window.c:1768
 msgid "_Send Mail To…"
 msgstr "இவருக்கு அஞ்சல் அனுப்பு... (_S)"
 
-#: ../src/terminal-window.c:1660
+#: ../src/terminal-window.c:1771
 msgid "_Copy E-mail Address"
 msgstr "மின்னஞ்சல் முகவரியை நகலெடு (_C)"
 
-#: ../src/terminal-window.c:1663
+#: ../src/terminal-window.c:1774
 msgid "C_all To…"
 msgstr "(_a) இவருக்கு அழைப்பு...."
 
-#: ../src/terminal-window.c:1666
+#: ../src/terminal-window.c:1777
 msgid "_Copy Call Address"
 msgstr "அழைப்பு முகவரியை நகலெடு (_C)"
 
-#: ../src/terminal-window.c:1669
+#: ../src/terminal-window.c:1780
 msgid "_Open Link"
 msgstr "_O இணைப்பை திறக்கவும்"
 
-#: ../src/terminal-window.c:1672
+#: ../src/terminal-window.c:1783
 msgid "_Copy Link Address"
 msgstr "_C இணைப்பு முகவரியை நகல் செய்"
 
-#: ../src/terminal-window.c:1675
+#: ../src/terminal-window.c:1786
 msgid "P_rofiles"
 msgstr "(_r) வரியுருக்கள்:"
 
-#: ../src/terminal-window.c:1691
+#: ../src/terminal-window.c:1802 ../src/terminal-window.c:3065
 msgid "C_lose Window"
 msgstr "_l சாளரத்தை மூடவும்"
 
-#: ../src/terminal-window.c:1697
+#: ../src/terminal-window.c:1808
+msgid "L_eave Full Screen"
+msgstr "முழுத்திரை விட்டு விலகு (_e)"
+
+#: ../src/terminal-window.c:1811
 msgid "_Input Methods"
 msgstr "உள்ளீடு முறைகள் (_I)"
 
 #. View Menu
-#: ../src/terminal-window.c:1703
+#: ../src/terminal-window.c:1817
 msgid "Show _Menubar"
 msgstr "பட்டி-பட்டையைக் காட்டுக (_M)"
 
-#: ../src/terminal-window.c:1707
+#: ../src/terminal-window.c:1821
 msgid "_Full Screen"
 msgstr "முழுத்திரை (_F)"
 
-#: ../src/terminal-window.c:2886
-msgid "Close this terminal?"
-msgstr "முனையத்தை மூடவா?"
-
-#: ../src/terminal-window.c:2886
+#: ../src/terminal-window.c:3052
 msgid "Close this window?"
 msgstr "சாளரம் மூடவா?"
 
-#: ../src/terminal-window.c:2890
+#: ../src/terminal-window.c:3052
+msgid "Close this terminal?"
+msgstr "முனையத்தை மூடவா?"
+
+#: ../src/terminal-window.c:3056
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
-msgstr "இந்த சாளரத்தில்  இன்னும் சில நடப்புகள் சில முனையங்களில் இயங்கிக்கொண்டு உள்ளன. சாளரத்தை மூடினால் அனைத்தும் செயலிழக்கும்."
+msgstr ""
+"இந்த சாளரத்தில்  இன்னும் சில நடப்புகள் சில முனையங்களில் இயங்கிக்கொண்டு உள்ளன. சாளரத்தை "
+"மூடினால் அனைத்தும் செயலிழக்கும்."
 
-#: ../src/terminal-window.c:2894
+#: ../src/terminal-window.c:3060
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
-msgstr "இந்த முனையத்தில் இன்னும் ஒரு நடப்பு இயங்கிக்கொண்டு உள்ளது. சாளரத்தை மூடினால் அது செயலிழக்கும்."
+msgstr ""
+"இந்த முனையத்தில் இன்னும் ஒரு நடப்பு இயங்கிக்கொண்டு உள்ளது. சாளரத்தை மூடினால் அது "
+"செயலிழக்கும்."
 
-#: ../src/terminal-window.c:2899
-msgid "_Close Terminal"
-msgstr "முனையம் மூடு (_C)"
+#: ../src/terminal-window.c:3065
+msgid "C_lose Terminal"
+msgstr "முனையம் மூடு (_l)"
 
-#: ../src/terminal-window.c:3261
+#: ../src/terminal-window.c:3433
 msgid "_Title:"
 msgstr "_T தலைப்பு:"
 
-#: ../src/terminal-window.c:3447
+#: ../src/terminal-window.c:3620
 msgid "Contributors:"
 msgstr "எழுதியவர்கள்:"
 
-#: ../src/terminal-window.c:3466
+#: ../src/terminal-window.c:3639
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "க்னோம் பணிமேடைக்கு ஒரு முனைய போன்றி"
 
-#: ../src/terminal-window.c:3473
+#: ../src/terminal-window.c:3646
 msgid "translator-credits"
-msgstr "மொழிபெயர்ப்பாளர்-சன்மானம் Dr.T.Vasudevan, agnihot3@gmail.com"
+msgstr "I. Felix <ifelix@redhat.com>. Dr. T. Vasudevan <agnihot3@gmail.com>"
+
+#.
+#. * Copyright © 2009 Christian Persch
+#. *
+#. * Gnome-terminal is free software; you can redistribute it and/or modify
+#. * it under the terms of the GNU General Public License as published by
+#. * the Free Software Foundation; either version 2 of the License, or
+#. * (at your option) any later version.
+#. *
+#. * Gnome-terminal is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. * GNU General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public License
+#. * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#.
+#. This file contains extra strings that need to be translated, but
+#. * can't be extracted by intltool since the ui files aren't in git, and
+#. * the glade files don't contain them in the right form. See bug #553357.
+#.
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:24
+msgid "Automatic"
+msgstr "தானாக"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:26
+msgid "Control-H"
+msgstr "கட்டுத்து-H"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:28
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#. Translators: This refers to the Delete keybinding option
+#: ../src/extra-strings.c:30
+msgid "Escape sequence"
+msgstr "எஸ்கேப் வரிசை"
+
+#. Translators: Cursor shape: ...
+#: ../src/extra-strings.c:33
+msgid "Block"
+msgstr "தடுப்பு"
+
+#. Translators: Cursor shape: ...
+#: ../src/extra-strings.c:35
+msgid "I-Beam"
+msgstr "I-பீம்"
+
+#. Translators: Cursor shape: ...
+#: ../src/extra-strings.c:37
+msgid "Underline"
+msgstr "அடிக்கோடு"
+
+#. Translators: When command exits: ...
+#: ../src/extra-strings.c:40
+#| msgid "Set the terminal title"
+msgid "Exit the terminal"
+msgstr "முனையத்திலிருந்து வெளியேறு"
+
+#. Translators: When command exits: ...
+#: ../src/extra-strings.c:42
+#| msgid "Use the command line"
+msgid "Restart the command"
+msgstr "கட்டளையை மறுதுவக்கு"
+
+#. Translators: When command exits: ...
+#: ../src/extra-strings.c:44
+#| msgid "Set the terminal title"
+msgid "Hold the terminal open"
+msgstr "முனையத்தின் திறப்பை பிடி"
+
+#. Translators: Scrollbar is: ...
+#: ../src/extra-strings.c:47
+msgid "On the left side"
+msgstr "இடது பக்கத்தில்"
+
+#. Translators: Scrollbar is: ...
+#: ../src/extra-strings.c:49
+msgid "On the right side"
+msgstr "வலது பக்கத்தில்"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:54
+#| msgid "Initial _title:"
+msgid "Replace initial title"
+msgstr "தொடக்க தலைப்பை மாற்று"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:56
+#| msgid "Initial _title:"
+msgid "Append initial title"
+msgstr "தொடக்க தலைப்பை சேர்"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:58
+#| msgid "Initial _title:"
+msgid "Prepend initial title"
+msgstr "தொடக்க தலைப்பை முன்சேர்"
+
+#. Translators: When terminal commands set their own titles: ...
+#: ../src/extra-strings.c:60
+#| msgid "Initial _title:"
+msgid "Keep initial title"
+msgstr "தொடக்க தலைப்பு வை"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:63
+msgid "Tango"
+msgstr "டாங்கோ"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:65
+msgid "Linux console"
+msgstr "Linux பணியகம்"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:67
+#| msgid "Terminal"
+msgid "XTerm"
+msgstr "Xமுனையம்"
+
+#. Translators: This is the name of a colour scheme
+#: ../src/extra-strings.c:69
+msgid "Rxvt"
+msgstr "Rxvt"
 

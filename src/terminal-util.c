@@ -32,7 +32,10 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 
-#include <gconf/gconf-client.h>
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#include <X11/Xatom.h>
+#endif
 
 #include "terminal-accels.h"
 #include "terminal-app.h"
@@ -54,6 +57,7 @@ terminal_util_set_unique_role (GtkWindow *window, const char *prefix)
  * terminal_util_show_error_dialog:
  * @transient_parent: parent of the future dialog window;
  * @weap_ptr: pointer to a #Widget pointer, to control the population.
+ * @error: a #GError, or %NULL
  * @message_format: printf() style format string
  *
  * Create a #GtkMessageDialog window with the message, and present it, handling its buttons.
@@ -62,9 +66,12 @@ terminal_util_set_unique_role (GtkWindow *window, const char *prefix)
  * present <literal>*weak_ptr</literal>. Note that in this last case, the message <emph>will</emph>
  * be changed.
  */
-
 void
-terminal_util_show_error_dialog (GtkWindow *transient_parent, GtkWidget **weak_ptr, const char *message_format, ...)
+terminal_util_show_error_dialog (GtkWindow *transient_parent, 
+                                 GtkWidget **weak_ptr,
+                                 GError *error,
+                                 const char *message_format, 
+                                 ...) 
 {
   char *message;
   va_list args;
@@ -86,6 +93,10 @@ terminal_util_show_error_dialog (GtkWindow *transient_parent, GtkWidget **weak_p
                                        GTK_BUTTONS_OK,
                                        message ? "%s" : NULL,
 				       message);
+
+      if (error != NULL)
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                                  "%s", error->message);
 
       g_signal_connect (G_OBJECT (dialog), "response", G_CALLBACK (gtk_widget_destroy), NULL);
 
@@ -166,9 +177,8 @@ terminal_util_show_help (const char *topic,
 
   if (!open_url (GTK_WINDOW (parent), url, gtk_get_current_event_time (), &error))
     {
-      terminal_util_show_error_dialog (GTK_WINDOW (parent), NULL,
-                                       _("There was an error displaying help: %s"),
-                                      error->message);
+      terminal_util_show_error_dialog (GTK_WINDOW (parent), NULL, error,
+                                       _("There was an error displaying help"));
       g_error_free (error);
     }
 
@@ -231,6 +241,8 @@ terminal_util_open_url (GtkWidget *parent,
     case FLAVOR_AS_IS:
       uri = g_strdup (orig_url);
       break;
+    case FLAVOR_SKEY:
+      /* shouldn't get this */
     default:
       uri = NULL;
       g_assert_not_reached ();
@@ -238,14 +250,47 @@ terminal_util_open_url (GtkWidget *parent,
 
   if (!open_url (GTK_WINDOW (parent), uri, user_time, &error))
     {
-      terminal_util_show_error_dialog (GTK_WINDOW (parent), NULL,
-                                       _("Could not open the address “%s”:\n%s"),
-                                       uri, error->message);
+      terminal_util_show_error_dialog (GTK_WINDOW (parent), NULL, error,
+                                       _("Could not open the address “%s”"),
+                                       uri);
 
       g_error_free (error);
     }
 
   g_free (uri);
+}
+
+/**
+ * terminal_util_resolve_relative_path:
+ * @path:
+ * @relative_path:
+ *
+ * Returns: a newly allocate string
+ */
+char *
+terminal_util_resolve_relative_path (const char *path,
+                                     const char *relative_path)
+{
+  GFile *file, *resolved_file;
+  char *resolved_path = NULL;
+
+  g_return_val_if_fail (relative_path != NULL, NULL);
+
+  if (path == NULL)
+    return g_strdup (relative_path);
+
+  file = g_file_new_for_path (path);
+  resolved_file = g_file_resolve_relative_path (file, relative_path);
+  g_object_unref (file);
+
+  if (resolved_file == NULL)
+    return NULL;
+
+  resolved_path = g_file_get_path (resolved_file);
+  g_object_unref (resolved_file);
+
+  g_print ("resolved %s + %s => %s\n", path, relative_path, resolved_path);
+  return resolved_path;
 }
 
 /**
@@ -830,8 +875,8 @@ terminal_util_bind_object_property_to_widget (GObject *object,
                                               PropertyChangeFlags flags)
 {
   PropertyChange *change;
-  const char *signal;
-  char notify_signal[64];
+  const char *signal_name;
+  char notify_signal_name[64];
 
   change = g_slice_new0 (PropertyChange);
 
@@ -840,34 +885,231 @@ terminal_util_bind_object_property_to_widget (GObject *object,
   g_object_set_data_full (G_OBJECT (widget), "GT:PCD", change, (GDestroyNotify) property_change_free);
 
   if (GTK_IS_TOGGLE_BUTTON (widget))
-    signal = "notify::active";
+    signal_name = "notify::active";
   else if (GTK_IS_SPIN_BUTTON (widget))
-    signal = "notify::value";
+    signal_name = "notify::value";
   else if (GTK_IS_ENTRY (widget))
-    signal = "notify::text";
+    signal_name = "notify::text";
   else if (GTK_IS_COMBO_BOX (widget))
-    signal = "notify::active";
+    signal_name = "notify::active";
   else if (GTK_IS_COLOR_BUTTON (widget))
-    signal = "notify::color";
+    signal_name = "notify::color";
   else if (GTK_IS_FONT_BUTTON (widget))
-    signal = "notify::font-name";
+    signal_name = "notify::font-name";
   else if (GTK_IS_RANGE (widget))
-    signal = "value-changed";
+    signal_name = "value-changed";
   else if (GTK_IS_FILE_CHOOSER_BUTTON (widget))
-    signal = "file-set";
+    signal_name = "file-set";
   else if (GTK_IS_FILE_CHOOSER (widget))
-    signal = "selection-changed";
+    signal_name = "selection-changed";
   else
     g_assert_not_reached ();
 
-  change->widget_notify_id = g_signal_connect_swapped (widget, signal, G_CALLBACK (widget_change_notify_cb), change);
+  change->widget_notify_id = g_signal_connect_swapped (widget, signal_name, G_CALLBACK (widget_change_notify_cb), change);
 
   change->object = object;
   change->flags = flags;
   change->object_prop = object_prop;
 
-  g_snprintf (notify_signal, sizeof (notify_signal), "notify::%s", object_prop);
+  g_snprintf (notify_signal_name, sizeof (notify_signal_name), "notify::%s", object_prop);
   object_change_notify_cb (change);
-  change->object_notify_id = g_signal_connect_swapped (object, notify_signal, G_CALLBACK (object_change_notify_cb), change);
+  change->object_notify_id = g_signal_connect_swapped (object, notify_signal_name, G_CALLBACK (object_change_notify_cb), change);
 }
 
+#ifdef GDK_WINDOWING_X11
+
+/* We don't want to hop desktops when we unrealize/realize.
+ * So we need to save and restore the value of NET_WM_DESKTOP. This isn't
+ * exposed through GDK.
+ */
+gboolean
+terminal_util_x11_get_net_wm_desktop (GdkWindow *window,
+				      guint32   *desktop)
+{
+  GdkDisplay *display = gdk_drawable_get_display (window);
+  Atom type;
+  int format;
+  guchar *data;
+  gulong n_items, bytes_after;
+  gboolean result = FALSE;
+
+  if (XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
+			  GDK_DRAWABLE_XID (window),
+			  gdk_x11_get_xatom_by_name_for_display (display,
+								 "_NET_WM_DESKTOP"),
+			  0, G_MAXLONG, False, AnyPropertyType,
+			  &type, &format, &n_items, &bytes_after, &data) == Success &&
+      type != None)
+    {
+      if (type == XA_CARDINAL && format == 32 && n_items == 1)
+	{
+	  *desktop = *(gulong *)data;
+	  result = TRUE;
+	}
+
+      XFree (data);
+    }
+
+  return result;
+}
+
+void
+terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
+				      guint32    desktop)
+{
+  /* We can't change the current desktop before mapping our window,
+   * because GDK has the annoying habit of clearing _NET_WM_DESKTOP
+   * before mapping a GdkWindow, So we we have to do it after instead.
+   *
+   * However, doing it after is different whether or not we have a
+   * window manager (if we don't have a window manager, we have to
+   * set the _NET_WM_DESKTOP property so that it picks it up when
+   * it starts)
+   *
+   * http://bugzilla.gnome.org/show_bug.cgi?id=586311 asks for GTK+
+   * to just handle everything behind the scenes including the desktop.
+   */
+  GdkScreen *screen = gdk_drawable_get_screen (window);
+  GdkDisplay *display = gdk_screen_get_display (screen);
+  Display *xdisplay = GDK_DISPLAY_XDISPLAY (display);
+  char *wm_selection_name;
+  Atom wm_selection;
+  gboolean have_wm;
+
+  wm_selection_name = g_strdup_printf ("WM_S%d", gdk_screen_get_number (screen));
+  wm_selection = gdk_x11_get_xatom_by_name_for_display (display, wm_selection_name);
+  g_free(wm_selection_name);
+
+  XGrabServer (xdisplay);
+
+  have_wm = XGetSelectionOwner (xdisplay, wm_selection) != None;
+
+  if (have_wm)
+    {
+      /* code borrowed from GDK
+       */
+      XClientMessageEvent xclient;
+
+      memset (&xclient, 0, sizeof (xclient));
+      xclient.type = ClientMessage;
+      xclient.serial = 0;
+      xclient.send_event = True;
+      xclient.window = GDK_WINDOW_XWINDOW (window);
+      xclient.message_type = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_DESKTOP");
+      xclient.format = 32;
+
+      xclient.data.l[0] = desktop;
+      xclient.data.l[1] = 0;
+      xclient.data.l[2] = 0;
+      xclient.data.l[3] = 0;
+      xclient.data.l[4] = 0;
+
+      XSendEvent (xdisplay,
+		  GDK_WINDOW_XWINDOW (gdk_screen_get_root_window (screen)),
+		  False,
+		  SubstructureRedirectMask | SubstructureNotifyMask,
+		  (XEvent *)&xclient);
+    }
+  else
+    {
+      gulong long_desktop = desktop;
+
+      XChangeProperty (xdisplay,
+		       GDK_DRAWABLE_XID (window),
+		       gdk_x11_get_xatom_by_name_for_display (display,
+							      "_NET_WM_DESKTOP"),
+		       XA_CARDINAL, 32, PropModeReplace,
+		       (guchar *)&long_desktop, 1);
+    }
+
+  XUngrabServer (xdisplay);
+  XFlush (xdisplay);
+}
+
+/* Asks the window manager to turn off the "demands attention" state on the window.
+ *
+ * This only works for windows that are currently window managed; if the window
+ * is unmapped (in the withdrawn state) it would be necessary to change _NET_WM_STATE
+ * directly.
+ */
+void
+terminal_util_x11_clear_demands_attention (GdkWindow *window)
+{
+  GdkScreen *screen = gdk_drawable_get_screen (window);
+  GdkDisplay *display = gdk_screen_get_display (screen);
+  XClientMessageEvent xclient;
+
+  memset (&xclient, 0, sizeof (xclient));
+  xclient.type = ClientMessage;
+  xclient.serial = 0;
+  xclient.send_event = True;
+  xclient.window = GDK_WINDOW_XWINDOW (window);
+  xclient.message_type = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE");
+  xclient.format = 32;
+
+  xclient.data.l[0] = 0; /* _NET_WM_STATE_REMOVE */
+  xclient.data.l[1] = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE_DEMANDS_ATTENTION");
+  xclient.data.l[2] = 0;
+  xclient.data.l[3] = 0;
+  xclient.data.l[4] = 0;
+
+  XSendEvent (GDK_DISPLAY_XDISPLAY (display),
+	      GDK_WINDOW_XWINDOW (gdk_screen_get_root_window (screen)),
+	      False,
+	      SubstructureRedirectMask | SubstructureNotifyMask,
+	      (XEvent *)&xclient);
+}
+
+/* Check if a GdkWindow is minimized. This is a workaround for a
+ * GDK bug/misfeature. gdk_window_get_state (window) has the
+ * GDK_WINDOW_STATE_ICONIFIED bit for all unmapped windows,
+ * even windows on another desktop.
+ *
+ * http://bugzilla.gnome.org/show_bug.cgi?id=586664
+ *
+ * Code to read _NET_WM_STATE adapted from GDK
+ */
+gboolean
+terminal_util_x11_window_is_minimized (GdkWindow *window)
+{
+  GdkDisplay *display = gdk_drawable_get_display (window);
+
+  Atom type;
+  gint format;
+  gulong nitems;
+  gulong bytes_after;
+  guchar *data;
+  Atom *atoms = NULL;
+  gulong i;
+
+  gboolean minimized = FALSE;
+
+  type = None;
+  gdk_error_trap_push ();
+  XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window),
+                      gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE"),
+                      0, G_MAXLONG, False, XA_ATOM, &type, &format, &nitems,
+                      &bytes_after, &data);
+  gdk_error_trap_pop ();
+
+  if (type != None)
+    {
+      Atom hidden_atom = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE_HIDDEN");
+
+      atoms = (Atom *)data;
+
+      for (i = 0; i < nitems; i++)
+        {
+          if (atoms[i] == hidden_atom)
+            minimized = TRUE;
+
+          ++i;
+        }
+
+      XFree (atoms);
+    }
+
+  return minimized;
+}
+
+#endif /* GDK_WINDOWING_X11 */
