@@ -150,6 +150,8 @@ enum
 #define DEFAULT_VISIBLE_NAME          (N_("Unnamed"))
 #define DEFAULT_WORD_CHARS            ("-A-Za-z0-9,./?%&#:_=+@~")
 
+#define MAX_SCROLLBACK_LINES          (10000000)
+
 struct _TerminalProfilePrivate
 {
   GValueArray *properties;
@@ -184,7 +186,7 @@ static const GdkColor terminal_palettes[TERMINAL_PALETTE_N_BUILTINS][TERMINAL_PA
 {
   /* Tango palette */
   {
-    { 0, 0x2e2e, 0x3434, 0x3636 },
+    { 0, 0x0000, 0x0000, 0x0000 },
     { 0, 0xcccc, 0x0000, 0x0000 },
     { 0, 0x4e4e, 0x9a9a, 0x0606 },
     { 0, 0xc4c4, 0xa0a0, 0x0000 },
@@ -272,8 +274,6 @@ enum
   LAST_SIGNAL
 };
 
-static void terminal_profile_init        (TerminalProfile      *profile);
-static void terminal_profile_class_init  (TerminalProfileClass *klass);
 static void terminal_profile_finalize    (GObject              *object);
 static void terminal_profile_set_property (GObject *object,
                                            guint prop_id,
@@ -335,7 +335,7 @@ get_prop_value_from_prop_name (TerminalProfile *profile,
 }
 
 static void
-set_value_from_palette (GValue *value,
+set_value_from_palette (GValue *ret_value,
                         const GdkColor *colors,
                         guint n_colors)
 {
@@ -364,7 +364,7 @@ set_value_from_palette (GValue *value,
       g_value_set_boxed (value, &DEFAULT_PALETTE[i]);
     }
 
-  g_value_take_boxed (value, array);
+  g_value_take_boxed (ret_value, array);
 }
 
 static int
@@ -844,7 +844,7 @@ cleanup:
   g_free (key);
 }
 
-static gboolean
+static void
 terminal_profile_save (TerminalProfile *profile)
 {
   TerminalProfilePrivate *priv = profile->priv;
@@ -879,8 +879,6 @@ terminal_profile_save (TerminalProfile *profile)
     }
 
   gconf_change_set_unref (changeset);
-
-  return error == NULL;
 }
 
 static gboolean
@@ -1207,8 +1205,8 @@ terminal_profile_class_init (TerminalProfileClass *klass)
 \
   if (propGConf)\
     {\
-      g_param_spec_set_qdata (pspec, gconf_key_quark, propGConf);\
-      g_hash_table_insert (klass->gconf_keys, propGConf, pspec);\
+      g_param_spec_set_qdata (pspec, gconf_key_quark, (gpointer) propGConf);\
+      g_hash_table_insert (klass->gconf_keys, (gpointer) propGConf, pspec);\
     }\
 }
 
@@ -1307,7 +1305,7 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_ENUM (SCROLLBAR_POSITION, TERMINAL_TYPE_SCROLLBAR_POSITION, DEFAULT_SCROLLBAR_POSITION, KEY_SCROLLBAR_POSITION);
   TERMINAL_PROFILE_PROPERTY_ENUM (TITLE_MODE, TERMINAL_TYPE_TITLE_MODE, DEFAULT_TITLE_MODE, KEY_TITLE_MODE);
 
-  TERMINAL_PROFILE_PROPERTY_INT (SCROLLBACK_LINES, 1, G_MAXINT, DEFAULT_SCROLLBACK_LINES, KEY_SCROLLBACK_LINES);
+  TERMINAL_PROFILE_PROPERTY_INT (SCROLLBACK_LINES, 1, MAX_SCROLLBACK_LINES, DEFAULT_SCROLLBACK_LINES, KEY_SCROLLBACK_LINES);
 
   TERMINAL_PROFILE_PROPERTY_OBJECT (BACKGROUND_IMAGE, GDK_TYPE_PIXBUF, NULL);
 

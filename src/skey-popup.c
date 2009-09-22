@@ -160,7 +160,7 @@ terminal_skey_do_popup (GtkWindow *window,
     {
       if (!extract_seq_and_seed (skey_match, &seq, &seed))
 	{
-	  terminal_util_show_error_dialog (window, NULL,
+	  terminal_util_show_error_dialog (window, NULL, NULL,
 					   _("The text you clicked on doesn't "
 					     "seem to be a valid S/Key "
 					     "challenge."));
@@ -171,7 +171,7 @@ terminal_skey_do_popup (GtkWindow *window,
     {
       if (!extract_hash_seq_and_seed (skey_match, &hash, &seq, &seed))
 	{
-	  terminal_util_show_error_dialog (window, NULL,
+	  terminal_util_show_error_dialog (window, NULL, NULL,
 					   _("The text you clicked on doesn't "
 					     "seem to be a valid OTP "
 					     "challenge."));
@@ -204,6 +204,11 @@ terminal_skey_do_popup (GtkWindow *window,
   gtk_window_set_transient_for (GTK_WINDOW (dialog), window);
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+
+  gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
+                                           GTK_RESPONSE_OK,
+                                           GTK_RESPONSE_CANCEL,
+                                           -1);
 
   /* FIXME: make this dialogue close if the screen closes! */
 
