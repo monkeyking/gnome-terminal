@@ -25,7 +25,7 @@
 
 #define TERMINAL_MAJOR_VERSION (2)
 #define TERMINAL_MINOR_VERSION (28)
-#define TERMINAL_MICRO_VERSION (0)
+#define TERMINAL_MICRO_VERSION (1)
 
 #define TERMINAL_CHECK_VERSION(major,minor,micro) \
   (TERMINAL_MAJOR_VERSION > (major) || \
