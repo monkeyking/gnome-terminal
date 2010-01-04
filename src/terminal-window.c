@@ -26,7 +26,6 @@
 #include <gdk/gdkx.h>
 #endif
 #include <gdk/gdkkeysyms.h>
-#include <libsn/sn-launchee.h>
 
 #include "skey-popup.h"
 #include "terminal-accels.h"
@@ -66,7 +65,6 @@ struct _TerminalWindowPrivate
   int old_char_width;
   int old_char_height;
   void *old_geometry_widget; /* only used for pointer value as it may be freed */
-  char *startup_id;
 
   GtkWidget *confirm_close_dialog;
 
@@ -199,6 +197,10 @@ static void
 profile_set_callback (TerminalScreen *screen,
                       TerminalProfile *old_profile,
                       TerminalWindow *window);
+static void
+sync_screen_icon_title (TerminalScreen *screen,
+                        GParamSpec *psepc,
+                        TerminalWindow *window);
 
 G_DEFINE_TYPE (TerminalWindow, terminal_window, GTK_TYPE_WINDOW)
 
@@ -980,7 +982,8 @@ screen_resize_window_cb (TerminalScreen *screen,
   VteTerminal *terminal = VTE_TERMINAL (screen);
   GtkWidget *widget = GTK_WIDGET (screen);
   guint grid_width, grid_height;
-  int xpad_total, ypad_total, char_width, char_height;
+  int char_width, char_height;
+  GtkBorder *inner_border = NULL;
 
   /* Don't do anything if we're maximised or fullscreened */
   // FIXME: realized && ... instead? 
@@ -997,12 +1000,13 @@ screen_resize_window_cb (TerminalScreen *screen,
 
   /* The resize-window signal sucks. Re-compute grid widths */
 
-  vte_terminal_get_padding (terminal, &xpad_total, &ypad_total);
   char_width = vte_terminal_get_char_width (terminal);
   char_height = vte_terminal_get_char_height (terminal);
 
-  grid_width = (width - xpad_total) / char_width;
-  grid_height = (height - ypad_total) / char_height;
+  gtk_widget_style_get (GTK_WIDGET (terminal), "inner-border", &inner_border, NULL);
+  grid_width = (width - (inner_border ? (inner_border->left + inner_border->right) : 0)) / char_width;
+  grid_height = (height - (inner_border ? (inner_border->top + inner_border->bottom) : 0)) / char_height;
+  gtk_border_free (inner_border);
 
   vte_terminal_set_size (terminal, grid_width, grid_height);
 
@@ -1435,9 +1439,9 @@ terminal_window_size_allocate_cb (GtkWidget *widget,
 static void
 terminal_window_realize (GtkWidget *widget)
 {
-#ifdef GDK_WINDOWING_X11
   TerminalWindow *window = TERMINAL_WINDOW (widget);
   TerminalWindowPrivate *priv = window->priv;
+#ifdef GDK_WINDOWING_X11
   GdkScreen *screen;
   GdkColormap *colormap;
 
@@ -1463,6 +1467,10 @@ terminal_window_realize (GtkWidget *widget)
                          widget->allocation.x, widget->allocation.y);
 
   GTK_WIDGET_CLASS (terminal_window_parent_class)->realize (widget);
+
+  /* Need to do this now since this requires the window to be realized */
+  if (priv->active_screen != NULL)
+    sync_screen_icon_title (priv->active_screen, NULL, window);
 }
 
 static gboolean
@@ -1918,15 +1926,6 @@ terminal_window_init (TerminalWindow *window)
   priv->old_char_height = -1;
   priv->old_geometry_widget = NULL;
   
-  /* force gtk to construct its GtkClipboard; otherwise our UI is very slow the first time we need it */
-  /* FIXME is that really true still ?
-   * Simple way to find out: comment the code out (if 0'd below), and see
-   * if anyone complains after the next release :)
-   */
-#if 0
-  gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
-#endif
-
   /* Create the UI manager */
   manager = priv->ui_manager = gtk_ui_manager_new ();
 
@@ -2090,8 +2089,6 @@ terminal_window_finalize (GObject *object)
   TerminalWindow *window = TERMINAL_WINDOW (object);
   TerminalWindowPrivate *priv = window->priv;
 
-  g_free (priv->startup_id);
-
   g_object_unref (priv->ui_manager);
 
   if (priv->confirm_close_dialog)
@@ -2110,32 +2107,20 @@ terminal_window_delete_event (GtkWidget *widget,
 }
 
 static void
-sn_error_trap_push (SnDisplay *display,
-                    Display   *xdisplay)
-{
-  gdk_error_trap_push ();
-}
-
-static void
-sn_error_trap_pop (SnDisplay *display,
-                   Display   *xdisplay)
-{
-  gdk_error_trap_pop ();
-}
-
-static void
 terminal_window_show (GtkWidget *widget)
 {
   TerminalWindow *window = TERMINAL_WINDOW (widget);
+#if 0
   TerminalWindowPrivate *priv = window->priv;
-  SnDisplay *sn_display;
-  SnLauncheeContext *context;
-  GdkScreen *screen;
-  GdkDisplay *display;
 
-  /* At this point, we have our GdkScreen, and hence the right
-    * font size, so we can go ahead and size the window.
-   */
+  if (priv->active_screen != NULL)
+    {
+      /* At this point, we have our GdkScreen, and hence the right
+       * font size, so we can go ahead and size the window. */
+      terminal_window_set_size (window, priv->active_screen, FALSE);
+    }
+#endif
+
   terminal_window_update_geometry (window);
 
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
@@ -2144,54 +2129,7 @@ terminal_window_show (GtkWidget *widget)
                          widget->allocation.width, widget->allocation.height,
                          widget->allocation.x, widget->allocation.y);
 
-  context = NULL;
-  sn_display = NULL;
-  if (priv->startup_id != NULL)
-    {
-      /* Set up window for launch notification */
-
-      screen = gtk_window_get_screen (GTK_WINDOW (window));
-      display = gdk_screen_get_display (screen);
-      
-      sn_display = sn_display_new (gdk_x11_display_get_xdisplay (display),
-                                   sn_error_trap_push,
-                                   sn_error_trap_pop);
-      
-      context = sn_launchee_context_new (sn_display,
-                                         gdk_screen_get_number (screen),
-                                         priv->startup_id);
-
-      /* Handle the setup for the window if the startup_id is valid; I
-       * don't think it can hurt to do this even if it was invalid,
-       * but why do the extra work...
-       */
-      if (strncmp (sn_launchee_context_get_startup_id (context), "_TIME", 5) != 0)
-        sn_launchee_context_setup_window (context,
-                                          GDK_WINDOW_XWINDOW (widget->window));
-
-      /* Now, set the _NET_WM_USER_TIME for the new window to the timestamp
-       * that caused the window to be launched.
-       */
-      if (sn_launchee_context_get_id_has_timestamp (context))
-        {
-          gulong timestamp;
-
-          timestamp = sn_launchee_context_get_timestamp (context);
-          gdk_x11_window_set_user_time (widget->window, timestamp);
-        }
-
-      g_free (priv->startup_id);
-      priv->startup_id = NULL;
-    }
-  
   GTK_WIDGET_CLASS (terminal_window_parent_class)->show (widget);
-
-  if (context != NULL)
-    {
-      sn_launchee_context_complete (context);
-      sn_launchee_context_unref (context);
-      sn_display_unref (sn_display);
-    }
 }
 
 TerminalWindow*
@@ -2250,6 +2188,9 @@ sync_screen_icon_title (TerminalScreen *screen,
                         TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
+
+  if (!GTK_WIDGET_REALIZED (window))
+    return;
 
   if (screen != priv->active_screen)
     return;
@@ -2349,9 +2290,11 @@ terminal_window_add_screen (TerminalWindow *window,
                             screen_container,
                             tab_label,
                             position);
-  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook),
-                                      screen_container,
-                                      TRUE, TRUE, GTK_PACK_START);
+  gtk_container_child_set (GTK_CONTAINER (priv->notebook),
+                           screen_container,
+                           "tab-expand", TRUE,
+                           "tab-fill", TRUE,
+                           NULL);
   gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (priv->notebook),
                                     screen_container,
                                     TRUE);
@@ -2444,6 +2387,7 @@ terminal_window_set_menubar_visible (TerminalWindow *window,
   
   g_object_set (priv->menubar, "visible", setting, NULL);
 
+  /* FIXMEchpe: use GTK_WIDGET_REALIZED instead? */
   if (priv->active_screen)
     {
       _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
@@ -2497,11 +2441,11 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   int char_height;
   int grid_width;
   int grid_height;
-  int xpad_total;
-  int ypad_total;
+  GtkBorder *inner_border = NULL;
 
   /* be sure our geometry is up-to-date */
   terminal_window_update_geometry (window);
+
   widget = GTK_WIDGET (screen);
   
   app = gtk_widget_get_toplevel (widget);
@@ -2528,10 +2472,10 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   if (force_grid_height >= 0)
     grid_height = force_grid_height;
   
-  vte_terminal_get_padding (VTE_TERMINAL (screen), &xpad_total, &ypad_total);
-
-  w += xpad_total + char_width * grid_width;
-  h += ypad_total + char_height * grid_height;
+  gtk_widget_style_get (widget, "inner-border", &inner_border, NULL);
+  w += (inner_border ? (inner_border->left + inner_border->right) : 0) + char_width * grid_width;
+  h += (inner_border ? (inner_border->top + inner_border->bottom) : 0) + char_height * grid_height;
+  gtk_border_free (inner_border);
 
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
                          "[window %p] set size: grid %dx%d force %dx%d setting %dx%d pixels\n",
@@ -2544,67 +2488,6 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   else {
     gtk_window_set_default_size (GTK_WINDOW (app), w, h);
   }
-}
-
-static void
-terminal_window_set_active (TerminalWindow *window,
-                            TerminalScreen *screen)
-{
-  TerminalWindowPrivate *priv = window->priv;
-  GtkWidget *widget;
-  TerminalProfile *profile;
-
-  _terminal_debug_print (TERMINAL_DEBUG_MDI,
-                         "[window %p] MDI: setting active tab to screen %p (old active is %p)\n",
-                         window, screen, priv->active_screen);
-
-  if (priv->active_screen == screen)
-    return;
-  
-  /* Workaround to remove gtknotebook's feature of computing its size based on
-   * all pages. When the widget is hidden, its size will not be taken into
-   * account.
-   */
-  if (priv->active_screen)
-    gtk_widget_hide (GTK_WIDGET (priv->active_screen)); /* FIXME */
-  
-  widget = GTK_WIDGET (screen);
-  
-  /* Make sure that the widget is no longer hidden due to the workaround */
-  gtk_widget_show (widget);
-
-  profile = terminal_screen_get_profile (screen);
-
-  if (!GTK_WIDGET_REALIZED (widget))
-    gtk_widget_realize (widget); /* we need this for the char width */
-
-  priv->active_screen = screen;
-
-  terminal_window_update_geometry (window);
-  
-  /* Override menubar setting if it wasn't restored from session */
-  if (priv->use_default_menubar_visibility)
-    {
-      gboolean setting =
-        terminal_profile_get_property_boolean (terminal_screen_get_profile (screen), TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR);
-
-      terminal_window_set_menubar_visible (window, setting);
-    }
-
-  sync_screen_icon_title_set (screen, NULL, window);
-  sync_screen_icon_title (screen, NULL, window);
-  sync_screen_title (screen, NULL, window);
-
-  /* set size of window to current grid size */
-  _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
-                         "[window %p] setting size after flipping notebook pages\n",
-                         window);
-  terminal_window_set_size (window, screen, TRUE);
-
-  terminal_window_update_encoding_menu_active_encoding (window);
-  terminal_window_update_set_profile_menu_active_profile (window);
-  terminal_window_update_copy_sensitivity (screen, window);
-  terminal_window_update_zoom_sensitivity (window);
 }
 
 void
@@ -2699,33 +2582,75 @@ notebook_page_selected_callback (GtkWidget       *notebook,
                                  TerminalWindow  *window)
 {
   TerminalWindowPrivate *priv = window->priv;
-  GtkWidget* page_widget;
+  GtkWidget* page_widget, *widget;
   TerminalScreen *screen;
+  TerminalProfile *profile;
   int old_grid_width, old_grid_height;
 
   _terminal_debug_print (TERMINAL_DEBUG_MDI,
                          "[window %p] MDI: page-selected %d\n",
                          window, page_num);
 
-  if (priv->active_screen == NULL || priv->disposed)
+  if (priv->disposed)
     return;
 
-  terminal_screen_get_size (priv->active_screen, &old_grid_width, &old_grid_height);
-  
-  page_widget = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook),
-                                           page_num);
+  page_widget = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), page_num);
   screen = terminal_screen_container_get_screen (page_widget);
-  g_assert (screen);
-  
+  widget = GTK_WIDGET (screen);
+  g_assert (screen != NULL);
+
   _terminal_debug_print (TERMINAL_DEBUG_MDI,
-                         "[window %p] MDI: screen %p now the active tab\n",
-                         window, screen);
+                         "[window %p] MDI: setting active tab to screen %p (old active screen %p)\n",
+                         window, screen, priv->active_screen);
 
-  /* This is so that we maintain the same grid */
-  vte_terminal_set_size (VTE_TERMINAL (screen), old_grid_width, old_grid_height);
+  if (priv->active_screen == screen)
+    return;
+  
+  if (priv->active_screen != NULL) {
+    terminal_screen_get_size (priv->active_screen, &old_grid_width, &old_grid_height);
+  
+    /* This is so that we maintain the same grid */
+    vte_terminal_set_size (VTE_TERMINAL (screen), old_grid_width, old_grid_height);
+  }
 
-  terminal_window_set_active (window, screen);
+  /* Workaround to remove gtknotebook's feature of computing its size based on
+   * all pages. When the widget is hidden, its size will not be taken into
+   * account.
+   */
+  if (priv->active_screen)
+    gtk_widget_hide (GTK_WIDGET (priv->active_screen)); /* FIXME */
+
+  /* Make sure that the widget is no longer hidden due to the workaround */
+  gtk_widget_show (widget);
+
+  profile = terminal_screen_get_profile (screen);
+
+  priv->active_screen = screen;
+
+  /* Override menubar setting if it wasn't restored from session */
+  if (priv->use_default_menubar_visibility)
+    {
+      gboolean setting =
+        terminal_profile_get_property_boolean (terminal_screen_get_profile (screen), TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR);
+
+      terminal_window_set_menubar_visible (window, setting);
+    }
+
+  sync_screen_icon_title_set (screen, NULL, window);
+  sync_screen_icon_title (screen, NULL, window);
+  sync_screen_title (screen, NULL, window);
+
+  /* set size of window to current grid size */
+  _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
+                         "[window %p] setting size after flipping notebook pages\n",
+                         window);
+  terminal_window_set_size (window, screen, TRUE);
+
   terminal_window_update_tabs_menu_sensitivity (window);
+  terminal_window_update_encoding_menu_active_encoding (window);
+  terminal_window_update_set_profile_menu_active_profile (window);
+  terminal_window_update_copy_sensitivity (screen, window);
+  terminal_window_update_zoom_sensitivity (window);
 }
 
 static void
@@ -2769,12 +2694,10 @@ notebook_page_added_callback (GtkWidget       *notebook,
                     G_CALLBACK (screen_close_cb), window);
 
   update_tab_visibility (window, 0);
+  terminal_window_update_tabs_menu_sensitivity (window);
 
-  /* ZvtTerm is a broken POS and requires this realize to get
-   * the size request right.
-   */
-  /* FIXME: does this apply to VTE? */
-  gtk_widget_realize (GTK_WIDGET (screen));
+#if 0
+  /* FIXMEchpe: wtf is this doing? */
 
   /* If we have an active screen, match its size and zoom */
   if (priv->active_screen)
@@ -2788,21 +2711,13 @@ notebook_page_added_callback (GtkWidget       *notebook,
       scale = terminal_screen_get_font_scale (priv->active_screen);
       terminal_screen_set_font_scale (screen, scale);
     }
-
-  /* Make the first-added screen the active one */
-  /* FIXME: this shouldn't be necessary since we'll immediately get
-   * page-selected callback.
-   */
-  if (priv->active_screen == NULL)
-    terminal_window_set_active (window, screen);
+#endif
 
   if (priv->present_on_insert)
     {
       gtk_window_present_with_time (GTK_WINDOW (window), gtk_get_current_event_time ());
       priv->present_on_insert = FALSE;
     }
-
-  terminal_window_update_tabs_menu_sensitivity (window);
 }
 
 static void
@@ -2898,15 +2813,18 @@ terminal_window_update_geometry (TerminalWindow *window)
       char_height != priv->old_char_height ||
       widget != (GtkWidget*) priv->old_geometry_widget)
     {
-      int xpad_total, ypad_total;
+      GtkBorder *inner_border = NULL;
       
       /* FIXME Since we're using xthickness/ythickness to compute
        * padding we need to change the hints when the theme changes.
        */
-      vte_terminal_get_padding (VTE_TERMINAL (priv->active_screen), &xpad_total, &ypad_total);
-      
-      hints.base_width = xpad_total;
-      hints.base_height = ypad_total;
+
+      gtk_widget_style_get (widget, "inner-border", &inner_border, NULL);
+
+      hints.base_width = (inner_border ? (inner_border->left + inner_border->right) : 0);
+      hints.base_height = (inner_border ? (inner_border->top + inner_border->bottom) : 0);
+
+      gtk_border_free (inner_border);
 
 #define MIN_WIDTH_CHARS 4
 #define MIN_HEIGHT_CHARS 2
@@ -3697,16 +3615,6 @@ help_about_callback (GtkAction *action,
   g_strfreev (artists);
   g_strfreev (documenters);
   g_free (licence_text);
-}
-
-void
-terminal_window_set_startup_id (TerminalWindow *window,
-                                const char     *startup_id)
-{
-  TerminalWindowPrivate *priv = window->priv;
-
-  g_free (priv->startup_id);
-  priv->startup_id = g_strdup (startup_id);
 }
 
 GtkUIManager *
