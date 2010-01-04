@@ -1,5 +1,6 @@
 #include <config.h>
 
+#include <locale.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -43,7 +44,9 @@ static const TestEntry tests[] = {
 	{ SHA1, "AbCdEfGhIjK",     "alpha1",  99, "27BC 7103 5AAF 3DC6", "MAY STAR TIN LYON VEDA STAN"   },
 	{ SHA1, "OTP's are good",  "correct",  0, "D51F 3E99 BF8E 6F0B", "RUST WELT KICK FELL TAIL FRAU" },
 	{ SHA1, "OTP's are good",  "correct",  1, "82AE B52D 9437 74E4", "FLIT DOSE ALSO MEW DRUM DEFY"  },
-	{ SHA1, "OTP's are good",  "correct", 99, "4F29 6A74 FE15 67EC", "AURA ALOE HURL WING BERG WAIT" }
+	{ SHA1, "OTP's are good",  "correct", 99, "4F29 6A74 FE15 67EC", "AURA ALOE HURL WING BERG WAIT" },
+
+        { SHA1, "Passphrase",      "IiIi",   100, "27F4 01CC 0AC8 5112", "MEG JACK DIET GAD FORK GARY"   }
 };
 
 static const char *algos[] = {
@@ -70,6 +73,9 @@ skey_test (gconstpointer data)
 int main(int argc, char *argv[])
 {
         guint i;
+
+        if (!setlocale (LC_ALL, ""))
+                 g_error ("Locale not supported by C library!\n");
 
         g_test_init (&argc, &argv, NULL);
         g_test_bug_base ("http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal");

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-16 11:31+0300\n"
+"POT-Creation-Date: 2009-09-16 11:17+0300\n"
 "PO-Revision-Date: 2009-09-16 13:44+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:119
 #: ../src/terminal-accels.c:222 ../src/terminal.c:304
-#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1884
+#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1890
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -1496,7 +1496,7 @@ msgstr "Zoom Ke Luar"
 msgid "Normal Size"
 msgstr "Ukuran Normal"
 
-#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3462
+#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3374
 msgid "Set Title"
 msgstr "Pasang Judul"
 
@@ -1653,12 +1653,12 @@ msgstr ""
 msgid "Choose base profile"
 msgstr "Pilih profil dasar"
 
-#: ../src/terminal-app.c:1789
+#: ../src/terminal-app.c:1794
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr "Profil '%s' tidak ada, digunakan profil baku\n"
 
-#: ../src/terminal-app.c:1813
+#: ../src/terminal-app.c:1818
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "String geometeri '%s' salah\n"
@@ -1673,12 +1673,12 @@ msgid "Failed to parse arguments: %s\n"
 msgstr "Gagal mengurai argumen: \"%s\"\n"
 
 #. Incompatible factory version, fall back, to new instance
-#: ../src/terminal.c:427
+#: ../src/terminal.c:423
 #, c-format
 msgid "Incompatible factory version; creating a new instance.\n"
 msgstr "Versi pabrik tak cocok; membuat sebuah instance baru.\n"
 
-#: ../src/terminal.c:433
+#: ../src/terminal.c:429
 #, c-format
 msgid "Factory error: %s\n"
 msgstr "Galat pabrik: %s\n"
@@ -1848,7 +1848,7 @@ msgstr ""
 "mungkin ingin membuat profil dengan pengaturan yang diinginkan, dan gunakan "
 "pilihan baru '--profile'\n"
 
-#: ../src/terminal-options.c:188 ../src/terminal-window.c:3683
+#: ../src/terminal-options.c:188 ../src/terminal-window.c:3595
 msgid "GNOME Terminal"
 msgstr "Terminal GNOME"
 
@@ -2046,11 +2046,11 @@ msgstr "Tunjukkan pilihan per terminal"
 msgid "Unnamed"
 msgstr "Tanpa nama"
 
-#: ../src/terminal-screen.c:1276
+#: ../src/terminal-screen.c:1288
 msgid "There was a problem with the command for this terminal"
 msgstr "Ada masalah dengan perintah pada terminal ini"
 
-#: ../src/terminal-screen.c:1585
+#: ../src/terminal-screen.c:1604
 msgid "There was an error creating the child process for this terminal"
 msgstr "Ada error saat membuat proses anak terminal"
 
@@ -2110,7 +2110,7 @@ msgstr ""
 #. * _%d is used as the accelerator (with d between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:430
+#: ../src/terminal-window.c:432
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
@@ -2119,190 +2119,190 @@ msgstr "_%d. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:436
+#: ../src/terminal-window.c:438
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1697
+#: ../src/terminal-window.c:1703
 msgid "_File"
 msgstr "_File"
 
 #. File menu
-#: ../src/terminal-window.c:1698 ../src/terminal-window.c:1709
-#: ../src/terminal-window.c:1831
+#: ../src/terminal-window.c:1704 ../src/terminal-window.c:1715
+#: ../src/terminal-window.c:1837
 msgid "Open _Terminal"
 msgstr "Buka _Terminal"
 
-#: ../src/terminal-window.c:1699 ../src/terminal-window.c:1712
-#: ../src/terminal-window.c:1834
+#: ../src/terminal-window.c:1705 ../src/terminal-window.c:1718
+#: ../src/terminal-window.c:1840
 msgid "Open Ta_b"
 msgstr "Buka Ta_b"
 
-#: ../src/terminal-window.c:1700
+#: ../src/terminal-window.c:1706
 msgid "_Edit"
 msgstr "_Edit"
 
-#: ../src/terminal-window.c:1701
+#: ../src/terminal-window.c:1707
 msgid "_View"
 msgstr "_Lihat"
 
-#: ../src/terminal-window.c:1702
+#: ../src/terminal-window.c:1708
 msgid "_Terminal"
 msgstr "_Terminal"
 
-#: ../src/terminal-window.c:1703
+#: ../src/terminal-window.c:1709
 msgid "Ta_bs"
 msgstr "Ta_b"
 
-#: ../src/terminal-window.c:1704
+#: ../src/terminal-window.c:1710
 msgid "_Help"
 msgstr "_Bantuan"
 
-#: ../src/terminal-window.c:1715
+#: ../src/terminal-window.c:1721
 msgid "New _Profile…"
 msgstr "_Profil Baru..."
 
-#: ../src/terminal-window.c:1718 ../src/terminal-window.c:1840
+#: ../src/terminal-window.c:1724 ../src/terminal-window.c:1846
 msgid "C_lose Tab"
 msgstr "Tutu_p Tab"
 
-#: ../src/terminal-window.c:1721
+#: ../src/terminal-window.c:1727
 msgid "_Close Window"
 msgstr "_Tutup WIndow"
 
-#: ../src/terminal-window.c:1732 ../src/terminal-window.c:1828
+#: ../src/terminal-window.c:1738 ../src/terminal-window.c:1834
 msgid "Paste _Filenames"
 msgstr "Tempel Nama _Berkas"
 
-#: ../src/terminal-window.c:1738
+#: ../src/terminal-window.c:1744
 msgid "P_rofiles…"
 msgstr "P_rofil..."
 
-#: ../src/terminal-window.c:1741
+#: ../src/terminal-window.c:1747
 msgid "_Keyboard Shortcuts…"
 msgstr "Tombol Singkat _Keyboard..."
 
-#: ../src/terminal-window.c:1744
+#: ../src/terminal-window.c:1750
 msgid "Pr_ofile Preferences"
 msgstr "Preferensi Pr_ofil"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1760
+#: ../src/terminal-window.c:1766
 msgid "Change _Profile"
 msgstr "Ubah _Profil"
 
-#: ../src/terminal-window.c:1761
+#: ../src/terminal-window.c:1767
 msgid "_Set Title…"
 msgstr "Atur Ju_dul..."
 
-#: ../src/terminal-window.c:1764
+#: ../src/terminal-window.c:1770
 msgid "Set _Character Encoding"
 msgstr "Pasang Pengkodean _Karakter"
 
-#: ../src/terminal-window.c:1765
+#: ../src/terminal-window.c:1771
 msgid "_Reset"
 msgstr "Tata Ulang/_Reset"
 
-#: ../src/terminal-window.c:1768
+#: ../src/terminal-window.c:1774
 msgid "Reset and C_lear"
 msgstr "Tata Ulang/Reset dan Bersihkan _Layar"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1773
+#: ../src/terminal-window.c:1779
 msgid "_Add or Remove…"
 msgstr "T_ambah atau Hapus..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1778
+#: ../src/terminal-window.c:1784
 msgid "_Previous Tab"
 msgstr "Tab Se_belumnya"
 
-#: ../src/terminal-window.c:1781
+#: ../src/terminal-window.c:1787
 msgid "_Next Tab"
 msgstr "Tab Berikut_nya"
 
-#: ../src/terminal-window.c:1784
+#: ../src/terminal-window.c:1790
 msgid "Move Tab _Left"
 msgstr "Pindah Tab ke _Kiri"
 
-#: ../src/terminal-window.c:1787
+#: ../src/terminal-window.c:1793
 msgid "Move Tab _Right"
 msgstr "Pindah Tab ke _Kanan"
 
-#: ../src/terminal-window.c:1790
+#: ../src/terminal-window.c:1796
 msgid "_Detach tab"
 msgstr "Pisahkan Ta_b"
 
 #. Help menu
-#: ../src/terminal-window.c:1795
+#: ../src/terminal-window.c:1801
 msgid "_Contents"
 msgstr "_Isi"
 
-#: ../src/terminal-window.c:1798
+#: ../src/terminal-window.c:1804
 msgid "_About"
 msgstr "_Keterangan Program"
 
 #. Popup menu
-#: ../src/terminal-window.c:1803
+#: ../src/terminal-window.c:1809
 msgid "_Send Mail To…"
 msgstr "Kirim _Surat Ke..."
 
-#: ../src/terminal-window.c:1806
+#: ../src/terminal-window.c:1812
 msgid "_Copy E-mail Address"
 msgstr "_Salin Alamat Surat"
 
-#: ../src/terminal-window.c:1809
+#: ../src/terminal-window.c:1815
 msgid "C_all To…"
 msgstr "Mem_anggil Ke..."
 
-#: ../src/terminal-window.c:1812
+#: ../src/terminal-window.c:1818
 msgid "_Copy Call Address"
 msgstr "_Salin Alamat Panggilan"
 
-#: ../src/terminal-window.c:1815
+#: ../src/terminal-window.c:1821
 msgid "_Open Link"
 msgstr "_Buka Link"
 
-#: ../src/terminal-window.c:1818
+#: ../src/terminal-window.c:1824
 msgid "_Copy Link Address"
 msgstr "_Salin Alamat Link"
 
-#: ../src/terminal-window.c:1821
+#: ../src/terminal-window.c:1827
 msgid "P_rofiles"
 msgstr "P_rofil"
 
-#: ../src/terminal-window.c:1837 ../src/terminal-window.c:3111
+#: ../src/terminal-window.c:1843 ../src/terminal-window.c:3023
 msgid "C_lose Window"
 msgstr "Tutup Jende_la"
 
-#: ../src/terminal-window.c:1843
+#: ../src/terminal-window.c:1849
 msgid "L_eave Full Screen"
 msgstr "Tinggalkan Layar P_enuh"
 
-#: ../src/terminal-window.c:1846
+#: ../src/terminal-window.c:1852
 msgid "_Input Methods"
 msgstr "Metode _Input"
 
 #. View Menu
-#: ../src/terminal-window.c:1852
+#: ../src/terminal-window.c:1858
 msgid "Show _Menubar"
 msgstr "Ta_mpikan Batang Menu"
 
-#: ../src/terminal-window.c:1856
+#: ../src/terminal-window.c:1862
 msgid "_Full Screen"
 msgstr "Layar _penuh"
 
-#: ../src/terminal-window.c:3098
+#: ../src/terminal-window.c:3010
 msgid "Close this window?"
 msgstr "Tutup jendela ini?"
 
-#: ../src/terminal-window.c:3098
+#: ../src/terminal-window.c:3010
 msgid "Close this terminal?"
 msgstr "Tutup terminal ini?"
 
-#: ../src/terminal-window.c:3102
+#: ../src/terminal-window.c:3014
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
@@ -2310,7 +2310,7 @@ msgstr ""
 "Ada proses masih berjalan pada beberapa terminal di jendela ini. Menutup "
 "jendela akan menghentikan semuanya."
 
-#: ../src/terminal-window.c:3106
+#: ../src/terminal-window.c:3018
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2318,23 +2318,23 @@ msgstr ""
 "Masih ada proses berjalan pada terminal ini. Menutup terminal akan "
 "menghentikannya."
 
-#: ../src/terminal-window.c:3111
+#: ../src/terminal-window.c:3023
 msgid "C_lose Terminal"
 msgstr "Tutup Termina_l"
 
-#: ../src/terminal-window.c:3479
+#: ../src/terminal-window.c:3391
 msgid "_Title:"
 msgstr "_Judul:"
 
-#: ../src/terminal-window.c:3666
+#: ../src/terminal-window.c:3578
 msgid "Contributors:"
 msgstr "Penyumbang:"
 
-#: ../src/terminal-window.c:3685
+#: ../src/terminal-window.c:3597
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "Emulator terminal untuk desktop GNOME"
 
-#: ../src/terminal-window.c:3692
+#: ../src/terminal-window.c:3604
 msgid "translator-credits"
 msgstr ""
 "Mohammad DAMT <mdamt@bisnisweb.com>\n"

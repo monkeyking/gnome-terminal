@@ -29,9 +29,6 @@
 #include "profile-editor.h"
 #include "terminal-util.h"
 
-/* Behdad estimates this to about 1 byte/cell, approx. */
-#define BYTES_PER_LINE ((goffset) 80)
-
 typedef struct _TerminalColorScheme TerminalColorScheme;
 
 struct _TerminalColorScheme
@@ -113,7 +110,7 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
                                GtkWidget *editor)
 {
   TerminalBackgroundType bg_type;
-  gboolean use_custom_locked, palette_locked, bg_type_locked, scrollback_lines_locked;
+  gboolean use_custom_locked, palette_locked, bg_type_locked;
   const char *prop_name;
 
   if (pspec)
@@ -176,13 +173,15 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
   if (!prop_name ||
       prop_name == I_(TERMINAL_PROFILE_FOREGROUND_COLOR) ||
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_COLOR) ||
+      prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR) ||
+      prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG) ||
       prop_name == I_(TERMINAL_PROFILE_USE_THEME_COLORS))
     {
-      gboolean fg_locked, bg_locked, use_theme_colors;
+      gboolean bg_locked, use_theme_colors, fg_locked;
 
+      use_theme_colors = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_COLORS);
       fg_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
       bg_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
-      use_theme_colors = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_COLORS);
 
       SET_SENSITIVE ("foreground-colorpicker", !use_theme_colors && !fg_locked);
       SET_SENSITIVE ("foreground-colorpicker-label", !use_theme_colors && !fg_locked);
@@ -190,6 +189,23 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
       SET_SENSITIVE ("background-colorpicker-label", !use_theme_colors && !bg_locked);
       SET_SENSITIVE ("color-scheme-combobox", !use_theme_colors && !fg_locked && !bg_locked);
       SET_SENSITIVE ("color-scheme-combobox-label", !use_theme_colors && !fg_locked && !bg_locked);
+    }
+
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR) ||
+      prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_THEME_COLORS))
+    {
+      gboolean bold_locked, bold_same_as_fg_locked, bold_same_as_fg, use_theme_colors;
+
+      use_theme_colors = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_COLORS);
+      bold_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BOLD_COLOR);
+      bold_same_as_fg_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG);
+      bold_same_as_fg = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG);
+
+      SET_SENSITIVE ("bold-color-same-as-fg-checkbox", !use_theme_colors && !bold_same_as_fg_locked);
+      SET_SENSITIVE ("bold-colorpicker", !use_theme_colors && !bold_locked && !bold_same_as_fg);
+      SET_SENSITIVE ("bold-colorpicker-label", !use_theme_colors && ((!bold_same_as_fg && !bold_locked) || !bold_same_as_fg_locked));
     }
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_VISIBLE_NAME))
@@ -220,16 +236,35 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
     SET_SENSITIVE ("word-chars-entry",
                    !terminal_profile_property_locked (profile, TERMINAL_PROFILE_WORD_CHARS));
 
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS) ||
+      prop_name == I_(TERMINAL_PROFILE_DEFAULT_SIZE_ROWS))
+    {
+      gboolean columns_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS);
+      gboolean rows_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS);
+
+      SET_SENSITIVE ("default-size-label", !columns_locked || !rows_locked);
+      SET_SENSITIVE ("default-size-columns-label", !columns_locked);
+      SET_SENSITIVE ("default-size-columns-spinbutton", !columns_locked);
+      SET_SENSITIVE ("default-size-rows-label", !rows_locked);
+      SET_SENSITIVE ("default-size-rows-spinbutton", !rows_locked);
+    }
+
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLLBAR_POSITION))
     SET_SENSITIVE ("scrollbar-position-combobox",
                    !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLLBAR_POSITION));
 
-  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_LINES))
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_LINES) ||
+      prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_UNLIMITED))
     {
-      scrollback_lines_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLLBACK_LINES);
+      gboolean scrollback_lines_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLLBACK_LINES);
+      gboolean scrollback_unlimited_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLLBACK_UNLIMITED);
+      gboolean scrollback_unlimited = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_SCROLLBACK_UNLIMITED);
 
       SET_SENSITIVE ("scrollback-label", !scrollback_lines_locked);
-      SET_SENSITIVE ("scrollback-box", !scrollback_lines_locked);
+      SET_SENSITIVE ("scrollback-box", !scrollback_lines_locked && !scrollback_unlimited);
+      SET_SENSITIVE ("scrollback-unlimited-checkbutton", !scrollback_lines_locked && !scrollback_unlimited_locked);
     }
   
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE))
@@ -280,9 +315,9 @@ color_scheme_combo_changed_cb (GtkWidget *combo,
                                TerminalProfile *profile)
 {
   guint i;
-  
+
   i = gtk_combo_box_get_active (GTK_COMBO_BOX (combo));
-  
+
   if (i < G_N_ELEMENTS (color_schemes))
     {
       g_signal_handlers_block_by_func (profile, G_CALLBACK (profile_colors_notify_scheme_combo_cb), combo);
@@ -309,11 +344,18 @@ profile_colors_notify_scheme_combo_cb (TerminalProfile *profile,
   fg = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
   bg = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
 
-  for (i = 0; i < G_N_ELEMENTS (color_schemes); ++i)
+  if (fg && bg)
     {
-      if (fg && gdk_color_equal (fg, &color_schemes[i].foreground) &&
-          bg && gdk_color_equal (bg, &color_schemes[i].background))
-        break;
+      for (i = 0; i < G_N_ELEMENTS (color_schemes); ++i)
+	{
+	  if (gdk_color_equal (fg, &color_schemes[i].foreground) &&
+	      gdk_color_equal (bg, &color_schemes[i].background))
+	    break;
+	}
+    }
+  else
+    {
+      i = G_N_ELEMENTS (color_schemes);
     }
   /* If we didn't find a match, then we get the last combo box item which is "custom" */
 
@@ -460,23 +502,6 @@ visible_name_entry_changed_cb (GtkEntry *entry,
 }
 
 static void
-scrollback_lines_spin_button_changed_cb (GtkSpinButton *button,
-                                         GParamSpec *pspec,
-                                         GtkLabel *label)
-{
-  double lines;
-  char *kbtext, *text;
-
-  lines = gtk_spin_button_get_value (button);
-  kbtext = g_format_size_for_display (((goffset) (lines + 0.5)) * BYTES_PER_LINE);
-  /* Translators: %s will be a data size, e.g. "(about 500kB)" */
-  text = g_strdup_printf (_("(about %s)"), kbtext);
-  gtk_label_set_text (label, text);
-  g_free (kbtext);
-  g_free (text);
-}
-
-static void
 reset_compat_defaults_cb (GtkWidget       *button,
                           TerminalProfile *profile)
 {
@@ -496,7 +521,7 @@ init_color_scheme_menu (GtkWidget *combo_box)
   i = G_N_ELEMENTS (color_schemes);
   while (i > 0)
     {
-      gtk_combo_box_prepend_text (GTK_COMBO_BOX (combo_box), 
+      gtk_combo_box_prepend_text (GTK_COMBO_BOX (combo_box),
                                   _(color_schemes[--i].name));
     }
 }
@@ -787,10 +812,6 @@ terminal_profile_edit (TerminalProfile *profile,
   g_signal_connect (GTK_WIDGET (gtk_builder_get_object (builder, "profile-name-entry")),
                     "changed",
                     G_CALLBACK (visible_name_entry_changed_cb), editor);
-  g_signal_connect (GTK_WIDGET (gtk_builder_get_object  (builder, "scrollback-lines-spinbutton")),
-                    "notify::value",
-                    G_CALLBACK (scrollback_lines_spin_button_changed_cb),
-                    GTK_WIDGET (gtk_builder_get_object  (builder, "scrollback-kb-label")));
 
   g_signal_connect (gtk_builder_get_object  (builder, "reset-compat-defaults-button"),
                     "clicked",
@@ -804,9 +825,13 @@ terminal_profile_edit (TerminalProfile *profile,
   CONNECT ("background-colorpicker", TERMINAL_PROFILE_BACKGROUND_COLOR);
   CONNECT ("background-image-filechooser", TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE);
   CONNECT ("backspace-binding-combobox", TERMINAL_PROFILE_BACKSPACE_BINDING);
+  CONNECT ("bold-color-same-as-fg-checkbox", TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG);
+  CONNECT ("bold-colorpicker", TERMINAL_PROFILE_BOLD_COLOR);
   CONNECT ("cursor-shape-combobox", TERMINAL_PROFILE_CURSOR_SHAPE);
   CONNECT ("custom-command-entry", TERMINAL_PROFILE_CUSTOM_COMMAND);
   CONNECT ("darken-background-scale", TERMINAL_PROFILE_BACKGROUND_DARKNESS);
+  CONNECT ("default-size-columns-spinbutton", TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS);
+  CONNECT ("default-size-rows-spinbutton", TERMINAL_PROFILE_DEFAULT_SIZE_ROWS);
   CONNECT ("delete-binding-combobox", TERMINAL_PROFILE_DELETE_BINDING);
   CONNECT ("exit-action-combobox", TERMINAL_PROFILE_EXIT_ACTION);
   CONNECT ("font-selector", TERMINAL_PROFILE_FONT);
@@ -814,6 +839,8 @@ terminal_profile_edit (TerminalProfile *profile,
   CONNECT ("image-radiobutton", TERMINAL_PROFILE_BACKGROUND_TYPE);
   CONNECT ("login-shell-checkbutton", TERMINAL_PROFILE_LOGIN_SHELL);
   CONNECT ("profile-name-entry", TERMINAL_PROFILE_VISIBLE_NAME);
+  CONNECT ("scrollback-lines-spinbutton", TERMINAL_PROFILE_SCROLLBACK_LINES);
+  CONNECT ("scrollback-unlimited-checkbutton", TERMINAL_PROFILE_SCROLLBACK_UNLIMITED);
   CONNECT ("scroll-background-checkbutton", TERMINAL_PROFILE_SCROLL_BACKGROUND);
   CONNECT ("scrollbar-position-combobox", TERMINAL_PROFILE_SCROLLBAR_POSITION);
   CONNECT ("scroll-on-keystroke-checkbutton", TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE);
@@ -829,7 +856,6 @@ terminal_profile_edit (TerminalProfile *profile,
   CONNECT ("use-theme-colors-checkbutton", TERMINAL_PROFILE_USE_THEME_COLORS);
   CONNECT ("word-chars-entry", TERMINAL_PROFILE_WORD_CHARS);
   CONNECT_WITH_FLAGS ("bell-checkbutton", TERMINAL_PROFILE_SILENT_BELL, FLAG_INVERT_BOOL);
-  CONNECT_WITH_FLAGS ("scrollback-lines-spinbutton", TERMINAL_PROFILE_SCROLLBACK_LINES, 0);
 
 #undef CONNECT
 #undef CONNECT_WITH_FLAGS
