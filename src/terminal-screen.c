@@ -44,8 +44,6 @@
 
 #include "eggshell.h"
 
-#define HTTP_PROXY_DIR "/system/http_proxy"
-
 #define URL_MATCH_CURSOR  (GDK_HAND2)
 #define SKEY_MATCH_CURSOR (GDK_HAND2)
 
@@ -73,6 +71,7 @@ struct _TerminalScreenPrivate
   double font_scale;
   gboolean user_title; /* title was manually set */
   GSList *match_tags;
+  guint launch_child_source_id;
 };
 
 enum
@@ -120,6 +119,7 @@ static void terminal_screen_change_font (TerminalScreen *screen);
 static gboolean terminal_screen_popup_menu (GtkWidget *widget);
 static gboolean terminal_screen_button_press (GtkWidget *widget,
                                               GdkEventButton *event);
+static void terminal_screen_launch_child_on_idle (TerminalScreen *screen);
 static void terminal_screen_child_exited  (VteTerminal *terminal);
 
 static void terminal_screen_window_title_changed      (VteTerminal *vte_terminal,
@@ -263,7 +263,11 @@ parent_parent_set_cb (GtkWidget *widget,
       g_return_if_fail (GTK_IS_NOTEBOOK (widget->parent));
 
       toplevel = gtk_widget_get_toplevel (widget);
+#if GTK_CHECK_VERSION (2, 19, 3)
+      g_return_if_fail (gtk_widget_is_toplevel (toplevel));
+#else
       g_return_if_fail (GTK_WIDGET_TOPLEVEL (toplevel));
+#endif
 
       priv->window = TERMINAL_WINDOW (toplevel);
     }
@@ -672,12 +676,19 @@ static void
 terminal_screen_dispose (GObject *object)
 {
   TerminalScreen *screen = TERMINAL_SCREEN (object);
+  TerminalScreenPrivate *priv = screen->priv;
   GtkSettings *settings;
 
   settings = gtk_widget_get_settings (GTK_WIDGET (screen));
   g_signal_handlers_disconnect_matched (settings, G_SIGNAL_MATCH_DATA,
                                         0, 0, NULL, NULL,
                                         screen);
+
+  if (priv->launch_child_source_id != 0)
+    {
+      g_source_remove (priv->launch_child_source_id);
+      priv->launch_child_source_id = 0;
+    }
 
   G_OBJECT_CLASS (terminal_screen_parent_class)->dispose (object);
 }
@@ -727,6 +738,10 @@ terminal_screen_new (TerminalProfile *profile,
 
   terminal_screen_set_profile (screen, profile);
 
+  vte_terminal_set_size (VTE_TERMINAL (screen),
+			 terminal_profile_get_property_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS),
+			 terminal_profile_get_property_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS));
+
   if (title)
     terminal_screen_set_override_title (screen, title);
 
@@ -740,6 +755,9 @@ terminal_screen_new (TerminalProfile *profile,
 
   terminal_screen_set_font_scale (screen, zoom);
   terminal_screen_set_font (screen);
+
+  /* Launch the child on idle */
+  terminal_screen_launch_child_on_idle (screen);
 
   return screen;
 }
@@ -956,6 +974,8 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
       prop_name == I_(TERMINAL_PROFILE_USE_THEME_COLORS) ||
       prop_name == I_(TERMINAL_PROFILE_FOREGROUND_COLOR) ||
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_COLOR) ||
+      prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG) ||
+      prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR) ||
       prop_name == I_(TERMINAL_PROFILE_PALETTE))
     update_color_scheme (screen);
 
@@ -971,9 +991,14 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLL_ON_OUTPUT))
     vte_terminal_set_scroll_on_output (vte_terminal,
                                        terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_SCROLL_ON_OUTPUT));
-  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_LINES))
-    vte_terminal_set_scrollback_lines (vte_terminal,
-                                       terminal_profile_get_property_int (profile, TERMINAL_PROFILE_SCROLLBACK_LINES));
+  if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_LINES) ||
+      prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_UNLIMITED))
+    {
+      glong lines = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_SCROLLBACK_UNLIMITED) ?
+		    -1 : terminal_profile_get_property_int (profile, TERMINAL_PROFILE_SCROLLBACK_LINES);
+      vte_terminal_set_scrollback_lines (vte_terminal, lines);
+    }
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_USE_SKEY))
     {
@@ -1070,7 +1095,7 @@ update_color_scheme (TerminalScreen *screen)
   TerminalProfile *profile = priv->profile;
   GtkStyle *style;
   GdkColor colors[TERMINAL_PALETTE_SIZE];
-  const GdkColor *fg_color, *bg_color;
+  const GdkColor *fg_color, *bg_color, *bold_color;
   GdkColor fg, bg;
   guint n_colors;
 
@@ -1080,12 +1105,16 @@ update_color_scheme (TerminalScreen *screen)
 
   fg = style->text[GTK_STATE_NORMAL];
   bg = style->base[GTK_STATE_NORMAL];
-
-  fg_color = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
-  bg_color = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
+  bold_color = NULL;
 
   if (!terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_COLORS))
     {
+      fg_color = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_FOREGROUND_COLOR);
+      bg_color = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_BACKGROUND_COLOR);
+
+      if (!terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG))
+	bold_color = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_BOLD_COLOR);
+
       if (fg_color)
         fg = *fg_color;
       if (bg_color)
@@ -1096,6 +1125,8 @@ update_color_scheme (TerminalScreen *screen)
   terminal_profile_get_palette (priv->profile, colors, &n_colors);
   vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                            colors, n_colors);
+  if (bold_color)
+    vte_terminal_set_color_bold (VTE_TERMINAL (screen), bold_color);
   vte_terminal_set_background_tint_color (VTE_TERMINAL (screen), &bg);
 }
 
@@ -1276,6 +1307,239 @@ show_command_error_dialog (TerminalScreen *screen,
                                    "%s", _("There was a problem with the command for this terminal"));
 }
 
+
+static char *
+conf_get_string (GConfClient *conf, const char *key)
+{
+  char *value;
+  value = gconf_client_get_string (conf, key, NULL);
+  if (G_UNLIKELY (value && *value == '\0'))
+    {
+      g_free (value);
+      value = NULL;
+    }
+  return value;
+}
+
+static gboolean
+conf_get_bool (GConfClient *conf, const char *key)
+{
+  return gconf_client_get_bool (conf, key, NULL);
+}
+
+static gint
+conf_get_int (GConfClient *conf, const char *key)
+{
+  return gconf_client_get_int (conf, key, NULL);
+}
+
+/* Consumes value.
+ * Sets for both key and upper(key).
+ * Also, never overwrites a variable. */
+static void
+set_proxy_env (GHashTable *env_table, const char *key, char *value)
+{
+  char *key1 = NULL, *key2 = NULL;
+  char *value1 = NULL, *value2 = NULL;
+
+  if (!value)
+    return;
+
+  if (g_hash_table_lookup (env_table, key) == NULL)
+    key1 = g_strdup (key);
+
+  key2 = g_ascii_strup (key, -1);
+  if (g_hash_table_lookup (env_table, key) != NULL)
+    {
+      g_free (key2);
+      key2 = NULL;
+    }
+
+  if (key1 && key2)
+    {
+      value1 = value;
+      value2 = g_strdup (value);
+    }
+  else if (key1)
+    value1 = value;
+  else if (key2)
+    value2 = value;
+  else
+    g_free (value);
+
+  if (key1)
+    g_hash_table_replace (env_table, key1, value1);
+  if (key2)
+    g_hash_table_replace (env_table, key2, value2);
+}
+
+
+static void
+setup_http_proxy_env (GHashTable *env_table, GConfClient *conf)
+{
+  gchar *host, *auth = NULL;
+  gint port;
+  GSList *ignore;
+
+#define HTTP_PROXY_DIR "/system/http_proxy"
+
+  gconf_client_preload (conf, HTTP_PROXY_DIR, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
+
+  if (!conf_get_bool (conf, HTTP_PROXY_DIR "/use_http_proxy"))
+    return;
+
+  if (conf_get_bool (conf, HTTP_PROXY_DIR "/use_authentication"))
+    {
+      char *user, *password;
+      user = conf_get_string (conf, HTTP_PROXY_DIR "/authentication_user");
+      password = conf_get_string (conf, HTTP_PROXY_DIR "/authentication_password");
+      if (user)
+	{
+	  if (password)
+	    {
+	      auth = g_strdup_printf ("%s:%s", user, password);
+	      g_free (user);
+	    }
+	  else
+	    auth = user;
+	}
+      g_free (password);
+    }
+
+  host = conf_get_string (conf, HTTP_PROXY_DIR "/host");
+  port = conf_get_int (conf, HTTP_PROXY_DIR "/port");
+  if (host && port)
+    {
+      char *proxy;
+      if (auth)
+	proxy = g_strdup_printf ("http://%s@%s:%d/", auth, host, port);
+      else
+	proxy = g_strdup_printf ("http://%s:%d/", host, port);
+      set_proxy_env (env_table, "http_proxy", proxy);
+    }
+  g_free (host);
+
+  g_free (auth);
+
+
+  ignore = gconf_client_get_list (conf, HTTP_PROXY_DIR "/ignore_hosts", GCONF_VALUE_STRING, NULL);
+  if (ignore)
+    {
+      GString *buf = g_string_sized_new (64);
+      while (ignore != NULL)
+	{
+	  GSList *old;
+
+	  g_string_append (buf, ignore->data);
+	  g_string_append_c (buf, ',');
+
+	  old = ignore;
+	  ignore = g_slist_next (ignore);
+	  g_free (old->data);
+	  g_slist_free_1 (old);
+	}
+      set_proxy_env (env_table, "no_proxy", g_string_free (buf, FALSE));
+    }
+}
+
+#define PROXY_DIR "/system/proxy"
+
+static void
+setup_https_proxy_env (GHashTable *env_table, GConfClient *conf)
+{
+  gchar *host;
+  gint port;
+
+  host = conf_get_string (conf, PROXY_DIR "/secure_host");
+  port = conf_get_int (conf, PROXY_DIR "/secure_port");
+  if (host && port)
+    {
+      char *proxy;
+      proxy = g_strdup_printf ("https://%s:%d/", host, port);
+      set_proxy_env (env_table, "https_proxy", proxy);
+    }
+  g_free (host);
+}
+
+static void
+setup_ftp_proxy_env (GHashTable *env_table, GConfClient *conf)
+{
+  gchar *host;
+  gint port;
+
+  host = conf_get_string (conf, PROXY_DIR "/ftp_host");
+  port = conf_get_int (conf, PROXY_DIR "/ftp_port");
+  if (host && port)
+    {
+      char *proxy;
+      proxy = g_strdup_printf ("ftp://%s:%d/", host, port);
+      set_proxy_env (env_table, "ftp_proxy", proxy);
+    }
+  g_free (host);
+}
+
+static void
+setup_socks_proxy_env (GHashTable *env_table, GConfClient *conf)
+{
+  gchar *host;
+  gint port;
+
+  host = conf_get_string (conf, PROXY_DIR "/socks_host");
+  port = conf_get_int (conf, PROXY_DIR "/socks_port");
+  if (host && port)
+    {
+      char *proxy;
+      proxy = g_strdup_printf ("socks://%s:%d/", host, port);
+      set_proxy_env (env_table, "all_proxy", proxy);
+    }
+  g_free (host);
+}
+
+static void
+setup_autoconfig_proxy_env (GHashTable *env_table, GConfClient *conf)
+{
+  gchar *url;
+
+  url = conf_get_string (conf, PROXY_DIR "/autoconfig_url");
+  if (url)
+    {
+      /* XXX  Not sure what to do with it.  See bug 596688
+      char *proxy;
+      proxy = g_strdup_printf ("pac+%s", url);
+      set_proxy_env (env_table, "http_proxy", proxy);
+      */
+    }
+  g_free (url);
+}
+
+static void
+setup_proxy_env (GHashTable *env_table)
+{
+  char *proxymode;
+
+  GConfClient *conf;
+  conf = gconf_client_get_default ();
+  gconf_client_preload (conf, PROXY_DIR, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
+
+  /* If mode is not manual, nothing to set */
+  proxymode = conf_get_string (conf, PROXY_DIR "/mode");
+  if (proxymode && 0 == strcmp (proxymode, "manual"))
+    {
+      setup_http_proxy_env (env_table, conf);
+      setup_https_proxy_env (env_table, conf);
+      setup_ftp_proxy_env (env_table, conf);
+      setup_socks_proxy_env (env_table, conf);
+    }
+  else if (proxymode && 0 == strcmp (proxymode, "auto"))
+    {
+      setup_autoconfig_proxy_env (env_table, conf);
+    }
+
+  g_free (proxymode);
+  g_object_unref (conf);
+}
+
+
 static gboolean
 get_child_command (TerminalScreen *screen,
                    const char     *shell_env,
@@ -1361,16 +1625,18 @@ get_child_environment (TerminalScreen *screen,
   GtkWidget *window;
   char **env;
   char *e, *v;
-  char *proxymode, *proxyhost;
-  gboolean use_proxy;
-  GConfClient *conf;
   GHashTable *env_table;
   GHashTableIter iter;
   GPtrArray *retval;
   guint i;
 
   window = gtk_widget_get_toplevel (term);
-  g_assert (window != NULL && GTK_WIDGET_TOPLEVEL (window));
+  g_assert (window != NULL);
+#if GTK_CHECK_VERSION (2, 19, 3)
+  g_assert (gtk_widget_is_toplevel (window));
+#else
+  g_assert (GTK_WIDGET_TOPLEVEL (window));
+#endif
 
   env_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
@@ -1407,121 +1673,7 @@ get_child_environment (TerminalScreen *screen,
   g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
 #endif
 
-  conf = gconf_client_get_default ();
-
-  /* Series of conditions under which we don't set http_proxy */
-  use_proxy = gconf_client_get_bool (conf, HTTP_PROXY_DIR "/use_http_proxy", NULL);
-
-  /* Is the mode unset or not equal to "manual"? */
-  proxymode = gconf_client_get_string (conf, "/system/proxy/mode", NULL);
-  if (!proxymode || strcmp (proxymode, "manual") != 0)
-    use_proxy = FALSE;
-  g_free (proxymode);
-
-  /* Do we already have a proxy setting? */
-  if (g_hash_table_lookup (env_table, "http_proxy") != NULL)
-    use_proxy = FALSE;
-
-  /* Do we have no proxy host or an empty string? */
-  proxyhost = gconf_client_get_string (conf, HTTP_PROXY_DIR "/host", NULL);
-  if (!proxyhost || proxyhost[0] == '\0')
-    use_proxy = FALSE;
-  g_free (proxyhost);
-
-  /* Set up proxy environment variables if we passed all of the above */
-  if (use_proxy)
-    {
-      gint port;
-      GSList *ignore;
-      gchar *host, *auth = NULL;
-
-      host = gconf_client_get_string (conf, HTTP_PROXY_DIR "/host", NULL);
-      port = gconf_client_get_int (conf, HTTP_PROXY_DIR "/port", NULL);
-      ignore = gconf_client_get_list (conf, HTTP_PROXY_DIR "/ignore_hosts",
-				      GCONF_VALUE_STRING, NULL);
-
-      if (gconf_client_get_bool (conf, HTTP_PROXY_DIR "/use_authentication", NULL))
-	{
-	  char *user, *password;
-
-	  user = gconf_client_get_string (conf,
-					  HTTP_PROXY_DIR "/authentication_user",
-					  NULL);
-
-	  password = gconf_client_get_string (conf,
-					      HTTP_PROXY_DIR
-					      "/authentication_password",
-					      NULL);
-
-	  if (user && user != '\0')
-            {
-              if (password)
-                auth = g_strdup_printf ("%s:%s", user, password);
-              else
-                auth = g_strdup (user);
-            }
-
-	  g_free (user);
-	  g_free (password);
-	}
-
-      g_object_unref (conf);
-
-      if (port && host && host != '\0')
-	{
-	  if (auth)
-            g_hash_table_replace (env_table, g_strdup ("http_proxy"),
-                                  g_strdup_printf ("http://%s@%s:%d/", auth, host, port));
-	  else
-            g_hash_table_replace (env_table, g_strdup ("http_proxy"),
-	                          g_strdup_printf ("http://%s:%d/", host, port));
-	}
-
-      if (auth)
-	g_free (auth);
-
-      if (host)
-	g_free (host);
-
-      if (ignore)
-	{
-	  /* code distantly based on gconf's */
-	  gchar *buf = NULL;
-	  guint bufsize = 64;
-	  guint cur = 0;
-
-	  buf = g_malloc (bufsize + 3);
-
-	  while (ignore != NULL)
-	    {
-	      guint len = strlen (ignore->data);
-
-	      if ((cur + len + 2) >= bufsize) /* +2 for '\0' and comma */
-		{
-		  bufsize = MAX(bufsize * 2, bufsize + len + 4); 
-		  buf = g_realloc (buf, bufsize + 3);
-		}
-
-	      g_assert (cur < bufsize);
-
-	      strcpy (&buf[cur], ignore->data);
-	      cur += len;
-
-	      g_assert(cur < bufsize);
-
-	      buf[cur] = ',';
-	      ++cur;
-
-	      g_assert(cur < bufsize);
-
-	      ignore = g_slist_next (ignore);
-	    }
-
-	  buf[cur-1] = '\0'; /* overwrites last comma */
-
-          g_hash_table_replace (env_table, g_strdup ("no_proxy"), buf);
-	}
-    }
+  setup_proxy_env (env_table);
 
   retval = g_ptr_array_sized_new (g_hash_table_size (env_table));
   g_hash_table_iter_init (&iter, env_table);
@@ -1535,8 +1687,8 @@ get_child_environment (TerminalScreen *screen,
   return (char **) g_ptr_array_free (retval, FALSE);
 }
 
-void
-terminal_screen_launch_child (TerminalScreen *screen)
+static gboolean
+terminal_screen_launch_child_cb (TerminalScreen *screen)
 {
   TerminalScreenPrivate *priv = screen->priv;
   VteTerminal *terminal = VTE_TERMINAL (screen);
@@ -1546,6 +1698,12 @@ terminal_screen_launch_child (TerminalScreen *screen)
   GError *err = NULL;
   gboolean update_records;
   const char *working_dir;
+
+  priv->launch_child_source_id = 0;
+
+  _terminal_debug_print (TERMINAL_DEBUG_PROCESSES,
+                         "[screen %p] now launching the child process\n",
+                         screen);
 
   profile = priv->profile;
 
@@ -1558,7 +1716,8 @@ terminal_screen_launch_child (TerminalScreen *screen)
 
       g_strfreev (env);
       g_free (shell);
-      return;
+
+      return FALSE;
     }
 
   update_records = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_UPDATE_RECORDS);
@@ -1591,6 +1750,23 @@ terminal_screen_launch_child (TerminalScreen *screen)
   g_free (path);
   g_strfreev (argv);
   g_strfreev (env);
+
+  return FALSE; /* don't run again */
+}
+
+static void
+terminal_screen_launch_child_on_idle (TerminalScreen *screen)
+{
+  TerminalScreenPrivate *priv = screen->priv;
+
+  if (priv->launch_child_source_id != 0)
+    return;
+
+  _terminal_debug_print (TERMINAL_DEBUG_PROCESSES,
+                         "[screen %p] scheduling launching the child process on idle\n",
+                         screen);
+
+  priv->launch_child_source_id = g_idle_add ((GSourceFunc) terminal_screen_launch_child_cb, screen);
 }
 
 static TerminalScreenPopupInfo *
@@ -1653,18 +1829,22 @@ terminal_screen_button_press (GtkWidget      *widget,
   TerminalScreenPrivate *priv = screen->priv;
   gboolean (* button_press_event) (GtkWidget*, GdkEventButton*) =
     GTK_WIDGET_CLASS (terminal_screen_parent_class)->button_press_event;
-  int char_width, char_height, row, col, xpad_total, ypad_total;
+  int char_width, char_height, row, col;
   char *matched_string;
   int matched_flavor = 0;
   guint state;
+  GtkBorder *inner_border = NULL;
 
   state = event->state & gtk_accelerator_get_default_mod_mask ();
 
   terminal_screen_get_cell_size (screen, &char_width, &char_height);
-  vte_terminal_get_padding (VTE_TERMINAL (screen), &xpad_total, &ypad_total);
 
-  row = (event->x - xpad_total / 2) / char_width;
-  col = (event->y - ypad_total / 2) / char_height;
+  gtk_widget_style_get (widget, "inner-border", &inner_border, NULL);
+  row = (event->x - (inner_border ? inner_border->left : 0)) / char_width;
+  col = (event->y - (inner_border ? inner_border->top : 0)) / char_height;
+  gtk_border_free (inner_border);
+
+  /* FIXMEchpe: add vte API to do this check by widget coords instead of grid coords */
   matched_string = terminal_screen_check_match (screen, row, col, &matched_flavor);
   
   if (matched_string != NULL &&
@@ -1906,6 +2086,10 @@ terminal_screen_child_exited (VteTerminal *terminal)
 
   /* No need to chain up to VteTerminalClass::child_exited since it's NULL */
 
+  _terminal_debug_print (TERMINAL_DEBUG_PROCESSES,
+                         "[screen %p] child process exited\n",
+                         screen);
+
   priv->child_pid = -1;
   priv->pty_fd = -1;
   
@@ -1917,7 +2101,7 @@ terminal_screen_child_exited (VteTerminal *terminal)
       g_signal_emit (screen, signals[CLOSE_SCREEN], 0);
       break;
     case TERMINAL_EXIT_RESTART:
-      terminal_screen_launch_child (screen);
+      terminal_screen_launch_child_on_idle (screen);
       break;
     case TERMINAL_EXIT_HOLD:
     default:

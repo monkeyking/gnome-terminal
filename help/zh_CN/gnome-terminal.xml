@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.24.3">
-<!ENTITY manrevision "2.8">
-<!ENTITY date "March 2009">
+<!ENTITY appversion "2.30">
+<!ENTITY manrevision "2.9">
+<!ENTITY date "January 2010">
 ]>
 <!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
@@ -42,7 +42,7 @@
         <holder>Christian Persch</holder> 
      </copyright>
      <copyright> 
-        <year>2009</year> 
+        <year>2010</year> 
         <holder>Paul Cutler</holder> 
      </copyright>	 
      <publisher> 
@@ -96,10 +96,18 @@
      <publisher role="maintainer">
        <publishername>GNOME 文档项目</publishername>
      </publisher>
-	<releaseinfo revision="2.26" role="review">
-		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+	<releaseinfo revision="2.30" role="review">
     </releaseinfo>
-     <revhistory> 
+     <revhistory>
+	<revision> 
+          <revnumber>GNOME Terminal Manual V2.9</revnumber> 
+          <date>January 2010</date> 
+          <revdescription> 
+             <para role="author">Paul Cutler
+		<email>pcutler@gnome.org</email> </para>
+             <para role="publisher">GNOME 文档项目</para>
+          </revdescription> 
+        </revision> 
 	<revision> 
           <revnumber>GNOME 终端手册 2.8 版</revnumber> 
           <date>2009年3月</date> 
@@ -181,7 +189,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>本手册描述 2.24.3 版的 GNOME 终端。</releaseinfo> 
+     <releaseinfo> This manual describes version 2.30 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>反馈</title> 
         <para>要向 GNOME 终端程序或本手册报告 bug 或提出建议，跟随这个链接<ulink url="ghelp:user-guide?feedback" type="help">GNOME 反馈网页</ulink></para>
@@ -494,7 +503,8 @@
                      <para>按下 <keycombo><keycap>Shift</keycap><keycap>Page Up</keycap></keycombo>，<keycombo><keycap>Shift</keycap><keycap>Page Down</keycap></keycombo>，<keycombo><keycap>Shift</keycap><keycap>Home</keycap></keycombo>或 <keycombo><keycap>Shift</keycap><keycap>End</keycap></keycombo>组合键。</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>在终端窗口中，您可以回滚的行数是由<guilabel>编辑配置文件</guilabel>对话框的<guilabel>滚动</guilabel>标签中的<guilabel>回滚</guilabel>设置决定的。</para>
+                <para>
+                  The number of lines that you can scroll back to in the terminal window is determined by the <guilabel>Scrollback</guilabel> setting in the <guilabel>Scrolling</guilabel> tabbed section of the <guilabel>Editing Profile</guilabel> dialog.  You can also scroll up or down one line at a time by pressing <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo> or <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>. </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
