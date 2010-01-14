@@ -8,11 +8,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal gnome-2-28\n"
+"Project-Id-Version: gnome-terminal master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "terminal&component=general\n"
-"POT-Creation-Date: 2009-11-03 15:02+0900\n"
-"PO-Revision-Date: 2009-11-03 15:12+0900\n"
+"POT-Creation-Date: 2009-11-03 15:18+0900\n"
+"PO-Revision-Date: 2009-11-03 15:19+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:119
 #: ../src/terminal-accels.c:222 ../src/terminal.c:304
-#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1884
+#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1890
 msgid "Terminal"
 msgstr "端末"
 
@@ -1090,52 +1090,46 @@ msgstr ""
 msgid "_Shortcut keys:"
 msgstr "ショートカット・キー(_S):"
 
-#: ../src/profile-editor.c:45
+#: ../src/profile-editor.c:42
 msgid "Black on light yellow"
 msgstr "明るい黄色地に黒文字"
 
-#: ../src/profile-editor.c:47
+#: ../src/profile-editor.c:44
 msgid "Black on white"
 msgstr "白地に黒文字"
 
-#: ../src/profile-editor.c:49
+#: ../src/profile-editor.c:46
 msgid "Gray on black"
 msgstr "黒地に灰色文字"
 
-#: ../src/profile-editor.c:51
+#: ../src/profile-editor.c:48
 msgid "Green on black"
 msgstr "黒地に緑色文字"
 
-#: ../src/profile-editor.c:53
+#: ../src/profile-editor.c:50
 msgid "White on black"
 msgstr "黒地に白文字"
 
-#: ../src/profile-editor.c:437
+#: ../src/profile-editor.c:434
 #, c-format
 msgid "Error parsing command: %s"
 msgstr "次のコマンドを解析する際にエラー: %s"
 
-#: ../src/profile-editor.c:457
+#: ../src/profile-editor.c:454
 #, c-format
 msgid "Editing Profile “%s”"
 msgstr "\"%s\" というプロファイルの編集"
 
-#. Translators: %s will be a data size, e.g. "(about 500kB)"
-#: ../src/profile-editor.c:473
-#, c-format
-msgid "(about %s)"
-msgstr "(およそ %s)"
-
-#: ../src/profile-editor.c:612
+#: ../src/profile-editor.c:592
 msgid "Images"
 msgstr "画像"
 
-#: ../src/profile-editor.c:738
+#: ../src/profile-editor.c:718
 #, c-format
 msgid "Choose Palette Color %d"
 msgstr "パレット %d 色の選択"
 
-#: ../src/profile-editor.c:742
+#: ../src/profile-editor.c:722
 #, c-format
 msgid "Palette entry %d"
 msgstr "パレットのエントリ (その %d)"
@@ -1525,7 +1519,7 @@ msgstr "縮小する"
 msgid "Normal Size"
 msgstr "通常のサイズに戻す"
 
-#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3462
+#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3374
 msgid "Set Title"
 msgstr "タイトルを設定する"
 
@@ -1681,14 +1675,14 @@ msgstr ""
 msgid "Choose base profile"
 msgstr "ベースとなるプロファイルの選択"
 
-#: ../src/terminal-app.c:1789
+#: ../src/terminal-app.c:1794
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr ""
 "\"%s\" というプロファイルはありません (デフォルトのプロファイルを使用しま"
 "す)\n"
 
-#: ../src/terminal-app.c:1813
+#: ../src/terminal-app.c:1818
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "無効なジオメトリ文字列 \"%s\"\n"
@@ -1703,12 +1697,12 @@ msgid "Failed to parse arguments: %s\n"
 msgstr "引数を解析できませんでした: %s\n"
 
 #. Incompatible factory version, fall back, to new instance
-#: ../src/terminal.c:427
+#: ../src/terminal.c:423
 #, c-format
 msgid "Incompatible factory version; creating a new instance.\n"
 msgstr "互換性の無いファクトリのバージョンです: 新しいインスタンスの生成中\n"
 
-#: ../src/terminal.c:433
+#: ../src/terminal.c:429
 #, c-format
 msgid "Factory error: %s\n"
 msgstr "ファクトリのエラー: %s\n"
@@ -1878,7 +1872,7 @@ msgstr ""
 "ていません (ご希望の設定でプロファイルを作成したい場合は \"--profile\" という"
 "新しいオプションを指定してみて下さい)\n"
 
-#: ../src/terminal-options.c:188 ../src/terminal-window.c:3683
+#: ../src/terminal-options.c:188 ../src/terminal-window.c:3595
 msgid "GNOME Terminal"
 msgstr "GNOME 端末"
 
@@ -2016,7 +2010,7 @@ msgid "DIRNAME"
 msgstr "DIRNAME"
 
 #: ../src/terminal-options.c:1104
-msgid "Set the terminalx's zoom factor (1.0 = normal size)"
+msgid "Set the terminal's zoom factor (1.0 = normal size)"
 msgstr "端末の拡大率を指定する (1.0 = 標準サイズ)"
 
 #: ../src/terminal-options.c:1105
@@ -2071,11 +2065,11 @@ msgstr "端末毎のオプションを表示する"
 msgid "Unnamed"
 msgstr "名前なし"
 
-#: ../src/terminal-screen.c:1276
+#: ../src/terminal-screen.c:1288
 msgid "There was a problem with the command for this terminal"
 msgstr "この端末のコマンドに問題がありました"
 
-#: ../src/terminal-screen.c:1585
+#: ../src/terminal-screen.c:1604
 msgid "There was an error creating the child process for this terminal"
 msgstr "この端末の子プロセスを作成中にエラーが発生しました"
 
@@ -2132,7 +2126,7 @@ msgstr ""
 #. * _%d is used as the accelerator (with d between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:430
+#: ../src/terminal-window.c:432
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
@@ -2141,190 +2135,190 @@ msgstr "_%d. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:436
+#: ../src/terminal-window.c:438
 #, c-format
 msgid "_%c. %s"
 msgstr " _%c. %s "
 
 #. Toplevel
-#: ../src/terminal-window.c:1697
+#: ../src/terminal-window.c:1703
 msgid "_File"
 msgstr "ファイル(_F)"
 
 #. File menu
-#: ../src/terminal-window.c:1698 ../src/terminal-window.c:1709
-#: ../src/terminal-window.c:1831
+#: ../src/terminal-window.c:1704 ../src/terminal-window.c:1715
+#: ../src/terminal-window.c:1837
 msgid "Open _Terminal"
 msgstr "端末を開く(_T)"
 
-#: ../src/terminal-window.c:1699 ../src/terminal-window.c:1712
-#: ../src/terminal-window.c:1834
+#: ../src/terminal-window.c:1705 ../src/terminal-window.c:1718
+#: ../src/terminal-window.c:1840
 msgid "Open Ta_b"
 msgstr "新しいタブを開く(_B)"
 
-#: ../src/terminal-window.c:1700
+#: ../src/terminal-window.c:1706
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/terminal-window.c:1701
+#: ../src/terminal-window.c:1707
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../src/terminal-window.c:1702
+#: ../src/terminal-window.c:1708
 msgid "_Terminal"
 msgstr "端末(_T)"
 
-#: ../src/terminal-window.c:1703
+#: ../src/terminal-window.c:1709
 msgid "Ta_bs"
 msgstr "タブ(_B)"
 
-#: ../src/terminal-window.c:1704
+#: ../src/terminal-window.c:1710
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/terminal-window.c:1715
+#: ../src/terminal-window.c:1721
 msgid "New _Profile…"
 msgstr "新しいプロファイル(_P)..."
 
-#: ../src/terminal-window.c:1718 ../src/terminal-window.c:1840
+#: ../src/terminal-window.c:1724 ../src/terminal-window.c:1846
 msgid "C_lose Tab"
 msgstr "タブを閉じる(_L)"
 
-#: ../src/terminal-window.c:1721
+#: ../src/terminal-window.c:1727
 msgid "_Close Window"
 msgstr "ウィンドウを閉じる (_C)"
 
-#: ../src/terminal-window.c:1732 ../src/terminal-window.c:1828
+#: ../src/terminal-window.c:1738 ../src/terminal-window.c:1834
 msgid "Paste _Filenames"
 msgstr "ファイル名の貼り付け(_F)"
 
-#: ../src/terminal-window.c:1738
+#: ../src/terminal-window.c:1744
 msgid "P_rofiles…"
 msgstr "プロファイル(_R)..."
 
-#: ../src/terminal-window.c:1741
+#: ../src/terminal-window.c:1747
 msgid "_Keyboard Shortcuts…"
 msgstr "キーボード・ショートカット(_K)..."
 
-#: ../src/terminal-window.c:1744
+#: ../src/terminal-window.c:1750
 msgid "Pr_ofile Preferences"
 msgstr "プロファイルの設定(_O)"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1760
+#: ../src/terminal-window.c:1766
 msgid "Change _Profile"
 msgstr "プロファイルの変更(_P)"
 
-#: ../src/terminal-window.c:1761
+#: ../src/terminal-window.c:1767
 msgid "_Set Title…"
 msgstr "タイトルを指定する(_S)..."
 
-#: ../src/terminal-window.c:1764
+#: ../src/terminal-window.c:1770
 msgid "Set _Character Encoding"
 msgstr "文字コードの設定(_C)"
 
-#: ../src/terminal-window.c:1765
+#: ../src/terminal-window.c:1771
 msgid "_Reset"
 msgstr "リセット(_R)"
 
-#: ../src/terminal-window.c:1768
+#: ../src/terminal-window.c:1774
 msgid "Reset and C_lear"
 msgstr "リセットとクリア(_L)"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1773
+#: ../src/terminal-window.c:1779
 msgid "_Add or Remove…"
 msgstr "追加/削除(_A)..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1778
+#: ../src/terminal-window.c:1784
 msgid "_Previous Tab"
 msgstr "前のタブへ(_P)"
 
-#: ../src/terminal-window.c:1781
+#: ../src/terminal-window.c:1787
 msgid "_Next Tab"
 msgstr "次のタブへ(_N)"
 
-#: ../src/terminal-window.c:1784
+#: ../src/terminal-window.c:1790
 msgid "Move Tab _Left"
 msgstr "タブを左へ移動(_L)"
 
-#: ../src/terminal-window.c:1787
+#: ../src/terminal-window.c:1793
 msgid "Move Tab _Right"
 msgstr "タブを右へ移動(_R)"
 
-#: ../src/terminal-window.c:1790
+#: ../src/terminal-window.c:1796
 msgid "_Detach tab"
 msgstr "タブを取り外す(_D)"
 
 #. Help menu
-#: ../src/terminal-window.c:1795
+#: ../src/terminal-window.c:1801
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: ../src/terminal-window.c:1798
+#: ../src/terminal-window.c:1804
 msgid "_About"
 msgstr "情報(_A)"
 
 #. Popup menu
-#: ../src/terminal-window.c:1803
+#: ../src/terminal-window.c:1809
 msgid "_Send Mail To…"
 msgstr "メールを送信する(_S)..."
 
-#: ../src/terminal-window.c:1806
+#: ../src/terminal-window.c:1812
 msgid "_Copy E-mail Address"
 msgstr "メール・アドレスのコピー(_C)"
 
-#: ../src/terminal-window.c:1809
+#: ../src/terminal-window.c:1815
 msgid "C_all To…"
 msgstr "呼び出す(_A)..."
 
-#: ../src/terminal-window.c:1812
+#: ../src/terminal-window.c:1818
 msgid "_Copy Call Address"
 msgstr "アドレスのコピー(_C)"
 
-#: ../src/terminal-window.c:1815
+#: ../src/terminal-window.c:1821
 msgid "_Open Link"
 msgstr "リンクを開く(_O)"
 
-#: ../src/terminal-window.c:1818
+#: ../src/terminal-window.c:1824
 msgid "_Copy Link Address"
 msgstr "リンク・アドレスのコピー(_C)"
 
-#: ../src/terminal-window.c:1821
+#: ../src/terminal-window.c:1827
 msgid "P_rofiles"
 msgstr "プロファイル(_R)"
 
-#: ../src/terminal-window.c:1837 ../src/terminal-window.c:3111
+#: ../src/terminal-window.c:1843 ../src/terminal-window.c:3023
 msgid "C_lose Window"
 msgstr "ウィンドウを閉じる(_L)"
 
-#: ../src/terminal-window.c:1843
+#: ../src/terminal-window.c:1849
 msgid "L_eave Full Screen"
 msgstr "フルスクリーンを終了(_E)"
 
-#: ../src/terminal-window.c:1846
+#: ../src/terminal-window.c:1852
 msgid "_Input Methods"
 msgstr "入力メソッド(_I)"
 
 #. View Menu
-#: ../src/terminal-window.c:1852
+#: ../src/terminal-window.c:1858
 msgid "Show _Menubar"
 msgstr "メニューバーの表示(_M)"
 
-#: ../src/terminal-window.c:1856
+#: ../src/terminal-window.c:1862
 msgid "_Full Screen"
 msgstr "フルスクリーン(_F)"
 
-#: ../src/terminal-window.c:3098
+#: ../src/terminal-window.c:3010
 msgid "Close this window?"
 msgstr "このウィンドウを閉じますか？"
 
-#: ../src/terminal-window.c:3098
+#: ../src/terminal-window.c:3010
 msgid "Close this terminal?"
 msgstr "この端末を閉じますか？"
 
-#: ../src/terminal-window.c:3102
+#: ../src/terminal-window.c:3014
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
@@ -2332,7 +2326,7 @@ msgstr ""
 "このウィンドウには未だ実行中のプロセスが存在しているタブがあります。ここで"
 "ウィンドウを閉じるとそれらのプロセスを全て強制終了します。"
 
-#: ../src/terminal-window.c:3106
+#: ../src/terminal-window.c:3018
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2340,23 +2334,23 @@ msgstr ""
 "この端末には未だ実行中のプロセスが存在しています。ここで端末を閉じるとそのプ"
 "ロセスを強制終了します。"
 
-#: ../src/terminal-window.c:3111
+#: ../src/terminal-window.c:3023
 msgid "C_lose Terminal"
 msgstr "端末を閉じる(_L)"
 
-#: ../src/terminal-window.c:3479
+#: ../src/terminal-window.c:3391
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
-#: ../src/terminal-window.c:3666
+#: ../src/terminal-window.c:3578
 msgid "Contributors:"
 msgstr "貢献者:"
 
-#: ../src/terminal-window.c:3685
+#: ../src/terminal-window.c:3597
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "GNOME デスクトップ向けの端末エミュレータです。"
 
-#: ../src/terminal-window.c:3692
+#: ../src/terminal-window.c:3604
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
@@ -2485,3 +2479,6 @@ msgstr "XTerm"
 #: ../src/extra-strings.c:69
 msgid "Rxvt"
 msgstr "Rxvt"
+
+#~ msgid "(about %s)"
+#~ msgstr "(およそ %s)"
