@@ -8,7 +8,7 @@ Section: gnome
 Priority: optional
 XSBC-Original-Maintainer: Guilherme de S. Pastore <gpastore@debian.org>
 Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Luca Falavigna <dktrkranz@debian.org>, Sebastian Dröge <slomo@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Sebastian Dröge <slomo@debian.org>
 Standards-Version: 3.8.3
 Vcs-Bzr: http://code.launchpad.net/~ubuntu-desktop/gnome-terminal/ubuntu
 Build-Depends: cdbs (>= 0.4.41),
@@ -34,7 +34,7 @@ Depends: ${shlibs:Depends},
          ${misc:Depends},
          gnome-terminal-data (>= ${gnome:Version}),
          gnome-terminal-data (<< ${gnome:NextVersion})
-Replaces: gnome-terminal-data (<< 2.26.2-3)
+Replaces: gnome-terminal-data (<< 2.28.1-1ubuntu1)
 Provides: x-terminal-emulator
 Recommends: yelp,
             gvfs
