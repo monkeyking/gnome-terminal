@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.24.3">
-<!ENTITY manrevision "2.8">
-<!ENTITY date "March 2009">
+<!ENTITY appversion "2.30">
+<!ENTITY manrevision "2.9">
+<!ENTITY date "January 2010">
 ]>
 <!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
@@ -42,7 +42,7 @@
         <holder>Christian Persch</holder> 
      </copyright>
      <copyright> 
-        <year>2009</year> 
+        <year>2010</year> 
         <holder>Paul Cutler</holder> 
      </copyright><copyright><year>2007.</year><holder>Luciana Bastos de Freitas Menezes (lubfm@gnome.org)</holder></copyright><copyright><year>2007.</year><holder>Pedro Vaz de Mello de Medeiros (pedrovmm@gmail.com)</holder></copyright><copyright><year>2008.</year><holder>Leonardo Ferreira Fontenelle (leonardof@gnome.org)</holder></copyright><copyright><year>2008.</year><holder>Andrius da Costa Ribas (andriusmao@gmail.com)</holder></copyright><copyright><year>2009.</year><holder>Enrico Nicoletto (liverig@gmail.com)</holder></copyright>	 
      <publisher> 
@@ -96,10 +96,18 @@
      <publisher role="maintainer">
        <publishername>Projeto de Documentação do GNOME</publishername>
      </publisher>
-	<releaseinfo revision="2.26" role="review">
-		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+	<releaseinfo revision="2.30" role="review">
     </releaseinfo>
-     <revhistory> 
+     <revhistory>
+	<revision> 
+          <revnumber>GNOME Terminal Manual V2.9</revnumber> 
+          <date>January 2010</date> 
+          <revdescription> 
+             <para role="author">Paul Cutler
+		<email>pcutler@gnome.org</email> </para>
+             <para role="publisher">Projeto de Documentação do GNOME</para>
+          </revdescription> 
+        </revision> 
 	<revision> 
           <revnumber>Manual do Terminal do GNOME V2.8</revnumber> 
           <date>Março de 2009</date> 
@@ -181,7 +189,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Este manual descreve a versão 2.24.3 do Terminal do GNOME.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.30 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>Feedback</title> 
         <para>Para relatar um erro ou fazer alguma sugestão sobre o aplicativo Terminal do GNOME ou seu manual, siga as instruções no link <ulink url="ghelp:user-guide?feedback" type="help">Página de Feedback do GNOME</ulink>.</para>
@@ -492,7 +501,8 @@
                      <para>Pressione as teclas: <keycombo><keycap>Shift</keycap><keycap>Page Up</keycap></keycombo>, <keycombo><keycap>Shift</keycap><keycap>Page Down</keycap></keycombo>, <keycombo><keycap>Shift</keycap><keycap>Home</keycap></keycombo>, ou <keycombo><keycap>Shift</keycap><keycap>End</keycap></keycombo>.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>O número de linhas que você pode rolar para trás na janela do terminal é determinado pela configuração de <guilabel>Rolar para trás</guilabel> na seção da aba <guilabel>Rolagem</guilabel> no diálogo <guilabel>Editar perfil</guilabel>.</para>
+                <para>
+                  The number of lines that you can scroll back to in the terminal window is determined by the <guilabel>Scrollback</guilabel> setting in the <guilabel>Scrolling</guilabel> tabbed section of the <guilabel>Editing Profile</guilabel> dialog.  You can also scroll up or down one line at a time by pressing <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo> or <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>. </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
