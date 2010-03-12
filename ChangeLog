@@ -1,3 +1,405 @@
+commit f1588a7b1efec82232cc11f05704e7df2d34abe3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Mar 11 20:59:13 2010 +0100
+
+    Fuck this fucking macro fucking with the fucking deprecations
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit dd1331f73d1e85ddad75b38d37eff69262044d0c
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Mar 9 15:57:53 2010 +0100
+
+    Add screenshots
+
+ help/cs/figures/gnome-terminal-default.png |  Bin 0 -> 4033 bytes
+ help/cs/figures/gnome-terminal-tabbed.png  |  Bin 0 -> 5444 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 55e52f9bd0870792dfd13fbe1b385aaf0f93c07c
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Mon Mar 8 00:36:49 2010 -0500
+
+    Remove unneeded code
+    
+    gconf_client_add_dir() does preloading already, no need for a separate
+    call.
+
+ src/terminal-app.c  |   11 -----------
+ src/terminal-util.c |    1 -
+ 2 files changed, 0 insertions(+), 12 deletions(-)
+
+commit 55afabdc1cbb9b6086718874aefa9a4933c0fe48
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Mar 7 21:41:18 2010 +0100
+
+    Move proxy env var handling to terminal-util.c
+    
+    And preload the proxy gconf dirs; fixes bug #607862.
+
+ src/terminal-app.c    |   17 ++++
+ src/terminal-screen.c |  240 +------------------------------------------------
+ src/terminal-util.c   |  237 ++++++++++++++++++++++++++++++++++++++++++++++++
+ src/terminal-util.h   |    9 ++
+ 4 files changed, 266 insertions(+), 237 deletions(-)
+
+commit 4c2794439ba336aeaea245488c5d9f6eb003a28b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Mar 7 20:37:26 2010 +0100
+
+    Prepare 2.29.92.
+
+ NEWS         |    5 +++++
+ configure.ac |    2 +-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+commit 6a6c1f044cf438970fbe23f5b2d927926a6900af
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Mar 7 20:29:25 2010 +0100
+
+    Recognise sftp: URLs
+    
+    Bug #611286.
+
+ src/terminal-screen.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 89dc73e3da870d75f0f8566c145be539eab21bc5
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Sat Mar 6 18:12:00 2010 +0100
+
+    Updated Hungarian translation
+
+ po/hu.po |  788 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 444 insertions(+), 344 deletions(-)
+
+commit 1082904f837a8f78e1c40bcf448fefb47719ad48
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   Sat Mar 6 23:37:37 2010 +0900
+
+    Updated Korean translation
+
+ po/ko.po |  898 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 496 insertions(+), 402 deletions(-)
+
+commit a9c2119cca07cc2b7bfb27736f4e25001c023002
+Author: Antonio Fernandes C. Neto <fernandes@pelivre.org>
+Date:   Thu Mar 4 16:30:58 2010 -0300
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po |  814 +++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 461 insertions(+), 353 deletions(-)
+
+commit 87410ab519eabe560a577edf59646620cc6ebecc
+Author: Petr Kovar <pknbe@volny.cz>
+Date:   Mon Mar 1 21:21:57 2010 +0100
+
+    Update Czech help translation by Lucas Lommer
+
+ help/cs/cs.po |  582 +++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 299 insertions(+), 283 deletions(-)
+
+commit 17cf8dd86d0ff52484f9c6afee567ef9f564ddb8
+Author: Petr Kovar <pknbe@volny.cz>
+Date:   Mon Mar 1 19:35:15 2010 +0100
+
+    Update Czech translation by Lucas Lommer
+
+ po/cs.po |  742 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 427 insertions(+), 315 deletions(-)
+
+commit 3a7bd7b012ba70fa93d092f3c1d7f9e380bde256
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   Sun Feb 28 00:11:13 2010 +0100
+
+    Updated French translation
+
+ po/fr.po |  836 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 473 insertions(+), 363 deletions(-)
+
+commit c351a95b44a889bda96b7b6b548653dbee36cc28
+Author: Bruce Cowan <bcowan@fastmail.co.uk>
+Date:   Wed Feb 24 15:39:23 2010 +0000
+
+    Updated British English translation
+
+ po/en_GB.po |  737 ++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 423 insertions(+), 314 deletions(-)
+
+commit ba5ad86295605d33b05d12c80bdfdd01625cced7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Feb 23 17:43:57 2010 +0100
+
+    Fix FileSaveContents accel
+    
+    Initialise accel entries :unlocked field to TRUE.
+
+ src/terminal-accels.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 4f47b998f2284a78a421889a40f323ef63424671
+Author: Leonid Kanter <leon@asplinux.ru>
+Date:   Mon Feb 22 23:52:43 2010 +0200
+
+    Updated Russian translation
+
+ po/ru.po | 1038 ++++++++++++++++++++++++++++++++++++++------------------------
+ 1 files changed, 634 insertions(+), 404 deletions(-)
+
+commit 7da1396e880b8024731d60aca73e0fd76626552c
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Mon Feb 22 17:08:38 2010 +0100
+
+    Updated Polish translation
+
+ po/pl.po |  810 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 457 insertions(+), 353 deletions(-)
+
+commit 96ec5a09ff080cf5a1acf512025cc7a560dc2fe7
+Author: Gintautas Miliauskas <gintautas@miliauskas.lt>
+Date:   Mon Feb 22 17:31:45 2010 +0200
+
+    Updated Lithuanian translation.
+
+ po/lt.po |  741 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 426 insertions(+), 315 deletions(-)
+
+commit f565043ccbf9d6bbe99a3dff7fcf28bc5dbbc0f3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Feb 21 22:09:36 2010 +0100
+
+    Use a warning icon in the entry when the command is invalid
+    
+    Previously we just change the text colour, which wasn't noticeable
+    enough.
+
+ src/profile-editor.c |   29 ++++++++++-------------------
+ 1 files changed, 10 insertions(+), 19 deletions(-)
+
+commit 98265029b013081fcb1ff9eb420098c32b47f115
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Feb 21 22:05:43 2010 +0100
+
+    Connect the handler to the right widget
+
+ src/profile-editor.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 177e96167ffe0a8c2e8ed049b47e4dc9030a9beb
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Feb 21 15:55:17 2010 +0100
+
+    Simplify rounding
+    
+    Makes linking to -lm obsolete.
+
+ src/profile-editor.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit dce557880c81bb5da9884ee8ce7c00e22f2f2c36
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Feb 21 15:54:16 2010 +0100
+
+    Add x11 dependency
+    
+    Bug 609897.
+
+ configure.ac |   12 +++++++++---
+ 1 files changed, 9 insertions(+), 3 deletions(-)
+
+commit 32ac9f57123057c233ea16e2c540d53f4799a00c
+Author: Bruno Brouard <annoa.b@gmail.com>
+Date:   Thu Feb 18 15:31:12 2010 +0100
+
+    Updated French doc translation
+
+ help/fr/fr.po |  571 ++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 297 insertions(+), 274 deletions(-)
+
+commit 65e74e6b83f2228af40931c999e669bbacf87e29
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Tue Feb 16 18:59:52 2010 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  724 +++++++++++++++++++++++++++++++++-------------------------
+ po/zh_TW.po |  734 ++++++++++++++++++++++++++++++++++-------------------------
+ 2 files changed, 832 insertions(+), 626 deletions(-)
+
+commit 037048f6e82e90745831e1f076296b8861e8df92
+Author: Fran Diéguez <frandieguez@ubuntu.com>
+Date:   Mon Feb 15 18:06:18 2010 +0100
+
+    Updated Galician Translation
+
+ po/gl.po | 1051 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 584 insertions(+), 467 deletions(-)
+
+commit 07693580c18f6cd369514d3f1c87ab69759dab17
+Author: vasudeven <agnihot3@gmail.com>
+Date:   Mon Feb 15 12:08:11 2010 +0530
+
+    updated Tamil translation
+
+ po/ta.po |  136 ++++++++++++++++++++++++++------------------------------------
+ 1 files changed, 57 insertions(+), 79 deletions(-)
+
+commit 4ebf20ee6ecd25ef67af5f15bacece15f7ef046e
+Author: vasudeven <agnihot3@gmail.com>
+Date:   Sun Feb 14 21:22:25 2010 +0530
+
+    updated Tamil translation
+
+ po/ta.po |  725 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 425 insertions(+), 300 deletions(-)
+
+commit fc314aa66a49fcc503d37ed1ff8d867a3111e781
+Author: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>
+Date:   Sat Feb 13 02:10:47 2010 +0200
+
+    Update Romanian translation
+
+ po/ro.po | 1399 ++++++++++++++++++++++++++++++++++++++++++--------------------
+ 1 files changed, 950 insertions(+), 449 deletions(-)
+
+commit 6d75ebeaab1cb6206381b117b82895ea6085a06f
+Author: Joan Duran <jodufi@gmail.com>
+Date:   Thu Feb 11 20:28:41 2010 +0100
+
+    Updated Catalan translation by Joan Duran
+
+ po/ca.po | 1006 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 559 insertions(+), 447 deletions(-)
+
+commit c3ed02adadafa1a07393f64a6d4065de15149601
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Tue Feb 9 18:44:34 2010 -0500
+
+    Bug 609459 - no_proxy final comma breaks wget
+
+ src/terminal-screen.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 7bebd47af3cbfba456f2480697353ae599ed05aa
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Sun Feb 7 12:06:04 2010 +0100
+
+    Updated German translation
+
+ po/de.po |  770 +++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 442 insertions(+), 328 deletions(-)
+
+commit db39c9e381f5c10b441c7d1f6cd5d6c4306e7f1e
+Author: Mattias Põldaru <mahfiaz gmail com>
+Date:   Mon Feb 1 09:25:57 2010 +0200
+
+    Updating Estonian translation
+
+ po/et.po |  215 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 121 insertions(+), 94 deletions(-)
+
+commit c67b1c8ad11c2a0eabfe15927b25ad7b10581828
+Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Date:   Sat Jan 30 18:57:25 2010 +0700
+
+    Updated Thai translation.
+
+ po/th.po |  823 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 464 insertions(+), 359 deletions(-)
+
+commit 62e4f638c8c1b84232bef1aadc7b0130e79d1c00
+Author: Davide Falagna <davide.falagna@alice.it>
+Date:   Sat Jan 30 12:06:24 2010 +0100
+
+    Updated Italian translation
+
+ po/it.po |  781 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 441 insertions(+), 340 deletions(-)
+
+commit ea76ff9cefbc178b11020e476e37b18349e4b3f9
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Fri Jan 29 19:30:45 2010 -0500
+
+    Remove stale comments
+
+ src/skey/md5.c  |   17 -----------------
+ src/skey/sha1.c |   14 --------------
+ 2 files changed, 0 insertions(+), 31 deletions(-)
+
+commit ce6ae02ff2830618d1bdca7393b70d82a96aeccf
+Author: Jamil Ahmed <itsjamil@gmail.com>
+Date:   Wed Jan 27 20:14:40 2010 +0600
+
+    Updated Bengali translation
+
+ po/bn.po |  902 +++++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 533 insertions(+), 369 deletions(-)
+
+commit 3319782a536b28a41135846b6643ca07013a8a51
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Wed Jan 27 12:52:34 2010 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 4922 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 2474 insertions(+), 2448 deletions(-)
+
+commit ed38c16464e2906cbc3995c4e9f0ee0a37d3af1c
+Author: Alexander Shopov <ash@contact.bg>
+Date:   Tue Jan 26 07:59:37 2010 +0200
+
+    Updated Bulgarian translation
+
+ po/bg.po |  843 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 472 insertions(+), 371 deletions(-)
+
+commit d0d9fe357b77f6bed8f397e5b682367e012b9cd1
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Fri Jan 22 14:38:06 2010 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po |  428 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 235 insertions(+), 193 deletions(-)
+
+commit 9bb48ac4bc1f970fb5d4ac79dbe868947256b873
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Jan 16 01:24:22 2010 +0100
+
+    Fix © year
+
+ help/C/gnome-terminal.xml |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 87c1ea1fb504cb5d6b59298241731b38f951aab7
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Mon Jan 18 06:18:13 2010 +0100
+
+    Updated Spanish translation
+
+ po/es.po |  426 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 229 insertions(+), 197 deletions(-)
+
+commit 7e65f8d8917911d446d8cb93bddfb722481396fb
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   Sun Jan 17 16:38:40 2010 +0100
+
+    Updated German doc translation
+
+ help/de/de.po |  559 +++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 289 insertions(+), 270 deletions(-)
+
+commit 5116206b23d9e9cfe475276320f158d973d13a61
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Thu Jan 14 11:38:05 2010 +0200
+
+    Updated Arabic translation
+
+ po/ar.po |  954 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 530 insertions(+), 424 deletions(-)
+
 commit 527c872bf8a781d201f98292dd47da6f8f6d6d1d
 Author: Behdad Esfahbod <behdad@behdad.org>
 Date:   Wed Jan 13 20:31:17 2010 -0500
