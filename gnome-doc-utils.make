@@ -92,14 +92,6 @@ all: $(DOC_H_FILE)
 ## The name of the document being built
 DOC_MODULE ?=
 
-## @ DOC_ID
-## The unique identifier for a Mallard document
-DOC_ID ?=
-
-## @ DOC_PAGES
-## Page files in a Mallard document
-DOC_PAGES ?=
-
 ## @ DOC_ENTITIES
 ## Files included with a SYSTEM entity
 DOC_ENTITIES ?=
@@ -131,11 +123,9 @@ _DOC_ABS_SRCDIR = @abs_srcdir@
 ## Variables for Bootstrapping
 
 _xml2po ?= `which xml2po`
-_xml2po_mode = $(if $(DOC_ID),mallard,docbook)
 
 _db2html ?= `$(PKG_CONFIG) --variable db2html gnome-doc-utils`
 _db2omf  ?= `$(PKG_CONFIG) --variable db2omf gnome-doc-utils`
-_malrng  ?= `$(PKG_CONFIG) --variable malrng gnome-doc-utils`
 _chunks  ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/chunks.xsl
 _credits ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/credits.xsl
 _ids ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/ids.xsl
@@ -215,10 +205,6 @@ omf: $(_DOC_OMF_ALL)
 ## The top-level documentation file in the C locale
 _DOC_C_MODULE = $(if $(DOC_MODULE),C/$(DOC_MODULE).xml)
 
-## @ _DOC_C_PAGES
-## Page files in a Mallard document in the C locale
-_DOC_C_PAGES = $(foreach page,$(DOC_PAGES),C/$(page))
-
 ## @ _DOC_C_ENTITIES
 ## Files included with a SYSTEM entity in the C locale
 _DOC_C_ENTITIES = $(foreach ent,$(DOC_ENTITIES),C/$(ent))
@@ -231,14 +217,13 @@ _DOC_C_INCLUDES = $(foreach inc,$(DOC_INCLUDES),C/$(inc))
 ## All documentation files in the C locale
 _DOC_C_DOCS =								\
 	$(_DOC_C_ENTITIES)	$(_DOC_C_INCLUDES)			\
-	$(_DOC_C_PAGES)		$(_DOC_C_MODULE)
+	$(_DOC_C_MODULE)
 
 ## @ _DOC_C_DOCS_NOENT
 ## All documentation files in the C locale,
 ## except files included with a SYSTEM entity
 _DOC_C_DOCS_NOENT =							\
-	$(_DOC_C_MODULE)	$(_DOC_C_INCLUDES)			\
-	$(_DOC_C_PAGES)
+	$(_DOC_C_MODULE)	$(_DOC_C_INCLUDES)
 
 ## @ _DOC_C_FIGURES
 ## All figures and other external data in the C locale
@@ -260,7 +245,7 @@ _DOC_C_HTML = $(foreach f,						\
 
 ## @ _DOC_POFILES
 ## The .po files used for translating the document
-_DOC_POFILES = $(if $(DOC_MODULE)$(DOC_ID),					\
+_DOC_POFILES = $(if $(DOC_MODULE),						\
 	$(foreach lc,$(_DOC_REAL_LINGUAS),$(lc)/$(lc).po))
 
 .PHONY: po
@@ -270,12 +255,6 @@ po: $(_DOC_POFILES)
 ## The top-level documentation files in all other locales
 _DOC_LC_MODULES = $(if $(DOC_MODULE),						\
 	$(foreach lc,$(_DOC_REAL_LINGUAS),$(lc)/$(DOC_MODULE).xml))
-
-## @ _DOC_LC_PAGES
-## Page files in a Mallard document in all other locales
-_DOC_LC_PAGES =									\
-	$(foreach lc,$(_DOC_REAL_LINGUAS),$(foreach page,$(_DOC_C_PAGES),	\
-		$(lc)/$(notdir $(page)) ))
 
 ## @ _DOC_LC_XINCLUDES
 ## Files included with XInclude in all other locales
@@ -293,7 +272,7 @@ _DOC_LC_HTML =									\
 ## @ _DOC_LC_DOCS
 ## All documentation files in all other locales
 _DOC_LC_DOCS =									\
-	$(_DOC_LC_MODULES)	$(_DOC_LC_INCLUDES)	$(_DOC_LC_PAGES)	\
+	$(_DOC_LC_MODULES)	$(_DOC_LC_INCLUDES)				\
 	$(if $(filter html HTML,$(_DOC_REAL_FORMATS)),$(_DOC_LC_HTML))
 
 ## @ _DOC_LC_FIGURES
@@ -320,16 +299,16 @@ $(_DOC_POFILES):
 	done; \
 	if ! test -f $@; then \
 	  echo "(cd $(dir $@) && \
-	    $(_xml2po) -m $(_xml2po_mode) -e $$docs > $(notdir $@).tmp && \
+	    $(_xml2po) -e $$docs > $(notdir $@).tmp && \
 	    cp $(notdir $@).tmp $(notdir $@) && rm -f $(notdir $@).tmp)"; \
 	  (cd $(dir $@) && \
-	    $(_xml2po) -m $(_xml2po_mode) -e $$docs > $(notdir $@).tmp && \
+	    $(_xml2po) -e $$docs > $(notdir $@).tmp && \
 	    cp $(notdir $@).tmp $(notdir $@) && rm -f $(notdir $@).tmp); \
 	else \
 	  echo "(cd $(dir $@) && \
-	    $(_xml2po) -m $(_xml2po_mode) -e -u $(notdir $@) $$docs)"; \
+	    $(_xml2po) -e -u $(notdir $@) $$docs)"; \
 	  (cd $(dir $@) && \
-	    $(_xml2po) -m $(_xml2po_mode) -e -u $(notdir $@) $$docs); \
+	    $(_xml2po) -e -u $(notdir $@) $$docs); \
 	fi
 
 # FIXME: fix the dependancy
@@ -338,10 +317,9 @@ $(_DOC_LC_DOCS) : $(_DOC_POFILES)
 $(_DOC_LC_DOCS) : $(_DOC_C_DOCS)
 	if ! test -d $(dir $@); then mkdir $(dir $@); fi
 	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$(_DOC_ABS_SRCDIR)/"; fi; \
-	po="$(dir $@)$(patsubst %/$(notdir $@),%,$@).po"; \
-	if [ -f "$${po}" ]; then po="../$${po}"; else po="$(_DOC_ABS_SRCDIR)/$${po}"; fi; \
 	(cd $(dir $@) && \
-	  $(_xml2po) -m $(_xml2po_mode) -e -p "$${po}" \
+	  $(_xml2po) -e -p \
+	    "$${d}$(dir $@)$(patsubst %/$(notdir $@),%,$@).po" \
 	    "$${d}C/$(notdir $@)" > $(notdir $@).tmp && \
 	    cp $(notdir $@).tmp $(notdir $@) && rm -f $(notdir $@).tmp)
 
@@ -351,7 +329,7 @@ _DOC_POT = $(if $(DOC_MODULE),$(DOC_MODULE).pot)
 .PHONY: pot
 pot: $(_DOC_POT)
 $(_DOC_POT): $(_DOC_C_DOCS_NOENT)
-	$(_xml2po) -m $(_xml2po_mode) -e -o $@ $^
+	$(_xml2po) -e -o $@ $^
 
 
 ################################################################################
@@ -369,16 +347,12 @@ $(_DOC_HTML_TOPS): $(_DOC_C_DOCS) $(_DOC_LC_DOCS)
 
 
 ################################################################################
-## All
 
 all:							\
 	$(_DOC_C_DOCS)		$(_DOC_LC_DOCS)		\
 	$(_DOC_OMF_ALL)		$(_DOC_DSK_ALL)		\
 	$(_DOC_HTML_ALL)	$(_DOC_POFILES)
 
-
-################################################################################
-## Clean
 
 .PHONY: clean-doc-omf clean-doc-dsk clean-doc-lc clean-doc-dir
 
@@ -398,7 +372,7 @@ clean-doc-lc:
 	    rm -f "$$lc/.xml2po.mo"; \
 	  fi; \
 	done
-clean-doc-dir: clean-doc-lc
+clean-doc-dir:
 	@for lc in C $(_DOC_REAL_LINGUAS); do \
 	  for dir in `find $$lc -depth -type d`; do \
 	    if ! test $$dir -ef $(srcdir)/$$dir; then \
@@ -411,7 +385,7 @@ clean-doc-dir: clean-doc-lc
 _clean_omf = $(if $(_DOC_OMF_IN),clean-doc-omf)
 _clean_dsk = $(if $(_DOC_DSK_IN),clean-doc-dsk)
 _clean_lc  = $(if $(_DOC_REAL_LINGUAS),clean-doc-lc)
-_clean_dir = $(if $(DOC_MODULE)$(DOC_ID),clean-doc-dir)
+_clean_dir = $(if $(DOC_MODULE),clean-doc-dir)
 
 clean-local:						\
 	$(_clean_omf)		$(_clean_dsk)		\
@@ -427,14 +401,10 @@ maintainer-clean-local:					\
 	$(_clean_lc)		$(_clean_dir)
 
 
-
-################################################################################
-## Dist
-
-.PHONY: dist-doc-docs dist-doc-pages dist-doc-figs dist-doc-omf dist-doc-dsk
-doc-dist-hook: 						\
-	$(if $(DOC_MODULE)$(DOC_ID),dist-doc-docs)	\
-	$(if $(_DOC_C_FIGURES),dist-doc-figs)		\
+.PHONY: dist-doc-docs dist-doc-figs dist-doc-omf dist-doc-dsk
+doc-dist-hook: 					\
+	$(if $(DOC_MODULE),dist-doc-docs)	\
+	$(if $(_DOC_C_FIGURES),dist-doc-figs)	\
 	$(if $(_DOC_OMF_IN),dist-doc-omf)
 #	$(if $(_DOC_DSK_IN),dist-doc-dsk)
 
@@ -481,14 +451,9 @@ dist-doc-dsk:
 	$(INSTALL_DATA) "$$d$(_DOC_DSK_IN)" "$(distdir)/$(notdir $(_DOC_DSK_IN))"
 
 
-
-################################################################################
-## Check
-
 .PHONY: check-doc-docs check-doc-omf
 check:							\
 	$(if $(DOC_MODULE),check-doc-docs)		\
-	$(if $(DOC_ID),check-doc-pages)			\
 	$(if $(_DOC_OMF_IN),check-doc-omf)
 
 check-doc-docs: $(_DOC_C_DOCS) $(_DOC_LC_DOCS)
@@ -504,21 +469,6 @@ check-doc-docs: $(_DOC_C_DOCS) $(_DOC_LC_DOCS)
 	  xmllint --noout --noent --path "$$xmlpath" --xinclude --postvalid "$$d$$lc/$(DOC_MODULE).xml"; \
 	done
 
-check-doc-pages: $(_DOC_C_PAGES) $(_DOC_LC_PAGES)
-	for lc in C $(_DOC_REAL_LINGUAS); do \
-	  if test -f "$$lc"; \
-	    then d=; \
-	    xmlpath="$$lc"; \
-	  else \
-	    d="$(srcdir)/"; \
-	    xmlpath="$$lc:$(srcdir)/$$lc"; \
-	  fi; \
-	  for page in $(DOC_PAGES); do \
-	    echo "xmllint --noout --noent --path $$xmlpath --xinclude --relaxng $(_malrng) $$d$$lc/$$page"; \
-	    xmllint --noout --noent --path "$$xmlpath" --xinclude --relaxng "$(_malrng)" "$$d$$lc/$$page"; \
-	  done; \
-	done
-
 check-doc-omf: $(_DOC_OMF_ALL)
 	@list='$(_DOC_OMF_ALL)'; for omf in $$list; do \
 	  echo "xmllint --noout --xinclude --dtdvalid 'http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/scrollkeeper-omf.dtd' $$omf"; \
@@ -526,16 +476,9 @@ check-doc-omf: $(_DOC_OMF_ALL)
 	done
 
 
-
-################################################################################
-## Install
-
 .PHONY: install-doc-docs install-doc-html install-doc-figs install-doc-omf install-doc-dsk
-
-_doc_install_dir = $(if $(DOC_ID),$(DOC_ID),$(DOC_MODULE))
-
 install-data-local:					\
-	$(if $(DOC_MODULE)$(DOC_ID),install-doc-docs)	\
+	$(if $(DOC_MODULE),install-doc-docs)		\
 	$(if $(_DOC_HTML_ALL),install-doc-html)		\
 	$(if $(_DOC_C_FIGURES),install-doc-figs)	\
 	$(if $(_DOC_OMF_IN),install-doc-omf)
@@ -543,19 +486,19 @@ install-data-local:					\
 
 install-doc-docs:
 	@for lc in C $(_DOC_REAL_LINGUAS); do \
-	  echo "$(mkinstalldirs) $(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$lc"; \
-	  $(mkinstalldirs) $(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$lc; \
+	  echo "$(mkinstalldirs) $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$lc"; \
+	  $(mkinstalldirs) $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$lc; \
 	done
 	@list='$(_DOC_C_DOCS) $(_DOC_LC_DOCS)'; for doc in $$list; do \
 	  if test -f "$$doc"; then d=; else d="$(srcdir)/"; fi; \
 	  docdir="$$lc/"`echo $$doc | sed -e 's/^\(.*\/\).*/\1/' -e '/\//!s/.*//'`; \
-	  docdir="$(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$docdir"; \
+	  docdir="$(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$docdir"; \
 	  if ! test -d "$$docdir"; then \
 	    echo "$(mkinstalldirs) $$docdir"; \
 	    $(mkinstalldirs) "$$docdir"; \
 	  fi; \
-	  echo "$(INSTALL_DATA) $$d$$doc $(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$doc"; \
-	  $(INSTALL_DATA) $$d$$doc $(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$doc; \
+	  echo "$(INSTALL_DATA) $$d$$doc $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$doc"; \
+	  $(INSTALL_DATA) $$d$$doc $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$doc; \
 	done
 
 install-doc-figs:
@@ -570,7 +513,7 @@ install-doc-figs:
 	      figsymlink=true; \
 	    fi; \
 	    figdir="$$lc/"`echo $$fig | sed -e 's/^\(.*\/\).*/\1/' -e '/\//!s/.*//'`; \
-	    figdir="$(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$figdir"; \
+	    figdir="$(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$figdir"; \
 	    if ! test -d "$$figdir"; then \
 	      echo "$(mkinstalldirs) $$figdir"; \
 	      $(mkinstalldirs) "$$figdir"; \
@@ -590,27 +533,23 @@ install-doc-html:
 	echo install-html
 
 install-doc-omf:
-	$(mkinstalldirs) $(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)
+	$(mkinstalldirs) $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)
 	@list='$(_DOC_OMF_ALL)'; for omf in $$list; do \
-	  echo "$(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)/$$omf"; \
-	  $(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)/$$omf; \
+	  echo "$(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
+	  $(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf; \
 	done
 	@if test "x$(_ENABLE_SK)" = "xtrue"; then \
-	  echo "scrollkeeper-update -p $(DESTDIR)$(_sklocalstatedir) -o $(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)"; \
-	  scrollkeeper-update -p "$(DESTDIR)$(_sklocalstatedir)" -o "$(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)"; \
+	  echo "scrollkeeper-update -p $(DESTDIR)$(_sklocalstatedir) -o $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)"; \
+	  scrollkeeper-update -p "$(DESTDIR)$(_sklocalstatedir)" -o "$(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)"; \
 	fi;
 
 install-doc-dsk:
 	echo install-dsk
 
 
-
-################################################################################
-## Uninstall
-
 .PHONY: uninstall-doc-docs uninstall-doc-html uninstall-doc-figs uninstall-doc-omf uninstall-doc-dsk
 uninstall-local:					\
-	$(if $(DOC_MODULE)$(DOC_ID),uninstall-doc-docs)	\
+	$(if $(DOC_MODULE),uninstall-doc-docs)		\
 	$(if $(_DOC_HTML_ALL),uninstall-doc-html)	\
 	$(if $(_DOC_C_FIGURES),uninstall-doc-figs)	\
 	$(if $(_DOC_OMF_IN),uninstall-doc-omf)
@@ -618,22 +557,22 @@ uninstall-local:					\
 
 uninstall-doc-docs:
 	@list='$(_DOC_C_DOCS) $(_DOC_LC_DOCS)'; for doc in $$list; do \
-	  echo " rm -f $(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$doc"; \
-	  rm -f "$(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$doc"; \
+	  echo " rm -f $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$doc"; \
+	  rm -f "$(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$doc"; \
 	done
 
 uninstall-doc-figs:
 	@list='$(_DOC_C_FIGURES) $(_DOC_LC_FIGURES)'; for fig in $$list; do \
-	  echo "rm -f $(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$fig"; \
-	  rm -f "$(DESTDIR)$(HELP_DIR)/$(_doc_install_dir)/$$fig"; \
+	  echo "rm -f $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$fig"; \
+	  rm -f "$(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$fig"; \
 	done;
 
 uninstall-doc-omf:
 	@list='$(_DOC_OMF_ALL)'; for omf in $$list; do \
 	  if test "x$(_ENABLE_SK)" = "xtrue"; then \
-	    echo "scrollkeeper-uninstall -p $(_sklocalstatedir) $(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)/$$omf"; \
-	    scrollkeeper-uninstall -p "$(_sklocalstatedir)" "$(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)/$$omf"; \
+	    echo "scrollkeeper-uninstall -p $(_sklocalstatedir) $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
+	    scrollkeeper-uninstall -p "$(_sklocalstatedir)" "$(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
 	  fi; \
-	  echo "rm -f $(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)/$$omf"; \
-	  rm -f "$(DESTDIR)$(OMF_DIR)/$(_doc_install_dir)/$$omf"; \
+	  echo "rm -f $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
+	  rm -f "$(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
 	done
