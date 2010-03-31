@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[2])
-m4_define([gt_version_minor],[29])
-m4_define([gt_version_micro],[92])
+m4_define([gt_version_minor],[30])
+m4_define([gt_version_micro],[0])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -43,7 +43,7 @@ GLIB_REQUIRED=2.16.0
 GTK_REQUIRED=2.14.0
 GCONF_REQUIRED=2.14.0
 DBUS_GLIB_REQUIRED=0.6
-VTE_REQUIRED=0.23.5
+VTE_REQUIRED=0.24.0
 
 GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
 
