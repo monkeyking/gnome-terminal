@@ -83,6 +83,7 @@ enum
   PROP_USE_SKEY,
   PROP_USE_SYSTEM_FONT,
   PROP_USE_THEME_COLORS,
+  PROP_USE_THEME_BACKGROUND,
   PROP_VISIBLE_NAME,
   PROP_WORD_CHARS,
   LAST_PROP
@@ -122,6 +123,7 @@ enum
 #define KEY_USE_SKEY "use_skey"
 #define KEY_USE_SYSTEM_FONT "use_system_font"
 #define KEY_USE_THEME_COLORS "use_theme_colors"
+#define KEY_USE_THEME_BACKGROUND "use_theme_background"
 #define KEY_VISIBLE_NAME "visible_name"
 #define KEY_WORD_CHARS "word_chars"
 
@@ -161,6 +163,7 @@ enum
 #define DEFAULT_USE_SKEY              (TRUE)
 #define DEFAULT_USE_SYSTEM_FONT       (TRUE)
 #define DEFAULT_USE_THEME_COLORS      (TRUE)
+#define DEFAULT_USE_THEME_BACKGROUND  (TRUE)
 #define DEFAULT_VISIBLE_NAME          (N_("Unnamed"))
 #define DEFAULT_WORD_CHARS            ("-A-Za-z0-9,./?%&#:_=+@~")
 
@@ -1157,6 +1160,21 @@ terminal_profile_set_property (GObject *object,
         g_object_notify (object, TERMINAL_PROFILE_BACKGROUND_IMAGE);
         break;
 
+      case PROP_BACKGROUND_TYPE:
+        /* This next one is a temporary hack as we are UI frozen. Basically, it means that
+         * selecting a solid background will use the background settings defined in the
+         * theme. This should have it's own button though */
+        if (g_value_get_enum (value) == TERMINAL_BACKGROUND_SOLID)
+          {
+            g_value_set_boolean (g_value_array_get_nth (priv->properties, PROP_USE_THEME_BACKGROUND), TRUE);
+          }
+        else
+          {
+            g_value_set_boolean (g_value_array_get_nth (priv->properties, PROP_USE_THEME_BACKGROUND), FALSE);
+          }
+        g_object_notify (object, TERMINAL_PROFILE_USE_THEME_BACKGROUND);
+        break;
+
       default:
         break;
     }
@@ -1304,6 +1322,7 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (USE_SKEY, DEFAULT_USE_SKEY, KEY_USE_SKEY);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (USE_SYSTEM_FONT, DEFAULT_USE_SYSTEM_FONT, KEY_USE_SYSTEM_FONT);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (USE_THEME_COLORS, DEFAULT_USE_THEME_COLORS, KEY_USE_THEME_COLORS);
+  TERMINAL_PROFILE_PROPERTY_BOOLEAN (USE_THEME_BACKGROUND, DEFAULT_USE_THEME_BACKGROUND, KEY_USE_THEME_BACKGROUND);
 
   TERMINAL_PROFILE_PROPERTY_BOXED (BACKGROUND_COLOR, GDK_TYPE_COLOR, KEY_BACKGROUND_COLOR);
   TERMINAL_PROFILE_PROPERTY_BOXED (BOLD_COLOR, GDK_TYPE_COLOR, KEY_BOLD_COLOR);
