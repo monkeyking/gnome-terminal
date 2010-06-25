@@ -402,6 +402,23 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/alternate_screen_scroll</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/alternate_screen_scroll</applyto>
+      <owner>gnome-terminal</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+         <short>
+	  Whether to send keystrokes for alternate screen scrolling
+	 </short>
+         <long>
+          If true, send Up/Down keystrokes for scrolling when using alternate
+	  screen or when scrolling is restricted.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gnome-terminal/profiles/Default/exit_action</key>
       <applyto>/apps/gnome-terminal/profiles/Default/exit_action</applyto>
       <owner>gnome-terminal</owner>
@@ -667,6 +684,21 @@
          <long>
         If true, the theme color scheme used for text entry boxes will 
         be used for the terminal, instead of colors provided by the user.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/use_theme_background</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/use_theme_background</applyto>
+      <owner>gnome-terminal</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+         <short>Whether to use the transparency setting from the theme for the terminal widget</short>
+         <long>
+        If true, the transparency setting defined in the theme will be used for defining the 
+        background type of the terminal, instead of the settings provided by the user.
          </long>
       </locale>
     </schema>

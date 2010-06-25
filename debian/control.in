@@ -1,11 +1,13 @@
 Source: gnome-terminal
 Section: gnome
 Priority: optional
-Maintainer: Guilherme de S. Pastore <gpastore@debian.org>
+XSBC-Original-Maintainer: Guilherme de S. Pastore <gpastore@debian.org>
+Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
 Uploaders: @GNOME_TEAM@
 Standards-Version: 3.8.4
 Build-Depends: cdbs (>= 0.4.41),
                debhelper (>= 5),
+               gnome-common,
                intltool (>= 0.40.0),
                libx11-dev,
                libgtk2.0-dev (>= 2.14.0),
@@ -18,7 +20,9 @@ Build-Depends: cdbs (>= 0.4.41),
                docbook-to-man,
                gnome-doc-utils,
                libgconf2-dev (>= 2.14.0),
-               libdbus-glib-1-dev (>= 0.6)
+               libdbus-glib-1-dev (>= 0.6),
+               liblaunchpad-integration-dev
+Vcs-Bzr: http://code.launchpad.net/~ubuntu-desktop/gnome-terminal/ubuntu
 
 Package: gnome-terminal
 Architecture: any
@@ -26,7 +30,7 @@ Depends: ${shlibs:Depends},
          ${misc:Depends},
          gnome-terminal-data (>= ${gnome:Version}),
          gnome-terminal-data (<< ${gnome:NextVersion})
-Replaces: gnome-terminal-data (<< 2.26.2-3)
+Replaces: gnome-terminal-data (<< 2.28.1-1ubuntu1)
 Provides: x-terminal-emulator
 Recommends: yelp,
             gvfs
