@@ -60,6 +60,7 @@ PKG_CHECK_MODULES([TERM],
    gtk+-2.0 >= $GTK_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
    dbus-glib-1 >= $DBUS_GLIB_REQUIRED
+   launchpad-integration
    $PLATFORM_DEPS])
 
 # Check the smclient backend
