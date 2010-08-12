@@ -110,7 +110,7 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
                                GtkWidget *editor)
 {
   TerminalBackgroundType bg_type;
-  gboolean use_custom_locked, palette_locked, bg_type_locked;
+  gboolean use_custom_locked, palette_locked, bg_type_locked, use_theme_background;
   const char *prop_name;
 
   if (pspec)
@@ -130,32 +130,42 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
                      terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND) &&
                      !terminal_profile_property_locked (profile, TERMINAL_PROFILE_CUSTOM_COMMAND));
     }
-
-  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TYPE))
+      
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TYPE) || prop_name == I_(TERMINAL_PROFILE_USE_THEME_BACKGROUND))
     {
       bg_type_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
-      SET_SENSITIVE ("solid-radiobutton", !bg_type_locked);
-      SET_SENSITIVE ("image-radiobutton", !bg_type_locked);
-      SET_SENSITIVE ("transparent-radiobutton", !bg_type_locked);
+      use_theme_background = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_BACKGROUND);
+      SET_SENSITIVE ("solid-radiobutton", !bg_type_locked && !use_theme_background);
+      SET_SENSITIVE ("image-radiobutton", !bg_type_locked && !use_theme_background);
+      SET_SENSITIVE ("transparent-radiobutton", !bg_type_locked && !use_theme_background);
 
-      bg_type = terminal_profile_get_property_enum (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
-      if (bg_type == TERMINAL_BACKGROUND_IMAGE)
-        {
-          SET_SENSITIVE ("background-image-filechooser", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE));
-          SET_SENSITIVE ("scroll-background-checkbutton", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLL_BACKGROUND));
-          SET_SENSITIVE ("darken-background-vbox", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
-        }
-      else if (bg_type == TERMINAL_BACKGROUND_TRANSPARENT)
-        {
-          SET_SENSITIVE ("background-image-filechooser", FALSE);
-          SET_SENSITIVE ("scroll-background-checkbutton", FALSE);
-          SET_SENSITIVE ("darken-background-vbox", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
-        }
-      else
+      if (use_theme_background)
         {
           SET_SENSITIVE ("background-image-filechooser", FALSE);
           SET_SENSITIVE ("scroll-background-checkbutton", FALSE);
           SET_SENSITIVE ("darken-background-vbox", FALSE);
+        }
+      else
+        {
+          bg_type = terminal_profile_get_property_enum (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
+          if (bg_type == TERMINAL_BACKGROUND_IMAGE)
+            {
+              SET_SENSITIVE ("background-image-filechooser", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_IMAGE_FILE));
+              SET_SENSITIVE ("scroll-background-checkbutton", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLL_BACKGROUND));
+              SET_SENSITIVE ("darken-background-vbox", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
+            }
+          else if (bg_type == TERMINAL_BACKGROUND_TRANSPARENT)
+            {
+              SET_SENSITIVE ("background-image-filechooser", FALSE);
+              SET_SENSITIVE ("scroll-background-checkbutton", FALSE);
+              SET_SENSITIVE ("darken-background-vbox", !terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
+            }
+          else
+            {
+              SET_SENSITIVE ("background-image-filechooser", FALSE);
+              SET_SENSITIVE ("scroll-background-checkbutton", FALSE);
+              SET_SENSITIVE ("darken-background-vbox", FALSE);
+            }
         }
     }
 
@@ -850,6 +860,7 @@ terminal_profile_edit (TerminalProfile *profile,
   CONNECT ("update-records-checkbutton", TERMINAL_PROFILE_UPDATE_RECORDS);
   CONNECT ("use-custom-command-checkbutton", TERMINAL_PROFILE_USE_CUSTOM_COMMAND);
   CONNECT ("use-theme-colors-checkbutton", TERMINAL_PROFILE_USE_THEME_COLORS);
+  CONNECT ("use-theme-background-checkbutton", TERMINAL_PROFILE_USE_THEME_BACKGROUND);
   CONNECT ("word-chars-entry", TERMINAL_PROFILE_WORD_CHARS);
   CONNECT_WITH_FLAGS ("bell-checkbutton", TERMINAL_PROFILE_SILENT_BELL, FLAG_INVERT_BOOL);
 

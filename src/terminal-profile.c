@@ -1016,7 +1016,6 @@ terminal_profile_constructor (GType type,
             is_construct = TRUE;
             break;
           }
-
       if (is_construct)
         continue;
 
@@ -1161,21 +1160,6 @@ terminal_profile_set_property (GObject *object,
         g_value_set_object (g_value_array_get_nth (priv->properties, PROP_BACKGROUND_IMAGE), NULL);
         priv->background_load_failed = FALSE;
         g_object_notify (object, TERMINAL_PROFILE_BACKGROUND_IMAGE);
-        break;
-
-      case PROP_BACKGROUND_TYPE:
-        /* This next one is a temporary hack as we are UI frozen. Basically, it means that
-         * selecting a solid background will use the background settings defined in the
-         * theme. This should have it's own button though */
-        if (g_value_get_enum (value) == TERMINAL_BACKGROUND_SOLID)
-          {
-            g_value_set_boolean (g_value_array_get_nth (priv->properties, PROP_USE_THEME_BACKGROUND), TRUE);
-          }
-        else
-          {
-            g_value_set_boolean (g_value_array_get_nth (priv->properties, PROP_USE_THEME_BACKGROUND), FALSE);
-          }
-        g_object_notify (object, TERMINAL_PROFILE_USE_THEME_BACKGROUND);
         break;
 
       default:
