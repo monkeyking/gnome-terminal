@@ -80,6 +80,7 @@ PKG_CHECK_MODULES([TERM],
    gio-2.0 >= $GIO_REQUIRED
    gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
+   launchpad-integration
    $PLATFORM_DEPS])
 
 # ********
