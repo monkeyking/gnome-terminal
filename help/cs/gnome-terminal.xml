@@ -293,7 +293,7 @@
      <sect2 id="gnome-terminal-profiles"> 
         <title>Profily terminálu</title> 
         <para>Můžete vytvořit nový profil a ten použít pro úpravu vlastností terminálu jako písma, barvy a efektů, rolování výstupu, titulku okna nebo kompatibility. Také můžete určit příkaz, který se spustí při startu <application>Terminálu GNOME</application> s tímto profilem.</para>
-          <para>Profily lze vytvářet v okně <guilabel>Profily</guilabel>, které je dostupné z nabídky <guimenu>Upravit</guimenu>. Můžete vytvořit tolik různých profilů, kolik chcete. Při startu terminálu pak můžete vybrat profil, který se má použít, nebo jej můžete profil měnit během používání terminálu. Zvolit profil při startu aplikace z příkazové řádky můžete za použití následujícího příkazu:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>jméno_profilu</replaceable></command> 
         </para>
@@ -426,7 +426,8 @@
                      <para>Zvolte z menu <menuchoice><guimenu>Upravit</guimenu><guisubmenu>Aktuální profil</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Klepněte pravým tlačítkem do okna terminálu a zvolte <guimenuitem>Upravit aktuální profil</guimenuitem> z kontextové nabídky.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para>Zvolte z nabídky <menuchoice><guimenu>Upravit</guimenu><guisubmenu>Profily</guisubmenu></menuchoice>, zvolte profil, který chcete upravit a klepněte na tlačítko <guibutton>Upravit</guibutton>. Informace o tom, co lze u profilu nastavit, popisuje <xref linkend="gnome-terminal-prefs"/>.</para>
@@ -668,7 +669,7 @@
   <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
-     <title>Nastavení</title> 
+     <title>Předvolby</title> 
      <para>Pokud chcete změnit vlastnosti <application>Terminálu GNOME</application>, zvolte z nabídky <menuchoice><guimenu>Upravit</guimenu><guimenuitem>Aktuální profil</guimenuitem></menuchoice>. Pokud chcete upravit vlastnosti jiného vámi vytvořeného profilu, zvolte z nabídky <menuchoice><guimenu>Upravit</guimenu><guimenuitem>Profily</guimenuitem></menuchoice>, ze seznamu zvolte profil, který chcete upravit, a klepněte na tlačítko <guibutton>Upravit</guibutton>.</para>
      <para>Okno <guilabel>Úprava profilu</guilabel> obsahuje v kartách následující části umožňující nastavit <application>Terminál GNOME</application>:</para>
      <itemizedlist> 
@@ -904,7 +905,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Paměť řádků</guilabel> </term> 
+                <guilabel>Paměť … řádků</guilabel> </term> 
              <listitem> 
                 <para>Použijte toto přírůstkové pole pro určení počtu řádek, které je možné na zpět procházet. Například nastavení na hodnotu 100 způsobí, že můžete rolovat výstup v terminálu nejvýše 100 řádek zpět.</para>
              </listitem> 
