@@ -1,12 +1,12 @@
 NULL =
 
+if ENABLE_SKEY
 SUBDIRS = skey
+endif
 
 bin_PROGRAMS = gnome-terminal
 
 BUILT_SOURCES = \
-	terminal-factory-client.h \
-	terminal-factory-server.h \
 	terminal-marshal.c \
 	terminal-marshal.h \
 	terminal-type-builtins.c \
@@ -18,8 +18,6 @@ gnome_terminal_SOURCES= \
 	eggshell.h \
 	profile-editor.c \
 	profile-editor.h \
-	skey-popup.c \
-	skey-popup.h \
 	terminal.c \
 	terminal-accels.c \
 	terminal-accels.h \
@@ -29,6 +27,8 @@ gnome_terminal_SOURCES= \
 	terminal-debug.h \
 	terminal-encoding.c \
 	terminal-encoding.h \
+	terminal-info-bar.c \
+	terminal-info-bar.h \
 	terminal-intl.h \
 	terminal-options.c \
 	terminal-options.h \
@@ -38,6 +38,8 @@ gnome_terminal_SOURCES= \
 	terminal-screen.h \
 	terminal-screen-container.c \
 	terminal-screen-container.h \
+	terminal-search-dialog.c \
+	terminal-search-dialog.h \
 	terminal-tab-label.c \
 	terminal-tab-label.h \
 	terminal-tabs-menu.c \
@@ -48,6 +50,13 @@ gnome_terminal_SOURCES= \
 	terminal-window.c \
 	terminal-window.h \
 	$(NULL)
+
+if ENABLE_SKEY
+gnome_terminal_SOURCES += \
+	skey-popup.c \
+	skey-popup.h \
+	$(NULL)
+endif
 
 nodist_gnome_terminal_SOURCES= $(BUILT_SOURCES)
 
@@ -138,12 +147,6 @@ terminal-marshal.c: $(srcdir)/terminal-marshal.list
 		&& mv terminal-marshal.c.tmp terminal-marshal.c ) \
 	|| ( rm -f terminal-marshal.c.tmp && exit 1 )
 
-terminal-factory-client.h: terminal-factory-service.xml
-	$(AM_V_GEN) $(DBUS_BINDING_TOOL) --mode=glib-client --output=$@ $<
-
-terminal-factory-server.h: terminal-factory-service.xml
-	$(AM_V_GEN) $(DBUS_BINDING_TOOL) --mode=glib-server --prefix=terminal_factory --output=$@ $<
-
 schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_in_files = gnome-terminal.schemas.in
 schema_DATA = gnome-terminal.schemas
@@ -160,6 +163,7 @@ uimanager_DATA = \
 
 builder_in_files = \
 	encodings-dialog.glade \
+	find-dialog.glade \
 	keybinding-editor.glade \
 	profile-manager.glade \
 	profile-new-dialog.glade \
@@ -168,7 +172,7 @@ builder_in_files = \
 	$(NULL)
 
 builderdir = $(pkgdatadir)
-builder_DATA = $(builder_in_files:.glade=.ui)
+builder_DATA =  $(builder_in_files:.glade=.ui)
 
 CLEANFILES = \
 	stamp-terminal-type-builtins.h \
@@ -178,7 +182,6 @@ CLEANFILES = \
 	$(BUILT_SOURCES)
 
 EXTRA_DIST = \
-	terminal-factory-service.xml \
 	terminal-marshal.list \
 	terminal-type-builtins.c.template \
 	terminal-type-builtins.h.template \

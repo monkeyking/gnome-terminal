@@ -298,7 +298,7 @@ text-based commands through a shell such as Bash.
      <sect2 id="gnome-terminal-profiles"> 
         <title>Профілі терміналів</title> 
         <para>Ви можете створити новий профіль та застосувати цей профіль до терміналу. Профіль дозволяє змінити характеристики програми: шрифт, колір та ефекти, поведінку прокрутки, заголовок вікна, та сумісність з іншими терміналами. Також у профілі можна вказати команду, яка буде автоматично запускатись при запуску <application>GNOME Terminal</application>.</para>
-          <para>Профіль термінала визначається у діалоговому вікні <guilabel>Правка профілю</guilabel>, яке відкривається з меню <guimenu>Правка</guimenu>. Ви можете визначити будь-яку кількість профілів. При запуску термінала ви можете вибрати профіль, який ви бажаєте використовувати для термінала. Або ж можна змінити профіль при використанні терміналу. Щоб вказати початковий профіль терміналу при запуску з командного рядка, використовуйте наступну команду:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>назва-профілю</replaceable></command> 
         </para>
@@ -432,7 +432,8 @@ text-based commands through a shell such as Bash.
                      <para>Виберіть <menuchoice><guimenu>Правка</guimenu><guisubmenu>Поточний профіль</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Клацніть правою кнопкою миші на вікні терміналу, потім виберіть <guimenuitem>Виправити поточний профіль</guimenuitem> з контекстного меню.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para>Виберіть <menuchoice><guimenu>Правка</guimenu><guisubmenu>Профілі</guisubmenu></menuchoice>, вкажіть профіль, який ви бажаєте відредагувати, потім натисніть <guibutton>Правка</guibutton>. Інформацію про параметри, які можна змінити у профілях дивіться на <xref linkend="gnome-terminal-prefs"/>.</para>

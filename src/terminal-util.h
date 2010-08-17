@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 3 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -86,18 +86,6 @@ char **terminal_util_key_file_get_argv    (GKeyFile *key_file,
                                            const char *key,
                                            int *argc,
                                            GError **error);
-
-GArray *terminal_util_string_to_array (const char *string);
-
-GArray *terminal_util_strv_to_array (int argc,
-                                     char **argv);
-
-char *terminal_util_array_to_string (const GArray *array,
-                                     GError **error);
-
-char **terminal_util_array_to_strv (const GArray *array,
-                                    int *argc,
-                                    GError **error);
 
 void terminal_util_add_proxy_env (GHashTable *env_table);
 
