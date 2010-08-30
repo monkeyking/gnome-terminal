@@ -26,6 +26,7 @@
 #include <gdk/gdkx.h>
 #endif
 #include <gdk/gdkkeysyms.h>
+#include <launchpad-integration.h>
 
 #include "terminal-accels.h"
 #include "terminal-app.h"
@@ -2090,6 +2091,7 @@ terminal_window_init (TerminalWindow *window)
   gtk_box_pack_start (GTK_BOX (main_vbox),
 		      priv->menubar,
 		      FALSE, FALSE, 0);
+  launchpad_integration_add_ui (manager, "/menubar/Help/LaunchpadItems");
 
   /* Add tabs menu */
   priv->tabs_menu = terminal_tabs_menu_new (window);
