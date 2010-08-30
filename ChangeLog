@@ -1,3 +1,129 @@
+commit 3ecd605351555544746b6e069b45330424c532c2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Aug 29 13:58:41 2010 +0200
+
+    Version 2.31.91
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 538d91d91171399d4f31c70de62db3db8e15ed23
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Aug 25 22:26:05 2010 +0200
+
+    Do resume when starting the factory
+    
+    Bug #627776.
+
+ src/terminal.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit b1548dd43af7b819f64dbb3165504cf55b017dbb
+Author: Bruno Brouard <annoa.b@gmail.com>
+Date:   Wed Aug 25 15:47:41 2010 +0200
+
+    Updated French doc translation
+
+ help/fr/fr.po |   27 ++++++++++++++-------------
+ 1 files changed, 14 insertions(+), 13 deletions(-)
+
+commit 6e0c2aee572ef3e7431e68355fcabd7303a22b1d
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Aug 25 11:14:01 2010 +0200
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po |  412 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 198 insertions(+), 214 deletions(-)
+
+commit 40ad7fda7966ea35eb82b60f745b33fa39b6bb48
+Author: Alexander Shopov <ash@contact.bg>
+Date:   Tue Aug 24 15:28:28 2010 +0300
+
+    Updated Bulgarian translation
+
+ po/bg.po |  661 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 351 insertions(+), 310 deletions(-)
+
+commit d859db5737608d69687f35f5f3b9f3eab2e860d1
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Tue Aug 24 04:26:17 2010 +0200
+
+    Updated Arabic translation
+
+ po/ar.po |  946 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 510 insertions(+), 436 deletions(-)
+
+commit 53aaac1cc3ef5088547248ec1ee7360c993cee25
+Author: Ask H. Larsen <asklarsen@gmail.com>
+Date:   Sun Aug 22 13:27:25 2010 +0200
+
+    Updated Danish translation
+
+ po/da.po |  528 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 279 insertions(+), 249 deletions(-)
+
+commit 457898daa5aa384cd1db371be1eace13c20c4e58
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Sun Aug 22 09:19:38 2010 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po |   22 +++++-----------------
+ 1 files changed, 5 insertions(+), 17 deletions(-)
+
+commit e4daf961f4814e466c74b53fc02ed63b25780c1f
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sat Aug 21 20:54:10 2010 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  361 +++++++++++++++++++++++++++++-----------------------------
+ po/zh_TW.po |  363 +++++++++++++++++++++++++++++------------------------------
+ 2 files changed, 361 insertions(+), 363 deletions(-)
+
+commit 3a858be2425e6b4525c57e4eded3f7bdc838c005
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Aug 18 15:24:18 2010 +0200
+
+    Adjust find dialogue spacing and packgings
+    
+    Make it more HIG compliant.
+    
+    Bug #627258.
+
+ src/find-dialog.glade |   91 +++++++++++++++++++++++++------------------------
+ 1 files changed, 46 insertions(+), 45 deletions(-)
+
+commit c3949fc8c280c7cbd6374846960bb0c29a44bff2
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Wed Aug 18 14:27:13 2010 +0300
+
+    l10n: Added Kazakh translation for gnome-terminal
+
+ po/kk.po | 2402 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 2402 insertions(+), 0 deletions(-)
+
+commit 8c80e0eb9a6ae10d7ecf464d100e4cdd678a7422
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Wed Aug 18 14:26:51 2010 +0300
+
+    l10n: Added Kazakh (kk) to po/LINGUAS for gnome-terminal
+
+ po/LINGUAS |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 1201464730daadab429da7f5364bc811424ad387
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Aug 17 13:54:38 2010 +0200
+
+    Bump gtk3 req to 2.90.6
+    
+    Bug #627133.
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
 commit 91a5da9833094d449ac31540c4110dbeef761488
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Aug 16 21:28:40 2010 +0200
