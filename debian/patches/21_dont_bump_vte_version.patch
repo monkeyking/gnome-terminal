@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*~' gnome-terminal-2.30.2//configure.ac gnome-terminal-2.30.2.new//configure.ac
+--- gnome-terminal-2.30.2//configure.ac	2010-09-07 15:32:13.985548560 +0100
++++ gnome-terminal-2.30.2.new//configure.ac	2010-09-07 15:32:37.865856064 +0100
+@@ -43,7 +43,7 @@
+ GTK_REQUIRED=2.14.0
+ GCONF_REQUIRED=2.14.0
+ DBUS_GLIB_REQUIRED=0.6
+-VTE_REQUIRED=0.24.0
++VTE_REQUIRED=0.23.5
+ 
+ GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
+ 

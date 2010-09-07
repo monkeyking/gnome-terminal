@@ -1,3 +1,19 @@
+gnome-terminal (2.30.2-0ubuntu1) lucid-proposed; urgency=low
+
+  * Update to stable upstream version 2.30.2, fixes:
+    - LP: #526437 - Gtk-CRITICAL **: gtk_accel_map_unlock_path: assertion 
+      `entry != NULL && entry->lock_count > 0' failed
+    - LP: #534225 - setup_http_proxy_env constructs no_proxy incorrectly
+  * Revert commit 8dfe341 - bump VTE req to 0.24.0. This was just bumped to
+    the current stable version of VTE for 2.30.0, but it's not actually
+    required (and Lucid only has 0.23.5 anyway)
+    - add debian/patches/21_dont_bump_vte_version.patch
+  * Refresh patches
+    - update debian/patches/01_lpi.patch
+    - update debian/patches/99_autoreconf.patch
+
+ -- Chris Coulson <chris.coulson@canonical.com>  Tue, 07 Sep 2010 15:07:22 +0100
+
 gnome-terminal (2.29.6-0ubuntu5) lucid; urgency=low
 
   * Revert the previous changes to add a new profile, as changing
