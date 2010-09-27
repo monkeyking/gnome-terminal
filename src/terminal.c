@@ -3,7 +3,7 @@
  * Copyright © 2002 Red Hat, Inc.
  * Copyright © 2002 Sun Microsystems
  * Copyright © 2003 Mariano Suarez-Alvarez
- * Copyright © 2008 Christian Persch
+ * Copyright © 2008, 2010 Christian Persch
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -88,11 +88,11 @@ ay_to_strv (GVariant *variant,
 
   len = data_len;
   do {
-    gsize string_len;
+    gssize string_len;
 
     nullbyte = memchr (data, '\0', len);
 
-    string_len = nullbyte ? (gsize) (nullbyte - data) : len;
+    string_len = nullbyte ? (gssize) (nullbyte - data) : len;
     g_ptr_array_add (argv, g_strndup (data, string_len));
 
     len -= string_len + 1;
