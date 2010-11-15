@@ -1,3 +1,96 @@
+commit 71cba5f8463c5c976deb2a4d64fd4d48b4e17a9b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Nov 13 13:24:50 2010 +0100
+
+    Version 2.32.1
+
+ NEWS         |    5 +++++
+ configure.ac |    2 +-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+commit 6d5a8d9359de5e640fb89489af7025b851850fa1
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Nov 6 13:10:30 2010 +0100
+
+    Don't crash when receiving bogus data in the dbus call
+    
+    Fixes https://bugzilla.redhat.com/show_bug.cgi?id=650276 .
+
+ src/terminal.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+commit eaa52093c56b7eb3bfa8f21a5614db61b8ad2968
+Author: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>
+Date:   Thu Nov 4 22:03:40 2010 +0900
+
+    Updated Japanese translation
+
+ po/ja.po |  143 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 72 insertions(+), 71 deletions(-)
+
+commit d5f2cbaf38626bce3dbe7b0da29d26917791cc54
+Author: Carles Ferrando <carles.ferrando@gmail.com>
+Date:   Fri Oct 29 01:25:45 2010 +0100
+
+    Updated Catalan (Valencian) translation
+
+ po/ca@valencia.po | 1371 +++++++++++++++++++++++++++++------------------------
+ 1 files changed, 745 insertions(+), 626 deletions(-)
+
+commit 34d2f443093895e1fc5aa4ce189eaeb6981ad415
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Tue Oct 5 22:39:57 2010 +0200
+
+    Updated Basque language
+
+ po/eu.po |  521 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 271 insertions(+), 250 deletions(-)
+
+commit ade4658fe674868592aa5920b2a8af849416960b
+Author: Joan Duran <jodufi@gmail.com>
+Date:   Wed Sep 29 23:43:43 2010 +0200
+
+    Updated Catalan translation
+
+ po/ca.po | 1341 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 715 insertions(+), 626 deletions(-)
+
+commit 682a2f514104d519661cf645412120519c3561a4
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Tue Sep 28 18:44:56 2010 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po |   11 +++++------
+ 1 files changed, 5 insertions(+), 6 deletions(-)
+
+commit ac3eaea752264746865366e992c8c26f4c26cc44
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Tue Sep 28 00:35:57 2010 +0700
+
+    Updated Indonesian translation
+
+ po/id.po |  374 +++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 190 insertions(+), 184 deletions(-)
+
+commit 8378e1160611b2aa64530ada202e77bcb6ab16c9
+Author: Petr Kovar <pknbe@volny.cz>
+Date:   Mon Sep 27 18:37:08 2010 +0200
+
+    Update Czech translation by Marek Cernocky
+
+ po/cs.po |  951 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 516 insertions(+), 435 deletions(-)
+
+commit 4848c43f1dd13edae7a6dfbd456ad70e24aa3e78
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 26 21:03:18 2010 +0200
+
+    Use stable vte 0.26
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
 commit 652e9c55c26b2ca834f8312b2b624225d81ef48b
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sun Sep 26 20:46:10 2010 +0200
