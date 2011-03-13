@@ -7,7 +7,7 @@
       <menu action="FileNewTabProfiles" />
       <separator />
       <menuitem action="FileNewProfile" />
-      <!-- <menuitem action="FileSaveContents" /> -->
+      <menuitem action="FileSaveContents" />
       <separator />
       <menuitem action="FileCloseTab" />
       <menuitem action="FileCloseWindow" />
@@ -30,6 +30,22 @@
       <menuitem action="ViewZoomIn" />
       <menuitem action="ViewZoomOut" />
       <menuitem action="ViewZoom100" />
+    </menu>
+    <menu action="Search">
+      <menuitem action="SearchFind"/>
+      <menuitem action="SearchFindNext"/>
+      <menuitem action="SearchFindPrevious"/>
+      <!--
+      <menuitem action="SearchIncrementalSearch"/>
+      -->
+      <!--
+      <separator/>
+      <menuitem name="SearchClearHighlight" action="SearchClearHighlight"/>
+      -->
+      <!--
+      <separator/>
+      <menuitem name="SearchGoToLineMenu" action="SearchGoToLine"/>
+      -->
     </menu>
     <menu action="Terminal">
       <menu action="TerminalProfiles" />

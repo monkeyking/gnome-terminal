@@ -7,7 +7,7 @@
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * Gnome-terminal is distributed in the hope that it will be useful,
@@ -116,7 +116,8 @@ terminal_util_show_error_dialog (GtkWindow *transient_parent,
     {
       g_return_if_fail (GTK_IS_MESSAGE_DIALOG (*weak_ptr));
 
-      gtk_label_set_text (GTK_LABEL (GTK_MESSAGE_DIALOG (*weak_ptr)->label), message);
+      /* Sucks that there's no direct accessor for "text" property */
+      g_object_set (G_OBJECT (*weak_ptr), "text", message, NULL);
 
       gtk_window_present (GTK_WINDOW (*weak_ptr));
     }
@@ -245,8 +246,6 @@ terminal_util_open_url (GtkWidget *parent,
     case FLAVOR_AS_IS:
       uri = g_strdup (orig_url);
       break;
-    case FLAVOR_SKEY:
-      /* shouldn't get this */
     default:
       uri = NULL;
       g_assert_not_reached ();
@@ -364,7 +363,7 @@ terminal_util_get_licence_text (void)
   const gchar *license[] = {
     N_("GNOME Terminal is free software; you can redistribute it and/or modify "
        "it under the terms of the GNU General Public License as published by "
-       "the Free Software Foundation; either version 2 of the License, or "
+       "the Free Software Foundation; either version 3 of the License, or "
        "(at your option) any later version."),
     N_("GNOME Terminal is distributed in the hope that it will be useful, "
        "but WITHOUT ANY WARRANTY; without even the implied warranty of "
@@ -513,144 +512,6 @@ terminal_util_key_file_get_argv (GKeyFile *key_file,
   return NULL;
 }
 
-/* Why? Because dbus-glib sucks, that's why! */
-
-/**
- * terminal_util_string_to_array:
- * @string:
- *
- * Converts the string @string into a #GArray.
- * 
- * Returns: a newly allocated #GArray containing @string's bytes.
- */
-GArray *
-terminal_util_string_to_array (const char *string)
-{
-  GArray *array;
-  gsize len = 0;
-
-  if (string)
-    len = strlen (string);
-
-  array = g_array_sized_new (FALSE, FALSE, sizeof (guchar), len);
-  return g_array_append_vals (array, string, len);
-}
-
-/**
- * terminal_util_strv_to_array:
- * @argc: the length of @argv
- * @argv: a string array
- *
- * Converts the string array @argv of length @argc into a #GArray.
- * 
- * Returns: a newly allocated #GArray
- */
-GArray *
-terminal_util_strv_to_array (int argc,
-                             char **argv)
-{
-  GArray *array;
-  gsize len = 0;
-  int i;
-  const char nullbyte = 0;
-
-  for (i = 0; i < argc; ++i)
-    len += strlen (argv[i]);
-  if (argc > 0)
-    len += argc - 1;
-
-  array = g_array_sized_new (FALSE, FALSE, sizeof (guchar), len);
-
-  for (i = 0; i < argc; ++i) {
-    g_array_append_vals (array, argv[i], strlen (argv[i]));
-    if (i < argc)
-      g_array_append_val (array, nullbyte);
-  }
-
-  return array;
-}
-
-/**
- * terminal_util_array_to_string:
- * @array:
- * @error: a #GError to fill in
- *
- * Converts @array into a string.
- * 
- * Returns: a newly allocated string, or %NULL on error
- */
-char *
-terminal_util_array_to_string (const GArray *array,
-                               GError **error)
-{
-  char *string;
-  g_return_val_if_fail (array != NULL, NULL);
-
-  string = g_strndup (array->data, array->len);
-
-  /* Validate */
-  if (strlen (string) < array->len) {
-    g_set_error_literal (error,
-                         g_quark_from_static_string ("terminal-error"),
-                         0,
-                         "String is shorter than claimed");
-    return NULL;
-  }
-
-  return string;
-}
-
-/**
- * terminal_util_array_to_strv:
- * @array:
- * @argc: a location to store the length of the returned string array
- * @error: a #GError to fill in
- *
- * Converts @array into a string.
- * 
- * Returns: a newly allocated string array of length *@argc, or %NULL on error
- */
-char **
-terminal_util_array_to_strv (const GArray *array,
-                             int *argc,
-                             GError **error)
-{
-  GPtrArray *argv;
-  const char *data, *nullbyte;
-  gssize len;
-
-  g_return_val_if_fail (array != NULL, NULL);
-
-  if (array->len == 0 || array->len > G_MAXSSIZE) {
-    *argc = 0;
-    return NULL;
-  }
-
-  argv = g_ptr_array_new ();
-
-  len = array->len;
-  data = array->data;
-
-  do {
-    gsize string_len;
-
-    nullbyte = memchr (data, '\0', len);
-
-    string_len = nullbyte ? (gsize) (nullbyte - data) : len;
-    g_ptr_array_add (argv, g_strndup (data, string_len));
-
-    len -= string_len + 1;
-    data += string_len + 1;
-  } while (len > 0);
-
-  if (argc)
-    *argc = argv->len;
-
-  /* NULL terminate */
-  g_ptr_array_add (argv, NULL);
-  return (char **) g_ptr_array_free (argv, FALSE);
-}
-
 /* Proxy stuff */
 
 static char *
@@ -719,46 +580,42 @@ static void
 setup_http_proxy_env (GHashTable *env_table,
                       GConfClient *conf)
 {
-  gchar *host, *auth = NULL;
+  gchar *host;
   gint port;
   GSList *ignore;
 
   if (!gconf_client_get_bool (conf, CONF_HTTP_PROXY_PREFIX "/use_http_proxy", NULL))
     return;
 
-  if (gconf_client_get_bool (conf, CONF_HTTP_PROXY_PREFIX "/use_authentication", NULL))
-    {
-      char *user, *password;
-      user = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_user");
-      password = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_password");
-      if (user)
-	{
-	  if (password)
-	    {
-	      auth = g_strdup_printf ("%s:%s", user, password);
-	      g_free (user);
-	    }
-	  else
-	    auth = user;
-	}
-      g_free (password);
-    }
-
   host = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/host");
   port = gconf_client_get_int (conf, CONF_HTTP_PROXY_PREFIX "/port", NULL);
   if (host && port)
     {
-      char *proxy;
-      if (auth)
-	proxy = g_strdup_printf ("http://%s@%s:%d/", auth, host, port);
-      else
-	proxy = g_strdup_printf ("http://%s:%d/", host, port);
-      set_proxy_env (env_table, "http_proxy", proxy);
+      GString *buf = g_string_sized_new (64);
+      g_string_append (buf, "http://");
+
+      if (gconf_client_get_bool (conf, CONF_HTTP_PROXY_PREFIX "/use_authentication", NULL))
+	{
+	  char *user, *password;
+	  user = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_user");
+	  if (user)
+	    {
+	      g_string_append_uri_escaped (buf, user, NULL, TRUE);
+	      password = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_password");
+	      if (password)
+		{
+		  g_string_append_c (buf, ':');
+		  g_string_append_uri_escaped (buf, password, NULL, TRUE);
+		  g_free (password);
+		}
+	      g_free (user);
+	      g_string_append_c (buf, '@');
+	    }
+	}
+      g_string_append_printf (buf, "%s:%d/", host, port);
+      set_proxy_env (env_table, "http_proxy", g_string_free (buf, FALSE));
     }
   g_free (host);
-
-  g_free (auth);
-
 
   ignore = gconf_client_get_list (conf, CONF_HTTP_PROXY_PREFIX "/ignore_hosts", GCONF_VALUE_STRING, NULL);
   if (ignore)
@@ -793,7 +650,8 @@ setup_https_proxy_env (GHashTable *env_table,
   if (host && port)
     {
       char *proxy;
-      proxy = g_strdup_printf ("https://%s:%d/", host, port);
+      /* Even though it's https, the proxy scheme is 'http'. See bug #624440. */
+      proxy = g_strdup_printf ("http://%s:%d/", host, port);
       set_proxy_env (env_table, "https_proxy", proxy);
     }
   g_free (host);
@@ -811,7 +669,8 @@ setup_ftp_proxy_env (GHashTable *env_table,
   if (host && port)
     {
       char *proxy;
-      proxy = g_strdup_printf ("ftp://%s:%d/", host, port);
+      /* Even though it's ftp, the proxy scheme is 'http'. See bug #624440. */
+      proxy = g_strdup_printf ("http://%s:%d/", host, port);
       set_proxy_env (env_table, "ftp_proxy", proxy);
     }
   g_free (host);
@@ -839,18 +698,18 @@ static void
 setup_autoconfig_proxy_env (GHashTable *env_table,
                             GConfClient *conf)
 {
+  /* XXX  Not sure what to do with this.  See bug #596688.
   gchar *url;
 
   url = conf_get_string (conf, CONF_PROXY_PREFIX "/autoconfig_url");
   if (url)
     {
-      /* XXX  Not sure what to do with it.  See bug 596688
       char *proxy;
       proxy = g_strdup_printf ("pac+%s", url);
       set_proxy_env (env_table, "http_proxy", proxy);
-      */
     }
   g_free (url);
+  */
 }
 
 /**
@@ -1163,15 +1022,25 @@ gboolean
 terminal_util_x11_get_net_wm_desktop (GdkWindow *window,
 				      guint32   *desktop)
 {
-  GdkDisplay *display = gdk_drawable_get_display (window);
+  GdkDisplay *display;
   Atom type;
   int format;
   guchar *data;
   gulong n_items, bytes_after;
   gboolean result = FALSE;
 
+#if GTK_CHECK_VERSION (2, 90, 8)
+  display = gdk_window_get_display (window);
+#else
+  display = gdk_drawable_get_display (window);
+#endif
+
   if (XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
+#if GTK_CHECK_VERSION (2, 91, 6)
+                          GDK_WINDOW_XID (window),
+#else
 			  GDK_DRAWABLE_XID (window),
+#endif
 			  gdk_x11_get_xatom_by_name_for_display (display,
 								 "_NET_WM_DESKTOP"),
 			  0, G_MAXLONG, False, AnyPropertyType,
@@ -1206,12 +1075,20 @@ terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
    * http://bugzilla.gnome.org/show_bug.cgi?id=586311 asks for GTK+
    * to just handle everything behind the scenes including the desktop.
    */
-  GdkScreen *screen = gdk_drawable_get_screen (window);
-  GdkDisplay *display = gdk_screen_get_display (screen);
-  Display *xdisplay = GDK_DISPLAY_XDISPLAY (display);
+  GdkScreen *screen;
+  GdkDisplay *display;
+  Display *xdisplay;
   char *wm_selection_name;
   Atom wm_selection;
   gboolean have_wm;
+
+#if GTK_CHECK_VERSION (2, 90, 8)
+  screen = gdk_window_get_screen (window);
+#else
+  screen = gdk_drawable_get_screen (window);
+#endif
+  display = gdk_screen_get_display (screen);
+  xdisplay = GDK_DISPLAY_XDISPLAY (display);
 
   wm_selection_name = g_strdup_printf ("WM_S%d", gdk_screen_get_number (screen));
   wm_selection = gdk_x11_get_xatom_by_name_for_display (display, wm_selection_name);
@@ -1231,7 +1108,11 @@ terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
       xclient.type = ClientMessage;
       xclient.serial = 0;
       xclient.send_event = True;
+#if GTK_CHECK_VERSION (2, 91, 6)
+      xclient.window = GDK_WINDOW_XID (window);
+#else
       xclient.window = GDK_WINDOW_XWINDOW (window);
+#endif
       xclient.message_type = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_DESKTOP");
       xclient.format = 32;
 
@@ -1242,7 +1123,11 @@ terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
       xclient.data.l[4] = 0;
 
       XSendEvent (xdisplay,
+#if GTK_CHECK_VERSION (2, 91, 6)
+                  GDK_WINDOW_XID (gdk_screen_get_root_window (screen)),
+#else
 		  GDK_WINDOW_XWINDOW (gdk_screen_get_root_window (screen)),
+#endif
 		  False,
 		  SubstructureRedirectMask | SubstructureNotifyMask,
 		  (XEvent *)&xclient);
@@ -1252,7 +1137,11 @@ terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
       gulong long_desktop = desktop;
 
       XChangeProperty (xdisplay,
+#if GTK_CHECK_VERSION (2, 91, 6)
+                       GDK_WINDOW_XID (window),
+#else
 		       GDK_DRAWABLE_XID (window),
+#endif
 		       gdk_x11_get_xatom_by_name_for_display (display,
 							      "_NET_WM_DESKTOP"),
 		       XA_CARDINAL, 32, PropModeReplace,
@@ -1272,15 +1161,26 @@ terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
 void
 terminal_util_x11_clear_demands_attention (GdkWindow *window)
 {
-  GdkScreen *screen = gdk_drawable_get_screen (window);
-  GdkDisplay *display = gdk_screen_get_display (screen);
+  GdkScreen *screen;
+  GdkDisplay *display;
   XClientMessageEvent xclient;
+
+#if GTK_CHECK_VERSION (2, 90, 8)
+  screen = gdk_window_get_screen (window);
+#else
+  screen = gdk_drawable_get_screen (window);
+#endif
+  display = gdk_screen_get_display (screen);
 
   memset (&xclient, 0, sizeof (xclient));
   xclient.type = ClientMessage;
   xclient.serial = 0;
   xclient.send_event = True;
+#if GTK_CHECK_VERSION (2, 91, 6)
+  xclient.window = GDK_WINDOW_XID (window);
+#else
   xclient.window = GDK_WINDOW_XWINDOW (window);
+#endif
   xclient.message_type = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE");
   xclient.format = 32;
 
@@ -1291,7 +1191,11 @@ terminal_util_x11_clear_demands_attention (GdkWindow *window)
   xclient.data.l[4] = 0;
 
   XSendEvent (GDK_DISPLAY_XDISPLAY (display),
+#if GTK_CHECK_VERSION (2, 91, 6)
+              GDK_WINDOW_XID (gdk_screen_get_root_window (screen)),
+#else
 	      GDK_WINDOW_XWINDOW (gdk_screen_get_root_window (screen)),
+#endif
 	      False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      (XEvent *)&xclient);
@@ -1309,7 +1213,13 @@ terminal_util_x11_clear_demands_attention (GdkWindow *window)
 gboolean
 terminal_util_x11_window_is_minimized (GdkWindow *window)
 {
-  GdkDisplay *display = gdk_drawable_get_display (window);
+  GdkDisplay *display;
+
+#if GTK_CHECK_VERSION (2, 90, 8)
+  display = gdk_window_get_display (window);
+#else
+  display = gdk_drawable_get_display (window);
+#endif
 
   Atom type;
   gint format;
@@ -1327,7 +1237,11 @@ terminal_util_x11_window_is_minimized (GdkWindow *window)
                       gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE"),
                       0, G_MAXLONG, False, XA_ATOM, &type, &format, &nitems,
                       &bytes_after, &data);
+#if GTK_CHECK_VERSION (2, 90, 8)
+  gdk_error_trap_pop_ignored ();
+#else
   gdk_error_trap_pop ();
+#endif
 
   if (type != None)
     {

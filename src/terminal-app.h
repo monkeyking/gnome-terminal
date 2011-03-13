@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 3 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,6 +23,7 @@
 
 #include <gtk/gtk.h>
 
+#include "terminal-encoding.h"
 #include "terminal-screen.h"
 #include "terminal-options.h"
 
@@ -34,7 +35,6 @@ G_BEGIN_DECLS
 #define TERMINAL_CONFIG_COMPAT_VERSION      (1) /* Bump this for incompatible changes */
 
 #define TERMINAL_CONFIG_GROUP               "GNOME Terminal Configuration"
-#define TERMINAL_CONFIG_PROP_FACTORY        "FactoryEnabled"
 #define TERMINAL_CONFIG_PROP_VERSION        "Version"
 #define TERMINAL_CONFIG_PROP_COMPAT_VERSION "CompatVersion"
 #define TERMINAL_CONFIG_PROP_WINDOWS        "Windows"
@@ -83,11 +83,9 @@ typedef struct _TerminalApp TerminalApp;
 
 GType terminal_app_get_type (void);
 
-void terminal_app_initialize (gboolean use_factory);
+TerminalApp* terminal_app_get (void);
 
 void terminal_app_shutdown (void);
-
-TerminalApp* terminal_app_get (void);
 
 gboolean terminal_app_handle_options (TerminalApp *app,
                                       TerminalOptions *options,
@@ -96,7 +94,8 @@ gboolean terminal_app_handle_options (TerminalApp *app,
 
 void terminal_app_edit_profile (TerminalApp     *app,
                                 TerminalProfile *profile,
-                                GtkWindow       *transient_parent);
+                                GtkWindow       *transient_parent,
+                                const char      *widget_name);
 
 void terminal_app_new_profile (TerminalApp     *app,
                                TerminalProfile *default_base_profile,
@@ -140,6 +139,9 @@ TerminalProfile* terminal_app_get_default_profile (TerminalApp *app);
 
 /* never returns NULL if any profiles exist, one is always supposed to */
 TerminalProfile* terminal_app_get_profile_for_new_term (TerminalApp *app);
+
+TerminalEncoding *terminal_app_ensure_encoding (TerminalApp *app,
+                                                const char *charset);
 
 GHashTable *terminal_app_get_encodings (TerminalApp *app);
 

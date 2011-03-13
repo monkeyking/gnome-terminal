@@ -298,7 +298,7 @@ text-based commands through a shell such as Bash.
      <sect2 id="gnome-terminal-profiles"> 
         <title>Perfils del terminal</title> 
         <para>Podeu crear un perfil nou i aplicar el perfil nou al terminal actual per a modificar les característiques, com ara el tipus de lletra, color i efectes, comportament del desplaçament, títol de la finestra i compatibilitat. També podeu especificar una ordre que s'executi automàticament quan inicieu el <application>terminal del GNOME</application> en el perfil.</para>
-          <para>Podeu definir cada perfil del terminal en el diàleg <guilabel>Edició del perfil</guilabel>, al qual podeu accedir des del menú <guimenu>Edita</guimenu>. Podeu definir tants perfils com necessiteu. Quan inicieu un terminal, podeu triar el perfil que voleu utilitzar en el terminal. També podeu canviar el perfil del terminal mentre utilitzeu el terminal. Per a especificar un perfil inicial pel terminal quan inicieu l'aplicació des d'un línia d'ordres, utilitzeu l'ordre següent:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>nom del perfil</replaceable></command> 
         </para>
@@ -431,7 +431,8 @@ text-based commands through a shell such as Bash.
                      <para>Trieu <menuchoice><guimenu>Edita</guimenu><guisubmenu>Perfil actual</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Premeu el botó dret del ratolí en la finestra del terminal, després trieu <guimenuitem>Edita el perfila actual</guimenuitem> en el menú emergent.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para>Trieu <menuchoice><guimenu>Edita</guimenu><guisubmenu>Perfils</guisubmenu>, seleccioneu el perfil que voleu editar i cliqueu a <guibutton>Edita</guibutton>. Per a més informació de les opcions que podeu establir en els perfils, vegeu <xref linkend="gnome-terminal-prefs"/>.</menuchoice></para>

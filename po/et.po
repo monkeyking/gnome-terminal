@@ -1,24 +1,25 @@
 # GNOME Terminali eesti keele tõlge.
 # Estonian translation of GNOME Terminal.
 #
-# Copyright (C) 2002, 2004-2006 Free Software Foundation, Inc.
-# Copyright (C) 2007-2010 The GNOME Project
+# Copyright (C) 2002, 2004–2006 Free Software Foundation, Inc.
+# Copyright (C) 2007–2010 The GNOME Project
 # This file is distributed under the same license as the gnome-terminal package.
 #
 # Tõivo Leedjärv <toivo linux ee>, 2002.
-# Priit Laes <amd store20 com>, 2004-2006.
-# Ivar Smolin <okul linux ee>, 2005-2010.
+# Priit Laes <amd store20 com>, 2004–2006.
+# Ivar Smolin <okul linux ee>, 2005–2010.
 # Mattias Põldaru <mahfiaz gmail com>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal 2.30\n"
+"Project-Id-Version: gnome-terminal MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "terminal&component=general\n"
-"POT-Creation-Date: 2010-03-23 23:55+0000\n"
-"PO-Revision-Date: 2010-04-03 12:09+0300\n"
+"POT-Creation-Date: 2010-12-12 14:55+0000\n"
+"PO-Revision-Date: 2010-08-30 14:24+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,6 +60,27 @@ msgstr "Terminali kooditabelite lisamine või eemaldamine"
 
 msgid "E_ncodings shown in menu:"
 msgstr "_Menüüs kuvatavad kooditabelid:"
+
+msgid "Find"
+msgstr "Otsi"
+
+msgid "Match _entire word only"
+msgstr "Kogu sõ_na peab vastavuses olema"
+
+msgid "Match as _regular expression"
+msgstr "Vastavus _regulaaravaldisele"
+
+msgid "Search _backwards"
+msgstr "Otsitakse tagantpoolt _ettepoole"
+
+msgid "_Match case"
+msgstr "_Tõstutundlik"
+
+msgid "_Search for:"
+msgstr "_Otsitav tekst:"
+
+msgid "_Wrap around"
+msgstr "_Lõppu (või algusese) jõudmisel otsingut ei katkestata"
 
 msgid ""
 "A subset of possible encodings are presented in the Encoding submenu. This "
@@ -186,11 +208,6 @@ msgstr "Taustapildi faili nimi."
 msgid "Font"
 msgstr "Kirjatüüp"
 
-#. Translators: S/Key is the name of an application, so it should
-#. not be translated.
-msgid "Highlight S/Key challenges"
-msgstr "S/Key väljakutsete esiletõstmine"
-
 msgid "How much to darken the background image"
 msgstr "Kui palju peab taustapilti tumendama"
 
@@ -235,6 +252,13 @@ msgid ""
 msgstr ""
 "Kui märgitud, siis terminal ei reageeri piiksu tegemiseks mõeldud "
 "koodijadale."
+
+msgid ""
+"If true, newly created terminal windows will have custom size specified by "
+"default_size_columns and default_size_rows."
+msgstr ""
+"Kui märgitud, siis luuakse uued terminaliaknad võtmetes default_size_columns "
+"ja default_size_rows määratud suurusega."
 
 msgid "If true, pressing a key jumps the scrollbar to the bottom."
 msgstr "Kui märgitud, siis klahvivajutusel hüpatakse kerimisriba allaossa."
@@ -535,7 +559,7 @@ msgid ""
 "the special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
 msgstr ""
-"Klaviatuuri kiirklahv teminali puhastamiseks ja algväärtustamiseks. "
+"Klaviatuuri kiirklahv terminali tühjendamiseks ja lähtestamiseks. "
 "Väljendatakse samasuguses vormingus nagu GTK+ abifailides kasutatakse. Kui "
 "seada selle valiku väärtuseks \"keelatud\", siis selle tegevuse jaoks "
 "kiirklahvi ei ole."
@@ -546,7 +570,7 @@ msgid ""
 "special string \"disabled\", then there will be no keyboard shortcut for "
 "this action."
 msgstr ""
-"Klaviatuuri kiirklahv teminali algväärtustamiseks. Väljendatakse samasuguses "
+"Klaviatuuri kiirklahv terminali lähtestamiseks. Väljendatakse samasuguses "
 "vormingus nagu GTK+ abifailides kasutatakse. Kui seada selle valiku "
 "väärtuseks \"keelatud\", siis selle tegevuse jaoks kiirklahvi ei ole."
 
@@ -635,10 +659,10 @@ msgid "Keyboard shortcut to paste text"
 msgstr "Kiirklahv teksti asetamiseks"
 
 msgid "Keyboard shortcut to reset and clear the terminal"
-msgstr "Kiirklahv terminali puhastamiseks ja algsätete seadmiseks"
+msgstr "Kiirklahv terminali tühjendamiseks ja algsätete taastamiseks"
 
 msgid "Keyboard shortcut to reset the terminal"
-msgstr "Kiirklahv terminali algseadistamiseks"
+msgstr "Kiirklahv terminali algsätete taastamiseks"
 
 msgid "Keyboard shortcut to save the current tab contents to file"
 msgstr "Kiirklahv avatud kaardi sisu salvestamiseks faili"
@@ -716,14 +740,22 @@ msgstr ""
 "gtkrc abil (gtk-menu-bar-accel = \"misiganes\"). Selle võtme abil saab "
 "standardset menüüriba kiirklahvi keelata."
 
-msgid "Number of columns in newly created terminal windows."
-msgstr "Uute akende veergude arv."
+msgid ""
+"Number of columns in newly created terminal windows. Has no effect if "
+"use_custom_default_size is not enabled."
+msgstr ""
+"Uute akende veergude arv. Toimib ainult juhul, kui use_custom_default_size "
+"on lubatud."
 
 msgid "Number of lines to keep in scrollback"
 msgstr "Tagasikerimise puhvri ridade arv"
 
-msgid "Number of rows in newly created terminal windows."
-msgstr "Uute akende ridade arv."
+msgid ""
+"Number of rows in newly created terminal windows. Has no effect if "
+"use_custom_default_size is not enabled."
+msgstr ""
+"Uute akende ridade arv. Toimib ainult juhul, kui use_custom_default_size on "
+"lubatud."
 
 msgid ""
 "Number of scrollback lines to keep around. You can scroll back in the "
@@ -737,15 +769,6 @@ msgstr ""
 
 msgid "Palette for terminal applications"
 msgstr "Palett terminalirakenduste jaoks"
-
-#. Translators: S/Key is the name of an application, so it should
-#. not be translated.
-msgid ""
-"Popup a dialog when an S/Key challenge response query is detected and "
-"clicked on. Typing a password into the dialog will send it to the terminal."
-msgstr ""
-"Dialoogiakna avamine, kui S/Key väljakutse vastus on tuvastatud ja sellele "
-"on klõpsatud. Dialoogiaknasse sisestatud parool saadetakse terminalile."
 
 msgid "Position of the scrollbar"
 msgstr "Kerimisriba asukoht"
@@ -869,10 +892,10 @@ msgstr ""
 
 msgid ""
 "Where to put the terminal scrollbar. Possibilities are \"left\", \"right\", "
-"and \"disabled\"."
+"and \"hidden\"."
 msgstr ""
 "Terminali kerimisriba asukoht. Võimalikud asukohad on \"left\" (vasakul), "
-"\"right\" (paremal) ja \"disabled\" (keelatud)."
+"\"right\" (paremal) ja \"hidden\" (peidus)."
 
 msgid "Whether an unlimited number of lines should be kept in scrollback"
 msgstr "Kas tagasikerimise puhvris hoitakse piiramatut arvu ridu või mitte"
@@ -936,6 +959,11 @@ msgid "Whether to update login records when launching terminal command"
 msgstr ""
 "Kas terminalikäsu käivitamisel uuendatakse sisselogimise kirjeid või mitte"
 
+msgid "Whether to use custom terminal size for new windows"
+msgstr ""
+"Kas uutel akendel ja kaartidel kasutatakse terminalile kohandatud suurust "
+"või mitte"
+
 msgid "Whether to use the colors from the theme for the terminal widget"
 msgstr "Kas terminalividina jaoks kasutatakse teemast võetud värve või mitte"
 
@@ -987,6 +1015,10 @@ msgstr "Viga käsu analüüsimisel: %s"
 msgid "Editing Profile “%s”"
 msgstr "Profiili „%s“ redigeerimine"
 
+#. Translators: This is the name of a colour scheme
+msgid "Custom"
+msgstr "Oma"
+
 msgid "Images"
 msgstr "Pildid"
 
@@ -1019,8 +1051,8 @@ msgstr "_Põhineb mallil:"
 msgid "<b>Command</b>"
 msgstr "<b>Käsk</b>"
 
-msgid "<b>Foreground, Background, and Bold</b>"
-msgstr "<b>Tekst, taust ja rasvane kiri</b>"
+msgid "<b>Foreground, Background, Bold and Underline</b>"
+msgstr "<b>Tekst, taust ja allajoonitud ning rasvane kiri</b>"
 
 msgid "<b>Palette</b>"
 msgstr "<b>Palett</b>"
@@ -1056,12 +1088,14 @@ msgid ""
 "Automatic\n"
 "Control-H\n"
 "ASCII DEL\n"
-"Escape sequence"
+"Escape sequence\n"
+"TTY Erase"
 msgstr ""
 "Automaatne\n"
 "Control-H\n"
 "ASCII DEL\n"
-"Paojada"
+"Paojada\n"
+"TTY kustutamine"
 
 msgid "Background"
 msgstr "Taust"
@@ -1108,15 +1142,11 @@ msgstr "Ühilduvus"
 msgid "Cursor _shape:"
 msgstr "K_ursori kuju:"
 
-#. Translators: This is the name of a colour scheme
-msgid "Custom"
-msgstr "Oma"
-
 msgid "Custom co_mmand:"
 msgstr "_Oma käsk:"
 
-msgid "Default si_ze:"
-msgstr "_Vaikimisi suurus:"
+msgid "Default size:"
+msgstr "Vaikimisi suurus:"
 
 msgid ""
 "Exit the terminal\n"
@@ -1205,6 +1235,9 @@ msgstr "Terminali kõ_ll"
 msgid "Title and Command"
 msgstr "Pealkiri ja käsk"
 
+msgid "Use custom default terminal si_ze"
+msgstr "Terminali vaikimisi suuruse _kohandamine"
+
 msgid "When command _exits:"
 msgstr "Käsu _lõpetamisel:"
 
@@ -1253,6 +1286,9 @@ msgstr "_Teksti värv:"
 msgid "_Transparent background"
 msgstr "_Läbipaistev taust"
 
+msgid "_Underline color:"
+msgstr "_Allajoonimise värvus:"
+
 msgid "_Unlimited"
 msgstr "Pii_ramatu"
 
@@ -1273,19 +1309,6 @@ msgstr "rida"
 
 msgid "rows"
 msgstr "rida"
-
-msgid "S/Key Challenge Response"
-msgstr "S/Key väljakutse vastus"
-
-msgid "_Password:"
-msgstr "_Parool:"
-
-msgid "The text you clicked on doesn't seem to be a valid S/Key challenge."
-msgstr ""
-"Sinu poolt klõpsatud tekst ei paista olevat korrektne S/Key väljakutse."
-
-msgid "The text you clicked on doesn't seem to be a valid OTP challenge."
-msgstr "Sinu poolt klõpsatud tekst ei paista olevat korrektne OTP väljakutse."
 
 msgid "New Tab"
 msgstr "Uus kaart"
@@ -1327,10 +1350,10 @@ msgid "Set Title"
 msgstr "Pealkirja määramine"
 
 msgid "Reset"
-msgstr "Algväärtustamine"
+msgstr "Lähtestamine"
 
 msgid "Reset and Clear"
-msgstr "Algväärtustamine ja tühjendamine"
+msgstr "Lähtestamine ja tühjendamine"
 
 msgid "Switch to Previous Tab"
 msgstr "Liikumine eelmisele kaardile"
@@ -1428,9 +1451,6 @@ msgstr "Kas kustutada profiil „%s“?"
 msgid "Delete Profile"
 msgstr "Profiili kustutamine"
 
-msgid "User Defined"
-msgstr "Kasutaja kirjeldatud"
-
 #, c-format
 msgid ""
 "You already have a profile called “%s”. Do you want to create another "
@@ -1450,23 +1470,13 @@ msgstr "Profiili \"%s\" pole, kasutatakse vaikimisi profiili\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Lubamatu geomeetriastring \"%s\"\n"
 
-msgid "Could not open link"
-msgstr "Viita pole võimalik avada"
+msgid "User Defined"
+msgstr "Kasutaja kirjeldatud"
 
 #, c-format
 msgid "Failed to parse arguments: %s\n"
 msgstr "Argumente pole võimalik analüüsida: %s\n"
 
-#. Incompatible factory version, fall back, to new instance
-#, c-format
-msgid "Incompatible factory version; creating a new instance.\n"
-msgstr "Ühildumatu factory versioon, luuakse uus instants.\n"
-
-#, c-format
-msgid "Factory error: %s\n"
-msgstr "Factory viga: %s\n"
-
-#. { "UTF-8",	N_("Current Locale") },
 msgid "Western"
 msgstr "Lääne"
 
@@ -1733,11 +1743,25 @@ msgstr "Terminalipõhiste valikute näitamine"
 msgid "Unnamed"
 msgstr "Nimetu"
 
-msgid "There was a problem with the command for this terminal"
-msgstr "Selle terminali käsuga tekkis probleem"
+msgid "_Profile Preferences"
+msgstr "Profiili _eelistused"
+
+msgid "_Relaunch"
+msgstr "_Taaskäivita"
 
 msgid "There was an error creating the child process for this terminal"
 msgstr "Sellele terminalile alamprotsessi loomisel tekkis viga"
+
+#, c-format
+msgid "The child process exited normally with status %d."
+msgstr "Alamprotsess lõpetas normaalselt signaaliga %d."
+
+#, c-format
+msgid "The child process was terminated by signal %d."
+msgstr "Alamprotsess lõpetati signaaliga %d."
+
+msgid "The child process was terminated."
+msgstr "Alamprotsess lõpetati."
 
 msgid "Close tab"
 msgstr "Kaardi sulgemine"
@@ -1755,12 +1779,12 @@ msgstr "Aadressi „%s“ pole võimalik avada"
 msgid ""
 "GNOME Terminal is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
+"Software Foundation; either version 3 of the License, or (at your option) "
 "any later version."
 msgstr ""
 "GNOME Terminal on vaba tarkvara. Te võite seda edasi levitada ja/või muuta "
 "vastavalt GNU Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba "
-"Tarkvara Fondi poolt avaldatud; kas Litsentsi versioon number 2 või "
+"Tarkvara Fondi poolt avaldatud; kas Litsentsi versioon number 3 või "
 "(vastavalt Teie valikule) ükskõik milline hilisem versioon."
 
 msgid ""
@@ -1816,6 +1840,9 @@ msgstr "_Redaktor"
 msgid "_View"
 msgstr "_Vaade"
 
+msgid "_Search"
+msgstr "_Otsing"
+
 msgid "_Terminal"
 msgstr "_Terminal"
 
@@ -1849,6 +1876,25 @@ msgstr "_Kiirklahvid…"
 msgid "Pr_ofile Preferences"
 msgstr "Profiili _eelistused"
 
+#. Search menu
+msgid "_Find..."
+msgstr "_Otsi..."
+
+msgid "Find Ne_xt"
+msgstr "Otsi _uuesti"
+
+msgid "Find Pre_vious"
+msgstr "Otsi _eelmist"
+
+msgid "_Clear Highlight"
+msgstr "_Eemalda esiletõstmine"
+
+msgid "Go to _Line..."
+msgstr "_Hüppa reale..."
+
+msgid "_Incremental Search..."
+msgstr "_Kasvav otsing..."
+
 #. Terminal menu
 msgid "Change _Profile"
 msgstr "Muuda _profiil"
@@ -1860,10 +1906,10 @@ msgid "Set _Character Encoding"
 msgstr "_Määra märkide kooditabel"
 
 msgid "_Reset"
-msgstr "_Algväärtusta"
+msgstr "_Lähtesta"
 
 msgid "Reset and C_lear"
-msgstr "Algväärtusta ja _tühjenda"
+msgstr "Lähtesta ja _tühjenda"
 
 #. Terminal/Encodings menu
 msgid "_Add or Remove…"
@@ -1948,7 +1994,7 @@ msgid ""
 "kill it."
 msgstr ""
 "Terminalis töötab siiamaani vähemalt üks protsess. Terminali sulgemine "
-"kõrvaldab ka protsessi."
+"kõrvaldab ka selle protsessi."
 
 msgid "C_lose Terminal"
 msgstr "Sul_ge terminal"
@@ -1980,7 +2026,7 @@ msgstr ""
 #. *
 #. * Gnome-terminal is free software; you can redistribute it and/or modify
 #. * it under the terms of the GNU General Public License as published by
-#. * the Free Software Foundation; either version 2 of the License, or
+#. * the Free Software Foundation; either version 3 of the License, or
 #. * (at your option) any later version.
 #. *
 #. * Gnome-terminal is distributed in the hope that it will be useful,
@@ -2010,6 +2056,10 @@ msgstr "ASCII DEL"
 #. Translators: This refers to the Delete keybinding option
 msgid "Escape sequence"
 msgstr "Paojada"
+
+#. Translators: This refers to the Delete keybinding option
+msgid "TTY Erase"
+msgstr "TTY puhastamine"
 
 #. Translators: Cursor shape: ...
 msgid "Block"
@@ -2074,3 +2124,29 @@ msgstr "XTerm"
 #. Translators: This is the name of a colour scheme
 msgid "Rxvt"
 msgstr "Rxvt"
+
+#~ msgid "Highlight S/Key challenges"
+#~ msgstr "S/Key väljakutsete esiletõstmine"
+
+#~ msgid ""
+#~ "Popup a dialog when an S/Key challenge response query is detected and "
+#~ "clicked on. Typing a password into the dialog will send it to the "
+#~ "terminal."
+#~ msgstr ""
+#~ "Dialoogiakna avamine, kui S/Key väljakutse vastus on tuvastatud ja "
+#~ "sellele on klõpsatud. Dialoogiaknasse sisestatud parool saadetakse "
+#~ "terminalile."
+
+#~ msgid "S/Key Challenge Response"
+#~ msgstr "S/Key väljakutse vastus"
+
+#~ msgid "_Password:"
+#~ msgstr "_Parool:"
+
+#~ msgid "The text you clicked on doesn't seem to be a valid S/Key challenge."
+#~ msgstr ""
+#~ "Sinu poolt klõpsatud tekst ei paista olevat korrektne S/Key väljakutse."
+
+#~ msgid "The text you clicked on doesn't seem to be a valid OTP challenge."
+#~ msgstr ""
+#~ "Sinu poolt klõpsatud tekst ei paista olevat korrektne OTP väljakutse."

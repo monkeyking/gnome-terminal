@@ -5,7 +5,7 @@
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
+ *  the Free Software Foundation; either version 3, or (at your option)
  *  any later version.
  *
  *  This program is distributed in the hope that it will be useful,
@@ -179,7 +179,7 @@ sync_tab_title (TerminalScreen *screen,
 
 static void
 notebook_page_added_cb (GtkNotebook *notebook,
-                        GtkWidget *container,
+                        TerminalScreenContainer *container,
 			guint position,
 			TerminalTabsMenu *menu)
 {
@@ -227,7 +227,7 @@ notebook_page_added_cb (GtkNotebook *notebook,
 
 static void
 notebook_page_removed_cb (GtkNotebook *notebook,
-                          GtkWidget *container,
+                          TerminalScreenContainer *container,
 			  guint position,
 			  TerminalTabsMenu *menu)
 {
@@ -265,15 +265,23 @@ notebook_page_reordered_cb (GtkNotebook *notebook,
 
 static void
 notebook_page_switch_cb (GtkNotebook *notebook,
-                         GtkNotebookPage *page,
+#if GTK_CHECK_VERSION (2, 90, 6)
+                         GtkWidget *page,
+#else
+                         gpointer page,
+#endif
                          guint position,
                          TerminalTabsMenu *menu)
 {
-        GtkWidget *container;
+        TerminalScreenContainer *container;
         TerminalScreen *screen;
         GtkAction *action;
 
-        container = gtk_notebook_get_nth_page (notebook, position);
+#if GTK_CHECK_VERSION (2, 90, 6)
+        container = TERMINAL_SCREEN_CONTAINER (page);
+#else
+        container = TERMINAL_SCREEN_CONTAINER (gtk_notebook_get_nth_page (notebook, position));
+#endif
         screen = terminal_screen_container_get_screen (container);
 
 	action = g_object_get_data (G_OBJECT (screen), DATA_KEY);
@@ -292,7 +300,7 @@ connect_proxy_cb (GtkActionGroup *action_group,
 	{
 		GtkLabel *label;
 
-		label = GTK_LABEL (GTK_BIN (proxy)->child);
+		label = GTK_LABEL (gtk_bin_get_child (GTK_BIN (proxy)));
 
 		gtk_label_set_use_underline (label, FALSE);
 		gtk_label_set_ellipsize (label, PANGO_ELLIPSIZE_END);
@@ -459,7 +467,7 @@ terminal_tabs_menu_update (TerminalTabsMenu *menu)
 
 	for (l = tabs; l != NULL; l = l->next)
 	{
-                GtkWidget *container = l->data;
+                TerminalScreenContainer *container = TERMINAL_SCREEN_CONTAINER (l->data);
                 GObject *screen = G_OBJECT (terminal_screen_container_get_screen (container));
 
 		action = g_object_get_data (screen, DATA_KEY);
