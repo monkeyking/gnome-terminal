@@ -3,7 +3,7 @@
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * Gnome-terminal is distributed in the hope that it will be useful,
@@ -28,6 +28,8 @@ N_("Control-H")
 N_("ASCII DEL")
 /* Translators: This refers to the Delete keybinding option */
 N_("Escape sequence")
+/* Translators: This refers to the Delete keybinding option */
+N_("TTY Erase")
 
 /* Translators: Cursor shape: ... */
 N_("Block")

@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 3 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -83,13 +83,14 @@ TerminalScreen* terminal_window_get_active (TerminalWindow *window);
 
 GList* terminal_window_list_screen_containers (TerminalWindow *window);
 
+gboolean terminal_window_parse_geometry (TerminalWindow *window,
+					 const char     *geometry);
+
 void terminal_window_update_geometry  (TerminalWindow *window);
 void terminal_window_set_size         (TerminalWindow *window,
-                                       TerminalScreen *screen,
-                                       gboolean        even_if_mapped);
+                                       TerminalScreen *screen);
 void terminal_window_set_size_force_grid (TerminalWindow *window,
                                           TerminalScreen *screen,
-                                          gboolean        even_if_mapped,
                                           int             force_grid_width,
                                           int             force_grid_height);
 
