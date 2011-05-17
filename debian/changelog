@@ -1,3 +1,27 @@
+gnome-terminal (3.0.0-2ubuntu1) oneiric; urgency=low
+
+  [ Raphaël Hertzog ]
+  * Add lintian overrides for menu-icon-missing.
+
+  [ Rodrigo Moya ]
+  * Rebase on Debian and the GNOME3 PPA (Thanks to Rico Tzschichholz).
+    Remaining Ubuntu-specific changes:
+  * debian/control:
+    - Build-Depend on liblaunchpad-integration-3.0-dev, dh-autoreconf and gnome-common
+    - Replaces: gnome-terminal-data (<< 2.28.1-1ubuntu1)
+  * debian/patches/01_lpi.patch:
+    - Launchpad integration patch
+  * debian/patches/02_add_transparency_properties.patch:
+    - Allow background transparency to be controlled from the GTK theme. Needs rebase
+  * debian/patches/20_add_alt_screen_toggle_ui.patch:
+    - Hook new vte alternate screen scrolling toggle via UI
+  * debian/rules:
+    - Include autoreconf.mk
+  * debian/watch:
+    - Allow retrieving of unstable releases
+
+ -- Rodrigo Moya <rodrigo.moya@canonical.com>  Tue, 17 May 2011 16:17:22 +0200
+
 gnome-terminal (3.0.0-1) experimental; urgency=low
 
   * New upstream release.
