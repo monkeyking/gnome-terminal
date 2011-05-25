@@ -1,3 +1,47 @@
+commit f67e552374025f58c4da8b497fc92f9937ef08b0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Apr 7 22:53:38 2011 +0200
+
+    Use gsettings for proxy settings
+    
+    It sucks to construct four GSettings object to just get a few settings
+    and then immediately dispose them again, but the fix for that depends on
+    fixes that exist only in my glib gsettingslist branch.
+    
+    Bug #647077.
+
+ src/terminal-app.c  |   25 ++++--
+ src/terminal-app.h  |    2 +
+ src/terminal-util.c |  230 ++++++++++++++++++++-------------------------------
+ 3 files changed, 110 insertions(+), 147 deletions(-)
+
+commit 009f13ae07fcb8bdef373ff55cc4a5abcb8d8216
+Author: Arash Mousavi <amousavi@src.gnome.org>
+Date:   Sun Apr 24 17:32:36 2011 +0430
+
+    Updated Persian translation
+
+ po/fa.po |  424 +++++++++++++++++++++++++++++++++++++++++++++-----------------
+ 1 files changed, 307 insertions(+), 117 deletions(-)
+
+commit 71c8bce5057baab4b0a849d33127666e706ef94c
+Author: Baris Cicek <baris@teamforce.name.tr>
+Date:   Thu Apr 7 03:21:47 2011 +0300
+
+    Updated Turkish translation
+
+ po/tr.po | 1145 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 661 insertions(+), 484 deletions(-)
+
+commit 71385e688f0237d9eb7c4fb4eb7686406ee63b27
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Apr 4 14:10:48 2011 +0200
+
+    Post release version bump
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
 commit 54f6c5dee2a273d571d294c977ae1a1571386358
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 4 13:48:42 2011 +0200
