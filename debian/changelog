@@ -1,3 +1,27 @@
+gnome-terminal (3.2.1-2ubuntu1) precise; urgency=low
+
+  [ Rico Tzschichholz ]
+  * Sync with debian, remaining changes:
+    - debian/control:
+      + Build-Depend on liblaunchpad-integration-3.0-dev, dh-autoreconf
+        and gnome-common
+    - debian/patches:
+      + 01_lpi.patch: Launchpad integration patch
+      + 01_onlyshowin.patch: Add Unity to OnlyShowIn value (LP: #803519)
+      + 02_add_transparency_properties.patch: Allow background
+        transparency to be controlled from the GTK theme. Needs rebase
+      + 20_add_alt_screen_toggle_ui.patch: Hook new vte
+        alternate screen scrolling toggle via UI
+      + 50_add_unity_quicklist.patch: Add unity quicklist support
+    - debian/rules: Include autoreconf.mk
+    - debian/watch: Allow retrieving of unstable releases
+
+  [ Martin Pitt ]
+  * debian/watch: Look for tar.xz tarballs.
+  * debian/watch: Fix syntax.
+
+ -- Rico Tzschichholz <ricotz@ubuntu.com>  Thu, 15 Dec 2011 15:07:34 +0100
+
 gnome-terminal (3.2.1-2) unstable; urgency=low
 
   * Reintroduce gtk2 build-dependency, it’s required for 
