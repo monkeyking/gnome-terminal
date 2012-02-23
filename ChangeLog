@@ -1,22 +1,204 @@
-commit 183ed4d67348ea8525fb7b19cb02f047cd38459f
+commit b9a15a39022614ed284328b6563065cf013aa330
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 6 21:00:57 2012 +0100
+
+    Version 3.3.0
+
+ NEWS |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
+
+commit 134c74a47120223e31c58ca6f8e2ce5345b767f8
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Feb 6 11:45:51 2012 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 2100 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 1058 insertions(+), 1042 deletions(-)
+
+commit 1ce8163db217d59675b1cd81fff0bdd8777a2435
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Mon Jan 30 19:34:06 2012 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  690 ++++++++++++++++++++---------------------------------------
+ po/zh_TW.po |  691 ++++++++++++++++++++---------------------------------------
+ 2 files changed, 459 insertions(+), 922 deletions(-)
+
+commit 3107195b815430aecd2158a56b283ec81feb109d
+Author: Alexander Larsson <alexl@redhat.com>
+Date:   Fri Jan 27 08:46:08 2012 +0100
+
+    Add runtime checks for X11 specific code
+    
+    With this in place things work with the broadway backend too.
+
+ src/terminal-screen.c |   17 ++++++++---------
+ src/terminal-window.c |   29 ++++++++---------------------
+ src/terminal.c        |    9 ++++++++-
+ 3 files changed, 24 insertions(+), 31 deletions(-)
+
+commit 32b87be1e1d1fea0b872cc0c916dade6dff6c712
+Author: Alexander Larsson <alexl@redhat.com>
+Date:   Wed Jan 25 14:08:58 2012 +0100
+
+    Make eggsmclient work on non-X backends
+    
+    This cherry picks commit 7ceb9c1fb72f21f8887d25bbba1360b8ed56a0a7 from
+    libegg.
+
+ src/eggsmclient-xsmp.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 81e396aff4d1713cd6ab33cd5728dfdbb542df5c
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Mon Jan 23 13:52:10 2012 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 2063 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 1039 insertions(+), 1024 deletions(-)
+
+commit 75aa5d3cb78fd43278d2b425766f1648152d194d
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sat Jan 21 21:03:35 2012 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po |  454 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 234 insertions(+), 220 deletions(-)
+
+commit 5fb06b7df877af6fffbcae91effc4d5b7f3ea196
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Sat Jan 21 11:58:16 2012 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 5815 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 2917 insertions(+), 2898 deletions(-)
+
+commit 19d4db4166699eb6bb9aa0fff729cfd9e9f4b149
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jan 20 22:21:25 2012 +0100
+
+    Add 'encoding' profile setting
+    
+    No UI yet, and won't get UI for 3.4.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=108711
+
+ src/gnome-terminal.schemas.in |   15 +++++++++++++++
+ src/terminal-app.c            |   11 ++++++++---
+ src/terminal-profile.c        |   17 +++++++++++++++++
+ src/terminal-profile.h        |    1 +
+ src/terminal-screen.c         |    9 +++++++++
+ 5 files changed, 50 insertions(+), 3 deletions(-)
+
+commit 872750f8a2daca10383a82157f90d6c7231d3453
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jan 20 21:40:55 2012 +0100
+
+    Use new gtk workarea API
+
+ src/terminal-window.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 163f16e2279f4cefc5fd6147a7eed46100dda0f3
+Author: Milo Casagrande <milo@ubuntu.com>
+Date:   Thu Jan 12 18:10:35 2012 +0100
+
+    [l10n] Updated Italian translation
+    
+    	* Applied patch from Jiro, fixes bug 667769
+
+ help/it/it.po |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit c7b4f39e03fd0aca8539d36f8f68d8a894e57c8b
+Author: Jovan Naumovski <jovan3.14@gmail.com>
+Date:   Wed Jan 11 19:59:21 2012 +0100
+
+    Updated Macedonian translation.
+
+ po/mk.po | 4242 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 2177 insertions(+), 2065 deletions(-)
+
+commit 2f4e4d2a57e8ad2737a52672ff92927f9be2ebda
+Author: Praveen Illa <mail2ipn@gmail.com>
+Date:   Fri Jan 6 00:19:03 2012 +0530
+
+    Updated Telugu Translation
+
+ po/te.po | 1224 ++++++++++++++++++++------------------------------------------
+ 1 files changed, 394 insertions(+), 830 deletions(-)
+
+commit 72390476a677edc9ffbfb548a8d7bf699d8ff095
+Author: Xandru Armesto <xandru@softastur.org>
+Date:   Tue Dec 20 18:05:15 2011 +0100
+
+    Updated asturian translation
+
+ po/ast.po | 1696 ++++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 1008 insertions(+), 688 deletions(-)
+
+commit 9557a515601c299273b719c434a195969255f64f
+Author: Shankar Prasad <svenkate@redhat.com>
+Date:   Fri Dec 9 16:32:43 2011 +0530
+
+    Updated Kannada Translations to fix the translation issue reported in the Bug 571924
+
+ po/kn.po |  316 ++++++++++++++++++++++++++++++++++++++++---------------------
+ 1 files changed, 207 insertions(+), 109 deletions(-)
+
+commit 2264a2c5d56037edeb98db214547d10ecd8a725d
+Author: Mattias Põldaru <mahfiaz@gmail.com>
+Date:   Sat Nov 12 12:50:24 2011 +0200
+
+    [l10n] Updated Estonian translation
+
+ po/et.po |   28 ++++++++++++++--------------
+ 1 files changed, 14 insertions(+), 14 deletions(-)
+
+commit 4d04f7c81ea4bea933303007aabae5e72dd8aaf9
+Author: Andre Klapper <a9016009@gmx.de>
+Date:   Tue Nov 8 11:22:59 2011 +0100
+
+    Mark strings with broken translations as fuzzy
+
+ po/dz.po | 4489 ++++++++++++++++++++++++++++++++++++++------------------------
+ po/kn.po |  957 +++++++-------
+ po/te.po |    8 +-
+ 3 files changed, 3227 insertions(+), 2227 deletions(-)
+
+commit 198a81a4e5f7d2f48eab028e90155e43439ab3b2
+Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date:   Mon Oct 24 01:35:51 2011 +0300
+
+    Updated Belarusian translation.
+
+ po/be.po |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 2a696af461abcc01a1e35d7d0ae880b34c39e210
 Author: krishnababu k <kkrothap@redhat.ocm>
-Date:   Mon Oct 10 17:31:51 2011 +0530
+Date:   Mon Oct 10 17:30:17 2011 +0530
+
+    Updated Telugu Translations
+
+ po/te.po |   12 +++++-------
+ 1 files changed, 5 insertions(+), 7 deletions(-)
+
+commit 2932d425b29e8d37350a35e707408d8f712417c0
+Author: krishnababu k <kkrothap@redhat.ocm>
+Date:   Mon Oct 10 17:02:22 2011 +0530
 
     Updated Telugu Translations
 
  po/te.po |  857 +++++++++++++++++++++++++++++++-------------------------------
  1 files changed, 426 insertions(+), 431 deletions(-)
 
-commit fa1d2930a16adde14b145960619c1427a0480b5d
-Author: Daniel Korostil <ted.korostiled@gmail.com>
-Date:   Wed Sep 28 16:14:45 2011 +0300
-
-    Uploaded Ukranian
-
- po/uk.po |  172 +++++++++++++++++++++++++++++++------------------------------
- 1 files changed, 87 insertions(+), 85 deletions(-)
-
-commit 20c0691b3260f4141fc9f02da40c03d0f1b8dd4f
+commit 527699e5b20443cde03ecb6660ba2b23231fe3c0
 Author: Fran Dieguez <fran@openhost.es>
 Date:   Tue Sep 27 16:17:16 2011 +0200
 
@@ -26,7 +208,7 @@ Date:   Tue Sep 27 16:17:16 2011 +0200
  help/gl/gl.po    | 1691 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
  2 files changed, 1692 insertions(+), 1 deletions(-)
 
-commit 4a304d95a0235fdea5fd421dfb442b7fcdf6dcce
+commit 55e4330512b82b5d4766d228032418bf874d1691
 Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
 Date:   Tue Sep 27 02:52:36 2011 +0200
 
@@ -36,62 +218,52 @@ Date:   Tue Sep 27 02:52:36 2011 +0200
  po/sr@latin.po | 1189 +++++++++++++++++++++++++++----------------------------
  2 files changed, 1168 insertions(+), 1218 deletions(-)
 
-commit 650872a90817be8080f424b58102faabf50d2113
+commit f1db226f73f4fb2251e4b2e15641f3b19fe540e8
 Author: Carles Ferrando <carles.ferrando@gmail.com>
-Date:   Mon Sep 26 14:38:07 2011 +0200
+Date:   Mon Sep 26 14:38:18 2011 +0200
 
     [l10n]Updated Catalan (Valencian) translation
 
- po/ca@valencia.po |   62 ++++++++++++++++++++++++++--------------------------
- 1 files changed, 31 insertions(+), 31 deletions(-)
+ po/ca@valencia.po |   56 ++++++++++++++++++++++++++--------------------------
+ 1 files changed, 28 insertions(+), 28 deletions(-)
 
-commit c20db898646cec424581b7f418bf8c1218988a41
+commit 7d9a096a15f005326329300d4b11ca65d475347b
 Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Sep 26 14:38:14 2011 +0200
+Date:   Mon Sep 26 14:38:36 2011 +0200
 
-    Post release version bump
+    Post branch version bump
 
  configure.ac |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)
 
-commit c1bb1e1615d7d7269ecab1f5780d9e1e9e520a77
-Author: Christian Persch <chpe@gnome.org>
-Date:   Sat Sep 24 23:18:46 2011 +0200
-
-    Version 3.2.0
-
- NEWS         |    6 +++++-
- configure.ac |    4 ++--
- 2 files changed, 7 insertions(+), 3 deletions(-)
-
-commit 64c37839f4e41b1cf33c22240c86e7d08c616b94
+commit 55d9d194df5e3a75f1a2b10c7312dbf7c6e4c139
 Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
-Date:   Sun Sep 25 13:11:41 2011 +0200
+Date:   Sun Sep 25 13:10:56 2011 +0200
 
     Updated Basque language
 
- po/eu.po |  209 ++++++++++++++++++++++++++++++++------------------------------
- 1 files changed, 107 insertions(+), 102 deletions(-)
+ po/eu.po |  203 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 104 insertions(+), 99 deletions(-)
 
-commit d47de4f2577a6d5c1a93b48b7fa32eb390814ba7
-Author: Andika Triwidada <andika@gmail.com>
-Date:   Sun Sep 25 15:50:04 2011 +0700
-
-    Updated Indonesian translation
-
- po/id.po | 1152 +++++++++++++++++++-------------------------------------------
- 1 files changed, 352 insertions(+), 800 deletions(-)
-
-commit 9e4bbbf5b39a0e3c2a7a5649cad7704413040fc2
+commit 50fa26e7830967320aebd61e8ba28ee68ccc4373
 Author: Kenneth Nielsen <k.nielsen81@gmail.com>
-Date:   Sun Sep 25 02:18:02 2011 +0200
+Date:   Sun Sep 25 02:17:29 2011 +0200
 
     Updated Danish translation
 
- po/da.po |  190 +++++++++++++++++++++++++++++++-------------------------------
- 1 files changed, 95 insertions(+), 95 deletions(-)
+ po/da.po |  184 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 92 insertions(+), 92 deletions(-)
 
-commit 5119347bbed3314d8c8c947cddb787b81c701a82
+commit 349bb235ae643015f46c73fa9375f5bc0f0bc8af
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   Sat Sep 24 08:08:03 2011 +0900
+
+    Updated Korean translation
+
+ po/ko.po |   27 ++++++++++-----------------
+ 1 files changed, 10 insertions(+), 17 deletions(-)
+
+commit f50fa65d48d7673d42134991731b0e51a1a17909
 Author: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>
 Date:   Fri Sep 23 21:46:33 2011 +0900
 
@@ -100,7 +272,7 @@ Date:   Fri Sep 23 21:46:33 2011 +0900
  po/ja.po | 1151 +++++++++++++++++++++++++++++---------------------------------
  1 files changed, 537 insertions(+), 614 deletions(-)
 
-commit 366f021760f6fb10af185c2b973635fe63dff291
+commit 0003e29107a8c0ebae9badd4aed6fbb4d290bfeb
 Author: Changwoo Ryu <cwryu@debian.org>
 Date:   Fri Sep 23 05:23:27 2011 +0900
 
@@ -109,25 +281,16 @@ Date:   Fri Sep 23 05:23:27 2011 +0900
  po/ko.po |  742 +++++++++++++++++++++++++++++++-------------------------------
  1 files changed, 374 insertions(+), 368 deletions(-)
 
-commit 503a0efb34106243d2088831344fd63533dc3b27
-Author: Nilamdyuti Goswami <ngoswami@redhat.com>
-Date:   Thu Sep 22 12:25:30 2011 +0200
-
-    Update Assamese translation
-
- po/as.po | 2720 +++++++++++++++++++++++++++-----------------------------------
- 1 files changed, 1202 insertions(+), 1518 deletions(-)
-
-commit 0048826e55f689a0c29f318d7afdca5945265494
+commit 754be5466c918c5c513f5d6372b685f0d6a6e239
 Author: Michal Štrba <faiface2202@gmail.com>
-Date:   Wed Sep 21 23:10:54 2011 +0200
+Date:   Wed Sep 21 23:10:20 2011 +0200
 
     Updated Slovak translation
 
- po/sk.po |  264 ++++++++++++++++++++++++++++++++-----------------------------
- 1 files changed, 138 insertions(+), 126 deletions(-)
+ po/sk.po |  258 ++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 135 insertions(+), 123 deletions(-)
 
-commit 5efd223b32d75276663f4310bc6bf42963097f57
+commit a81494381d873ff7a8f679aec6e8be89e1cb7487
 Author: Gabor Kelemen <kelemeng@gnome.hu>
 Date:   Wed Sep 21 03:14:59 2011 +0200
 
@@ -136,61 +299,52 @@ Date:   Wed Sep 21 03:14:59 2011 +0200
  po/hu.po |  718 +++++++++++++++++++++++++++++---------------------------------
  1 files changed, 340 insertions(+), 378 deletions(-)
 
-commit 0a776ba58c708ce2602043cb8425d905309d5c09
+commit 4b94a6b21c174829c39db5d204e574db37a714cf
 Author: Joe Hansen <joedalton2@yahoo.dk>
-Date:   Mon Sep 19 23:10:11 2011 +0200
+Date:   Mon Sep 19 23:07:40 2011 +0200
 
     Updated Danish translation of the documentation
 
  help/da/da.po |   53 ++++++++++++++++++++++++++++-------------------------
  1 files changed, 28 insertions(+), 25 deletions(-)
 
-commit aa6152a126639cb3b898c7e1e6638e383abc21b6
-Author: Kjartan Maraas <kmaraas@gnome.org>
-Date:   Mon Sep 19 09:58:51 2011 +0200
-
-    Don't depend on non-existing vte versions.
-
- configure.ac |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-commit a08a2faad27aa739a59aefa3281192bdfba1e3ab
+commit 9c900977fe22d0df2dc2a4b832d3ddf007508e17
 Author: Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>
-Date:   Sun Sep 18 14:27:46 2011 +0200
+Date:   Sun Sep 18 14:28:09 2011 +0200
 
     [l10n] Updated German translation
 
  po/de.po | 1058 ++++++++++++++++++++------------------------------------------
  1 files changed, 337 insertions(+), 721 deletions(-)
 
-commit 48a7197bb8277e9facc91659bd5dc63580d0180c
-Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
-Date:   Sat Sep 17 21:09:05 2011 +0700
+commit 4dcb60534556c8ae80cb0d454491945e16b13eaf
+Author: Alexander Shopov <ash@kambanaria.org>
+Date:   Sun Sep 18 07:50:56 2011 +0300
 
     Updated Bulgarian translation
 
- po/bg.po |  689 +++++++++++++++++++++++++++++--------------------------------
- 1 files changed, 328 insertions(+), 361 deletions(-)
+ po/bg.po |  687 +++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 327 insertions(+), 360 deletions(-)
 
-commit 4d74d202c831f371c61b3d9ca75ac7450a48a547
+commit 57faf3082be44601199cde5a4dc14a9075c735a1
 Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
-Date:   Sat Sep 17 21:09:05 2011 +0700
+Date:   Sat Sep 17 21:10:24 2011 +0700
 
     Updated Thai translation.
 
  po/th.po |  210 +++++++++++++++++++++++++++++++-------------------------------
  1 files changed, 105 insertions(+), 105 deletions(-)
 
-commit a781437f9c1effdfef7081951b93dd1434a72e89
+commit 7e3fdb63189469a35228d97b960962c4b4a21da3
 Author: Antonio Fernandes C. Neto <fernandesn@gnome.org>
-Date:   Fri Sep 16 09:18:42 2011 -0400
+Date:   Fri Sep 16 09:17:39 2011 -0400
 
     Updated Brazilian Portuguese translation.
 
  po/pt_BR.po |  721 +++++++++++++++++++++++++++++------------------------------
  1 files changed, 356 insertions(+), 365 deletions(-)
 
-commit c1aafe6ec4e09bfe5d9c161594dbcf66002960fe
+commit 33dbac68648e7e1bb28759cf3edc54bd2fecb18c
 Author: Joan Duran <jodufi@gmail.com>
 Date:   Fri Sep 16 02:43:38 2011 +0200
 
@@ -199,52 +353,14 @@ Date:   Fri Sep 16 02:43:38 2011 +0200
  po/ca.po |  786 +++++++++++++++++++++++++++++++-------------------------------
  1 files changed, 390 insertions(+), 396 deletions(-)
 
-commit e2fc17ee6acbf5df8392f1af2848dcdbfc886868
-Author: dmustieles <daniel.mustieles@gmail.com>
-Date:   Wed Sep 14 18:18:32 2011 +0200
-
-    Updated Spanish translation
-
- help/es/es.po |    8 ++++----
- 1 files changed, 4 insertions(+), 4 deletions(-)
-
-commit 2204b324fe48ce7ebab7338d9bf673487b9d57d6
-Author: dmustieles <daniel.mustieles@gmail.com>
-Date:   Wed Sep 14 17:44:08 2011 +0200
-
-    Updated Spanish translation
-
- po/es.po | 5795 +++++++++++++++++++++++++++++++-------------------------------
- 1 files changed, 2897 insertions(+), 2898 deletions(-)
-
-commit 9575cf1d051b60b921f4b3f76516ce330576418a
+commit 7c30979f8369a857237aaf8362f85e6e8227b75e
 Author: Dr.T.Vasudevan <agnihot3@gmail.com>
-Date:   Tue Sep 13 20:24:32 2011 +0530
+Date:   Tue Sep 13 17:32:27 2011 +0530
 
     updated Tamil translation
 
  po/ta.po |  723 +++++++++++++++++++++++++++++++-------------------------------
  1 files changed, 358 insertions(+), 365 deletions(-)
-
-commit 8e64f5e5a36a6580101499dd99dcf518e6083be3
-Author: Christian Persch <chpe@gnome.org>
-Date:   Tue Sep 13 13:11:16 2011 +0200
-
-    Only display monospace fonts
-    
-    When choosing a terminal font, only show the monospace ones.
-
- src/profile-editor.c |   15 +++++++++++++++
- 1 files changed, 15 insertions(+), 0 deletions(-)
-
-commit f61451861914e49745a9231bb38d602a73ee6b5b
-Author: Christian Persch <chpe@gnome.org>
-Date:   Tue Sep 13 13:06:02 2011 +0200
-
-    Drop gtk2
-
- configure.ac |   15 +++++----------
- 1 files changed, 5 insertions(+), 10 deletions(-)
 
 commit 23554a23ca09d80f373c4bd100291a1bbf2826ae
 Author: Yinghua Wang <wantinghard@gmail.com>
