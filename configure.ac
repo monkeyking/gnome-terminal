@@ -92,6 +92,7 @@ PKG_CHECK_MODULES([TERM],
    gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
    gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
+   launchpad-integration-3.0
    $PLATFORM_DEPS])
 
 # ********
