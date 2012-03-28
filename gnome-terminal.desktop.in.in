@@ -13,9 +13,10 @@ X-GNOME-Bugzilla-Version=@VERSION@
 Categories=GNOME;GTK;Utility;TerminalEmulator;
 StartupNotify=true
 OnlyShowIn=GNOME;Unity;
-X-Ayatana-Desktop-Shortcuts=New
+_Keywords=Run;
+Actions=New
 
-[New Shortcut Group]
+[Desktop Action New]
 _Name=New Terminal
 Exec=gnome-terminal
-TargetEnvironment=Unity
+OnlyShowIn=Unity
