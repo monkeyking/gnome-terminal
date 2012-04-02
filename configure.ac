@@ -1,7 +1,7 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[2])
-m4_define([gt_version_micro],[1])
-m4_define([gt_version_extra],[])
+m4_define([gt_version_minor],[4])
+m4_define([gt_version_micro],[0])
+m4_define([gt_version_extra],[.1])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
 m4_define([gt_api_version],[0])
@@ -34,8 +34,6 @@ IT_PROG_INTLTOOL([0.40.0])
 
 GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
-GNOME_COMPILE_WARNINGS([maximum])
-#GNOME_MAINTAINER_MODE_DEFINES
 
 AM_GLIB_GNU_GETTEXT
 
@@ -162,6 +160,10 @@ AC_SUBST([TERMINAL_MAJOR_VERSION],[gt_version_major])
 AC_SUBST([TERMINAL_MINOR_VERSION],[gt_version_minor])
 AC_SUBST([TERMINAL_MICRO_VERSION],[gt_version_micro])
 AC_SUBST([TERMINAL_API_VERSION],[gt_api_version])
+
+AC_SUBST([AM_CPPFLAGS],"$AM_CPPFLAGS -DGLIB_DISABLE_DEPRECATION_WARNINGS"])
+AC_SUBST([AM_CFLAGS])
+AC_SUBST([AM_LDFLAGS])
 
 # ****************************
 
