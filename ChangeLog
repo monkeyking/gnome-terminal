@@ -1,3 +1,152 @@
+commit 416b9155a8bd9020cc00d792457d4f516893edf9
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   Fri Aug 17 04:03:07 2012 +0300
+
+    Updated Greek help translation
+
+ help/el/el.po | 1167 ++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 625 insertions(+), 542 deletions(-)
+
+commit 86b476aed14de1503c4a6e1b222e98eaebdeb9e5
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   Fri Aug 17 03:52:23 2012 +0300
+
+    Updated Greek translation
+
+ po/el.po | 2333 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 1174 insertions(+), 1159 deletions(-)
+
+commit 19d2862ad4112edba426fdc780079cd09533b939
+Author: Javier Jardón <jjardon@gnome.org>
+Date:   Fri Aug 17 01:57:00 2012 +0900
+
+    Port to new documentation infrastructure
+    
+    Use yelp-tools instead gnome-doc-utils
+
+ Makefile.am                                   |    6 -
+ autogen.sh                                    |    1 -
+ configure.ac                                  |    8 +-
+ help/C/{gnome-terminal.xml => index.docbook}  |    4 +-
+ help/C/legal.xml                              |    4 +-
+ help/Makefile.am                              |   20 +-
+ help/bg/Makefile.am                           |   10 -
+ help/bg/figures/gnome-terminal-default.png    |  Bin 17871 -> 0 bytes
+ help/bg/figures/gnome-terminal-tabbed.png     |  Bin 23057 -> 0 bytes
+ help/bg/gnome-terminal-bg.omf                 |   18 -
+ help/bg/gnome-terminal.xml                    |  943 -----------------
+ help/bg/legal.xml                             |    9 -
+ help/gnome-terminal.omf.in                    |    9 -
+ help/ja/Makefile.am                           |   10 -
+ help/ja/figures/gnome-terminal-default.png    |  Bin 9267 -> 0 bytes
+ help/ja/figures/gnome-terminal-tabbed.png     |  Bin 11765 -> 0 bytes
+ help/ja/gnome-terminal-ja.omf                 |   35 -
+ help/ja/gnome-terminal.xml                    | 1388 ------------------------
+ help/ja/legal.xml                             |   47 -
+ help/ro/Makefile.am                           |   10 -
+ help/ro/figures/gnome-terminal-default.png    |  Bin 8503 -> 0 bytes
+ help/ro/figures/gnome-terminal-tabbed.png     |  Bin 8571 -> 0 bytes
+ help/ro/gnome-terminal-ro.omf                 |   35 -
+ help/ro/gnome-terminal.xml                    | 1403 -------------------------
+ help/ro/legal.xml                             |   70 --
+ help/zh_TW/Makefile.am                        |   10 -
+ help/zh_TW/figures/gnome-terminal-default.png |  Bin 10085 -> 0 bytes
+ help/zh_TW/figures/gnome-terminal-tabbed.png  |  Bin 10175 -> 0 bytes
+ help/zh_TW/gnome-terminal-zh_TW.omf           |   35 -
+ help/zh_TW/gnome-terminal.xml                 | 1212 ---------------------
+ help/zh_TW/legal.xml                          |   54 -
+ src/terminal-util.c                           |    4 +-
+ 32 files changed, 18 insertions(+), 5327 deletions(-)
+
+commit 796ad2d9bdfe494b8e0d0a85110d4a5249db7f18
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Aug 16 20:01:53 2012 +0200
+
+    Post branch version bump
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 5f731188557fb244edd485d2cdf907ab8ad02dc7
+Author: Dirgita <dirgitadevina@yahoo.co.id>
+Date:   Sat Aug 11 10:50:08 2012 +0700
+
+    Updated Indonesian translation
+
+ po/id.po | 1945 ++++++++++++++++++++++++++++++++++++++------------------------
+ 1 files changed, 1205 insertions(+), 740 deletions(-)
+
+commit 80f8abb2e6ee22fda2381bb76c225464d6d97bd4
+Author: Nilamdyuti Goswami <nilamdyuti@gmail.com>
+Date:   Thu Jul 5 18:52:00 2012 +0530
+
+    Assamese translation reviewed
+
+ po/as.po |  148 ++++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 87 insertions(+), 61 deletions(-)
+
+commit 34f82c54f3e1f91b696a7377dc70a5b85cf76c4f
+Author: Nilamdyuti Goswami <nilamdyuti@gmail.com>
+Date:   Thu Jul 5 18:43:18 2012 +0530
+
+    Assamese translation reviewed
+
+ po/as.po |  346 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 173 insertions(+), 173 deletions(-)
+
+commit eab7ceafe3ff33c18ab6289365251edd9e88110c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon May 21 18:18:24 2012 +0200
+
+    screen: Recognise man: and info: URIs
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=676452
+
+ src/terminal-screen.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 7dfc7d44e9e41771014d534b0455862a5b860798
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon May 7 00:57:06 2012 +0200
+
+    preferences: Make all colour buttons equal
+    
+    It doesn't look nice to make the palette ones smaller than the single-standing
+    ones, so move the name to the outer vbox which will make the css apply to all of
+    the contained colour buttons.
+
+ src/profile-preferences.glade |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 5767176605656260ff248b2620b9e9a7299169b1
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   Thu May 3 15:12:56 2012 -0400
+
+    profile-preferences: add a widget name for the palette table
+    
+    So themes can special case it if they want.
+
+ src/profile-preferences.glade |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit c84ee2c0144b615f0c07cbc5bbd53607bc4307bb
+Author: Rudolfs Mazurs <rudolfs.mazurs@gmail.com>
+Date:   Tue Apr 24 23:03:03 2012 +0300
+
+    Updated Latvian translation.
+
+ po/lv.po | 2263 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 1157 insertions(+), 1106 deletions(-)
+
+commit fff2e9866986f3633383bd80ba7af5c58f86a1d2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Apr 16 19:39:56 2012 +0200
+
+    Post release version bump
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
 commit 63377292bfb3b4588059cfa525bbcb82d5f7e140
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 16 19:35:34 2012 +0200

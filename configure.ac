@@ -1,7 +1,7 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[4])
-m4_define([gt_version_micro],[1])
-m4_define([gt_version_extra],[.1])
+m4_define([gt_version_minor],[5])
+m4_define([gt_version_micro],[90])
+m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
 m4_define([gt_api_version],[0])
@@ -32,7 +32,9 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.40.0])
 
-GNOME_COMMON_INIT
+# User documentation
+YELP_HELP_INIT
+
 GNOME_DEBUG_CHECK
 
 AM_GLIB_GNU_GETTEXT
@@ -173,10 +175,6 @@ gnome-terminal.desktop.in
 src/Makefile
 src/terminal-version.h
 help/Makefile
-help/bg/Makefile
-help/ro/Makefile
-help/ja/Makefile
-help/zh_TW/Makefile
 po/Makefile.in
 ])
 AC_OUTPUT
