@@ -149,7 +149,7 @@ terminal_util_show_help (const char *topic,
   char *url;
 
   if (topic) {
-    url = g_strdup_printf ("help:gnome-terminal/%s", topic); /* DOC_MODULE */      
+    url = g_strdup_printf ("help:gnome-terminal/%s", topic); /* DOC_MODULE */
   } else {
     url = g_strdup ("help:gnome-terminal"); /* DOC_MODULE */
   }
