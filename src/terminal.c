@@ -303,6 +303,7 @@ name_lost_cb (GDBusConnection *connection,
 
   /* Couldn't get the connection? No way to continue! */
   if (connection == NULL) {
+    g_warning ("Unable to to connect to D-Bus");
     data->exit_code = EXIT_FAILURE;
     gtk_main_quit ();
     return;
