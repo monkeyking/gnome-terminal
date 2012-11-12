@@ -72,7 +72,7 @@ bin_PROGRAMS = gnome-terminal$(EXEEXT)
 @WITH_SMCLIENT_QUARTZ_TRUE@@WITH_SMCLIENT_TRUE@am__append_7 = eggsmclient-osx.c
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/terminal-version.h.in
+	$(srcdir)/terminal-version.h.in TODO
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
