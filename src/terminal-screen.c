@@ -328,7 +328,6 @@ terminal_screen_style_set (GtkWidget *widget,
     style_set (widget, previous_style);
 
   update_color_scheme (screen);
-  update_background (screen);
 
   if (gtk_widget_get_realized (widget))
     terminal_screen_change_font (screen);
@@ -355,65 +354,6 @@ size_allocate (GtkWidget *widget,
                          widget, allocation->width, allocation->height, allocation->x, allocation->y);
 }
 #endif
-
-static void
-update_background (TerminalScreen *screen)
-{
-  TerminalScreenPrivate *priv = screen->priv;
-  TerminalBackgroundType bg_type;
-  TerminalProfile *profile = priv->profile;
-  VteTerminal *vte_terminal = VTE_TERMINAL (screen);
-  gfloat style_darkness;
-  gdouble opacity;
-  gboolean use_theme_background;
-
-  gtk_widget_style_get (GTK_WIDGET (screen),
-                        "background-darkness", &style_darkness,
-                        NULL);
-  use_theme_background = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_THEME_BACKGROUND);
-
-  if (use_theme_background)
-    {
-      bg_type = style_darkness < 1 ? TERMINAL_BACKGROUND_TRANSPARENT : TERMINAL_BACKGROUND_SOLID;
-    }
-  else
-    {
-      bg_type = terminal_profile_get_property_enum (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
-    }
-
-  if (bg_type == TERMINAL_BACKGROUND_IMAGE)
-    {
-      vte_terminal_set_background_image (vte_terminal,
-                                         terminal_profile_get_property_object (profile, TERMINAL_PROFILE_BACKGROUND_IMAGE));
-      vte_terminal_set_scroll_background (vte_terminal,
-                                          terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_SCROLL_BACKGROUND));
-    }
-  else
-    {
-      vte_terminal_set_background_image (vte_terminal, NULL);
-      vte_terminal_set_scroll_background (vte_terminal, FALSE);
-    }
-
-  if (bg_type == TERMINAL_BACKGROUND_IMAGE ||
-      bg_type == TERMINAL_BACKGROUND_TRANSPARENT)
-    {
-      opacity = use_theme_background ? (gdouble) style_darkness : terminal_profile_get_property_double (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS);
-      vte_terminal_set_background_saturation (vte_terminal,
-                                              1.0 - opacity);
-      vte_terminal_set_opacity (vte_terminal,
-                                0xffff * opacity);
-    }
-  else
-    {
-      vte_terminal_set_background_saturation (vte_terminal, 1.0); /* normal color */
-      vte_terminal_set_opacity (vte_terminal, 0xffff);
-    }
-
-  /* FIXME: Don't enable this if we have a compmgr. */
-  vte_terminal_set_background_transparent (vte_terminal,
-                                           bg_type == TERMINAL_BACKGROUND_TRANSPARENT &&
-                                           !window_uses_argb_visual (screen));
-}
 
 static void
 terminal_screen_init (TerminalScreen *screen)
@@ -670,12 +610,6 @@ terminal_screen_class_init (TerminalScreenClass *klass)
      g_param_spec_boxed ("initial-environment", NULL, NULL,
                          G_TYPE_STRV,
                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-  gtk_widget_class_install_style_property
-    (widget_class,
-     g_param_spec_float ("background-darkness", NULL, NULL,
-                         0, 1, 1,
-                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
 
@@ -973,6 +907,7 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
   GObject *object = G_OBJECT (screen);
   VteTerminal *vte_terminal = VTE_TERMINAL (screen);
   const char *prop_name;
+  TerminalBackgroundType bg_type;
   TerminalWindow *window;
 
   if (pspec)
@@ -1053,9 +988,42 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TYPE) ||
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_IMAGE) ||
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_DARKNESS) ||
-      prop_name == I_(TERMINAL_PROFILE_SCROLL_BACKGROUND) ||
-      prop_name == I_(TERMINAL_PROFILE_USE_THEME_BACKGROUND))
-    update_background (screen);
+      prop_name == I_(TERMINAL_PROFILE_SCROLL_BACKGROUND))
+    {
+      bg_type = terminal_profile_get_property_enum (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
+
+      if (bg_type == TERMINAL_BACKGROUND_IMAGE)
+        {
+          vte_terminal_set_background_image (vte_terminal,
+                                             terminal_profile_get_property_object (profile, TERMINAL_PROFILE_BACKGROUND_IMAGE));
+          vte_terminal_set_scroll_background (vte_terminal,
+                                              terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_SCROLL_BACKGROUND));
+        }
+      else
+        {
+          vte_terminal_set_background_image (vte_terminal, NULL);
+          vte_terminal_set_scroll_background (vte_terminal, FALSE);
+        }
+
+      if (bg_type == TERMINAL_BACKGROUND_IMAGE ||
+          bg_type == TERMINAL_BACKGROUND_TRANSPARENT)
+        {
+          vte_terminal_set_background_saturation (vte_terminal,
+                                                  1.0 - terminal_profile_get_property_double (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
+          vte_terminal_set_opacity (vte_terminal,
+                                    0xffff * terminal_profile_get_property_double (profile, TERMINAL_PROFILE_BACKGROUND_DARKNESS));
+        }
+      else
+        {
+          vte_terminal_set_background_saturation (vte_terminal, 1.0); /* normal color */
+          vte_terminal_set_opacity (vte_terminal, 0xffff);
+        }
+      
+      /* FIXME: Don't enable this if we have a compmgr. */
+      vte_terminal_set_background_transparent (vte_terminal,
+                                               bg_type == TERMINAL_BACKGROUND_TRANSPARENT &&
+                                               !window_uses_argb_visual (screen));
+    }
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_BACKSPACE_BINDING))
   vte_terminal_set_backspace_binding (vte_terminal,
