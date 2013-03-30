@@ -2,12 +2,12 @@
  * Copyright © 2002 Red Hat, Inc.
  * Copyright © 2008 Christian Persch
  *
- * Gnome-terminal is free software; you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Gnome-terminal is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -26,12 +26,12 @@
 #include "terminal-debug.h"
 #include "terminal-encoding.h"
 #include "terminal-intl.h"
-#include "terminal-profile.h"
+#include "terminal-schemas.h"
 #include "terminal-util.h"
 
 /* Overview
  *
- * There's a list of character sets stored in gconf, indicating
+ * There's a list of character sets stored in gsettings, indicating
  * which encodings to display in the encoding menu.
  * 
  * We have a pre-canned list of available encodings
@@ -39,7 +39,7 @@
  * the encoding menu, and to give a human-readable name
  * to certain encodings.
  *
- * If the gconf list contains an encoding not in the
+ * If the setting list contains an encoding not in the
  * predetermined table, then that encoding is
  * labeled "user defined" but still appears in the menu.
  */
@@ -127,21 +127,6 @@ static const struct {
   { "JOHAB",  N_("Korean") },
 #endif
 };
-
-typedef struct {
-  GtkWidget *dialog;
-  GtkListStore *base_store;
-  GtkTreeView *available_tree_view;
-  GtkTreeSelection *available_selection;
-  GtkTreeModel *available_model;
-  GtkTreeView *active_tree_view;
-  GtkTreeSelection *active_selection;
-  GtkTreeModel *active_model;
-  GtkWidget *add_button;
-  GtkWidget *remove_button;
-} EncodingDialogData;
-
-static GtkWidget *encoding_dialog = NULL;
 
 TerminalEncoding *
 terminal_encoding_new (const char *charset,
@@ -266,317 +251,9 @@ terminal_encoding_is_valid (TerminalEncoding *encoding)
   return encoding->valid;
 }
 
-GType
-terminal_encoding_get_type (void)
-{
-  static GType type = 0;
-
-  if (G_UNLIKELY (type == 0)) {
-    type = g_boxed_type_register_static (I_("TerminalEncoding"),
-                                         (GBoxedCopyFunc) terminal_encoding_ref,
-                                         (GBoxedFreeFunc) terminal_encoding_unref);
-  }
-
-  return type;
-}
-
-static void
-update_active_encodings_gconf (void)
-{
-  GSList *list, *l;
-  GSList *strings = NULL;
-  GConfClient *conf;
-
-  list = terminal_app_get_active_encodings (terminal_app_get ());
-  for (l = list; l != NULL; l = l->next)
-    {
-      TerminalEncoding *encoding = (TerminalEncoding *) l->data;
-
-      strings = g_slist_prepend (strings, (gpointer) terminal_encoding_get_id (encoding));
-    }
-
-  conf = gconf_client_get_default ();
-  gconf_client_set_list (conf,
-                         CONF_GLOBAL_PREFIX"/active_encodings",
-                         GCONF_VALUE_STRING,
-                         strings,
-                         NULL);
-  g_object_unref (conf);
-
-  g_slist_free (strings);
-  g_slist_foreach (list, (GFunc) terminal_encoding_unref, NULL);
-  g_slist_free (list);
-}
-
-static void
-response_callback (GtkWidget *window,
-                   int        id,
-                   EncodingDialogData *data)
-{
-  if (id == GTK_RESPONSE_HELP)
-    terminal_util_show_help ("gnome-terminal-encoding-add", GTK_WINDOW (window));
-  else
-    gtk_widget_destroy (GTK_WIDGET (window));
-}
-
-enum
-{
-  COLUMN_NAME,
-  COLUMN_CHARSET,
-  COLUMN_DATA,
-  N_COLUMNS
-};
-
-static void
-selection_changed_cb (GtkTreeSelection *selection,
-                      EncodingDialogData *data)
-{
-  GtkWidget *button;
-  gboolean have_selection;
-
-  if (selection == data->available_selection)
-    button = data->add_button;
-  else if (selection == data->active_selection)
-    button = data->remove_button;
-  else
-    g_assert_not_reached ();
-
-  have_selection = gtk_tree_selection_get_selected (selection, NULL, NULL);
-  gtk_widget_set_sensitive (button, have_selection);
-}
-
-static void
-button_clicked_cb (GtkWidget *button,
-                   EncodingDialogData *data)
-{
-  GtkTreeSelection *selection;
-  GtkTreeModel *model;
-  GtkTreeIter filter_iter, iter;
-  TerminalEncoding *encoding;
-
-  if (button == data->add_button)
-    selection = data->available_selection;
-  else if (button == data->remove_button)
-    selection = data->active_selection;
-  else
-    g_assert_not_reached ();
-
-  if (!gtk_tree_selection_get_selected (selection, &model, &filter_iter))
-    return;
-
-  gtk_tree_model_filter_convert_iter_to_child_iter (GTK_TREE_MODEL_FILTER (model),
-                                                    &iter,
-                                                    &filter_iter);
-
-  model = GTK_TREE_MODEL (data->base_store);
-  gtk_tree_model_get (model, &iter, COLUMN_DATA, &encoding, -1);
-  g_assert (encoding != NULL);
-
-  if (button == data->add_button)
-    encoding->is_active = TRUE;
-  else if (button == data->remove_button)
-    encoding->is_active = FALSE;
-  else
-    g_assert_not_reached ();
-
-  terminal_encoding_unref (encoding);
-
-  /* We don't need to emit row-changed here, since updating the gconf pref
-   * will update the models.
-   */
-  update_active_encodings_gconf ();
-}
-
-static void
-liststore_insert_encoding (gpointer key,
-                           TerminalEncoding *encoding,
-                           GtkListStore *store)
-{
-  GtkTreeIter iter;
-
-  if (!terminal_encoding_is_valid (encoding))
-    return;
-
-  gtk_list_store_insert_with_values (store, &iter, -1,
-                                     COLUMN_CHARSET, terminal_encoding_get_charset (encoding),
-                                     COLUMN_NAME, encoding->name,
-                                     COLUMN_DATA, encoding,
-                                     -1);
-}
-
-static gboolean
-filter_active_encodings (GtkTreeModel *child_model,
-                         GtkTreeIter *child_iter,
-                         gpointer data)
-{
-  TerminalEncoding *encoding;
-  gboolean active = GPOINTER_TO_UINT (data);
-  gboolean visible;
-
-  gtk_tree_model_get (child_model, child_iter, COLUMN_DATA, &encoding, -1);
-  visible = active ? encoding->is_active : !encoding->is_active;
-  terminal_encoding_unref (encoding);
-
-  return visible;
-}
-
-static GtkTreeModel *
-encodings_create_treemodel (GtkListStore *base_store,
-                            gboolean active)
-{
-  GtkTreeModel *model;
-
-  model = gtk_tree_model_filter_new (GTK_TREE_MODEL (base_store), NULL);
-  gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (model),
-                                          filter_active_encodings,
-                                          GUINT_TO_POINTER (active), NULL);
-
-  return model;
-}
-
-static void
-encodings_list_changed_cb (TerminalApp *app,
-                           EncodingDialogData *data)
-{
-  gtk_list_store_clear (data->base_store);
-
-  g_hash_table_foreach (terminal_app_get_encodings (app), (GHFunc) liststore_insert_encoding, data->base_store);
-}
-
-static void
-encoding_dialog_data_free (EncodingDialogData *data)
-{
-  g_signal_handlers_disconnect_by_func (terminal_app_get (),
-                                        G_CALLBACK (encodings_list_changed_cb),
-                                        data);
-
-  g_free (data);
-}
-
-void
-terminal_encoding_dialog_show (GtkWindow *transient_parent)
-{
-  TerminalApp *app;
-  GtkCellRenderer *cell_renderer;
-  GtkTreeViewColumn *column;
-  GtkTreeModel *model;
-  EncodingDialogData *data;
-
-  if (encoding_dialog)
-    {
-      gtk_window_set_transient_for (GTK_WINDOW (encoding_dialog), transient_parent);
-      gtk_window_present (GTK_WINDOW (encoding_dialog));
-      return;
-    }
-
-  data = g_new (EncodingDialogData, 1);
-
-  if (!terminal_util_load_builder_file ("encodings-dialog.ui",
-                                        "encodings-dialog", &data->dialog,
-                                        "add-button", &data->add_button,
-                                        "remove-button", &data->remove_button,
-                                        "available-treeview", &data->available_tree_view,
-                                        "displayed-treeview", &data->active_tree_view,
-                                        NULL))
-    {
-      g_free (data);
-      return;
-    }
-
-  g_object_set_data_full (G_OBJECT (data->dialog), "GT::Data", data, (GDestroyNotify) encoding_dialog_data_free);
-
-  gtk_window_set_transient_for (GTK_WINDOW (data->dialog), transient_parent);
-  gtk_window_set_role (GTK_WINDOW (data->dialog), "gnome-terminal-encodings");
-  g_signal_connect (data->dialog, "response",
-                    G_CALLBACK (response_callback), data);
-
-  /* buttons */
-  g_signal_connect (data->add_button, "clicked",
-                    G_CALLBACK (button_clicked_cb), data);
-
-  g_signal_connect (data->remove_button, "clicked",
-                    G_CALLBACK (button_clicked_cb), data);
-  
-  /* Tree view of available encodings */
-  /* Column 1 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Description"),
-						     cell_renderer,
-						     "text", COLUMN_NAME,
-						     NULL);
-  gtk_tree_view_append_column (data->available_tree_view, column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME);
-  
-  /* Column 2 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Encoding"),
-						     cell_renderer,
-						     "text", COLUMN_CHARSET,
-						     NULL);
-  gtk_tree_view_append_column (data->available_tree_view, column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);  
-
-  data->available_selection = gtk_tree_view_get_selection (data->available_tree_view);
-  gtk_tree_selection_set_mode (data->available_selection, GTK_SELECTION_BROWSE);
-
-  g_signal_connect (data->available_selection, "changed",
-                    G_CALLBACK (selection_changed_cb), data);
-
-  /* Tree view of selected encodings */
-  /* Column 1 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Description"),
-						     cell_renderer,
-						     "text", COLUMN_NAME,
-						     NULL);
-  gtk_tree_view_append_column (data->active_tree_view, column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME);
-  
-  /* Column 2 */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("_Encoding"),
-						     cell_renderer,
-						     "text", COLUMN_CHARSET,
-						     NULL);
-  gtk_tree_view_append_column (data->active_tree_view, column);
-  gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);  
-
-  /* Add the data */
-
-  data->active_selection = gtk_tree_view_get_selection (data->active_tree_view);
-  gtk_tree_selection_set_mode (data->active_selection, GTK_SELECTION_BROWSE);
-
-  g_signal_connect (data->active_selection, "changed",
-                    G_CALLBACK (selection_changed_cb), data);
-
-  data->base_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, TERMINAL_TYPE_ENCODING);
-
-  app = terminal_app_get ();
-  encodings_list_changed_cb (app, data);
-  g_signal_connect (app, "encoding-list-changed",
-                    G_CALLBACK (encodings_list_changed_cb), data);
-
-  /* Now turn on sorting */
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (data->base_store),
-                                        COLUMN_NAME,
-                                        GTK_SORT_ASCENDING);
-  
-  model = encodings_create_treemodel (data->base_store, FALSE);
-  gtk_tree_view_set_model (data->available_tree_view, model);
-  g_object_unref (model);
-
-  model = encodings_create_treemodel (data->base_store, TRUE);
-  gtk_tree_view_set_model (data->active_tree_view, model);
-  g_object_unref (model);
-
-  g_object_unref (data->base_store);
-
-  gtk_window_present (GTK_WINDOW (data->dialog));
-
-  encoding_dialog = data->dialog;
-  g_signal_connect (data->dialog, "destroy",
-                    G_CALLBACK (gtk_widget_destroyed), &encoding_dialog);
-}
+G_DEFINE_BOXED_TYPE (TerminalEncoding, terminal_encoding,
+                     terminal_encoding_ref,
+                     terminal_encoding_unref);
 
 GHashTable *
 terminal_encodings_get_builtins (void)

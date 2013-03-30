@@ -5,12 +5,12 @@
  * Copyright © 2003 Mariano Suarez-Alvarez
  * Copyright © 2008 Christian Persch
  *
- * Gnome-terminal is free software; you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Gnome-terminal is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -24,12 +24,46 @@
 
 #include <glib.h>
 
+#include "terminal-profiles-list.h"
+
 G_BEGIN_DECLS
+
+#define TERMINAL_CONFIG_VERSION             (1) /* Bump this for any changes */
+#define TERMINAL_CONFIG_COMPAT_VERSION      (1) /* Bump this for incompatible changes */
+
+#define TERMINAL_CONFIG_GROUP               "GNOME Terminal Configuration"
+#define TERMINAL_CONFIG_PROP_VERSION        "Version"
+#define TERMINAL_CONFIG_PROP_COMPAT_VERSION "CompatVersion"
+#define TERMINAL_CONFIG_PROP_WINDOWS        "Windows"
+
+#define TERMINAL_CONFIG_WINDOW_PROP_ACTIVE_TAB       "ActiveTerminal"
+#define TERMINAL_CONFIG_WINDOW_PROP_FULLSCREEN       "Fullscreen"
+#define TERMINAL_CONFIG_WINDOW_PROP_GEOMETRY         "Geometry"
+#define TERMINAL_CONFIG_WINDOW_PROP_MAXIMIZED        "Maximized"
+#define TERMINAL_CONFIG_WINDOW_PROP_MENUBAR_VISIBLE  "MenubarVisible"
+#define TERMINAL_CONFIG_WINDOW_PROP_ROLE             "Role"
+#define TERMINAL_CONFIG_WINDOW_PROP_TABS             "Terminals"
+
+#define TERMINAL_CONFIG_TERMINAL_PROP_HEIGHT             "Height"
+#define TERMINAL_CONFIG_TERMINAL_PROP_COMMAND            "Command"
+#define TERMINAL_CONFIG_TERMINAL_PROP_PROFILE_ID         "ProfileID"
+#define TERMINAL_CONFIG_TERMINAL_PROP_TITLE              "Title"
+#define TERMINAL_CONFIG_TERMINAL_PROP_WIDTH              "Width"
+#define TERMINAL_CONFIG_TERMINAL_PROP_WORKING_DIRECTORY  "WorkingDirectory"
+#define TERMINAL_CONFIG_TERMINAL_PROP_ZOOM               "Zoom"
+
+enum
+{
+  SOURCE_DEFAULT = 0,
+  SOURCE_SESSION = 1
+};
 
 typedef struct
 {
+  TerminalSettingsList *profiles_list; /* may be NULL */
+
+  char    *server_app_id;
   gboolean remote_arguments;
-  char   **env;
   char    *startup_id;
   char    *display_name;
   int      screen_number;
@@ -50,9 +84,11 @@ typedef struct
   gboolean  use_factory;
   double    zoom;
 
-  char    *config_file;
-  gboolean load_config;
-  gboolean save_config;
+  gboolean sm_client_disable;
+  char *sm_client_id;
+  char *sm_config_prefix;
+
+  guint zoom_set : 1;
 } TerminalOptions;
 
 typedef struct
@@ -87,6 +123,7 @@ typedef struct
 #define TERMINAL_OPTION_ERROR (g_quark_from_static_string ("terminal-option-error"))
 
 typedef enum {
+  TERMINAL_OPTION_ERROR_NOT_SUPPORTED,
   TERMINAL_OPTION_ERROR_NOT_IN_FACTORY,
   TERMINAL_OPTION_ERROR_EXCLUSIVE_OPTIONS,
   TERMINAL_OPTION_ERROR_INVALID_CONFIG_FILE,
@@ -94,15 +131,10 @@ typedef enum {
 } TerminalOptionError;
 
 TerminalOptions *terminal_options_parse (const char *working_directory,
-                                         const char *display_name,
                                          const char *startup_id,
-                                         char **env,
-                                         gboolean remote_arguments,
-                                         gboolean ignore_unknown_options,
                                          int *argcp,
                                          char ***argvp,
-                                         GError **error,
-                                         ...) G_GNUC_NULL_TERMINATED;
+                                         GError **error);
 
 gboolean terminal_options_merge_config (TerminalOptions *options,
                                         GKeyFile *key_file,

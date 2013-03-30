@@ -1,20 +1,18 @@
 /*
- * Copyright © 2008, 2010 Christian Persch
+ * Copyright © 2008, 2010, 2011 Christian Persch
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <config.h>
@@ -38,8 +36,6 @@ struct _TerminalScreenContainerPrivate
 #endif
   GtkPolicyType hscrollbar_policy;
   GtkPolicyType vscrollbar_policy;
-  GtkCornerType window_placement;
-  guint window_placement_set : 1;
 };
 
 enum
@@ -56,47 +52,6 @@ G_DEFINE_TYPE (TerminalScreenContainer, terminal_screen_container, GTK_TYPE_VBOX
 
 /* helper functions */
 
-static void
-terminal_screen_container_set_placement_internal (TerminalScreenContainer *container,
-                                                  GtkCornerType corner)
-{
-  TerminalScreenContainerPrivate *priv = container->priv;
-
-#ifdef USE_SCROLLED_WINDOW
-  gtk_scrolled_window_set_placement (GTK_SCROLLED_WINDOW (priv->scrolled_window), corner);
-#else
-  switch (corner) {
-    case GTK_CORNER_TOP_LEFT:
-    case GTK_CORNER_BOTTOM_LEFT:
-      gtk_box_reorder_child (GTK_BOX (priv->hbox), priv->vscrollbar, 1);
-      break;
-    case GTK_CORNER_TOP_RIGHT:
-    case GTK_CORNER_BOTTOM_RIGHT:
-      gtk_box_reorder_child (GTK_BOX (priv->hbox), priv->vscrollbar, 0);
-      break;
-    default:
-      g_assert_not_reached ();
-  }
-#endif
-
-  priv->window_placement = corner;
-  g_object_notify (G_OBJECT (container), "window-placement");
-}
-
-static void
-terminal_screen_container_set_placement_set (TerminalScreenContainer *container,
-                                             gboolean set)
-{
-  TerminalScreenContainerPrivate *priv = container->priv;
-
-#ifdef USE_SCROLLED_WINDOW
-  g_object_set (priv->scrolled_window, "window-placement-set", set, NULL);
-#endif
-
-  priv->window_placement_set = set != FALSE;
-  g_object_notify (G_OBJECT (container), "window-placement-set");
-}
-
 #if defined(USE_SCROLLED_WINDOW) && defined(GNOME_ENABLE_DEBUG)
 static void
 size_request_cb (GtkWidget *widget,
@@ -107,6 +62,46 @@ size_request_cb (GtkWidget *widget,
                          "[screen %p] scrolled-window size req %d : %d\n",
                          container->priv->screen, req->width, req->height);
 }
+#endif
+
+/* Widget class implementation */
+
+#ifndef USE_SCROLLED_WINDOW
+
+static void
+terminal_screen_container_style_updated (GtkWidget *widget)
+{
+  TerminalScreenContainer *container = TERMINAL_SCREEN_CONTAINER (widget);
+  TerminalScreenContainerPrivate *priv = container->priv;
+  GtkCornerType corner;
+  gboolean set;  
+
+  GTK_WIDGET_CLASS (terminal_screen_container_parent_class)->style_updated (widget);
+
+  gtk_widget_style_get (widget,
+                        "window-placement", &corner,
+                        "window-placement-set", &set,
+                        NULL);
+
+  if (!set)
+    g_object_get (gtk_widget_get_settings (widget),
+                  "gtk-scrolled-window-placement", &corner,
+                  NULL);
+
+  switch (corner) {
+    case GTK_CORNER_TOP_LEFT:
+    case GTK_CORNER_BOTTOM_LEFT:
+      gtk_box_reorder_child (GTK_BOX (priv->hbox), priv->vscrollbar, -1);
+      break;
+    case GTK_CORNER_TOP_RIGHT:
+    case GTK_CORNER_BOTTOM_RIGHT:
+      gtk_box_reorder_child (GTK_BOX (priv->hbox), priv->vscrollbar, 0);
+      break;
+    default:
+      g_assert_not_reached ();
+  }
+}
+
 #endif
 
 /* Class implementation */
@@ -120,8 +115,6 @@ terminal_screen_container_init (TerminalScreenContainer *container)
 
   priv->hscrollbar_policy = GTK_POLICY_AUTOMATIC;
   priv->vscrollbar_policy = GTK_POLICY_AUTOMATIC;
-  priv->window_placement = GTK_CORNER_BOTTOM_RIGHT;
-  priv->window_placement_set = FALSE;
 }
 
 static GObject *
@@ -165,13 +158,10 @@ terminal_screen_container_constructor (GType type,
 
 #else
 
-  priv->hbox = gtk_hbox_new (FALSE, 0);
+  priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
-#if GTK_CHECK_VERSION (2, 91, 2)
-  priv->vscrollbar = gtk_vscrollbar_new (gtk_scrollable_get_vadjustment(GTK_SCROLLABLE(priv->screen)));
-#else
-  priv->vscrollbar = gtk_vscrollbar_new (vte_terminal_get_adjustment (VTE_TERMINAL (priv->screen)));
-#endif
+  priv->vscrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
+                                        gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->screen)));
 
   gtk_box_pack_start (GTK_BOX (priv->hbox), GTK_WIDGET (priv->screen), TRUE, TRUE, 0);
   gtk_box_pack_start (GTK_BOX (priv->hbox), priv->vscrollbar, FALSE, FALSE, 0);
@@ -203,12 +193,6 @@ terminal_screen_container_get_property (GObject *object,
     case PROP_VSCROLLBAR_POLICY:
       g_value_set_enum (value, priv->vscrollbar_policy);
       break;
-    case PROP_WINDOW_PLACEMENT:
-      g_value_set_enum (value, priv->window_placement);
-      break;
-    case PROP_WINDOW_PLACEMENT_SET:
-      g_value_set_boolean (value, priv->window_placement_set);
-      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -238,12 +222,6 @@ terminal_screen_container_set_property (GObject *object,
                                             priv->hscrollbar_policy,
                                             g_value_get_enum (value));
       break;
-    case PROP_WINDOW_PLACEMENT:
-      terminal_screen_container_set_placement_internal (container, g_value_get_enum (value));
-      break;
-    case PROP_WINDOW_PLACEMENT_SET:
-      terminal_screen_container_set_placement_set (container, g_value_get_boolean (value));
-      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -254,12 +232,19 @@ static void
 terminal_screen_container_class_init (TerminalScreenContainerClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+#ifndef USE_SCROLLED_WINDOW
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+#endif
 
   g_type_class_add_private (gobject_class, sizeof (TerminalScreenContainerPrivate));
 
   gobject_class->constructor = terminal_screen_container_constructor;
   gobject_class->get_property = terminal_screen_container_get_property;
   gobject_class->set_property = terminal_screen_container_set_property;
+
+#ifndef USE_SCROLLED_WINDOW
+  widget_class->style_updated = terminal_screen_container_style_updated;
+#endif
 
   g_object_class_install_property
     (gobject_class,
@@ -287,22 +272,19 @@ terminal_screen_container_class_init (TerminalScreenContainerClass *klass)
                         G_PARAM_READWRITE |
                         G_PARAM_STATIC_STRINGS));
 
-  g_object_class_install_property
-    (gobject_class,
-     PROP_WINDOW_PLACEMENT,
-     g_param_spec_enum ("window-placement", NULL, NULL,
-                        GTK_TYPE_CORNER_TYPE,
-                        GTK_CORNER_TOP_LEFT,
-                        G_PARAM_READWRITE |
-                        G_PARAM_STATIC_STRINGS));
-  
-  g_object_class_install_property
-    (gobject_class,
-     PROP_WINDOW_PLACEMENT_SET,
-     g_param_spec_boolean ("window-placement-set", NULL, NULL,
-                           FALSE,
-                           G_PARAM_READWRITE |
-                           G_PARAM_STATIC_STRINGS));
+#ifndef USE_SCROLLED_WINDOW
+   gtk_widget_class_install_style_property (widget_class,
+                                            g_param_spec_enum ("window-placement", NULL, NULL,
+                                                               GTK_TYPE_CORNER_TYPE,
+                                                               GTK_CORNER_BOTTOM_RIGHT,
+                                                               G_PARAM_READWRITE |
+                                                               G_PARAM_STATIC_STRINGS));
+  gtk_widget_class_install_style_property (widget_class,
+                                           g_param_spec_boolean ("window-placement-set", NULL, NULL,
+                                                                 FALSE,
+                                                                 G_PARAM_READWRITE |
+                                                                 G_PARAM_STATIC_STRINGS));
+#endif
 }
 
 /* public API */
@@ -330,6 +312,9 @@ terminal_screen_container_new (TerminalScreen *screen)
 TerminalScreen *
 terminal_screen_container_get_screen (TerminalScreenContainer *container)
 {
+  if (container == NULL)
+    return NULL;
+
   g_return_val_if_fail (TERMINAL_IS_SCREEN_CONTAINER (container), NULL);
 
   return container->priv->screen;
@@ -344,6 +329,9 @@ terminal_screen_container_get_screen (TerminalScreenContainer *container)
 TerminalScreenContainer *
 terminal_screen_container_get_from_screen (TerminalScreen *screen)
 {
+  if (screen == NULL)
+    return NULL;
+
   g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
 
   return TERMINAL_SCREEN_CONTAINER (gtk_widget_get_ancestor (GTK_WIDGET (screen), TERMINAL_TYPE_SCREEN_CONTAINER));
@@ -398,21 +386,4 @@ terminal_screen_container_set_policy (TerminalScreenContainer *container,
 #endif
 
   g_object_thaw_notify (object);
-}
-
-/**
- * terminal_screen_container_set_placement:
- * @container: a #TerminalScreenContainer
- * @corner: a #GtkCornerType
- *
- * Sets @container's window placement.
- */
-void
-terminal_screen_container_set_placement (TerminalScreenContainer *container,
-                                         GtkCornerType corner)
-{
-  g_return_if_fail (TERMINAL_IS_SCREEN_CONTAINER (container));
-
-  terminal_screen_container_set_placement_internal (container, corner);
-  terminal_screen_container_set_placement_set (container, TRUE);
 }
