@@ -1,13 +1,13 @@
 /*
  * Copyright © 2001, 2002 Havoc Pennington, Red Hat Inc.
- * Copyright © 2008 Christian Persch
+ * Copyright © 2008, 2011, 2012, 2013 Christian Persch
  *
- * Gnome-terminal is free software; you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Gnome-terminal is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -22,34 +22,27 @@
 
 #include <gtk/gtk.h>
 
-#if GTK_CHECK_VERSION (2, 90, 7)
-#define GDK_KEY(symbol) GDK_KEY_##symbol
-#else
-#include <gdk/gdkkeysyms.h>
-#define GDK_KEY(symbol) GDK_##symbol
-#endif
-
 #include "terminal-accels.h"
 #include "terminal-app.h"
 #include "terminal-debug.h"
 #include "terminal-intl.h"
-#include "terminal-profile.h"
+#include "terminal-schemas.h"
 #include "terminal-util.h"
 
 /* NOTES
  *
- * There are two sources of keybindings changes, from GConf and from
+ * There are two sources of keybindings changes, from GSettings and from
  * the accel map (happens with in-place menu editing).
  *
  * When a keybinding gconf key changes, we propagate that into the
  * accel map.
- * When the accel map changes, we queue a sync to gconf.
+ * When the accel map changes, we queue a sync to GSettings.
  *
  * To avoid infinite loops, we short-circuit in both directions
  * if the value is unchanged from last known.
  *
  * In the keybinding editor, when editing or clearing an accel, we write
- * the change directly to gconf and rely on the gconf callback to
+ * the change directly to GSettings and rely on the callback to
  * actually apply the change to the accel map.
  */
 
@@ -78,29 +71,29 @@
 #define ACCEL_PATH_DETACH_TAB           ACCEL_PATH_ROOT "TabsDetach"
 #define ACCEL_PATH_SWITCH_TAB_PREFIX    ACCEL_PATH_ROOT "TabsSwitch"
 
-#define KEY_CLOSE_TAB           CONF_KEYS_PREFIX "/close_tab"
-#define KEY_CLOSE_WINDOW        CONF_KEYS_PREFIX "/close_window"
-#define KEY_COPY                CONF_KEYS_PREFIX "/copy"
-#define KEY_DETACH_TAB          CONF_KEYS_PREFIX "/detach_tab"
-#define KEY_FULL_SCREEN         CONF_KEYS_PREFIX "/full_screen"
-#define KEY_HELP                CONF_KEYS_PREFIX "/help"
-#define KEY_MOVE_TAB_LEFT       CONF_KEYS_PREFIX "/move_tab_left"
-#define KEY_MOVE_TAB_RIGHT      CONF_KEYS_PREFIX "/move_tab_right"
-#define KEY_NEW_PROFILE         CONF_KEYS_PREFIX "/new_profile"
-#define KEY_NEW_TAB             CONF_KEYS_PREFIX "/new_tab"
-#define KEY_NEW_WINDOW          CONF_KEYS_PREFIX "/new_window"
-#define KEY_NEXT_TAB            CONF_KEYS_PREFIX "/next_tab"
-#define KEY_PASTE               CONF_KEYS_PREFIX "/paste"
-#define KEY_PREV_TAB            CONF_KEYS_PREFIX "/prev_tab"
-#define KEY_RESET_AND_CLEAR     CONF_KEYS_PREFIX "/reset_and_clear"
-#define KEY_RESET               CONF_KEYS_PREFIX "/reset"
-#define KEY_SAVE_CONTENTS       CONF_KEYS_PREFIX "/save_contents"
-#define KEY_SET_TERMINAL_TITLE  CONF_KEYS_PREFIX "/set_window_title"
-#define KEY_TOGGLE_MENUBAR      CONF_KEYS_PREFIX "/toggle_menubar"
-#define KEY_ZOOM_IN             CONF_KEYS_PREFIX "/zoom_in"
-#define KEY_ZOOM_NORMAL         CONF_KEYS_PREFIX "/zoom_normal"
-#define KEY_ZOOM_OUT            CONF_KEYS_PREFIX "/zoom_out"
-#define KEY_SWITCH_TAB_PREFIX   CONF_KEYS_PREFIX "/switch_to_tab_"
+#define KEY_CLOSE_TAB           "close-tab"
+#define KEY_CLOSE_WINDOW        "close-window"
+#define KEY_COPY                "copy"
+#define KEY_DETACH_TAB          "detach-tab"
+#define KEY_FULL_SCREEN         "full-screen"
+#define KEY_HELP                "help"
+#define KEY_MOVE_TAB_LEFT       "move-tab-left"
+#define KEY_MOVE_TAB_RIGHT      "move-tab-right"
+#define KEY_NEW_PROFILE         "new-profile"
+#define KEY_NEW_TAB             "new-tab"
+#define KEY_NEW_WINDOW          "new-window"
+#define KEY_NEXT_TAB            "next-tab"
+#define KEY_PASTE               "paste"
+#define KEY_PREV_TAB            "prev-tab"
+#define KEY_RESET_AND_CLEAR     "reset-and-clear"
+#define KEY_RESET               "reset"
+#define KEY_SAVE_CONTENTS       "save-contents"
+#define KEY_SET_TERMINAL_TITLE  "set-terminal-title"
+#define KEY_TOGGLE_MENUBAR      "toggle-menubar"
+#define KEY_ZOOM_IN             "zoom-in"
+#define KEY_ZOOM_NORMAL         "zoom-normal"
+#define KEY_ZOOM_OUT            "zoom-out"
+#define KEY_SWITCH_TAB_PREFIX   "switch-to-tab-"
 
 #if 1
 /*
@@ -116,17 +109,21 @@
 #endif
 #endif
 
+typedef struct {
+  GdkModifierType mods;
+  guint key;
+} Keybinding;
+
 typedef struct
 {
   const char *user_visible_name;
-  const char *gconf_key;
+  const char *settings_key;
   const char *accel_path;
-  /* last values received from gconf */
-  GdkModifierType gconf_mask;
-  guint gconf_keyval;
+  /* last values received from settings */
+  Keybinding settings_keybinding;
   GClosure *closure;
   /* have gotten a notification from gtk */
-  gboolean needs_gconf_sync;
+  gboolean needs_settings_sync;
   gboolean accel_path_unlocked;
 } KeyEntry;
 
@@ -140,105 +137,105 @@ typedef struct
 static KeyEntry file_entries[] =
 {
   { N_("New Tab"),
-    KEY_NEW_TAB, ACCEL_PATH_NEW_TAB, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (t), NULL, FALSE, TRUE },
+    KEY_NEW_TAB, ACCEL_PATH_NEW_TAB, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_t }, NULL, FALSE, TRUE },
   { N_("New Window"),
-    KEY_NEW_WINDOW, ACCEL_PATH_NEW_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (n), NULL, FALSE, TRUE },
+    KEY_NEW_WINDOW, ACCEL_PATH_NEW_WINDOW, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_n }, NULL, FALSE, TRUE },
   { N_("New Profile"),
-    KEY_NEW_PROFILE, ACCEL_PATH_NEW_PROFILE, 0, 0, NULL, FALSE, TRUE },
+    KEY_NEW_PROFILE, ACCEL_PATH_NEW_PROFILE, { 0, 0 } , NULL, FALSE, TRUE },
 #ifdef ENABLE_SAVE
   { N_("Save Contents"),
-    KEY_SAVE_CONTENTS, ACCEL_PATH_SAVE_CONTENTS, 0, 0, NULL, FALSE, TRUE },
+    KEY_SAVE_CONTENTS, ACCEL_PATH_SAVE_CONTENTS, { 0, 0 }, NULL, FALSE, TRUE },
 #endif
   { N_("Close Tab"),
-    KEY_CLOSE_TAB, ACCEL_PATH_CLOSE_TAB, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (w), NULL, FALSE, TRUE },
+    KEY_CLOSE_TAB, ACCEL_PATH_CLOSE_TAB, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_w }, NULL, FALSE, TRUE },
   { N_("Close Window"),
-    KEY_CLOSE_WINDOW, ACCEL_PATH_CLOSE_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (q), NULL, FALSE, TRUE },
+    KEY_CLOSE_WINDOW, ACCEL_PATH_CLOSE_WINDOW, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_q }, NULL, FALSE, TRUE },
 };
 
 static KeyEntry edit_entries[] =
 {
   { N_("Copy"),
-    KEY_COPY, ACCEL_PATH_COPY, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (c), NULL, FALSE, TRUE },
+    KEY_COPY, ACCEL_PATH_COPY, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_c }, NULL, FALSE, TRUE },
   { N_("Paste"),
-    KEY_PASTE, ACCEL_PATH_PASTE, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (v), NULL, FALSE, TRUE },
+    KEY_PASTE, ACCEL_PATH_PASTE, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_v }, NULL, FALSE, TRUE },
 };
 
 static KeyEntry view_entries[] =
 {
   { N_("Hide and Show menubar"),
-    KEY_TOGGLE_MENUBAR, ACCEL_PATH_TOGGLE_MENUBAR, 0, 0, NULL, FALSE, TRUE },
+    KEY_TOGGLE_MENUBAR, ACCEL_PATH_TOGGLE_MENUBAR, { 0, 0 }, NULL, FALSE, TRUE },
   { N_("Full Screen"),
-    KEY_FULL_SCREEN, ACCEL_PATH_FULL_SCREEN, 0, GDK_KEY (F11), NULL, FALSE, TRUE },
+    KEY_FULL_SCREEN, ACCEL_PATH_FULL_SCREEN, { 0, GDK_KEY_F11 }, NULL, FALSE, TRUE },
   { N_("Zoom In"),
-    KEY_ZOOM_IN, ACCEL_PATH_ZOOM_IN, GDK_CONTROL_MASK, GDK_KEY (plus), NULL, FALSE, TRUE },
+    KEY_ZOOM_IN, ACCEL_PATH_ZOOM_IN, { GDK_CONTROL_MASK, GDK_KEY_plus }, NULL, FALSE, TRUE },
   { N_("Zoom Out"),
-    KEY_ZOOM_OUT, ACCEL_PATH_ZOOM_OUT, GDK_CONTROL_MASK, GDK_KEY (minus), NULL, FALSE, TRUE },
+    KEY_ZOOM_OUT, ACCEL_PATH_ZOOM_OUT, { GDK_CONTROL_MASK, GDK_KEY_minus }, NULL, FALSE, TRUE },
   { N_("Normal Size"),
-    KEY_ZOOM_NORMAL, ACCEL_PATH_ZOOM_NORMAL, GDK_CONTROL_MASK, GDK_KEY (0), NULL, FALSE, TRUE }
+    KEY_ZOOM_NORMAL, ACCEL_PATH_ZOOM_NORMAL, { GDK_CONTROL_MASK, GDK_KEY_0 }, NULL, FALSE, TRUE }
 };
 
 static KeyEntry terminal_entries[] =
 {
   { N_("Set Title"),
-    KEY_SET_TERMINAL_TITLE, ACCEL_PATH_SET_TERMINAL_TITLE, 0, 0, NULL, FALSE, TRUE },
+    KEY_SET_TERMINAL_TITLE, ACCEL_PATH_SET_TERMINAL_TITLE, { 0, 0 }, NULL, FALSE, TRUE },
   { N_("Reset"),
-    KEY_RESET, ACCEL_PATH_RESET, 0, 0, NULL, FALSE, TRUE },
+    KEY_RESET, ACCEL_PATH_RESET, { 0, 0 }, NULL, FALSE, TRUE },
   { N_("Reset and Clear"),
-    KEY_RESET_AND_CLEAR, ACCEL_PATH_RESET_AND_CLEAR, 0, 0, NULL, FALSE, TRUE },
+    KEY_RESET_AND_CLEAR, ACCEL_PATH_RESET_AND_CLEAR, { 0, 0 }, NULL, FALSE, TRUE },
 };
 
 static KeyEntry tabs_entries[] =
 {
   { N_("Switch to Previous Tab"),
-    KEY_PREV_TAB, ACCEL_PATH_PREV_TAB, GDK_CONTROL_MASK, GDK_KEY (Page_Up), NULL, FALSE, TRUE },
+    KEY_PREV_TAB, ACCEL_PATH_PREV_TAB, { GDK_CONTROL_MASK, GDK_KEY_Page_Up }, NULL, FALSE, TRUE },
   { N_("Switch to Next Tab"),
-    KEY_NEXT_TAB, ACCEL_PATH_NEXT_TAB, GDK_CONTROL_MASK, GDK_KEY (Page_Down), NULL, FALSE, TRUE },
+    KEY_NEXT_TAB, ACCEL_PATH_NEXT_TAB, { GDK_CONTROL_MASK, GDK_KEY_Page_Down }, NULL, FALSE, TRUE },
   { N_("Move Tab to the Left"),
-    KEY_MOVE_TAB_LEFT, ACCEL_PATH_MOVE_TAB_LEFT, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (Page_Up), NULL, FALSE, TRUE },
+    KEY_MOVE_TAB_LEFT, ACCEL_PATH_MOVE_TAB_LEFT, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_Page_Up }, NULL, FALSE, TRUE },
   { N_("Move Tab to the Right"),
-    KEY_MOVE_TAB_RIGHT, ACCEL_PATH_MOVE_TAB_RIGHT, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (Page_Down), NULL, FALSE, TRUE },
+    KEY_MOVE_TAB_RIGHT, ACCEL_PATH_MOVE_TAB_RIGHT, { GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY_Page_Down }, NULL, FALSE, TRUE },
   { N_("Detach Tab"),
-    KEY_DETACH_TAB, ACCEL_PATH_DETACH_TAB, 0, 0, NULL, FALSE, TRUE },
+    KEY_DETACH_TAB, ACCEL_PATH_DETACH_TAB, { 0, 0 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 1"),
     KEY_SWITCH_TAB_PREFIX "1",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "1", GDK_MOD1_MASK, GDK_KEY (1), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "1", { GDK_MOD1_MASK, GDK_KEY_1 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 2"),
     KEY_SWITCH_TAB_PREFIX "2",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "2", GDK_MOD1_MASK, GDK_KEY (2), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "2", { GDK_MOD1_MASK, GDK_KEY_2 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 3"),
     KEY_SWITCH_TAB_PREFIX "3",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "3", GDK_MOD1_MASK, GDK_KEY (3), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "3", { GDK_MOD1_MASK, GDK_KEY_3 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 4"),
     KEY_SWITCH_TAB_PREFIX "4",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "4", GDK_MOD1_MASK, GDK_KEY (4), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "4", { GDK_MOD1_MASK, GDK_KEY_4 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 5"),
     KEY_SWITCH_TAB_PREFIX "5",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "5", GDK_MOD1_MASK, GDK_KEY (5), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "5", { GDK_MOD1_MASK, GDK_KEY_5 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 6"),
     KEY_SWITCH_TAB_PREFIX "6",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "6", GDK_MOD1_MASK, GDK_KEY (6), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "6", { GDK_MOD1_MASK, GDK_KEY_6 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 7"),
     KEY_SWITCH_TAB_PREFIX "7",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "7", GDK_MOD1_MASK, GDK_KEY (7), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "7", { GDK_MOD1_MASK, GDK_KEY_7 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 8"),
     KEY_SWITCH_TAB_PREFIX "8",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "8", GDK_MOD1_MASK, GDK_KEY (8), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "8", { GDK_MOD1_MASK, GDK_KEY_8 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 9"),
     KEY_SWITCH_TAB_PREFIX "9",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "9", GDK_MOD1_MASK, GDK_KEY (9), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "9", { GDK_MOD1_MASK, GDK_KEY_9 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 10"),
     KEY_SWITCH_TAB_PREFIX "10",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "10", GDK_MOD1_MASK, GDK_KEY (0), NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "10", { GDK_MOD1_MASK, GDK_KEY_0}, NULL, FALSE, TRUE },
   { N_("Switch to Tab 11"),
     KEY_SWITCH_TAB_PREFIX "11",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "11", 0, 0, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "11", { 0, 0 }, NULL, FALSE, TRUE },
   { N_("Switch to Tab 12"),
     KEY_SWITCH_TAB_PREFIX "12",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "12", 0, 0, NULL, FALSE, TRUE }
+    ACCEL_PATH_SWITCH_TAB_PREFIX "12", { 0, 0 }, NULL, FALSE, TRUE }
 };
 
 static KeyEntry help_entries[] = {
-  { N_("Contents"), KEY_HELP, ACCEL_PATH_HELP, 0, GDK_KEY (F1), NULL, FALSE, TRUE }
+  { N_("Contents"), KEY_HELP, ACCEL_PATH_HELP, { 0, GDK_KEY_F1 }, NULL, FALSE, TRUE }
 };
 
 static KeyEntryList all_entries[] =
@@ -258,9 +255,8 @@ enum
   N_COLUMNS
 };
 
-static void keys_change_notify (GConfClient *client,
-                                guint        cnxn_id,
-                                GConfEntry  *entry,
+static void keys_change_notify (GSettings *settings,
+                                const char *key,
                                 gpointer     user_data);
 
 static void accel_changed_callback (GtkAccelGroup  *accel_group,
@@ -269,24 +265,15 @@ static void accel_changed_callback (GtkAccelGroup  *accel_group,
                                     GClosure       *accel_closure,
                                     gpointer        data);
 
-static gboolean binding_from_string (const char      *str,
-                                     guint           *accelerator_key,
-                                     GdkModifierType *accelerator_mods);
-
-static gboolean binding_from_value  (GConfValue       *value,
-                                     guint           *accelerator_key,
-                                     GdkModifierType *accelerator_mods);
-
 static gboolean sync_idle_cb (gpointer data);
 
 static guint sync_idle_id = 0;
 static GtkAccelGroup *notification_group = NULL;
-/* never set gconf keys in response to receiving a gconf notify. */
-static int inside_gconf_notify = 0;
-static GtkWidget *edit_keys_dialog = NULL;
+/* never set settings keys in response to receiving a settings notify. */
+static int inside_settings_notify = 0;
 static GtkTreeStore *edit_keys_store = NULL;
-static guint gconf_notify_id;
-static GHashTable *gconf_key_to_entry;
+static GHashTable *settings_key_to_entry;
+static GSettings *keybinding_settings = NULL;
 
 static char*
 binding_name (guint            keyval,
@@ -298,33 +285,39 @@ binding_name (guint            keyval,
   return g_strdup ("disabled");
 }
 
-static const char *
-key_from_gconf_key (const char *gconf_key)
+static gboolean
+map_keybinding (GVariant *variant,
+                gpointer *result,
+                gpointer user_data)
 {
-  const char *last_slash = strrchr (gconf_key, '/');
-  if (last_slash)
-    return ++last_slash;
-  return NULL;
+  Keybinding *keybinding = user_data;
+  const char *value;
+
+  value = g_variant_get_string (variant, NULL);
+
+  if (value == NULL || g_str_equal (value, "disabled"))
+    {
+      keybinding->mods = 0;
+      keybinding->key = 0;
+      return TRUE;
+    }
+
+  gtk_accelerator_parse (value, &keybinding->key, &keybinding->mods);
+  if (keybinding->key == 0 && keybinding->mods == 0)
+    return FALSE;
+
+  return TRUE;
 }
 
 void
-terminal_accels_init (void)
+terminal_accels_init (GSettings *settings)
 {
-  GConfClient *conf;
   guint i, j;
 
-  conf = gconf_client_get_default ();
-  
-  gconf_client_add_dir (conf, CONF_KEYS_PREFIX,
-                        GCONF_CLIENT_PRELOAD_ONELEVEL,
-                        NULL);
-  gconf_notify_id =
-  gconf_client_notify_add (conf,
-                           CONF_KEYS_PREFIX,
-                           keys_change_notify,
-                           NULL, NULL, NULL);
+  keybinding_settings = g_object_ref (settings);
+  g_signal_connect (keybinding_settings, "changed", G_CALLBACK (keys_change_notify), NULL);
 
-  gconf_key_to_entry = g_hash_table_new (g_str_hash, g_str_equal);
+  settings_key_to_entry = g_hash_table_new (g_str_hash, g_str_equal);
 
   notification_group = gtk_accel_group_new ();
 
@@ -336,25 +329,23 @@ terminal_accels_init (void)
 
 	  key_entry = &(all_entries[i].key_entry[j]);
 
-          g_hash_table_insert (gconf_key_to_entry,
-                               (gpointer) key_from_gconf_key (key_entry->gconf_key),
+          g_hash_table_insert (settings_key_to_entry,
+                               (gpointer) key_entry->settings_key,
                                key_entry);
 
 	  key_entry->closure = g_closure_new_simple (sizeof (GClosure), key_entry);
 
 	  g_closure_ref (key_entry->closure);
 	  g_closure_sink (key_entry->closure);
-	  
+  
 	  gtk_accel_group_connect_by_path (notification_group,
 					   I_(key_entry->accel_path),
 					   key_entry->closure);
 
-          gconf_client_notify (conf, key_entry->gconf_key);
+          keys_change_notify (keybinding_settings, key_entry->settings_key, NULL);
 	}
     }
 
-  g_object_unref (conf);
-  
   g_signal_connect (notification_group, "accel-changed",
                     G_CALLBACK (accel_changed_callback), NULL);
 }
@@ -362,12 +353,7 @@ terminal_accels_init (void)
 void
 terminal_accels_shutdown (void)
 {
-  GConfClient *conf;
-
-  conf = gconf_client_get_default ();
-  gconf_client_notify_remove (conf, gconf_notify_id);
-  gconf_client_remove_dir (conf, CONF_KEYS_PREFIX, NULL);
-  g_object_unref (conf);
+  g_signal_handlers_disconnect_by_func (keybinding_settings, G_CALLBACK (keys_change_notify), NULL);
 
   if (sync_idle_id != 0)
     {
@@ -377,11 +363,9 @@ terminal_accels_shutdown (void)
       sync_idle_cb (NULL);
     }
 
-  g_hash_table_destroy (gconf_key_to_entry);
-  gconf_key_to_entry = NULL;
-
-  g_object_unref (notification_group);
-  notification_group = NULL;
+  g_clear_pointer (&settings_key_to_entry, (GDestroyNotify) g_hash_table_unref);
+  g_clear_object (&notification_group);
+  g_clear_object (&keybinding_settings);
 }
 
 static gboolean
@@ -405,37 +389,18 @@ update_model_foreach (GtkTreeModel *model,
 }
 
 static void
-keys_change_notify (GConfClient *client,
-                    guint        cnxn_id,
-                    GConfEntry  *entry,
-                    gpointer     user_data)
+keys_change_notify (GSettings *settings,
+                    const char *settings_key,
+                    gpointer user_data)
 {
-  GConfValue *val;
+  Keybinding keybinding;
   KeyEntry *key_entry;
-  GdkModifierType mask;
-  guint keyval;
 
   _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
                          "key %s changed\n",
-                         gconf_entry_get_key (entry));
-  
-  val = gconf_entry_get_value (entry);
+                         settings_key);
 
-#ifdef GNOME_ENABLE_DEBUG
-  _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_ACCELS)
-    {
-      if (val == NULL)
-        _terminal_debug_print (TERMINAL_DEBUG_ACCELS, " changed to be unset\n");
-      else if (val->type != GCONF_VALUE_STRING)
-        _terminal_debug_print (TERMINAL_DEBUG_ACCELS, " changed to non-string value\n");
-      else
-        _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
-                               " changed to \"%s\"\n",
-                               gconf_value_get_string (val));
-    }
-#endif
-
-  key_entry = g_hash_table_lookup (gconf_key_to_entry, key_from_gconf_key (gconf_entry_get_key (entry)));
+  key_entry = g_hash_table_lookup (settings_key_to_entry, settings_key);
   if (!key_entry)
     {
       /* shouldn't really happen, but let's be safe */
@@ -444,17 +409,10 @@ keys_change_notify (GConfClient *client,
       return;
     }
 
-  if (!binding_from_value (val, &keyval, &mask))
-    {
-      const char *str = val->type == GCONF_VALUE_STRING ? gconf_value_get_string (val) : NULL;
-      g_printerr ("The value \"%s\" of configuration key %s is not a valid accelerator\n",
-                  str ? str : "(null)",
-                  key_entry->gconf_key);
-      return;
-    }
+  g_settings_get_mapped (settings, settings_key,
+                         (GSettingsGetMapping) map_keybinding, &keybinding);
 
-  key_entry->gconf_keyval = keyval;
-  key_entry->gconf_mask = mask;
+  key_entry->settings_keybinding = keybinding;
 
   /* Unlock the path, so we can change its accel */
   if (!key_entry->accel_path_unlocked)
@@ -464,16 +422,16 @@ keys_change_notify (GConfClient *client,
   _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
                          "changing path %s to %s\n",
                          key_entry->accel_path,
-                         binding_name (keyval, mask)); /* memleak */
-  inside_gconf_notify += 1;
+                         binding_name (keybinding.key, keybinding.mods)); /* memleak */
+  inside_settings_notify += 1;
   /* Note that this may return FALSE, e.g. when the entry was already set correctly. */
   gtk_accel_map_change_entry (key_entry->accel_path,
-                              keyval, mask,
+                              keybinding.key, keybinding.mods,
                               TRUE);
-  inside_gconf_notify -= 1;
+  inside_settings_notify -= 1;
 
-  /* Lock the path if the gconf key isn't writable */
-  key_entry->accel_path_unlocked = gconf_entry_get_is_writable (entry);
+  /* Lock the path if the settings key isn't writable */
+  key_entry->accel_path_unlocked = g_settings_is_writable (settings, settings_key);
   if (!key_entry->accel_path_unlocked)
     gtk_accel_map_lock_path (key_entry->accel_path);
 
@@ -500,7 +458,7 @@ accel_changed_callback (GtkAccelGroup  *accel_group,
    * accelerator. We just use the accel closure to find our
    * accel entry, then update the value of that entry.
    * We use an idle function to avoid setting the entry
-   * in gconf when the accelerator gets removed and then
+   * in settings when the accelerator gets removed and then
    * setting it again when it gets added.
    */
   KeyEntry *key_entry;
@@ -510,112 +468,54 @@ accel_changed_callback (GtkAccelGroup  *accel_group,
                          binding_name (keyval, modifier), /* memleak */
                          accel_closure);
 
-  if (inside_gconf_notify)
+  if (inside_settings_notify)
     {
       _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
-                             "Ignoring change from gtk because we're inside a gconf notify\n");
+                             "Ignoring change from gtk because we're inside a settings notify\n");
       return;
     }
 
   key_entry = accel_closure->data;
   g_assert (key_entry);
 
-  key_entry->needs_gconf_sync = TRUE;
+  key_entry->needs_settings_sync = TRUE;
 
   if (sync_idle_id == 0)
     sync_idle_id = g_idle_add (sync_idle_cb, NULL);
 }
 
-static gboolean
-binding_from_string (const char      *str,
-                     guint           *accelerator_key,
-                     GdkModifierType *accelerator_mods)
-{
-  if (str == NULL ||
-      strcmp (str, "disabled") == 0)
-    {
-      *accelerator_key = 0;
-      *accelerator_mods = 0;
-      return TRUE;
-    }
-
-  gtk_accelerator_parse (str, accelerator_key, accelerator_mods);
-  if (*accelerator_key == 0 &&
-      *accelerator_mods == 0)
-    return FALSE;
-
-  return TRUE;
-}
-
-static gboolean
-binding_from_value (GConfValue       *value,
-                    guint            *accelerator_key,
-                    GdkModifierType  *accelerator_mods)
-{
-  if (value == NULL)
-    {
-      /* unset */
-      *accelerator_key = 0;
-      *accelerator_mods = 0;
-      return TRUE;
-    }
-
-  if (value->type != GCONF_VALUE_STRING)
-    return FALSE;
-
-  return binding_from_string (gconf_value_get_string (value),
-                              accelerator_key,
-                              accelerator_mods);
-}
-
 static void
-add_key_entry_to_changeset (gpointer key,
-                            KeyEntry *key_entry,
-                            GConfChangeSet *changeset)
+sync_key_entry (gpointer key,
+                KeyEntry *key_entry,
+                GSettings *settings)
 {
   GtkAccelKey gtk_key;
 
-  if (!key_entry->needs_gconf_sync)
+  if (!key_entry->needs_settings_sync)
     return;
 
-  key_entry->needs_gconf_sync = FALSE;
+  key_entry->needs_settings_sync = FALSE;
 
   if (gtk_accel_map_lookup_entry (key_entry->accel_path, &gtk_key) &&
-      (gtk_key.accel_key != key_entry->gconf_keyval ||
-       gtk_key.accel_mods != key_entry->gconf_mask))
+      (gtk_key.accel_key != key_entry->settings_keybinding.key ||
+       gtk_key.accel_mods != key_entry->settings_keybinding.mods))
     {
       char *accel_name;
 
       accel_name = binding_name (gtk_key.accel_key, gtk_key.accel_mods);
-      gconf_change_set_set_string (changeset,  key_entry->gconf_key, accel_name);
+      g_settings_set_string (settings, key_entry->settings_key, accel_name);
       g_free (accel_name);
     }
 }
-              
+
 static gboolean
 sync_idle_cb (gpointer data)
 {
-  GConfClient *conf;
-  GConfChangeSet *changeset;
-  GError *error = NULL;
-
   _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
-                         "gconf sync handler\n");
-  
+                         "settings sync handler\n");
   sync_idle_id = 0;
 
-  conf = gconf_client_get_default ();
-
-  changeset = gconf_change_set_new ();
-  g_hash_table_foreach (gconf_key_to_entry, (GHFunc) add_key_entry_to_changeset, changeset);
-  if (!gconf_client_commit_change_set (conf, changeset, TRUE, &error))
-    {
-      g_printerr ("Error committing the accelerator changeset: %s\n", error->message);
-      g_error_free (error);
-    }
-              
-  gconf_change_set_unref (changeset);
-  g_object_unref (conf);
+  g_hash_table_foreach (settings_key_to_entry, (GHFunc) sync_key_entry, keybinding_settings);
 
   return FALSE;
 }
@@ -648,8 +548,8 @@ accel_set_func (GtkTreeViewColumn *tree_column,
                   "visible", TRUE,
                   "sensitive", ke->accel_path_unlocked,
                   "editable", ke->accel_path_unlocked,
-                  "accel-key", ke->gconf_keyval,
-                  "accel-mods", ke->gconf_mask,
+                  "accel-key", ke->settings_keybinding.key,
+                  "accel-mods", ke->settings_keybinding.mods,
 		  NULL);
 }
 
@@ -678,7 +578,6 @@ accel_edited_callback (GtkCellRendererAccel *cell,
   GtkAccelGroupEntry *entries;
   guint n_entries;
   char *str;
-  GConfClient *conf;
 
   model = gtk_tree_view_get_model (view);
 
@@ -719,7 +618,7 @@ accel_edited_callback (GtkCellRendererAccel *cell,
                                     GTK_BUTTONS_OK,
                                     _("The shortcut key “%s” is already bound to the “%s” action"),
                                     name,
-                                    other_key->user_visible_name ? _(other_key->user_visible_name) : other_key->gconf_key);
+                                    other_key->user_visible_name ? _(other_key->user_visible_name) : other_key->settings_key);
           g_free (name);
 
           g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
@@ -732,7 +631,7 @@ accel_edited_callback (GtkCellRendererAccel *cell,
   str = binding_name (keyval, mask);
 
   _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
-                         "Edited path %s keyval %s, setting gconf to %s\n",
+                         "Edited path %s keyval %s, setting settings to %s\n",
                          ke->accel_path,
                          gdk_keyval_name (keyval) ? gdk_keyval_name (keyval) : "null",
                          str);
@@ -753,12 +652,7 @@ accel_edited_callback (GtkCellRendererAccel *cell,
     }
 #endif
 
-  conf = gconf_client_get_default ();
-  gconf_client_set_string (conf,
-                           ke->gconf_key,
-                           str,
-                           NULL);
-  g_object_unref (conf);
+  g_settings_set_string (keybinding_settings, ke->settings_key, str);
   g_free (str);
 }
 
@@ -772,7 +666,6 @@ accel_cleared_callback (GtkCellRendererAccel *cell,
   GtkTreeIter iter;
   KeyEntry *ke;
   char *str;
-  GConfClient *conf;
 
   model = gtk_tree_view_get_model (view);
 
@@ -792,46 +685,26 @@ accel_cleared_callback (GtkCellRendererAccel *cell,
   if (ke == NULL)
     return;
 
-  ke->gconf_keyval = 0;
-  ke->gconf_mask = 0;
-  ke->needs_gconf_sync = TRUE;
+  ke->settings_keybinding.key = 0;
+  ke->settings_keybinding.mods = 0;
+  ke->needs_settings_sync = TRUE;
 
   str = binding_name (0, 0);
 
   _terminal_debug_print (TERMINAL_DEBUG_ACCELS,
-                         "Cleared keybinding for gconf %s",
-                         ke->gconf_key);
+                         "Cleared keybinding for settings %s",
+                         ke->settings_key);
 
-  conf = gconf_client_get_default ();
-  gconf_client_set_string (conf,
-                           ke->gconf_key,
-                           str,
-                           NULL);
-  g_object_unref (conf);
+  g_settings_set_string (keybinding_settings, ke->settings_key, str);
   g_free (str);
 }
 
 static void
-edit_keys_dialog_destroy_cb (GtkWidget *widget,
-                             gpointer user_data)
+treeview_destroy_cb (GtkWidget *tree_view,
+                     gpointer user_data)
 {
   g_signal_handlers_disconnect_by_func (notification_group, G_CALLBACK (treeview_accel_changed_cb), user_data);
-  edit_keys_dialog = NULL;
   edit_keys_store = NULL;
-}
-
-static void
-edit_keys_dialog_response_cb (GtkWidget *editor,
-                              int response,
-                              gpointer use_data)
-{  
-  if (response == GTK_RESPONSE_HELP)
-    {
-      terminal_util_show_help ("gnome-terminal-shortcuts", GTK_WINDOW (editor));
-      return;
-    }
-    
-  gtk_widget_destroy (editor);
 }
 
 #ifdef GNOME_ENABLE_DEBUG
@@ -847,31 +720,12 @@ row_changed (GtkTreeModel *tree_model,
 #endif
 
 void
-terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
+terminal_accels_fill_treeview (GtkWidget *tree_view)
 {
-  TerminalApp *app;
-  GtkWidget *dialog, *tree_view, *disable_mnemonics_button, *disable_menu_accel_button;
   GtkTreeViewColumn *column;
   GtkCellRenderer *cell_renderer;
   GtkTreeStore *tree;
   guint i;
-
-  if (edit_keys_dialog != NULL)
-    goto done;
-
-  if (!terminal_util_load_builder_file ("keybinding-editor.ui",
-                                        "keybindings-dialog", &dialog,
-                                        "disable-mnemonics-checkbutton", &disable_mnemonics_button,
-                                        "disable-menu-accel-checkbutton", &disable_menu_accel_button,
-                                        "accelerators-treeview", &tree_view,
-                                        NULL))
-    return;
-
-  app = terminal_app_get ();
-  terminal_util_bind_object_property_to_widget (G_OBJECT (app), TERMINAL_APP_ENABLE_MNEMONICS,
-                                                disable_mnemonics_button, 0);
-  terminal_util_bind_object_property_to_widget (G_OBJECT (app), TERMINAL_APP_ENABLE_MENU_BAR_ACCEL,
-                                                disable_menu_accel_button, 0);
 
   /* Column 1 */
   cell_renderer = gtk_cell_renderer_text_new ();
@@ -891,7 +745,7 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
                     G_CALLBACK (accel_edited_callback), tree_view);
   g_signal_connect (cell_renderer, "accel-cleared",
                     G_CALLBACK (accel_cleared_callback), tree_view);
-  
+
   column = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column, _("Shortcut _Key"));
   gtk_tree_view_column_pack_start (column, cell_renderer, TRUE);
@@ -912,10 +766,10 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
       GtkTreeIter parent_iter;
       guint j;
 
-      gtk_tree_store_append (tree, &parent_iter, NULL);
-      gtk_tree_store_set (tree, &parent_iter,
-			  ACTION_COLUMN, _(all_entries[i].user_visible_name),
-			  -1);
+      gtk_tree_store_insert_with_values (tree, &parent_iter, NULL, -1,
+                                         ACTION_COLUMN, _(all_entries[i].user_visible_name),
+                                         KEYVAL_COLUMN, NULL,
+                                         -1);
 
       for (j = 0; j < all_entries[i].n_elements; ++j)
 	{
@@ -937,15 +791,6 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
   g_signal_connect (notification_group, "accel-changed",
                     G_CALLBACK (treeview_accel_changed_cb), tree);
 
-  edit_keys_dialog = dialog;
-  g_signal_connect (dialog, "destroy",
-                    G_CALLBACK (edit_keys_dialog_destroy_cb), tree);
-  g_signal_connect (dialog, "response",
-                    G_CALLBACK (edit_keys_dialog_response_cb),
-                    NULL);
-  gtk_window_set_default_size (GTK_WINDOW (dialog), -1, 350);
-
-done:
-  gtk_window_set_transient_for (GTK_WINDOW (edit_keys_dialog), transient_parent);
-  gtk_window_present (GTK_WINDOW (edit_keys_dialog));
+  g_signal_connect (tree_view, "destroy",
+                    G_CALLBACK (treeview_destroy_cb), tree);
 }

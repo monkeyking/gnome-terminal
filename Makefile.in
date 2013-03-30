@@ -52,13 +52,14 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = .
-DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
+DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
 	$(srcdir)/gnome-terminal.desktop.in.in $(top_srcdir)/configure \
 	AUTHORS COPYING ChangeLog NEWS config.guess config.sub depcomp \
 	install-sh ltmain.sh missing mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -160,10 +161,12 @@ am__relativize = \
   reldir="$$dir2"
 GZIP_ENV = --best
 DIST_ARCHIVES = $(distdir).tar.bz2
+distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
 ACLOCAL = @ACLOCAL@
+ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AM_CFLAGS = @AM_CFLAGS@
@@ -186,14 +189,8 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DISTCHECK_CONFIGURE_FLAGS = \
-	--disable-scrollkeeper \
-	--disable-schemas-install \
-	--disable-silent-rules \
-	--with-gtk=3.0
-
+DESKTOP_FILE_VALIDATE = @DESKTOP_FILE_VALIDATE@
 DLLTOOL = @DLLTOOL@
-DOC_USER_FORMATS = @DOC_USER_FORMATS@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -202,17 +199,16 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
-GCONFTOOL = @GCONFTOOL@
-GCONF_SCHEMA_CONFIG_SOURCE = @GCONF_SCHEMA_CONFIG_SOURCE@
-GCONF_SCHEMA_FILE_DIR = @GCONF_SCHEMA_FILE_DIR@
+GDBUS_CODEGEN = @GDBUS_CODEGEN@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+GLIB_COMPILE_RESOURCES = @GLIB_COMPILE_RESOURCES@
+GLIB_COMPILE_SCHEMAS = @GLIB_COMPILE_SCHEMAS@
 GLIB_GENMARSHAL = @GLIB_GENMARSHAL@
 GLIB_MKENUMS = @GLIB_MKENUMS@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
-GTK_BUILDER_CONVERT = @GTK_BUILDER_CONVERT@
-GTK_BUILDER_CONVERT_FLAGS = @GTK_BUILDER_CONVERT_FLAGS@
+GSETTINGS_DISABLE_SCHEMAS_COMPILE = @GSETTINGS_DISABLE_SCHEMAS_COMPILE@
 HELP_DIR = @HELP_DIR@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -241,16 +237,19 @@ LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
+MIGRATOR_CFLAGS = @MIGRATOR_CFLAGS@
+MIGRATOR_LIBS = @MIGRATOR_LIBS@
 MKDIR_P = @MKDIR_P@
 MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NAUTILUS_CFLAGS = @NAUTILUS_CFLAGS@
+NAUTILUS_LIBS = @NAUTILUS_LIBS@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
-OMF_DIR = @OMF_DIR@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -272,8 +271,6 @@ RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
-SMCLIENT_CFLAGS = @SMCLIENT_CFLAGS@
-SMCLIENT_LIBS = @SMCLIENT_LIBS@
 STRIP = @STRIP@
 TERMINAL_API_VERSION = @TERMINAL_API_VERSION@
 TERMINAL_MAJOR_VERSION = @TERMINAL_MAJOR_VERSION@
@@ -306,9 +303,11 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 datadir = @datadir@
 datarootdir = @datarootdir@
+dbusservicedir = @dbusservicedir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+gsettingsschemadir = @gsettingsschemadir@
 host = @host@
 host_alias = @host_alias@
 host_cpu = @host_cpu@
@@ -326,6 +325,7 @@ localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
+nautilusextensiondir = @nautilusextensiondir@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
 prefix = @prefix@
@@ -341,6 +341,12 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = src po help
 NULL = 
+DISTCHECK_CONFIGURE_FLAGS = \
+	--disable-scrollkeeper \
+	--disable-schemas-install \
+	--disable-silent-rules \
+	--with-gtk=3.0
+
 desktopdir = $(datadir)/applications
 desktop_in_files = @PACKAGE@.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
@@ -370,12 +376,6 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/mkinstalldirs \
 	`find "$(srcdir)" -type f -name Makefile.in -print` \
 	$(NULL)
-
-
-# hack from sound-juicer to get around scrollkeeper's leaving a big
-# mess behind.
-distuninstallcheck_listfiles = \
-        find -regex '.*/var/scrollkeeper/.*' -prune -or -type f -print
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -785,6 +785,7 @@ distcleancheck: distclean
 	       $(distcleancheck_listfiles) ; \
 	       exit 1; } >&2
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
 all-am: Makefile $(DATA) config.h
 installdirs: installdirs-recursive
@@ -894,27 +895,35 @@ ps-am:
 
 uninstall-am: uninstall-desktopDATA
 
-.MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) all \
+.MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) all check-am \
 	ctags-recursive install-am install-strip tags-recursive
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
-	all all-am am--refresh check check-am clean clean-generic \
-	clean-libtool ctags ctags-recursive dist dist-all dist-bzip2 \
-	dist-gzip dist-lzip dist-lzma dist-shar dist-tarZ dist-xz \
-	dist-zip distcheck distclean distclean-generic distclean-hdr \
-	distclean-libtool distclean-tags distcleancheck distdir \
-	distuninstallcheck dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-desktopDATA install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
-	uninstall uninstall-am uninstall-desktopDATA
+	all all-am am--refresh check check-am check-local clean \
+	clean-generic clean-libtool ctags ctags-recursive dist \
+	dist-all dist-bzip2 dist-gzip dist-lzip dist-lzma dist-shar \
+	dist-tarZ dist-xz dist-zip distcheck distclean \
+	distclean-generic distclean-hdr distclean-libtool \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-desktopDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am tags tags-recursive uninstall uninstall-am \
+	uninstall-desktopDATA
 
 @INTLTOOL_DESKTOP_RULE@
+
+desktop-file-validate: $(desktop_DATA)
+	for f in $^; do \
+		$(DESKTOP_FILE_VALIDATE) $$f; \
+	done
+
+check-local: desktop-file-validate
 
 # Build ChangeLog from GIT  history
 ChangeLog:

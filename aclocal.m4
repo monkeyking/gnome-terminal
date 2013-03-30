@@ -1066,113 +1066,6 @@ AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
-dnl AM_GCONF_SOURCE_2
-dnl Defines GCONF_SCHEMA_CONFIG_SOURCE which is where you should install schemas
-dnl  (i.e. pass to gconftool-2
-dnl Defines GCONF_SCHEMA_FILE_DIR which is a filesystem directory where
-dnl  you should install foo.schemas files
-dnl
-
-AC_DEFUN([AM_GCONF_SOURCE_2],
-[
-  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
-    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  else
-    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
-  fi
-
-  AC_ARG_WITH([gconf-source],
-	      AC_HELP_STRING([--with-gconf-source=sourceaddress],
-			     [Config database for installing schema files.]),
-	      [GCONF_SCHEMA_CONFIG_SOURCE="$withval"],)
-
-  AC_SUBST(GCONF_SCHEMA_CONFIG_SOURCE)
-  AC_MSG_RESULT([Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation])
-
-  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
-    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas'
-  fi
-
-  AC_ARG_WITH([gconf-schema-file-dir],
-	      AC_HELP_STRING([--with-gconf-schema-file-dir=dir],
-			     [Directory for installing schema files.]),
-	      [GCONF_SCHEMA_FILE_DIR="$withval"],)
-
-  AC_SUBST(GCONF_SCHEMA_FILE_DIR)
-  AC_MSG_RESULT([Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files])
-
-  AC_ARG_ENABLE(schemas-install,
-  	AC_HELP_STRING([--disable-schemas-install],
-		       [Disable the schemas installation]),
-     [case ${enableval} in
-       yes|no) ;;
-       *) AC_MSG_ERROR([bad value ${enableval} for --enable-schemas-install]) ;;
-      esac])
-  AM_CONDITIONAL([GCONF_SCHEMAS_INSTALL], [test "$enable_schemas_install" != no])
-])
-
-dnl Do not call GNOME_DOC_DEFINES directly.  It is split out from
-dnl GNOME_DOC_INIT to allow gnome-doc-utils to bootstrap off itself.
-AC_DEFUN([GNOME_DOC_DEFINES],
-[
-AC_ARG_WITH([help-dir],
-  AC_HELP_STRING([--with-help-dir=DIR], [path to help docs]),,
-  [with_help_dir='${datadir}/gnome/help'])
-HELP_DIR="$with_help_dir"
-AC_SUBST(HELP_DIR)
-
-AC_ARG_WITH([omf-dir],
-  AC_HELP_STRING([--with-omf-dir=DIR], [path to OMF files]),,
-  [with_omf_dir='${datadir}/omf'])
-OMF_DIR="$with_omf_dir"
-AC_SUBST(OMF_DIR)
-
-AC_ARG_WITH([help-formats],
-  AC_HELP_STRING([--with-help-formats=FORMATS], [list of formats]),,
-  [with_help_formats=''])
-DOC_USER_FORMATS="$with_help_formats"
-AC_SUBST(DOC_USER_FORMATS)
-
-AC_ARG_ENABLE([scrollkeeper],
-	[AC_HELP_STRING([--disable-scrollkeeper],
-			[do not make updates to the scrollkeeper database])],,
-	enable_scrollkeeper=yes)
-AM_CONDITIONAL([ENABLE_SK],[test "$gdu_cv_have_gdu" = "yes" -a "$enable_scrollkeeper" = "yes"])
-
-dnl disable scrollkeeper automatically for distcheck
-DISTCHECK_CONFIGURE_FLAGS="--disable-scrollkeeper $DISTCHECK_CONFIGURE_FLAGS"
-AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
-
-AM_CONDITIONAL([HAVE_GNOME_DOC_UTILS],[test "$gdu_cv_have_gdu" = "yes"])
-])
-
-# GNOME_DOC_INIT ([MINIMUM-VERSION],[ACTION-IF-FOUND],[ACTION-IF-NOT-FOUND])
-#
-AC_DEFUN([GNOME_DOC_INIT],
-[AC_REQUIRE([AC_PROG_LN_S])dnl
-
-if test -z "$AM_DEFAULT_VERBOSITY"; then
-  AM_DEFAULT_VERBOSITY=1
-fi
-AC_SUBST([AM_DEFAULT_VERBOSITY])
-
-ifelse([$1],,[gdu_cv_version_required=0.3.2],[gdu_cv_version_required=$1])
-
-AC_MSG_CHECKING([gnome-doc-utils >= $gdu_cv_version_required])
-PKG_CHECK_EXISTS([gnome-doc-utils >= $gdu_cv_version_required],
-	[gdu_cv_have_gdu=yes],[gdu_cv_have_gdu=no])
-
-if test "$gdu_cv_have_gdu" = "yes"; then
-	AC_MSG_RESULT([yes])
-	ifelse([$2],,[:],[$2])
-else
-	AC_MSG_RESULT([no])
-	ifelse([$3],,[AC_MSG_ERROR([gnome-doc-utils >= $gdu_cv_version_required not found])],[$3])
-fi
-
-GNOME_DOC_DEFINES
-])
-
 
 dnl IT_PROG_INTLTOOL([MINIMUM-VERSION], [no-xml])
 # serial 42 IT_PROG_INTLTOOL
@@ -10663,6 +10556,90 @@ AC_DEFUN([GNOME_MAINTAINER_MODE_DEFINES],
 	AC_SUBST(DISABLE_DEPRECATED)
 ])
 
+dnl GLIB_GSETTINGS
+dnl Defines GSETTINGS_SCHEMAS_INSTALL which controls whether
+dnl the schema should be compiled
+dnl
+
+AC_DEFUN([GLIB_GSETTINGS],
+[
+  m4_pattern_allow([AM_V_GEN])
+  AC_ARG_ENABLE(schemas-compile,
+                AS_HELP_STRING([--disable-schemas-compile],
+                               [Disable regeneration of gschemas.compiled on install]),
+                [case ${enableval} in
+                  yes) GSETTINGS_DISABLE_SCHEMAS_COMPILE=""  ;;
+                  no)  GSETTINGS_DISABLE_SCHEMAS_COMPILE="1" ;;
+                  *) AC_MSG_ERROR([bad value ${enableval} for --enable-schemas-compile]) ;;
+                 esac])
+  AC_SUBST([GSETTINGS_DISABLE_SCHEMAS_COMPILE])
+  PKG_PROG_PKG_CONFIG([0.16])
+  AC_SUBST(gsettingsschemadir, [${datadir}/glib-2.0/schemas])
+  if test x$cross_compiling != xyes; then
+    GLIB_COMPILE_SCHEMAS=`$PKG_CONFIG --variable glib_compile_schemas gio-2.0`
+  else
+    AC_PATH_PROG(GLIB_COMPILE_SCHEMAS, glib-compile-schemas)
+  fi
+  AC_SUBST(GLIB_COMPILE_SCHEMAS)
+  if test "x$GLIB_COMPILE_SCHEMAS" = "x"; then
+    ifelse([$2],,[AC_MSG_ERROR([glib-compile-schemas not found.])],[$2])
+  else
+    ifelse([$1],,[:],[$1])
+  fi
+
+  GSETTINGS_RULES='
+.PHONY : uninstall-gsettings-schemas install-gsettings-schemas clean-gsettings-schemas
+
+mostlyclean-am: clean-gsettings-schemas
+
+gsettings__enum_file = $(addsuffix .enums.xml,$(gsettings_ENUM_NAMESPACE))
+
+%.gschema.valid: %.gschema.xml $(gsettings__enum_file)
+	$(AM_V_GEN) if test -f "$<"; then d=; else d="$(srcdir)/"; fi; $(GLIB_COMPILE_SCHEMAS) --strict --dry-run $(addprefix --schema-file=,$(gsettings__enum_file)) --schema-file=$${d}$< && touch [$]@
+
+all-am: $(gsettings_SCHEMAS:.xml=.valid)
+uninstall-am: uninstall-gsettings-schemas
+install-data-am: install-gsettings-schemas
+
+.SECONDARY: $(gsettings_SCHEMAS)
+
+install-gsettings-schemas: $(gsettings_SCHEMAS) $(gsettings__enum_file)
+	@$(NORMAL_INSTALL)
+	if test -n "$^"; then \
+		test -z "$(gsettingsschemadir)" || $(MKDIR_P) "$(DESTDIR)$(gsettingsschemadir)"; \
+		$(INSTALL_DATA) $^ "$(DESTDIR)$(gsettingsschemadir)"; \
+		test -n "$(GSETTINGS_DISABLE_SCHEMAS_COMPILE)$(DESTDIR)" || $(GLIB_COMPILE_SCHEMAS) $(gsettingsschemadir); \
+	fi
+
+uninstall-gsettings-schemas:
+	@$(NORMAL_UNINSTALL)
+	@list='\''$(gsettings_SCHEMAS) $(gsettings__enum_file)'\''; test -n "$(gsettingsschemadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e '\''s|^.*/||'\''`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '\''$(DESTDIR)$(gsettingsschemadir)'\'' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(gsettingsschemadir)" && rm -f $$files
+	test -n "$(GSETTINGS_DISABLE_SCHEMAS_COMPILE)$(DESTDIR)" || $(GLIB_COMPILE_SCHEMAS) $(gsettingsschemadir)
+
+clean-gsettings-schemas:
+	rm -f $(gsettings_SCHEMAS:.xml=.valid) $(gsettings__enum_file)
+
+ifdef gsettings_ENUM_NAMESPACE
+$(gsettings__enum_file): $(gsettings_ENUM_FILES)
+	$(AM_V_GEN) glib-mkenums --comments '\''<!-- @comment@ -->'\'' --fhead "<schemalist>" --vhead "  <@type@ id='\''$(gsettings_ENUM_NAMESPACE).@EnumName@'\''>" --vprod "    <value nick='\''@valuenick@'\'' value='\''@valuenum@'\''/>" --vtail "  </@type@>" --ftail "</schemalist>" [$]^ > [$]@.tmp && mv [$]@.tmp [$]@
+endif
+'
+  _GSETTINGS_SUBST(GSETTINGS_RULES)
+])
+
+dnl _GSETTINGS_SUBST(VARIABLE)
+dnl Abstract macro to do either _AM_SUBST_NOTMAKE or AC_SUBST
+AC_DEFUN([_GSETTINGS_SUBST],
+[
+AC_SUBST([$1])
+m4_ifdef([_AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE([$1])])
+]
+)
+
 AC_DEFUN([YELP_HELP_INIT],
 [
 AC_REQUIRE([AC_PROG_LN_S])
@@ -10857,3 +10834,4 @@ AC_SUBST([YELP_HELP_RULES])
 m4_ifdef([_AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE([YELP_HELP_RULES])])
 ])
 
+m4_include([acinclude.m4])
