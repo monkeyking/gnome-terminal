@@ -986,11 +986,11 @@ terminal_profile_edit (GSettings  *profile,
                    TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE_KEY,
                    gtk_builder_get_object (builder, "default-size-hbox"),
                    "sensitive", G_SETTINGS_BIND_GET);
-  g_settings_bind_writable (profile,
+  /*g_settings_bind_writable (profile,
                             TERMINAL_PROFILE_PALETTE_KEY,
                             gtk_builder_get_object (builder, "palette-box"),
                             "sensitive",
-                            FALSE);
+                            FALSE);*/
 
   terminal_util_bind_mnemonic_label_sensitivity (editor);
 
