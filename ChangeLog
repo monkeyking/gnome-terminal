@@ -1,3 +1,102 @@
+commit f03ebd3a80e02f43e387544537e1cd37801058a2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Mar 31 15:54:58 2013 +0200
+
+    Version 3.8.0.1
+
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 92562d4bec25ba3428dd5cd7d01055d59fa08675
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Mar 20 20:21:28 2013 +0100
+
+    accels: Add more accel-able tabs
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=696123
+
+ src/org.gnome.Terminal.gschema.xml.in | 92 +++++++++++++++++++++++++++++++++++
+ src/terminal-accels.c                 | 33 +++++++++++--
+ src/terminal-tabs-menu.c              |  2 +-
+ 3 files changed, 123 insertions(+), 4 deletions(-)
+
+commit 108428dc62fbe89580ca803091a93a368aa8b6b7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Mar 20 20:11:44 2013 +0100
+
+    accels: Simplify code
+    
+    Make this more easily extensible, and drop the trivially different summaries
+    for the various gsettings keys.
+
+ src/terminal-accels.c | 62 +++++++++++++++++++++------------------------------
+ 1 file changed, 26 insertions(+), 36 deletions(-)
+
+commit 6ea370181d976fd29cc5ea72babb977574cde04e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Mar 29 15:50:50 2013 +0100
+
+    Revert "Added missing languaes to LINGUAS var"
+    
+    This reverts commit 32711d78cf2697ac019d400c0ac4c0b420ec57c8.
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 32711d78cf2697ac019d400c0ac4c0b420ec57c8
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Mar 29 10:56:54 2013 +0100
+
+    Added missing languaes to LINGUAS var
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ba5060e5cbc5762dab75d1d39ababe5e0cc5e3ec
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Wed Mar 27 19:27:28 2013 +0200
+
+    Update uk translation
+
+ po/uk.po | 219 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 123 insertions(+), 96 deletions(-)
+
+commit c0ee93a58541112ee287639d393493d8623ba8a5
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Wed Mar 27 19:25:33 2013 +0200
+
+    Update uk translation
+
+ po/uk.po | 3834 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 1964 insertions(+), 1870 deletions(-)
+
+commit 39d75c1dc818ff310146cb9fce1785d2a3dd81f5
+Author: Dirgita <dirgitadevina@yahoo.co.id>
+Date:   Tue Mar 26 12:20:00 2013 +0700
+
+    Updated Indonesian translation
+
+ po/id.po | 1373 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 716 insertions(+), 657 deletions(-)
+
+commit 967e76dc07c96840a780a24649ab7a26270d5943
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Mar 25 23:46:49 2013 +0100
+
+    Updated Galician translations for docs
+
+ help/gl/gl.po | 251 +++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 151 insertions(+), 100 deletions(-)
+
+commit 164f1ee2e0da5c8fbcf8817ae669d0858a196477
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 25 20:58:20 2013 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit c8ce805ec7f29fab523a11e3244ecc2191739227
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Mar 25 20:54:07 2013 +0100
