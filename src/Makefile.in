@@ -61,13 +61,16 @@ noinst_PROGRAMS = gnome-terminal-client$(EXEEXT)
 @ENABLE_MIGRATION_TRUE@am__append_1 = gnome-terminal-migration
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/terminal-version.h.in TODO
+	$(srcdir)/terminal-version.h.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/intltool.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES = terminal-version.h
 CONFIG_CLEAN_VPATH_FILES =
@@ -106,9 +109,16 @@ am__DEPENDENCIES_1 =
 libterminal_nautilus_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__objects_1 =
 am_libterminal_nautilus_la_OBJECTS =  \
+	libterminal_nautilus_la-terminal-client-utils.lo \
+	libterminal_nautilus_la-terminal-i18n.lo \
 	libterminal_nautilus_la-terminal-nautilus.lo $(am__objects_1)
+nodist_libterminal_nautilus_la_OBJECTS =  \
+	libterminal_nautilus_la-terminal-gdbus-generated.lo \
+	libterminal_nautilus_la-terminal-type-builtins.lo \
+	$(am__objects_1)
 libterminal_nautilus_la_OBJECTS =  \
-	$(am_libterminal_nautilus_la_OBJECTS)
+	$(am_libterminal_nautilus_la_OBJECTS) \
+	$(nodist_libterminal_nautilus_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -124,6 +134,7 @@ PROGRAMS = $(bin_PROGRAMS) $(libexec_PROGRAMS) $(noinst_PROGRAMS)
 am_gnome_terminal_OBJECTS = gnome_terminal-terminal.$(OBJEXT) \
 	gnome_terminal-terminal-client-utils.$(OBJEXT) \
 	gnome_terminal-terminal-debug.$(OBJEXT) \
+	gnome_terminal-terminal-i18n.$(OBJEXT) \
 	gnome_terminal-terminal-options.$(OBJEXT) \
 	gnome_terminal-terminal-profiles-list.$(OBJEXT) \
 	gnome_terminal-terminal-settings-list.$(OBJEXT) \
@@ -143,6 +154,7 @@ am_gnome_terminal_client_OBJECTS =  \
 	gnome_terminal_client-client.$(OBJEXT) \
 	gnome_terminal_client-terminal-client-utils.$(OBJEXT) \
 	gnome_terminal_client-terminal-debug.$(OBJEXT) \
+	gnome_terminal_client-terminal-i18n.$(OBJEXT) \
 	gnome_terminal_client-terminal-profiles-list.$(OBJEXT) \
 	gnome_terminal_client-terminal-settings-list.$(OBJEXT) \
 	$(am__objects_1)
@@ -189,6 +201,7 @@ am_gnome_terminal_server_OBJECTS =  \
 	gnome_terminal_server-terminal-encoding.$(OBJEXT) \
 	gnome_terminal_server-terminal-gdbus.$(OBJEXT) \
 	gnome_terminal_server-terminal-info-bar.$(OBJEXT) \
+	gnome_terminal_server-terminal-i18n.$(OBJEXT) \
 	gnome_terminal_server-terminal-mdi-container.$(OBJEXT) \
 	gnome_terminal_server-terminal-notebook.$(OBJEXT) \
 	gnome_terminal_server-terminal-prefs.$(OBJEXT) \
@@ -241,8 +254,9 @@ am__v_CCLD_0 = @echo "  CCLD  " $@;
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN   " $@;
-SOURCES = $(libterminal_nautilus_la_SOURCES) $(gnome_terminal_SOURCES) \
-	$(nodist_gnome_terminal_SOURCES) \
+SOURCES = $(libterminal_nautilus_la_SOURCES) \
+	$(nodist_libterminal_nautilus_la_SOURCES) \
+	$(gnome_terminal_SOURCES) $(nodist_gnome_terminal_SOURCES) \
 	$(gnome_terminal_client_SOURCES) \
 	$(nodist_gnome_terminal_client_SOURCES) \
 	$(gnome_terminal_migration_SOURCES) \
@@ -475,6 +489,8 @@ gnome_terminal_server_SOURCES = \
 	terminal-info-bar.c \
 	terminal-info-bar.h \
 	terminal-intl.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-mdi-container.c \
 	terminal-mdi-container.h \
 	terminal-notebook.c \
@@ -537,7 +553,8 @@ gnome_terminal_client_SOURCES = \
 	terminal-debug.c \
 	terminal-debug.h \
 	terminal-defines.h \
-	terminal-intl.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-profiles-list.c \
 	terminal-profiles-list.h \
 	terminal-schemas.h \
@@ -581,7 +598,8 @@ gnome_terminal_SOURCES = \
 	terminal-debug.c \
 	terminal-debug.h \
 	terminal-defines.h \
-	terminal-intl.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-options.c \
 	terminal-options.h \
 	terminal-profiles-list.c \
@@ -621,14 +639,24 @@ gnome_terminal_LDADD = \
 
 # Nautilus extension
 libterminal_nautilus_la_SOURCES = \
+	terminal-client-utils.c \
+	terminal-client-utils.h \
+	terminal-defines.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-nautilus.c \
+	$(NULL)
+
+nodist_libterminal_nautilus_la_SOURCES = \
+	terminal-gdbus-generated.c \
+	terminal-gdbus-generated.h \
+	terminal-type-builtins.c \
+	terminal-type-builtins.h \
 	$(NULL)
 
 libterminal_nautilus_la_CPPFLAGS = \
 	-DTERMINAL_COMPILATION \
-	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
-	-DTERM_BINDIR="\"$(bindir)\"" \
 	-DGDK_MULTIHEAD_SAFE \
 	$(AM_CPPFLAGS)
 
@@ -897,6 +925,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-client-utils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-debug.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-gdbus-generated.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-i18n.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-options.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-profiles-list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal-terminal-settings-list.Po@am__quote@
@@ -906,6 +935,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-client-utils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-debug.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-gdbus-generated.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-i18n.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-profiles-list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-settings-list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_client-terminal-type-builtins.Po@am__quote@
@@ -924,6 +954,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-encoding.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-gdbus-generated.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-gdbus.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-i18n.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-info-bar.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-marshal.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-mdi-container.Po@am__quote@
@@ -940,7 +971,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-type-builtins.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-util.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-window.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libterminal_nautilus_la-terminal-client-utils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libterminal_nautilus_la-terminal-gdbus-generated.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libterminal_nautilus_la-terminal-i18n.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libterminal_nautilus_la-terminal-nautilus.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libterminal_nautilus_la-terminal-type-builtins.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -963,12 +998,40 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
+libterminal_nautilus_la-terminal-client-utils.lo: terminal-client-utils.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -MT libterminal_nautilus_la-terminal-client-utils.lo -MD -MP -MF $(DEPDIR)/libterminal_nautilus_la-terminal-client-utils.Tpo -c -o libterminal_nautilus_la-terminal-client-utils.lo `test -f 'terminal-client-utils.c' || echo '$(srcdir)/'`terminal-client-utils.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libterminal_nautilus_la-terminal-client-utils.Tpo $(DEPDIR)/libterminal_nautilus_la-terminal-client-utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-client-utils.c' object='libterminal_nautilus_la-terminal-client-utils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -c -o libterminal_nautilus_la-terminal-client-utils.lo `test -f 'terminal-client-utils.c' || echo '$(srcdir)/'`terminal-client-utils.c
+
+libterminal_nautilus_la-terminal-i18n.lo: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -MT libterminal_nautilus_la-terminal-i18n.lo -MD -MP -MF $(DEPDIR)/libterminal_nautilus_la-terminal-i18n.Tpo -c -o libterminal_nautilus_la-terminal-i18n.lo `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libterminal_nautilus_la-terminal-i18n.Tpo $(DEPDIR)/libterminal_nautilus_la-terminal-i18n.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='libterminal_nautilus_la-terminal-i18n.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -c -o libterminal_nautilus_la-terminal-i18n.lo `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+
 libterminal_nautilus_la-terminal-nautilus.lo: terminal-nautilus.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -MT libterminal_nautilus_la-terminal-nautilus.lo -MD -MP -MF $(DEPDIR)/libterminal_nautilus_la-terminal-nautilus.Tpo -c -o libterminal_nautilus_la-terminal-nautilus.lo `test -f 'terminal-nautilus.c' || echo '$(srcdir)/'`terminal-nautilus.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libterminal_nautilus_la-terminal-nautilus.Tpo $(DEPDIR)/libterminal_nautilus_la-terminal-nautilus.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-nautilus.c' object='libterminal_nautilus_la-terminal-nautilus.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -c -o libterminal_nautilus_la-terminal-nautilus.lo `test -f 'terminal-nautilus.c' || echo '$(srcdir)/'`terminal-nautilus.c
+
+libterminal_nautilus_la-terminal-gdbus-generated.lo: terminal-gdbus-generated.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -MT libterminal_nautilus_la-terminal-gdbus-generated.lo -MD -MP -MF $(DEPDIR)/libterminal_nautilus_la-terminal-gdbus-generated.Tpo -c -o libterminal_nautilus_la-terminal-gdbus-generated.lo `test -f 'terminal-gdbus-generated.c' || echo '$(srcdir)/'`terminal-gdbus-generated.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libterminal_nautilus_la-terminal-gdbus-generated.Tpo $(DEPDIR)/libterminal_nautilus_la-terminal-gdbus-generated.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-gdbus-generated.c' object='libterminal_nautilus_la-terminal-gdbus-generated.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -c -o libterminal_nautilus_la-terminal-gdbus-generated.lo `test -f 'terminal-gdbus-generated.c' || echo '$(srcdir)/'`terminal-gdbus-generated.c
+
+libterminal_nautilus_la-terminal-type-builtins.lo: terminal-type-builtins.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -MT libterminal_nautilus_la-terminal-type-builtins.lo -MD -MP -MF $(DEPDIR)/libterminal_nautilus_la-terminal-type-builtins.Tpo -c -o libterminal_nautilus_la-terminal-type-builtins.lo `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libterminal_nautilus_la-terminal-type-builtins.Tpo $(DEPDIR)/libterminal_nautilus_la-terminal-type-builtins.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-type-builtins.c' object='libterminal_nautilus_la-terminal-type-builtins.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libterminal_nautilus_la_CPPFLAGS) $(CPPFLAGS) $(libterminal_nautilus_la_CFLAGS) $(CFLAGS) -c -o libterminal_nautilus_la-terminal-type-builtins.lo `test -f 'terminal-type-builtins.c' || echo '$(srcdir)/'`terminal-type-builtins.c
 
 gnome_terminal-terminal.o: terminal.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal.Tpo -c -o gnome_terminal-terminal.o `test -f 'terminal.c' || echo '$(srcdir)/'`terminal.c
@@ -1011,6 +1074,20 @@ gnome_terminal-terminal-debug.obj: terminal-debug.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-debug.c' object='gnome_terminal-terminal-debug.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-debug.obj `if test -f 'terminal-debug.c'; then $(CYGPATH_W) 'terminal-debug.c'; else $(CYGPATH_W) '$(srcdir)/terminal-debug.c'; fi`
+
+gnome_terminal-terminal-i18n.o: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-i18n.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-i18n.Tpo -c -o gnome_terminal-terminal-i18n.o `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal-terminal-i18n.Tpo $(DEPDIR)/gnome_terminal-terminal-i18n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='gnome_terminal-terminal-i18n.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-i18n.o `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+
+gnome_terminal-terminal-i18n.obj: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-i18n.obj -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-i18n.Tpo -c -o gnome_terminal-terminal-i18n.obj `if test -f 'terminal-i18n.c'; then $(CYGPATH_W) 'terminal-i18n.c'; else $(CYGPATH_W) '$(srcdir)/terminal-i18n.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal-terminal-i18n.Tpo $(DEPDIR)/gnome_terminal-terminal-i18n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='gnome_terminal-terminal-i18n.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -c -o gnome_terminal-terminal-i18n.obj `if test -f 'terminal-i18n.c'; then $(CYGPATH_W) 'terminal-i18n.c'; else $(CYGPATH_W) '$(srcdir)/terminal-i18n.c'; fi`
 
 gnome_terminal-terminal-options.o: terminal-options.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_CFLAGS) $(CFLAGS) -MT gnome_terminal-terminal-options.o -MD -MP -MF $(DEPDIR)/gnome_terminal-terminal-options.Tpo -c -o gnome_terminal-terminal-options.o `test -f 'terminal-options.c' || echo '$(srcdir)/'`terminal-options.c
@@ -1123,6 +1200,20 @@ gnome_terminal_client-terminal-debug.obj: terminal-debug.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-debug.c' object='gnome_terminal_client-terminal-debug.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_client_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_client_CFLAGS) $(CFLAGS) -c -o gnome_terminal_client-terminal-debug.obj `if test -f 'terminal-debug.c'; then $(CYGPATH_W) 'terminal-debug.c'; else $(CYGPATH_W) '$(srcdir)/terminal-debug.c'; fi`
+
+gnome_terminal_client-terminal-i18n.o: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_client_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_client_CFLAGS) $(CFLAGS) -MT gnome_terminal_client-terminal-i18n.o -MD -MP -MF $(DEPDIR)/gnome_terminal_client-terminal-i18n.Tpo -c -o gnome_terminal_client-terminal-i18n.o `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_client-terminal-i18n.Tpo $(DEPDIR)/gnome_terminal_client-terminal-i18n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='gnome_terminal_client-terminal-i18n.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_client_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_client_CFLAGS) $(CFLAGS) -c -o gnome_terminal_client-terminal-i18n.o `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+
+gnome_terminal_client-terminal-i18n.obj: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_client_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_client_CFLAGS) $(CFLAGS) -MT gnome_terminal_client-terminal-i18n.obj -MD -MP -MF $(DEPDIR)/gnome_terminal_client-terminal-i18n.Tpo -c -o gnome_terminal_client-terminal-i18n.obj `if test -f 'terminal-i18n.c'; then $(CYGPATH_W) 'terminal-i18n.c'; else $(CYGPATH_W) '$(srcdir)/terminal-i18n.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_client-terminal-i18n.Tpo $(DEPDIR)/gnome_terminal_client-terminal-i18n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='gnome_terminal_client-terminal-i18n.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_client_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_client_CFLAGS) $(CFLAGS) -c -o gnome_terminal_client-terminal-i18n.obj `if test -f 'terminal-i18n.c'; then $(CYGPATH_W) 'terminal-i18n.c'; else $(CYGPATH_W) '$(srcdir)/terminal-i18n.c'; fi`
 
 gnome_terminal_client-terminal-profiles-list.o: terminal-profiles-list.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_client_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_client_CFLAGS) $(CFLAGS) -MT gnome_terminal_client-terminal-profiles-list.o -MD -MP -MF $(DEPDIR)/gnome_terminal_client-terminal-profiles-list.Tpo -c -o gnome_terminal_client-terminal-profiles-list.o `test -f 'terminal-profiles-list.c' || echo '$(srcdir)/'`terminal-profiles-list.c
@@ -1389,6 +1480,20 @@ gnome_terminal_server-terminal-info-bar.obj: terminal-info-bar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-info-bar.c' object='gnome_terminal_server-terminal-info-bar.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-info-bar.obj `if test -f 'terminal-info-bar.c'; then $(CYGPATH_W) 'terminal-info-bar.c'; else $(CYGPATH_W) '$(srcdir)/terminal-info-bar.c'; fi`
+
+gnome_terminal_server-terminal-i18n.o: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-i18n.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-i18n.Tpo -c -o gnome_terminal_server-terminal-i18n.o `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-i18n.Tpo $(DEPDIR)/gnome_terminal_server-terminal-i18n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='gnome_terminal_server-terminal-i18n.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-i18n.o `test -f 'terminal-i18n.c' || echo '$(srcdir)/'`terminal-i18n.c
+
+gnome_terminal_server-terminal-i18n.obj: terminal-i18n.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-i18n.obj -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-i18n.Tpo -c -o gnome_terminal_server-terminal-i18n.obj `if test -f 'terminal-i18n.c'; then $(CYGPATH_W) 'terminal-i18n.c'; else $(CYGPATH_W) '$(srcdir)/terminal-i18n.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-i18n.Tpo $(DEPDIR)/gnome_terminal_server-terminal-i18n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-i18n.c' object='gnome_terminal_server-terminal-i18n.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-i18n.obj `if test -f 'terminal-i18n.c'; then $(CYGPATH_W) 'terminal-i18n.c'; else $(CYGPATH_W) '$(srcdir)/terminal-i18n.c'; fi`
 
 gnome_terminal_server-terminal-mdi-container.o: terminal-mdi-container.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-mdi-container.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-mdi-container.Tpo -c -o gnome_terminal_server-terminal-mdi-container.o `test -f 'terminal-mdi-container.c' || echo '$(srcdir)/'`terminal-mdi-container.c
