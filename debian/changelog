@@ -1,3 +1,17 @@
+gnome-terminal (3.8.2-1) unstable; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * Remove obsolete build dependency on scrollkeeper.
+
+  [ Michael Biebl ]
+  * Upload to unstable.
+  * New upstream release.
+  * Bump Standards-Version to 3.9.4. No further changes.
+  * Add Build-Depends on autotools-dev as lintian was complaining about
+    outdated config.{guess,sub}.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 05 Jun 2013 22:23:26 +0200
+
 gnome-terminal (3.8.0.1-1) experimental; urgency=low
 
   [ Jeremy Bicha ]
@@ -41,6 +55,16 @@ gnome-terminal (3.6.1-1) experimental; urgency=low
   * New upstream release
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sat, 20 Oct 2012 22:56:22 +0200
+
+gnome-terminal (3.4.1.1-2) unstable; urgency=low
+
+  * Team upload
+  * Recommend dbus-x11: gnome-terminal's default usage requires a
+    D-Bus session, and dbus-x11 is the recommended way to get one of those
+    (Closes: #691177; related to #631968)
+  * If unable to connect to D-Bus, warn before we exit 1 (Closes: #691178)
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 24 Oct 2012 10:56:17 +0100
 
 gnome-terminal (3.4.1.1-1) unstable; urgency=low
 

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 #define _GNU_SOURCE /* for dup3 */
 
 #include "terminal-screen.h"
@@ -29,6 +29,7 @@
 #include <fcntl.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gio/gunixfdlist.h>
 
@@ -188,6 +189,22 @@ static const TerminalRegexPattern url_regex_patterns[] = {
 static GRegex **url_regexes;
 static TerminalURLFlavour *url_regex_flavors;
 static guint n_url_regexes;
+
+/* See bug #697024 */
+#ifndef __linux__
+
+#undef dup3
+#define dup3 fake_dup3
+
+static int
+fake_dup3 (int fd, int fd2, int flags)
+{
+  if (dup2 (fd, fd2) == -1)
+    return -1;
+
+  return fcntl (fd2, F_SETFD, flags);
+}
+#endif /* !__linux__ */
 
 G_DEFINE_TYPE (TerminalScreen, terminal_screen, VTE_TYPE_TERMINAL)
 

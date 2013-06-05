@@ -25,11 +25,17 @@
 #include <gtk/gtk.h>
 
 #include <libnautilus-extension/nautilus-menu-provider.h>
+#include <libnautilus-extension/nautilus-extension-types.h>
 
 #include <errno.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "terminal-i18n.h"
+#include "terminal-client-utils.h"
+#include "terminal-defines.h"
+#include "terminal-gdbus-generated.h"
 
 /* Nautilus extension class */
 
@@ -69,7 +75,7 @@ typedef struct _TerminalNautilusMenuItem      TerminalNautilusMenuItem;
 typedef struct _TerminalNautilusMenuItemClass TerminalNautilusMenuItemClass;
 
 struct _TerminalNautilusMenuItem {
-  GObject parent_instance;
+  NautilusMenuItem parent_instance;
 
   TerminalNautilus *nautilus;
   GdkScreen *screen;
@@ -79,7 +85,7 @@ struct _TerminalNautilusMenuItem {
 };
 
 struct _TerminalNautilusMenuItemClass {
-  GObjectClass parent_class;
+  NautilusMenuItemClass parent_class;
 };
 
 static GType terminal_nautilus_menu_item_get_type (void);
@@ -219,20 +225,21 @@ parse_sftp_uri (GFile *file,
   g_free (save);
 }
 
-static void
-append_remote_ssh_command (char ***argvp,
-                           int *argcp,
-                           const char *uri,
-                           gboolean run_in_mc)
+static char **
+ssh_argv (const char *uri,
+          gboolean run_in_mc,
+          int *argcp)
 {
   GFile *file;
-  char **argv = *argvp;
-  int argc = *argcp;
+  char **argv;
+  int argc;
   char *host_name, *path, *user_name, *unescaped_path, *quoted_path;
   guint host_port;
 
   g_assert (uri != NULL);
 
+  argv = g_new0 (char *, 8);
+  argc = 0;
   argv[argc++] = g_strdup ("ssh");
 
   file = g_file_new_for_uri (uri);
@@ -268,6 +275,20 @@ append_remote_ssh_command (char ***argvp,
   g_free (quoted_path);
 
   *argcp = argc;
+  return argv;
+}
+
+static char **
+mc_argv (int *argcp)
+{
+  char **argv;
+
+  argv = g_new (char *, 2);
+  argv[0] = g_strdup ("mc");
+  argv[1] = NULL;
+
+  *argcp = 1;
+  return argv;
 }
 
 static gboolean
@@ -298,6 +319,146 @@ uri_has_local_path (const char *uri)
 
 /* Nautilus menu item class */
 
+typedef struct {
+  TerminalNautilus *nautilus;
+  guint32 timestamp;
+  char *path;
+  char *uri;
+  char *display;
+  TerminalFileInfo info;
+  gboolean remote;
+  gboolean run_in_mc;
+} ExecData;
+
+static void
+exec_data_free (ExecData *data)
+{
+  g_object_unref (data->nautilus);
+  g_free (data->path);
+  g_free (data->uri);
+  g_free (data->display);
+
+  g_free (data);
+}
+
+/* FIXME: make this async */
+static gboolean
+create_terminal (ExecData *data /* transfer full */)
+{
+  TerminalFactory *factory;
+  TerminalReceiver *receiver;
+  GError *error = NULL;
+  GVariantBuilder builder;
+  char *object_path;
+  char startup_id[32];
+  char **argv;
+  int argc;
+
+  factory = terminal_factory_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
+                                                     G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
+                                                     G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
+                                                     TERMINAL_APPLICATION_ID,
+                                                     TERMINAL_FACTORY_OBJECT_PATH,
+                                                     NULL /* cancellable */,
+                                                     &error);
+  if (factory == NULL) {
+    g_dbus_error_strip_remote_error (error);
+    g_printerr ("Error constructing proxy for %s:%s: %s\n",
+                TERMINAL_APPLICATION_ID, TERMINAL_FACTORY_OBJECT_PATH,
+                error->message);
+    g_error_free (error);
+    exec_data_free (data);
+    return FALSE;
+  }
+
+  g_snprintf (startup_id, sizeof (startup_id), "_TIME%u", data->timestamp);
+
+  g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
+
+  terminal_client_append_create_instance_options (&builder,
+                                                  data->display,
+                                                  startup_id,
+                                                  NULL /* geometry */,
+                                                  NULL /* role */,
+                                                  NULL /* use default profile */,
+                                                  NULL /* title */,
+                                                  FALSE /* maximised */,
+                                                  FALSE /* fullscreen */);
+
+  if (!terminal_factory_call_create_instance_sync
+         (factory,
+          g_variant_builder_end (&builder),
+          &object_path,
+          NULL /* cancellable */,
+          &error)) {
+    g_dbus_error_strip_remote_error (error);
+    g_printerr ("Error creating terminal: %s\n", error->message);
+    g_error_free (error);
+    g_object_unref (factory);
+    exec_data_free (data);
+    return FALSE;
+  }
+
+  g_object_unref (factory);
+
+  receiver = terminal_receiver_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
+                                                       G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
+                                                       G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
+                                                       TERMINAL_APPLICATION_ID,
+                                                       object_path,
+                                                       NULL /* cancellable */,
+                                                       &error);
+  if (receiver == NULL) {
+    g_dbus_error_strip_remote_error (error);
+    g_printerr ("Failed to create proxy for terminal: %s\n", error->message);
+    g_error_free (error);
+    g_free (object_path);
+    exec_data_free (data);
+    return FALSE;
+  }
+
+  g_free (object_path);
+
+  g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
+
+  terminal_client_append_exec_options (&builder,
+                                       data->path,
+                                       TRUE /* shell */);
+
+  if (data->info == FILE_INFO_SFTP &&
+      data->remote) {
+    argv = ssh_argv (data->uri, data->run_in_mc, &argc);
+  } else if (data->run_in_mc) {
+    argv = mc_argv (&argc);
+  } else {
+    argv = NULL; argc = 0;
+  }
+
+  if (!terminal_receiver_call_exec_sync (receiver,
+                                         g_variant_builder_end (&builder),
+                                         g_variant_new_bytestring_array ((const char * const *) argv, argc),
+                                         NULL /* in FD list */,
+                                         NULL /* out FD list */,
+                                         NULL /* cancellable */,
+                                         &error)) {
+    g_dbus_error_strip_remote_error (error);
+    g_printerr ("Error: %s\n", error->message);
+    g_error_free (error);
+    g_strfreev (argv);
+    g_object_unref (receiver);
+    exec_data_free (data);
+    return FALSE;
+  }
+
+  g_strfreev (argv);
+
+  exec_data_free (data);
+
+  g_object_unref (receiver);
+
+  return TRUE;
+}
+
 static void
 terminal_nautilus_menu_item_activate (NautilusMenuItem *item)
 {
@@ -305,8 +466,7 @@ terminal_nautilus_menu_item_activate (NautilusMenuItem *item)
   TerminalNautilus *nautilus = menu_item->nautilus;
   char *uri, *path;
   TerminalFileInfo info;
-  char *argv[16];
-  int argc, i;
+  ExecData *data;
 
   uri = nautilus_file_info_get_activation_uri (menu_item->file_info);
   if (uri == NULL)
@@ -353,41 +513,17 @@ terminal_nautilus_menu_item_activate (NautilusMenuItem *item)
     return;
   }
 
-  argc = 0;
-  argv[argc++] = g_strdup (TERM_BINDIR "/gnome-terminal-client");
-  argv[argc++] = g_strdup ("open");
+  data = g_new (ExecData, 1);
+  data->nautilus = g_object_ref (nautilus);
+  data->timestamp = gtk_get_current_event_time ();
+  data->path = path;
+  data->uri = uri;
+  data->display = gdk_screen_make_display_name (menu_item->screen);
+  data->info = info;
+  data->remote = menu_item->remote_terminal;
+  data->run_in_mc = menu_item->run_in_mc;
 
-  argv[argc++] = g_strdup ("--display");
-  argv[argc++] = gdk_screen_make_display_name (menu_item->screen);
-
-  if (path) {
-    argv[argc++] = g_strdup ("--cwd");
-    argv[argc++] = path;
-  }
-
-  if (info == FILE_INFO_SFTP && menu_item->remote_terminal) {
-    argv[argc++] = g_strdup ("--");
-    append_remote_ssh_command ((char ***)&argv, &argc, uri, menu_item->run_in_mc);
-  } else if (menu_item->run_in_mc) {
-    argv[argc++] = g_strdup ("--");
-    argv[argc++] = g_strdup ("mc");
-  }
-
-  argv[argc] = NULL;
-  g_assert (argc < (int) G_N_ELEMENTS (argv));
-
-  g_spawn_async (path,
-                 argv,
-                 NULL /* envv */,
-                 0 /* flags */,
-                 NULL, NULL, /* child setup */
-                 NULL /* pid */,
-                 NULL /* error */);
-
-  for (i = 0; i < argc; ++i)
-    g_free (argv[i]);
-
-  g_free (uri);
+  create_terminal (data);
 }
 
 G_DEFINE_DYNAMIC_TYPE (TerminalNautilusMenuItem, terminal_nautilus_menu_item, NAUTILUS_TYPE_MENU_ITEM)
@@ -744,8 +880,7 @@ terminal_nautilus_class_init (TerminalNautilusClass *klass)
 
   gobject_class->dispose = terminal_nautilus_dispose;
 
-  bindtextdomain (GETTEXT_PACKAGE, TERM_LOCALEDIR);
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  terminal_i18n_init (FALSE);
 }
 
 static void
@@ -755,14 +890,11 @@ terminal_nautilus_class_finalize (TerminalNautilusClass *class)
 
 /* Nautilus extension */
 
-void nautilus_module_initialize (GTypeModule *module);
-void nautilus_module_shutdown   (void);
-void nautilus_module_list_types (const GType **types, 
-                                 int *num_types);
-
 static GType type_list[1];
 
-void
+#define EXPORT __attribute__((__visibility__("default"))) extern
+
+EXPORT void
 nautilus_module_initialize (GTypeModule *module)
 {
   terminal_nautilus_register_type (module);
@@ -771,12 +903,12 @@ nautilus_module_initialize (GTypeModule *module)
   type_list[0] = TERMINAL_TYPE_NAUTILUS;
 }
 
-void
+EXPORT void
 nautilus_module_shutdown (void)
 {
 }
 
-void 
+EXPORT void
 nautilus_module_list_types (const GType **types,
                             int          *num_types)
 {

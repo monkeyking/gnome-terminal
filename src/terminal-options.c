@@ -26,11 +26,11 @@
 #include <stdlib.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #include "terminal-options.h"
 #include "terminal-screen.h"
 #include "terminal-app.h"
-#include "terminal-intl.h"
 #include "terminal-util.h"
 #include "terminal-version.h"
 
@@ -365,8 +365,8 @@ option_window_callback (const gchar *option_name,
   TerminalOptions *options = data;
   char *profile;
 
-  profile = terminal_profiles_list_dup_uuid (terminal_options_ensure_profiles_list (options),
-                                             value, error);
+  profile = terminal_profiles_list_dup_uuid_or_name (terminal_options_ensure_profiles_list (options),
+                                                     value, error);
   if (profile == NULL)
     return FALSE;
 
@@ -384,8 +384,8 @@ option_tab_callback (const gchar *option_name,
   TerminalOptions *options = data;
   char *profile;
 
-  profile = terminal_profiles_list_dup_uuid (terminal_options_ensure_profiles_list (options),
-                                             value, error);
+  profile = terminal_profiles_list_dup_uuid_or_name (terminal_options_ensure_profiles_list (options),
+                                                     value, error);
   if (profile == NULL)
     return FALSE;
 
