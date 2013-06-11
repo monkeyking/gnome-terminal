@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
 m4_define([gt_version_minor],[8])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_micro],[3])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -55,7 +55,7 @@ case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.6.0
        VTE_PC_VERSION=-2.90
-       VTE_REQUIRED=0.34.0
+       VTE_REQUIRED=0.34.6
        ;;
 esac
 
@@ -200,6 +200,30 @@ if test "$with_nautilus_extension" = "yes"; then
 fi
 
 AM_CONDITIONAL([WITH_NAUTILUS_EXTENSION],[test "$with_nautilus_extension" = "yes"])
+
+# **********************
+# Distribution specifics
+# **********************
+
+if test -f /etc/os-release; then
+  DISTRO="$(source /etc/os-release && echo $ID)"
+else
+  DISTRO="unknown"
+fi
+
+case "$DISTRO" in
+  ubuntu) AC_DEFINE([HAVE_UBUNTU],[1],[Define if building under ubuntu]) ;;
+esac
+
+AC_MSG_CHECKING([whether building a distro package])
+AC_ARG_ENABLE([distro-packaging],
+  [AS_HELP_STRING([--enable-distro-packaging],[enable when building a distro package])],
+  [],[enable_distro_packaging=no])
+AC_MSG_RESULT([$enable_distro_packaging])
+
+if test "$enable_distro_packaging" = "yes"; then
+  AC_DEFINE([ENABLE_DISTRO_PACKAGING],[1],[Define if building a distro package])
+fi
 
 # ***********
 # Compilation
