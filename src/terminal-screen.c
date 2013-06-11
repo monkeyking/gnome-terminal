@@ -166,8 +166,8 @@ static guint signals[LAST_SIGNAL];
 #define HOSTCHARS_CLASS "[-[:alnum:]]"
 #define HOST HOSTCHARS_CLASS "+(\\." HOSTCHARS_CLASS "+)*"
 #define PORT "(?:\\:[[:digit:]]{1,5})?"
-#define PATHCHARS_CLASS "[-[:alnum:]\\Q_$.+!*,;@&=?/~#%\\E]"
-#define PATHTERM_CLASS "[^\\Q]'.}>) \t\r\n,\"\\E]"
+#define PATHCHARS_CLASS "[-[:alnum:]\\Q_$.+!*,:;@&=?/~#%\\E]"
+#define PATHTERM_CLASS "[^\\Q]'.:}>) \t\r\n,\"\\E]"
 #define SCHEME "(?:news:|telnet:|nntp:|file:\\/|https?:|ftps?:|sftp:|webcal:)"
 #define USERPASS USERCHARS_CLASS "+(?:" PASSCHARS_CLASS "+)?"
 #define URLPATH   "(?:(/"PATHCHARS_CLASS"+(?:[(]"PATHCHARS_CLASS"*[)])*"PATHCHARS_CLASS"*)*"PATHTERM_CLASS")?"
@@ -1210,13 +1210,6 @@ get_child_environment (TerminalScreen *screen,
 
   env_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
-  /* First take the factory's environment */
-  env = g_listenv ();
-  for (i = 0; env[i]; ++i)
-    g_hash_table_insert (env_table, env[i], g_strdup (g_getenv (env[i])));
-  g_free (env); /* the strings themselves are now owned by the hash table */
-
-  /* and then merge the child environment, if any */
   env = priv->initial_env;
   if (env)
     {
@@ -1388,7 +1381,8 @@ terminal_screen_do_exec (TerminalScreen *screen,
   GError *err = NULL;
   const char *working_dir;
   VtePtyFlags pty_flags = VTE_PTY_DEFAULT;
-  GSpawnFlags spawn_flags = G_SPAWN_SEARCH_PATH_FROM_ENVP;
+  GSpawnFlags spawn_flags = G_SPAWN_SEARCH_PATH_FROM_ENVP |
+                            VTE_SPAWN_NO_PARENT_ENVV;
   GPid pid;
   gboolean result = FALSE;
 
