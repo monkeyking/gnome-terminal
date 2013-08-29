@@ -1,3 +1,91 @@
+commit 0156099a3159f0480538c013f45a380fad925457
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jul 7 12:57:57 2013 +0200
+
+    l10n: pr-BR: Fix markup mistake
+
+ NEWS                | 7 +++++++
+ help/pt_BR/pt_BR.po | 2 +-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 6ea790d5338315581cc62a9a418e9dec0baa9076
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jul 5 13:43:22 2013 +0200
+
+    client: legacy: Fix mem leak
+    
+    ==24616== 18 bytes in 1 blocks are definitely lost in loss record 1,572 of 4,602
+    ==24616==    at 0x402A059: malloc (vg_replace_malloc.c:263)
+    ==24616==    by 0x4F4FD41: g_malloc (gmem.c:104)
+    ==24616==    by 0x4F5006D: g_malloc_n (gmem.c:345)
+    ==24616==    by 0x4F69E40: g_strdup (gstrfuncs.c:364)
+    ==24616==    by 0x4DC2ADC: g_local_file_get_path (glocalfile.c:334)
+    ==24616==    by 0x4CEB7A5: g_file_get_path (gfile.c:507)
+    ==24616==    by 0x804DEBC: option_load_config_cb (terminal-options.c:583)
+    (cherry picked from commit 4f39be35951e4ad6ff73739654387f32329aa7fe)
+
+ src/terminal-options.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 7c9b66369682b8cee9b56a06df8615b23f230b3a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jul 5 13:42:28 2013 +0200
+
+    client: legacy: Fix double-free
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=981440
+    (cherry picked from commit c06c94be3c06e32761b9c2265d40fae0f42ab0ad)
+
+ src/terminal-options.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit e7f34f2ab181e26b90bd8562bb9402e5c8faaaff
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Tue Jul 2 02:07:18 2013 -0300
+
+    Enabled Brazilian Portuguese Translation for help
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3e980a5c2144b7cd51b463d7ab8953b4b2a64423
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Tue Jul 2 01:54:51 2013 -0300
+
+    Updated Brazilian Portuguese translation
+
+ help/pt_BR/pt_BR.po | 1937 ++++++++++++++++-----------------------------------
+ 1 file changed, 611 insertions(+), 1326 deletions(-)
+
+commit 7d1718ab860099855ad8b630755d656657bac693
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Sat Jun 29 22:53:05 2013 -0300
+
+    Updated Brazilian Portuguese translation for UI and help
+
+ help/pt_BR/pt_BR.po | 3835 ++++++++++++++++++++++++++++++++++++++-------------
+ po/pt_BR.po         |  458 +++---
+ 2 files changed, 3104 insertions(+), 1189 deletions(-)
+
+commit 20e05e9cfb608b92cbfaaf10effd9edca7386aa7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jun 12 18:28:00 2013 +0200
+
+    migration: When disabled, don't write to gsettings on each startup
+    (cherry picked from commit ac2ef407d801829b5eaae28d0a4ecb3c62f46c1a)
+
+ src/terminal-app.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit f84084c10aeec6d409fcf5fe9718f156962c599e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 10 18:01:53 2013 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 5740b4fd943824e942d93a86b0a91250065fd1b7
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Jun 10 17:54:39 2013 +0200

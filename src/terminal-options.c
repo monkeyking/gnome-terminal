@@ -585,10 +585,11 @@ option_load_config_cb (const gchar *option_name,
 
   key_file = g_key_file_new ();
   result = g_key_file_load_from_file (key_file, config_file, 0, error) &&
-           terminal_options_merge_config (options, key_file, 
+           terminal_options_merge_config (options, key_file,
                                           strcmp (option_name, "load-config") == 0 ? SOURCE_DEFAULT : SOURCE_SESSION,
                                           error);
   g_key_file_free (key_file);
+  g_free (config_file);
 
   return result;
 }
@@ -921,7 +922,6 @@ terminal_options_merge_config (TerminalOptions *options,
 
           profile = g_key_file_get_string (key_file, tab_group, TERMINAL_CONFIG_TERMINAL_PROP_PROFILE_ID, NULL);
           it = initial_tab_new (profile /* adopts */);
-          g_free (profile);
 
           iw->tabs = g_list_append (iw->tabs, it);
 
