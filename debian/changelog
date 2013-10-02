@@ -1,3 +1,11 @@
+gnome-terminal (3.6.1-0ubuntu4.1) raring-proposed; urgency=low
+
+  * debian/patches/00_git_fix_geometry_on_focusout.patch:
+     - backport an upstream patch to not resize the geometry when having tabs
+       on focus out (LP: #1040885)
+
+ -- Julian Taylor <jtaylor@ubuntu.com>  Wed, 02 Oct 2013 19:11:49 +0200
+
 gnome-terminal (3.6.1-0ubuntu4) raring; urgency=low
 
   * 02_add_transparency_properties.patch:
