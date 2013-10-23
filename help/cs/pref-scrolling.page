@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="pref-scrolling" xml:lang="cs">
+
+  <info>
+    <revision version="0.1" date="2013-02-25" status="draft"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Nastavte si pousouvání výstupu a chování posuvníku.</desc>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Lucas Lommer</mal:name>
+      <mal:email>llommer@svn.gnome.org</mal:email>
+      <mal:years>2008, 2009, 2010, 2012</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Marek Černocký</mal:name>
+      <mal:email>marek@manet.cz</mal:email>
+      <mal:years>2010, 2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Předvolby posuvníku</title>
+
+  <p>Posuvník je součástí grafického uživatelského rozhraní (GUI), díky kterému může souvislý obsah, typicky třeba text, překročit viditelnou velikost okna. Uživatel si pomocí posuvníku může zobrazit části, které má v danou chvíli skryté.</p>
+
+  <!-- Note to self: check UI. -->
+
+  <section id="scrollbar-visibility">
+    <title>Viditelnost posuvníku</title>
+
+    <p>Můžete si nastavit, kdy se má posuvník zobrazit, případně jej v <app>Terminálu</app> trvale skrýt:</p>
+
+    <steps>
+      <item>
+        <p>Vyberte <guiseq><gui style="menu">Upravit</gui> <gui style="menuitem">Předvolby profilu</gui> <gui style="tab">Posouvání</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Můžete si zvolit jednu z následujících možností:</p>
+        <list>
+          <item>
+            <p><gui style="menuitem">Vždy viditelný</gui>: Posuvník bude viditelný po celou dobu.</p>
+            <!-- Scrollbar is not a proper noun, so do not capitalise it
+            unless it is at the start of a sentence. -->
+          </item>
+          <item>
+            <p><gui style="menuitem">Viditelný, když je potřeba</gui>: Posuvník bud viditelný je v případě, že terminálový výstup přesáhl na délku velikost okna <app>Terminálu</app>.</p>
+          </item>
+          <item>
+            <p><gui style="menuitem">Skrytý</gui>: Posuvník bude za všech okolností skrytý před zraky uživatele.</p>
+          </item>
+        </list>
+      </item>
+      <item>
+        <p>Vaše předvolba se ihned uloží. Kliknutím na <gui style="button">Zavřít</gui> se vrátíte do <app>Terminálu</app>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scrollback-lines">
+    <title>Zapamatované řádky</title>
+
+    <p>Počet <gui>zapamatovaných</gui> řádků určuje, kolik výstupních řádků bude <app>Terminál</app> uchovávat va paměti, abyste si je mohli zpětně procházet.</p>
+
+    <steps>
+      <item>
+        <p>Vyberte <guiseq><gui style="menu">Upravit</gui> <gui style="menuitem">Předvolby profilu</gui> <gui style="tab">Posouvání</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Do textového pole vedle popisku <gui>Pamatovat si</gui> zadejte počet řádků (větší než 0), o které se budete ve výpise moci posouvat zpět.</p>
+      </item>
+      <item>
+        <p>Případně můžete klikat na tlačítka <gui style="button">+</gui> pro zvyšování a <gui style="button">-</gui> pro snižování počtu řádků.</p>
+      </item>
+    </steps>
+
+    <p>Pokud chcete mít k dispozici neomezenou historii řádků, zaškrtněte volbu <gui style="checkbox">Neomezeno</gui>.</p>
+
+    <note style="warning">
+      <p>Volba <gui style="checkbox">Neomezeno</gui> pro zapamatování řádků výpisu může potenciálně přeplnit paměť vašeho počítač a způsobit velmi pomalé posouvání terminálového výstupu.</p>
+    </note>
+
+  </section>
+
+  <section id="scroll-on-output">
+    <title>Posun při výstupu</title>
+
+    <p><app>Terminál</app> umí automatický posun dolů tak, aby byl vidět nejnovější výstup ze spuštěného programu.</p>
+
+    <steps>
+      <item>
+        <p>Přejděte do <guiseq><gui style="menu">Upravit</gui> <gui style="menuitem">Předvolby profilu</gui> <gui style="tab">Posouvání</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Vyberte <gui style="checkbox">Posouvat při výstupu</gui></p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scroll-on-keystroke">
+    <title>Posun při zmáčknutí klávesy</title>
+
+    <p>Když je zaškrtnuto <gui style="checkbox">Posouvat při zmáčknutí klávesy</gui>, chová se <app>Terminál</app> tak, že stačí zmáčknout jakokoliv klávesu, která může být vstupem příkazového řádku, a provede se posuv dolů na řádek se systémovou výzvou.</p>
+
+    <steps>
+      <item>
+        <p>Přejděte do <guiseq><gui style="menu">Upravit</gui> <gui style="menuitem">Předvolby profilu</gui> <gui style="tab">Posouvání</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Vyberte <gui style="checkbox">Posouvat při stisku klávesy</gui></p>
+      </item>
+    </steps>
+  </section>
+
+</page>

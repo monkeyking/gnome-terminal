@@ -981,11 +981,19 @@ static void
 update_edit_menu_cb (GtkClipboard *clipboard,
                      GdkAtom *targets,
                      int n_targets,
-                     TerminalWindow *window)
+                     GWeakRef *ref)
 {
-  TerminalWindowPrivate *priv = window->priv;
+  TerminalWindow *window;
+  TerminalWindowPrivate *priv;
   GtkAction *action;
   gboolean can_paste, can_paste_uris;
+
+  window = g_weak_ref_get (ref);
+  if (window == NULL)
+    goto out;
+
+  /* Now we know the window is still alive */
+  priv = window->priv;
 
   can_paste = targets != NULL && gtk_targets_include_text (targets, n_targets);
   can_paste_uris = targets != NULL && gtk_targets_include_uri (targets, n_targets);
@@ -996,8 +1004,10 @@ update_edit_menu_cb (GtkClipboard *clipboard,
   gtk_action_set_visible (action, can_paste_uris);
   gtk_action_set_sensitive (action, can_paste_uris);
 
-  /* Ref was added in gtk_clipboard_request_targets below */
   g_object_unref (window);
+ out:
+  g_weak_ref_clear (ref);
+  g_slice_free (GWeakRef, ref);
 }
 
 static void
@@ -1005,9 +1015,13 @@ update_edit_menu (GtkClipboard *clipboard,
                   GdkEvent *event G_GNUC_UNUSED,
                   TerminalWindow *window)
 {
+  GWeakRef *ref;
+
+  ref = g_slice_new0 (GWeakRef);
+  g_weak_ref_init (ref, window);
   gtk_clipboard_request_targets (clipboard,
                                  (GtkClipboardTargetsReceivedFunc) update_edit_menu_cb,
-                                 g_object_ref (window));
+                                 ref);
 }
 
 static void
@@ -1099,8 +1113,6 @@ terminal_window_update_tabs_menu_sensitivity (TerminalWindow *window)
   action = gtk_action_group_get_action (action_group, "TabsMoveRight");
   gtk_action_set_sensitive (action, not_last);
   action = gtk_action_group_get_action (action_group, "TabsDetach");
-  gtk_action_set_sensitive (action, num_pages > 1);
-  action = gtk_action_group_get_action (action_group, "FileCloseTab");
   gtk_action_set_sensitive (action, num_pages > 1);
 }
 
@@ -1218,15 +1230,8 @@ static void
 popup_menu_deactivate_callback (GtkWidget *popup,
                                 TerminalWindow *window)
 {
-  TerminalWindowPrivate *priv = window->priv;
-  GtkWidget *im_menu_item;
-
   g_signal_handlers_disconnect_by_func
     (popup, G_CALLBACK (popup_menu_deactivate_callback), window);
-
-  im_menu_item = gtk_ui_manager_get_widget (priv->ui_manager,
-                                            "/Popup/PopupInputMethods");
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (im_menu_item), NULL);
 
   unset_popup_info (window);
 }
@@ -1237,22 +1242,25 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
                                      int n_targets,
                                      TerminalScreenPopupInfo *info)
 {
-  TerminalWindow *window = info->window;
-  TerminalWindowPrivate *priv = window->priv;
+  TerminalWindow *window;
+  TerminalWindowPrivate *priv;
   TerminalScreen *screen = info->screen;
-  GtkWidget *popup_menu, *im_menu, *im_menu_item;
+  GtkWidget *popup_menu;
   GtkAction *action;
-  gboolean can_paste, can_paste_uris, show_link, show_email_link, show_call_link, show_input_method_menu;
+  gboolean can_paste, can_paste_uris, show_link, show_email_link, show_call_link;
 
-  if (!gtk_widget_get_realized (GTK_WIDGET (screen)))
+  window = terminal_screen_popup_info_ref_window (info);
+  if (window == NULL ||
+      !gtk_widget_get_realized (GTK_WIDGET (screen)))
     {
       terminal_screen_popup_info_unref (info);
       return;
     }
 
-  /* Now we know that the screen is realized, we know that the window is still alive */
-  remove_popup_info (window);
+  /* Now we know that the window is still alive */
+  priv = window->priv;
 
+  remove_popup_info (window);
   priv->popup_info = info; /* adopt the ref added when requesting the clipboard */
 
   can_paste = targets != NULL && gtk_targets_include_text (targets, n_targets);
@@ -1280,29 +1288,6 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
   gtk_action_set_sensitive (action, can_paste);
   action = gtk_action_group_get_action (priv->action_group, "PopupPasteURIPaths");
   gtk_action_set_visible (action, can_paste_uris);
-  
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (window)),
-                "gtk-show-input-method-menu", &show_input_method_menu,
-                NULL);
-
-  action = gtk_action_group_get_action (priv->action_group, "PopupInputMethods");
-  gtk_action_set_visible (action, show_input_method_menu);
-
-  im_menu_item = gtk_ui_manager_get_widget (priv->ui_manager,
-                                            "/Popup/PopupInputMethods");
-  /* FIXME: fix this when gtk+ bug #500065 is done, use vte_terminal_im_merge_ui */
-  if (show_input_method_menu)
-    {
-      im_menu = gtk_menu_new ();
-      vte_terminal_im_append_menuitems (VTE_TERMINAL (screen),
-                                        GTK_MENU_SHELL (im_menu));
-      gtk_widget_show (im_menu);
-      gtk_menu_item_set_submenu (GTK_MENU_ITEM (im_menu_item), im_menu);
-    }
-  else
-    {
-      gtk_menu_item_set_submenu (GTK_MENU_ITEM (im_menu_item), NULL);
-    }
 
   popup_menu = gtk_ui_manager_get_widget (priv->ui_manager, "/Popup");
   g_signal_connect (popup_menu, "deactivate",
@@ -1320,6 +1305,8 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
                   NULL, NULL, 
                   info->button,
                   info->timestamp);
+
+  g_object_unref (window);
 }
 
 static void
@@ -1328,8 +1315,6 @@ screen_show_popup_menu_callback (TerminalScreen *screen,
                                  TerminalWindow *window)
 {
   GtkClipboard *clipboard;
-
-  g_return_if_fail (info->window == window);
 
   clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
   gtk_clipboard_request_targets (clipboard,
@@ -1801,7 +1786,6 @@ terminal_window_init (TerminalWindow *window)
       { "PopupLeaveFullscreen", NULL, N_("L_eave Full Screen"), NULL,
         NULL,
         G_CALLBACK (popup_leave_fullscreen_callback) },
-      { "PopupInputMethods", NULL, N_("_Input Methods") }
     };
   
   const GtkToggleActionEntry toggle_menu_entries[] =
@@ -2013,6 +1997,7 @@ terminal_window_dispose (GObject *object)
   for (l = list; l != NULL; l = l->next)
     if (GTK_IS_MENU (l->data))
       gtk_menu_popdown (GTK_MENU (l->data));
+  g_slist_free (list);
 
   remove_popup_info (window);
 

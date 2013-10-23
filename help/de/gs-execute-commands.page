@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="gs-execute-commands" xml:lang="de">
+
+  <info>
+    <revision version="0.1" date="2013-02-25" status="candidate"/>
+    <link type="guide" xref="index#getting-started"/>
+    <link type="seealso" xref="txt-copy-paste"/>
+    <link type="seealso" xref="overview"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Ein Programm starten oder einen Befehl ausführen mit <app>Terminal</app></desc>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jan Arne Petersen</mal:name>
+      <mal:email>jap@gnome.org</mal:email>
+      <mal:years>2007</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mario.blaettermann@gmail.com</mal:email>
+      <mal:years>2008-2010, 2012-2013</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Christian Kirbach</mal:name>
+      <mal:email>christian.kirbach@gmail.com</mal:email>
+      <mal:years>2012, 2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Einen Befehl ausführen</title>
+
+  <p>Jegliche Eingabe, die ins <app>Terminal</app> zum Ausführen eingegeben wird, wird als ein <em>Befehl</em> angesehen. Sie können sowohl Befehlszeilenprogramme als auch Programme mit grafischer Benutzeroberfläche im Terminal ausführen.</p>
+
+  <p>So führen Sie Befehle aus:</p>
+
+  <steps>
+    <item>
+      <p>Geben Sie den Befehl in die Eingabeaufforderung von <app>Terminal</app> ein.</p>
+    </item>
+    <item>
+      <p>Drücken Sie zum Ausführen die <key>Eingabetaste</key>.</p>
+    </item>
+  </steps>
+
+  <p>Wenn es ein Programm gibt, dass abrupt ohne Warnung oder Fehler schließt, so wollen Sie es möglicherweise in <app>Terminal</app> ausführen. Dies ermöglicht, dass das Programm Fehler und Fehlerdiagnose-Nachrichten im <app>Terminal</app>-Fenster ausgibt. Diese Informationen sind oft hilfreich beim Erstellen eines neuen Fehlerberichts.</p>
+
+  <note style="tip">
+    <p>Programme können in verschiedene Orte auf Ihrem Rechner installiert werden. Wenn diese Orte nicht der Umgebungsvariablen <code>PATH</code> hinzugefügt sind, müssen Sie den vollständigen Pfad zum Programm angeben.</p>
+  </note>
+  
+</page>

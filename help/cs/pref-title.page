@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="task" id="pref-title" xml:lang="cs">
+
+  <info>
+    <revision version="0.1" date="2013-02-18" status="candidate"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Povolte příkazům nastavovat záhlaví karty či okna <app>Terminálu</app>.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Lucas Lommer</mal:name>
+      <mal:email>llommer@svn.gnome.org</mal:email>
+      <mal:years>2008, 2009, 2010, 2012</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Marek Černocký</mal:name>
+      <mal:email>marek@manet.cz</mal:email>
+      <mal:years>2010, 2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Záhlaví <app>Terminálu</app></title>
+
+  <p><app>Terminál</app> umožňuje příkazům nastavit záhlaví okna či karty <app>Terminálu</app>. Toto záhlaví se zobrazí při spuštění nebo otevření nové karty.</p>
+
+  <steps>
+    <item>
+      <p>Vyberte <guiseq><gui style="menu">Upravit</gui> <gui style="menuitem">Předvolby profilu</gui> <gui style="tab">Záhlaví a příkaz</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Do pole vedle popisku <gui>Výchozí záhlaví</gui> zadejte záhlaví, které si přejete <app>Terminálem</app> zobrazovat.</p>
+    </item>
+    <item>
+      <p>Vyberte jednu z následujících možností:</p>
+      <terms>
+        <item>
+          <title><gui>Nahradit výchozí záhlaví</gui></title>
+          <p>Příkazu spuštěnému v <app>Terminálu</app> bude dovoleno nahradit výchozí záhlaví.</p>
+        </item>
+        <item>
+          <title><gui>Výchozí záhlaví nakonec</gui></title>
+          <p>Nové záhlaví se bude skládat ze záhlaví, které nastavil právě prováděný příkaz, následovaného výchozím záhlavím.</p>
+        </item>
+        <item>
+          <title><gui>Výchozí záhlaví na začátek</gui></title>
+          <p>Nové záhlaví se bude skládat z výchozího záhlaví následovaného záhlavím, které nastavil právě prováděný příkaz.</p>
+        </item>
+        <item>
+          <title><gui>Zachovat výchozí záhlaví</gui></title>
+          <p>Výchozí záhlaví, které si uživatel nastavil, zůstane ponecháno.</p>
+        </item>
+      </terms>
+      <p>Váš výběr se ihned uloží a použije.</p>
+    </item>
+    <item>
+      <p>Kliknutím na <gui style="button">Zavřít</gui> se vrátíte do <app>Terminálu</app>.</p>
+    </item>
+  </steps>
+
+</page>

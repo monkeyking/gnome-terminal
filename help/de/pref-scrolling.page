@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="pref-scrolling" xml:lang="de">
+
+  <info>
+    <revision version="0.1" date="2013-02-25" status="draft"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Ausgabe bei Bildlauf und Verhalten der Bildlaufleiste festlegen.</desc>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jan Arne Petersen</mal:name>
+      <mal:email>jap@gnome.org</mal:email>
+      <mal:years>2007</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mario.blaettermann@gmail.com</mal:email>
+      <mal:years>2008-2010, 2012-2013</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Christian Kirbach</mal:name>
+      <mal:email>christian.kirbach@gmail.com</mal:email>
+      <mal:years>2012, 2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Einstellungen für die Bildlaufleiste</title>
+
+  <p>Eine Bildlaufleiste ist Teil einer grafischen Benutzeroberfläche (GUI), welche den sichtbaren Bereich des Bildschirms erweitert, indem sie dem Benutzer ermöglicht, aus der aktuellen Ansicht in die verborgenen Teile zu rollen.</p>
+
+  <!-- Note to self: check UI. -->
+
+  <section id="scrollbar-visibility">
+    <title>Sichtbarkeit der Bildlaufleiste</title>
+
+    <p>Sie können den Ort der Bildlaufleiste einstellen oder diese in <app>Terminal</app> deaktivieren:</p>
+
+    <steps>
+      <item>
+        <p>Wählen Sie <guiseq><gui style="menu">Bearbeiten</gui> <gui style="menuitem">Profileinstellungen</gui> <gui style="tab">Bildlauf</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Wählen Sie eine der folgenden Optionen aus:</p>
+        <list>
+          <item>
+            <p><gui style="menuitem">Immer sichtbar</gui>: Die Bildlaufleiste ist jederzeit sichtbar.</p>
+            <!-- Scrollbar is not a proper noun, so do not capitalise it
+            unless it is at the start of a sentence. -->
+          </item>
+          <item>
+            <p><gui style="menuitem">Nur bei Bedarf sichtbar</gui>: Die Bildlaufleiste ist nur dann sichtbar, wenn die Ausgabe im Terminal die Länge des <app>Terminal</app>-Fensters übersteigt.</p>
+          </item>
+          <item>
+            <p><gui style="menuitem">Verborgen</gui>: Die Bildlaufleiste ist stets verborgen.</p>
+          </item>
+        </list>
+      </item>
+      <item>
+        <p>Ihre Einstellung wird sofort gespeichert. Klicken Sie auf <gui style="button">Schließen</gui>, um zu <app>Terminal</app> zurückzukehren.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scrollback-lines">
+    <title>Zeilenspeicher</title>
+
+    <p>Der <gui>Zeilenspeicher</gui> bezeichnet die Anzahl der <app>Terminal</app>-Zeilen, die im Speicher zum Zurückrollen per Bildlaufleiste vorgehalten werden.</p>
+
+    <steps>
+      <item>
+        <p>Wählen Sie <guiseq><gui style="menu">Bearbeiten</gui> <gui style="menuitem">Profileinstellungen</gui> <gui style="tab">Bildlauf</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Geben Sie im Eingabefeld neben <gui>Zurückschieben</gui> eine Zahl größer als 0 ein, um die Größe des Zeilenspeichers festzulegen.</p>
+      </item>
+      <item>
+        <p>Optional können Sie auf <gui style="button">+</gui> zum Erhöhen und <gui style="button">-</gui> zum Verringern der Zeilen klicken.</p>
+      </item>
+    </steps>
+
+    <p>Wählen Sie <gui style="checkbox">Unbegrenzt</gui> aus für einen unbegrenzten Zeilenspeicher.</p>
+
+    <note style="warning">
+      <p>Ein <gui style="checkbox">unbegrenzter</gui> Zeilenspeicher kann den Speicher Ihres Rechners überlasten und dazu führen, dass <app>Terminal</app> beim Bildlauf träge reagiert!</p>
+    </note>
+
+  </section>
+
+  <section id="scroll-on-output">
+    <title>Bildlauf bei Ausgabe</title>
+
+    <p><app>Terminal</app> kann automatisch zur neuesten Ausgabe springen, während ein Befehl ausgeführt wird.</p>
+
+    <steps>
+      <item>
+        <p>Öffnen Sie <guiseq><gui style="menu">Bearbeiten</gui> <gui style="menuitem">Profileinstellungen</gui> <gui style="tab">Bildlauf</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Wählen Sie <gui style="checkbox">Bildlauf bei Ausgabe</gui></p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scroll-on-keystroke">
+    <title>Bildlauf bei Tastendruck</title>
+
+    <p><gui style="checkbox">Bildlauf bei Tastendruck</gui> ermöglicht <app>Terminal</app>, zur Eingabeaufforderung hinunterzurollen, wenn eine beliebige Taste gedrückt wird, die eine gültige Eingabe sein kann, wie Buchstaben, Zahlen, die Tabulatortaste usw.</p>
+
+    <steps>
+      <item>
+        <p>Öffnen Sie <guiseq><gui style="menu">Bearbeiten</gui> <gui style="menuitem">Profileinstellungen</gui> <gui style="tab">Bildlauf</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Wählen Sie <gui style="checkbox">Bildlauf bei Tastendruck</gui></p>
+      </item>
+    </steps>
+  </section>
+
+</page>

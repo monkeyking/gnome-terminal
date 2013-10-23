@@ -973,6 +973,7 @@ update_color_scheme (TerminalScreen *screen)
   GdkRGBA *colors;
   gsize n_colors;
   GdkRGBA fg, bg, bold, theme_fg, theme_bg;
+  GdkRGBA *boldp;
   GtkStyleContext *context;
 
   context = gtk_widget_get_style_context (widget);
@@ -987,14 +988,16 @@ update_color_scheme (TerminalScreen *screen)
       bg = theme_bg;
     }
 
-  if (g_settings_get_boolean (profile, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY) ||
-      !terminal_g_settings_get_rgba (profile, TERMINAL_PROFILE_BOLD_COLOR_KEY, &bold))
-    bold = fg;
+  if (!g_settings_get_boolean (profile, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY) &&
+      terminal_g_settings_get_rgba (profile, TERMINAL_PROFILE_BOLD_COLOR_KEY, &bold))
+    boldp = &bold;
+  else
+    boldp = NULL;
 
   colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
   vte_terminal_set_colors_rgba (VTE_TERMINAL (screen), &fg, &bg,
                                 colors, n_colors);
-  vte_terminal_set_color_bold_rgba (VTE_TERMINAL (screen), &bold);
+  vte_terminal_set_color_bold_rgba (VTE_TERMINAL (screen), boldp);
   g_free (colors);
 }
 
@@ -1362,8 +1365,16 @@ terminal_screen_child_setup (FDSetupData *data)
 
     if (target_fd == fds[idx]) {
       /* Remove FD_CLOEXEC from target_fd */
+      int flags;
+
       do {
-        r = fcntl (target_fd, F_SETFD, 0 /* no FD_CLOEXEC */);
+        flags = fcntl (target_fd, F_GETFD);
+      } while (flags == -1 && errno == EINTR);
+      if (flags == -1)
+        _exit (127);
+
+      do {
+        r = fcntl (target_fd, F_SETFD, flags & ~FD_CLOEXEC);
       } while (r == -1 && errno == EINTR);
       if (r == -1)
         _exit (127);
@@ -1505,7 +1516,8 @@ terminal_screen_popup_info_new (TerminalScreen *screen)
   info = g_slice_new0 (TerminalScreenPopupInfo);
   info->ref_count = 1;
   info->screen = g_object_ref (screen);
-  info->window = terminal_screen_get_window (screen);
+
+  g_weak_ref_init (&info->window_weak_ref, terminal_screen_get_window (screen));
 
   return info;
 }
@@ -1528,8 +1540,23 @@ terminal_screen_popup_info_unref (TerminalScreenPopupInfo *info)
     return;
 
   g_object_unref (info->screen);
+  g_weak_ref_clear (&info->window_weak_ref);
   g_free (info->string);
   g_slice_free (TerminalScreenPopupInfo, info);
+}
+
+/**
+ * terminal_screen_popup_info_ref_window:
+ * @info: a #TerminalScreenPopupInfo
+ *
+ * Returns: the window, or %NULL
+ */
+TerminalWindow *
+terminal_screen_popup_info_ref_window (TerminalScreenPopupInfo *info)
+{
+  g_return_val_if_fail (info != NULL, NULL);
+
+  return g_weak_ref_get (&info->window_weak_ref);
 }
 
 static gboolean

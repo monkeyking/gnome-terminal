@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="pref-custom-exit" xml:lang="el">
+
+  <info>
+    <revision version="0.1" date="2013-03-02" status="candidate"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+<!--    <link type="seealso" xref="prob-recover-default-profile"/>-->
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Ορίστε τη συμπεριφορά του <app>τερματικού</app> όταν μια προσαρμοσμένη εντολή ή το προεπιλεγμένο κέλυφος εξέρχεται.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Δημήτρης Σπίγγος</mal:name>
+      <mal:email>dmtrs32@gmail.com</mal:email>
+      <mal:years>2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Ορισμός συμπεριφοράς ή εξόδου εντολής</title>
+
+  <p>Μπορείτε να ορίσετε το τερματικό να εξέρχεται, να επανεκκινεί ή να παραμένει ανοικτό όταν το κέλυφος ή μια προσαρμοσμένη εντολή εξέρχεται:</p>
+
+  <steps>
+    <item>
+      <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις</gui> <gui style="tab">Τίτλος και εντολή</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Από την πτυσσόμενη λίστα <gui>Όταν εξέρχεται η εντολή</gui>, επιλέξτε μία από τις ακόλουθες επιλογές:</p>
+      <list>
+        <item>
+          <p><gui>Έξοδος από τον τερματικό</gui></p>
+        </item>
+        <item>
+          <p><gui>Επανεκκίνηση της εντολής</gui></p>
+        </item>
+        <item>
+          <p><gui>Κράτημα του τερματικού ανοικτού</gui></p>
+        </item>
+      </list>
+      <p>Η ρύθμιση θα αποθηκευτεί αυτόματα όταν την επιλέξετε.</p>
+    </item>
+  </steps>
+
+  <note style="important">
+    <p>Εάν έχετε <link xref="pref-custom-command">ορίσει μια προσαρμοσμένη εντολή</link> που δεν είναι διαδραστική και έχετε ορίσει τη συμπεριφορά εξόδου σε <gui>Έξοδος από το τερματικό</gui>, καθώς και την κατατομή να είναι η προεπιλεγμένη κατατομή, το <app>τερματικό</app> μπορεί να εξέλθει πριν να μπορέσετε να δείτε την έξοδο της εντολής.</p>
+  </note>
+
+</page>

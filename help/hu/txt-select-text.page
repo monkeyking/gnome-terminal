@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="txt-select-text" xml:lang="hu">
+
+  <info>
+    <revision version="0.1" date="2013-03-03" status="review"/>
+    <link type="guide" xref="index#textoutput"/>
+    <link type="guide" xref="profile"/>
+    <link type="seelaso" xref="txt-copy-paste"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Adja meg, hogy mely karakterek legyenek a szavak részének tekintve.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Kelemen Gábor</mal:name>
+      <mal:email>kelemeng at gnome dot hu</mal:email>
+      <mal:years>2013.</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Szövegkijelölés</title>
+
+  <p>Megadhatja a szövegkijelölési feltételeket a <app>Terminálban</app>. A <app>Terminál</app> kijelölhet csak betűkből, vagy betűkből, számokból és speciális karakterekből álló szavakat. A kijelölhető karakterek halmazának megadása:</p>
+
+    <steps>
+      <item>
+        <p>Válassza a <guiseq><gui style="menu">Szerkesztés</gui> <gui style="menuitem">Profil beállításai</gui> <gui style="tab">Általános</gui></guiseq> lapot.</p>
+      </item>
+      <item>
+        <p>Adja meg a szavak részének tekintendő karaktereket vagy tartományokat a <gui>Kijelölésnél szavakat jelentő karakterek</gui> mezőben.Alapesetben a szövegkijelölés minden betűt és számot, valamint néhány speciális karakterttartalmaz: <var>-A-Za-z0-9,./?%&amp;#:_=+@~</var></p>
+        <p>A beállítások automatikusan mentésre kerülnek.</p>
+      </item>
+    </steps>
+
+  <p>A kijelölési beállítások megadása után a <app>Terminálban</app> kétféleképp jelölhet ki szöveget.</p>
+
+  <p>Egy szó kijelölése a <app>Terminál</app> kimenetben:</p>
+
+  <steps>
+    <item>
+      <p>Kattintson duplán a kívánt szóra.</p>
+    </item>
+  </steps>
+
+  <p>Egy sor kijelölése a <app>Terminál</app> kimenetben:</p>
+
+  <steps>
+    <item>
+      <p>Kattintson háromszor a kívánt sorra.</p>
+    </item>
+  </steps>
+
+</page>

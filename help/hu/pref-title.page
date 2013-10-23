@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="task" id="pref-title" xml:lang="hu">
+
+  <info>
+    <revision version="0.1" date="2013-02-18" status="candidate"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>A parancsok beállíthatják a <app>Terminál</app> lap vagy ablak címét.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Kelemen Gábor</mal:name>
+      <mal:email>kelemeng at gnome dot hu</mal:email>
+      <mal:years>2013.</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>A <app>Terminál</app> címe</title>
+
+  <p>A <app>Terminál</app> lehetővé teheti parancsok számára a <app>Terminál</app> lapok vagy ablakok címének beállítását. Ez a cím jelenik meg indításkor vagy új lap megnyitásakor.</p>
+
+  <steps>
+    <item>
+      <p>Válassza a <guiseq><gui style="menu">Szerkesztés</gui> <gui style="menuitem">Profil beállításai</gui> <gui style="tab">Cím és parancs</gui></guiseq> lapot.</p>
+    </item>
+    <item>
+      <p>A <gui>Kezdeti cím</gui> melletti mezőben adja meg a címet, amelyet szeretne, hogy a <app>Terminál</app> megjelenítsen.</p>
+    </item>
+    <item>
+      <p>Válassza ki a következő lehetőségek egyikét:</p>
+      <terms>
+        <item>
+          <title><gui>Kezdeti cím cseréje</gui></title>
+          <p>A <app>Terminálban</app> futtatott parancsok lecserélhetik a kezdeti címet.</p>
+        </item>
+        <item>
+          <title><gui>Az új a kezdeti cím elé kerül</gui></title>
+          <p>Az új cím az éppen végrehajtott parancs által beállított és a kezdeti összefűzésével kapott lesz.</p>
+        </item>
+        <item>
+          <title><gui>Az új a kezdeti cím mögé kerül</gui></title>
+          <p>Az új cím a kezdeti és az éppen végrehajtott parancs által beállított összefűzésével kapott lesz.</p>
+        </item>
+        <item>
+          <title><gui>Kezdeti cím megtartása</gui></title>
+          <p>A felhasználó által beállított kezdeti cím megtartásra kerül.</p>
+        </item>
+      </terms>
+      <p>A választott beállítás azonnal mentésre és alkalmazásra kerül.</p>
+    </item>
+    <item>
+      <p>Nyomja meg a <gui style="button">Bezárás</gui> gombot a <app>Terminálhoz</app> visszatéréshez.</p>
+    </item>
+  </steps>
+
+</page>
