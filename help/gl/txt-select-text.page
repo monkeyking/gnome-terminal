@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="txt-select-text" xml:lang="gl">
+
+  <info>
+    <revision version="0.1" date="2013-03-03" status="review"/>
+    <link type="guide" xref="index#textoutput"/>
+    <link type="guide" xref="profile"/>
+    <link type="seelaso" xref="txt-copy-paste"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Specify which characters should be considered as part of a word.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Fran Dieguez</mal:name>
+      <mal:email>frandieguez@gnome.org</mal:email>
+      <mal:years>2013.</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Leandro Regueiro</mal:name>
+      <mal:email>leandro.regueiro@gmail.com</mal:email>
+      <mal:years>2011.</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Text selection</title>
+
+  <p>You can define selection criteria for text in <app>Terminal</app>. You can
+  allow <app>Terminal</app> to select only words consisting of letters or words
+  with combinations of letters, numbers and special characters. To specify the
+  range of characters that can be selected:</p>
+
+    <steps>
+      <item>
+        <p>Seleccione <guiseq><gui style="menu">Editar</gui> <gui style="menuitem">Preferencias de perfíl</gui> <gui style="tab">Xeral</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Specify the characters or ranges that you wish to be considered part
+        of words in the <gui>Select-by-word characters</gui> entry field. By
+        default, text selection includes all characters with numbers and some
+        special characters: <var>-A-Za-z0-9,./?%&amp;#:_=+@~</var></p>
+        <p>Your preferences will be saved automatically.</p>
+      </item>
+    </steps>
+
+  <p>Once you have set your selection preference, you can select text in
+  <app>Terminal</app> in two different ways.</p>
+
+  <p>To select a word in <app>Terminal</app> output:</p>
+
+  <steps>
+    <item>
+      <p>Double click on the desired word.</p>
+    </item>
+  </steps>
+
+  <p>To select a line in <app>Terminal</app> output:</p>
+
+  <steps>
+    <item>
+      <p>Triple click on the desired line.</p>
+    </item>
+  </steps>
+
+</page>

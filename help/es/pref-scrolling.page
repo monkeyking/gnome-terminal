@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="pref-scrolling" xml:lang="es">
+
+  <info>
+    <revision version="0.1" date="2013-02-25" status="draft"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Configurar el desplazamiento de la salida y el comportamiento de la barra de desplazamiento.</desc>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Mustieles</mal:name>
+      <mal:email>daniel.mustieles@gmail.com</mal:email>
+      <mal:years>2012, 2013</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jorge González</mal:name>
+      <mal:email>jorgegonz@svn.gnome.org</mal:email>
+      <mal:years>2007-2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Francisco Javier F. Serrador</mal:name>
+      <mal:email>serrador@gnome.org</mal:email>
+      <mal:years>2001-2006</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Preferencias de la barra de desplazamiento</title>
+
+  <p>Una barra de desplazamiento es una parte de la interfaz gráfica de usuario (IGU) que permite que algo continúe y exceda el espacio visible de la pantalla, como texto, para ser visible por el usuario desplazando hacia abajo la parte oculta de la vista actual.</p>
+
+  <!-- Note to self: check UI. -->
+
+  <section id="scrollbar-visibility">
+    <title>Visibilidad de la barra de desplazamiento</title>
+
+    <p>Puede establecer la ubicación de la barra de desplazamiento, o desactivarla en la <app>Terminal</app>:</p>
+
+    <steps>
+      <item>
+        <p>Seleccione <guiseq><gui style="menu">Editar</gui> <gui style="menuitem">Preferencias del perfil</gui> <gui style="tab">Desplazamiento</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Puede elegir entre las siguientes opciones:</p>
+        <list>
+          <item>
+            <p><gui style="menuitem">Siempre visible</gui>: la barra de desplazamiento está visible todo el tiempo.</p>
+            <!-- Scrollbar is not a proper noun, so do not capitalise it
+            unless it is at the start of a sentence. -->
+          </item>
+          <item>
+            <p><gui style="menuitem">Visible sólo cuando sea necesaria</gui>: la barra de desplazamiento sólo será visible cuando la salida de la terminal supere el tamaño de la ventana de la <app>Terminal</app>.</p>
+          </item>
+          <item>
+            <p><gui style="menuitem">Oculta</gui>: la barra de desplazamiento siempre está oculta.</p>
+          </item>
+        </list>
+      </item>
+      <item>
+        <p>Sus preferencias se guardan inmediatamente. Pulse <gui style="button">Cerrar</gui> para volver a la <app>Terminal</app>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scrollback-lines">
+    <title>Líneas de desplazamiento hacia atrás</title>
+
+    <p>Las líneas de <gui>Desplazamiento hacia atrás</gui> indican el número de líneas de salida que guarda la <app>Terminal</app> en memoria para poder desplazarse.</p>
+
+    <steps>
+      <item>
+        <p>Seleccione <guiseq><gui style="menu">Editar</gui> <gui style="menuitem">Preferencias del perfil</gui> <gui style="tab">Desplazamiento</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>En la caja de texto junto a <gui>Desplazamiento hacia atrás</gui>, introduzca un número mayor que 0 para establecer el número de líneas de desplazamiento hacia atrás.</p>
+      </item>
+      <item>
+        <p>Opcionalmente, puede pulsar el botón <gui style="button">+</gui> para aumentar y <gui style="button">-</gui> para reducir el número de líneas.</p>
+      </item>
+    </steps>
+
+    <p>Para tener infinitas líneas de desplazamiento hacia atrás, marque la opción <gui style="checkbox">Ilimitado</gui> as your option.</p>
+
+    <note style="warning">
+      <p>Las lineas de desplazamiento hacia atrás <gui style="checkbox">ilimitadas</gui> pueden sobrecargar la memoria de su equipo y ralentizar la <app>Terminal</app> durante el desplazamiento.</p>
+    </note>
+
+  </section>
+
+  <section id="scroll-on-output">
+    <title>Desplazar en salida</title>
+
+    <p>La <app>Terminal</app> se puede desplazar automáticamente hasta la última salida cuando se ejecuta un comando.</p>
+
+    <steps>
+      <item>
+        <p>Vaya a <guiseq><gui style="menu">Editar</gui> <gui style="menuitem">Preferencias del perfil</gui> <gui style="tab">Desplazamiento</gui></guiseq></p>
+      </item>
+      <item>
+        <p>Seleccione <gui style="checkbox">Desplazar en salida</gui>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scroll-on-keystroke">
+    <title>Desplazar al pulsar teclas</title>
+
+    <p>Cuando <gui style="checkbox">desplazar al pulsar teclas</gui> está activado, permite que a <app>Terminal</app> desplazarse hasta el símbolo del sistema al pulsar una tecla que puede ser una entrada para el símbolo del sistema, como un carácter alfanumérico, la tecla «Tab», etc.</p>
+
+    <steps>
+      <item>
+        <p>Vaya a <guiseq><gui style="menu">Editar</gui> <gui style="menuitem">Preferencias del perfil</gui> <gui style="tab">Desplazamiento</gui></guiseq></p>
+      </item>
+      <item>
+        <p>Seleccione <gui style="checkbox">Desplazar al pulsar tecla</gui>.</p>
+      </item>
+    </steps>
+  </section>
+
+</page>

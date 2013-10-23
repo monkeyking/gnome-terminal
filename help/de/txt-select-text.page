@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="txt-select-text" xml:lang="de">
+
+  <info>
+    <revision version="0.1" date="2013-03-03" status="review"/>
+    <link type="guide" xref="index#textoutput"/>
+    <link type="guide" xref="profile"/>
+    <link type="seelaso" xref="txt-copy-paste"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Geben Sie an, welche Zeichen als Teil eines Wortes angesehen werden sollen.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jan Arne Petersen</mal:name>
+      <mal:email>jap@gnome.org</mal:email>
+      <mal:years>2007</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mario.blaettermann@gmail.com</mal:email>
+      <mal:years>2008-2010, 2012-2013</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Christian Kirbach</mal:name>
+      <mal:email>christian.kirbach@gmail.com</mal:email>
+      <mal:years>2012, 2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Textauswahl</title>
+
+  <p>Sie können ein Auswahlkriterium für Text in <app>Terminal</app> definieren. Sie können <app>Terminal</app> erlauben, nur Worte bestehend aus Buchstaben oder Worte mit Kombinationen aus Buchstaben, Zahlen und Sonderzeichen. So geben Sie die Zeichenmenge an, die ausgewählt werden kann:</p>
+
+    <steps>
+      <item>
+        <p>Wählen Sie <guiseq><gui style="menu">Bearbeiten</gui> <gui style="menuitem">Profileinstellungen</gui> <gui style="tab">Allgemein</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Geben Sie die Zeichen oder Mengen im Texteingabefeld <gui>Zeichen für wortweise Auswahl</gui> an, die als Teil eines Worts angesehen werden sollen. Per Voreinstellung umfasst die Textauswahl alle Buchstaben und Zahlen sowie einige Sonderzeichen: <var>-A-Za-z0-9,./?%&amp;#:_=+@~</var></p>
+        <p>Ihre Einstellungen werden automatisch gespeichert.</p>
+      </item>
+    </steps>
+
+  <p>Sobald Sie Ihre Auswahleinstellungen getroffen haben, können Sie Text in <app>Terminal</app> auf zwei verschiedene Weisen auswählen.</p>
+
+  <p>So wählen Sie ein Wort in der Ausgabe in <app>Terminal</app>:</p>
+
+  <steps>
+    <item>
+      <p>Doppelklicken Sie auf das gewünschte Wort.</p>
+    </item>
+  </steps>
+
+  <p>So wählen Sie eine Zeile in der Ausgabe in <app>Terminal</app>:</p>
+
+  <steps>
+    <item>
+      <p>Klicken sie dreifach auf die gewünschte Zeile.</p>
+    </item>
+  </steps>
+
+</page>

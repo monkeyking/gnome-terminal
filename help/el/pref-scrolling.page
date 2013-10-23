@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="pref-scrolling" xml:lang="el">
+
+  <info>
+    <revision version="0.1" date="2013-02-25" status="draft"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Ορίστε την έξοδο κύλισης και τη συμπεριφορά της γραμμής κύλισης.</desc>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Δημήτρης Σπίγγος</mal:name>
+      <mal:email>dmtrs32@gmail.com</mal:email>
+      <mal:years>2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Προτιμήσεις γραμμής κύλισης</title>
+
+  <p>Μια γραμμή κύλισης είναι ένα μέρος της γραφικής διεπαφής χρήστη (GUI) που επιτρέπει οτιδήποτε συνεχές και πέρα από τον ορατό χώρο της οθόνης όπως κείμενο να είναι ορατό από τον χρήστη κυλίοντας σε μέρη κρυφά από την τρέχουσα προβολή.</p>
+
+  <!-- Note to self: check UI. -->
+
+  <section id="scrollbar-visibility">
+    <title>Ορατότητα γραμμής κύλισης</title>
+
+    <p>Μπορείτε να ορίσετε τη θέση της γραμμής κύλισης, ή να την απενεργοποιήσετε, στο <app>Τερματικό</app>:</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις κατατομής</gui> <gui style="tab">Κύλιση</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Μπορείτε να επιλέξετε από τις ακόλουθες επιλογές:</p>
+        <list>
+          <item>
+            <p><gui style="menuitem">Πάντα ορατό</gui>: Η γραμμή κύλισης είναι ορατή πάντα.</p>
+            <!-- Scrollbar is not a proper noun, so do not capitalise it
+            unless it is at the start of a sentence. -->
+          </item>
+          <item>
+            <p><gui style="menuitem">Ορατή μόνο όταν χρειάζεται</gui>: Η γραμμή κύλισης είναι ορατή μόνο όταν η έξοδος τερματικού ξεπερνά το μήκος του μεγέθους του παραθύρου του <app>Τερματικού</app>.</p>
+          </item>
+          <item>
+            <p><gui style="menuitem">Κρυφή</gui>: Η γραμμή κύλισης είναι πάντα κρυφή από την προβολή.</p>
+          </item>
+        </list>
+      </item>
+      <item>
+        <p>Η προτίμησή σας αποθηκεύεται αμέσως. Πατήστε <gui style="button">Κλείσιμο</gui> για επιστροφή στο <app>Τερματικό</app>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scrollback-lines">
+    <title>Γραμμές οπισθοκύλισης</title>
+
+    <p>Οι γραμμές <gui>Οπισθοκύλισης</gui> δείχνουν τον αριθμό των αποθηκευμένων γραμμών εξόδου του <app>Τερματικού</app> στη μνήμη για κύλιση.</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις κατατομής</gui> <gui style="tab">Κύλιση</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Στο πλαίσιο εισόδου δίπλα στην <gui>Οπισθοκύλιση</gui>, εισάγετε έναν αριθμό μεγαλύτερο από 0 για να ορίσετε τον αριθμό των γραμμών οπισθοκύλισης.</p>
+      </item>
+      <item>
+        <p>Προαιρετικά, μπορείτε να πατήσετε στο <gui style="button">+</gui> για να αυξήσετε και στο <gui style="button">-</gui> για να μειώσετε τις γραμμές.</p>
+      </item>
+    </steps>
+
+    <p>Για να έχετε απεριόριστες γραμμές οπισθοκύλισης, σημειώστε <gui style="checkbox">Απεριόριστες</gui> ως επιλογή σας.</p>
+
+    <note style="warning">
+      <p><gui style="checkbox">Aπεριόριστες</gui> γραμμές οπισθοκύλισης μπορούν ενδεχομένως να επιβαρύνουν τη μνήμη του υπολογιστή σας και να κάνει το <app>Τερματικό</app> αργό κατά τη διάρκεια της κύλισης!</p>
+    </note>
+
+  </section>
+
+  <section id="scroll-on-output">
+    <title>Κύλιση στην έξοδο</title>
+
+    <p>Το <app>Τερματικό</app> μπορεί αυτόματα να κυλίεται προς τα κάτω στην τελευταία έξοδο καθώς εκτελείται μια εντολή.</p>
+
+    <steps>
+      <item>
+        <p>Μετάβαση στο <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις κατατομής</gui> <gui style="tab">Κύλιση</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε <gui style="checkbox">Κύλιση στην έξοδο</gui>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="scroll-on-keystroke">
+    <title>Κύλιση στην πληκτρολόγηση</title>
+
+    <p><gui style="checkbox">Η κύλιση στην πληκτρολόγηση</gui>, όταν ενεργοποιηθεί επιτρέπει στο <app>Τερματικό</app> να κυλιστεί προς τα κάτω στην προτροπή, με το πάτημα οποιουδήποτε πλήκτρου που μπορεί να είναι μια είσοδος στην προτροπή, όπως αλφάβητο, αριθμοί, πλήκτρο στηλοθέτη κλπ.</p>
+
+    <steps>
+      <item>
+        <p>Μετάβαση στο <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις κατατομής</gui> <gui style="tab">Κύλιση</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε <gui style="checkbox">Κύλιση στην πληκτρολόγηση</gui>.</p>
+      </item>
+    </steps>
+  </section>
+
+</page>
