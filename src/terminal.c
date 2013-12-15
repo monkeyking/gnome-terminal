@@ -340,7 +340,7 @@ name_lost_cb (GDBusConnection *connection,
 
       g_string_append_printf (string, "%s=%s", envv[i], value);
     }
-
+  g_strfreev(envv);
   len = string->len;
   s = g_string_free (string, FALSE);
   g_variant_builder_add (&builder, "@ay",
