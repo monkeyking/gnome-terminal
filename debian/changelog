@@ -1,3 +1,15 @@
+gnome-terminal (3.6.2-0ubuntu1) trusty; urgency=medium
+
+  * New upstream release:
+    - Fix window size changes on focus out
+    - Translation updates
+  * debian/control.in:
+    - Use standards-version 3.9.4
+  * debian/patches/00_git_fix_geometry_on_focusout.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 16 Dec 2013 11:20:47 +1300
+
 gnome-terminal (3.6.1-0ubuntu6) saucy; urgency=low
 
   * debian/patches/60_add_lp_handler.patch: add a handler for launchpad bug

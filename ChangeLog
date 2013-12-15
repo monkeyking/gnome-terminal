@@ -1,3 +1,109 @@
+commit 6d8c208610b4bb4b9a313c68cd054a5dc42a2b06
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Mar 20 11:05:09 2013 +0100
+
+    Version 3.6.2
+
+ NEWS | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit b04657461f4e457b72a1f5ca13c0475b386a471a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jan 16 22:52:03 2013 +0100
+
+    window: Use the geometry of the active screen
+    
+    When we get the restyle on focus-out, the screens call terminal_window_set_size()
+    directly. This was causing the window to revert to a previous size, see bug
+    https://bugzilla.gnome.org/show_bug.cgi?id=688959 .
+    (cherry picked from commit 611e93f2f8c0c18ed8d365ecb850258e8d5c9c12)
+
+ src/terminal-window.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit b99f49e3a302d5ae2a1d608419e7086b8244f8f9
+Author: Muhammet Kara <muhammetk@acikkaynak.name.tr>
+Date:   Tue Jan 29 00:58:39 2013 +0200
+
+    [l10n]Updated Turkish translation
+
+ po/tr.po | 2463 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 1346 insertions(+), 1117 deletions(-)
+
+commit 510de65a620a2271255360588aef9dedc6c28d7d
+Author: Gheyret Kenji <gheyret@gmail.com>
+Date:   Sat Jan 5 13:16:31 2013 +0900
+
+    Updated Uyghur translation
+    
+    Signed-off-by: Gheyret Kenji <gheyret@gmail.com>
+
+ po/ug.po | 1735 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 880 insertions(+), 855 deletions(-)
+
+commit a68d2229f117a09e34a67c55de494e3df2f654da
+Author: Christian Kirbach <Christian.Kirbach@googlemail.com>
+Date:   Mon Dec 17 01:38:21 2012 +0100
+
+    Updated German translation (bug 690270)
+
+ po/de.po | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+commit 114686cdbf44e42b284b93d6cbdeef9db7f8d111
+Author: Dr.T.Vasudevan <drtvasudevan@gmail.com>
+Date:   Sun Dec 9 14:36:53 2012 +0530
+
+    Updated Tamil translation
+
+ po/ta.po | 2138 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 1142 insertions(+), 996 deletions(-)
+
+commit fb2e6cb7250503ba76f3be44165b9afb0cadc600
+Author: Shankar Prasad <svenkate@redhat.com>
+Date:   Fri Dec 7 18:29:55 2012 +0530
+
+    Updated Kannada Translations
+
+ po/kn.po | 2874 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 1460 insertions(+), 1414 deletions(-)
+
+commit 5a85e22c4bf9fb5be4dddaa06a1075a9348d6c2d
+Author: ManojKumar Giri <mgiri@redhat.com>
+Date:   Tue Dec 4 17:27:13 2012 +0530
+
+    Updated Odia Translation with FUEL implementation.
+
+ po/or.po | 2232 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 1218 insertions(+), 1014 deletions(-)
+
+commit 536bb8b443009915927de98da800254c7f68fa96
+Author: Christian Kirbach <christian.kirbach@gmail.com>
+Date:   Sun Nov 18 11:26:29 2012 +0100
+
+    [l10n] Updated German doc translation
+
+ help/de/de.po | 527 ++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 271 insertions(+), 256 deletions(-)
+
+commit 6998308f2435ae59c02409bb4d89cef52086c75b
+Author: Christian Kirbach <christian.kirbach@gmail.com>
+Date:   Sun Nov 18 11:20:22 2012 +0100
+
+    [l10n] Updated German translation
+
+ po/de.po | 354 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 181 insertions(+), 173 deletions(-)
+
+commit 107ea3b089bc326f9b09da379281723d0c206fa6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Oct 16 01:20:24 2012 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit a7ecb55cd5c240443c667e75ade96b24b483ddac
 Author: Christian Persch <chpe@gnome.org>
 Date:   Tue Oct 16 01:02:59 2012 +0200

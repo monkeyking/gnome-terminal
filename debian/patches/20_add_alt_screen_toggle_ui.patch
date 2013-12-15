@@ -1,10 +1,10 @@
 Description: Hook new vte alternate screen scrolling toggle via UI
 Author: ?
 
-Index: gnome-terminal-3.2.1/src/gnome-terminal.schemas.in
+Index: gnome-terminal-3.6.2/src/gnome-terminal.schemas.in
 ===================================================================
---- gnome-terminal-3.2.1.orig/src/gnome-terminal.schemas.in
-+++ gnome-terminal-3.2.1/src/gnome-terminal.schemas.in
+--- gnome-terminal-3.6.2.orig/src/gnome-terminal.schemas.in	2013-12-16 11:22:52.388435875 +1300
++++ gnome-terminal-3.6.2/src/gnome-terminal.schemas.in	2013-12-16 11:22:52.380435875 +1300
 @@ -418,6 +418,23 @@
      </schema>
  
@@ -29,10 +29,10 @@ Index: gnome-terminal-3.2.1/src/gnome-terminal.schemas.in
        <key>/schemas/apps/gnome-terminal/profiles/Default/exit_action</key>
        <applyto>/apps/gnome-terminal/profiles/Default/exit_action</applyto>
        <owner>gnome-terminal</owner>
-Index: gnome-terminal-3.2.1/src/profile-editor.c
+Index: gnome-terminal-3.6.2/src/profile-editor.c
 ===================================================================
---- gnome-terminal-3.2.1.orig/src/profile-editor.c
-+++ gnome-terminal-3.2.1/src/profile-editor.c
+--- gnome-terminal-3.6.2.orig/src/profile-editor.c	2013-12-16 11:22:52.388435875 +1300
++++ gnome-terminal-3.6.2/src/profile-editor.c	2013-12-16 11:22:52.380435875 +1300
 @@ -279,6 +279,10 @@
      SET_SENSITIVE ("scroll-on-output-checkbutton",
                     !terminal_profile_property_locked (profile, TERMINAL_PROFILE_SCROLL_ON_OUTPUT));
@@ -52,11 +52,11 @@ Index: gnome-terminal-3.2.1/src/profile-editor.c
    CONNECT ("show-menubar-checkbutton", TERMINAL_PROFILE_DEFAULT_SHOW_MENUBAR);
    CONNECT ("solid-radiobutton", TERMINAL_PROFILE_BACKGROUND_TYPE);
    CONNECT ("system-font-checkbutton", TERMINAL_PROFILE_USE_SYSTEM_FONT);
-Index: gnome-terminal-3.2.1/src/profile-preferences.glade
+Index: gnome-terminal-3.6.2/src/profile-preferences.glade
 ===================================================================
---- gnome-terminal-3.2.1.orig/src/profile-preferences.glade
-+++ gnome-terminal-3.2.1/src/profile-preferences.glade
-@@ -2416,6 +2416,27 @@
+--- gnome-terminal-3.6.2.orig/src/profile-preferences.glade	2013-12-16 11:22:52.388435875 +1300
++++ gnome-terminal-3.6.2/src/profile-preferences.glade	2013-12-16 11:22:52.380435875 +1300
+@@ -2417,6 +2417,27 @@
  		</packing>
  	      </child>
  
@@ -84,11 +84,11 @@ Index: gnome-terminal-3.2.1/src/profile-preferences.glade
  	      <child>
  		<widget class="GtkCheckButton" id="scroll-on-keystroke-checkbutton">
  		  <property name="visible">True</property>
-Index: gnome-terminal-3.2.1/src/terminal-profile.c
+Index: gnome-terminal-3.6.2/src/terminal-profile.c
 ===================================================================
---- gnome-terminal-3.2.1.orig/src/terminal-profile.c
-+++ gnome-terminal-3.2.1/src/terminal-profile.c
-@@ -75,6 +75,7 @@
+--- gnome-terminal-3.6.2.orig/src/terminal-profile.c	2013-12-16 11:22:52.388435875 +1300
++++ gnome-terminal-3.6.2/src/terminal-profile.c	2013-12-16 11:22:52.380435875 +1300
+@@ -77,6 +77,7 @@
    PROP_SCROLLBAR_POSITION,
    PROP_SCROLL_ON_KEYSTROKE,
    PROP_SCROLL_ON_OUTPUT,
@@ -96,7 +96,7 @@ Index: gnome-terminal-3.2.1/src/terminal-profile.c
    PROP_SILENT_BELL,
    PROP_TITLE,
    PROP_TITLE_MODE,
-@@ -114,6 +115,7 @@
+@@ -117,6 +118,7 @@
  #define KEY_SCROLLBAR_POSITION "scrollbar_position"
  #define KEY_SCROLL_ON_KEYSTROKE "scroll_on_keystroke"
  #define KEY_SCROLL_ON_OUTPUT "scroll_on_output"
@@ -104,7 +104,7 @@ Index: gnome-terminal-3.2.1/src/terminal-profile.c
  #define KEY_SILENT_BELL "silent_bell"
  #define KEY_TITLE_MODE "title_mode"
  #define KEY_TITLE "title"
-@@ -153,6 +155,7 @@
+@@ -157,6 +159,7 @@
  #define DEFAULT_SCROLLBAR_POSITION    (TERMINAL_SCROLLBAR_RIGHT)
  #define DEFAULT_SCROLL_ON_KEYSTROKE   (TRUE)
  #define DEFAULT_SCROLL_ON_OUTPUT      (FALSE)
@@ -112,7 +112,7 @@ Index: gnome-terminal-3.2.1/src/terminal-profile.c
  #define DEFAULT_SILENT_BELL           (FALSE)
  #define DEFAULT_TITLE_MODE            (TERMINAL_TITLE_REPLACE)
  #define DEFAULT_TITLE                 (N_("Terminal"))
-@@ -1299,6 +1302,7 @@
+@@ -1315,6 +1318,7 @@
    TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLLBACK_UNLIMITED, DEFAULT_SCROLLBACK_UNLIMITED, KEY_SCROLLBACK_UNLIMITED);
    TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_KEYSTROKE, DEFAULT_SCROLL_ON_KEYSTROKE, KEY_SCROLL_ON_KEYSTROKE);
    TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_OUTPUT, DEFAULT_SCROLL_ON_OUTPUT, KEY_SCROLL_ON_OUTPUT);
@@ -120,11 +120,11 @@ Index: gnome-terminal-3.2.1/src/terminal-profile.c
    TERMINAL_PROFILE_PROPERTY_BOOLEAN (SILENT_BELL, DEFAULT_SILENT_BELL, KEY_SILENT_BELL);
    TERMINAL_PROFILE_PROPERTY_BOOLEAN (UPDATE_RECORDS, DEFAULT_UPDATE_RECORDS, KEY_UPDATE_RECORDS);
    TERMINAL_PROFILE_PROPERTY_BOOLEAN (USE_CUSTOM_COMMAND, DEFAULT_USE_CUSTOM_COMMAND, KEY_USE_CUSTOM_COMMAND);
-Index: gnome-terminal-3.2.1/src/terminal-profile.h
+Index: gnome-terminal-3.6.2/src/terminal-profile.h
 ===================================================================
---- gnome-terminal-3.2.1.orig/src/terminal-profile.h
-+++ gnome-terminal-3.2.1/src/terminal-profile.h
-@@ -93,6 +93,7 @@
+--- gnome-terminal-3.6.2.orig/src/terminal-profile.h	2013-12-16 11:22:52.388435875 +1300
++++ gnome-terminal-3.6.2/src/terminal-profile.h	2013-12-16 11:22:52.380435875 +1300
+@@ -94,6 +94,7 @@
  #define TERMINAL_PROFILE_SCROLLBAR_POSITION     "scrollbar-position"
  #define TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE    "scroll-on-keystroke"
  #define TERMINAL_PROFILE_SCROLL_ON_OUTPUT       "scroll-on-output"
@@ -132,11 +132,11 @@ Index: gnome-terminal-3.2.1/src/terminal-profile.h
  #define TERMINAL_PROFILE_SILENT_BELL            "silent-bell"
  #define TERMINAL_PROFILE_TITLE_MODE             "title-mode"
  #define TERMINAL_PROFILE_TITLE                  "title"
-Index: gnome-terminal-3.2.1/src/terminal-screen.c
+Index: gnome-terminal-3.6.2/src/terminal-screen.c
 ===================================================================
---- gnome-terminal-3.2.1.orig/src/terminal-screen.c
-+++ gnome-terminal-3.2.1/src/terminal-screen.c
-@@ -963,6 +963,9 @@
+--- gnome-terminal-3.6.2.orig/src/terminal-screen.c	2013-12-16 11:22:52.388435875 +1300
++++ gnome-terminal-3.6.2/src/terminal-screen.c	2013-12-16 11:22:52.384435875 +1300
+@@ -972,6 +972,9 @@
    if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SCROLL_ON_OUTPUT))
      vte_terminal_set_scroll_on_output (vte_terminal,
                                         terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_SCROLL_ON_OUTPUT));
