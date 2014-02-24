@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "terminal&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-14 13:41+0000\n"
-"PO-Revision-Date: 2013-09-14 22:50+0900\n"
+"POT-Creation-Date: 2013-07-18 11:29+0000\n"
+"PO-Revision-Date: 2013-09-14 06:09+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
@@ -21,9 +21,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../gnome-terminal.desktop.in.in.h:1 ../src/server.c:111
-#: ../src/terminal-accels.c:262 ../src/terminal.c:252
-#: ../src/terminal-window.c:1828
+#: ../gnome-terminal.desktop.in.in.h:1 ../src/server.c:106
+#: ../src/terminal-accels.c:178 ../src/terminal.c:249
+#: ../src/terminal-screen.c:722 ../src/terminal-screen.c:1510
+#: ../src/terminal-window.c:2540 ../src/terminal-window.c:2864
 msgid "Terminal"
 msgstr "터미널"
 
@@ -57,7 +58,7 @@ msgstr ""
 "\n"
 "각 명령의 도움말을 보려면 \"%s <명령> --help\" 명령을 실행해 보십시오.\n"
 
-#: ../src/client.c:201 ../src/terminal-options.c:683
+#: ../src/client.c:201 ../src/terminal-options.c:682
 #, c-format
 msgid "\"%s\" is not a valid zoom factor"
 msgstr "\"%s\"은(는) 올바른 확대 비율이 아닙니다"
@@ -198,7 +199,7 @@ msgid "Terminal options:"
 msgstr "터미널 옵션:"
 
 # option group 설명
-#: ../src/client.c:424 ../src/terminal-options.c:1287
+#: ../src/client.c:424 ../src/terminal-options.c:1460
 msgid "Show terminal options"
 msgstr "터미널 옵션을 봅니다"
 
@@ -248,7 +249,11 @@ msgstr "뒤로 검색(_B)"
 msgid "_Wrap around"
 msgstr "끝까지 가면 처음부터(_W)"
 
-#: ../src/migration.c:384 ../src/terminal-prefs.c:98
+#: ../src/migration.c:387
+msgid "Default"
+msgstr "기본값"
+
+#: ../src/migration.c:387 ../src/terminal-prefs.c:98
 msgid "Unnamed"
 msgstr "이름 없음 "
 
@@ -307,26 +312,10 @@ msgid ""
 msgstr "참이면, 굵은 글자가 일반 굵기 글자와 같은 색으로 나타납니다."
 
 #: ../src/org.gnome.Terminal.gschema.xml.in.h:11
-msgid "What to do with dynamic title"
-msgstr "동적 제목을 어떻게 할 지"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:12
-msgid ""
-"If the application in the terminal sets the title (most typically people "
-"have their shell set up to do this), the dynamically-set title can erase the "
-"configured title, go before it, go after it, or replace it. The possible "
-"values are \"replace\", \"before\", \"after\", and \"ignore\"."
-msgstr ""
-"터미널 내의 프로그램에서 제목을 설정하는 경우(보통 셸이 제목을 설정합니다), "
-"동적으로 설정된 제목이 기존에 설정된 제목을 지우거나, 기존 제목의 앞에 오거"
-"나, 뒤에 오거나, 아니면 제목을 바꿔 버릴 수 있습니다. 사용 가능한 값은 "
-"\"replace\", \"before\", \"after\", 그리고 \"ignore\"입니다."
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:13
 msgid "Title for terminal"
 msgstr "터미널의 제목"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:14
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:12
 msgid ""
 "Title to display for the terminal window or tab. This title may be replaced "
 "by or combined with the title set by the application inside the terminal, "
@@ -335,23 +324,23 @@ msgstr ""
 "터미널 창이나 탭에 표시할 제목. 이 타이틀은 title_mode 설정 값에 따라 터미널 "
 "내의 프로그램이 설정하는 타이틀로 바뀌거나 결합될 수 있습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:15
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:13
 msgid "Whether to allow bold text"
 msgstr "굵은 글씨를 허용할지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:16
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:14
 msgid "If true, allow applications in the terminal to make text boldface."
 msgstr "참이면, 터미널 프로그램에서 굵은 글씨를 출력할 수 있습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:17
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:15
 msgid "Whether to ring the terminal bell"
 msgstr "터미널 종소리를 낼지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:18
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:16
 msgid "Characters that are considered \"part of a word\""
 msgstr "\"단어의 일부\"라고 생각할 문자"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:19
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:17
 msgid ""
 "When selecting text by word, sequences of these characters are considered "
 "single words. Ranges can be given as \"A-Z\". Literal hyphen (not expressing "
@@ -361,19 +350,19 @@ msgstr ""
 "다. 문자 범위는 \"A-Z\"와 같이 표시합니다. 범위를 나타내지 않는 하이픈(-) 문"
 "자를 직접 쓰려면 맨 처음 문자로 써야 합니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:20
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:18
 msgid "Whether to show menubar in new windows/tabs"
 msgstr "새 창/탭에서 메뉴 모음을 보일 지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:21
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:19
 msgid "True if the menubar should be shown in new window"
 msgstr "참이면 새 창에서 메뉴 모음을 보여줍니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:22
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:20
 msgid "Whether to use custom terminal size for new windows"
 msgstr "새 창에서 사용자 지정 터미널 크기를 사용할지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:23
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:21
 msgid ""
 "If true, newly created terminal windows will have custom size specified by "
 "default_size_columns and default_size_rows."
@@ -381,11 +370,11 @@ msgstr ""
 "참이면 새로 만든 터미널 창이 default_size_columns 및 default_size_rows에서 지"
 "정한 사용자 지정 크기를 갖습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:24
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:22
 msgid "Default number of columns"
 msgstr "열 개수 기본값"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:25
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:23
 msgid ""
 "Number of columns in newly created terminal windows. Has no effect if "
 "use_custom_default_size is not enabled."
@@ -393,11 +382,11 @@ msgstr ""
 "새로 만들어진 터미널 창의 열 개수. use_custom_default_size가 거짓인 경우 효과"
 "가 없습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:26
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:24
 msgid "Default number of rows"
 msgstr "행 개수 기본값"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:27
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:25
 msgid ""
 "Number of rows in newly created terminal windows. Has no effect if "
 "use_custom_default_size is not enabled."
@@ -405,15 +394,15 @@ msgstr ""
 "새로 만들어진 터미널 창의 행 개수. use_custom_default_size가 거짓인 경우 효과"
 "가 없습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:28
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:26
 msgid "When to show the scrollbar"
 msgstr "스크롤 막대를 표시할 조건"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:29
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:27
 msgid "Number of lines to keep in scrollback"
 msgstr "스크롤할 때 보여주도록 저장할 줄 개수"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:30
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:28
 msgid ""
 "Number of scrollback lines to keep around. You can scroll back in the "
 "terminal by this number of lines; lines that don't fit in the scrollback are "
@@ -423,11 +412,11 @@ msgstr ""
 "니다. 여기에 들어가지 못하는 줄은 없어집니다. scrollback_unlimited 값이 참이"
 "면 이 옵션은 무시됩니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:31
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:29
 msgid "Whether an unlimited number of lines should be kept in scrollback"
 msgstr "스크롤할 때 줄을 무제한으로 저장할지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:32
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:30
 msgid ""
 "If true, scrollback lines will never be discarded. The scrollback history is "
 "stored on disk temporarily, so this may cause the system to run out of disk "
@@ -437,28 +426,28 @@ msgstr ""
 "에 임시로 저장합니다. 그러므로 터미널의 출력 내용이 많으면 이 기능 때문에 디"
 "스크 빈 공간을 모두 사용할 수도 있습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:33
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:31
 msgid "Whether to scroll to the bottom when a key is pressed"
 msgstr "키를 눌렀을 때 맨 아래로 스크롤할 지 여부."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:34
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:32
 msgid "If true, pressing a key jumps the scrollbar to the bottom."
 msgstr "참이면, 키를 눌렀을 때 스크롤바가 맨 아래로 이동합니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:35
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:33
 msgid "Whether to scroll to the bottom when there's new output"
 msgstr "새로운 출력이 생겼을 때 맨 아래로 스크롤할 지 여부."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:36
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:34
 msgid ""
 "If true, whenever there's new output the terminal will scroll to the bottom."
 msgstr "참이면, 터미널에서 새로운 출력이 나왔을 때 맨 아래로 스크롤합니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:37
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:35
 msgid "What to do with the terminal when the child command exits"
 msgstr "내부 명령이 끝날 때 터미널이 어떻게 할 지"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:38
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:36
 msgid ""
 "Possible values are \"close\" to close the terminal, and \"restart\" to "
 "restart the command."
@@ -466,11 +455,11 @@ msgstr ""
 "가능한 값은, 터미널을 닫으려면 \"close\", 명령어를 다시 시작하려면 \"restart"
 "\"입니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:39
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:37
 msgid "Whether to launch the command in the terminal as a login shell"
 msgstr "터미널에서 로그인 셸로 이 명령어를 실행할 지"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:40
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:38
 msgid ""
 "If true, the command inside the terminal will be launched as a login shell. "
 "(argv[0] will have a hyphen in front of it.)"
@@ -478,32 +467,32 @@ msgstr ""
 "참이면, 터미널에서 명령어가 로그인 셸로 실행됩니다. (argv[0] 앞에 하이픈(-)"
 "이 붙습니다.)"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:41
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:39
 msgid "Whether to update login records when launching terminal command"
 msgstr "터미널 명령어를 실행할 때 로그인 기록을 업데이트할 지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:42
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:40
 msgid ""
 "If true, the system login records utmp and wtmp will be updated when the "
 "command inside the terminal is launched."
 msgstr ""
 "참이면, 터미널에서 명령어를 실행할 때 로그인 기록 utmp/wtmp를 업데이트합니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:43
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:41
 msgid "Whether to run a custom command instead of the shell"
 msgstr "셸 대신에 사용자 지정 명령을 실행할 지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:44
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:42
 msgid ""
 "If true, the value of the custom_command setting will be used in place of "
 "running a shell."
 msgstr "참이면, 셸을 실행하지 않고 custom_command 설정의 값을 사용합니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:45
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:43
 msgid "Whether to blink the cursor"
 msgstr "커서를 깜박일 지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:46
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:44
 msgid ""
 "The possible values are \"system\" to use the global cursor blinking "
 "settings, or \"on\" or \"off\" to set the mode explicitly."
@@ -511,188 +500,144 @@ msgstr ""
 "전체 커서 깜빡임 설정을 쓰려면 \"system\"을, 또는 모드를 따로 정하려면 \"on"
 "\" 또는 \"off\"를 설정하십시오."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:47
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:45
 msgid "The cursor appearance"
 msgstr "커서 모양"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:48
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:46
 msgid "Custom command to use instead of the shell"
 msgstr "셸 대신에 사용할 사용자 지정 명령어"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:49
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:47
 msgid "Run this command in place of the shell, if use_custom_command is true."
 msgstr ""
 "셸 대신에 이 명령어를 실행합니다. (use_custom_command가 참일 경우에만)."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:50
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:48
 msgid "Palette for terminal applications"
 msgstr "터미널 프로그램의 팔레트"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:51
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:49
 msgid "A Pango font name and size"
 msgstr "판고 글꼴 이름 및 크기"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:52
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:50
 msgid "The code sequence the Backspace key generates"
 msgstr "백스페이스 키를 눌렀을 때 코드 값"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:53
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:51
 msgid "The code sequence the Delete key generates"
 msgstr "Delete 키를 눌렀을 때 코드 값"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:54
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:52
 msgid "Whether to use the colors from the theme for the terminal widget"
 msgstr "터미널 위젯에 대해 테마 색을 사용할 지 여부."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:55
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:53
 msgid "Whether to use the system monospace font"
 msgstr "시스템 고정폭 글꼴을 사용할 지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:56
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:54
 msgid "Which encoding to use"
 msgstr "사용할 인코딩"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:57
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:55
 msgid "Keyboard shortcut to open a new tab"
 msgstr "새 탭을 여는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:58
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:56
 msgid "Keyboard shortcut to open a new window"
 msgstr "새 창을 여는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:59
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:57
 msgid "Keyboard shortcut to create a new profile"
 msgstr "새 프로파일을 만드는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:60
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:58
 msgid "Keyboard shortcut to save the current tab contents to file"
 msgstr "현재 탭 내용을 파일로 저장하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:61
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:59
 msgid "Keyboard shortcut to close a tab"
 msgstr "탭을 닫는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:62
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:60
 msgid "Keyboard shortcut to close a window"
 msgstr "창을 닫는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:63
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:61
 msgid "Keyboard shortcut to copy text"
 msgstr "글자를 복사하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:64
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:62
 msgid "Keyboard shortcut to paste text"
 msgstr "글자를 붙여 넣는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:65
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:63
 msgid "Keyboard shortcut to toggle full screen mode"
 msgstr "전체 화면 모드를 토글하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:66
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:64
 msgid "Keyboard shortcut to toggle the visibility of the menubar"
 msgstr "메뉴 모음을 보일지 토글하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:67
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:65
 msgid "Keyboard shortcut to set the terminal title"
 msgstr "터미널의 제목을 설정하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:68
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:66
 msgid "Keyboard shortcut to reset the terminal"
 msgstr "터미널을 리셋하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:69
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:67
 msgid "Keyboard shortcut to reset and clear the terminal"
 msgstr "터미널을 리셋하고 지우는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:70
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:68
 msgid "Keyboard shortcut to switch to the previous tab"
 msgstr "이전 탭으로 바꾸는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:71
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:69
 msgid "Keyboard shortcut to switch to the next tab"
 msgstr "다음 탭으로 바꾸는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:72
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:70
 msgid "Keyboard shortcut to move the current tab to the left"
 msgstr "현재 탭을 왼쪽으로 옮기는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:73
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:71
 msgid "Keyboard shortcut to move the current tab to the right"
 msgstr "현재 탭을 오른쪽으로 옮기는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:74
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:72
 msgid "Keyboard shortcut to detach current tab"
 msgstr "현재 탭을 분리하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:75
-msgid "Keyboard shortcut to switch to tab 1"
-msgstr "탭 1로 바꾸는 바로 가기 키"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:73
+msgid "Keyboard shortcut to switch to the numbered tab"
+msgstr "번호 탭으로 바꾸는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:76
-msgid "Keyboard shortcut to switch to tab 2"
-msgstr "탭 2로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:77
-msgid "Keyboard shortcut to switch to tab 3"
-msgstr "탭 3으로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:78
-msgid "Keyboard shortcut to switch to tab 4"
-msgstr "탭 4로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:79
-msgid "Keyboard shortcut to switch to tab 5"
-msgstr "탭 5로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:80
-msgid "Keyboard shortcut to switch to tab 6"
-msgstr "탭 6으로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:81
-msgid "Keyboard shortcut to switch to tab 7"
-msgstr "탭 7로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:82
-msgid "Keyboard shortcut to switch to tab 8"
-msgstr "탭 8로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:83
-msgid "Keyboard shortcut to switch to tab 9"
-msgstr "탭 9로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:84
-msgid "Keyboard shortcut to switch to tab 10"
-msgstr "탭 10으로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:85
-msgid "Keyboard shortcut to switch to tab 11"
-msgstr "탭 11로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:86
-msgid "Keyboard shortcut to switch to tab 12"
-msgstr "탭 12로 바꾸는 바로 가기 키"
-
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:87
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:74
 msgid "Keyboard shortcut to launch help"
 msgstr "도움말을 실행하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:88
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:75
 msgid "Keyboard shortcut to make font larger"
 msgstr "글꼴을 더 크게 하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:89
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:76
 msgid "Keyboard shortcut to make font smaller"
 msgstr "글꼴을 더 작게 하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:90
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:77
 msgid "Keyboard shortcut to make font normal-size"
 msgstr "글꼴을 보통 크기로 하는 바로 가기 키"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:91
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:78
 msgid "Whether the menubar has access keys"
 msgstr "메뉴 모음의 단축 키를 사용할지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:92
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:79
 msgid ""
 "Whether to have Alt+letter access keys for the menubar. They may interfere "
 "with some applications run inside the terminal so it's possible to turn them "
@@ -702,11 +647,11 @@ msgstr ""
 "떤 프로그램의 동작을 방해할 수도 있기 때문에, 이런 경우 이 단축 키를 끌 수 있"
 "습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:93
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:80
 msgid "Whether the standard GTK shortcut for menubar access is enabled"
 msgstr "메뉴 모음에 접근하는 표준 GTK 단축 키를 사용할지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:94
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:81
 msgid ""
 "Normally you can access the menubar with F10. This can also be customized "
 "via gtkrc (gtk-menu-bar-accel = \"whatever\"). This option allows the "
@@ -716,11 +661,11 @@ msgstr ""
 "습니다. (gtk-menu-bar-accel = \"어떤키이름\") 이 옵션으로 이 메뉴 모음 단축 "
 "키를 사용하지 않게 만들 수 있습니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:95
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:82
 msgid "List of available encodings"
 msgstr "쓸 수 있는 인코딩 목록"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:96
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:83
 msgid ""
 "A subset of possible encodings are presented in the Encoding submenu. This "
 "is a list of encodings to appear there. The special encoding name \"current"
@@ -730,55 +675,82 @@ msgstr ""
 "브 메뉴에 나타날 인코딩 목록입니다. 특별히 \"current\"라는 인코딩 이름은 현"
 "재 로캘의 인코딩을 나타냅니다."
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:97
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:84
 msgid "Whether to ask for confirmation before closing a terminal"
 msgstr "터미널을 닫기 전에 확인 질문을 할지 여부"
 
-#: ../src/org.gnome.Terminal.gschema.xml.in.h:98
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:85
 msgid "Whether to show the menubar in new windows"
 msgstr "새 창에서 메뉴 모음을 보일 지 여부"
 
-#: ../src/preferences.ui.h:1
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:86
+msgid "Whether to use a dark theme variant"
+msgstr "어두운 테마를 사용할 지 여부"
+
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:87
+msgid "Whether to open new terminals as windows or tabs"
+msgstr "새 터미널을 창으로 열지 탭으로 열지 여부"
+
+#. Open new terminal in new window
+#: ../src/preferences.ui.h:2
+msgid "Window"
+msgstr "창"
+
+#. Open new terminal in new tab
+#: ../src/preferences.ui.h:4
+msgid "Tab"
+msgstr "탭"
+
+#: ../src/preferences.ui.h:5
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: ../src/preferences.ui.h:2
+#: ../src/preferences.ui.h:6
 msgid "Show _menubar by default in new terminals"
 msgstr "새 터미널에서 기본값으로 메뉴 모음 표시(_M)"
 
-#: ../src/preferences.ui.h:3
+#: ../src/preferences.ui.h:7
+msgid "Use _dark theme variant"
+msgstr "어두운 테마 사용(_D)"
+
+#: ../src/preferences.ui.h:8
 msgid "_Enable mnemonics (such as Alt+F to open the File menu)"
 msgstr "접근 키 사용(예: Alt+F로 파일 메뉴 열기)(_E)"
 
-#: ../src/preferences.ui.h:4
+#: ../src/preferences.ui.h:9
 msgid "Enable the _menu accelerator key (F10 by default)"
 msgstr "메뉴 단축키를 사용하지 않기(기본값 F10)(_M)"
 
-#: ../src/preferences.ui.h:5 ../src/profile-preferences.ui.h:61
+#: ../src/preferences.ui.h:10
+msgid "Open _new terminals in:"
+msgstr "새 터미널 열기(_N):"
+
+#: ../src/preferences.ui.h:11 ../src/profile-preferences.ui.h:61
 msgid "General"
 msgstr "일반"
 
-#: ../src/preferences.ui.h:6
+#: ../src/preferences.ui.h:12
 msgid "Shortcuts"
 msgstr "바로 가기"
 
-#: ../src/preferences.ui.h:7
+# 프로파일 복제 단추
+#: ../src/preferences.ui.h:13
 msgid "_Clone"
 msgstr "복제(_C)"
 
-#: ../src/preferences.ui.h:8
+#: ../src/preferences.ui.h:14
 msgid "_Profile used when launching a new terminal:"
 msgstr "새 터미널을 실행할 때 사용할 프로파일(_P):"
 
-#: ../src/preferences.ui.h:9
+#: ../src/preferences.ui.h:15
 msgid "Profiles"
 msgstr "프로파일"
 
-#: ../src/preferences.ui.h:10
+#: ../src/preferences.ui.h:16
 msgid "E_ncodings shown in menu:"
 msgstr "메뉴에 표시하는 인코딩(_N):"
 
-#: ../src/preferences.ui.h:11
+#: ../src/preferences.ui.h:17
 msgid "Encodings"
 msgstr "인코딩"
 
@@ -802,27 +774,27 @@ msgstr "검정 배경에 녹색 글씨"
 msgid "White on black"
 msgstr "검정 배경에 흰 글씨"
 
-#: ../src/profile-editor.c:411
+#: ../src/profile-editor.c:412
 #, c-format
 msgid "Error parsing command: %s"
 msgstr "명령행을 해석하는 데 오류가 발생했습니다: %s"
 
 #. This is the name of a colour scheme
-#: ../src/profile-editor.c:445 ../src/profile-preferences.ui.h:30
+#: ../src/profile-editor.c:446 ../src/profile-preferences.ui.h:30
 msgid "Custom"
 msgstr "사용자 지정"
 
-#: ../src/profile-editor.c:560
+#: ../src/profile-editor.c:561
 #, c-format
 msgid "Editing Profile “%s”"
 msgstr "프로파일 “%s” 편집"
 
-#: ../src/profile-editor.c:743
+#: ../src/profile-editor.c:744
 #, c-format
 msgid "Choose Palette Color %d"
 msgstr "팔레트 색 %d 선택"
 
-#: ../src/profile-editor.c:747
+#: ../src/profile-editor.c:748
 #, c-format
 msgid "Palette entry %d"
 msgstr "팔레트 항목 %d"
@@ -997,131 +969,127 @@ msgstr "행"
 msgid "Title"
 msgstr "제목"
 
-#: ../src/profile-preferences.ui.h:63
-msgid "Initial _title:"
-msgstr "처음 제목(_T):"
+#: ../src/profile-preferences.ui.h:63 ../src/terminal-window.c:771
+msgid "_Title:"
+msgstr "제목(_T):"
 
 #: ../src/profile-preferences.ui.h:64
-msgid "When terminal commands set their o_wn titles:"
-msgstr "터미널 명령이 제목을 바꿀 때(_W):"
-
-#: ../src/profile-preferences.ui.h:65
 msgid "Command"
 msgstr "명령"
 
-#: ../src/profile-preferences.ui.h:66
+#: ../src/profile-preferences.ui.h:65
 msgid "_Run command as a login shell"
 msgstr "로그인 셸로 명령 실행(_R)"
 
-#: ../src/profile-preferences.ui.h:67
+#: ../src/profile-preferences.ui.h:66
 msgid "_Update login records when command is launched"
 msgstr "명령을 실행하면 로그인 기록을 업데이트(_U)"
 
-#: ../src/profile-preferences.ui.h:68
+#: ../src/profile-preferences.ui.h:67
 msgid "Ru_n a custom command instead of my shell"
 msgstr "셸 대신에 사용자 지정 명령 실행(_N)"
 
-#: ../src/profile-preferences.ui.h:69
+#: ../src/profile-preferences.ui.h:68
 msgid "Custom co_mmand:"
 msgstr "사용자 지정 명령(_M):"
 
-#: ../src/profile-preferences.ui.h:70
+#: ../src/profile-preferences.ui.h:69
 msgid "When command _exits:"
 msgstr "명령이 끝날 때(_E):"
 
-#: ../src/profile-preferences.ui.h:71
+#: ../src/profile-preferences.ui.h:70
 msgid "Title and Command"
 msgstr "제목 및 명령"
 
-#: ../src/profile-preferences.ui.h:72
+#: ../src/profile-preferences.ui.h:71
 msgid "Text and Background Color"
 msgstr "글씨 및 배경 색"
 
-#: ../src/profile-preferences.ui.h:73
+#: ../src/profile-preferences.ui.h:72
 msgid "_Use colors from system theme"
 msgstr "시스템 테마 색 사용(_U)"
 
-#: ../src/profile-preferences.ui.h:74
+#: ../src/profile-preferences.ui.h:73
 msgid "Built-in sche_mes:"
 msgstr "내장 팔레트(_M):"
 
-#: ../src/profile-preferences.ui.h:75
+#: ../src/profile-preferences.ui.h:74
 msgid "_Text color:"
 msgstr "글자색(_T):"
 
-#: ../src/profile-preferences.ui.h:76
+#: ../src/profile-preferences.ui.h:75
 msgid "_Background color:"
 msgstr "배경색(_B):"
 
-#: ../src/profile-preferences.ui.h:77
+#: ../src/profile-preferences.ui.h:76
 msgid "Choose Terminal Background Color"
 msgstr "터미널 배경색 선택"
 
-#: ../src/profile-preferences.ui.h:78
+#: ../src/profile-preferences.ui.h:77
 msgid "Choose Terminal Text Color"
 msgstr "터미널 글자색 선택"
 
-#: ../src/profile-preferences.ui.h:79
+#: ../src/profile-preferences.ui.h:78
 msgid "_Underline color:"
 msgstr "밑줄 색(_U):"
 
-#: ../src/profile-preferences.ui.h:80
+#: ../src/profile-preferences.ui.h:79
 msgid "_Same as text color"
 msgstr "글자색과 동일(_S):"
 
-#: ../src/profile-preferences.ui.h:81
+#: ../src/profile-preferences.ui.h:80
 msgid "Bol_d color:"
 msgstr "굵은 글자색(_D):"
 
-#: ../src/profile-preferences.ui.h:82
+#: ../src/profile-preferences.ui.h:81
 msgid "Palette"
 msgstr "팔레트"
 
-#: ../src/profile-preferences.ui.h:83
+#: ../src/profile-preferences.ui.h:82
 msgid "Built-in _schemes:"
 msgstr "내장 팔레트(_S):"
 
-#: ../src/profile-preferences.ui.h:84
+#: ../src/profile-preferences.ui.h:83
 msgid "<b>Note:</b> Terminal applications have these colors available to them."
 msgstr "<b>알림:</b> 터미널 프로그램에서 다음 색을 사용할 수 있습니다."
 
-#: ../src/profile-preferences.ui.h:85
+#: ../src/profile-preferences.ui.h:84
 msgid "Color p_alette:"
 msgstr "색 팔레트(_A):"
 
-#: ../src/profile-preferences.ui.h:86
+#: ../src/profile-preferences.ui.h:85
 msgid "Colors"
 msgstr "색"
 
-#: ../src/profile-preferences.ui.h:87
+#: ../src/profile-preferences.ui.h:86
 msgid "_Scrollbar is:"
 msgstr "스크롤 막대 위치(_S):"
 
-#: ../src/profile-preferences.ui.h:88
+#: ../src/profile-preferences.ui.h:87
 msgid "Scroll_back:"
 msgstr "스크롤 범위(_B):"
 
-#: ../src/profile-preferences.ui.h:89
+#: ../src/profile-preferences.ui.h:88
 msgid "Scroll on _keystroke"
 msgstr "키를 누르면 스크롤(_K)"
 
-#: ../src/profile-preferences.ui.h:90
+#: ../src/profile-preferences.ui.h:89
 msgid "Scroll on _output"
 msgstr "출력이 있으면 스크롤(_O)"
 
-#: ../src/profile-preferences.ui.h:91
+#: ../src/profile-preferences.ui.h:90
 msgid "_Unlimited"
 msgstr "무제한(_U)"
 
-#: ../src/profile-preferences.ui.h:92
+#: ../src/profile-preferences.ui.h:91
 msgid "lines"
 msgstr "줄"
 
-#: ../src/profile-preferences.ui.h:93
+#: ../src/profile-preferences.ui.h:92
 msgid "Scrolling"
 msgstr "스크롤"
 
-#: ../src/profile-preferences.ui.h:94
+#: ../src/profile-preferences.ui.h:93
 msgid ""
 "<b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -1131,208 +1099,168 @@ msgstr ""
 "다. 이 옵션은 터미널이 다른 방식으로 동작한다고 가정하는 일부 프로그램과 일"
 "부 운영체제의 문제를 피해가는 기능일 뿐입니다."
 
-#: ../src/profile-preferences.ui.h:95
+#: ../src/profile-preferences.ui.h:94
 msgid "_Delete key generates:"
 msgstr "Delete 키를 누르면(_D):"
 
-#: ../src/profile-preferences.ui.h:96
+#: ../src/profile-preferences.ui.h:95
 msgid "_Backspace key generates:"
 msgstr "백스페이스 키를 누르면(_B):"
 
-#: ../src/profile-preferences.ui.h:97
+#: ../src/profile-preferences.ui.h:96
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "호환성 옵션을 기본값으로 리셋(_R)"
 
-#: ../src/profile-preferences.ui.h:98
+#: ../src/profile-preferences.ui.h:97
 msgid "Compatibility"
 msgstr "호환성"
 
-#: ../src/terminal-accels.c:141
+#: ../src/terminal-accels.c:111
 msgid "New Tab"
 msgstr "새 탭"
 
-#: ../src/terminal-accels.c:143
+#: ../src/terminal-accels.c:112
 msgid "New Window"
 msgstr "새 창"
 
-#: ../src/terminal-accels.c:145
+#: ../src/terminal-accels.c:113
 msgid "New Profile"
 msgstr "새 프로파일"
 
-#: ../src/terminal-accels.c:148
+#: ../src/terminal-accels.c:115
 msgid "Save Contents"
 msgstr "내용 저장"
 
-#: ../src/terminal-accels.c:151
+#: ../src/terminal-accels.c:117
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: ../src/terminal-accels.c:153
+#: ../src/terminal-accels.c:118
 msgid "Close Window"
 msgstr "창 닫기"
 
-#: ../src/terminal-accels.c:159
+#: ../src/terminal-accels.c:122
 msgid "Copy"
 msgstr "복사"
 
-#: ../src/terminal-accels.c:161
+#: ../src/terminal-accels.c:123
 msgid "Paste"
 msgstr "붙여넣기"
 
-#: ../src/terminal-accels.c:167
-msgid "Hide and Show menubar"
-msgstr "메뉴 모음 숨기기/보기"
+#: ../src/terminal-accels.c:127
+msgid "Hide and Show toolbar"
+msgstr "도구 모음 숨기기/보이기"
 
-#: ../src/terminal-accels.c:169
+#: ../src/terminal-accels.c:128
 msgid "Full Screen"
 msgstr "전체 화면"
 
-#: ../src/terminal-accels.c:171
+#: ../src/terminal-accels.c:129
 msgid "Zoom In"
 msgstr "확대"
 
-#: ../src/terminal-accels.c:173
+#: ../src/terminal-accels.c:130
 msgid "Zoom Out"
 msgstr "축소"
 
-#: ../src/terminal-accels.c:175
+#: ../src/terminal-accels.c:131
 msgid "Normal Size"
 msgstr "보통 크기"
 
-#: ../src/terminal-accels.c:181 ../src/terminal-window.c:3439
+#: ../src/terminal-accels.c:135 ../src/terminal-window.c:754
 msgid "Set Title"
 msgstr "제목 설정"
 
-#: ../src/terminal-accels.c:183
+#: ../src/terminal-accels.c:136
 msgid "Reset"
 msgstr "리셋"
 
-#: ../src/terminal-accels.c:185
+#: ../src/terminal-accels.c:137
 msgid "Reset and Clear"
 msgstr "리셋하고 지우기"
 
-#: ../src/terminal-accels.c:191
+#: ../src/terminal-accels.c:141
 msgid "Switch to Previous Tab"
 msgstr "이전 탭으로 가기"
 
-#: ../src/terminal-accels.c:193
+#: ../src/terminal-accels.c:142
 msgid "Switch to Next Tab"
 msgstr "다음 탭으로 가기"
 
-#: ../src/terminal-accels.c:195
+#: ../src/terminal-accels.c:143
 msgid "Move Tab to the Left"
 msgstr "왼쪽으로 탭 옮기기"
 
-#: ../src/terminal-accels.c:197
+#: ../src/terminal-accels.c:144
 msgid "Move Tab to the Right"
 msgstr "오른쪽으로 탭 옮기기"
 
-#: ../src/terminal-accels.c:199
+#: ../src/terminal-accels.c:145
 msgid "Detach Tab"
 msgstr "탭 떼내기"
 
-#: ../src/terminal-accels.c:213
-msgid "Switch to Tab 1"
-msgstr "탭 1로 가기"
-
-#: ../src/terminal-accels.c:214
-msgid "Switch to Tab 2"
-msgstr "탭 2로 가기"
-
-#: ../src/terminal-accels.c:215
-msgid "Switch to Tab 3"
-msgstr "탭 3로 가기"
-
-#: ../src/terminal-accels.c:216
-msgid "Switch to Tab 4"
-msgstr "탭 4로 가기"
-
-#: ../src/terminal-accels.c:217
-msgid "Switch to Tab 5"
-msgstr "탭 5로 가기"
-
-#: ../src/terminal-accels.c:218
-msgid "Switch to Tab 6"
-msgstr "탭 6로 가기"
-
-#: ../src/terminal-accels.c:219
-msgid "Switch to Tab 7"
-msgstr "탭 7로 가기"
-
-#: ../src/terminal-accels.c:220
-msgid "Switch to Tab 8"
-msgstr "탭 8로 가기"
-
-#: ../src/terminal-accels.c:221
-msgid "Switch to Tab 9"
-msgstr "탭 9로 가기"
-
-#: ../src/terminal-accels.c:222
-msgid "Switch to Tab 10"
-msgstr "탭 10로 가기"
-
-#: ../src/terminal-accels.c:223
-msgid "Switch to Tab 11"
-msgstr "탭 11로 가기"
-
-#: ../src/terminal-accels.c:224
-msgid "Switch to Tab 12"
-msgstr "탭 12로 가기"
-
-#: ../src/terminal-accels.c:254
+#: ../src/terminal-accels.c:168
 msgid "Contents"
 msgstr "차례"
 
-#: ../src/terminal-accels.c:259
+#: ../src/terminal-accels.c:175
 msgid "File"
 msgstr "파일"
 
-#: ../src/terminal-accels.c:260
+#: ../src/terminal-accels.c:176
 msgid "Edit"
 msgstr "편집"
 
-#: ../src/terminal-accels.c:261
+#: ../src/terminal-accels.c:177
 msgid "View"
 msgstr "보기"
 
-#: ../src/terminal-accels.c:263
+#: ../src/terminal-accels.c:179
 msgid "Tabs"
 msgstr "탭"
 
-#: ../src/terminal-accels.c:264
+#: ../src/terminal-accels.c:180
 msgid "Help"
 msgstr "도움말"
 
-#: ../src/terminal-accels.c:635
+#: ../src/terminal-accels.c:261
 #, c-format
-msgid "The shortcut key “%s” is already bound to the “%s” action"
-msgstr "바로 가기 키 “%s”키는 이미 “%s” 동작에 연결되어 있습니다"
+msgid "Switch to Tab %d"
+msgstr "탭 %d번으로 가기"
 
-#: ../src/terminal-accels.c:748
+#: ../src/terminal-accels.c:487
 msgid "_Action"
 msgstr "행동(_A)"
 
-#: ../src/terminal-accels.c:766
+#: ../src/terminal-accels.c:505
 msgid "Shortcut _Key"
 msgstr "바로 가기 키(_K)"
 
-#: ../src/terminal-app.c:574
+#: ../src/terminal-app.c:591
 msgid "User Defined"
 msgstr "사용자 정의"
 
 #: ../src/terminal-appmenu.ui.h:1
+msgid "_New Terminal"
+msgstr "새 터미널(_N)"
+
+#: ../src/terminal-appmenu.ui.h:2
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: ../src/terminal-appmenu.ui.h:2 ../src/terminal-window.c:1631
+#: ../src/terminal-appmenu.ui.h:3
+msgid "_About Terminal"
+msgstr "터미널 정보(_A)"
+
+#: ../src/terminal-appmenu.ui.h:4 ../src/terminal-window.c:2335
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/terminal-appmenu.ui.h:3 ../src/terminal-window.c:1747
-msgid "_About"
-msgstr "정보(_A)"
+#: ../src/terminal-appmenu.ui.h:5
+msgid "_Quit"
+msgstr "끝내기(_Q)"
 
-#: ../src/terminal.c:245
+#: ../src/terminal.c:242
 #, c-format
 msgid "Failed to parse arguments: %s\n"
 msgstr "인자 파싱에 실패했습니다: %s\n"
@@ -1538,41 +1466,41 @@ msgstr "MC(Midnight Commander) 열기(_M)"
 msgid "Open the terminal file manager Midnight Commander"
 msgstr "터미널 파일 관리자 MC(Midnight Commander)를 엽니다"
 
-#: ../src/terminal-options.c:224 ../src/terminal-options.c:237
+#: ../src/terminal-options.c:224
 #, c-format
 msgid "Option \"%s\" is no longer supported in this version of gnome-terminal."
 msgstr ""
 "Option \"%s\" 옵션은 이 gnome-terminal 버전에서 더이상 지원하지 않습니다."
 
-#: ../src/terminal-options.c:249 ../src/terminal-util.c:236
+#: ../src/terminal-options.c:235 ../src/terminal-util.c:221
 msgid "GNOME Terminal"
 msgstr "그놈 터미널"
 
-#: ../src/terminal-options.c:289
+#: ../src/terminal-options.c:275
 #, c-format
 msgid "Argument to \"%s\" is not a valid command: %s"
 msgstr "\"%s\"의 인자가 올바른 명령이 아닙니다: %s"
 
-#: ../src/terminal-options.c:438
+#: ../src/terminal-options.c:424
 msgid "Two roles given for one window"
 msgstr "한 창에 두개의 역할이 주어졌습니다"
 
-#: ../src/terminal-options.c:459 ../src/terminal-options.c:492
+#: ../src/terminal-options.c:445 ../src/terminal-options.c:478
 #, c-format
 msgid "\"%s\" option given twice for the same window\n"
 msgstr "\"%s\" 옵션이 같은 창에 두번 사용되었습니다\n"
 
-#: ../src/terminal-options.c:690
+#: ../src/terminal-options.c:689
 #, c-format
 msgid "Zoom factor \"%g\" is too small, using %g\n"
 msgstr "확대비율 \"%g\"이(가) 너무 작습니다. %g을(를) 씁니다\n"
 
-#: ../src/terminal-options.c:698
+#: ../src/terminal-options.c:697
 #, c-format
 msgid "Zoom factor \"%g\" is too large, using %g\n"
 msgstr "확대비율 \"%g\"이(가) 너무 큽니다. %g을(를) 씁니다\n"
 
-#: ../src/terminal-options.c:736
+#: ../src/terminal-options.c:735
 #, c-format
 msgid ""
 "Option \"%s\" requires specifying the command to run on the rest of the "
@@ -1629,21 +1557,21 @@ msgstr "터미널 안에서 이 옵션의 인자를 명령어로 실행합니다
 msgid "PROFILE-NAME"
 msgstr "<프로파일이름>"
 
-#: ../src/terminal-options.c:1269 ../src/terminal-options.c:1275
+#: ../src/terminal-options.c:1442 ../src/terminal-options.c:1448
 msgid "GNOME Terminal Emulator"
 msgstr "그놈 터미널 에물레이터"
 
-#: ../src/terminal-options.c:1276
+#: ../src/terminal-options.c:1449
 msgid "Show GNOME Terminal options"
 msgstr "그놈 터미널 옵션 보기"
 
-#: ../src/terminal-options.c:1286
+#: ../src/terminal-options.c:1459
 msgid ""
 "Options to open new windows or terminal tabs; more than one of these may be "
 "specified:"
 msgstr "새 창이나 새 터미널 탭을 여는 옵션. 여러 번 지정할 수도 있습니다:"
 
-#: ../src/terminal-options.c:1295
+#: ../src/terminal-options.c:1468
 msgid ""
 "Window options; if used before the first --window or --tab argument, sets "
 "the default for all windows:"
@@ -1652,11 +1580,11 @@ msgstr ""
 "한 기본값을 설정합니다:"
 
 # option group 설명
-#: ../src/terminal-options.c:1296
+#: ../src/terminal-options.c:1469
 msgid "Show per-window options"
 msgstr "창별 옵션을 봅니다"
 
-#: ../src/terminal-options.c:1304
+#: ../src/terminal-options.c:1477
 msgid ""
 "Terminal options; if used before the first --window or --tab argument, sets "
 "the default for all terminals:"
@@ -1665,7 +1593,7 @@ msgstr ""
 "널에 대한 기본값을 설정합니다:"
 
 # option group 설명
-#: ../src/terminal-options.c:1305
+#: ../src/terminal-options.c:1478
 msgid "Show per-terminal options"
 msgstr "터미널별 옵션을 봅니다"
 
@@ -1682,45 +1610,53 @@ msgstr "프로파일 목록"
 msgid "Delete profile “%s”?"
 msgstr "“%s” 프로파일을 지우시겠습니까?"
 
+#: ../src/terminal-prefs.c:397
+msgid "_Cancel"
+msgstr "취소(_C)"
+
+#: ../src/terminal-prefs.c:399
+msgid "_Delete"
+msgstr "삭제(_D)"
+
 #: ../src/terminal-prefs.c:409
 msgid "Delete Profile"
 msgstr "프로파일 삭제"
 
-#: ../src/terminal-prefs.c:708
+#: ../src/terminal-prefs.c:723
 msgid "Show"
 msgstr "보이기"
 
-#: ../src/terminal-prefs.c:719
+#: ../src/terminal-prefs.c:734
 msgid "_Encoding"
 msgstr "인코딩(_E)"
 
-#: ../src/terminal-screen.c:1183
+#: ../src/terminal-screen.c:1058
 msgid "No command supplied nor shell requested"
 msgstr "명령어나 지정하지 않았거나 셸을 요청하지 않았습니다"
 
-#: ../src/terminal-screen.c:1439 ../src/terminal-window.c:1671
+#: ../src/terminal-screen.c:1306 ../src/terminal-window.c:2378
 msgid "_Profile Preferences"
 msgstr "프로파일 기본 설정(_P)"
 
-#: ../src/terminal-screen.c:1440 ../src/terminal-screen.c:1817
+#: ../src/terminal-screen.c:1307 ../src/terminal-screen.c:1619
 msgid "_Relaunch"
 msgstr "다시 실행(_R)"
 
-#: ../src/terminal-screen.c:1443
+#: ../src/terminal-screen.c:1310
 msgid "There was an error creating the child process for this terminal"
 msgstr "터미널을 만드려고 하위 프로세스를 만드는 중 오류가 발생했습니다"
 
-#: ../src/terminal-screen.c:1821
+#: ../src/terminal-screen.c:1623
 #, c-format
 msgid "The child process exited normally with status %d."
 msgstr "하위 프로세스가 상태 %d번으로 정상적으로 끝났습니다."
 
-#: ../src/terminal-screen.c:1824
+#: ../src/terminal-screen.c:1626
 #, c-format
 msgid "The child process was aborted by signal %d."
 msgstr "하위 프로세스가 시그널 %d번으로 중단되었습니다."
 
-#: ../src/terminal-screen.c:1827
+#: ../src/terminal-screen.c:1629
 msgid "The child process was aborted."
 msgstr "하위 프로세스가 중단되었습니다."
 
@@ -1732,30 +1668,30 @@ msgstr "탭 닫기"
 msgid "Switch to this tab"
 msgstr "이 탭으로 가기"
 
-#: ../src/terminal-util.c:163
+#: ../src/terminal-util.c:148
 msgid "There was an error displaying help"
 msgstr "도움말을 보여주는 데 오류가 발생했습니다"
 
-#: ../src/terminal-util.c:219
+#: ../src/terminal-util.c:204
 msgid "Contributors:"
 msgstr "기여한 분:"
 
-#: ../src/terminal-util.c:238
+#: ../src/terminal-util.c:223
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "그놈 데스크톱의 터미널 에뮬레이터"
 
-#: ../src/terminal-util.c:246
+#: ../src/terminal-util.c:231
 msgid "translator-credits"
 msgstr ""
 "차영호 <ganadist@gmail.com>\n"
 "류창우 <cwryu@debian.org>"
 
-#: ../src/terminal-util.c:319
+#: ../src/terminal-util.c:304
 #, c-format
 msgid "Could not open the address “%s”"
 msgstr "“%s” 주소를 열 수 없습니다"
 
-#: ../src/terminal-util.c:394
+#: ../src/terminal-util.c:379
 msgid ""
 "GNOME Terminal is free software: you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1767,7 +1703,7 @@ msgstr ""
 "Software Foundation, either version 3 of the License, or (at your option) "
 "any later version."
 
-#: ../src/terminal-util.c:398
+#: ../src/terminal-util.c:383
 msgid ""
 "GNOME Terminal is distributed in the hope that it will be useful, but "
 "WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
@@ -1779,19 +1715,27 @@ msgstr ""
 "or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details."
 
-#: ../src/terminal-util.c:402
+#: ../src/terminal-util.c:387
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "GNOME Terminal.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 "You should have received a copy of the GNU General Public License along with "
 "GNOME Terminal.  If not, see <http://www.gnu.org/licenses/>."
+
+#: ../src/terminal-window.c:488
+msgid "Could not save contents"
+msgstr "내용을 저장할 수 없습니다"
+
+#: ../src/terminal-window.c:514
+msgid "Save as…"
+msgstr "다른 이름으로 저장…"
 
 #. Translators: This is the label of a menu item to choose a profile.
 #. * _%d is used as the accelerator (with d between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:434
+#: ../src/terminal-window.c:1178
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
@@ -1800,199 +1744,202 @@ msgstr "_%d. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:440
+#: ../src/terminal-window.c:1184
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1623
+#: ../src/terminal-window.c:2328
 msgid "_File"
 msgstr "파일(_F)"
 
 #. File menu
-#: ../src/terminal-window.c:1624 ../src/terminal-window.c:1636
-#: ../src/terminal-window.c:1780
+#: ../src/terminal-window.c:2329 ../src/terminal-window.c:2340
+#: ../src/terminal-window.c:2346 ../src/terminal-window.c:2487
 msgid "Open _Terminal"
 msgstr "터미널 열기(_T)"
 
-#: ../src/terminal-window.c:1625 ../src/terminal-window.c:1639
-#: ../src/terminal-window.c:1783
-msgid "Open Ta_b"
-msgstr "탭 열기(_B)"
-
-#: ../src/terminal-window.c:1626
+#: ../src/terminal-window.c:2330
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/terminal-window.c:1627
+#: ../src/terminal-window.c:2331
 msgid "_View"
 msgstr "보기(_V)"
 
-#: ../src/terminal-window.c:1628
+#: ../src/terminal-window.c:2332
 msgid "_Search"
 msgstr "검색(_S)"
 
-#: ../src/terminal-window.c:1629
+#: ../src/terminal-window.c:2333
 msgid "_Terminal"
 msgstr "터미널(_T)"
 
-#: ../src/terminal-window.c:1630
+#: ../src/terminal-window.c:2334
 msgid "Ta_bs"
 msgstr "탭(_B)"
 
-#: ../src/terminal-window.c:1642
+#: ../src/terminal-window.c:2343
+msgid "Open Ta_b"
+msgstr "탭 열기(_B)"
+
+#: ../src/terminal-window.c:2349
 msgid "New _Profile"
 msgstr "새 프로파일(_P)"
 
-#: ../src/terminal-window.c:1645
+#: ../src/terminal-window.c:2352
 msgid "_Save Contents"
 msgstr "내용 저장(_S)"
 
-#: ../src/terminal-window.c:1648
+#: ../src/terminal-window.c:2355
 msgid "C_lose Tab"
 msgstr "탭 닫기(_L)"
 
-#: ../src/terminal-window.c:1651
+#: ../src/terminal-window.c:2358
 msgid "_Close Window"
 msgstr "창 닫기(_C)"
 
-#: ../src/terminal-window.c:1662 ../src/terminal-window.c:1777
+#: ../src/terminal-window.c:2369 ../src/terminal-window.c:2484
 msgid "Paste _Filenames"
 msgstr "파일 이름 붙여넣기(_F)"
 
-#: ../src/terminal-window.c:1668
+#: ../src/terminal-window.c:2375
 msgid "Pre_ferences"
 msgstr "기본 설정(_F)"
 
 #. Search menu
-#: ../src/terminal-window.c:1687
+#: ../src/terminal-window.c:2394
 msgid "_Find…"
 msgstr "찾기(_F)…"
 
-#: ../src/terminal-window.c:1690
+#: ../src/terminal-window.c:2397
 msgid "Find Ne_xt"
 msgstr "다음 찾기(_X)"
 
-#: ../src/terminal-window.c:1693
+#: ../src/terminal-window.c:2400
 msgid "Find Pre_vious"
 msgstr "이전 찾기(_V)"
 
-#: ../src/terminal-window.c:1696
+#: ../src/terminal-window.c:2403
 msgid "_Clear Highlight"
 msgstr "강조 지우기(_C)"
 
-#: ../src/terminal-window.c:1700
+#: ../src/terminal-window.c:2407
 msgid "Go to _Line..."
 msgstr "줄로 이동(_L)..."
 
-#: ../src/terminal-window.c:1703
+#: ../src/terminal-window.c:2410
 msgid "_Incremental Search..."
 msgstr "입력과 동시 검색(_I)..."
 
 #. Terminal menu
-#: ../src/terminal-window.c:1709
+#: ../src/terminal-window.c:2416
 msgid "Change _Profile"
 msgstr "프로파일 바꾸기(_P)"
 
-#: ../src/terminal-window.c:1710
+#: ../src/terminal-window.c:2417
 msgid "_Set Title…"
 msgstr "제목 설정(_S)…"
 
-#: ../src/terminal-window.c:1713
+#: ../src/terminal-window.c:2420
 msgid "Set _Character Encoding"
 msgstr "문자 인코딩 설정(_C)"
 
-#: ../src/terminal-window.c:1714
+#: ../src/terminal-window.c:2421
 msgid "_Reset"
 msgstr "리셋(_R)"
 
-#: ../src/terminal-window.c:1717
+#: ../src/terminal-window.c:2424
 msgid "Reset and C_lear"
 msgstr "리셋하고 비움(_L)"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1722
+#: ../src/terminal-window.c:2429
 msgid "_Add or Remove…"
 msgstr "추가/제거(_A)…"
 
 #. Tabs menu
-#: ../src/terminal-window.c:1727
+#: ../src/terminal-window.c:2434
 msgid "_Previous Tab"
 msgstr "이전 탭(_P)"
 
-#: ../src/terminal-window.c:1730
+#: ../src/terminal-window.c:2437
 msgid "_Next Tab"
 msgstr "다음 탭(_N)"
 
-#: ../src/terminal-window.c:1733
+#: ../src/terminal-window.c:2440
 msgid "Move Tab _Left"
 msgstr "탭 왼쪽으로 옮기기(_L)"
 
-#: ../src/terminal-window.c:1736
+#: ../src/terminal-window.c:2443
 msgid "Move Tab _Right"
 msgstr "탭 오른쪽으로 옮기기(_R)"
 
-#: ../src/terminal-window.c:1739
+#: ../src/terminal-window.c:2446
 msgid "_Detach tab"
 msgstr "탭 떼내기(_D)"
 
 #. Help menu
-#: ../src/terminal-window.c:1744
+#: ../src/terminal-window.c:2451
 msgid "_Contents"
 msgstr "차례(_C)"
 
+#: ../src/terminal-window.c:2454
+msgid "_About"
+msgstr "정보(_A)"
+
 #. Popup menu
-#: ../src/terminal-window.c:1752
+#: ../src/terminal-window.c:2459
 msgid "_Send Mail To…"
 msgstr "메일 보내기(_S)…"
 
-#: ../src/terminal-window.c:1755
+#: ../src/terminal-window.c:2462
 msgid "_Copy E-mail Address"
 msgstr "메일 주소 복사(_C)"
 
-#: ../src/terminal-window.c:1758
+#: ../src/terminal-window.c:2465
 msgid "C_all To…"
 msgstr "전화 하기(_A)…"
 
-#: ../src/terminal-window.c:1761
+#: ../src/terminal-window.c:2468
 msgid "_Copy Call Address"
 msgstr "메일 주소 복사(_C)"
 
-#: ../src/terminal-window.c:1764
+#: ../src/terminal-window.c:2471
 msgid "_Open Link"
 msgstr "링크 열기(_O)"
 
-#: ../src/terminal-window.c:1767
+#: ../src/terminal-window.c:2474
 msgid "_Copy Link Address"
 msgstr "링크 주소 복사(_C)"
 
-#: ../src/terminal-window.c:1770
+#: ../src/terminal-window.c:2477
 msgid "P_rofiles"
 msgstr "프로파일(_R)"
 
-#: ../src/terminal-window.c:1786
+#: ../src/terminal-window.c:2490
 msgid "L_eave Full Screen"
 msgstr "전체 화면 나가기(_E)"
 
 #. View Menu
-#: ../src/terminal-window.c:1794
+#: ../src/terminal-window.c:2498
 msgid "Show _Menubar"
 msgstr "메뉴 모음 보이기(_M)"
 
-#: ../src/terminal-window.c:1798
+#: ../src/terminal-window.c:2502
 msgid "_Full Screen"
 msgstr "전체 화면(_F)"
 
-#: ../src/terminal-window.c:2899
+#: ../src/terminal-window.c:3553
 msgid "Close this window?"
 msgstr "이 창을 닫으시겠습니까?"
 
-#: ../src/terminal-window.c:2899
+#: ../src/terminal-window.c:3553
 msgid "Close this terminal?"
 msgstr "이 터미널을 닫으시겠습니까?"
 
-#: ../src/terminal-window.c:2903
+#: ../src/terminal-window.c:3557
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
@@ -2000,7 +1947,7 @@ msgstr ""
 "아직 터미널에 실행 중인 프로세스가 있습니다. 터미널을 닫으면 이 프로세스를 강"
 "제 종료하게 됩니다."
 
-#: ../src/terminal-window.c:2907
+#: ../src/terminal-window.c:3561
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2008,22 +1955,10 @@ msgstr ""
 "아직 터미널에 실행 중인 프로세스가 있습니다. 터미널을 닫으면 이 프로세스를 강"
 "제 종료하게 됩니다."
 
-#: ../src/terminal-window.c:2912
+#: ../src/terminal-window.c:3566
 msgid "C_lose Window"
 msgstr "창 닫기(_L)"
 
-#: ../src/terminal-window.c:2912
+#: ../src/terminal-window.c:3566
 msgid "C_lose Terminal"
 msgstr "터미널 닫기(_L)"
-
-#: ../src/terminal-window.c:2985
-msgid "Could not save contents"
-msgstr "내용을 저장할 수 없습니다"
-
-#: ../src/terminal-window.c:3009
-msgid "Save as…"
-msgstr "다른 이름으로 저장…"
-
-#: ../src/terminal-window.c:3456
-msgid "_Title:"
-msgstr "제목(_T):"

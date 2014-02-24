@@ -31,6 +31,7 @@
 #include "terminal-profiles-list.h"
 #include "terminal-type-builtins.h"
 #include "terminal-debug.h"
+#include "terminal-libgsystem.h"
 
 static gboolean clean = FALSE;
 static gboolean dry_run = FALSE;
@@ -85,7 +86,6 @@ enum {
 #define KEY_SCROLL_ON_KEYSTROKE "scroll_on_keystroke"
 #define KEY_SCROLL_ON_OUTPUT "scroll_on_output"
 #define KEY_SILENT_BELL "silent_bell"
-#define KEY_TITLE_MODE "title_mode"
 #define KEY_TITLE "title"
 #define KEY_UPDATE_RECORDS "update_records"
 #define KEY_USE_CUSTOM_COMMAND "use_custom_command"
@@ -363,15 +363,18 @@ migrate_profile (TerminalSettingsList *list,
 {
   GSettings *settings;
   char *child_name, *path;
-  const char *name;
+  gs_free char *name;
+  gboolean is_default;
 
   if (g_strcmp0 (gconf_id, default_gconf_id) == 0) {
     /* Re-use the default list child */
     settings = terminal_settings_list_ref_default_child (list);
+    is_default = TRUE;
   } else {
     child_name = terminal_settings_list_add_child (list);
     settings = terminal_settings_list_ref_child (list, child_name);
     g_free (child_name);
+    is_default = FALSE;
   }
 
   path = gconf_concat_dir_and_key (GCONF_PROFILES_PREFIX, gconf_id);
@@ -379,9 +382,10 @@ migrate_profile (TerminalSettingsList *list,
   migrate_string (client, path, KEY_VISIBLE_NAME,
                   settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY);
 
-  g_settings_get (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY, "&s", &name);
-  if (strlen (name) == 0)
-    g_settings_set_string (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY, _("Unnamed"));
+  g_settings_get (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY, "s", &name);
+  if (name[0] == '\0')
+    g_settings_set_string (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY,
+                           is_default ? _("Default") : _("Unnamed"));
 
   migrate_string (client, path, KEY_FOREGROUND_COLOR,
                   settings, TERMINAL_PROFILE_FOREGROUND_COLOR_KEY);
@@ -392,9 +396,6 @@ migrate_profile (TerminalSettingsList *list,
   migrate_bool (client, path, KEY_BOLD_COLOR_SAME_AS_FG,
                 settings, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY,
                 FALSE);
-  migrate_genum (client, path, KEY_TITLE_MODE,
-                 settings, TERMINAL_PROFILE_TITLE_MODE_KEY,
-                 TERMINAL_TYPE_TITLE_MODE);
   migrate_string (client, path, KEY_TITLE,
                   settings, TERMINAL_PROFILE_TITLE_KEY);
   migrate_bool (client, path, KEY_ALLOW_BOLD,
@@ -626,10 +627,6 @@ main (int argc,
   int rv = EXIT_SUCCESS;
 
   setlocale (LC_ALL, "");
-
-#if !GLIB_CHECK_VERSION (2, 35, 3)
-  g_type_init ();
-#endif
 
   _terminal_debug_init ();
 
