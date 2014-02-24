@@ -53,7 +53,7 @@ enum
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (TerminalTabLabel, terminal_tab_label, GTK_TYPE_HBOX);
+G_DEFINE_TYPE (TerminalTabLabel, terminal_tab_label, GTK_TYPE_BOX);
 
 /* helper functions */
 
@@ -185,7 +185,8 @@ terminal_tab_label_constructor (GType type,
   gtk_box_set_spacing (GTK_BOX (hbox), SPACING);
 
   priv->label = label = gtk_label_new (NULL);
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_widget_set_halign (label, GTK_ALIGN_CENTER);
+  gtk_widget_set_valign (label, GTK_ALIGN_BASELINE);
   gtk_misc_set_padding (GTK_MISC (label), 0, 0);
   gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
   gtk_label_set_single_line_mode (GTK_LABEL (label), TRUE);
@@ -300,6 +301,7 @@ GtkWidget *
 terminal_tab_label_new (TerminalScreen *screen)
 {
   return g_object_new (TERMINAL_TYPE_TAB_LABEL,
+                       "orientation", GTK_ORIENTATION_HORIZONTAL,
                        "screen", screen,
                        NULL);
 }

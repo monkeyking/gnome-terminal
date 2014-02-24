@@ -50,8 +50,6 @@ GType terminal_window_get_type (void) G_GNUC_CONST;
 
 TerminalWindow* terminal_window_new (GApplication *app);
 
-void terminal_window_set_is_restored (TerminalWindow *window);
-
 GtkUIManager *terminal_window_get_ui_manager (TerminalWindow *window);
 
 void terminal_window_add_screen (TerminalWindow *window,
@@ -86,6 +84,12 @@ gboolean terminal_window_parse_geometry (TerminalWindow *window,
 void terminal_window_update_geometry  (TerminalWindow *window);
 
 GtkWidget* terminal_window_get_mdi_container (TerminalWindow *window);
+
+void terminal_window_request_close (TerminalWindow *window);
+
+GtkActionGroup *terminal_window_get_main_action_group (TerminalWindow *window);
+
+const char *terminal_window_get_uuid (TerminalWindow *window);
 
 G_END_DECLS
 

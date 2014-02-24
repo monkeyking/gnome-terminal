@@ -9,6 +9,9 @@
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
 
+/* Define to enable gnome-shell search provider */
+#undef ENABLE_SEARCH_PROVIDER
+
 /* Gettext package */
 #undef GETTEXT_PACKAGE
 
@@ -20,9 +23,6 @@
 
 /* Define to 1 if you have the `dcgettext' function. */
 #undef HAVE_DCGETTEXT
-
-/* Define to 1 if DConf is version 1.2 */
-#undef HAVE_DCONF_1_2
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H

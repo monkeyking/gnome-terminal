@@ -40,7 +40,13 @@
 #include "terminal-gdbus.h"
 #include "terminal-defines.h"
 #include "terminal-prefs.h"
+#include "terminal-libgsystem.h"
 
+#ifdef ENABLE_SEARCH_PROVIDER
+#include "terminal-search-provider.h"
+#endif /* ENABLE_SEARCH_PROVIDER */
+
+#include <sys/wait.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
@@ -76,9 +82,15 @@ struct _TerminalApp
   GHashTable *encodings;
   gboolean encodings_locked;
 
+  GHashTable *screen_map;
+
   GSettings *global_settings;
   GSettings *desktop_interface_settings;
   GSettings *system_proxy_settings;
+
+#ifdef ENABLE_SEARCH_PROVIDER
+  TerminalSearchProvider *search_provider;
+#endif /* ENABLE_SEARCH_PROVIDER */
 };
 
 enum
@@ -103,7 +115,7 @@ maybe_migrate_settings (TerminalApp *app)
     NULL 
   };
   int status;
-  GError *error = NULL;
+  gs_free_error GError *error = NULL;
 #endif /* ENABLE_MIGRATION */
   guint version;
 
@@ -124,7 +136,6 @@ maybe_migrate_settings (TerminalApp *app)
                      &status,
                      &error)) {
     g_printerr ("Failed to migrate settings: %s\n", error->message);
-    g_error_free (error);
     return;
   }
 
@@ -146,13 +157,14 @@ terminal_app_new_profile (TerminalApp *app,
                           GSettings   *base_profile,
                           GtkWindow   *transient_parent)
 {
-  GSettings *profile;
-  char *base_uuid, *uuid;
+  gs_unref_object GSettings *profile = NULL;
+  gs_free char *uuid;
 
   if (base_profile) {
+    gs_free char *base_uuid;
+
     base_uuid = terminal_settings_list_dup_uuid_from_child (app->profiles_list, base_profile);
     uuid = terminal_settings_list_clone_child (app->profiles_list, base_uuid);
-    g_free (base_uuid);
   } else {
     uuid = terminal_settings_list_add_child (app->profiles_list);
   }
@@ -161,23 +173,20 @@ terminal_app_new_profile (TerminalApp *app,
     return;
 
   profile = terminal_settings_list_ref_child (app->profiles_list, uuid);
-  g_free (uuid);
   if (profile == NULL)
     return;
 
   terminal_profile_edit (profile, transient_parent, "profile-name-entry");
-  g_object_unref (profile);
 }
 
 void
 terminal_app_remove_profile (TerminalApp *app,
                              GSettings *profile)
 {
-  char *uuid;
+  gs_free char *uuid;
 
   uuid = terminal_settings_list_dup_uuid_from_child (app->profiles_list, profile);
   terminal_settings_list_remove_child (app->profiles_list, uuid);
-  g_free (uuid);
 }
 
 gboolean
@@ -210,7 +219,7 @@ terminal_app_encoding_list_notify_cb (GSettings   *settings,
                                       const char  *key,
                                       TerminalApp *app)
 {
-  char **encodings;
+  gs_strfreev char **encodings = NULL;
   int i;
   TerminalEncoding *encoding;
 
@@ -231,7 +240,7 @@ terminal_app_encoding_list_notify_cb (GSettings   *settings,
   if (terminal_encoding_is_valid (encoding))
     encoding->is_active = TRUE;
 
-  g_settings_get (settings, key, "^a&s", &encodings);
+  g_settings_get (settings, key, "^as", &encodings);
   for (i = 0; encodings[i] != NULL; ++i) {
       encoding = terminal_app_ensure_encoding (app, encodings[i]);
       if (!terminal_encoding_is_valid (encoding))
@@ -239,7 +248,6 @@ terminal_app_encoding_list_notify_cb (GSettings   *settings,
 
       encoding->is_active = TRUE;
     }
-  g_free (encodings);
 
   g_signal_emit (app, signals[ENCODING_LIST_CHANGED], 0);
 }
@@ -266,9 +274,7 @@ app_menu_help_cb (GSimpleAction *action,
                   GVariant      *parameter,
                   gpointer       user_data)
 {
-        GtkApplication *application = user_data;
-
-        terminal_util_show_help (NULL, gtk_application_get_active_window (application));
+  terminal_util_show_help (NULL, NULL);
 }
 
 static void
@@ -276,9 +282,22 @@ app_menu_about_cb (GSimpleAction *action,
                    GVariant      *parameter,
                    gpointer       user_data)
 {
-  GtkApplication *application = user_data;
+  terminal_util_show_about (NULL);
+}
 
-  terminal_util_show_about (gtk_application_get_active_window (application));
+static void
+app_menu_quit_cb (GSimpleAction *action,
+                  GVariant      *parameter,
+                  gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+
+  window = gtk_application_get_active_window (application);
+  if (TERMINAL_IS_WINDOW (window))
+    terminal_window_request_close (TERMINAL_WINDOW (window));
+  else /* a dialogue */
+    gtk_widget_destroy (GTK_WIDGET (window));
 }
 
 /* Class implementation */
@@ -299,10 +318,11 @@ terminal_app_startup (GApplication *application)
   const GActionEntry app_menu_actions[] = {
     { "preferences", app_menu_preferences_cb,   NULL, NULL, NULL },
     { "help",        app_menu_help_cb,          NULL, NULL, NULL },
-    { "about",       app_menu_about_cb,         NULL, NULL, NULL }
+    { "about",       app_menu_about_cb,         NULL, NULL, NULL },
+    { "quit",        app_menu_quit_cb,          NULL, NULL, NULL }
   };
 
-  GtkBuilder *builder;
+  gs_unref_object GtkBuilder *builder;
   GError *error = NULL;
 
   G_APPLICATION_CLASS (terminal_app_parent_class)->startup (application);
@@ -322,7 +342,6 @@ terminal_app_startup (GApplication *application)
 
   gtk_application_set_app_menu (GTK_APPLICATION (application),
                                 G_MENU_MODEL (gtk_builder_get_object (builder, "appmenu")));
-  g_object_unref (builder);
 
   _terminal_debug_print (TERMINAL_DEBUG_SERVER, "Startup complete\n");
 }
@@ -332,7 +351,7 @@ terminal_app_startup (GApplication *application)
 static void
 terminal_app_init (TerminalApp *app)
 {
-  GSettings *settings;
+  gs_unref_object GSettings *settings;
 
   gtk_window_set_default_icon_name (GNOME_TERMINAL_ICON_NAME);
 
@@ -344,6 +363,10 @@ terminal_app_init (TerminalApp *app)
 
   /* Terminal global settings */
   app->global_settings = g_settings_new (TERMINAL_SETTING_SCHEMA);
+  g_settings_bind (app->global_settings, TERMINAL_SETTING_DARK_THEME_KEY,
+                   gtk_settings_get_default (),
+                   "gtk-application-prefer-dark-theme",
+                   G_SETTINGS_BIND_GET);
 
   /* Check if we need to migrate from gconf to dconf */
   maybe_migrate_settings (app);
@@ -359,9 +382,10 @@ terminal_app_init (TerminalApp *app)
                     G_CALLBACK (terminal_app_encoding_list_notify_cb),
                     app);
 
+  app->screen_map = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+
   settings = g_settings_get_child (app->global_settings, "keybindings");
-  terminal_accels_init (settings);
-  g_object_unref (settings);
+  terminal_accels_init (G_APPLICATION (app), settings);
 }
 
 static void
@@ -373,6 +397,7 @@ terminal_app_finalize (GObject *object)
                                         G_CALLBACK (terminal_app_encoding_list_notify_cb),
                                         app);
   g_hash_table_destroy (app->encodings);
+  g_hash_table_destroy (app->screen_map);
 
   g_object_unref (app->global_settings);
   g_object_unref (app->desktop_interface_settings);
@@ -390,8 +415,8 @@ terminal_app_dbus_register (GApplication    *application,
                             GError         **error)
 {
   TerminalApp *app = TERMINAL_APP (application);
-  TerminalObjectSkeleton *object;
-  TerminalFactory *factory;
+  gs_unref_object TerminalObjectSkeleton *object = NULL;
+  gs_unref_object TerminalFactory *factory = NULL;
 
   if (!G_APPLICATION_CLASS (terminal_app_parent_class)->dbus_register (application,
                                                                        connection,
@@ -399,14 +424,28 @@ terminal_app_dbus_register (GApplication    *application,
                                                                        error))
     return FALSE;
 
+#ifdef ENABLE_SEARCH_PROVIDER
+  if (g_settings_get_boolean (app->global_settings, TERMINAL_SETTING_SHELL_INTEGRATION_KEY)) {
+    gs_unref_object TerminalSearchProvider *search_provider;
+
+    search_provider = terminal_search_provider_new ();
+
+    if (!terminal_search_provider_dbus_register (search_provider,
+                                                 connection,
+                                                 TERMINAL_SEARCH_PROVIDER_PATH,
+                                                 error))
+      return FALSE;
+
+    gs_transfer_out_value (&app->search_provider, &search_provider);
+  }
+#endif /* ENABLE_SEARCH_PROVIDER */
+
   object = terminal_object_skeleton_new (TERMINAL_FACTORY_OBJECT_PATH);
   factory = terminal_factory_impl_new ();
   terminal_object_skeleton_set_factory (object, factory);
-  g_object_unref (factory);
 
   app->object_manager = g_dbus_object_manager_server_new (TERMINAL_OBJECT_PATH_PREFIX);
   g_dbus_object_manager_server_export (app->object_manager, G_DBUS_OBJECT_SKELETON (object));
-  g_object_unref (object);
 
   /* And export the object */
   g_dbus_object_manager_server_set_connection (app->object_manager, connection);
@@ -425,6 +464,14 @@ terminal_app_dbus_unregister (GApplication    *application,
     g_object_unref (app->object_manager);
     app->object_manager = NULL;
   }
+
+#ifdef ENABLE_SEARCH_PROVIDER
+  if (app->search_provider) {
+    terminal_search_provider_dbus_unregister (app->search_provider, connection, TERMINAL_SEARCH_PROVIDER_PATH);
+    g_object_unref (app->search_provider);
+    app->search_provider = NULL;
+  }
+#endif /* ENABLE_SEARCH_PROVIDER */
 
   G_APPLICATION_CLASS (terminal_app_parent_class)->dbus_unregister (application,
                                                                     connection,
@@ -507,6 +554,35 @@ terminal_app_new_terminal (TerminalApp     *app,
   _terminal_screen_launch_child_on_idle (screen);
 
   return screen;
+}
+
+TerminalScreen *
+terminal_app_get_screen_by_uuid (TerminalApp *app,
+                                 const char  *uuid)
+{
+  return g_hash_table_lookup (app->screen_map, uuid);
+}
+
+void
+terminal_app_register_screen (TerminalApp *app,
+                              TerminalScreen *screen)
+{
+  const char *uuid;
+
+  uuid = terminal_screen_get_uuid (screen);
+  g_hash_table_insert (app->screen_map, g_strdup (uuid), screen);
+}
+
+void
+terminal_app_unregister_screen (TerminalApp *app,
+                                TerminalScreen *screen)
+{
+  gboolean found;
+  const char *uuid;
+
+  uuid = terminal_screen_get_uuid (screen);
+  found = g_hash_table_remove (app->screen_map, uuid);
+  g_assert (found == TRUE);
 }
 
 void
@@ -655,11 +731,11 @@ terminal_app_get_proxy_settings (TerminalApp *app)
 PangoFontDescription *
 terminal_app_get_system_font (TerminalApp *app)
 {
-  const char *font;
+  gs_free char *font = NULL;
 
   g_return_val_if_fail (TERMINAL_IS_APP (app), NULL);
 
-  g_settings_get (app->desktop_interface_settings, MONOSPACE_FONT_KEY_NAME, "&s", &font);
+  font = g_settings_get_string (app->desktop_interface_settings, MONOSPACE_FONT_KEY_NAME);
 
   return pango_font_description_from_string (font);
 }

@@ -136,7 +136,6 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DESKTOP_FILE_VALIDATE = @DESKTOP_FILE_VALIDATE@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -229,6 +228,8 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
 XMLLINT = @XMLLINT@
+YELP_LC_DIST = @YELP_LC_DIST@
+YELP_LC_MEDIA_LINKS = @YELP_LC_MEDIA_LINKS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -250,6 +251,7 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 datadir = @datadir@
 datarootdir = @datarootdir@
+dbusinterfacedir = @dbusinterfacedir@
 dbusservicedir = @dbusservicedir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -318,13 +320,14 @@ HELP_FILES = \
 	pref-scrolling.page \
 	pref-title.page \
 	profile.page \
+	prob-reset.page \
 	txt-copy-paste.page \
 	txt-links.page \
 	txt-search.page \
 	txt-select-text.page \
 	$(NULL)
 
-HELP_LINGUAS = cs de el es gl hu pt_BR
+HELP_LINGUAS = cs de el es gl hu pt_BR ru
 all: all-am
 
 .SUFFIXES:
