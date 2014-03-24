@@ -120,6 +120,7 @@ AM_CFLAGS = @AM_CFLAGS@
 AM_CPPFLAGS = @AM_CPPFLAGS@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AM_LDFLAGS = @AM_LDFLAGS@
+APPDATA_VALIDATE = @APPDATA_VALIDATE@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -136,6 +137,7 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DESKTOP_FILE_VALIDATE = @DESKTOP_FILE_VALIDATE@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -318,6 +320,8 @@ HELP_FILES = \
 	pref-menubar.page \
 	pref-profiles.page \
 	pref-scrolling.page \
+	pref-tab-window.page \
+	pref-theme.page \
 	pref-title.page \
 	profile.page \
 	prob-reset.page \
@@ -327,7 +331,7 @@ HELP_FILES = \
 	txt-select-text.page \
 	$(NULL)
 
-HELP_LINGUAS = cs de el es gl hu pt_BR ru
+HELP_LINGUAS = cs de el es fr gl hu pt_BR ru
 all: all-am
 
 .SUFFIXES:
