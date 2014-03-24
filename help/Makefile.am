@@ -32,6 +32,8 @@ HELP_FILES = \
 	pref-menubar.page \
 	pref-profiles.page \
 	pref-scrolling.page \
+	pref-tab-window.page \
+	pref-theme.page \
 	pref-title.page \
 	profile.page \
 	prob-reset.page \
@@ -41,6 +43,6 @@ HELP_FILES = \
 	txt-select-text.page \
 	$(NULL)
 
-HELP_LINGUAS = cs de el es gl hu pt_BR ru
+HELP_LINGUAS = cs de el es fr gl hu pt_BR ru
 
 -include $(top_srcdir)/git.mk
