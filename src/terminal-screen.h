@@ -76,7 +76,6 @@ const char *terminal_screen_get_uuid (TerminalScreen *screen);
 
 TerminalScreen *terminal_screen_new (GSettings       *profile,
                                      char           **override_command,
-                                     const char      *title,
                                      const char      *working_dir,
                                      char           **child_env,
                                      double           zoom);
@@ -101,22 +100,11 @@ void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
                                                       char           **argv);
 char **      terminal_screen_get_initial_environment (TerminalScreen  *screen);
 
-const char *terminal_screen_get_user_title     (TerminalScreen *screen);
 const char* terminal_screen_get_title          (TerminalScreen *screen);
 const char* terminal_screen_get_icon_title     (TerminalScreen *screen);
 gboolean    terminal_screen_get_icon_title_set (TerminalScreen *screen);
-char *      terminal_screen_get_description    (TerminalScreen *screen);
-
-void terminal_screen_set_user_title (TerminalScreen *screen,
-                                     const char *text);
-
 
 char *terminal_screen_get_current_dir (TerminalScreen *screen);
-
-void        terminal_screen_set_font (TerminalScreen *screen);
-void        terminal_screen_set_font_scale    (TerminalScreen *screen,
-                                               double          factor);
-double      terminal_screen_get_font_scale    (TerminalScreen *screen);
 
 void       terminal_screen_get_size (TerminalScreen *screen,
                                      int *width_chars,

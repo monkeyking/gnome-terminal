@@ -46,12 +46,13 @@
     </menu>
     <menu action="Terminal">
       <menu action="TerminalProfiles" />
-      <menuitem action="TerminalSetTitle" />
       <menu action="TerminalSetEncoding" >
         <placeholder name="EncodingsPH" />
         <separator />
         <menuitem action="TerminalAddEncoding" />
       </menu>
+      <separator />
+      <menuitem action="TerminalReadOnly" />
       <separator />
       <menuitem action="TerminalReset" />
       <menuitem action="TerminalResetClear" />
@@ -93,14 +94,15 @@
         <separator />
         <menuitem action="EditCurrentProfile" />
     </menu>
+    <separator/>
+    <menuitem action="TerminalReadOnly" />
+    <separator/>
     <menuitem action="ViewMenubar" />
     <menuitem action="PopupLeaveFullscreen" />
   </popup>
   <popup name="NotebookPopup" action="NotebookPopup">
     <menuitem action="TabsMoveLeft"/>
     <menuitem action="TabsMoveRight"/>
-    <separator />
-    <menuitem action="TerminalSetTitle" />
     <separator />
     <menuitem action="FileCloseTab"/>
   </popup>  

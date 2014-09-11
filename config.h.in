@@ -1,5 +1,8 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Define to 1 to enable special debug support */
+#undef ENABLE_DEBUG
+
 /* Define if building a distro package */
 #undef ENABLE_DISTRO_PACKAGING
 
@@ -14,9 +17,6 @@
 
 /* Gettext package */
 #undef GETTEXT_PACKAGE
-
-/* Enable additional debugging at the expense of performance and size */
-#undef GNOME_ENABLE_DEBUG
 
 /* Define to 1 if you have the `bind_textdomain_codeset' function. */
 #undef HAVE_BIND_TEXTDOMAIN_CODESET

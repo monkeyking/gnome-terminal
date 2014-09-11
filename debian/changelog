@@ -1,3 +1,15 @@
+gnome-terminal (3.13.90-1) experimental; urgency=medium
+
+  [ Simon McVittie ]
+  * Be Multi-Arch: foreign so gnome-terminal:amd64 can satisfy
+    a dependency from, e.g., steam:i386 (Closes: #698957)
+
+  [ Sjoerd Simons ]
+  * New upstream release
+  * Add valac (>= 0.24) to b-d
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 11 Sep 2014 21:00:46 +0200
+
 gnome-terminal (3.12.3-2) unstable; urgency=medium
 
   * Team upload.

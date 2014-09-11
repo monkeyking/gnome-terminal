@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal-help\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-15 08:32+0000\n"
-"PO-Revision-Date: 2014-03-25 10:15+0100\n"
+"POT-Creation-Date: 2014-05-08 07:41+0000\n"
+"PO-Revision-Date: 2014-05-10 18:51+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -35,9 +35,9 @@ msgstr ""
 #: C/pref-bell.page:11 C/pref-custom-exit.page:12
 #: C/pref-custom-command.page:13 C/pref-encoding.page:10
 #: C/pref-keyboard-access.page:12 C/pref-menubar.page:13
-#: C/pref-profiles.page:11 C/pref-scrolling.page:11 C/prob-reset.page:11
-#: C/txt-copy-paste.page:11 C/txt-links.page:10 C/txt-search.page:10
-#: C/txt-select-text.page:12
+#: C/pref-profiles.page:11 C/pref-scrolling.page:11 C/pref-title.page:11
+#: C/prob-reset.page:11 C/txt-copy-paste.page:11 C/txt-links.page:10
+#: C/txt-search.page:10 C/txt-select-text.page:12
 msgid "Sindhu S"
 msgstr "Sindhu S"
 
@@ -63,7 +63,8 @@ msgstr "Sindhu S"
 #: C/pref-keyboard-access.page:24 C/pref-menubar.page:15
 #: C/pref-menubar.page:20 C/pref-menubar.page:25 C/pref-profiles.page:13
 #: C/pref-profiles.page:18 C/pref-profiles.page:23 C/pref-scrolling.page:13
-#: C/pref-scrolling.page:18 C/prob-reset.page:13 C/prob-reset.page:18
+#: C/pref-scrolling.page:18 C/pref-title.page:13 C/pref-title.page:18
+#: C/pref-title.page:23 C/prob-reset.page:13 C/prob-reset.page:18
 #: C/txt-copy-paste.page:13 C/txt-copy-paste.page:18 C/txt-copy-paste.page:23
 #: C/txt-links.page:12 C/txt-links.page:17 C/txt-links.page:22
 #: C/txt-search.page:12 C/txt-search.page:17 C/txt-search.page:22
@@ -80,9 +81,9 @@ msgstr "2013"
 #: C/pref-custom-command.page:18 C/pref-encoding.page:15
 #: C/pref-keyboard-access.page:17 C/pref-menubar.page:18
 #: C/pref-profiles.page:16 C/pref-scrolling.page:16 C/pref-tab-window.page:12
-#: C/pref-theme.page:11 C/profile.page:9 C/prob-reset.page:16
-#: C/txt-copy-paste.page:16 C/txt-links.page:15 C/txt-search.page:15
-#: C/txt-select-text.page:17
+#: C/pref-theme.page:11 C/pref-title.page:16 C/profile.page:9
+#: C/prob-reset.page:16 C/txt-copy-paste.page:16 C/txt-links.page:15
+#: C/txt-search.page:15 C/txt-select-text.page:17
 msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
@@ -93,8 +94,8 @@ msgstr "Ekaterina Gerasimova"
 #: C/introduction.page:22 C/pref-bell.page:21 C/pref-custom-exit.page:22
 #: C/pref-custom-command.page:23 C/pref-encoding.page:20
 #: C/pref-keyboard-access.page:22 C/pref-menubar.page:23
-#: C/pref-profiles.page:21 C/txt-copy-paste.page:21 C/txt-links.page:20
-#: C/txt-search.page:20
+#: C/pref-profiles.page:21 C/pref-title.page:21 C/txt-copy-paste.page:21
+#: C/txt-links.page:20 C/txt-search.page:20
 msgid "Michael Hill"
 msgstr "Michael Hill"
 
@@ -766,7 +767,7 @@ msgid "To use colors from the system theme:"
 msgstr "Para usar los colores del tema del sistema:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:45 C/app-colors.page:67 C/app-colors.page:93
+#: C/app-colors.page:45 C/app-colors.page:68 C/app-colors.page:94
 msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Profile Preferences</gui> <gui style=\"tab\">Colors</gui></guiseq>."
@@ -790,19 +791,25 @@ msgstr "Esquemas incluidos"
 
 #. (itstool) path: section/p
 #: C/app-colors.page:60
+#| msgid ""
+#| "You can choose one of the built-in color schemes: <gui>Black on light "
+#| "yellow</gui>, <gui>Black on white</gui>, <gui>Gray on black</gui>, "
+#| "<gui>Green on black</gui>, <gui>White on black</gui>. To set any of the "
+#| "built-in schemes:"
 msgid ""
 "You can choose one of the built-in color schemes: <gui>Black on light "
 "yellow</gui>, <gui>Black on white</gui>, <gui>Gray on black</gui>, "
-"<gui>Green on black</gui>, <gui>White on black</gui>. To set any of the "
-"built-in schemes:"
+"<gui>Green on black</gui>, <gui>White on black</gui>, <gui>Solarized light</"
+"gui>, <gui>Solarized dark</gui>. To set any of the built-in schemes:"
 msgstr ""
 "Puede elegir uno de los esquemas de color incluidos: <gui>Negro sobre "
 "amarillo suave</gui>, <gui>Negro sobre blanco</gui>, <gui>Gris sobre negro</"
-"gui>, <gui>Verde sobre negro</gui>, <gui>Blanco sobre negro</gui>. Para "
-"establecer cualquiera de estos esquemas incluidos:"
+"gui>, <gui>Verde sobre negro</gui>, <gui>Blanco sobre negro</gui>, "
+"<gui>Solar claro</gui>, <gui>Solar oscuro</gui>. Para establecer cualquiera "
+"de estos esquemas incluidos:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:72
+#: C/app-colors.page:73
 msgid ""
 "Make sure that <gui style=\"checkbox\">Use colors from system theme</gui> is "
 "unchecked. Choose the desired color scheme from <gui>Built-in schemes</gui>. "
@@ -814,7 +821,7 @@ msgstr ""
 "automáticamente."
 
 #. (itstool) path: note/p
-#: C/app-colors.page:77
+#: C/app-colors.page:78
 msgid ""
 "Applications can choose to use a color from the palette rather than the "
 "specified bold color."
@@ -823,12 +830,12 @@ msgstr ""
 "resaltado especificado."
 
 #. (itstool) path: section/title
-#: C/app-colors.page:86
+#: C/app-colors.page:87
 msgid "Custom color scheme"
 msgstr "Esquema de color personalizado"
 
 #. (itstool) path: section/p
-#: C/app-colors.page:88
+#: C/app-colors.page:89
 msgid ""
 "You can use custom colors for the text and background in <app>Terminal</app>:"
 msgstr ""
@@ -836,7 +843,7 @@ msgstr ""
 "<app>Terminal</app>:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:98
+#: C/app-colors.page:99
 msgid ""
 "Make sure that <gui style=\"checkbox\">Use colors from system theme</gui> is "
 "unchecked. Select <gui>Custom</gui> from the <gui>Built-in schemes</gui> "
@@ -847,14 +854,14 @@ msgstr ""
 "lista desplegable de los <gui>Esquemas incluidos</gui>."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:103
+#: C/app-colors.page:104
 msgid ""
 "Click on the color sample next to the component you would like to change."
 msgstr ""
 "Pulse sobre la muestra de color junto al componente que quiere cambiar."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:107
+#: C/app-colors.page:108
 msgid ""
 "Choose your desired color from the color sample and click <gui style=\"button"
 "\">Select</gui>."
@@ -863,7 +870,7 @@ msgstr ""
 "\">Seleccionar</gui>."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:109
+#: C/app-colors.page:110
 msgid ""
 "If you wish to select a color from the color picker, click on <gui style="
 "\"button\">+</gui>. You can chose the desired color in the following ways:"
@@ -873,12 +880,12 @@ msgstr ""
 "maneras:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:114
+#: C/app-colors.page:115
 msgid "Input the hexadecimal color code in the input box."
 msgstr "Introduzca el código hexadecimal del color en la caja de entrada."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:117
+#: C/app-colors.page:118
 msgid ""
 "Drag the slider on the left to adjust the colors and click on the desired "
 "color in the color selection area."
@@ -887,12 +894,12 @@ msgstr ""
 "el color que quiera en el área de selección de color."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:121
+#: C/app-colors.page:122
 msgid "Your changes will be saved automatically."
 msgstr "Sus cambios se guardarán automáticamente"
 
 #. (itstool) path: note/p
-#: C/app-colors.page:126
+#: C/app-colors.page:127
 msgid ""
 "You may also alter a color when you have chosen a built-in scheme by "
 "clicking on the color sample block. Once changed, your selection in the "
@@ -2156,7 +2163,7 @@ msgstr ""
 "se inicia en lugar de esperar que introduzca algo:"
 
 #. (itstool) path: item/p
-#: C/pref-custom-command.page:46
+#: C/pref-custom-command.page:46 C/pref-title.page:40
 msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Profile Preferences</gui> <gui style=\"tab\">Title and Command</gui></"
@@ -3192,6 +3199,109 @@ msgstr ""
 "Para usar el tema oscuro, seleccione <gui>Usar la variante oscura del tema</"
 "gui>."
 
+#. (itstool) path: info/desc
+#: C/pref-title.page:28
+msgid ""
+"Allow commands to set the title for a <app>Terminal</app> tab or window."
+msgstr ""
+"Permitir a los comandos establecer el título para una pestaña o ventana de "
+"la <app>Terminal</app>."
+
+#. (itstool) path: page/title
+#: C/pref-title.page:32
+msgid "<app>Terminal</app> title"
+msgstr "Título de la <app>Terminal</app>"
+
+#. (itstool) path: page/p
+#: C/pref-title.page:34
+msgid ""
+"<app>Terminal</app> can allow commands to set the name of your "
+"<app>Terminal</app> tab or window. This title will display at startup or on "
+"opening a new tab."
+msgstr ""
+"La <app>Terminal</app> puede permitir a los comandos establecer el nombre de "
+"la pestaña o la ventana de la <app>Terminal</app>. Este título se mostrará "
+"al inicio o al abrir una pestaña nueva."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:45
+msgid ""
+"Next to <gui>Initial title</gui>, enter the title that you wish "
+"<app>Terminal</app> to display."
+msgstr ""
+"Junto al <gui>Título inicial</gui>, introduzca el texto que quiere que "
+"muestra la <app>Terminal</app>."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:49
+msgid "Select one of the following options:"
+msgstr "Seleccione una de las siguientes opciones:"
+
+#. (itstool) path: item/title
+#: C/pref-title.page:52
+msgid "<gui>Replace initial title</gui>"
+msgstr "<gui>Reemplazar el título inicial</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:53
+msgid ""
+"Commands executed in <app>Terminal</app> are allowed to replace the initial "
+"title."
+msgstr ""
+"Los comandos ejecutados en la <app>Terminal</app> pueden reemplazar el "
+"título inicial."
+
+#. (itstool) path: item/title
+#: C/pref-title.page:57
+msgid "<gui>Append initial title</gui>"
+msgstr "<gui>Añadir al título inicial</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:58
+msgid ""
+"The new title will consist of the title set by the currently executing "
+"command, followed by the initial title."
+msgstr ""
+"El nuevo título constará del establecido por el comando actualmente en "
+"ejecución seguido del título inicial."
+
+#. (itstool) path: item/title
+#: C/pref-title.page:62
+msgid "<gui>Prepend initial title</gui>"
+msgstr "<gui>Añadir al comienzo del título inicial</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:63
+msgid ""
+"The new title will consist of the initial title followed by the title set by "
+"the currently executing command."
+msgstr ""
+"El nuevo título constará del título inicial seguido del título establecido "
+"por el comando actualmente en ejecución."
+
+#. (itstool) path: item/title
+#: C/pref-title.page:67
+msgid "<gui>Keep initial title</gui>"
+msgstr "<gui>Mantener el título inicial</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:68
+msgid "The initial title which is set by the user will be retained."
+msgstr "El título inicial establecido por el usuario se mantendrá."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:71
+msgid "Your selection will be saved and applied immediately."
+msgstr "Su selección se guardará y se aplicará inmediatamente."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:74
+msgid ""
+"Click <gui style=\"button\">Close</gui> to return to <app>Terminal</app>."
+msgstr ""
+"Pulse <gui style=\"button\">Cerrar</gui> para volver a la <app>Terminal</"
+"app>."
+
 #. (itstool) path: page/title
 #: C/profile.page:18
 msgid "Profile preferences"
@@ -3674,79 +3784,6 @@ msgstr "Para seleccionar una línea en la salida de la <app>Terminal</app>:"
 #: C/txt-select-text.page:65
 msgid "Triple click on the desired line."
 msgstr "Pulse tres veces en la línea que quiere"
-
-#~ msgid ""
-#~ "Allow commands to set the title for a <app>Terminal</app> tab or window."
-#~ msgstr ""
-#~ "Permitir a los comandos establecer el título para una pestaña o ventana "
-#~ "de la <app>Terminal</app>."
-
-#~ msgid "<app>Terminal</app> title"
-#~ msgstr "Título de la <app>Terminal</app>"
-
-#~ msgid ""
-#~ "<app>Terminal</app> can allow commands to set the name of your "
-#~ "<app>Terminal</app> tab or window. This title will display at startup or "
-#~ "on opening a new tab."
-#~ msgstr ""
-#~ "La <app>Terminal</app> puede permitir a los comandos establecer el nombre "
-#~ "de la pestaña o la ventana de la <app>Terminal</app>. Este título se "
-#~ "mostrará al inicio o al abrir una pestaña nueva."
-
-#~ msgid ""
-#~ "Next to <gui>Initial title</gui>, enter the title that you wish "
-#~ "<app>Terminal</app> to display."
-#~ msgstr ""
-#~ "Junto al <gui>Título inicial</gui>, introduzca el texto que quiere que "
-#~ "muestra la <app>Terminal</app>."
-
-#~ msgid "Select one of the following options:"
-#~ msgstr "Seleccione una de las siguientes opciones:"
-
-#~ msgid "<gui>Replace initial title</gui>"
-#~ msgstr "<gui>Reemplazar el título inicial</gui>"
-
-#~ msgid ""
-#~ "Commands executed in <app>Terminal</app> are allowed to replace the "
-#~ "initial title."
-#~ msgstr ""
-#~ "Los comandos ejecutados en la <app>Terminal</app> pueden reemplazar el "
-#~ "título inicial."
-
-#~ msgid "<gui>Append initial title</gui>"
-#~ msgstr "<gui>Añadir al título inicial</gui>"
-
-#~ msgid ""
-#~ "The new title will consist of the title set by the currently executing "
-#~ "command, followed by the initial title."
-#~ msgstr ""
-#~ "El nuevo título constará del establecido por el comando actualmente en "
-#~ "ejecución seguido del título inicial."
-
-#~ msgid "<gui>Prepend initial title</gui>"
-#~ msgstr "<gui>Añadir al comienzo del título inicial</gui>"
-
-#~ msgid ""
-#~ "The new title will consist of the initial title followed by the title set "
-#~ "by the currently executing command."
-#~ msgstr ""
-#~ "El nuevo título constará del título inicial seguido del título "
-#~ "establecido por el comando actualmente en ejecución."
-
-#~ msgid "<gui>Keep initial title</gui>"
-#~ msgstr "<gui>Mantener el título inicial</gui>"
-
-#~ msgid "The initial title which is set by the user will be retained."
-#~ msgstr "El título inicial establecido por el usuario se mantendrá."
-
-#~ msgid "Your selection will be saved and applied immediately."
-#~ msgstr "Su selección se guardará y se aplicará inmediatamente."
-
-#~ msgid ""
-#~ "Click <gui style=\"button\">Close</gui> to return to <app>Terminal</app>."
-#~ msgstr ""
-#~ "Pulse <gui style=\"button\">Cerrar</gui> para volver a la <app>Terminal</"
-#~ "app>."
 
 #~ msgid ""
 #~ "Programs can be installed to different locations on your computer. If "
