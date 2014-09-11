@@ -70,7 +70,6 @@
 #define KEY_RESET_AND_CLEAR     "reset-and-clear"
 #define KEY_RESET               "reset"
 #define KEY_SAVE_CONTENTS       "save-contents"
-#define KEY_SET_TERMINAL_TITLE  "set-terminal-title"
 #define KEY_TOGGLE_MENUBAR      "toggle-menubar"
 #define KEY_ZOOM_IN             "zoom-in"
 #define KEY_ZOOM_NORMAL         "zoom-normal"
@@ -100,7 +99,6 @@
 #define ACCEL_PATH_KEY_RESET                ACCEL_PATH_ROOT "TerminalReset"
 #define ACCEL_PATH_KEY_RESET_AND_CLEAR      ACCEL_PATH_ROOT "TerminalResetClear"
 #define ACCEL_PATH_KEY_SAVE_CONTENTS        ACCEL_PATH_ROOT "FileSaveContents"
-#define ACCEL_PATH_KEY_SET_TERMINAL_TITLE   ACCEL_PATH_ROOT "TerminalSetTitle"
 #define ACCEL_PATH_KEY_TOGGLE_MENUBAR       ACCEL_PATH_ROOT "ViewMenubar"
 #define ACCEL_PATH_KEY_ZOOM_IN              ACCEL_PATH_ROOT "ViewZoomIn"
 #define ACCEL_PATH_KEY_ZOOM_NORMAL          ACCEL_PATH_ROOT "ViewZoom100"
@@ -178,7 +176,6 @@ static KeyEntry view_entries[] = {
 };
 
 static KeyEntry terminal_entries[] = {
-  ENTRY (N_("Set Title"),       KEY_SET_TERMINAL_TITLE, "set-title", NULL, NULL   ),
   ENTRY (N_("Reset"),           KEY_RESET,              "reset",     "b",  "false"),
   ENTRY (N_("Reset and Clear"), KEY_RESET_AND_CLEAR,    "reset",     "b",  "true" ),
 };
@@ -445,12 +442,11 @@ accel_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-accel_edited_callback (GtkCellRendererAccel *cell,
-                       gchar                *path_string,
-                       guint                 keyval,
-                       GdkModifierType       mask,
-                       guint                 hardware_keycode,
-                       GtkTreeView          *view)
+accel_update (GtkTreeView          *view,
+              GtkCellRendererAccel *cell,
+              gchar                *path_string,
+              guint                 keyval,
+              GdkModifierType       mask)
 {
   GtkTreeModel *model;
   terminal_free_tree_path GtkTreePath *path = NULL;
@@ -478,33 +474,22 @@ accel_edited_callback (GtkCellRendererAccel *cell,
 }
 
 static void
+accel_edited_callback (GtkCellRendererAccel *cell,
+                       gchar                *path_string,
+                       guint                 keyval,
+                       GdkModifierType       mask,
+                       guint                 hardware_keycode,
+                       GtkTreeView          *view)
+{
+  accel_update (view, cell, path_string, keyval, mask);
+}
+
+static void
 accel_cleared_callback (GtkCellRendererAccel *cell,
                         gchar                *path_string,
                         GtkTreeView          *view)
 {
-  GtkTreeModel *model;
-  terminal_free_tree_path GtkTreePath *path = NULL;
-  GtkTreeIter iter;
-  KeyEntry *ke;
-  gs_free char *str = NULL;
-
-  model = gtk_tree_view_get_model (view);
-
-  path = gtk_tree_path_new_from_string (path_string);
-  if (!path)
-    return;
-
-  if (!gtk_tree_model_get_iter (model, &iter, path))
-    return;
-
-  gtk_tree_model_get (model, &iter, KEYVAL_COLUMN, &ke, -1);
-
-  /* sanity check */
-  if (ke == NULL)
-    return;
-
-  str = binding_name (0, 0);
-  g_settings_set_string (keybinding_settings, ke->settings_key, str);
+  accel_update (view, cell, path_string, 0, 0);
 }
 
 static void
@@ -516,7 +501,7 @@ treeview_destroy_cb (GtkWidget *tree_view,
                                         tree_view);
 }
 
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
 static void
 row_changed (GtkTreeModel *tree_model,
              GtkTreePath  *path,
@@ -565,7 +550,7 @@ terminal_accels_fill_treeview (GtkWidget *tree_view)
 
   tree = gtk_tree_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
 
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
   _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_ACCELS)
     g_signal_connect (tree, "row-changed", G_CALLBACK (row_changed), NULL);
 #endif

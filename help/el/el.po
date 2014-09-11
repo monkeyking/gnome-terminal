@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal-HEAD-help-el-5250\n"
-"POT-Creation-Date: 2014-04-21 07:36+0000\n"
-"PO-Revision-Date: 2014-04-21 19:26+0300\n"
+"POT-Creation-Date: 2014-04-21 07:40+0000\n"
+"PO-Revision-Date: 2014-04-20 15:07+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
-"Language-Team: team@lists.gnome.gr\n"
+"Language-Team: www.gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
@@ -33,9 +33,9 @@ msgstr ""
 #: C/pref-bell.page:11 C/pref-custom-exit.page:12
 #: C/pref-custom-command.page:13 C/pref-encoding.page:10
 #: C/pref-keyboard-access.page:12 C/pref-menubar.page:13
-#: C/pref-profiles.page:11 C/pref-scrolling.page:11 C/prob-reset.page:11
-#: C/txt-copy-paste.page:11 C/txt-links.page:10 C/txt-search.page:10
-#: C/txt-select-text.page:12
+#: C/pref-profiles.page:11 C/pref-scrolling.page:11 C/pref-title.page:11
+#: C/prob-reset.page:11 C/txt-copy-paste.page:11 C/txt-links.page:10
+#: C/txt-search.page:10 C/txt-select-text.page:12
 msgid "Sindhu S"
 msgstr "Sindhu S"
 
@@ -61,7 +61,8 @@ msgstr "Sindhu S"
 #: C/pref-keyboard-access.page:24 C/pref-menubar.page:15
 #: C/pref-menubar.page:20 C/pref-menubar.page:25 C/pref-profiles.page:13
 #: C/pref-profiles.page:18 C/pref-profiles.page:23 C/pref-scrolling.page:13
-#: C/pref-scrolling.page:18 C/prob-reset.page:13 C/prob-reset.page:18
+#: C/pref-scrolling.page:18 C/pref-title.page:13 C/pref-title.page:18
+#: C/pref-title.page:23 C/prob-reset.page:13 C/prob-reset.page:18
 #: C/txt-copy-paste.page:13 C/txt-copy-paste.page:18 C/txt-copy-paste.page:23
 #: C/txt-links.page:12 C/txt-links.page:17 C/txt-links.page:22
 #: C/txt-search.page:12 C/txt-search.page:17 C/txt-search.page:22
@@ -78,9 +79,9 @@ msgstr "2013"
 #: C/pref-custom-command.page:18 C/pref-encoding.page:15
 #: C/pref-keyboard-access.page:17 C/pref-menubar.page:18
 #: C/pref-profiles.page:16 C/pref-scrolling.page:16 C/pref-tab-window.page:12
-#: C/pref-theme.page:11 C/profile.page:9 C/prob-reset.page:16
-#: C/txt-copy-paste.page:16 C/txt-links.page:15 C/txt-search.page:15
-#: C/txt-select-text.page:17
+#: C/pref-theme.page:11 C/pref-title.page:16 C/profile.page:9
+#: C/prob-reset.page:16 C/txt-copy-paste.page:16 C/txt-links.page:15
+#: C/txt-search.page:15 C/txt-select-text.page:17
 msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
@@ -91,8 +92,8 @@ msgstr "Ekaterina Gerasimova"
 #: C/introduction.page:22 C/pref-bell.page:21 C/pref-custom-exit.page:22
 #: C/pref-custom-command.page:23 C/pref-encoding.page:20
 #: C/pref-keyboard-access.page:22 C/pref-menubar.page:23
-#: C/pref-profiles.page:21 C/txt-copy-paste.page:21 C/txt-links.page:20
-#: C/txt-search.page:20
+#: C/pref-profiles.page:21 C/pref-title.page:21 C/txt-copy-paste.page:21
+#: C/txt-links.page:20 C/txt-search.page:20
 msgid "Michael Hill"
 msgstr "Michael Hill"
 
@@ -766,7 +767,7 @@ msgid "To use colors from the system theme:"
 msgstr "Για να χρησιμοποιήσετε χρώματα από το θέμα του συστήματος:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:45 C/app-colors.page:67 C/app-colors.page:93
+#: C/app-colors.page:45 C/app-colors.page:68 C/app-colors.page:94
 msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Profile Preferences</gui> <gui style=\"tab\">Colors</gui></guiseq>."
@@ -793,16 +794,17 @@ msgstr "Ενσωματωμένα σχήματα"
 msgid ""
 "You can choose one of the built-in color schemes: <gui>Black on light "
 "yellow</gui>, <gui>Black on white</gui>, <gui>Gray on black</gui>, "
-"<gui>Green on black</gui>, <gui>White on black</gui>. To set any of the "
-"built-in schemes:"
+"<gui>Green on black</gui>, <gui>White on black</gui>, <gui>Solarized light</"
+"gui>, <gui>Solarized dark</gui>. To set any of the built-in schemes:"
 msgstr ""
 "Μπορείτε να διαλέξτε έναν από τους ενσωματωμένους συνδυασμούς χρωμάτων: "
 "<gui>μαύρο σε ανοικτό κίτρινο</gui>, <gui>μαύρο σε λευκό</gui>, <gui>γκρίζο "
-"σε μαύρο</gui>, <gui>πράσινο σε μαύρο</gui>, <gui>λευκό σε μαύρο</gui>. Για "
-"να ορίσετε οποιονδήποτε από τους ενσωματωμένους συνδυασμούς:"
+"σε μαύρο</gui>, <gui>πράσινο σε μαύρο</gui>, <gui>λευκό σε μαύρο</gui>, "
+"<gui>ηλιοκαμένo φως</gui>, <gui>σκούρο ηλιοκαμένο</gui> . Για να ορίσετε "
+"οποιονδήποτε από τους ενσωματωμένους συνδυασμούς:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:72
+#: C/app-colors.page:73
 msgid ""
 "Make sure that <gui style=\"checkbox\">Use colors from system theme</gui> is "
 "unchecked. Choose the desired color scheme from <gui>Built-in schemes</gui>. "
@@ -814,7 +816,7 @@ msgstr ""
 "χρωμάτων εφαρμόζονται αυτόματα."
 
 #. (itstool) path: note/p
-#: C/app-colors.page:77
+#: C/app-colors.page:78
 msgid ""
 "Applications can choose to use a color from the palette rather than the "
 "specified bold color."
@@ -823,12 +825,12 @@ msgstr ""
 "παλέτα αντί για το καθορισμένο έντονο χρώμα."
 
 #. (itstool) path: section/title
-#: C/app-colors.page:86
+#: C/app-colors.page:87
 msgid "Custom color scheme"
 msgstr "Προσαρμοσμένος συνδυασμός χρωμάτων"
 
 #. (itstool) path: section/p
-#: C/app-colors.page:88
+#: C/app-colors.page:89
 msgid ""
 "You can use custom colors for the text and background in <app>Terminal</app>:"
 msgstr ""
@@ -836,7 +838,7 @@ msgstr ""
 "παρασκήνιο στο <app>Τερματικό</app>:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:98
+#: C/app-colors.page:99
 msgid ""
 "Make sure that <gui style=\"checkbox\">Use colors from system theme</gui> is "
 "unchecked. Select <gui>Custom</gui> from the <gui>Built-in schemes</gui> "
@@ -847,14 +849,14 @@ msgstr ""
 "πτυσσόμενη λίστα <gui>Ενσωματωμένοι συνδυασμοί</gui>."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:103
+#: C/app-colors.page:104
 msgid ""
 "Click on the color sample next to the component you would like to change."
 msgstr ""
 "Πατήστε στο δείγμα χρωμάτων δίπλα στο στοιχείο που θα θέλατε να αλλάξετε."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:107
+#: C/app-colors.page:108
 msgid ""
 "Choose your desired color from the color sample and click <gui style=\"button"
 "\">Select</gui>."
@@ -863,7 +865,7 @@ msgstr ""
 "style=\"button\">Επιλογή</gui>."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:109
+#: C/app-colors.page:110
 msgid ""
 "If you wish to select a color from the color picker, click on <gui style="
 "\"button\">+</gui>. You can chose the desired color in the following ways:"
@@ -873,12 +875,12 @@ msgstr ""
 "τους εξής τρόπους:"
 
 #. (itstool) path: item/p
-#: C/app-colors.page:114
+#: C/app-colors.page:115
 msgid "Input the hexadecimal color code in the input box."
 msgstr "Εισάγετε τον δεκαεξαδικό κωδικό χρώματος στο πλαίσιο εισαγωγής."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:117
+#: C/app-colors.page:118
 msgid ""
 "Drag the slider on the left to adjust the colors and click on the desired "
 "color in the color selection area."
@@ -887,12 +889,12 @@ msgstr ""
 "στο επιθυμητό χρώμα στην περιοχή επιλογής χρώματος."
 
 #. (itstool) path: item/p
-#: C/app-colors.page:121
+#: C/app-colors.page:122
 msgid "Your changes will be saved automatically."
 msgstr "Οι αλλαγές σας θα αποθηκευτούν αυτόματα."
 
 #. (itstool) path: note/p
-#: C/app-colors.page:126
+#: C/app-colors.page:127
 msgid ""
 "You may also alter a color when you have chosen a built-in scheme by "
 "clicking on the color sample block. Once changed, your selection in the "
@@ -2166,7 +2168,7 @@ msgstr ""
 "ξεκινά αντί να περιμένει μια εισαγωγή από εσάς:"
 
 #. (itstool) path: item/p
-#: C/pref-custom-command.page:46
+#: C/pref-custom-command.page:46 C/pref-title.page:40
 msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Profile Preferences</gui> <gui style=\"tab\">Title and Command</gui></"
@@ -3207,6 +3209,109 @@ msgstr ""
 "Για να χρησιμοποιήσετε το σκούρο θέμα, επιλέξτε <gui>Χρήση της παραλλαγής "
 "σκούρου θέματος</gui>."
 
+#. (itstool) path: info/desc
+#: C/pref-title.page:28
+msgid ""
+"Allow commands to set the title for a <app>Terminal</app> tab or window."
+msgstr ""
+"Να επιτρέπεται οι εντολές να ορίζουν τον τίτλο για μια καρτέλα ή παράθυρο "
+"του <app>Τερματικού</app>."
+
+#. (itstool) path: page/title
+#: C/pref-title.page:32
+msgid "<app>Terminal</app> title"
+msgstr "Τίτλος του <app>Τερματικού</app>"
+
+#. (itstool) path: page/p
+#: C/pref-title.page:34
+msgid ""
+"<app>Terminal</app> can allow commands to set the name of your "
+"<app>Terminal</app> tab or window. This title will display at startup or on "
+"opening a new tab."
+msgstr ""
+"Το <app>Τερματικό</app> μπορεί να επιτρέπει οι εντολές να ορίσουν το όνομα "
+"της καρτέλας ή του παραθύρου του <app>τερματικού</app> σας. Αυτός ο τίτλος "
+"θα εμφανίζεται στην εκκίνηση ή στο άνοιγμα μιας νέας καρτέλας."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:45
+msgid ""
+"Next to <gui>Initial title</gui>, enter the title that you wish "
+"<app>Terminal</app> to display."
+msgstr ""
+"Δίπλα στον <gui>αρχικό τίτλο</gui>, εισάγετε τον τίτλο που επιθυμείτε να "
+"εμφανίσει το <app>τερματικό</app>."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:49
+msgid "Select one of the following options:"
+msgstr "Επιλέξτε μια από τις παρακάτω επιλογές:"
+
+#. (itstool) path: item/title
+#: C/pref-title.page:52
+msgid "<gui>Replace initial title</gui>"
+msgstr "<gui>Αντικατάσταση αρχικού τίτλου</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:53
+msgid ""
+"Commands executed in <app>Terminal</app> are allowed to replace the initial "
+"title."
+msgstr ""
+"Οι εκτελούμενες εντολές στο <app>Τερματικό</app> επιτρέπεται να "
+"αντικαθιστούν τον αρχικό τίτλο."
+
+#. (itstool) path: item/title
+#: C/pref-title.page:57
+msgid "<gui>Append initial title</gui>"
+msgstr "<gui>Προσάρτηση αρχικού τίτλου</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:58
+msgid ""
+"The new title will consist of the title set by the currently executing "
+"command, followed by the initial title."
+msgstr ""
+"Ο νέος τίτλος θα αποτελείται από τον τίτλο που ορίστηκε από την τρέχουσα "
+"εντολή που εκτελείται, ακολουθούμενος από τον αρχικό τίτλο."
+
+#. (itstool) path: item/title
+#: C/pref-title.page:62
+msgid "<gui>Prepend initial title</gui>"
+msgstr "<gui>Πρόταξη του αρχικού τίτλου</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:63
+msgid ""
+"The new title will consist of the initial title followed by the title set by "
+"the currently executing command."
+msgstr ""
+"Ο νέος τίτλος θα αποτελείται από τον αρχικό τίτλο ακολουθούμενο από τον "
+"τίτλο που ορίστηκε από την τρέχουσα εντολή που εκτελείται."
+
+#. (itstool) path: item/title
+#: C/pref-title.page:67
+msgid "<gui>Keep initial title</gui>"
+msgstr "<gui>Διατήρηση αρχικού τίτλου</gui>"
+
+#. (itstool) path: item/p
+#: C/pref-title.page:68
+msgid "The initial title which is set by the user will be retained."
+msgstr "Ο αρχικός τίτλος που ορίστηκε από τον χρήστη θα κρατηθεί."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:71
+msgid "Your selection will be saved and applied immediately."
+msgstr "Η επιλογή σας θα αποθηκευτεί και θα εφαρμοστεί αμέσως."
+
+#. (itstool) path: item/p
+#: C/pref-title.page:74
+msgid ""
+"Click <gui style=\"button\">Close</gui> to return to <app>Terminal</app>."
+msgstr ""
+"Πατήστε <gui style=\"button\">Κλείσιμο</gui> για να επιστρέψετε στο "
+"<app>Τερματικό</app>."
+
 #. (itstool) path: page/title
 #: C/profile.page:18
 msgid "Profile preferences"
@@ -3759,79 +3864,6 @@ msgstr "Τριπλοπατήστε στην επιθυμητή γραμμή."
 
 #~ msgid "What is <app>Terminal</app>?"
 #~ msgstr "Τι είναι το <app>Τερματικό</app>;"
-
-#~ msgid ""
-#~ "Allow commands to set the title for a <app>Terminal</app> tab or window."
-#~ msgstr ""
-#~ "Να επιτρέπεται οι εντολές να ορίζουν τον τίτλο για μια καρτέλα ή παράθυρο "
-#~ "του <app>Τερματικού</app>."
-
-#~ msgid "<app>Terminal</app> title"
-#~ msgstr "Τίτλος του <app>Τερματικού</app>"
-
-#~ msgid ""
-#~ "<app>Terminal</app> can allow commands to set the name of your "
-#~ "<app>Terminal</app> tab or window. This title will display at startup or "
-#~ "on opening a new tab."
-#~ msgstr ""
-#~ "Το <app>Τερματικό</app> μπορεί να επιτρέπει οι εντολές να ορίσουν το "
-#~ "όνομα της καρτέλας ή του παραθύρου του <app>τερματικού</app> σας. Αυτός ο "
-#~ "τίτλος θα εμφανίζεται στην εκκίνηση ή στο άνοιγμα μιας νέας καρτέλας."
-
-#~ msgid ""
-#~ "Next to <gui>Initial title</gui>, enter the title that you wish "
-#~ "<app>Terminal</app> to display."
-#~ msgstr ""
-#~ "Δίπλα στον <gui>αρχικό τίτλο</gui>, εισάγετε τον τίτλο που επιθυμείτε να "
-#~ "εμφανίσει το <app>τερματικό</app>."
-
-#~ msgid "Select one of the following options:"
-#~ msgstr "Επιλέξτε μια από τις παρακάτω επιλογές:"
-
-#~ msgid "<gui>Replace initial title</gui>"
-#~ msgstr "<gui>Αντικατάσταση αρχικού τίτλου</gui>"
-
-#~ msgid ""
-#~ "Commands executed in <app>Terminal</app> are allowed to replace the "
-#~ "initial title."
-#~ msgstr ""
-#~ "Οι εκτελούμενες εντολές στο <app>Τερματικό</app> επιτρέπεται να "
-#~ "αντικαθιστούν τον αρχικό τίτλο."
-
-#~ msgid "<gui>Append initial title</gui>"
-#~ msgstr "<gui>Προσάρτηση αρχικού τίτλου</gui>"
-
-#~ msgid ""
-#~ "The new title will consist of the title set by the currently executing "
-#~ "command, followed by the initial title."
-#~ msgstr ""
-#~ "Ο νέος τίτλος θα αποτελείται από τον τίτλο που ορίστηκε από την τρέχουσα "
-#~ "εντολή που εκτελείται, ακολουθούμενος από τον αρχικό τίτλο."
-
-#~ msgid "<gui>Prepend initial title</gui>"
-#~ msgstr "<gui>Πρόταξη του αρχικού τίτλου</gui>"
-
-#~ msgid ""
-#~ "The new title will consist of the initial title followed by the title set "
-#~ "by the currently executing command."
-#~ msgstr ""
-#~ "Ο νέος τίτλος θα αποτελείται από τον αρχικό τίτλο ακολουθούμενο από τον "
-#~ "τίτλο που ορίστηκε από την τρέχουσα εντολή που εκτελείται."
-
-#~ msgid "<gui>Keep initial title</gui>"
-#~ msgstr "<gui>Διατήρηση αρχικού τίτλου</gui>"
-
-#~ msgid "The initial title which is set by the user will be retained."
-#~ msgstr "Ο αρχικός τίτλος που ορίστηκε από τον χρήστη θα κρατηθεί."
-
-#~ msgid "Your selection will be saved and applied immediately."
-#~ msgstr "Η επιλογή σας θα αποθηκευτεί και θα εφαρμοστεί αμέσως."
-
-#~ msgid ""
-#~ "Click <gui style=\"button\">Close</gui> to return to <app>Terminal</app>."
-#~ msgstr ""
-#~ "Πατήστε <gui style=\"button\">Κλείσιμο</gui> για να επιστρέψετε στο "
-#~ "<app>Τερματικό</app>."
 
 #~ msgctxt "_"
 #~ msgid ""
