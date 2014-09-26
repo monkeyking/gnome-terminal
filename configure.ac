@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[13])
-m4_define([gt_version_micro],[90])
+m4_define([gt_version_minor],[14])
+m4_define([gt_version_micro],[0])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -34,7 +34,7 @@ IT_PROG_INTLTOOL([0.50.0])
 AM_GLIB_GNU_GETTEXT
 
 GLIB_REQUIRED=2.40.0
-GIO_REQUIRED=2.33.2
+GIO_REQUIRED=2.34.0
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
 DCONF_REQUIRED=0.14.0
 
@@ -51,9 +51,9 @@ AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
-       GTK_REQUIRED=3.9.9
+       GTK_REQUIRED=3.10.0
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.37.90
+       VTE_REQUIRED=0.38.0
        ;;
 esac
 
