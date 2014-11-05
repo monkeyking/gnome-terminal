@@ -187,6 +187,20 @@ static GRegex **url_regexes;
 static TerminalURLFlavour *url_regex_flavors;
 static guint n_url_regexes;
 
+#ifdef F_DUPFD_CLOEXEC
+static inline int dup_cloexec(int fd, int hint)
+{
+  return fcntl (fd, F_DUPFD_CLOEXEC, hint);
+}
+#else
+static inline int dup_cloexec(int fd, int hint)
+{
+  if ((fd = fcntl (fd, F_DUPFD, hint)) == -1)
+    return -1;
+  return fcntl (fd, F_SETFD, FD_CLOEXEC);
+}
+#endif
+
 /* See bug #697024 */
 #ifndef __linux__
 
@@ -1281,7 +1295,7 @@ terminal_screen_child_setup (FDSetupData *data)
       for (j = 0; j < n_fds; j++) {
         if (fds[j] == target_fd) {
           do {
-            fd = fcntl (fds[j], F_DUPFD_CLOEXEC, 3);
+            fd = dup_cloexec(fds[j], 3);
           } while (fd == -1 && errno == EINTR);
           if (fd == -1)
             _exit (127);
