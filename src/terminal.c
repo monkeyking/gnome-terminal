@@ -131,6 +131,7 @@ handle_options (TerminalFactory *factory,
                   &object_path,
                   NULL /* cancellable */,
                   &err)) {
+            g_dbus_error_strip_remote_error (err);
             g_printerr ("Error creating terminal: %s\n", err->message);
             g_error_free (err);
 
@@ -159,6 +160,7 @@ handle_options (TerminalFactory *factory,
                                                                NULL /* cancellable */,
                                                                &err);
           if (receiver == NULL) {
+            g_dbus_error_strip_remote_error (err);
             g_printerr ("Failed to create proxy for terminal: %s\n", err->message);
             g_error_free (err);
             g_free (object_path);
@@ -184,6 +186,7 @@ handle_options (TerminalFactory *factory,
                                                  NULL /* infdlist */, NULL /* outfdlist */,
                                                 NULL /* cancellable */,
                                                 &err)) {
+            g_dbus_error_strip_remote_error (err);
             g_printerr ("Error: %s\n", err->message);
             g_error_free (err);
           }
@@ -199,7 +202,7 @@ int
 main (int argc, char **argv)
 {
   int i;
-  char **argv_copy, *cwd;
+  char **argv_copy;
   const char *startup_id, *display_name;
   GdkDisplay *display;
   TerminalOptions *options;
@@ -212,10 +215,6 @@ main (int argc, char **argv)
 
   terminal_i18n_init (TRUE);
 
-#if !GLIB_CHECK_VERSION (2, 35, 3)
-  g_type_init ();
-#endif
-
   _terminal_debug_init ();
 
   /* Make a NULL-terminated copy since we may need it later */
@@ -226,13 +225,7 @@ main (int argc, char **argv)
 
   startup_id = g_getenv ("DESKTOP_STARTUP_ID");
 
-  /* We use get_current_dir_name() here instead of getcwd / g_get_current_dir()
-   * because we want to use the value from PWD (if it is correct).
-   * See bug 502146.
-   */
-  cwd = get_current_dir_name ();
-  working_directory = g_strdup (cwd);
-  free (cwd);
+  working_directory = g_get_current_dir ();
 
   options = terminal_options_parse (working_directory,
                                     startup_id,

@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -71,9 +72,22 @@ main (int argc, char **argv)
   const char *home_dir;
   GError *error = NULL;
 
+  if (G_UNLIKELY ((getuid () != geteuid () ||
+                  getgid () != getegid ()) &&
+                  geteuid () == 0 &&
+                  getegid () == 0)) {
+    g_printerr ("Wrong euid/egid, exiting.\n");
+    return EXIT_FAILURE;
+  }
+
   setlocale (LC_ALL, "");
 
   terminal_i18n_init (TRUE);
+
+  if (!g_get_charset (NULL)) {
+    g_printerr ("Non UTF-8 locale is not supported!\n");
+    return EXIT_FAILURE;
+  }
 
 #ifndef ENABLE_DISTRO_PACKAGING
 #ifdef HAVE_UBUNTU
@@ -85,10 +99,6 @@ main (int argc, char **argv)
   g_setenv ("UBUNTU_MENUPROXY", "0", TRUE);
   g_setenv ("NO_UNITY_GTK_MODULE", "1", TRUE);
 #endif
-#endif
-
-#if !GLIB_CHECK_VERSION (2, 35, 3)
-  g_type_init ();
 #endif
 
   _terminal_debug_init ();

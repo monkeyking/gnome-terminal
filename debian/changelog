@@ -1,3 +1,49 @@
+gnome-terminal (3.12.2-0ubuntu1) vivid; urgency=low
+
+  [ Iain Lane ]
+  * NOTE: This version changes behaviour around the "Switch to tab" keyboard
+    shortcuts. They are now active all the time, whereas previously they were
+    only active when you had a corresponding number of tabs open. If you need
+    to send these keys to your terminal, clear the shortcuts in the
+    preferences dialog.
+  * Drop 03_add_keywords.desktop: Not useful any more.
+  * Drop 20_add_alt_screen_toggle_ui.patch: Too much effort to maintain, not
+    deemed important enough to keep.
+  * Resynchronise with Debian, remaining changes:
+    - debian/patches/50_add_unity_quicklist.patch: Add Unity quicklist menu
+      item.
+    - debian/patches/60_add_lp_handler.patch: Add a handler for launchpad bug
+      URLs.
+  * Disable shell provider, we don't want to build-dep on gnome-shell.
+  * Bump build-dependencies according to configure.ac:
+    - intltool 0.50.0
+    - vte 0.36.0
+    - glib 2.39.2
+  * Make debian/patches/10_kfreebsd-f_dupfd_cloexec.patch apply again.
+  * Add build-dependency on libnautilus-extension-dev
+  * Add new patch debian/patches/nautilus-x11.patch
+    - build fails because of -Wl,-z,defs missing -lX11 in nautilus extension
+  * Include autoreconf.mk cdbs snippet and build-depend on dh-autoreconf
+  * Install new files in gnome-terminal
+    - nautilus extension
+  * debian/patches/0001-Restore-transparency.patch: Patch from Debarishi Ray
+    to re-add support for transparent terminals. Updated to support loading a
+    transparency value from the theme, if it provides one and to migrate the
+    settings from GConf.
+
+  [ Jeremy Bicha ]
+  * debian/rules:
+    - Build with --enable-distro-packaging to not override Ubuntu
+      environment variables
+  * debian/patches/52_support_apturl.patch:
+    - Support apt: URIs (LP: #217611)
+
+  [ Martin Pitt ]
+  * Add 61_cwd_fallback.patch: Provide fallback for reading current directory
+    if OSC 7 fails. (LP: #1132700)
+
+ -- Iain Lane <iain.lane@canonical.com>  Wed, 05 Nov 2014 15:55:30 +0000
+
 gnome-terminal (3.8.3-1) unstable; urgency=low
 
   * New upstream release.

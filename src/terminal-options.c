@@ -223,8 +223,22 @@ unsupported_option_callback (const gchar *option_name,
 {
   g_printerr (_("Option \"%s\" is no longer supported in this version of gnome-terminal."),
               option_name);
+  g_printerr ("\n");
   return TRUE; /* we do not want to bail out here but continue */
 }
+
+static gboolean
+unsupported_option_fatal_callback (const gchar *option_name,
+                                   const gchar *value,
+                                   gpointer     data,
+                                   GError     **error)
+{
+  g_set_error (error, G_OPTION_ERROR, G_OPTION_ERROR_UNKNOWN_OPTION,
+               _("Option \"%s\" is no longer supported in this version of gnome-terminal."),
+               option_name);
+  return FALSE;
+}
+
 
 static gboolean G_GNUC_NORETURN
 option_version_cb (const gchar *option_name,
@@ -245,9 +259,9 @@ option_app_id_callback (const gchar *option_name,
 {
   TerminalOptions *options = data;
 
-  if (!g_dbus_is_name (value)) {
+  if (!g_application_id_is_valid (value)) {
     g_set_error (error, G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,
-                 "%s is not a valid D-Bus name", value);
+                 "\"%s\" is not a valid application ID", value);
     return FALSE;
   }
 
@@ -555,19 +569,6 @@ option_geometry_callback (const gchar *option_name,
 }
 
 static gboolean
-option_disable_factory_callback (const gchar *option_name,
-                                 const gchar *value,
-                                 gpointer     data,
-                                 GError     **error)
-{
-  TerminalOptions *options = data;
-
-  options->use_factory = FALSE;
-
-  return TRUE;
-}
-
-static gboolean
 option_load_config_cb (const gchar *option_name,
                        const gchar *value,
                        gpointer     data,
@@ -585,10 +586,11 @@ option_load_config_cb (const gchar *option_name,
 
   key_file = g_key_file_new ();
   result = g_key_file_load_from_file (key_file, config_file, 0, error) &&
-           terminal_options_merge_config (options, key_file, 
+           terminal_options_merge_config (options, key_file,
                                           strcmp (option_name, "load-config") == 0 ? SOURCE_DEFAULT : SOURCE_SESSION,
                                           error);
   g_key_file_free (key_file);
+  g_free (config_file);
 
   return result;
 }
@@ -781,7 +783,6 @@ terminal_options_parse (const char *working_directory,
   options->default_fullscreen = FALSE;
   options->default_maximize = FALSE;
   options->execute = FALSE;
-  options->use_factory = TRUE;
 
   options->startup_id = g_strdup (startup_id && startup_id[0] ? startup_id : NULL);
   options->display_name = NULL;
@@ -921,7 +922,6 @@ terminal_options_merge_config (TerminalOptions *options,
 
           profile = g_key_file_get_string (key_file, tab_group, TERMINAL_CONFIG_TERMINAL_PROP_PROFILE_ID, NULL);
           it = initial_tab_new (profile /* adopts */);
-          g_free (profile);
 
           iw->tabs = g_list_append (iw->tabs, it);
 
@@ -1018,9 +1018,9 @@ get_goption_context (TerminalOptions *options)
     {
       "disable-factory",
       0,
-      G_OPTION_FLAG_NO_ARG,
+      G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN,
       G_OPTION_ARG_CALLBACK,
-      option_disable_factory_callback,
+      unsupported_option_fatal_callback,
       N_("Do not register with the activation nameserver, do not re-use an active terminal"),
       NULL
     },
@@ -1235,9 +1235,9 @@ get_goption_context (TerminalOptions *options)
     {
       "use-factory",
       0,
-      G_OPTION_FLAG_HIDDEN,
-      G_OPTION_ARG_NONE,
-      &options->use_factory,
+      G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN,
+      G_OPTION_ARG_CALLBACK,
+      unsupported_option_callback,
       NULL, NULL
     },
     {
@@ -1249,179 +1249,6 @@ get_goption_context (TerminalOptions *options)
       NULL,
       NULL
     },
-#if !TERMINAL_CHECK_VERSION (3, 0, 0)
-    /*
-     * Crappy old compat args
-     */
-    {
-      "tclass",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "font",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "nologin",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "login",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "foreground",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "background",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "solid",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "bgscroll",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "bgnoscroll",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "shaded",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "noshaded",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "transparent",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "utmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "noutmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "wtmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "nowtmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "lastlog",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "nolastlog",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "icon",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "termname",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "start-factory-server",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-#endif /* Terminal < 3.0.0 */
     { NULL, 0, 0, 0, NULL, NULL, NULL }
   };
 

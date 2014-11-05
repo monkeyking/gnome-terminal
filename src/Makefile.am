@@ -1,5 +1,7 @@
 NULL =
 
+BUILT_SOURCES =
+
 bin_PROGRAMS = gnome-terminal
 libexec_PROGRAMS = gnome-terminal-server
 noinst_PROGRAMS = gnome-terminal-client
@@ -12,7 +14,7 @@ endif # WITH_NAUTILUS_EXTENSION
 
 dbusservice_DATA = org.gnome.Terminal.service
 
-BUILT_SOURCES = \
+gnome_terminal_server_built = \
 	terminal-marshal.c \
 	terminal-marshal.h \
 	terminal-type-builtins.c \
@@ -22,6 +24,7 @@ BUILT_SOURCES = \
 	terminal-resources.c \
 	terminal-resources.h \
 	$(NULL)
+BUILT_SOURCES += $(gnome_terminal_server_built)
 
 gnome_terminal_server_SOURCES = \
 	eggshell.c \
@@ -48,6 +51,7 @@ gnome_terminal_server_SOURCES = \
 	terminal-intl.h \
 	terminal-i18n.c \
 	terminal-i18n.h \
+	terminal-libgsystem.h \
 	terminal-mdi-container.c \
 	terminal-mdi-container.h \
 	terminal-notebook.c \
@@ -76,7 +80,7 @@ gnome_terminal_server_SOURCES = \
 	terminal-window.h \
 	$(NULL)
 
-nodist_gnome_terminal_server_SOURCES = $(BUILT_SOURCES)
+nodist_gnome_terminal_server_SOURCES = $(gnome_terminal_server_built)
 
 gnome_terminal_server_CPPFLAGS = \
 	-DTERMINAL_COMPILATION \
@@ -84,8 +88,6 @@ gnome_terminal_server_CPPFLAGS = \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
 	-DTERM_HELPDIR="\"$(HELP_DIR)\"" \
 	-DTERM_LIBEXECDIR="\"$(libexecdir)\"" \
-	-DSN_API_NOT_YET_FROZEN \
-	-DGDK_MULTIHEAD_SAFE \
 	$(AM_CPPFLAGS)
 
 gnome_terminal_server_CFLAGS = \
@@ -158,6 +160,7 @@ gnome_terminal_client_SOURCES = \
 	terminal-defines.h \
 	terminal-i18n.c \
 	terminal-i18n.h \
+	terminal-libgsystem.h \
 	terminal-profiles-list.c \
 	terminal-profiles-list.h \
 	terminal-schemas.h \
@@ -178,8 +181,6 @@ gnome_terminal_client_CPPFLAGS = \
 	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
 	-DTERM_PKGDATADIR="\"$(pkgdatadir)\"" \
-	-DSN_API_NOT_YET_FROZEN \
-	-DGDK_MULTIHEAD_SAFE \
 	$(AM_CPPFLAGS)
 
 gnome_terminal_client_CFLAGS = \
@@ -203,6 +204,7 @@ gnome_terminal_SOURCES = \
 	terminal-defines.h \
 	terminal-i18n.c \
 	terminal-i18n.h \
+	terminal-libgsystem.h \
 	terminal-options.c \
 	terminal-options.h \
 	terminal-profiles-list.c \
@@ -225,8 +227,6 @@ gnome_terminal_CPPFLAGS = \
 	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
 	-DTERM_PKGDATADIR="\"$(pkgdatadir)\"" \
-	-DSN_API_NOT_YET_FROZEN \
-	-DGDK_MULTIHEAD_SAFE \
 	$(AM_CPPFLAGS)
 
 gnome_terminal_CFLAGS = \
@@ -247,6 +247,7 @@ libterminal_nautilus_la_SOURCES = \
 	terminal-defines.h \
 	terminal-i18n.c \
 	terminal-i18n.h \
+	terminal-libgsystem.h \
 	terminal-nautilus.c \
 	$(NULL)
 
@@ -260,7 +261,6 @@ nodist_libterminal_nautilus_la_SOURCES = \
 libterminal_nautilus_la_CPPFLAGS = \
 	-DTERMINAL_COMPILATION \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
-	-DGDK_MULTIHEAD_SAFE \
 	$(AM_CPPFLAGS)
 
 libterminal_nautilus_la_CFLAGS = \
@@ -284,6 +284,7 @@ gnome_terminal_migration_SOURCES = \
 	migration.c \
 	terminal-debug.c \
 	terminal-debug.h \
+	terminal-libgsystem.h \
 	terminal-profiles-list.c \
 	terminal-profiles-list.h \
 	terminal-schemas.h \
@@ -309,21 +310,48 @@ gnome_terminal_migration_LDADD = \
 
 endif # ENABLE_MIGRATION
 
-gsettingsschema_in_files = org.gnome.Terminal.gschema.xml.in
-gsettings_SCHEMAS = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
+# GNOME Shell search provider
+
+if ENABLE_SEARCH_PROVIDER
+
+searchproviderdir = $(datadir)/gnome-shell/search-providers
+dist_searchprovider_DATA = gnome-terminal-search-provider.ini
+
+gnome_terminal_server_built += \
+	terminal-search-provider-gdbus-generated.c \
+	terminal-search-provider-gdbus-generated.h \
+	$(NULL)
+
+gnome_terminal_server_SOURCES += \
+	terminal-search-provider.c \
+	terminal-search-provider.h \
+	$(NULL)
+
+terminal-search-provider-gdbus-generated.c terminal-search-provider-gdbus-generated.h: $(dbusinterfacedir)/org.gnome.ShellSearchProvider2.xml Makefile
+	$(AM_V_GEN) $(GDBUS_CODEGEN) \
+			--interface-prefix=org.gnome.Shell \
+			--c-namespace=Terminal \
+			--generate-c-code terminal-search-provider-gdbus-generated \
+			$<
+
+endif # ENABLE_SEARCH_PROVIDER
+
+gsettings_SCHEMAS = \
+	org.gnome.Terminal.gschema.xml \
+	$(NULL)
 
 CLEANFILES = \
 	stamp-terminal-type-builtins.h \
 	gnome-terminal.schemas \
 	stamp-terminal-type-builtins.h \
 	org.gnome.Terminal.service \
-	$(gsettings_SCHEMAS) \
 	$(BUILT_SOURCES)
 
 EXTRA_DIST = \
 	terminal.about \
 	terminal.xml \
 	terminal-appmenu.ui \
+	terminal-window.ui \
 	terminal.gresource.xml \
 	terminal-marshal.list \
 	terminal-type-builtins.c.template \
@@ -336,10 +364,9 @@ EXTRA_DIST = \
 	$(about_DATA) \
 	$(uimanager_DATA) \
 	$(builder_DATA) \
-	$(gsettingsschema_in_files) \
+	$(gsettings_SCHEMAS) \
 	$(NULL)
 
-@INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
 -include $(top_srcdir)/git.mk

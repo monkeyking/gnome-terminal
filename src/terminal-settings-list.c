@@ -26,6 +26,7 @@
 #include "terminal-type-builtins.h"
 #include "terminal-schemas.h"
 #include "terminal-debug.h"
+#include "terminal-libgsystem.h"
 
 struct _TerminalSettingsList {
   GSettings parent;
@@ -212,16 +213,15 @@ list_map_func (GVariant *value,
                gpointer user_data)
 {
   TerminalSettingsList *list = user_data;
-  char **entries;
+  gs_strfreev char **entries;
 
   entries = strv_sort (g_variant_dup_strv (value, NULL));
 
   if (validate_list (list, entries)) {
-    *result = entries;
+    gs_transfer_out_value(result, &entries);
     return TRUE;
   }
 
-  g_strfreev (entries);
   return FALSE;
 }
 
@@ -237,7 +237,7 @@ terminal_settings_list_ref_child_internal (TerminalSettingsList *list,
                                            const char *uuid)
 {
   GSettings *child;
-  char *path;
+  gs_free char *path = NULL;
 
   if (strv_find (list->uuids, uuid) == -1)
     return NULL;
@@ -252,7 +252,6 @@ terminal_settings_list_ref_child_internal (TerminalSettingsList *list,
   path = path_new (list, uuid);
   child = g_settings_new_with_path (list->child_schema_id, path);
   g_hash_table_insert (list->children, g_strdup (uuid), child /* adopted */);
-  g_free (path);
 
  done:
   return g_object_ref (child);
@@ -263,14 +262,12 @@ clone_child (TerminalSettingsList *list,
              const char *uuid)
 {
   char *new_uuid;
-  char *path, *new_path;
-  char **keys, *key;
+  gs_free char *path;
+  gs_free char *new_path;
+  char **keys;
   guint i;
-  GVariant *value;
-  DConfClient *client;
-#ifndef HAVE_DCONF_1_2
+  gs_unref_object DConfClient *client;
   DConfChangeset *changeset;
-#endif
 
   new_uuid = new_list_entry ();
 
@@ -280,48 +277,31 @@ clone_child (TerminalSettingsList *list,
   path = path_new (list, uuid);
   new_path = path_new (list, new_uuid);
 
-#ifdef HAVE_DCONF_1_2
-  client = dconf_client_new (NULL, NULL, NULL, NULL);
-#else
   client = dconf_client_new ();
   changeset = dconf_changeset_new ();
-#endif
 
   /* FIXME: this is beyond ugly. Need API on GSettingsSchema to list all the keys! */
   {
-    GSettings *dummy = g_settings_new_with_path (list->child_schema_id, "/foo");
+    gs_unref_object GSettings *dummy = g_settings_new_with_path (list->child_schema_id, "/foo/");
     keys = g_settings_list_keys (dummy);
-    g_object_unref (dummy);
   }
 
   for (i = 0; keys[i]; i++) {
-    key = g_strconcat (path, keys[i], NULL);
-#ifdef HAVE_DCONF_1_2
-    value = dconf_client_read_no_default (client, key);
-#else
-    value = dconf_client_read (client, key);
-#endif
-    g_free (key);
+    gs_free char *rkey;
+    gs_unref_variant GVariant *value;
+
+    rkey = g_strconcat (path, keys[i], NULL);
+    value = dconf_client_read (client, rkey);
 
     if (value) {
-      key = g_strconcat (new_path, keys[i], NULL);
-#ifdef HAVE_DCONF_1_2
-      dconf_client_write (client, key, value, NULL, NULL, NULL);
-#else
-      dconf_changeset_set (changeset, key, value);
-#endif
-      g_free (key);
-      g_variant_unref (value);
+      gs_free char *wkey;
+      wkey = g_strconcat (new_path, keys[i], NULL);
+      dconf_changeset_set (changeset, wkey, value);
     }
   }
 
-#ifndef HAVE_DCONF_1_2
   dconf_client_change_sync (client, changeset, NULL, NULL, NULL);
   dconf_changeset_unref (changeset);
-#endif
-  g_object_unref (client);
-  g_free (path);
-  g_free (new_path);
 
   return new_uuid;
 }
@@ -331,7 +311,7 @@ terminal_settings_list_add_child_internal (TerminalSettingsList *list,
                                            const char *uuid)
 {
   char *new_uuid;
-  char **new_uuids;
+  gs_strfreev char **new_uuids;
 
   if (uuid)
     new_uuid = clone_child (list, uuid);
@@ -344,7 +324,6 @@ terminal_settings_list_add_child_internal (TerminalSettingsList *list,
   new_uuids = strv_dupv_insert (list->uuids, new_uuid);
   g_settings_set_strv (&list->parent, TERMINAL_SETTINGS_LIST_LIST_KEY,
                        (const char * const *) new_uuids);
-  g_strfreev (new_uuids);
 
   return new_uuid;
 }
@@ -353,8 +332,9 @@ static void
 terminal_settings_list_remove_child_internal (TerminalSettingsList *list,
                                               const char *uuid)
 {
-  char **new_uuids, *path;
-  DConfClient *client;
+  gs_strfreev char **new_uuids;
+  gs_free char *path = NULL;
+  gs_unref_object DConfClient *client = NULL;
 
   _terminal_debug_print (TERMINAL_DEBUG_SETTINGS_LIST,
                          "%s UUID %s\n", G_STRFUNC, uuid);
@@ -362,13 +342,10 @@ terminal_settings_list_remove_child_internal (TerminalSettingsList *list,
   new_uuids = strv_dupv_remove (list->uuids, uuid);
 
   if ((new_uuids == NULL || new_uuids[0] == NULL) &&
-      (list->flags & TERMINAL_SETTINGS_LIST_FLAG_ALLOW_EMPTY) == 0) {
-    g_strfreev (new_uuids);
+      (list->flags & TERMINAL_SETTINGS_LIST_FLAG_ALLOW_EMPTY) == 0)
     return;
-  }
 
   g_settings_set_strv (&list->parent, TERMINAL_SETTINGS_LIST_LIST_KEY, (const char * const *) new_uuids);
-  g_strfreev (new_uuids);
 
   if (list->default_uuid != NULL &&
       g_str_equal (list->default_uuid, uuid))
@@ -377,16 +354,8 @@ terminal_settings_list_remove_child_internal (TerminalSettingsList *list,
   /* Now we unset all keys under the child */
   path = path_new (list, uuid);
 
-#ifdef HAVE_DCONF_1_2
-  client = dconf_client_new (NULL, NULL, NULL, NULL);
-  dconf_client_write (client, path, NULL, NULL, NULL, NULL);
-#else /* modern DConf */
   client = dconf_client_new ();
   dconf_client_write_sync (client, path, NULL, NULL, NULL, NULL);
-#endif
-  g_object_unref (client);
-
-  g_free (path);
 }
 
 static void
@@ -764,7 +733,7 @@ terminal_settings_list_ref_children (TerminalSettingsList *list)
 GSettings *
 terminal_settings_list_ref_default_child (TerminalSettingsList *list)
 {
-  char *uuid;
+  gs_free char *uuid = NULL;
 
   g_return_val_if_fail (TERMINAL_IS_SETTINGS_LIST (list), NULL);
 
@@ -841,7 +810,8 @@ char *
 terminal_settings_list_dup_uuid_from_child (TerminalSettingsList *list,
                                             GSettings *child)
 {
-  char *path, *p;
+  gs_free char *path;
+  char *p;
 
   g_return_val_if_fail (TERMINAL_IS_SETTINGS_LIST (list), NULL);
 
@@ -853,11 +823,9 @@ terminal_settings_list_dup_uuid_from_child (TerminalSettingsList *list,
   p++;
   g_return_val_if_fail (strlen (p) == 37, NULL);
   p[36] = '\0';
-  g_return_val_if_fail (terminal_settings_list_valid_uuid (p), NULL);
+  g_assert (terminal_settings_list_valid_uuid (p));
 
-  p = g_strdup (p);
-  g_free (path);
-  return p;
+  return g_strdup (p);
 }
 
 /**
