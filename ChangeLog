@@ -1,13 +1,3904 @@
-commit 5740b4fd943824e942d93a86b0a91250065fd1b7
+commit 5d8544063ef3c37c9580f4fa2144e7549e699d77
+Author: Carles Ferrando <carles.ferrando@gmail.com>
+Date:   Fri May 9 00:23:47 2014 +0200
+
+    [l10n] Updated Catalan (Valencian) translation
+
+ po/ca@valencia.po | 2694 ++++++++++++-----------------------------------------
+ 1 file changed, 571 insertions(+), 2123 deletions(-)
+
+commit ef1c6252650cbfa17731795949a693b98b726c41
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Tue May 6 11:30:28 2014 +0200
+
+    window: Fix parent class in template definition
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=729597
+
+ src/terminal-window.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f89df52be0e9ec38e00edf6c2394ca1bb3f08778
+Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date:   Sun May 4 20:43:13 2014 +0200
+
+    Updated Belarusian translation.
+    
+    (cherry picked from commit 72fda661d5d09fe4b2d7f5e5596e904394443955)
+
+ po/be.po | 142 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 80 insertions(+), 62 deletions(-)
+
+commit abdebd3fd459038a98e2f5a4aad0d296e391363b
+Author: Gustau Perez <gustau.perez@gmail.com>
+Date:   Tue Apr 8 09:42:34 2014 +0000
+
+    Fix su/sudo detection.
+    
+    Commit 1244dbb6f0381ced states that gnome-terminal doesn't work under sudo. To
+    detect this that checks whether the uid or gid have changed or that the
+    e[uid|gid] are 0.
+    
+    If the user already belongs to the group wheel or was root without doing any su or sudo
+    gnome-terminal will exit.
+    
+    What we need to check is whether e[uid|gid] have changed (because the user was
+    root already or because the user belongs to the wheel/root group) and
+    check if the e[uid|gid] are 0. In that case the gnome-terminal is run under
+    su/sudo and gnome-terminal should bail out.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=727799
+    (cherry picked from commit 612345d2e47585f691006fa488125b2dc687117a)
+
+ src/server.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit f24116e323f3b272f6ad9257880a42f709a1fa03
 Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Jun 10 17:54:39 2013 +0200
+Date:   Sat Apr 26 17:59:27 2014 +0200
 
-    NEWS update
+    Post release version bump
 
- NEWS | 1 +
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7a2b5b7b9cad64630f494bfde8f7e9a02b64b4e5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Apr 26 17:54:48 2014 +0200
+
+    Version 3.12.1
+
+ NEWS         | 7 +++++++
+ configure.ac | 2 +-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+commit c28390e4b84bd80b5ad27b44533d51b66128686a
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Fri Apr 25 17:17:13 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 652 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 335 insertions(+), 317 deletions(-)
+
+commit a1e227cb327a403201852d5409b74e78d491b43e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Apr 25 10:00:14 2014 +0200
+
+    accels: Sync app and menu accelerators
+    
+    When porting to using gtkapplication accelerators, there was a regression
+    in that the in-menu accelerators were not changed/disabled accordingly, which
+    meant that they were still being activated even when the global accelerator
+    was disabled.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=728121
+    (cherry picked from commit 6e0bcf62bdb8b1c5e3f1fe2b7d339b674138f8c6)
+
+ src/terminal-accels.c | 51 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ src/terminal-app.c    |  7 +++++++
+ 2 files changed, 56 insertions(+), 2 deletions(-)
+
+commit 420bcbb9ce69e7bc9695f45c92c4f107abb03fa0
+Author: Dirgita <dirgitadevina@gmail.com>
+Date:   Wed Apr 23 09:31:07 2014 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+commit adcca6a07a4ad6e53d45044a5f0ce489a8fc2a87
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Wed Apr 23 09:50:31 2014 +0200
+
+    Revert "widget: Add Solarized text/background colors"
+    
+    This reverts commit 8bd35254ff2145e82ea42ab5664b7f71874c7119.
+    
+    Reason: Breaks string freeze.
+
+ src/profile-editor.c | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+commit 79c25b1d0e01b71d5940bc5401c5e0b66f4317f9
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Tue Apr 22 14:45:44 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 36 +++++++++++++++++++-----------------
+ 1 file changed, 19 insertions(+), 17 deletions(-)
+
+commit 879eeb3c21e2889ac8fa1e68f5fe4067b1a92263
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Apr 22 11:35:17 2014 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 28 +++++++++++++++++++---------
+ 1 file changed, 19 insertions(+), 9 deletions(-)
+
+commit fed6dd5e81ee2463f68a7d656c218715c3464a56
+Author: Dimitris Spingos <dmtrs32@gmail.com>
+Date:   Mon Apr 21 19:49:18 2014 +0300
+
+    Updated Greek translation of help
+
+ help/el/el.po | 780 +++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 471 insertions(+), 309 deletions(-)
+
+commit 9bdeff2574779bc3dab74e443f97a8eeb4b885cf
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   Sun Apr 20 17:50:26 2014 +0000
+
+    Updated Greek translation
+
+ po/el.po | 67 ++++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 40 insertions(+), 27 deletions(-)
+
+commit 8bd35254ff2145e82ea42ab5664b7f71874c7119
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Sat Apr 19 21:45:14 2014 +0200
+
+    widget: Add Solarized text/background colors
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=655030
+
+ src/profile-editor.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit 6ae32d8df9c57181246349a4c8f5dfa3e70db112
+Author: Wolfgang Stöggl <c72578@yahoo.de>
+Date:   Sat Apr 19 07:22:36 2014 +0000
+
+    Updated German translation
+
+ po/de.po | 30 +++++++-----------------------
+ 1 file changed, 7 insertions(+), 23 deletions(-)
+
+commit 9b87e0d2a261d7f67e3ccfacb02215e11e323edc
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Fri Apr 18 18:29:47 2014 +0000
+
+    Updated German translation
+
+ help/de/de.po | 118 +++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 64 insertions(+), 54 deletions(-)
+
+commit 52e6cfce93ed364be1403b49bb04e929121c567c
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Apr 15 14:24:58 2014 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po | 208 +++++++++++++++++++++++++---------------------------------
+ 1 file changed, 88 insertions(+), 120 deletions(-)
+
+commit 2c26ecf4ece02fefdd1e771717ed91685fdb3cd4
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Mon Apr 14 15:27:36 2014 +0200
+
+    window: Workaround mismatch in GAction and GtkAction accelerators
+    
+    ... by removing the ones in GtkActionEntry's. As a consequence of this
+    the accelerators will not show up in the menu, but on the positive side
+    changing a shortcut will actually make the old one go away.
+    
+    This should all be nice and dandy when use GMenu in the future.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=728121
+
+ src/terminal-window.c | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+commit f6d512165e088312f8bd4b37919424abe9180bff
+Author: Ikuya Awashiro <ikuya@fruitsbasket.info>
+Date:   Mon Apr 14 22:38:25 2014 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 91 ++++++++++++++++++++--------------------------------------------
+ 1 file changed, 28 insertions(+), 63 deletions(-)
+
+commit 283aef676f0377a38809532354463282de90dae1
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Sat Apr 12 10:19:00 2014 +0100
+
+    Stub terminal title help, see bug 720693
+
+ help/C/{pref-title.page => pref-title.page.stub} | 0
+ help/Makefile.am                                 | 1 -
+ 2 files changed, 1 deletion(-)
+
+commit 9b94eb654753eb6aac7d1f9468fcd966b32d6349
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Wed Apr 9 12:30:16 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 60 ++++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 38 insertions(+), 22 deletions(-)
+
+commit 8543e05341b8d8fa0e8a725a81e4009800705d79
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Wed Apr 9 08:28:03 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit dbcde841970d5318e501b47bc65f6a035cf6f62d
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Wed Apr 9 00:37:05 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+commit 6beb899a3850433a7afc1eaca9f5fc6d1af8727d
+Author: Peter Mráz <etkinator@gmail.com>
+Date:   Sat Apr 5 23:41:08 2014 +0200
+
+    Updated slovak translation
+
+ po/sk.po | 753 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 419 insertions(+), 334 deletions(-)
+
+commit cb1b228939bd3c887da88a71a3c48295286f73ff
+Author: Balázs Úr <urbalazs@src.gnome.org>
+Date:   Tue Apr 1 16:12:12 2014 +0200
+
+    Added localized picture
+
+ help/hu/figures/gnome-terminal.png | Bin 0 -> 13714 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 69f8a43b8fb7238b566d42fa12e4515ae228c823
+Author: Balázs Úr <urbalazs@src.gnome.org>
+Date:   Tue Apr 1 16:11:34 2014 +0200
+
+    Updated Hungarian translation
+
+ help/hu/hu.po | 136 +++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 67 insertions(+), 69 deletions(-)
+
+commit 8275ff8443a0dbca2c4755cf75d6098e09b37119
+Author: Pau Iranzo <paugnu@gmail.com>
+Date:   Tue Apr 1 00:11:05 2014 +0200
+
+    [l10n] Update Catalan translation
+
+ po/ca.po | 2716 +++++++++++++-------------------------------------------------
+ 1 file changed, 573 insertions(+), 2143 deletions(-)
+
+commit d558058bdf84735b5f0c05e75f93fd5a90125840
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Mon Mar 31 21:27:19 2014 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
+
+commit d3cc78231d48e32e56a7a2ddee44ca6fe22425c8
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Mon Mar 31 16:32:21 2014 +0000
+
+    Updated French translation
+
+ help/fr/fr.po | 86 ++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 46 insertions(+), 40 deletions(-)
+
+commit 35a76181dd0255a696fb4e2b22c62f14a1e5c8f4
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Wed Mar 26 20:12:27 2014 +0700
+
+    Updated Thai translation
+
+ po/th.po | 66 +++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 36 insertions(+), 30 deletions(-)
+
+commit 604e265765c2eb9f7791f0acb0bc04d3c3bc1bc4
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Mar 25 11:11:49 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 68 +++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 34 insertions(+), 34 deletions(-)
+
+commit bc21b016315503c537e2ff0b355b2a4845c2afe6
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Mar 25 10:57:38 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 80 +++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 39 insertions(+), 41 deletions(-)
+
+commit d4bf723b22dde9802a71793f43765694e8aa62b6
+Author: Claudio Arseni <claudio.arseni@ubuntu.com>
+Date:   Mon Mar 24 21:45:19 2014 +0100
+
+    [l10n] Updated Italian translation.
+
+ po/it.po | 716 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 399 insertions(+), 317 deletions(-)
+
+commit eb4a8e3d0b8c061b74494135c8e219fa9f084b6f
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Mon Mar 24 20:17:09 2014 +0000
+
+    PATH variables is out of scope in help, bug 698739
+
+ help/C/gs-execute-commands.page | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit 0845448fe52288898405a864361ad25fc2ef09bb
+Author: Sindhu S <sindhus@live.in>
+Date:   Fri Aug 30 02:18:04 2013 +0530
+
+    help: delete PATH help page stub, bug 698739
+    
+    Deleted prob-add-to-path.page.stub as discussed on bug page
+    is not required as instructions on how to add a location to
+    PATH is outside the scope of Terminal user help.
+
+ help/C/prob-add-to-path.page.stub | 71 ---------------------------------------
+ 1 file changed, 71 deletions(-)
+
+commit 57dd051cd54646e64cd0089c4eb6d301ecd937a3
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Mon Mar 24 18:42:46 2014 +0000
+
+    Use en dash in user docs date range, bug 726939
+
+ help/C/gs-tabs.page | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c79f71feaf525f5e7236934a94268f836e1af862
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:16:22 2014 +0100
+
+    appmenu: Fix action parameter
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=726942
+    (cherry picked from commit d58bc01a2e891e31e11f03eb0d6ae9b5ff260b2b)
+
+ src/terminal-appmenu.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7669c6766bb5be7e7f027af78265cc1a0446fba3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:15:12 2014 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fde13860e3ebbeb25571eca9988693fff516f4c6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:11:50 2014 +0100
+
+    build: Fix make distclean
+
+ Makefile.am | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 591e23d49d3d74af0112a674c6994d8de544962e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:03:18 2014 +0100
+
+    Version 3.12.0
+
+ NEWS         | 7 +++++++
+ configure.ac | 4 ++--
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+commit 8f39c77175dbc7fb412c40b2239c067cf61f95cc
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:03:01 2014 +0100
+
+    build: Bump vte req version to stable
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9032006c626cf9fca4a55dc42e6dc61a9ec303b8
+Author: Jiro Matsuzawa <jmatsuzawa@gnome.org>
+Date:   Mon Mar 24 20:07:59 2014 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 763 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 425 insertions(+), 338 deletions(-)
+
+commit 9f0ad57292851f23497635dee4972d47ec02b8ee
+Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
+Date:   Sun Mar 23 09:39:12 2014 +0100
+
+    Updated Serbian translation
+
+ po/sr.po       | 997 +++++++++++++++++++++++++++++++--------------------------
+ po/sr@latin.po | 997 +++++++++++++++++++++++++++++++--------------------------
+ 2 files changed, 1098 insertions(+), 896 deletions(-)
+
+commit a6c8a3d0cf752221ee7cc8ba989a1db6dc3b1b2c
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Sat Mar 22 20:12:28 2014 +0000
+
+    Updated German translation
+
+ help/de/de.po | 3301 +++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 2015 insertions(+), 1286 deletions(-)
+
+commit ecf31ee1eb8b161a470e320a1c1c22203277fd35
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Sat Mar 22 18:59:10 2014 +0000
+
+    Updated German translation
+
+ po/de.po | 505 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 293 insertions(+), 212 deletions(-)
+
+commit 6dcf007f791779da3200d78f5ece9477c66b3805
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Sat Mar 22 14:07:48 2014 +0100
+
+    Updated Basque language
+
+ po/eu.po | 1231 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 673 insertions(+), 558 deletions(-)
+
+commit dadda7c5228facf77ba0946640c1761ab1dd21f8
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sat Mar 22 10:03:32 2014 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 354 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 206 insertions(+), 148 deletions(-)
+
+commit ebd1984fed713b56b58b389b688f56219ae24798
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Fri Mar 21 15:02:12 2014 +0100
+
+    Fix tags in French help translation
+
+ help/fr/fr.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit b3519a790ce9ebffe263dfd00b28dc1bed8402d4
+Author: maria thukididu <marablack3@gmail.com>
+Date:   Fri Mar 21 10:24:00 2014 +0200
+
+    Updated Greek translation
+
+ po/el.po | 4443 ++++----------------------------------------------------------
+ 1 file changed, 219 insertions(+), 4224 deletions(-)
+
+commit 2c24d38187da659e1297182b9b1bd935a0a3ea70
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Mar 20 14:40:30 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b54311903d4552e0bf89cbcc98a8e444c01b096f
+Author: Ask H. Larsen <asklarsen@gmail.com>
+Date:   Wed Mar 19 22:41:50 2014 +0100
+
+    Updated Danish translation
+
+ po/da.po | 1037 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 582 insertions(+), 455 deletions(-)
+
+commit cb3717fbd8a90cd9dd58390cc6dfa2fc3d57e1c6
+Author: Attila Hammer <hammera@pickup.hu>
+Date:   Tue Mar 18 01:48:36 2014 +0000
+
+    Updated Hungarian translation
+
+ help/hu/hu.po | 1277 ++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 756 insertions(+), 521 deletions(-)
+
+commit 687c02663e19e0e211bdc6d36dd763ec84c2c827
+Author: A S Alam <apreet.alam@gmail.com>
+Date:   Mon Mar 17 16:51:02 2014 -0500
+
+    update Punjabi Translation 17March2014: Alam
+
+ po/pa.po | 1270 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 708 insertions(+), 562 deletions(-)
+
+commit b745dcf12595db13c273a6a19c39faf30eb3395a
+Author: Ville-Pekka Vainio <vpvainio@iki.fi>
+Date:   Sun Mar 16 20:36:29 2014 +0200
+
+    Finnish translation update by Jiri Grönroos
+
+ po/fi.po | 89 +++++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 57 insertions(+), 32 deletions(-)
+
+commit ed52404d530dd79e5f6f7d126736da3211f7f8e1
+Author: AlainLojewski <allomervan@gmail.com>
+Date:   Sun Mar 16 17:51:42 2014 +0000
+
+    Updated French translation
+
+ help/fr/fr.po | 579 ++++++++++++++++++++++++----------------------------------
+ 1 file changed, 237 insertions(+), 342 deletions(-)
+
+commit a7a271649666d32b1eba6c09045c4b4d5ae7abfc
+Author: Duarte Loreto <happyguy_pt@hotmail.com>
+Date:   Sat Mar 15 23:33:30 2014 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 771 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 415 insertions(+), 356 deletions(-)
+
+commit 803682732b2fe31ae2dca3665f42a79c52fbec56
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Sat Mar 15 22:17:42 2014 +0200
+
+    Updated Ukrainian translation
+
+ po/uk.po | 358 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 197 insertions(+), 161 deletions(-)
+
+commit 0667007dc5e838eac6c8b249f6105d925196e0f0
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   Sat Mar 15 18:15:37 2014 +0100
+
+    Updated French translation
+
+ po/fr.po | 82 +++++++++++++++++++++-------------------------------------------
+ 1 file changed, 27 insertions(+), 55 deletions(-)
+
+commit 0690436ded8559602c790cf1e02d740e0c8ff713
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Sat Mar 15 06:13:58 2014 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 692 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 375 insertions(+), 317 deletions(-)
+
+commit 829d3eddf6f66b4e28a73bd08a08d0ace60e9ca7
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Fri Mar 14 16:38:40 2014 +0100
+
+    Updated Polish translation
+
+ po/pl.po | 870 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 466 insertions(+), 404 deletions(-)
+
+commit 4a7f64ee3088be85096bf4ed39198d892e5805b2
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Mar 11 21:19:34 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 109 +++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 62 insertions(+), 47 deletions(-)
+
+commit 9384fb1ab6247e50cf7ed4a3f28e98c0d474980b
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Tue Mar 11 14:34:23 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit d193f8cbdc31b3de8bb2443d091616dc4452e6e2
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Tue Mar 11 13:09:59 2014 +0400
+
+    Updated Russian translation
+
+ po/ru.po | 386 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 223 insertions(+), 163 deletions(-)
+
+commit 776ad92b0f88cbcb112b81e6049e698a109ff415
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Mar 10 16:43:18 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 130 ++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 67 insertions(+), 63 deletions(-)
+
+commit aeb46519e3bf9995c77ca840d6954a8ba656bed4
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Mon Mar 10 15:15:06 2014 +0100
+
+    Fix tags in French help translation
+
+ help/fr/fr.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit ad78b721400fc3bffcb1a21d19b127699950217e
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Sun Mar 9 09:11:44 2014 +0400
+
+    Fixed Russian doc
+
+ help/ru/ru.po | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 648c1b45a367ee01cbce5fbea5ec1cf973566810
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sun Mar 9 12:51:55 2014 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 87 ++++++++++++++++++++++++++++++++++++-----------------------
+ po/zh_TW.po | 89 ++++++++++++++++++++++++++++++++++++++-----------------------
+ 2 files changed, 110 insertions(+), 66 deletions(-)
+
+commit d4589e8d403091cf599bc0aa4372eab084bc8214
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sat Mar 8 21:57:29 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 55 +++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 33 insertions(+), 22 deletions(-)
+
+commit 827c0a821bb64be12b7d56372c145eed2ca34f2b
+Author: Marek Černocký <marek@manet.cz>
+Date:   Sat Mar 8 20:51:45 2014 +0100
+
+    Fixed special char
+
+ help/cs/cs.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 745157046f8dc1675a5b943a67a642b1ced39e2e
+Author: Sphinx Jiang <yishanj13@gmail.com>
+Date:   Sat Mar 8 14:45:24 2014 +0000
+
+    Updated Chinese (China) translation
+
+ po/zh_CN.po | 84 ++++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 50 insertions(+), 34 deletions(-)
+
+commit 3155b3fd52a49b5a4780ee88de74912d36a963e7
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Sat Mar 8 12:10:06 2014 +0200
+
+    Updated Latvian translation
+
+ po/lv.po | 957 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 536 insertions(+), 421 deletions(-)
+
+commit 90e4fa2f9d62332394404138820b6e82375de351
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Fri Mar 7 23:26:46 2014 +0000
+
+    Add note to help about tab/window prefs
+
+ help/C/gs-tabs.page | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+commit 776b604790c76b9301e98e67e9955ae0784bf127
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Mar 7 16:47:06 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 393 ++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 245 insertions(+), 148 deletions(-)
+
+commit d150492ab72ffb77c9225599f33cc1526539aeaf
+Author: Gábor Kelemen <kelemeng@gnome.hu>
+Date:   Fri Mar 7 01:27:35 2014 +0000
+
+    Updated Hungarian translation
+
+ po/hu.po | 1286 +++++++++++++++++++-------------------------------------------
+ 1 file changed, 395 insertions(+), 891 deletions(-)
+
+commit 0c9eec8848db005802d6968549d970f2ec6fc317
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Mar 6 18:24:26 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 44 ++++++++++++++++++++++----------------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
+
+commit 091c5464151bbe5462fe639246a53b536fac5aa4
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Thu Mar 6 10:01:31 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 64 ++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 40 insertions(+), 24 deletions(-)
+
+commit 9df6fac92ec20eb28f84144e340f9efb3aedc648
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Thu Mar 6 09:52:34 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+commit 463a0f68a668957b89f41445b941b80da951abfc
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   Thu Mar 6 03:21:47 2014 +0900
+
+    Updated Korean translation
+
+ po/ko.po | 869 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 463 insertions(+), 406 deletions(-)
+
+commit b4bb52e7ac458a915a490126953e70921b780e43
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Wed Mar 5 16:58:56 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 60 ++++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 38 insertions(+), 22 deletions(-)
+
+commit ee3a5a8786d2e4c7dbc4b5c3e95b626100ee5a39
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Mar 5 06:59:48 2014 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 62 +++++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 37 insertions(+), 25 deletions(-)
+
+commit f22900e6c9e65ac0fd48f3e0342e9a363fee44d4
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Wed Mar 5 00:23:56 2014 +0100
+
+    Update French translation with file from gnome-3-10
+
+ help/Makefile.am |    2 +-
+ help/fr/fr.po    | 4028 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 4029 insertions(+), 1 deletion(-)
+
+commit bfdd25e857e331bffb4d2e263aa45d57f0173a21
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Tue Mar 4 20:14:41 2014 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 388 +++++++++++++++++++++++++++++++----------------------------
+ po/zh_TW.po | 392 ++++++++++++++++++++++++++++++++----------------------------
+ 2 files changed, 418 insertions(+), 362 deletions(-)
+
+commit 6509484d2b05348fab33c4159b33a7d21225afa5
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Mon Mar 3 22:57:02 2014 +0000
+
+    Updated French translation
+
+ po/fr.po | 861 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 478 insertions(+), 383 deletions(-)
+
+commit f5735134910796d0538fc4565d8c5b345b5f1199
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Mar 3 21:53:49 2014 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 46 ++++++++++++++++++++++++++--------------------
+ 1 file changed, 26 insertions(+), 20 deletions(-)
+
+commit 958fce64ba2cebf124f149599946d3796aacf58c
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Mon Mar 3 22:48:36 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 70 ++++++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 44 insertions(+), 26 deletions(-)
+
+commit fbc9e952deb9ba995c5180de5f3e21304d82c2f4
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 20:32:19 2014 +0000
+
+    window: Use "Terminal" in Tabs menu
+    
+    Reffer to tabs as "Terminal" because that's already done in the File
+    menu.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=725252
+
+ src/terminal-accels.c | 10 +++++-----
+ src/terminal-window.c | 10 +++++-----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+commit d37f22f12f09ffc0253842d2d410d871e3af5d92
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 3 03:07:16 2014 +0100
+
+    utils: Fix double-free in error path
+
+ src/terminal-util.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 4822d5b708535c068b9cdd1ea0dbc627aa8f5774
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Mar 3 17:44:25 2014 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 302 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 176 insertions(+), 126 deletions(-)
+
+commit 1c35b6ee7fc150961d23f424d927fc29885d2804
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Mon Mar 3 16:03:18 2014 +0700
+
+    Updated Thai translation
+
+ po/th.po | 285 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 166 insertions(+), 119 deletions(-)
+
+commit 7c54b85a0979c6aef861e5d9c7d6c1bc9ec9ca7f
+Author: Ville-Pekka Vainio <vpvainio@iki.fi>
+Date:   Sat Mar 1 20:16:35 2014 +0200
+
+    Finnish translation update by Jiri Grönroos
+
+ po/fi.po | 428 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 232 insertions(+), 196 deletions(-)
+
+commit 00440df2bef37cc8d32909452494dc0a936cdeae
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Fri Feb 28 22:29:27 2014 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 289 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 169 insertions(+), 120 deletions(-)
+
+commit e2a34629ab445f7bb858d3529d9308429c45315f
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Feb 27 22:51:50 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 285 +++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 154 insertions(+), 131 deletions(-)
+
+commit 204daea9e392a8433fdbbe93d5d9f19a8a2d23c2
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Thu Feb 27 23:01:58 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 33 +++++++++++++++++++++------------
+ 1 file changed, 21 insertions(+), 12 deletions(-)
+
+commit 873ff69400f8f5e72d86c0d03dacdf15985e3cd7
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Thu Feb 27 18:24:00 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 32 ++++++++++++++++++++++----------
+ 1 file changed, 22 insertions(+), 10 deletions(-)
+
+commit c4078cf67523c8c7cf21a137419d51b921878245
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Feb 27 12:42:53 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 34 ++++++++++++++++++++++------------
+ 1 file changed, 22 insertions(+), 12 deletions(-)
+
+commit 2f61577bb5ceb2fd118fa1ce9de077bab78a5660
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 19:23:18 2014 +0000
+
+    Add a help page about the dark theme variant
+
+ help/C/pref-theme.page | 42 ++++++++++++++++++++++++++++++++++++++++++
+ help/Makefile.am       |  1 +
+ 2 files changed, 43 insertions(+)
+
+commit 52813f5594c0d03a7b288e5f7c5edda0e2308741
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 19:16:07 2014 +0000
+
+    Add Ctrl shortcut detail for New Terminal menuitem
+
+ help/C/pref-tab-window.page | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit d51870ac9eb0bd6ea4d9736761ce32a65d0f3132
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 19:08:35 2014 +0000
+
+    Update tab help for 3.12
+    
+    Remove tab renaming, see bug 720693. Add tab preferences in new page.
+
+ help/C/gs-tabs.page         | 42 ++++++++++++++++++++++--------------------
+ help/C/pref-tab-window.page | 44 ++++++++++++++++++++++++++++++++++++++++++++
+ help/Makefile.am            |  1 +
+ 3 files changed, 67 insertions(+), 20 deletions(-)
+
+commit ba436f96dcc0814d681135752aa7292785d644fd
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 17:38:41 2014 +0000
+
+    Give terminal a better desc on h.g.o/users/
+
+ help/C/index.page | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 87208a69143a4d66380dec1f079a9c54c32666c1
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 17:35:42 2014 +0000
+
+    Update the introduction desc in help
+
+ help/C/introduction.page | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+commit da887cd0781b4a02dc346d603e26f841a26ba454
+Author: Marek Černocký <marek@manet.cz>
+Date:   Wed Feb 26 11:29:22 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 26 +++++++++++++++++++++-----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
+
+commit 47bfb3893deb6975851e635e9e949ad6b9596cf2
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Tue Feb 25 16:29:03 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 40 +++++++++++++++++++++++++---------------
+ 1 file changed, 25 insertions(+), 15 deletions(-)
+
+commit 201f63c603cff124af8df6a36ca7b759c875fb27
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Feb 25 13:55:11 2014 +0100
+
+    Added AppData file
+
+ gnome-terminal.appdata.xml.in | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit 7ca5feee1a7c72aaad66d07c63ded6b31e363e14
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:29:36 2014 +0100
+
+    build: Validate appdata file
+    
+    Add make target to validate appdata file. Not added to make check yet
+    since appdata-validate throws an invalid error on our appdata file.
+
+ Makefile.am  | 6 ++++++
+ configure.ac | 6 ++++++
+ 2 files changed, 12 insertions(+)
+
+commit c49f1fa47688ee4275965efba33318d499886211
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:29:36 2014 +0100
+
+    build: Validate desktop file on make check
+
+ Makefile.am  | 10 +++++++++-
+ configure.ac |  6 ++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+
+commit 67ac742580ac9ec685ddc3e12ccc5c77df725dd9
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:28:01 2014 +0100
+
+    appdata: Fix screenshots section
+
+ gnome-terminal.appdata.xml.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 9f321cbc9907acbf483bfd235031a8a4ad002738
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:11:41 2014 +0100
+
+    appdata: Add appdata file
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=708448
+
+ Makefile.am                   |  6 ++++++
+ gnome-terminal.appdata.xml.in | 38 ++++++++++++++++++++++++++++++++++++++
+ po/POTFILES.in                |  1 +
+ 3 files changed, 45 insertions(+)
+
+commit 1c0819bf7867b448fbf8a74ba507ccc5c1168d6e
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Mon Feb 24 23:11:02 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 288 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 164 insertions(+), 124 deletions(-)
+
+commit cfe2205a3c56ba6729630d609ffaffb4f643598c
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Feb 24 17:28:23 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 24 +++++++++---------------
+ 1 file changed, 9 insertions(+), 15 deletions(-)
+
+commit 15148b1195a4716e41d9007e9ff1e80da2d7bfae
+Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date:   Sun Feb 23 22:29:52 2014 +0100
+
+    Updated Belarusian translation.
+
+ po/be.po | 802 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 424 insertions(+), 378 deletions(-)
+
+commit b0777aab2f6b5afa101bfcfadc2ebb9b60533a5f
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Sun Feb 23 23:10:31 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 285 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 159 insertions(+), 126 deletions(-)
+
+commit d53a2d0696e754b247a4265d3f613ec64b23ead5
+Author: Wylmer Wang <wantinghard@gmail.com>
+Date:   Sat Feb 22 02:59:50 2014 +0000
+
+    Updated Chinese (China) translation
+
+ po/zh_CN.po | 418 +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 232 insertions(+), 186 deletions(-)
+
+commit ae1531b4a62e87f9ec87a6c58c6f5f8b1588734d
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Fri Feb 21 13:14:47 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 292 ++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 167 insertions(+), 125 deletions(-)
+
+commit 382c2a5b5b4463ede75f5bf25f0d8516922df008
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Feb 21 13:10:53 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 293 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 169 insertions(+), 124 deletions(-)
+
+commit 2d6274d060bf6f91caf1fb9879a2a1880ad73514
+Author: Marek Černocký <marek@manet.cz>
+Date:   Fri Feb 21 10:43:42 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 283 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 157 insertions(+), 126 deletions(-)
+
+commit 13e80d54f3dd89d1d16a4c0c82ef60e88fa482ff
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Feb 20 16:58:47 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 290 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 165 insertions(+), 125 deletions(-)
+
+commit eb051f32babd014ef17f8a9750d58f505c02ea03
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Feb 19 21:04:18 2014 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9850c8260dd90fd1b567b9977bb5bc1354583bd8
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Feb 19 21:00:31 2014 +0100
+
+    Version 3.11.3
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 53706e2b2e2866aed7b5cbda2f51d71ae5888fdd
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Feb 19 20:25:59 2014 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 281 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 157 insertions(+), 124 deletions(-)
+
+commit 9d9864a25d498955e0e54e35ba22e5dcb02db30d
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Feb 19 20:24:12 2014 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 6f9c33d9c417a24b0be0e05f081aab714e035c70
+Author: Colin Walters <walters@verbum.org>
+Date:   Tue Feb 18 20:46:42 2014 -0500
+
+    terminal-app: Use correct variable for search provider
+    
+    Fixes a crash on startup.
+
+ src/terminal-app.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4cce001f6b17e3b0831f724ea6040035b214519e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Feb 18 21:58:20 2014 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 0cace1aacb7506937d602392a15d154eadba4aab
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Feb 18 21:45:48 2014 +0100
+
+    build: Update distcheck configure flags
+
+ Makefile.am | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit bc1c105fb9c86d0c4cf046dd654cea0fa59408a4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Feb 18 21:40:01 2014 +0100
+
+    build: help: Use no-lc-dist yelp option
+    
+    Do not dist generated files!
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3b16112a597df84c93e8d6a7d48b12f05a034e17
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Feb 18 21:35:22 2014 +0100
+
+    Version 3.11.2
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 222239546871ff88a2fe7205e89eb1bf8b31c43a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Feb 18 21:33:02 2014 +0100
+
+    window: Don't make the about dialogue transient
+    
+    Since this inhibits moving it independently.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=720958
+
+ src/terminal-window.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fdd3d33b27a4f5793f887472090d9de158ec9dd2
+Author: Colin Walters <walters@verbum.org>
+Date:   Mon Feb 17 17:04:53 2014 -0500
+
+    build: Fix duplicate source reference when search provider is enabled
+    
+    We get a duplicate inclusion since previously $(BUILT_SOURCES)
+    was appended to $(gnome_terminal_server_SOURCES).
+    
+    This is a bit annoying with Automake - best practice here is to define
+    an intermediate variable.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=724584
+
+ src/Makefile.am | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+commit 03265039060e7952669ea4d157780180b2a8d0a1
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 17 22:09:25 2014 +0100
+
+    accels: Add find items to accel editor
+    
+    Also fix default accels.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=723758
+
+ src/org.gnome.Terminal.gschema.xml |  16 +++
+ src/terminal-accels.c              |  12 +++
+ src/terminal-search-dialog.h       |   8 +-
+ src/terminal-window.c              | 211 +++++++++++++++++++------------------
+ 4 files changed, 142 insertions(+), 105 deletions(-)
+
+commit 512e4bbf467d1eab91bba86dcd27f8852fc00273
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Feb 15 15:42:02 2014 +0100
+
+    profile: Fix dummy settings patch
+    
+    Fixes crash when cloning a profile.
+    
+    https://retrace.fedoraproject.org/faf/problems/1433130/
+    https://bugzilla.gnome.org/show_bug.cgi?id=724264
+
+ src/terminal-settings-list.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9cdb644a817b965fef810c14465da23a7e3084a4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Feb 15 15:42:01 2014 +0100
+
+    app: Add setting to disable shell integration
+    
+    When the search provider is enabled at build time it can still
+    be disabled at runtime.
+
+ src/org.gnome.Terminal.gschema.xml |  5 +++++
+ src/terminal-app.c                 | 32 ++++++++++++++++++--------------
+ src/terminal-schemas.h             |  1 +
+ 3 files changed, 24 insertions(+), 14 deletions(-)
+
+commit af888121614c17b79d775250bef4964b44ff0eac
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Feb 15 15:42:01 2014 +0100
+
+    build: generated files must be nodist
+
+ src/Makefile.am | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit fc2e35ed344bcc730e67e9410dace5017430f3b9
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Feb 15 15:42:01 2014 +0100
+
+    build: Check for the search provider interface definition file
+    
+    Abort configure if the search provider is enabled but the interface
+    definition file isn't present, instead of succeeding configure but
+    aborting make later on.
+
+ configure.ac | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 47615bff5a716ccd193e85666c38e6cdc9d13fb9
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Feb 15 15:42:34 2014 +0100
+
+    Revert "server: Set no-argb env var"
+    
+    This was reverted from gtk+ and therefore the env var doesn't do anything.
+    
+    This reverts commit a62094edc6427051cf5d398e1566cddbfaaef049.
+
+ src/server.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 1fff4c5b18368aa14ffb51a85761a2d7ab2baaf3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Feb 15 15:42:01 2014 +0100
+
+    server: Set no-argb env var
+    
+    No reason to make use this in g-t by default, and argb's previously been the
+    cause of reports of unreasonably high memory use, and crashes.
+
+ src/server.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 640a383b53177d1e276327ed86caea92d727e5f5
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Mon Feb 17 20:34:20 2014 +0400
+
+    "ru" (Russian language) added to HELP_LINGUAS in help/Makefile.am
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1ed9011c9ba87e74c97e3f7808dd70a365720352
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Mon Feb 17 20:34:08 2014 +0400
+
+    Updated Russian translation
+
+ help/ru/ru.po | 3773 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 3773 insertions(+)
+
+commit 0f90b101619e7e1999163e12ab343fff796a3766
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Sun Feb 16 08:59:22 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 1347 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 701 insertions(+), 646 deletions(-)
+
+commit 468a18f5e21b42ee0efedf3d86203fbc4e02807e
+Author: William Jon McCann <william.jon.mccann@gmail.com>
+Date:   Fri Jan 24 09:30:21 2014 -0500
+
+    Center tab labels
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=722918
+
+ src/terminal-tab-label.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit a0e60e5e0772ceb059ecf13f1f0bc8e3d2c5879c
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Tue Feb 11 23:23:58 2014 +0200
+
+    Updated Ukrainian translation
+
+ po/uk.po | 990 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 543 insertions(+), 447 deletions(-)
+
+commit 3481549de45886068b99e9a26db6c3df31933e1b
+Author: Marek Černocký <marek@manet.cz>
+Date:   Sat Feb 8 23:46:32 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 263 ++++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 175 insertions(+), 88 deletions(-)
+
+commit 7bd98ac3e039eb91725698a55620e23c08a8ec9b
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Feb 7 14:47:57 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 276 ++++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 184 insertions(+), 92 deletions(-)
+
+commit 58ad6ef8a5a4b16eee4127f6d8ef8942a2aae0ff
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Feb 7 11:38:49 2014 +0100
+
+    Fixed typo in string
+
+ help/C/prob-reset.page | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2ea0bdd828b6903c3e769ab7e04f92edf7797c69
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Thu Feb 6 21:32:43 2014 +0100
+
+    Add page prob-reset.page to help/Makefile.am
+    
+    Else commits are useless :)
+
+ help/C/{prob-reset.page.page => prob-reset.page} | 0
+ help/Makefile.am                                 | 1 +
+ 2 files changed, 1 insertion(+)
+
+commit 2d082c4443ea85bf4a63954e6242ae00765cf407
+Author: Baptiste Mille-Mathias <baptistem@gnome.org>
+Date:   Thu Feb 6 13:44:55 2014 +0100
+
+    Finish the reset terminal page.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=698735
+
+ help/C/{prob-reset.page.stub => prob-reset.page.page} | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit e2c1ecfa89bc4ffc342048372c08dd8daf2c2d28
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Thu Feb 6 21:07:39 2014 +0100
+
+    Replace deprecated mallard markup and namespace.
+    
+    replace namespace experimental/ui/ with ui/1.0/ and value yes/no with
+    true/false
+
+ help/C/adv-keyboard-shortcuts.page | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit ae67be1fb9313b18b42cd13947afcabdac0ccbe5
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Thu Feb 6 15:50:40 2014 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 800 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 422 insertions(+), 378 deletions(-)
+
+commit 2588d6245b8cea8f5bfb953072f19070956eae8f
+Author: Shankar Prasad <prasad.mvs@gmail.com>
+Date:   Wed Feb 5 16:33:37 2014 +0530
+
+    updated kn.po
+
+ po/kn.po | 1138 +++++++++-----------------------------------------------------
+ 1 file changed, 153 insertions(+), 985 deletions(-)
+
+commit a215df3cfdc5b169999f27664f054c2f4a5fefef
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Wed Feb 5 12:53:00 2014 +0700
+
+    Updated Thai translation
+
+ po/th.po | 334 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 176 insertions(+), 158 deletions(-)
+
+commit e7957604b456b4657ca2542bef447290b59409d2
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sat Feb 1 07:26:17 2014 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 821 +++++++++++++++++++++++++++++++----------------------------
+ po/zh_TW.po | 825 ++++++++++++++++++++++++++++++++----------------------------
+ 2 files changed, 878 insertions(+), 768 deletions(-)
+
+commit c6f9736c48fdf87677d4ffe3763a1daabd694472
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Fri Jan 31 22:56:11 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 162 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 77 insertions(+), 85 deletions(-)
+
+commit c1b12f69f466c62ba0c5259ad0b5a354fca0276a
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Thu Jan 30 17:11:47 2014 +0000
+
+    Resetting a terminal is rather a problem than a preference page.
+
+ help/C/{pref-reset.page.stub => prob-reset.page.stub} | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+commit 04654feabfe1582c4c526dd157a0b70a588bd9b5
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Wed Jan 22 16:18:07 2014 +0100
+
+    server: Add a search provider
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711075
+
+ configure.ac                           |  24 ++
+ src/Makefile.am                        |  26 ++
+ src/gnome-terminal-search-provider.ini |  20 ++
+ src/terminal-app.c                     |  28 +++
+ src/terminal-debug.c                   |   1 +
+ src/terminal-debug.h                   |   3 +-
+ src/terminal-defines.h                 |   2 +
+ src/terminal-search-provider.c         | 446 +++++++++++++++++++++++++++++++++
+ src/terminal-search-provider.h         |  51 ++++
+ 9 files changed, 600 insertions(+), 1 deletion(-)
+
+commit 6a25d0388fcfc7d464ec73e67eedf73413df709a
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Wed Jan 22 16:21:55 2014 +0100
+
+    app: screen: Add API to map UUIDs to screens
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711075
+
+ src/terminal-app.c    | 34 ++++++++++++++++++++++++++++++++++
+ src/terminal-app.h    |  9 +++++++++
+ src/terminal-screen.c | 18 ++++++++++++++++++
+ 3 files changed, 61 insertions(+)
+
+commit 6c22fbb564f9f56c8c1a23b844f5c80772613045
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Tue Dec 10 17:14:29 2013 +0100
+
+    screen: Allow getting the cmdline of the current foreground process
+    
+    This would further enhance our ability to search based on the current
+    foreground process.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711075
+
+ src/terminal-screen.c | 28 ++++++++++++++++++++++++----
+ src/terminal-screen.h |  3 ++-
+ src/terminal-window.c |  4 ++--
+ 3 files changed, 28 insertions(+), 7 deletions(-)
+
+commit 8c961a1c914eb1c068ac21bd3ba8fdc28c4ba300
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Jan 27 13:55:17 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 138 +++++-----------------------------------------------------
+ 1 file changed, 10 insertions(+), 128 deletions(-)
+
+commit 529de1076676a34c9bbe7308ca5acc116fc8ce02
+Author: Marek Černocký <marek@manet.cz>
+Date:   Mon Jan 27 08:00:21 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 97 +++++------------------------------------------------------
+ 1 file changed, 8 insertions(+), 89 deletions(-)
+
+commit e9e814c947993227c06219d220e6bec2617c33d4
+Author: Marek Černocký <marek@manet.cz>
+Date:   Mon Jan 27 07:53:19 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 1962 ++++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 1234 insertions(+), 728 deletions(-)
+
+commit 801de3e718066b35b7b1af53df42e96fa4dcafde
+Author: Marek Černocký <marek@manet.cz>
+Date:   Sun Jan 26 19:51:49 2014 +0100
+
+    Fixed typo in the tag atribute
+
+ help/C/app-zoom.page | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit dad8120230019049e8667b85b9d0e04bf16407ac
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Sun Jan 26 00:20:54 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 153 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 79 insertions(+), 74 deletions(-)
+
+commit b8e35a23a7fd27fdc4d47975c999351cd3f6aa50
+Author: Nilamdyuti Goswami <ngoswami@redhat.com>
+Date:   Thu Jan 23 20:42:14 2014 +0530
+
+    Assamese translation updated
+
+ po/as.po | 519 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 265 insertions(+), 254 deletions(-)
+
+commit 92d16d479d5aab1f9749ad467b8665dd6afb7f85
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Tue Jan 21 20:57:50 2014 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 276 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 147 insertions(+), 129 deletions(-)
+
+commit 5f0457ba34b0b0d36162146f616061050cf1ad3f
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Jan 20 22:59:26 2014 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 151 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 78 insertions(+), 73 deletions(-)
+
+commit bbbb7a148c3a529eaae6ffb4acfde61c884f8c14
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Mon Jan 20 21:38:30 2014 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 154 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 79 insertions(+), 75 deletions(-)
+
+commit 28794b63ef3b6628a47b083d9da7abdb87d3ed1e
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Sun Jan 19 20:00:53 2014 -0200
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 141 +++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 73 insertions(+), 68 deletions(-)
+
+commit d11131943b917fe2475125f9a16931c7d4c22bfb
+Author: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>
+Date:   Wed Jan 15 15:11:22 2014 +0200
+
+    Finnish translation update
+
+ po/fi.po | 816 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 428 insertions(+), 388 deletions(-)
+
+commit 7164d06bb7708cb80c5e90b0510720dd729bdc57
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Jan 14 13:02:08 2014 +0100
+
+    profile: editor: Make colour widgets insensitive when system colours are enabled
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=722153
+
+ src/profile-editor.c       |  15 +-
+ src/profile-preferences.ui | 458 +++++++++++++++++++++++----------------------
+ 2 files changed, 248 insertions(+), 225 deletions(-)
+
+commit 250d5a8e214410b9d77dd11ef82d3c9c1f4f02c1
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Tue Jan 14 15:45:27 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 152 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 78 insertions(+), 74 deletions(-)
+
+commit 75ff60dc09bf9e126cc236b729cce644dd1ea3b4
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Jan 14 10:30:20 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 797 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 407 insertions(+), 390 deletions(-)
+
+commit a4c62296acb0bcf83da2679826258fd4eb75672d
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Jan 13 14:14:14 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 152 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 78 insertions(+), 74 deletions(-)
+
+commit 5677cb39e63bf57bc667d2783458b94049155ca7
+Author: Dimitris Spingos <dmtrs32@gmail.com>
+Date:   Sun Jan 12 20:06:04 2014 +0200
+
+    Updated Greek translation
+
+ po/el.po | 133 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 69 insertions(+), 64 deletions(-)
+
+commit b4d7416f084bc8be6b8d9c78f91e6c760d5de534
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Sun Jan 12 14:54:57 2014 +0100
+
+    profile: Add Solarized color scheme.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=655030
+
+ src/profile-editor.c       | 31 ++++++++++++++++++++++++++-----
+ src/profile-preferences.ui |  3 +++
+ 2 files changed, 29 insertions(+), 5 deletions(-)
+
+commit 22f700153cd2851b2d23a0a311ee0ffe23591e34
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sun Jan 12 00:16:13 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 769 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 394 insertions(+), 375 deletions(-)
+
+commit 06b87186bbf964aa5260bd8cb397f4835cde25c9
+Author: Dimitris Spingos <dmtrs32@gmail.com>
+Date:   Sat Jan 4 22:31:06 2014 +0200
+
+    Updated Greek translation
+
+ po/el.po | 260 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 138 insertions(+), 122 deletions(-)
+
+commit 0c079d791187ca3b7de938d359a6addafba44772
+Author: Tong Hui <tonghuix@gmmail.com>
+Date:   Sat Dec 28 17:20:52 2013 +0800
+
+    Update Chinese simplified translation
+
+ po/zh_CN.po | 215 +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 117 insertions(+), 98 deletions(-)
+
+commit 4957837439ffb6fe304324e9ec27d0673786a5f5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Dec 27 20:12:01 2013 +0100
+
+    build: Drop support for dconf 0.12
+
+ configure.ac                 | 11 +----------
+ src/terminal-settings-list.c | 21 ---------------------
+ 2 files changed, 1 insertion(+), 31 deletions(-)
+
+commit 8a06ef30f4b5dcf3e5f08538616fffd80f728251
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Fri Dec 27 11:09:36 2013 -0200
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 220 +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 120 insertions(+), 100 deletions(-)
+
+commit dfadc95bd4e694e8029892eac4ddb55cfe00169f
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Dec 26 00:45:12 2013 +0100
+
+    all: Remove glib version checks
+    
+    We depend on a newer version already, so just remove the checks.
+
+ src/client.c    | 4 ----
+ src/migration.c | 4 ----
+ src/server.c    | 4 ----
+ src/terminal.c  | 4 ----
+ 4 files changed, 16 deletions(-)
+
+commit ec639cb206633ec2ba7357b9cc9573613c6f34b4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Dec 25 22:44:03 2013 +0100
+
+    screen: container: Use a GtkOverlay for the info bar
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=712548
+
+ src/terminal-screen-container.c |  9 ++++-----
+ src/terminal-screen-container.h |  4 ++--
+ src/terminal-screen.c           | 12 ++++++++----
+ 3 files changed, 14 insertions(+), 11 deletions(-)
+
+commit 41eb2ec73653adc5fd36fa73cebdc8a6169f8516
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Dec 25 22:32:39 2013 +0100
+
+    screen: container: Remove scrolled window code
+    
+    It's never worked anyway.
+
+ src/terminal-screen-container.c | 55 -----------------------------------------
+ 1 file changed, 55 deletions(-)
+
+commit 8b3dad01915a10372dfa95c94d3197238ad1c0c3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Dec 25 22:28:35 2013 +0100
+
+    screen: container: Fix parent class
+
+ src/terminal-screen-container.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 87ef72e49379f5a509509c52de64162e942b4c07
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Mon Dec 23 20:08:15 2013 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 600 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 307 insertions(+), 293 deletions(-)
+
+commit 639a0a847808ca0303102017a4e1bb794b739906
+Author: Benjamin Steinwender <b@stbe.at>
+Date:   Sun Dec 22 18:32:14 2013 +0100
+
+    Updated German translation
+
+ po/de.po | 807 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 423 insertions(+), 384 deletions(-)
+
+commit 2145d6d2a5a1f7d390c6a4da563a440aab116935
+Author: Krishnababu Krothapalli <kkrothap@redhat.com>
+Date:   Thu Dec 19 21:00:33 2013 +0530
+
+    Updated Telugu Translations
+
+ po/te.po | 1223 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 634 insertions(+), 589 deletions(-)
+
+commit cbbc8422c46d24defb6bb6e786e52c46d6cfa419
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Thu Dec 19 14:37:08 2013 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 253 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 137 insertions(+), 116 deletions(-)
+
+commit 8124e72f5f666f903af2e125559d7c9c53d77a55
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Dec 19 14:13:07 2013 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 250 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 135 insertions(+), 115 deletions(-)
+
+commit 019d38f88c295c53ee3d1c2d1c48f550a145dfed
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Thu Dec 19 01:11:02 2013 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 315 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 164 insertions(+), 151 deletions(-)
+
+commit 4103f46d3f218b79047f2c6d912057416af308af
+Author: Yosef Or Boczko <yoseforb@gmail.com>
+Date:   Wed Dec 18 00:36:31 2013 +0200
+
+    Updated Hebrew translation
+    
+    Signed-off-by: Yosef Or Boczko <yoseforb@gmail.com>
+
+ po/he.po | 497 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 255 insertions(+), 242 deletions(-)
+
+commit e67e8e88d8975d6af851b3fa52c231b3c401f074
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Tue Dec 17 22:00:03 2013 +0100
+
+    Remove last bits of GTK_STOCK
+    
+    Remove GTK_STOCK items in favor of standard icon name.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=720637
+
+ src/terminal-window.c | 40 ++++++++++++++++++++--------------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
+
+commit 1962b0a4b275d60008e4c65817005ede2b80940d
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Mon Dec 16 22:34:39 2013 +0100
+
+    Replace deprecated GTK_STOCK buttons with strings
+    
+    GTK_STOCK buttons are now deprecated starting GTK 3.10 and should be
+    replaced by simple strings.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=720565
+
+ src/terminal-window.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 143000641a4a1368f3f55de21581dede1c48d52e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Dec 16 22:51:01 2013 +0100
+
+    schema: Typo fix
+    
+    From commit 53f322af985fd244a1a9a7a67c79e5263d0fc090.
+
+ src/org.gnome.Terminal.gschema.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 53f322af985fd244a1a9a7a67c79e5263d0fc090
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Mon Dec 16 22:29:36 2013 +0100
+
+    profile: Add rewrap-on-resize pref
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=336238
+
+ configure.ac                       |  2 +-
+ src/org.gnome.Terminal.gschema.xml |  4 ++++
+ src/profile-editor.c               |  4 ++++
+ src/profile-preferences.ui         | 16 ++++++++++++++++
+ src/terminal-schemas.h             |  1 +
+ src/terminal-screen.c              |  4 ++++
+ 6 files changed, 30 insertions(+), 1 deletion(-)
+
+commit e1a88612671799d7fdfc8248260c13b214383c87
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Tue Dec 10 15:31:40 2013 -0600
+
+    Revert "appmenu: Use standard order for about, help, quit"
+    
+    This reverts commit 457ad7f70120f83e7a8009d57017a342478433d1.
+    
+    We wound up standardizing on the opposite...
+    
+    https://wiki.gnome.org/Design/HIG/ApplicationMenus
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=720214
+
+ src/terminal-appmenu.ui | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit c089b0583ddd5acc3e9d72c45f94747e6316239a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Dec 12 13:26:11 2013 +0100
+
+    screen: Allow man: links containing hyphens
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=1040713
+
+ src/terminal-screen.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 77642526ff5fdaa593c07a5c1353b74e15182884
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Thu Dec 12 01:33:23 2013 -0200
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+commit d52fe59fb0fadc33dcb16fbdcb4a568ec72eae94
+Author: Ryan Lortie <desrt@desrt.ca>
+Date:   Mon Dec 9 12:20:40 2013 -0500
+
+    Use g_get_current_dir()
+    
+    get_current_dir_name() is a non-portable GNU extension.  Use
+    g_get_current_dir() instead, now that it does the same thing (ie:
+    respecting the value of PWD).
+    
+    Bump GLib dependency to make sure we get the new version of the
+    function.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=705902
+
+ configure.ac   |  2 +-
+ src/client.c   | 13 ++-----------
+ src/terminal.c | 10 ++--------
+ 3 files changed, 5 insertions(+), 20 deletions(-)
+
+commit 389d0aede9b5fee0362c869938ffdbfb8b6a5c0d
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Fri Dec 6 17:41:10 2013 +0100
+
+    screen: Allow getting the name of the current foreground process
+    
+    This would be useful in searching based on the current foreground
+    process.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711075
+
+ src/terminal-screen.c | 21 +++++++++------------
+ src/terminal-screen.h |  3 ++-
+ src/terminal-window.c |  4 ++--
+ 3 files changed, 13 insertions(+), 15 deletions(-)
+
+commit 62237c6523e24a786827968abf0a36ee0e8da8ce
+Author: Tong Hui <tonghuix@gmmail.com>
+Date:   Sat Dec 7 14:38:58 2013 +0800
+
+    Update Chinese simplified translation
+
+ po/zh_CN.po | 1067 +++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 554 insertions(+), 513 deletions(-)
+
+commit 8ce13ff027512ae27d5c787382db1e15427a6b13
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Dec 6 21:59:52 2013 +0100
+
+    screen: Fix word-chars setting
+
+ src/terminal-screen.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit d8d71e0c1e7a8fb723becaa270334171e6730fc2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Dec 6 21:38:20 2013 +0100
+
+    all: Do not use '&s' format with g_variant_get
+    
+    Fixes https://bugzilla.gnome.org/show_bug.cgi?id=708198 and
+    https://bugzilla.redhat.com/show_bug.cgi?id=1036374 .
+
+ src/migration.c              |  7 ++++---
+ src/terminal-accels.c        |  8 ++++----
+ src/terminal-app.c           |  8 ++++----
+ src/terminal-prefs.c         |  8 ++++----
+ src/terminal-profiles-list.c | 16 +++++++---------
+ src/terminal-screen.c        | 18 ++++++++++--------
+ src/terminal-util.c          | 22 +++++++++++-----------
+ src/terminal-window.c        |  4 ++--
+ 8 files changed, 46 insertions(+), 45 deletions(-)
+
+commit dfaf8c172757cbe0dbcf76d983a76ad1ae32ba95
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Mon Dec 2 21:20:52 2013 -0200
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 393 ++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 194 insertions(+), 199 deletions(-)
+
+commit bff21832864d2314d1b5bf0094759707b69402a6
+Author: Shantha kumar <shkumar@redhat.com>
+Date:   Mon Nov 25 14:13:47 2013 +0530
+
+    Tamil Translations Updated
+
+ po/ta.po | 906 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 488 insertions(+), 418 deletions(-)
+
+commit fd63ba22a03f7b9aafaa0b811c09a4443261632f
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Thu Nov 21 21:19:43 2013 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 742 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 367 insertions(+), 375 deletions(-)
+
+commit 0da493554b232ae60775f550e786384aece7459e
+Author: Dominique Leuenberger <dimstar@opensuse.org>
+Date:   Thu Nov 21 19:31:02 2013 +0100
+
+    terminal-nautilus: initiate ssh with -t
+    
+    If not done, then most of the time no tty is allocated and users
+    are presented with a terminal which went perfectly to the directory
+    requested, but as there is no prompt presented, it appears to be
+    hanging there.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=712838
+
+ src/terminal-nautilus.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 1bcfca91f88ed041f390f4a5e2d1fea3e78ef46e
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Wed Nov 20 10:56:10 2013 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 2077 +++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 1341 insertions(+), 736 deletions(-)
+
+commit 3edc992db24195d90723aeb7ec94340d81e334ed
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Tue Nov 19 16:45:13 2013 +0100
+
+    client: legacy: We use application IDs instead of bus names
+    
+    Fallout from abc15a8b1da35910c97f4b8542600f2e81bbbc28
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=712691
+
+ src/client.c           | 4 ++--
+ src/terminal-options.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit c5d6954cafc7bbd011997b1395e4d5f309c4a620
+Author: Παπαναστασίου Νικολέτα <papa.nikoleta@ymail.com>
+Date:   Tue Nov 19 09:58:21 2013 +0200
+
+    Updated Greek translation
+
+ help/el/el.po | 2051 +++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 1254 insertions(+), 797 deletions(-)
+
+commit c5a5c88905e00417c63f2a2bb6f9800500c2ecc4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Nov 18 21:58:27 2013 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 54d838600661a54efacc97fe2d0157cda2c05f90
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Nov 18 21:49:54 2013 +0100
+
+    Version 3.11.0
+
+ NEWS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit a9e146499398e97f987e1d21439b92579fd224ff
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Nov 18 19:23:53 2013 +0100
+
+    screen: Simplify code by using cleanup attribute
+
+ src/terminal-screen.c | 17 ++++++-----------
+ 1 file changed, 6 insertions(+), 11 deletions(-)
+
+commit 41131c69132b2f6f089dd438d322f87d7e1ab317
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Mon Nov 18 19:13:23 2013 +0100
+
+    screen: Only show right-click menu when the application hasn't handled the event itself
+    
+    vte now sends the event to the terminal application (in mouse tracking mode). In that
+    case, don't pop up the gnome-terminal popup menu.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=13299
+
+ src/terminal-screen.c | 53 ++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 38 insertions(+), 15 deletions(-)
+
+commit 8655477c7717fafb505ad990984d9c5ba639b12d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Oct 13 23:16:23 2013 +0200
+
+    screen: Change arbitraty constant
+    
+    Doesn't matter which number we use, but don't use a nonobious choice.
+
+ src/terminal-screen.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 058cb6ec6969de4f571ae15b5f99d6308e15c223
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 14 21:26:47 2013 +0200
+
+    build: Bump vte dep
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fac213a468aace86b6d64787000c6dd07d56b03e
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Mon Nov 18 15:03:08 2013 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 478 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 231 insertions(+), 247 deletions(-)
+
+commit 1a996aacfe390028c6d25691403ebece664a13e6
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Sat Nov 16 18:27:48 2013 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 528 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 257 insertions(+), 271 deletions(-)
+
+commit 2660ec89cfd7616017557fbee8aa774658e38cc4
+Author: Efstathios Iosifidis <iosifidis@opensuse.org>
+Date:   Fri Nov 15 11:54:06 2013 +0200
+
+    Updated Greek translation
+
+ po/el.po | 157 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 76 insertions(+), 81 deletions(-)
+
+commit 0280d70745f2fcf3b839b9e2262ea93002efff36
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Nov 14 21:08:00 2013 +0100
+
+    prefs: Replace scrollbar policy combo with checkbox
+    
+    The combo was a leftover from when it contained more options, and from the
+    remaining three choices, the "Visible only when necessary" option was
+    unimplemented. Replace the combo box with a simple checkbox.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=712331
+
+ src/profile-editor.c       | 29 ++++++++++++++++++---
+ src/profile-preferences.ui | 64 ++++++++++++----------------------------------
+ 2 files changed, 41 insertions(+), 52 deletions(-)
+
+commit 630fb930ecbb0bf23d34a22585deaefc1fcb1a09
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Wed Nov 13 14:22:24 2013 +0700
+
+    Updated Thai translation.
+
+ po/th.po | 872 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 424 insertions(+), 448 deletions(-)
+
+commit 3b6a43008a7a6e0c9aa2351acb9fb74eea6201f2
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Mon Nov 11 22:48:29 2013 +0100
+
+    Fix various errors pointed by Gabor Kelemen
+    
+    Fixed errors and inconsistencies reported in bug 711164.
+
+ help/C/adv-keyboard-shortcuts.page | 15 +++++++--------
+ help/C/app-fonts.page              | 12 +++++-------
+ help/C/app-terminal-sizes.page     |  5 ++---
+ help/C/app-zoom.page               |  4 ++--
+ help/C/gs-tabs.page                | 19 ++++++++++---------
+ help/C/legal.xml                   |  2 +-
+ help/C/overview.page               | 17 +++++++++--------
+ help/C/pref-bell.page              |  5 ++---
+ help/C/pref-custom-command.page    |  2 +-
+ help/C/pref-custom-exit.page       |  8 ++++----
+ help/C/pref-keyboard-access.page   |  5 ++---
+ help/C/pref-menubar.page           |  5 ++---
+ help/C/pref-profiles.page          | 16 +++++++++-------
+ help/C/pref-scrolling.page         |  8 ++++----
+ help/C/txt-copy-paste.page         |  8 ++++----
+ help/C/txt-links.page              |  2 +-
+ 16 files changed, 65 insertions(+), 68 deletions(-)
+
+commit ef111e4343ded462629f865a666d59adfec83d7d
+Author: Aruna Sankaranarayanan <arunasank@src.gnome.org>
+Date:   Mon Nov 11 23:51:27 2013 +0530
+
+    Fix broken links after small fixes for bug 711164
+
+ help/C/app-zoom.page | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2497c2a5376658008fb3f151dbfbcc87fe63f866
+Author: Aruna Sankaranarayanan <arunasank@src.gnome.org>
+Date:   Mon Nov 11 23:53:58 2013 +0530
+
+    Minor fixes for bug 711164
+
+ help/C/adv-keyboard-shortcuts.page | 17 ++++++++---------
+ help/C/index.page                  |  2 +-
+ 2 files changed, 9 insertions(+), 10 deletions(-)
+
+commit f421574b641652e657da2842e55b5af95e9bbc7d
+Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+Date:   Mon Nov 11 19:11:06 2013 +0100
+
+    replace appearence with appearance
+
+ help/C/app-colors.page         | 2 +-
+ help/C/app-cursor.page         | 2 +-
+ help/C/app-fonts.page          | 2 +-
+ help/C/app-fullscreen.page     | 2 +-
+ help/C/app-terminal-sizes.page | 2 +-
+ help/C/app-zoom.page           | 2 +-
+ help/C/index.page              | 4 ++--
+ 7 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 00803a83544c5600ebf0367ab7e7e83a624b4430
+Author: Efstathios Iosifidis <iosifidis@opensuse.org>
+Date:   Tue Nov 5 10:44:28 2013 +0200
+
+    Updated Greek translation
+
+ po/el.po | 819 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 441 insertions(+), 378 deletions(-)
+
+commit 9f0ea975610f761c4392f4c06547073bdf486aa8
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Fri Nov 1 16:30:35 2013 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 600 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 312 insertions(+), 288 deletions(-)
+
+commit 1f0de2297964068ec5d2cb5e1963bd8151e550e7
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Thu Oct 31 20:10:40 2013 +0700
+
+    Updated Thai translation.
+
+ po/th.po | 759 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 403 insertions(+), 356 deletions(-)
+
+commit fc6acd730f153b2770327694df871dd705be2dcb
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Wed Oct 30 23:46:13 2013 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 893 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 439 insertions(+), 454 deletions(-)
+
+commit c55fc4a27131f99c6506a7c69eb168a9f6fcf1d5
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Oct 25 17:41:04 2013 +0200
+
+    Updated Spanish translation
+
+ po/es.po | 448 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 241 insertions(+), 207 deletions(-)
+
+commit c0b258d1908c2c8a07fc8b11cbedac2aba97fa6b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Oct 23 15:14:37 2013 +0200
+
+    build: Fix -Wuninitialized warnings
+    
+    Introduced by cleanup patches.
+
+ src/profile-editor.c         | 2 +-
+ src/terminal-info-bar.c      | 2 +-
+ src/terminal-settings-list.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 97c1bec23237e5cb40d5e8a7c92c485433bd22aa
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    window: Use the cleanup attribute to clean up
+
+ src/terminal-window.c | 66 ++++++++++++++++++---------------------------------
+ 1 file changed, 23 insertions(+), 43 deletions(-)
+
+commit 11a556e484d4a9eb2303fdf36d858cfd70205249
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    profile: Use the cleanup attribute to clean up
+
+ src/terminal-settings-list.c | 69 +++++++++++++++++++-------------------------
+ 1 file changed, 29 insertions(+), 40 deletions(-)
+
+commit 7241c7a1bd2359f1933153c730fc2f29b4ecc642
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    search: Use the cleanup attribute to clean up
+
+ src/terminal-search-dialog.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 9d84de0ebce22543b38e65f87ba800b6e9c53841
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    screen: Use the cleanup attribute to clean up
+
+ src/terminal-screen.c | 20 ++++++--------------
+ 1 file changed, 6 insertions(+), 14 deletions(-)
+
+commit a7e40d3684b783dbad5881acf763030e2cf05305
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    profiles: Use the cleanup attribute to clean up
+
+ src/terminal-profiles-list.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 046cdec97212e3f10dbfbbec7c72199c97118666
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    prefs: Use the cleanup attribute to clean up
+
+ src/terminal-prefs.c | 69 +++++++++++++++-------------------------------------
+ 1 file changed, 20 insertions(+), 49 deletions(-)
+
+commit 04d516c0f76a421d54128e7cb3a3bd8fa50e98d5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    widgets: Use the cleanup attribute to clean up
+
+ src/terminal-info-bar.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 7bfc7cdd32af8329cfd968e0e0c9ed1524827b4d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    widgets: Use the cleanup attribute to clean up
+
+ src/terminal-close-button.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 285db591ac90730557d959524e58d8a0def27ed2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    utils: Use the cleanup attribute to clean up
+
+ src/terminal-client-utils.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit 03eb7fd5916103f461d128dbebdcf1f65f3792c4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    app: Use the cleanup attribute to clean up
+
+ src/terminal-app.c | 31 ++++++++++++-------------------
+ 1 file changed, 12 insertions(+), 19 deletions(-)
+
+commit 35d609891d5c4b5f246448a3962e1a5de95e1957
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    accels: Use the cleanup attribute to clean up
+
+ src/terminal-accels.c | 30 ++++++++++++------------------
+ 1 file changed, 12 insertions(+), 18 deletions(-)
+
+commit a7c787e6195c6fd5863582ca482373b060c892b6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    profile: editor: Use the cleanup attribute to clean up
+
+ src/profile-editor.c | 36 +++++++++++-------------------------
+ 1 file changed, 11 insertions(+), 25 deletions(-)
+
+commit 0f0ca8d2aea14381a3e3c1007c2cf8a9f563307b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    client: Use the cleanup attribute to clean up
+
+ src/client.c | 83 +++++++++++++++++++++++-------------------------------------
+ 1 file changed, 32 insertions(+), 51 deletions(-)
+
+commit a3ca52e9d15e982aa1b8671200f15730f30e8264
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:55:46 2013 +0200
+
+    utils: Use the cleanup attribute to clean up
+
+ src/terminal-util.c | 68 +++++++++++++++++++----------------------------------
+ 1 file changed, 24 insertions(+), 44 deletions(-)
+
+commit 6059bbc0765406fbc6b1dfaf0c4cc865a6ab8412
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 17:46:19 2013 +0200
+
+    util: Remove unused functions
+
+ src/terminal-util.c | 44 --------------------------------------------
+ src/terminal-util.h | 10 ----------
+ 2 files changed, 54 deletions(-)
+
+commit e9cab814892fc5b697e7574a827ac4d5e16f2b3b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 21 14:59:13 2013 +0200
+
+    build: Add cleanup functions
+    
+    Since it's just using this one header from libgsystem for now, just copy the
+    header file instead of using a git submodule.
+
+ src/Makefile.am           |   5 ++
+ src/terminal-libgsystem.h | 169 ++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 174 insertions(+)
+
+commit 5ee8bc1caa1ed011216250d2225072b91c583d35
+Author: Reinout van Schouwen <reinouts@gnome.org>
+Date:   Thu Oct 17 23:46:47 2013 +0200
+
+    Updated Dutch translation
+
+ po/nl.po | 2109 ++++++++++++++++++++------------------------------------------
+ 1 file changed, 666 insertions(+), 1443 deletions(-)
+
+commit 1311169f1aaebc0f3d2cbb193f23a2eb9739aeba
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Tue Oct 15 14:20:36 2013 +0700
+
+    Updated Indonesian translation
+
+ po/id.po | 400 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 203 insertions(+), 197 deletions(-)
+
+commit 897ced482aad3aff32df85590efe061d1787cf7a
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Sun Sep 29 18:47:28 2013 -0300
+
+    [pt_BR] Fix BGO#709051
+
+ help/pt_BR/pt_BR.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit c73851a8d9cbc769d72be75f5cc19245a1c6523c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 29 23:33:08 2013 +0200
+
+    help: Remove 0% translations
+    
+    They haven't been updated for the help rewrite, and should *not* be added
+    back to HELP_LINGUAS without having been updated first. It's just a waste to
+    ship 0% translations.
+
+ help/ca/ca.po                              | 2040 -------------------------
+ help/ca/figures/gnome-terminal-default.png |  Bin 11366 -> 0 bytes
+ help/ca/figures/gnome-terminal-tabbed.png  |  Bin 14969 -> 0 bytes
+ help/da/da.po                              | 1924 ------------------------
+ help/en_GB/en_GB.po                        | 1918 ------------------------
+ help/fr/figures/gnome-terminal-default.png |  Bin 15873 -> 0 bytes
+ help/fr/figures/gnome-terminal-tabbed.png  |  Bin 21630 -> 0 bytes
+ help/fr/fr.po                              | 2059 --------------------------
+ help/it/figures/gnome-terminal-default.png |  Bin 5295 -> 0 bytes
+ help/it/figures/gnome-terminal-tabbed.png  |  Bin 6069 -> 0 bytes
+ help/it/it.po                              | 2052 --------------------------
+ help/ko/figures/gnome-terminal-default.png |  Bin 9359 -> 0 bytes
+ help/ko/figures/gnome-terminal-tabbed.png  |  Bin 14790 -> 0 bytes
+ help/ko/ko.po                              | 1803 ----------------------
+ help/oc/oc.po                              | 1532 -------------------
+ help/ro/ro.po                              | 2214 ----------------------------
+ help/ru/ru.po                              | 1121 --------------
+ help/sl/sl.po                              | 1169 ---------------
+ help/sv/figures/gnome-terminal-default.png |  Bin 7913 -> 0 bytes
+ help/sv/figures/gnome-terminal-tabbed.png  |  Bin 10214 -> 0 bytes
+ help/sv/sv.po                              | 1160 ---------------
+ help/te/te.po                              | 1538 -------------------
+ help/uk/figures/gnome-terminal-default.png |  Bin 8203 -> 0 bytes
+ help/uk/figures/gnome-terminal-tabbed.png  |  Bin 12808 -> 0 bytes
+ help/uk/uk.po                              | 1936 ------------------------
+ help/zh_CN/zh_CN.po                        | 1788 ----------------------
+ 26 files changed, 24254 deletions(-)
+
+commit ecb0f7c91c445f86bce0f9c0f6021a1f0291b315
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 29 23:29:20 2013 +0200
+
+    Revert "Added missing languages on HELP_LINGUAS"
+    
+    This reverts commit b06575a4622f788e37b042680c169d026e7f4ec1.
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 70c64830f4b5319a4ed21a471a6f2f81f5aea509
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sun Sep 29 13:50:56 2013 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 412 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 218 insertions(+), 194 deletions(-)
+
+commit b06575a4622f788e37b042680c169d026e7f4ec1
+Author: Gil Forcada <gforcada@gnome.org>
+Date:   Fri Sep 27 22:45:50 2013 +0200
+
+    Added missing languages on HELP_LINGUAS
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ab688fa1d20a62127c69994f3d3fc064bf2fd9c6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 26 20:03:05 2013 +0200
+
+    screen: Use NULL for bold colour when same-as-fg is used
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=706398
+
+ src/terminal-screen.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit 78783a3a190a98019fef212bc2a3d5beeb5f33d5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 26 17:06:14 2013 +0200
+
+    debug: Use the right printf modifiers
+    
+    G_GSIZE_FORMAT for gsize, not 'u'.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=708596
+
+ src/terminal-encoding.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5054c0ae8dd39062600d87c31743157963756c65
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Sep 25 20:48:09 2013 +0200
+
+    window: Use profile UUID as parameter for new-terminal action
+    
+    This fixes opening new terminals with a given profile.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=708763
+
+ src/terminal-accels.c | 12 ++++----
+ src/terminal-screen.c |  9 ++++++
+ src/terminal-screen.h |  1 +
+ src/terminal-window.c | 76 ++++++++++++++++++++++++++++++++-------------------
+ 4 files changed, 64 insertions(+), 34 deletions(-)
+
+commit 25a6c86ea95d6cc593bc9946257ec54e8628d8c1
+Author: Timo Jyrinki <timo.jyrinki@canonical.com>
+Date:   Wed Sep 25 07:34:47 2013 +0300
+
+    Updated Finnish translation by Jiri Grönroos
+
+ po/fi.po | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 61972fa43785a54473534a87c2c8e3e2040b4a72
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Tue Sep 24 22:09:11 2013 -0300
+
+    [pt_BR] Removed old unused figures
+
+ help/pt_BR/figures/gnome-terminal-default.png | Bin 8625 -> 0 bytes
+ help/pt_BR/figures/gnome-terminal-tabbed.png  | Bin 12663 -> 0 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e01b13903d32c1b593b10735965a417349f87ff0
+Author: Fernando Paladini <fnpaladini@gmail.com>
+Date:   Tue Sep 24 22:04:26 2013 -0300
+
+    Updated Brazilian Portuguese translation for help files
+
+ help/pt_BR/pt_BR.po | 224 ++++++++++++++++++++++++++++------------------------
+ 1 file changed, 122 insertions(+), 102 deletions(-)
+
+commit 2e35b8f62dd967f0dbfe2b4f55bd6bcb75967f3a
+Author: Nilamdyuti Goswami <ngoswami@redhat.com>
+Date:   Tue Sep 24 14:33:27 2013 +0530
+
+    Assamese translation updated
+
+ po/as.po | 407 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 216 insertions(+), 191 deletions(-)
+
+commit 34f572be39a252eaa661d81f59725d6f4a69f8c3
+Author: victory <victory.deb@gmail.com>
+Date:   Mon Sep 23 23:12:45 2013 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 1221 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 616 insertions(+), 605 deletions(-)
+
+commit 2a5abdada144e097b33f36119383b81e108c41cf
+Author: Mattias Põldaru <mahfiaz@gmail.com>
+Date:   Mon Sep 23 10:04:33 2013 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 438f2dd1fe7a87e0d41ef994a690de95911158b9
+Author: António Lima <amrlima@gmail.com>
+Date:   Sun Sep 22 23:55:55 2013 +0100
+
+    Updated Portuguese translation
+
+ po/pt.po | 1122 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 592 insertions(+), 530 deletions(-)
+
+commit bec8fb014cbf2c5e1255d0b55eb92445e545ca58
+Author: Yosef Or Boczko <yoseforb@gmail.com>
+Date:   Sun Sep 22 14:46:35 2013 +0300
+
+    Updated Hebrew translation
+
+ po/he.po | 422 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 224 insertions(+), 198 deletions(-)
+
+commit dd4860051ca1cb9eb3c12ad40df2808eb9263df0
+Author: Balázs Úr <urbalazs@src.gnome.org>
+Date:   Sat Sep 21 19:47:15 2013 +0200
+
+    Updated Hungarian translation
+
+ po/hu.po | 423 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 229 insertions(+), 194 deletions(-)
+
+commit f06db5f4ab2addb0674919fe47fa57e79ed311ef
+Author: Mattias Põldaru <mahfiaz@gmail.com>
+Date:   Fri Sep 20 09:53:53 2013 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po | 61 ++++++++++++++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 42 insertions(+), 19 deletions(-)
+
+commit fb7a1992bb23c1d3dd973d2acb886dd9b586c81b
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Wed Sep 18 20:29:35 2013 -0300
+
+    Updated Brazilian Portuguese translation
+
+ help/pt_BR/figures/gnome-terminal.png |  Bin 0 -> 12486 bytes
+ help/pt_BR/pt_BR.po                   | 3400 +++++++++++++++++++++++----------
+ 2 files changed, 2393 insertions(+), 1007 deletions(-)
+
+commit 5a14caa19d0f5803fc517741c160f1d7e7966086
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Tue Sep 17 00:01:26 2013 +0200
+
+    Fix xml errors in Hungarian help translation
+
+ help/hu/hu.po | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+
+commit 29927eda6ed3c66998e7e1c155832a1369d5421c
+Author: Pavol Klačanský <pavol@klacansky.com>
+Date:   Mon Sep 16 21:24:38 2013 +0200
+
+    Updated slovak translation
+
+ po/sk.po | 393 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 209 insertions(+), 184 deletions(-)
+
+commit e0c4d3961ddeeacbac5b9b0a381291c3f0e77549
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Mon Sep 16 23:50:14 2013 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 833 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 446 insertions(+), 387 deletions(-)
+
+commit 84f8b9f9063b7378f34b95be07aeca6b167b2fec
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Mon Sep 16 14:07:15 2013 +0200
+
+    Updated Hungarian help translation
+
+ help/hu/hu.po | 2839 ++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 1606 insertions(+), 1233 deletions(-)
+
+commit 503954f56f64c0814349a97a03e063df7b7ef222
+Author: Claudio Arseni <claudio.arseni@ubuntu.com>
+Date:   Mon Sep 16 08:57:37 2013 +0200
+
+    [l10n] Updated Italian translation.
+
+ po/it.po | 372 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 189 insertions(+), 183 deletions(-)
+
+commit ef238aab5298151a34db23de7e0d58d7a27c6486
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Sun Sep 15 15:43:35 2013 -0300
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 410 ++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 217 insertions(+), 193 deletions(-)
+
+commit 53ef0accb8899f2696aa0637ccfc1722cf1cf87d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 21:48:40 2013 +0200
+
+    window: Rename close actions
+    
+    Since we now only have a "New terminal" action, rename close tab/window to
+    close terminal/close all terminals.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=707846
+
+ src/terminal-accels.c | 12 ++++++------
+ src/terminal-window.c |  4 ++--
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 50554c50da9f5c2490d0d9838d179ff281e13d44
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 20:32:05 2013 +0200
+
+    window: Make terminal close keybinding work for single tab windows
+    
+    There's no real reason not to allow the same action to also close a
+    single-tab window.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=701354
+
+ src/terminal-window.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 973744eff9b747f92f8f20f9230460839e4f1fd0
+Author: Elad Alfassa <elad@fedoraproject.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    data: Fix desktop file categories
+    
+    gnome-software uses the desktop file categories to sort the applications
+    it shows.
+    
+    This commit fixes the categories according to the freedesktop spec,
+    so that gnome-terminal will appear in the correct category.
+    
+    For more information:
+    http://standards.freedesktop.org/menu-spec/latest/apa.html
+    http://standards.freedesktop.org/menu-spec/latest/apas02.html
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=707552
+
+ gnome-terminal.desktop.in.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit cd795044595b4ba05aab9d7e310e6b21464a8e02
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    schemas: Fix a description
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=706656
+
+ src/org.gnome.Terminal.gschema.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 36e317afc7590cafc7f6f98562db92cf6fc1fe76
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    schemas: Use intltool native support for gsettings schemas
+
+ po/POTFILES.in                                     |   2 +-
+ src/Makefile.am                                    |   9 +-
+ ...chema.xml.in => org.gnome.Terminal.gschema.xml} | 248 ++++++++++-----------
+ 3 files changed, 129 insertions(+), 130 deletions(-)
+
+commit ab5b3f3e6a93327223a21e05bb555a6641c7b5a8
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    build: Require intltool 0.50
+    
+    This allows to use the native support for gsettings schemas.
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3413b724a60951f06d5b75ea6c4daaf44d15aeb2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    client: legacy: Remove unused code for old options
+
+ src/terminal-options.c | 173 -------------------------------------------------
+ 1 file changed, 173 deletions(-)
+
+commit aef122c916719763f6d0d404b4131456d84c482f
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    client: legacy: Abort when passed --disable-factory
+    
+    This option isn't working anymore, and shouldn't silently use the
+    server instead of a new process.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=707899
+
+ src/terminal-options.c | 38 +++++++++++++++++++-------------------
+ src/terminal-options.h |  1 -
+ 2 files changed, 19 insertions(+), 20 deletions(-)
+
+commit a705bca3b648ba2a0a2f8f53ce42253c3fa1177d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    client: legacy: Strip remote errors
+
+ src/terminal.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 1244dbb6f0381cedfd9247c1d7cc91b55476d708
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    server: Don't allow running the server as non-user
+    
+    It just doesn't work to run it as root/under su/under sudo, so make it just
+    error out already.
+
+ src/server.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit bca873ed12458fdbdeec7d7a8f250ac048efcee3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    window: Plug a mem leak
+
+ src/terminal-window.c | 1 +
  1 file changed, 1 insertion(+)
 
-commit 67c8030bcd16fb10b517f974c0f7a19e30b5847f
+commit 18565f7ebdbfb48935790c40da2c0aec268c1f0f
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    screen: Plug a mem leak
+
+ src/terminal-screen.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 27051edaea86908d8852e7bc66d88215b51fc179
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:08 2013 +0200
+
+    server: Error out on unsupported locale
+
+ src/server.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 62a9cb16b938a3146065fb5af8754d24abfaecc6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:07 2013 +0200
+
+    screen: Only remove the CLOEXEC flag
+    
+    Don't clear all flags.
+
+ src/terminal-screen.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit 2578316612a5e716067ebf50ef9d38dd8326bba4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Sep 12 19:42:07 2013 +0200
+
+    window: Remove unused variable
+
+ src/terminal-window.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 34e541f2b32f365e5ac821c651a69e5beacc3eb8
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Sep 14 12:08:58 2013 +0200
+
+    Post branch version bump
+
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit ea9e71771be2afa2986d2a93d4d03fe301645456
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Sep 14 12:02:18 2013 +0200
+
+    window: Clear the weak ref before freeing the data
+    
+    This fixes a crash introduced in commit 9f2ba3d5b642973a21e7916fe1a60a5c44126720.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=706349
+
+ src/terminal-window.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 95c93038e5b036986eb30906acad3bd6cd46b6f9
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   Sat Sep 14 06:09:55 2013 +0900
+
+    Updated Korean translation
+
+ po/ko.po | 938 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 449 insertions(+), 489 deletions(-)
+
+commit 0fe63fa5949fc66729186c56361578532c50716e
+Author: Nilamdyuti Goswami <ngoswami@redhat.com>
+Date:   Thu Sep 12 13:14:08 2013 +0530
+
+    Assamese Translation Updated
+
+ po/as.po | 844 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 444 insertions(+), 400 deletions(-)
+
+commit 8c1116dd09e2672d10e169e8db63de956fb99274
+Author: Mattias Põldaru <mahfiaz@gmail.com>
+Date:   Thu Sep 12 08:36:25 2013 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po | 268 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 157 insertions(+), 111 deletions(-)
+
+commit 9a07cefe1bed0710137a14ec7a65bab627569834
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Thu Sep 12 00:25:37 2013 +0300
+
+    Updated Latvian translation
+
+ po/lv.po | 1062 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 526 insertions(+), 536 deletions(-)
+
+commit 57bb25c111c0ea4ccbd47ade2b5c69ca1c950de8
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Tue Sep 10 14:40:35 2013 +0700
+
+    Updated Indonesian translation
+
+ po/id.po | 879 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 415 insertions(+), 464 deletions(-)
+
+commit 34ef6e8b3a792dfd1857c6c20c51d786cd35e6be
+Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Date:   Tue Sep 10 13:48:00 2013 +0700
+
+    Updated Thai translation.
+
+ po/th.po | 948 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 453 insertions(+), 495 deletions(-)
+
+commit 8c664eab630319ef404263e03937dddf675729ff
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   Sat Sep 7 10:28:17 2013 +0200
+
+    Updated French translation
+
+ po/fr.po | 683 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 315 insertions(+), 368 deletions(-)
+
+commit a71f64c8ec8e2c623b98ef1be3dd00b757fb0686
+Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
+Date:   Sat Sep 7 06:41:13 2013 +0200
+
+    Updated Serbian translation
+
+ po/sr.po       | 909 +++++++++++++++++++++++++++------------------------------
+ po/sr@latin.po | 909 +++++++++++++++++++++++++++------------------------------
+ 2 files changed, 850 insertions(+), 968 deletions(-)
+
+commit 0e6e427d47f01d336f71cf13788c44ac182dd351
+Author: Yuri Myasoedov <omerta13@yandex.ru>
+Date:   Fri Sep 6 19:02:26 2013 +0400
+
+    Updated Russian translation
+
+ po/ru.po | 1275 +++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 602 insertions(+), 673 deletions(-)
+
+commit cade9153fe00121647761da1c495905d5b525c3f
+Author: Marek Černocký <marek@manet.cz>
+Date:   Wed Sep 4 18:27:27 2013 +0200
+
+    Updated Czech translation
+
+ help/cs/cs.po | 4057 +++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 2619 insertions(+), 1438 deletions(-)
+
+commit b7b68ab15d178c4d02f829ae0016bfa9685ba343
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Wed Sep 4 16:52:49 2013 +0600
+
+    Update Kazakh translation
+
+ po/kk.po | 2662 ++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 1125 insertions(+), 1537 deletions(-)
+
+commit 149261bf13f6489dec9ca8dbbdd573ff89cd60b9
+Author: Timo Jyrinki <timo@debian.org>
+Date:   Wed Sep 4 11:02:52 2013 +0300
+
+    Finnish translation update
+
+ po/fi.po | 1111 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 547 insertions(+), 564 deletions(-)
+
+commit 9a24c30432568c78aca1f87f4ab6141ed7cf5f32
+Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date:   Mon Sep 2 11:40:34 2013 +0300
+
+    Updated Belarusian translation.
+
+ po/be.po | 902 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 417 insertions(+), 485 deletions(-)
+
+commit b474edb7e2ef637c8b7328fd8a92fe8244d16b7f
+Author: Seán de Búrca <leftmostcat@gmail.com>
+Date:   Sun Sep 1 19:13:49 2013 -0600
+
+    Updated Irish translation
+
+ po/ga.po | 2481 ++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 1053 insertions(+), 1428 deletions(-)
+
+commit 56f9473284606ebf444a05f26b02ae2a42394e38
+Author: Pavol Klačanský <pavol@klacansky.com>
+Date:   Tue Aug 27 21:28:31 2013 +0200
+
+    Updated slovak translation
+
+ po/sk.po | 953 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 439 insertions(+), 514 deletions(-)
+
+commit 6655f35a3213d3534f1f52942f9a98f2fa2c0741
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Mon Aug 26 23:31:48 2013 +0300
+
+    Updated Lithuanian translation
+
+ po/lt.po | 444 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 209 insertions(+), 235 deletions(-)
+
+commit ec0c440f3d96dc2d8729305b8ad178a7b0d40b07
+Author: Claudio Arseni <claudio.arseni@ubuntu.com>
+Date:   Sun Aug 25 17:14:26 2013 +0200
+
+    [l10n] Updated Italian translation.
+
+ po/it.po | 806 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 411 insertions(+), 395 deletions(-)
+
+commit 64ec002010d9a20485870f0c966f07ae9488b3df
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Sat Aug 24 02:50:16 2013 +0200
+
+    Updated Polish translation
+
+ po/pl.po | 899 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 414 insertions(+), 485 deletions(-)
+
+commit 3ce0054d3ba302ee10a457ec7d349252b59c482d
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Wed Aug 21 23:15:05 2013 +0200
+
+    Added hu to HELP_LINGUAS
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit af9789e4d0d7be65778b6f72315775ac04e55238
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Wed Aug 21 22:51:50 2013 +0200
+
+    Added initial Hungarian help translation
+
+ help/hu/hu.po | 3260 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 3260 insertions(+)
+
+commit 36010715f3047f2f97c4cb78f0562c245ae537c4
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Wed Aug 21 22:43:47 2013 +0200
+
+    Updated Hungarian translation
+
+ po/hu.po | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 846c20e4c3f16e28b06d785b65c73fe9a0485022
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sat Aug 17 16:12:39 2013 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 628 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 336 insertions(+), 292 deletions(-)
+
+commit 86ab04c60d241e40beb15fff00e6eddc19334f6a
+Author: William Jon McCann <william.jon.mccann@gmail.com>
+Date:   Wed Aug 14 20:22:04 2013 +0200
+
+    Update wiki page URL
+
+ src/terminal-util.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9f2ba3d5b642973a21e7916fe1a60a5c44126720
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Aug 11 14:51:01 2013 +0200
+
+    window: Use weak refs while waiting for clipboard info
+    
+    https://retrace.fedoraproject.org/faf/problems/1137333/
+    https://retrace.fedoraproject.org/faf/problems/1003772/
+    https://bugzilla.redhat.com/show_bug.cgi?id=977010
+
+ src/terminal-screen.c | 18 +++++++++++++++++-
+ src/terminal-screen.h |  4 +++-
+ src/terminal-window.c | 38 +++++++++++++++++++++++++++-----------
+ 3 files changed, 47 insertions(+), 13 deletions(-)
+
+commit 398a6257bd0ad136cd177681aa1a4c02db071d8b
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Sun Aug 11 13:25:16 2013 +0200
+
+    Update Arabic translations
+
+ po/ar.po | 627 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 335 insertions(+), 292 deletions(-)
+
+commit 1328b607734fe25c0a4a45d0db75cb30307f7585
+Author: Marek Černocký <marek@manet.cz>
+Date:   Fri Aug 9 07:53:27 2013 +0200
+
+    Added Czech language
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ae5f92e8bcbac4df5262950536733d661fa8078a
+Author: Marek Černocký <marek@manet.cz>
+Date:   Fri Aug 9 07:51:28 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit 1de148dd50bcd63357a7850c26f4144feb5dea42
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Aug 8 13:21:17 2013 +0200
+
+    build: Fix linking with multiple backends
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=705659
+
+ configure.ac | 25 ++++++++++---------------
+ 1 file changed, 10 insertions(+), 15 deletions(-)
+
+commit d1379464d195f463cf4c29df5e6497ebf6a6c590
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Aug 1 12:32:25 2013 +0200
+
+    prefs: Move dark theme checkbutton down
+
+ src/preferences.ui | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit 3dbf1df16e97e52d151fe034c5651a15d8753138
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Aug 8 05:42:23 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 432f1b1a45d525912ab3c29ff97103109f5ea13d
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Aug 8 05:04:36 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 8993ee710a9e2000491bb6ecefb33e732101aa7d
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Wed Aug 7 15:03:29 2013 +0200
+
+    Updated Hungarian translation
+
+ po/hu.po | 837 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 438 insertions(+), 399 deletions(-)
+
+commit 5441132f63dbb3375c2c876eab880e4b57eacc73
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Aug 6 23:31:29 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 23 +++++++++++------------
+ 1 file changed, 11 insertions(+), 12 deletions(-)
+
+commit fe01bd7f7c460ce89f5b143044a8d0b6a72ba8d3
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Aug 6 23:13:48 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 66684c852f4308609738ddcc3ce187931b383d72
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Aug 6 22:36:30 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e84964da4c99faf55428d5ed13a0f3148b8ae1c5
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Aug 6 22:21:29 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 41 ++++++++++++++++++++---------------------
+ 1 file changed, 20 insertions(+), 21 deletions(-)
+
+commit 03e71465f56d673527b2c3db4c9c31765a1a7dc6
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Aug 6 22:10:02 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit efe7bcdbadb8db636ff84c60f005527059d03493
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Aug 6 21:58:13 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 8be24e4ed6be3948ee961e7dee6725ad678a9012
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Mon Aug 5 23:06:12 2013 -0300
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 452 ++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 229 insertions(+), 223 deletions(-)
+
+commit 641ab598b92c244b6ae5984045229c6f93720903
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sat Aug 3 21:13:08 2013 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 987 ++++++++++++++++++++++++++++++-----------------------------
+ po/zh_TW.po | 995 +++++++++++++++++++++++++++++++-----------------------------
+ 2 files changed, 1022 insertions(+), 960 deletions(-)
+
+commit b243f11ca78f45cb0cd79bf84bdac9b5a9ccd870
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Sat Aug 3 14:21:50 2013 +0200
+
+    Brown paper bag fix in Hungarian translation
+
+ po/hu.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a7f1893a448ba343b1f2aa928c7c6a0c9fcb651a
+Author: Benjamin Steinwender <b@stbe.at>
+Date:   Sat Aug 3 08:16:52 2013 +0200
+
+    Updated German translation
+
+ po/de.po | 1248 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 712 insertions(+), 536 deletions(-)
+
+commit bd61e3784e21cff36f8191ab26f5a5ce79a2ca6b
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Fri Aug 2 12:55:12 2013 +0200
+
+    Updated Galician translations
+
+ po/gl.po | 444 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 225 insertions(+), 219 deletions(-)
+
+commit f1915cbed782de9ab7a7dc468e196047e37b6d55
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Aug 1 13:54:17 2013 +0100
+
+    Tajik translation updated
+
+ po/tg.po | 283 +++++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 178 insertions(+), 105 deletions(-)
+
+commit 1ca7b654c80df211818183575f45391c491c73a0
+Author: Yaron Shahrabani <sh.yaron@gmail.com>
+Date:   Wed Jul 31 09:42:00 2013 +0300
+
+    Updated Hebrew translation.
+
+ po/he.po | 1170 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 654 insertions(+), 516 deletions(-)
+
+commit 243f9c83d858f650564ed84165105a5cb105c1b0
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Tue Jul 30 16:57:54 2013 +0100
+
+    Tajik translation updated
+
+ po/tg.po | 1043 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 541 insertions(+), 502 deletions(-)
+
+commit 2c03c8a6a180ee6d68139c604c14d3af999dbd10
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jul 28 15:25:26 2013 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4e8a80270b37ba9db3f2b0edeafbe380331cf650
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jul 28 15:20:15 2013 +0200
+
+    Version 3.9.90
+
+ NEWS         | 14 ++++++++++++++
+ configure.ac |  6 +++---
+ 2 files changed, 17 insertions(+), 3 deletions(-)
+
+commit e99aad4949a8c902eea53feebd193d49783c3c21
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Jul 27 11:52:28 2013 +0200
+
+    l10n: Revert unauthorised change
+    
+    Don't ship 0% languages!
+    
+    This reverts part of commit 82f307ba438e03e442f113c1535a92ed084fa0b9.
+
+ help/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e7c5d6a57a851ad94c64ac32c8c2e22d6c00e3bd
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jul 26 20:36:54 2013 +0200
+
+    build: Use -Wno-deprecated-declarations
+    
+    It's simply crazy to deprecate GtkAction & GtkUIManager at this time.
+
+ configure.ac | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 695190feff3c49db699cf7c469c25fb623f2899f
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Fri Jul 26 17:34:34 2013 +0100
+
+    Tajik translation updated
+
+ po/tg.po | 370 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 187 insertions(+), 183 deletions(-)
+
+commit 7cae826638b60374897b4f06ccb95007db140c0b
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Jul 22 14:32:22 2013 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po | 69 ++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 33 insertions(+), 36 deletions(-)
+
+commit a08e370ee75c6f304e9da027b8da708cf433868c
+Author: Anish A <aneesh.nl@gmail.com>
+Date:   Fri Jul 19 11:23:08 2013 +0530
+
+    Updated Malayalam Translation
+
+ po/ml.po | 1108 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 580 insertions(+), 528 deletions(-)
+
+commit 1bca73765dfd44cfd7bd100168c8c8c861136cbf
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Thu Jul 18 13:42:21 2013 +0200
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 423 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 204 insertions(+), 219 deletions(-)
+
+commit c0e80b19be28507ac143517152ffe65b6a732633
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Tue Jul 16 19:17:44 2013 +0100
+
+    Do not translate the terminal icon in help
+    
+    Also mark the email addresses in index.page as untranslatable.
+
+ help/C/index.page | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit 82c5a62781d8f88d168f9df045e96223eccada37
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jul 15 17:36:11 2013 +0200
+
+    profiles: editor: Remove UUID from the profile list
+    
+    It remains visible in the profile's preferences; one place showing it is enough.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=704097
+
+ src/terminal-prefs.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+commit 9de011d48e231e05d5fccff479c8a745a9c173ad
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Jul 9 21:05:03 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 411 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 198 insertions(+), 213 deletions(-)
+
+commit 379c06d807fc485013f4b39db98024ec82cb2a4f
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Jul 8 13:38:34 2013 +0200
+
+    Updated Spanish translation
+
+ po/es.po | 442 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 220 insertions(+), 222 deletions(-)
+
+commit 931f8747a2b26bc85f43929b5685539e01f4c192
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jul 7 12:57:57 2013 +0200
+
+    l10n: pr-BR: Fix markup mistake
+
+ help/pt_BR/pt_BR.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f4d43acd34de5aaea744fd62f6f6f85728d1a723
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jul 7 11:50:21 2013 +0200
+
+    prefs: Don't use stock items
+
+ src/terminal-prefs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a969cd770c1a5cc9bfc2c0303d1fb58e6581160c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jul 7 11:50:21 2013 +0200
+
+    profile: editor: Don't use stock items
+
+ src/profile-editor.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit f27bf0135a2d18ba22158d28bf1f8c5f6ec066c8
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jun 21 15:33:53 2013 +0200
+
+    screen: Simplify terminal title handling
+    
+    Remove all the options.
+
+ src/migration.c                       |   4 -
+ src/org.gnome.Terminal.gschema.xml.in |  12 --
+ src/profile-editor.c                  |   8 -
+ src/profile-preferences.ui            |  48 +-----
+ src/terminal-enums.h                  |   8 -
+ src/terminal-schemas.h                |   1 -
+ src/terminal-screen.c                 | 303 ++++++----------------------------
+ src/terminal-screen.h                 |   8 +-
+ src/terminal-window.c                 |  13 +-
+ 9 files changed, 59 insertions(+), 346 deletions(-)
+
+commit 4f39be35951e4ad6ff73739654387f32329aa7fe
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jul 5 13:43:22 2013 +0200
+
+    client: legacy: Fix mem leak
+    
+    ==24616== 18 bytes in 1 blocks are definitely lost in loss record 1,572 of 4,602
+    ==24616==    at 0x402A059: malloc (vg_replace_malloc.c:263)
+    ==24616==    by 0x4F4FD41: g_malloc (gmem.c:104)
+    ==24616==    by 0x4F5006D: g_malloc_n (gmem.c:345)
+    ==24616==    by 0x4F69E40: g_strdup (gstrfuncs.c:364)
+    ==24616==    by 0x4DC2ADC: g_local_file_get_path (glocalfile.c:334)
+    ==24616==    by 0x4CEB7A5: g_file_get_path (gfile.c:507)
+    ==24616==    by 0x804DEBC: option_load_config_cb (terminal-options.c:583)
+
+ src/terminal-options.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit c06c94be3c06e32761b9c2265d40fae0f42ab0ad
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jul 5 13:42:28 2013 +0200
+
+    client: legacy: Fix double-free
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=981440
+
+ src/terminal-options.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 830a25cfbfd2201443ba0564eb6fe83699f005fa
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Thu Jul 4 11:18:57 2013 +0200
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 331 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 182 insertions(+), 149 deletions(-)
+
+commit a409f9738fd95ac7f51463c23fb4bee1953c0fae
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Tue Jul 2 01:54:51 2013 -0300
+
+    Updated Brazilian Portuguese translation
+
+ help/pt_BR/pt_BR.po | 1937 ++++++++++++++++-----------------------------------
+ 1 file changed, 611 insertions(+), 1326 deletions(-)
+
+commit 546d90bd0c44e8dc9d50067da445db57b7b85d5c
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Sat Jun 29 22:53:05 2013 -0300
+
+    Updated Brazilian Portuguese translation for UI and help
+
+ help/pt_BR/pt_BR.po | 3835 ++++++++++++++++++++++++++++++++++++++-------------
+ po/pt_BR.po         |  762 +++++-----
+ 2 files changed, 3267 insertions(+), 1330 deletions(-)
+
+commit 6cfa36a8308a6a4e91a99f5131761c26275a4b94
+Author: Marek Černocký <marek@manet.cz>
+Date:   Fri Jun 28 19:13:57 2013 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 538 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 285 insertions(+), 253 deletions(-)
+
+commit 9d8592cf9c625ecd4881a15762d9c284eebb768f
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Fri Jun 28 01:39:32 2013 +0200
+
+    Updated Galician translations
+
+ po/gl.po | 331 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 183 insertions(+), 148 deletions(-)
+
+commit 42add6818c1e269746fa9d0c23a065cf82a41715
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Mon Jun 24 20:38:23 2013 +0300
+
+    Updated Lithuanian translation
+
+ po/lt.po | 670 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 314 insertions(+), 356 deletions(-)
+
+commit b7c3a28ac30e5cce7b8864d8f5f4dedf308d4606
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Jun 24 16:31:19 2013 +0200
+
+    Updated Spanish translation
+
+ po/es.po | 554 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 298 insertions(+), 256 deletions(-)
+
+commit 1fecaa3685a8a4d4e7027fc6c9e60df2ca69f5b6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jun 21 17:49:58 2013 +0200
+
+    appmenu: Add menu item to create a new terminal
+
+ src/terminal-appmenu.ui | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 687e54a5d74e186ac4ae94acd10f71857fd23f64
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jun 21 15:44:11 2013 +0200
+
+    window: Use GtkBox instead of Gtk[HV]Box
+
+ src/terminal-screen-container.c | 3 ++-
+ src/terminal-tab-label.c        | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit a319aeb66f36e728af1b4929ddd69574df838702
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun May 12 22:26:03 2013 +0200
+
+    accels: Port accelerators to use GtkApplication
+    
+    Add GActions for the window actions, and use these as targets for the
+    accelerators.
+    
+    Conflicts:
+    	src/terminal-accels.c
+    	src/terminal-window.c
+
+ src/terminal-accels.c |  574 ++++++----------------
+ src/terminal-accels.h |    3 +-
+ src/terminal-app.c    |    2 +-
+ src/terminal-window.c | 1285 +++++++++++++++++++++++++++++++------------------
+ 4 files changed, 957 insertions(+), 907 deletions(-)
+
+commit 84b1046e0650b99bd62deb3fe267aa88a57bdea0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jun 21 14:33:12 2013 +0200
+
+    window: Add some more functions to the MDI container
+
+ src/terminal-mdi-container.c | 32 +++++++++++++++++++++++++++++++-
+ src/terminal-mdi-container.h |  8 ++++++++
+ src/terminal-notebook.c      | 12 +++++++++++-
+ 3 files changed, 50 insertions(+), 2 deletions(-)
+
+commit 741d1c22392373cbd5ba28574944d70d872674ba
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun May 26 23:37:03 2013 +0200
+
+    window: Add template
+    
+    Make TerminalWindow a templated widget. Minimal infrastructure only; nothing moved
+    over yet.
+
+ configure.ac               |  2 +-
+ src/Makefile.am            |  1 +
+ src/terminal-window.c      | 10 ++++++----
+ src/terminal-window.ui     | 17 +++++++++++++++++
+ src/terminal.gresource.xml |  1 +
+ 5 files changed, 26 insertions(+), 5 deletions(-)
+
+commit 99fc0136a5be6323b81b8b339482bc699b53e1f9
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 15:40:07 2013 +0100
+
+    window: Unify new tab and new window
+    
+    Instead of having two sets of "New terminal" items, unify them into one
+    "New Terminal" type of items that will open a terminal in a tab or window
+    depending on a pref, and that can be inverted by using control key.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=543996
+    
+    Conflicts:
+    	src/org.gnome.Terminal.gschema.xml.in
+    	src/terminal-window.c
+    	src/terminal.xml
+
+ src/org.gnome.Terminal.gschema.xml.in |  10 ++++
+ src/preferences.ui                    |  58 +++++++++++++++++++
+ src/terminal-enums.h                  |   5 ++
+ src/terminal-prefs.c                  |   9 ++-
+ src/terminal-schemas.h                |   1 +
+ src/terminal-window.c                 | 102 ++++++++++++++--------------------
+ src/terminal.xml                      |   7 +--
+ 7 files changed, 127 insertions(+), 65 deletions(-)
+
+commit 90550d1b4eab130f5cfd6e62a14359ca0eb6a190
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jun 21 15:17:29 2013 +0200
+
+    window: Use the UUID in the window role
+
+ src/terminal-util.c   | 10 ----------
+ src/terminal-util.h   |  2 --
+ src/terminal-window.c |  5 +++--
+ 3 files changed, 3 insertions(+), 14 deletions(-)
+
+commit b40078ffd9ae832167fc49091299fef84cbabba0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 16:08:51 2013 +0100
+
+    server: Use UUIDs to generate the terminal IDs
+    
+    Conflicts:
+    	src/terminal-window.c
+
+ src/terminal-defines.h |  2 +-
+ src/terminal-gdbus.c   | 16 +++++++++++++---
+ src/terminal-screen.c  | 17 +++++++++++++++++
+ src/terminal-screen.h  |  2 ++
+ src/terminal-window.c  | 27 +++++++++++++++++++++++++++
+ src/terminal-window.h  |  4 ++++
+ 6 files changed, 64 insertions(+), 4 deletions(-)
+
+commit a8c9b62f6aa39dc89c79693f4f09a23840b06924
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 17:39:58 2013 +0100
+
+    screen: Remove unused code
+    
+    Conflicts:
+    	src/terminal-screen.c
+
+ src/terminal-screen.c | 36 ------------------------------------
+ 1 file changed, 36 deletions(-)
+
+commit 457ad7f70120f83e7a8009d57017a342478433d1
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Jun 20 23:59:23 2013 +0200
+
+    appmenu: Use standard order for about, help, quit
+
+ src/terminal-appmenu.ui | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 50bfb8b2b5201fb79f077d16b4511ad49f36a23b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 13:53:44 2013 +0100
+
+    appmenu: Use NULL parent window for about
+
+ src/terminal-app.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+commit 2bbb088eb7a1dc82870af5a5c73ebe7b42813b7a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 14:08:05 2013 +0100
+
+    prefs: Implement dark theme checkbox
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=649358
+    
+    Conflicts:
+    	src/terminal-prefs.c
+    	src/terminal-schemas.h
+
+ src/org.gnome.Terminal.gschema.xml.in |  5 +++++
+ src/preferences.ui                    | 21 +++++++++++++++++++--
+ src/terminal-app.c                    |  4 ++++
+ src/terminal-prefs.c                  |  8 ++++++++
+ src/terminal-schemas.h                |  1 +
+ 5 files changed, 37 insertions(+), 2 deletions(-)
+
+commit a012972afe83c23c2d20f459a39f27c9df3f384a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 13:58:55 2013 +0100
+
+    build: Remove GDK_MULTIHEAD_SAFE from CPPFLAGS
+    
+    It's not really useful since we don't support multihead really anyway.
+
+ src/Makefile.am | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit d7886e7216ecd755451e8e205371f3e67e9a6889
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 18 13:58:32 2013 +0100
+
+    build: Remove unused CPPFLAGS
+
+ src/Makefile.am | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit bef228a045505f36818f2777249cd4c66a932cb1
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Jun 7 19:57:13 2013 +0200
+
+    window: Allow debugging the appmenu
+    
+    Add GNOME_TERMINAL_DEBUG=appmenu to make the app menu show up on fallback mode.
+
+ src/terminal-debug.c  | 1 +
+ src/terminal-debug.h  | 3 ++-
+ src/terminal-window.c | 4 ++++
+ 3 files changed, 7 insertions(+), 1 deletion(-)
+
+commit b56dfe662b0cd86d37d6c5c1964129a37332510c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Jun 20 22:17:45 2013 +0200
+
+    appmenu: Add Quit item
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=690910
+
+ src/terminal-app.c      | 18 +++++++++++++++++-
+ src/terminal-appmenu.ui |  4 ++++
+ src/terminal-window.c   | 16 ++++++++++++----
+ src/terminal-window.h   |  2 ++
+ 4 files changed, 35 insertions(+), 5 deletions(-)
+
+commit 2f631348d265d6cd8a6dd3c6b86f0637e84b63af
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Jun 20 21:50:57 2013 +0200
+
+    migration: Use "Default" as default profile name
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=702070
+
+ src/migration.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit ac2ef407d801829b5eaae28d0a4ecb3c62f46c1a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jun 12 18:28:00 2013 +0200
+
+    migration: When disabled, don't write to gsettings on each startup
+
+ src/terminal-app.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit d7976e117c9a3459dcd655526b063d9c71c40bba
+Author: Friedel Wolff <friedel@translate.org.za>
+Date:   Wed Aug 31 12:26:02 2011 +0200
+
+    Fix incorrect ordering of COLS and ROWS
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=649023
+    (cherry picked from commit d939a4daa3383722a5d9d46a27b3a978c39bc3d9)
+
+ src/terminal-options.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c2332accf60cbadaa76ebdbca03f348ee788efec
 Author: Tomas Bzatek <tbzatek@redhat.com>
 Date:   Tue Aug 2 15:06:14 2011 +0200
 
@@ -24,7 +3915,32 @@ Date:   Tue Aug 2 15:06:14 2011 +0200
  src/terminal-screen.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-commit 5af1c4a07915c8aa43ceef42572d2d55d962043d
+commit 9617e44e8a10a498e285f1c26c600a094b5f51d4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu May 3 20:49:09 2012 +0200
+
+    Revert "Fix incorrect ordering of COLS and ROWS"
+    
+    This reverts commit d939a4daa3383722a5d9d46a27b3a978c39bc3d9.
+    (cherry picked from commit 45e4f982f5de5c8c71439a687ab4faac12d3562c)
+
+ src/terminal-options.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b0a51a3edf63722453fcb8a90daf85a1e7eb4d19
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Feb 15 16:37:37 2013 +0100
+
+    window: Remove input method submenu
+    
+    Conflicts:
+    	src/terminal-window.c
+
+ src/terminal-window.c | 35 ++---------------------------------
+ src/terminal.xml      |  2 --
+ 2 files changed, 2 insertions(+), 35 deletions(-)
+
+commit 7299379ecb4a52d45d04e49c99100a0ed002c32d
 Author: tuhaihe <wangdianjin@linuxdeepin.com>
 Date:   Thu Jun 6 12:22:15 2013 +0800
 
@@ -33,37 +3949,54 @@ Date:   Thu Jun 6 12:22:15 2013 +0800
  po/zh_CN.po | 494 ++++++++++++++++++++++++++++++------------------------------
  1 file changed, 246 insertions(+), 248 deletions(-)
 
-commit bc564147dedad7d632afa06b61d5a9f39fb09795
+commit e6d319886906e9809f654310e01c1caf93af4713
 Author: Sandeep Sheshrao Shedmake <sshedmak@redhat.com>
-Date:   Wed Jun 5 15:32:48 2013 +0530
+Date:   Wed Jun 5 11:14:18 2013 +0530
 
     Updated Marathi Translations
 
- po/mr.po | 235 +++++++++++++++++++++++++++------------------------------------
- 1 file changed, 99 insertions(+), 136 deletions(-)
+ po/mr.po | 407 +++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 177 insertions(+), 230 deletions(-)
 
-commit 03627411aa21591175d7402931c5a76f96095170
-Author: Christian Persch <chpe@gnome.org>
-Date:   Sat Jun 1 19:16:15 2013 +0200
+commit 7f0e1fecf6e411cf1ac5d4c3b429469c063bd7c1
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Sat Jun 1 23:02:18 2013 +0200
 
-    Version 3.8.3
+    Updated Galician translations
 
- NEWS | 6 ++++++
- 1 file changed, 6 insertions(+)
+ po/gl.po | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-commit 01d3dee839b3a6d99d07b58b83f1061a3f171396
+commit 9ff1292c01e2bad5cc28ec7309b32f2a2bf703e1
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Sat Jun 1 23:00:53 2013 +0200
+
+    Updated Galician translations
+
+ po/gl.po | 640 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 314 insertions(+), 326 deletions(-)
+
+commit cb1c4e88c6ec590902e53d9c3c80b2e4adeb6db4
+Author: Jiro Matsuzawa <jmatsuzawa@gnome.org>
+Date:   Fri May 31 23:26:14 2013 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit e7a9bc9445badb3b0d1375e05e3c75c648be41f6
 Author: Christian Persch <chpe@gnome.org>
 Date:   Wed May 29 13:31:37 2013 +0200
 
     client: legacy: Fix crash when using deprecated smclient options
     
     https://bugzilla.redhat.com/show_bug.cgi?id=968140
-    (cherry picked from commit e7a9bc9445badb3b0d1375e05e3c75c648be41f6)
 
  src/terminal-options.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 37f4772c08cc657dbb980820e9cee6dde5e583e2
+commit aaa515ee68e833437add3f4e30e79ed97f4f26d1
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sat May 25 18:03:30 2013 +0200
 
@@ -71,37 +4004,34 @@ Date:   Sat May 25 18:03:30 2013 +0200
     
     Make sure not to inherit the server's environment into the terminal child
     processes, but instead only the environment as passed from the client.
-    (cherry picked from commit aaa515ee68e833437add3f4e30e79ed97f4f26d1)
 
  configure.ac          | 2 +-
  src/terminal-screen.c | 3 ++-
  2 files changed, 3 insertions(+), 2 deletions(-)
 
-commit c44effdcaafbd1de31a3591c89ae7fb4d371251d
+commit e74c3e3fc9b330644a02ce2b7030defbb401a111
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sat May 25 18:00:36 2013 +0200
 
     screen: Don't merge the parent environment
     
     Since vte already does this, there is no point in doing it before as well.
-    (cherry picked from commit e74c3e3fc9b330644a02ce2b7030defbb401a111)
 
  src/terminal-screen.c | 7 -------
  1 file changed, 7 deletions(-)
 
-commit a47d9d258807521d05be2c6c1d0992163dabbb27
+commit 8cd6fb6ae915dca3cc8f8d420148c5e63202af79
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sat May 25 00:22:19 2013 +0200
 
     window: Disconnect signal handler from the right object
     
     https://bugzilla.redhat.com/show_bug.cgi?id=966713
-    (cherry picked from commit 8cd6fb6ae915dca3cc8f8d420148c5e63202af79)
 
  src/terminal-window.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-commit 97e6b32fc39d0e19f2b430c11f88061295ad9592
+commit 04d58702ff269343a3b8b992ff545b9bb3a76ae9
 Author: Christian Persch <chpe@gnome.org>
 Date:   Thu May 23 19:21:34 2013 +0200
 
@@ -109,49 +4039,90 @@ Date:   Thu May 23 19:21:34 2013 +0200
     
     Add build time check for ubuntu, and an --enable-distro-packaging configure
     switch that will disable setting the env vars.
-    (cherry picked from commit 04d58702ff269343a3b8b992ff545b9bb3a76ae9)
 
  configure.ac | 24 ++++++++++++++++++++++++
  src/server.c | 10 +++++++---
  2 files changed, 31 insertions(+), 3 deletions(-)
 
-commit 0d3432a5037c59d00c7350fae6e8f19d2ffbdc5f
+commit 4aa2a0097c7c4c703067ed967e96c8d3783e85e6
+Author: Jasper St. Pierre <jstpierre@mecheye.net>
+Date:   Thu May 23 13:12:41 2013 -0400
+
+    Remove use of set_restored
+
+ src/terminal-gdbus.c | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit 3472913e2c63cdeaad27ac62008d8103fd499b3c
+Author: Jasper St. Pierre <jstpierre@mecheye.net>
+Date:   Sun May 5 14:04:10 2013 -0400
+
+    util: Remove some dead code
+
+ src/terminal-util.c | 175 ----------------------------------------------------
+ src/terminal-util.h |   7 ---
+ 2 files changed, 182 deletions(-)
+
+commit c1cf3a35e7d1107bbbd68e63cf3d24f2916e8af2
+Author: Jasper St. Pierre <jstpierre@mecheye.net>
+Date:   Fri Feb 1 12:50:32 2013 -0500
+
+    window: Remove code to clear the demands-attention hint on re-realize
+    
+    We no longer re-realize when under a compositing/uncompositing WM to
+    switch to an ARGB32 visual, so we no longer need this.
+
+ src/terminal-util.c   | 37 ---------------------------------
+ src/terminal-util.h   |  2 --
+ src/terminal-window.c | 57 ---------------------------------------------------
+ src/terminal-window.h |  2 --
+ 4 files changed, 98 deletions(-)
+
+commit c2a476fa7f33cfb99167c545c8a183d3357f37ba
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Thu May 16 14:37:32 2013 +0200
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 602 +++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 255 insertions(+), 347 deletions(-)
+
+commit edb156fba4b56c5ba11700a615ce556a9d166436
 Author: Shankar Prasad <svenkate@redhat.com>
-Date:   Tue May 14 15:50:06 2013 +0530
+Date:   Tue May 14 15:53:54 2013 +0530
 
     updated kn translations
 
  po/kn.po | 541 ++++++++++++++++++++++++++++-----------------------------------
  1 file changed, 240 insertions(+), 301 deletions(-)
 
-commit 33268f313a800a9e14ee1b78666e28703a551756
-Author: Christian Persch <chpe@gnome.org>
-Date:   Mon May 13 20:16:49 2013 +0200
+commit 20afeb85ed2517f1d334f3ed26934ed8dda971bf
+Author: Emanuele Aina <emanuele.aina@collabora.com>
+Date:   Fri May 10 12:54:08 2013 +0100
 
-    Post release version bump
+    build: Get rid of bashisms in autogen.sh and switch back to /bin/sh
+    
+    The pushd/popd commands are Bash-specific but in our simple case they
+    can be easily replaced with plain cd, using `cd -' to switch back to the
+    old dir.
+    
+    Also substitute the "&>/dev/null" redirection with ">/dev/null 2>&1".
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=700078
 
- configure.ac | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ autogen.sh | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-commit a598e30bee5a86a66cc8c7897ceb859cf9822db7
-Author: Christian Persch <chpe@gnome.org>
-Date:   Mon May 13 20:15:54 2013 +0200
-
-    Version 3.8.2
-
- NEWS | 5 +++++
- 1 file changed, 5 insertions(+)
-
-commit 21aea7a380986536cf610bcc22894e03e257b730
+commit 873df81947425276cbcf30da30d5a8a7333f2cff
 Author: Ask H. Larsen <asklarsen@gmail.com>
-Date:   Fri May 10 17:31:23 2013 +0200
+Date:   Fri May 10 17:31:12 2013 +0200
 
     Updated Danish translation
 
- po/da.po | 464 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 234 insertions(+), 230 deletions(-)
+ po/da.po | 637 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 312 insertions(+), 325 deletions(-)
 
-commit 4bf8a0bb4eb6f14d39f905893d801bec897caafd
+commit 4b69ca292c940f9bd09e50ed93740365957580e2
 Author: Christian Persch <chpe@gnome.org>
 Date:   Thu May 9 15:55:12 2013 +0200
 
@@ -160,47 +4131,56 @@ Date:   Thu May 9 15:55:12 2013 +0200
  src/server.c | 1 +
  1 file changed, 1 insertion(+)
 
-commit 274c4a77ac1098e5218085c180b4b290f9c125ac
+commit 4494fcdbaf0737e327e094fe73af71d2fb1218ef
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu May 9 12:42:32 2013 +0200
+
+    autogen: Use bash
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=699990
+
+ autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7fcddcd2165d182db4b2ae2647689a7cd7dfc764
 Author: Christian Persch <chpe@gnome.org>
 Date:   Tue May 7 20:48:54 2013 +0200
 
     client: legacy: Accept name or UUID for --{window,tab}-with-profile
-    (cherry picked from commit 7fcddcd2165d182db4b2ae2647689a7cd7dfc764)
 
  src/terminal-options.c | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
-commit 86001c26a8b019d51fc92bc69d9363a034eadc95
+commit f7bb10accc1580a931142050eea279bc18ce8ec8
 Author: Christian Persch <chpe@gnome.org>
 Date:   Tue May 7 20:47:04 2013 +0200
 
     client: Validate UUID string
-    (cherry picked from commit f7bb10accc1580a931142050eea279bc18ce8ec8)
 
  src/terminal-profiles-list.c | 15 ++++++++++++++-
  src/terminal-settings-list.c | 18 +++++++++---------
  src/terminal-settings-list.h |  2 ++
  3 files changed, 25 insertions(+), 10 deletions(-)
 
-commit dde1d774fb237e28d3aa333134bcb89ace3b8b1e
+commit 5f200b9b5aac9b53a1eb2483902ba6f824074821
 Author: Khaled Hosny <khaledhosny@eglug.org>
 Date:   Sat May 4 13:48:26 2013 +0200
 
     Update Arabic translation
 
- po/ar.po | 1185 +++++++++++++++++++++++++++++++++-----------------------------
- 1 file changed, 631 insertions(+), 554 deletions(-)
+ po/ar.po | 1164 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 607 insertions(+), 557 deletions(-)
 
-commit e12e5b1fe592b81b92f3564d14a965d157f43cee
-Author: Rajesh Ranjan <rranjan@redhat.com>
-Date:   Thu May 2 13:56:30 2013 +0530
+commit b39cba84691e2fdf70808ffd9d26e7b6a122fbf6
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Thu May 2 22:19:21 2013 +0200
 
-    hindi update
+    Updated Slovenian translation
 
- po/hi.po | 323 +++++++++++++++++++++++----------------------------------------
- 1 file changed, 119 insertions(+), 204 deletions(-)
+ po/sl.po | 645 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 315 insertions(+), 330 deletions(-)
 
-commit b7e60a3419a76a5450b62f2b19fcc61d03ddb30f
+commit ca2ccf71d0e53c087bb0ec273fe3cf55f477ab12
 Author: Dmitriy S. Seregin <dseregin@59.ru>
 Date:   Wed May 1 09:43:57 2013 +0400
 
@@ -209,58 +4189,117 @@ Date:   Wed May 1 09:43:57 2013 +0400
  po/ru.po | 655 +++++++++++++++++++++++----------------------------------------
  1 file changed, 238 insertions(+), 417 deletions(-)
 
-commit 1e8a3c6d0161050bcecd01fbd48cb4a55459bd99
+commit 27af65d9189bb4dbd10e3ce44cadb77896c0e3bb
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Sun Apr 28 21:02:19 2013 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po | 88 +++++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 58 insertions(+), 30 deletions(-)
+
+commit 73f39c7505c8079b771799f8399bfa9caabecfa9
+Author: Dimitris Spingos <dmtrs32@gmail.com>
+Date:   Fri Apr 26 17:47:16 2013 +0300
+
+    Updated Greek translation-help
+
+ help/el/el.po | 726 ++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 344 insertions(+), 382 deletions(-)
+
+commit 25bf48d66093e3a2f6366f573c7e720c72d78dca
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Thu Apr 25 10:42:52 2013 +0100
+
+    help: Tidy up legal.xml
+    
+    Fix a typo in the GPL notice. Make the meaning of a dual license clearer
+    because apparently it can be a bit difficult for some people to
+    understand what it means.
+
+ help/C/legal.xml | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+commit c531802a4ea3a2346f3006cdf4853b247fb4fb9d
 Author: Shantha kumar <shkumar@redhat.com>
-Date:   Fri Apr 26 12:33:36 2013 +0530
+Date:   Fri Apr 26 12:32:11 2013 +0530
 
     Tamil Translation Updated
 
- po/ta.po | 481 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 244 insertions(+), 237 deletions(-)
+ po/ta.po | 463 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 235 insertions(+), 228 deletions(-)
 
-commit 2f92cfa1658e1071856374e04433621e83153ec1
+commit 82f307ba438e03e442f113c1535a92ed084fa0b9
+Author: Dimitris Spingos <dmtrs32@gmail.com>
+Date:   Thu Apr 25 08:36:36 2013 +0300
+
+    Updated Greek translation
+
+ help/Makefile.am |   2 +-
+ po/el.po         | 849 ++++++++++++++++++++++---------------------------------
+ 2 files changed, 345 insertions(+), 506 deletions(-)
+
+commit fbb88bcc72022fd7d41a43dc57cfa2189a72dc7a
+Author: Sindhu S <sindhus@live.in>
+Date:   Wed Apr 24 11:05:40 2013 -0400
+
+    help: Add warning about editing default profile.
+    
+    Warning tells user that editing the default Terminal profile
+    could potentially make Terminal unusable should settings cause
+    problems and there be no other profile to set as default.
+
+ help/C/pref-profiles.page                     | 10 ++++++++
+ help/C/prob-recover-default-profile.page.stub | 33 ---------------------------
+ 2 files changed, 10 insertions(+), 33 deletions(-)
+
+commit 0a9f8a07113a7e63e59865433a2728bd086b53b8
 Author: Sweta Kothari <swkothar@redhat.com>
-Date:   Mon Apr 22 15:41:22 2013 +0530
+Date:   Mon Apr 22 15:39:34 2013 +0530
 
     Updated gujarati file
 
- po/gu.po | 200 ++++++++++++++++++++++++++++++---------------------------------
- 1 file changed, 95 insertions(+), 105 deletions(-)
+ po/gu.po | 372 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 173 insertions(+), 199 deletions(-)
 
-commit 9d32dafb782a5161d37258f0b43c9a14450b2247
-Author: Ville-Pekka Vainio <vpvainio@iki.fi>
-Date:   Thu Apr 18 19:06:41 2013 +0300
+commit c8aeed240a2a46333cb840f6f2a1ad9e73881ec1
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Apr 18 14:12:52 2013 +0200
 
-    Finnish translation update by Jiri Grönroos
+    build: Enable nautilus extension by default
 
- po/fi.po | 256 ++++++++++++++++++++++++---------------------------------------
- 1 file changed, 99 insertions(+), 157 deletions(-)
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-commit 300958e4d3ffcf0e49429feac19e040b14b2260d
-Author: A S Alam <aalam@users.sf.net>
-Date:   Wed Apr 17 21:50:14 2013 +0530
+commit f4fa45d108ceb84b285b3370b01531ac80d88a19
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Feb 13 12:16:34 2013 +0100
 
-    update Punjabi Translation
+    build: Use autoreconf
+    
+    Just use autoreconf + intltoolize directly instead of gnome-autogen.sh.
 
- po/pa.po | 208 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 105 insertions(+), 103 deletions(-)
+ Makefile.am  |  2 +-
+ autogen.sh   | 20 ++++++++------------
+ configure.ac |  1 +
+ 3 files changed, 10 insertions(+), 13 deletions(-)
 
-commit 38d5a25994821a09ac74edf47084f51cd351a2fd
+commit e2f369bb61b321a29dcead31dba89e48215978b4
 Author: Alexandre Franke <alexandre.franke@gmail.com>
-Date:   Wed Apr 17 15:30:21 2013 +0200
+Date:   Wed Apr 17 15:40:53 2013 +0200
 
     Update French translation
 
- po/fr.po | 56 ++++++++++++++++++++++++++++++--------------------------
- 1 file changed, 30 insertions(+), 26 deletions(-)
+ po/fr.po | 638 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 312 insertions(+), 326 deletions(-)
 
-commit 0e79b98f0a5cd90891de45db5ce068800ecf6434
+commit fb61f6aed259e766ab2a9ac42668661d8f982283
 Author: Christian Persch <chpe@gnome.org>
-Date:   Wed Apr 17 14:59:51 2013 +0200
+Date:   Wed Apr 17 15:01:33 2013 +0200
 
     Revert "Added ca"
     
-    This reverts commit 1594d2350f0713b35a6b60779dff9cc26ebc7559.
+    This reverts commit 5120d25837ca6b82c8553c42e533ce14555169aa.
     
     Do NOT just add to HELP_LINGUAS without actually having translated a significant
     portion of the strings!
@@ -268,7 +4307,7 @@ Date:   Wed Apr 17 14:59:51 2013 +0200
  help/Makefile.am | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 1594d2350f0713b35a6b60779dff9cc26ebc7559
+commit 5120d25837ca6b82c8553c42e533ce14555169aa
 Author: Gil Forcada <gforcada@gnome.org>
 Date:   Tue Apr 16 16:11:14 2013 +0200
 
@@ -277,61 +4316,39 @@ Date:   Tue Apr 16 16:11:14 2013 +0200
  help/Makefile.am | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit fe593500448248835e2e1159e93025a412e86310
-Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Apr 15 18:26:14 2013 +0200
-
-    Post release version bump
-
- configure.ac | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit ac585ef0b8077439660bfee7f821f02e7bc7079d
-Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Apr 15 18:17:06 2013 +0200
-
-    Version 3.8.1
-
- NEWS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-commit 1081cb60b03b5578463b9f7698dae91485fff7de
+commit 8e364f5722e786a2598908f2f2cae6948ab53aaf
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 15 15:30:26 2013 +0200
 
     nautilus: Use the private terminal D-Bus API to create the terminal
-    (cherry picked from commit 8e364f5722e786a2598908f2f2cae6948ab53aaf)
 
  src/Makefile.am         |  12 ++-
  src/terminal-nautilus.c | 221 ++++++++++++++++++++++++++++++++++++++----------
  2 files changed, 187 insertions(+), 46 deletions(-)
 
-commit 305e8873151b4e42f31f1a0e02ed493542c99504
+commit 90b7da3da22a6221e853c102b08c140a93a0deec
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 15 15:41:15 2013 +0200
 
     nautilus: Fix menu item parent class structs
-    (cherry picked from commit 90b7da3da22a6221e853c102b08c140a93a0deec)
 
  src/terminal-nautilus.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-commit b129514386d137b9938629d595229f760c01fbcb
+commit 588f4473a3567466da0e84ac9dc2c467af57b997
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 15 14:45:18 2013 +0200
 
     client: Use the actual app ID in the error message too
-    (cherry picked from commit 588f4473a3567466da0e84ac9dc2c467af57b997)
 
  src/client.c | 20 ++++++++++++--------
  1 file changed, 12 insertions(+), 8 deletions(-)
 
-commit 5dddf6c685c6ac8b552748341a9867375c2c438b
+commit 2bb99ba634314c5f0add1c86a14bfac02a5f5220
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 15 14:28:14 2013 +0200
 
     i18n: Split gettext initialisation into a helper routine
-    (cherry picked from commit 2bb99ba634314c5f0add1c86a14bfac02a5f5220)
 
  src/Makefile.am                          | 10 ++++++++--
  src/client.c                             |  7 +++----
@@ -355,7 +4372,7 @@ Date:   Mon Apr 15 14:28:14 2013 +0200
  src/terminal.c                           |  7 +++----
  20 files changed, 71 insertions(+), 41 deletions(-)
 
-commit 4dad472e817edefc48ba54a0d2860b8ebf5cf3a2
+commit c13fc01f5730161dd63ebabd405770922dad4f98
 Author: OKANO Takayoshi <kano@na.rim.or.jp>
 Date:   Mon Apr 15 12:31:17 2013 +0900
 
@@ -364,38 +4381,36 @@ Date:   Mon Apr 15 12:31:17 2013 +0900
  po/ja.po | 1562 ++++++++++++++++++++++++++++++++------------------------------
  1 file changed, 816 insertions(+), 746 deletions(-)
 
-commit d75b68c94ddc096f842e98ed652de352aea56c82
-Author: Dimitris Spingos <dmtrs32@gmail.com>
-Date:   Sun Apr 14 22:30:08 2013 +0300
-
-    Updated Greek translation
-
- help/el/el.po | 36 ++++++++++--------------------------
- 1 file changed, 10 insertions(+), 26 deletions(-)
-
-commit 488cd6d59595c47e1819d73ba9db79136090355a
+commit 9d6bca9cce26b1df2b230597a480e1cdc3ee609b
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sat Apr 13 13:15:55 2013 +0200
 
     about: Remove maintainer emails
     
     Enough with the private mailing already!
-    (cherry picked from commit 9d6bca9cce26b1df2b230597a480e1cdc3ee609b)
 
  src/terminal.about | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 2a5c6e3da6f72fcdf7b84ffe83f8d150ddc6f04b
+commit a91adb116dd68244df3d9080bdd12a0ef3f2ec26
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sat Apr 13 13:14:31 2013 +0200
 
     about: Point to the page on l.g.o
-    (cherry picked from commit a91adb116dd68244df3d9080bdd12a0ef3f2ec26)
 
  src/terminal-util.c | 2 ++
  1 file changed, 2 insertions(+)
 
-commit 16bbd87c21c979d7427d0a06900753a1963f9993
+commit 6b294451966ff35eb773bc851d4aa11d16714f8f
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Sat Apr 13 17:49:08 2013 +1000
+
+    Updated Vietnamese translation
+
+ po/vi.po | 3255 ++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 1477 insertions(+), 1778 deletions(-)
+
+commit 594cfa2c84a210e43418551627af0e48f52a9922
 Author: Christian Persch <chpe@gnome.org>
 Date:   Fri Apr 12 22:18:13 2013 +0200
 
@@ -405,57 +4420,56 @@ Date:   Fri Apr 12 22:18:13 2013 +0200
     because the terminal application is exiting).
     
     https://bugzilla.redhat.com/show_bug.cgi?id=858948
-    (cherry picked from commit 594cfa2c84a210e43418551627af0e48f52a9922)
 
  src/terminal-window.c | 9 +++++++++
  1 file changed, 9 insertions(+)
 
-commit ee23c2eea077297696d98209d65fbf177eb9e4c3
+commit 9ede0ac20d83a659e8f6d62148dc8534d34b15cd
 Author: Daniel Mustieles <daniel.mustieles@gmail.com>
-Date:   Fri Apr 12 18:17:41 2013 +0200
+Date:   Fri Apr 12 17:51:03 2013 +0200
 
     Updated Spanish translation
 
- help/es/es.po | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ help/es/es.po | 117 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 112 insertions(+), 5 deletions(-)
 
-commit 04e2ff2ffa9368125bbdbf13780aa017dae7c32f
+commit 57e4cebd0b98435a55961250201c1ad4cf9e5657
 Author: Daniel Mustieles <daniel.mustieles@gmail.com>
-Date:   Fri Apr 12 18:05:41 2013 +0200
-
-    Updated Spanish translation
-
- help/es/es.po | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
-
-commit ac72773deb758470d42f57c09d16a745ae11bffc
-Author: Daniel Mustieles <daniel.mustieles@gmail.com>
-Date:   Fri Apr 12 18:05:10 2013 +0200
+Date:   Fri Apr 12 14:15:08 2013 +0200
 
     Fixed typo in string
 
  help/C/pref-custom-command.page | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 30fc4b494ccb300f368ba32c16d1430f6761cbd0
+commit 8cbdffc7b6ff65a3bbfc4db13f1467167878ea57
 Author: Daniel Mustieles <daniel.mustieles@gmail.com>
-Date:   Fri Apr 12 17:51:56 2013 +0200
+Date:   Wed Apr 10 18:25:23 2013 +0200
 
     Updated Spanish translation
 
- help/es/es.po | 385 ++++++++++++++++++++++++++++++++++++++++++++++++----------
- 1 file changed, 324 insertions(+), 61 deletions(-)
+ help/es/es.po | 47 +++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 45 insertions(+), 2 deletions(-)
 
-commit ec95a4100dc62c17c8e28cf625068ce08a2b424d
+commit 2c635324132f6ea213653e3de67e68fe1bd503b6
 Author: Marek Černocký <marek@manet.cz>
-Date:   Tue Apr 9 23:25:14 2013 +0200
+Date:   Tue Apr 9 23:26:56 2013 +0200
 
     Updated Czech translation
 
- po/cs.po | 96 +++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 50 insertions(+), 46 deletions(-)
+ po/cs.po | 203 +++++++++++++++++++--------------------------------------------
+ 1 file changed, 61 insertions(+), 142 deletions(-)
 
-commit 1a23414cf209f890926191efa59cbb23ae3d52a5
+commit 480767e8f4aee7b717f2f375b19ad355e64d32c3
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Apr 9 18:26:23 2013 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po | 44 ++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 42 insertions(+), 2 deletions(-)
+
+commit c5b09725e56ba9f772341e103ea6e03eca7a83a7
 Author: Christian Persch <chpe@gnome.org>
 Date:   Tue Apr 9 17:54:50 2013 +0200
 
@@ -464,7 +4478,25 @@ Date:   Tue Apr 9 17:54:50 2013 +0200
  configure.ac | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit fe69e57d2c722d4b3ce79cf90e772f3607f6890d
+commit a7e64f7e2c9711e7274f58fe1437cae0f3524c12
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Apr 9 13:40:14 2013 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po | 189 ++++++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 131 insertions(+), 58 deletions(-)
+
+commit 6c039cee50f26bd6e1b328efbfe69ec438ef71d5
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Apr 9 12:39:44 2013 +0200
+
+    Updated Spanish translation
+
+ po/es.po | 388 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 188 insertions(+), 200 deletions(-)
+
+commit 531635674b3ae665a80b720d7c01fc23c750896c
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 8 19:03:30 2013 +0200
 
@@ -475,51 +4507,38 @@ Date:   Mon Apr 8 19:03:30 2013 +0200
  src/org.gnome.Terminal.gschema.xml.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 328e0404ad36202bc58d79ed31cd204832bb078d
+commit b7df4813c7b85377309f8b9aecd6cae37af3cb0a
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Apr 8 14:04:16 2013 +0200
 
     screen: Portability fix
     
     https://bugzilla.gnome.org/show_bug.cgi?id=697024
-    (cherry picked from commit b7df4813c7b85377309f8b9aecd6cae37af3cb0a)
 
  src/terminal-screen.c | 18 +++++++++++++++++-
  1 file changed, 17 insertions(+), 1 deletion(-)
 
-commit aaa7d72e2ef48859bfc403938c07bc9752210d5c
+commit 449738e21bb5a51052a10a8a0b29315943624769
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sun Apr 7 13:37:47 2013 +0200
 
     nautilus: Export the module entry points
     
     https://bugzilla.gnome.org/show_bug.cgi?id=697350
-    (cherry picked from commit 449738e21bb5a51052a10a8a0b29315943624769)
 
  src/terminal-nautilus.c | 14 ++++++--------
  1 file changed, 6 insertions(+), 8 deletions(-)
 
-commit df28d8c9f914356bfbd0448d55867e4bb7195506
-Author: Gheyret Kenji <gheyret@gmail.com>
-Date:   Sat Apr 6 18:50:06 2013 +0900
-
-    Updateted Uyghur translation
-    
-    Signed-off-by: Gheyret Kenji <gheyret@gmail.com>
-
- po/ug.po | 208 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 105 insertions(+), 103 deletions(-)
-
-commit 46edfff5b42e3f4f83a4914657dd8c580b39766c
+commit 45312b2432f78cc56f421b3c24dbe16e0edc39f6
 Author: Claudio Arseni <claudio.arseni@ubuntu.com>
-Date:   Thu Apr 4 22:15:17 2013 +0200
+Date:   Thu Apr 4 22:13:06 2013 +0200
 
     [l10n] Updated Italian translation.
 
- po/it.po | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ po/it.po | 136 +++++++++++----------------------------------------------------
+ 1 file changed, 24 insertions(+), 112 deletions(-)
 
-commit 8dfea15b10e1b32c23ec0c3e90516f6301f4fe6c
+commit fe1d97a16dd42abc346e5bfa695555953f4e3844
 Author: Claudio Arseni <claudio.arseni@ubuntu.com>
 Date:   Thu Apr 4 22:12:05 2013 +0200
 
@@ -528,9 +4547,9 @@ Date:   Thu Apr 4 22:12:05 2013 +0200
  po/it.po | 205 ++++++++++++++++++++++++++++++---------------------------------
  1 file changed, 97 insertions(+), 108 deletions(-)
 
-commit 84da4b76cc1ba606e8d0031a0944668eb2d58415
+commit e0fc94b83df37e28188a18be9e86ecf88a149ec2
 Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
-Date:   Thu Apr 4 19:56:33 2013 +0200
+Date:   Wed Apr 3 20:14:36 2013 +0200
 
     Updated Serbian translation
 
@@ -538,150 +4557,61 @@ Date:   Thu Apr 4 19:56:33 2013 +0200
  po/sr@latin.po | 210 +++++++++++++++++++++++++++++----------------------------
  2 files changed, 212 insertions(+), 208 deletions(-)
 
-commit 5eb83f3c81d7f1e3a682aa45a925974a828fe103
-Author: Kjartan Maraas <kmaraas@gnome.org>
-Date:   Wed Apr 3 13:53:11 2013 +0200
+commit 8be56028555d9fccedaa4bc5e47dce384b027adf
+Author: Yaron Shahrabani <sh.yaron@gmail.com>
+Date:   Wed Apr 3 08:29:01 2013 +0300
 
-    Updated Norwegian bokmål translation
+    Updated Hebrew translation.
 
- po/nb.po | 240 +++++++++++++++++++++++++++++++--------------------------------
- 1 file changed, 118 insertions(+), 122 deletions(-)
+ po/he.po | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-commit 21b163a6c87a43ba597e1de0489752806df4a02c
-Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
-Date:   Tue Apr 2 22:16:42 2013 +0200
-
-    Updated Basque language
-
- po/eu.po | 56 ++++++++++++++++++++++++++++++--------------------------
- 1 file changed, 30 insertions(+), 26 deletions(-)
-
-commit d97f7c06e6751920285e1cff61c409780f4aff32
-Author: Dimitris Spingos <dmtrs32@gmail.com>
-Date:   Tue Apr 2 17:48:43 2013 +0300
-
-    Updated Greek translation
-
- po/el.po | 390 +++++++++++++++++++--------------------------------------------
- 1 file changed, 115 insertions(+), 275 deletions(-)
-
-commit c5e5e94cc08f4ab1ebc6e002c329d918c3fb9643
-Author: Dimitris Spingos <dmtrs32@gmail.com>
-Date:   Tue Apr 2 17:02:58 2013 +0300
-
-    Updated Greek translation
-
- help/el/el.po | 649 ++++++++++++++++++++++++++--------------------------------
- 1 file changed, 290 insertions(+), 359 deletions(-)
-
-commit 14eac97f82f16f8a60f8b1aef997985a571db502
+commit 25a98677cd61e47bd4c0c44b04e742f7771367f7
 Author: Balázs Úr <urbalazs@src.gnome.org>
-Date:   Tue Apr 2 09:25:47 2013 +0200
+Date:   Tue Apr 2 09:19:25 2013 +0200
 
     Updated Hungarian translation
 
- po/hu.po | 233 ++++++++++++++++++++++++++-------------------------------------
- 1 file changed, 97 insertions(+), 136 deletions(-)
+ po/hu.po | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-commit 2ecbe1b1ca55a95f2747e95ecb8fd3308ab08924
-Author: Enrico Nicoletto <liverig@gmail.com>
-Date:   Mon Apr 1 17:31:47 2013 -0300
-
-    Updated Brazilian Portuguese translation
-
- po/pt_BR.po | 197 ++++++++++++++++++++++++++++++------------------------------
- 1 file changed, 100 insertions(+), 97 deletions(-)
-
-commit a67c363599ee9fbba7beb1ee50d17445f0d96a61
-Author: Javi Ribera <javiribera@gmail.com>
-Date:   Mon Apr 1 20:58:33 2013 +0200
-
-    Updated Spanish translation
-
- po/es.po | 1092 +++++++-------------------------------------------------------
- 1 file changed, 117 insertions(+), 975 deletions(-)
-
-commit 230bb05cad47d3706759cd5d1aae88ffeae15635
-Author: Andika Triwidada <andika@gmail.com>
-Date:   Mon Apr 1 23:39:59 2013 +0700
-
-    Updated Indonesian translation
-
- po/id.po | 70 ++++++++++++++++++++++++++++++----------------------------------
- 1 file changed, 33 insertions(+), 37 deletions(-)
-
-commit e70b06338e2aa2cf35ba10b9667263f8924b0940
-Author: Aurimas Černius <aurisc4@gmail.com>
-Date:   Mon Apr 1 19:32:28 2013 +0300
-
-    Updated Lithuanian translation
-
- po/lt.po | 209 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 105 insertions(+), 104 deletions(-)
-
-commit dca1c090c290e9d5b266296971b2ca4191f08b29
-Author: Krishnababu Krothapalli <kkrothap@redhat.com>
-Date:   Mon Apr 1 20:32:42 2013 +0530
-
-    Updated Telugu Translations
-
- 0 files changed
-
-commit 17d7cbda36938f02f8508cc2570f5633584e3208
-Author: Krishnababu Krothapalli <kkrothap@redhat.com>
-Date:   Mon Apr 1 18:46:26 2013 +0530
-
-    Updated Telugu Translations
-
- po/te.po | 107 ++++++++++++++++++++-------------------------------------------
- 1 file changed, 34 insertions(+), 73 deletions(-)
-
-commit bc0fbcc9ab10d477a8b74a117eccc250ad49cb32
+commit 633c66713fcdc82dc659140afa5bba43e9323a5a
 Author: Arash Mousavi <mousavi.arash@gmail.com>
-Date:   Mon Apr 1 17:51:09 2013 +0430
+Date:   Mon Apr 1 17:50:17 2013 +0430
 
     L10N: Updated Persian Translation
 
  po/fa.po | 101 +++++++++++++++++++--------------------------------------------
  1 file changed, 30 insertions(+), 71 deletions(-)
 
-commit 9effde4b7c8806c7341098c2b5a985a0b1a82988
-Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
-Date:   Mon Apr 1 15:20:30 2013 +0300
-
-    Updated Belarusian translation.
-
- po/be.po | 205 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 104 insertions(+), 101 deletions(-)
-
-commit fe7c7b1ff3a2d90d766b5fdefa24379485a1276f
+commit dceaaf125a03dc9b76a2598a05621d80bd624a07
 Author: ManojKumar Giri <mgiri@redhat.com>
-Date:   Mon Apr 1 16:20:37 2013 +0530
+Date:   Mon Apr 1 16:22:06 2013 +0530
 
     Updated Odia Language along with FUEL implementation
 
  po/or.po | 127 +++++++++++++++++----------------------------------------------
  1 file changed, 34 insertions(+), 93 deletions(-)
 
-commit 9b3077ce85aa5452e97838aeb209f9f4184f22c0
-Author: Fran Diéguez <fran.dieguez@mabishu.com>
-Date:   Mon Apr 1 10:08:47 2013 +0200
+commit 4c82fe8c37718ce2d6040a48d4e643ae6d862be6
+Author: Jasper Lievisse Adriaanse <jasper@humppa.nl>
+Date:   Mon Apr 1 11:23:36 2013 +0200
 
-    Updated Galician translations
+    Pull in sys/wait.h for WIFEXITED/WEXITSTATUS
 
- po/gl.po | 194 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 99 insertions(+), 95 deletions(-)
+ src/terminal-app.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-commit 74fb48057f296f41365f52529197e11e9bafac11
+commit c39d9566086342184a4f9f343fea66c080bf6fcf
 Author: Carles Ferrando <carles.ferrando@gmail.com>
-Date:   Sun Mar 31 21:35:55 2013 +0200
+Date:   Sun Mar 31 21:36:11 2013 +0200
 
     [l10n] Updated Catalan (Valencian) translation
 
- po/ca@valencia.po | 60 +++++++++++++++++++++++++++++--------------------------
- 1 file changed, 32 insertions(+), 28 deletions(-)
+ po/ca@valencia.po | 231 ++++++++++++++++++++++++++----------------------------
+ 1 file changed, 109 insertions(+), 122 deletions(-)
 
-commit e8aa7ca6d8b2a31b7af7591eeb38134950ca0521
+commit 1a4fc505b7e57b5fb10c7ffe619b9d1ba1b887a8
 Author: Gil Forcada <gforcada@gnome.org>
 Date:   Sun Mar 31 21:35:47 2013 +0200
 
@@ -690,25 +4620,16 @@ Date:   Sun Mar 31 21:35:47 2013 +0200
  po/ca.po | 190 ++++++++++++++++++++++++++++++++-------------------------------
  1 file changed, 97 insertions(+), 93 deletions(-)
 
-commit 2bd3f547e55895296d05c473001c7dd22ab58a3a
-Author: Matej Urbančič <mateju@svn.gnome.org>
-Date:   Sun Mar 31 20:02:12 2013 +0200
-
-    Updated Slovenian translation
-
- po/sl.po | 190 ++++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 97 insertions(+), 93 deletions(-)
-
-commit 7e7220483559d1aabde632b726873f8b2e95aa6f
+commit c9d0f6afd2778fdaf6c6974228e354256eae3df9
 Author: Christian Kirbach <christian.kirbach@gmail.com>
-Date:   Sun Mar 31 18:26:43 2013 +0200
+Date:   Sun Mar 31 18:28:50 2013 +0200
 
     Updated German translation
 
- po/de.po | 873 +++++++++++++++++++++++++++------------------------------------
- 1 file changed, 374 insertions(+), 499 deletions(-)
+ po/de.po | 1043 +++++++++++++++++++++++++++-----------------------------------
+ 1 file changed, 450 insertions(+), 593 deletions(-)
 
-commit 55bfa4791235950ed501950ceed72e96e8d7d280
+commit 90ebc4945c3c27a2fbadd6dd1088ffb9ce273d8d
 Author: Piotr Drąg <piotrdrag@gmail.com>
 Date:   Sun Mar 31 17:53:27 2013 +0200
 
@@ -717,7 +4638,7 @@ Date:   Sun Mar 31 17:53:27 2013 +0200
  po/pl.po | 194 ++++++++++++++++++++++++++++++++-------------------------------
  1 file changed, 99 insertions(+), 95 deletions(-)
 
-commit 06dde3a7712dc3c75715726d3e8098840bb3175b
+commit 52d40db6b8370bef5b98d5e46299c0760489acc8
 Author: Piotr Drąg <piotrdrag@gmail.com>
 Date:   Sun Mar 31 17:51:24 2013 +0200
 
@@ -726,97 +4647,72 @@ Date:   Sun Mar 31 17:51:24 2013 +0200
  src/preferences.ui | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 390fd682e1fe1611f75bb8629607f9c4d5bd9e43
+commit b4950571e352c2c7fe787747f466c3d87d5e9c5d
 Author: Christian Persch <chpe@gnome.org>
-Date:   Sun Mar 31 16:04:55 2013 +0200
-
-    Post release version bump.
-
- configure.ac | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-commit f03ebd3a80e02f43e387544537e1cd37801058a2
-Author: Christian Persch <chpe@gnome.org>
-Date:   Sun Mar 31 15:54:58 2013 +0200
-
-    Version 3.8.0.1
-
- configure.ac | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-commit 92562d4bec25ba3428dd5cd7d01055d59fa08675
-Author: Christian Persch <chpe@gnome.org>
-Date:   Wed Mar 20 20:21:28 2013 +0100
-
-    accels: Add more accel-able tabs
-    
-    https://bugzilla.gnome.org/show_bug.cgi?id=696123
-
- src/org.gnome.Terminal.gschema.xml.in | 92 +++++++++++++++++++++++++++++++++++
- src/terminal-accels.c                 | 33 +++++++++++--
- src/terminal-tabs-menu.c              |  2 +-
- 3 files changed, 123 insertions(+), 4 deletions(-)
-
-commit 108428dc62fbe89580ca803091a93a368aa8b6b7
-Author: Christian Persch <chpe@gnome.org>
-Date:   Wed Mar 20 20:11:44 2013 +0100
-
-    accels: Simplify code
-    
-    Make this more easily extensible, and drop the trivially different summaries
-    for the various gsettings keys.
-
- src/terminal-accels.c | 62 +++++++++++++++++++++------------------------------
- 1 file changed, 26 insertions(+), 36 deletions(-)
-
-commit 6ea370181d976fd29cc5ea72babb977574cde04e
-Author: Christian Persch <chpe@gnome.org>
-Date:   Fri Mar 29 15:50:50 2013 +0100
+Date:   Fri Mar 29 15:49:55 2013 +0100
 
     Revert "Added missing languaes to LINGUAS var"
     
-    This reverts commit 32711d78cf2697ac019d400c0ac4c0b420ec57c8.
+    This reverts commit cbfe12563da4011cff13993f72721b35e08030e7.
 
  help/Makefile.am | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit 32711d78cf2697ac019d400c0ac4c0b420ec57c8
+commit cbfe12563da4011cff13993f72721b35e08030e7
 Author: Daniel Mustieles <daniel.mustieles@gmail.com>
-Date:   Fri Mar 29 10:56:54 2013 +0100
+Date:   Fri Mar 29 10:54:44 2013 +0100
 
     Added missing languaes to LINGUAS var
 
  help/Makefile.am | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit ba5060e5cbc5762dab75d1d39ababe5e0cc5e3ec
+commit 49418b702b0a3437fdf1b4a4d80053afef5930fc
+Author: Yaron Shahrabani <sh.yaron@gmail.com>
+Date:   Thu Mar 28 13:57:56 2013 +0200
+
+    Updated Hebrew translation.
+
+ po/he.po | 394 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 191 insertions(+), 203 deletions(-)
+
+commit b8d2b9ae1393d380ef6b5651f80011c851a7e5f0
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Mar 28 10:24:41 2013 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 2748 ++++++++++++++++++++++++--------------------------------------
+ 1 file changed, 1072 insertions(+), 1676 deletions(-)
+
+commit a5e8260b266d7af479eae55a5a5d474e914ccd35
 Author: Daniel Korostil <ted.korostiled@gmail.com>
-Date:   Wed Mar 27 19:27:28 2013 +0200
-
-    Update uk translation
-
- po/uk.po | 219 +++++++++++++++++++++++++++++++++++----------------------------
- 1 file changed, 123 insertions(+), 96 deletions(-)
-
-commit c0ee93a58541112ee287639d393493d8623ba8a5
-Author: Daniel Korostil <ted.korostiled@gmail.com>
-Date:   Wed Mar 27 19:25:33 2013 +0200
+Date:   Wed Mar 27 19:21:51 2013 +0200
 
     Update uk translation
 
  po/uk.po | 3834 ++++++++++++++++++++++++++++++++------------------------------
  1 file changed, 1964 insertions(+), 1870 deletions(-)
 
-commit 39d75c1dc818ff310146cb9fce1785d2a3dd81f5
+commit 141341f897ec8163db47098a014bdd8308cfb1c7
 Author: Dirgita <dirgitadevina@yahoo.co.id>
-Date:   Tue Mar 26 12:20:00 2013 +0700
+Date:   Tue Mar 26 12:18:21 2013 +0700
 
     Updated Indonesian translation
 
- po/id.po | 1373 ++++++++++++++++++++++++++++++++------------------------------
- 1 file changed, 716 insertions(+), 657 deletions(-)
+ po/id.po | 354 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 168 insertions(+), 186 deletions(-)
 
-commit 967e76dc07c96840a780a24649ab7a26270d5943
+commit 2a58dca8c8dd7df9230ca3476f34d83359f15e70
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Tue Mar 26 12:17:22 2013 +0700
+
+    Updated Indonesian translation
+
+ po/id.po | 1359 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 705 insertions(+), 654 deletions(-)
+
+commit c5b16f1c999d5e57d104abae9b0d7485487492f4
 Author: Fran Diéguez <fran.dieguez@mabishu.com>
 Date:   Mon Mar 25 23:46:49 2013 +0100
 
@@ -825,102 +4721,34 @@ Date:   Mon Mar 25 23:46:49 2013 +0100
  help/gl/gl.po | 251 +++++++++++++++++++++++++++++++++++-----------------------
  1 file changed, 151 insertions(+), 100 deletions(-)
 
-commit 164f1ee2e0da5c8fbcf8817ae669d0858a196477
-Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Mar 25 20:58:20 2013 +0100
-
-    Post release version bump
-
- configure.ac | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit c8ce805ec7f29fab523a11e3244ecc2191739227
-Author: Christian Persch <chpe@gnome.org>
-Date:   Mon Mar 25 20:54:07 2013 +0100
-
-    Version 3.8.0
-
- NEWS | 5 +++++
- 1 file changed, 5 insertions(+)
-
-commit 239d7643a2b0324ff4220cefcfc93dfc94483b42
-Author: Christian Persch <chpe@gnome.org>
-Date:   Fri Mar 22 12:52:58 2013 +0100
-
-    build: Validate desktop file on 'make check'
-
- Makefile.am                  | 7 +++++++
- configure.ac                 | 6 ++++++
- gnome-terminal.desktop.in.in | 2 +-
- 3 files changed, 14 insertions(+), 1 deletion(-)
-
-commit a67e3ccb5a51f2a986de46ee023010f53545f957
+commit 2ddda2f56776962bc0bf5b81e7c79d1c2310e967
 Author: Krishnababu Krothapalli <kkrothap@redhat.com>
-Date:   Tue Mar 26 01:31:39 2013 +0530
+Date:   Mon Mar 25 22:58:59 2013 +0530
 
     Updated Telugu Translations
 
  po/te.po | 1789 ++++++++++++++++++++++++++++++++++----------------------------
  1 file changed, 973 insertions(+), 816 deletions(-)
 
-commit cedfe73644cb8e525fd4abdde6119dad68e03f92
+commit e694be6f6d981b85b8fe2785f62099dd0b6769f4
 Author: ManojKumar Giri <mgiri@redhat.com>
-Date:   Mon Mar 25 16:36:13 2013 +0530
+Date:   Mon Mar 25 16:35:32 2013 +0530
 
     Updated Odia Language along with FUEL implementation
 
  po/or.po | 3187 ++++++++++++++++++++++++++++++++------------------------------
  1 file changed, 1621 insertions(+), 1566 deletions(-)
 
-commit 3eed74f3ef5779f084b76ca62aa53946f0a5b959
-Author: Ani Peter <apeter@redhat.com>
-Date:   Mon Mar 25 12:14:03 2013 +0530
+commit 154ee7bc3922ee5f881193170b10376bca0dc86d
+Author: Nilamdyuti Goswami <ngoswami@redhat.com>
+Date:   Mon Mar 25 13:39:43 2013 +0530
 
-    Completed for Malayalam
+    Assamese translation updated
 
- po/ml.po | 407 +++++++++++++++++++++++++++++++++++++--------------------------
- 1 file changed, 241 insertions(+), 166 deletions(-)
+ po/as.po | 378 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 176 insertions(+), 202 deletions(-)
 
-commit 1216f54bbd1098450c81472dcec8c509aa36ea30
-Author: Ani Peter <apeter@redhat.com>
-Date:   Mon Mar 25 11:13:03 2013 +0530
-
-    Completed for Malayalam
-
- po/ml.po | 374 ++++++++++++++++++++++++++++++++++-----------------------------
- 1 file changed, 200 insertions(+), 174 deletions(-)
-
-commit a76c68fd789bf7007ae5c5d5cb7bd5c062c0d3fa
-Author: Marek Černocký <marek@manet.cz>
-Date:   Mon Mar 25 01:07:54 2013 +0100
-
-    Updated Czech translation
-
- po/cs.po | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-commit 2fd6fd6de1ed595a1d58605a337fa8855b98a605
-Author: Marek Černocký <marek@manet.cz>
-Date:   Mon Mar 25 01:06:21 2013 +0100
-
-    Updated Czech translation
-
- po/cs.po | 2750 ++++++++++++++++++++++++--------------------------------------
- 1 file changed, 1073 insertions(+), 1677 deletions(-)
-
-commit cae41b08c918c0fdba1bd15d3e5a0c711160eecf
-Author: Christian Persch <chpe@gnome.org>
-Date:   Sun Mar 24 14:08:09 2013 +0100
-
-    prefs: Fix crash when opening the prefs dialogue again
-    
-    https://bugzilla.redhat.com/show_bug.cgi?id=926943
-    (cherry picked from commit b1ad8964dd605671e7b808181a601031af4a141e)
-
- src/terminal-prefs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit b48a115eb8e68a724af62a901bfea75d6b9d1e2c
+commit 1915b29f96a0796f78a56ac00799e78546679d26
 Author: Piotr Drąg <piotrdrag@gmail.com>
 Date:   Sun Mar 24 19:25:34 2013 +0100
 
@@ -930,25 +4758,36 @@ Date:   Sun Mar 24 19:25:34 2013 +0100
  po/zh_CN.po | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
-commit 2368b8d4d247bc6f3e91bba3c191d526c195fcb7
+commit dc1e7e00f6d2703cc4e4c502e129702ed53101ab
 Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
-Date:   Sun Mar 24 22:38:47 2013 +0700
+Date:   Sun Mar 24 22:40:08 2013 +0700
 
     Updated Thai translation
 
  po/th.po | 3189 +++++++++++++++++++++++++++++---------------------------------
  1 file changed, 1508 insertions(+), 1681 deletions(-)
 
-commit f1fc8c95d4b04768e9fce92f2c5ab323065ac400
+commit b1ad8964dd605671e7b808181a601031af4a141e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Mar 24 14:08:09 2013 +0100
+
+    prefs: Fix crash when opening the prefs dialogue again
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=926943
+
+ src/terminal-prefs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 48a3450cf740e41a8bc3d1e0cbbd20555a745e82
 Author: Mario Blättermann <mario.blaettermann@gmail.com>
-Date:   Sun Mar 24 13:03:59 2013 +0100
+Date:   Sun Mar 24 13:02:48 2013 +0100
 
     [l10n] Updated German doc translation
 
  help/de/de.po | 1068 ++++++++++++++++++++++++++++-----------------------------
  1 file changed, 522 insertions(+), 546 deletions(-)
 
-commit d8b05df6676c3d2c39c95aa19b887094168f3ed1
+commit a1e581b5cfc4f0ce88793358a2e57927d18ddc86
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
 Date:   Sun Mar 24 10:14:01 2013 +0000
 
@@ -957,7 +4796,7 @@ Date:   Sun Mar 24 10:14:01 2013 +0000
  help/C/txt-links.page | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-commit 9da19a7bb089a28b7d6a8008206fd3cf9af36b6a
+commit a873cc9428930d9ec2e4b59c9cecdd55bd5bcb07
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
 Date:   Sun Mar 24 10:12:27 2013 +0000
 
@@ -973,7 +4812,7 @@ Date:   Sun Mar 24 10:12:27 2013 +0000
  help/C/txt-links.page           | 1 -
  8 files changed, 10 insertions(+), 11 deletions(-)
 
-commit 51ee3ef28b3bcff8456855ace977c167f12a42a2
+commit 8d1b328e062b3a8f6fd2404a839a3a94d5c4db20
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
 Date:   Sun Mar 24 10:01:00 2013 +0000
 
@@ -982,67 +4821,102 @@ Date:   Sun Mar 24 10:01:00 2013 +0000
  help/C/pref-custom-command.page | 3 +++
  1 file changed, 3 insertions(+)
 
-commit 3c0d968eacc67fc0126471e54e55c62257558e61
+commit 72ffbb2b463b36327454facad089b98860020e4c
 Author: Christian Kirbach <Christian.Kirbach@googlemail.com>
-Date:   Sun Mar 24 09:23:40 2013 +0100
+Date:   Sun Mar 24 09:21:24 2013 +0100
 
     Updated German help translation
 
  help/de/de.po | 651 ++++++++++++++++++++++++++++++++++++++++++++++++----------
  1 file changed, 541 insertions(+), 110 deletions(-)
 
-commit 636a8eee44de5b5eb955818f45ef75b003e52c62
+commit 0760edcf0e50bbd18a89c4a0a75d87f927085b44
 Author: Shankar Prasad <svenkate@redhat.com>
-Date:   Sun Mar 24 00:03:44 2013 +0530
+Date:   Sun Mar 24 00:06:18 2013 +0530
 
     Updated kn translations
 
  po/kn.po | 3362 ++++++++++++++++++++++++++++++++------------------------------
  1 file changed, 1725 insertions(+), 1637 deletions(-)
 
-commit 3f363a60df650c6e9f5614c8b1598208c1f5773d
-Author: Alexandre Franke <alexandre.franke@gmail.com>
-Date:   Thu Mar 21 16:21:06 2013 +0100
-
-    Update French translation
-
- help/fr/fr.po | 5473 ++++++++++++++++++++++++++++++++++++++++-----------------
- 1 file changed, 3883 insertions(+), 1590 deletions(-)
-
-commit 2605c6ada139f34a35647e670dce28cb218e6688
+commit da6bda462ae65ba1042994d0dbf49c9eadbb57dd
 Author: Dr.T.Vasudevan <drtvasudevan@gmail.com>
-Date:   Thu Mar 21 20:00:44 2013 +0530
+Date:   Thu Mar 21 20:06:08 2013 +0530
 
     Updated Tamil translation
 
- po/ta.po | 2161 +++++++++++++++++++++++++++++++++-----------------------------
- 1 file changed, 1136 insertions(+), 1025 deletions(-)
+ po/ta.po | 2148 ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 1119 insertions(+), 1029 deletions(-)
 
-commit fc4d0b2ffcff2b9527b3e2efe8ad7f0d4194db9e
+commit 260b3f40d2fe3aa53bb9c0fa62a35b012cea9ff6
 Author: Arash Mousavi <mousavi.arash@gmail.com>
-Date:   Thu Mar 21 14:06:21 2013 +0330
+Date:   Thu Mar 21 14:05:43 2013 +0330
 
     L10N: Updated Persian Translation
 
  po/fa.po | 1160 +++++++++++++++++++++++++++++++-------------------------------
  1 file changed, 585 insertions(+), 575 deletions(-)
 
-commit 2d0e8f4e8103817522de960a6daf4793ead52c0b
+commit 179347b4281ceef6f03329956a20c67b99b20ae7
 Author: Chandan Kumar <Chandankumar.093047@gmail.com>
-Date:   Thu Mar 21 11:57:21 2013 +0530
+Date:   Thu Mar 21 11:42:22 2013 +0530
 
     updating Hindi Translation
 
  po/hi.po | 3542 ++++++++++++++++++++++++++++++++++++--------------------------
  1 file changed, 2056 insertions(+), 1486 deletions(-)
 
-commit 8cfbab0f2f1f5ff7ef1a35461b74591834abb705
+commit b1432b943dfc9de6191362b10d53e6ef38fbd8f6
+Author: Balázs Úr <urbalazs@src.gnome.org>
+Date:   Wed Mar 20 21:36:55 2013 +0100
+
+    Updated Hungarian translation
+
+ po/hu.po | 395 +++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 168 insertions(+), 227 deletions(-)
+
+commit 73012df29e276f92f549ff649d3d3ec1fd087fdb
 Author: Mario Blättermann <mario.blaettermann@gmail.com>
-Date:   Wed Mar 20 21:04:35 2013 +0100
+Date:   Wed Mar 20 21:05:50 2013 +0100
 
     [l10n] Updated German translation, fixed bug #696222
 
  po/de.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 10cc2f63014648c099be276feaf0a14fc045f288
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Mar 20 20:21:28 2013 +0100
+
+    accels: Add more accel-able tabs
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=696123
+
+ src/org.gnome.Terminal.gschema.xml.in | 92 +++++++++++++++++++++++++++++++++++
+ src/terminal-accels.c                 | 23 +++++++++
+ src/terminal-tabs-menu.c              |  2 +-
+ 3 files changed, 116 insertions(+), 1 deletion(-)
+
+commit 0db86bcf9bf5fdc482b06445b9aebefb46138402
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Mar 20 20:11:44 2013 +0100
+
+    accels: Simplify code
+    
+    Make this more easily extensible, and drop the trivially different summaries
+    for the various gsettings keys.
+
+ src/org.gnome.Terminal.gschema.xml.in | 24 +++++------
+ src/terminal-accels.c                 | 77 +++++++++++++++++++----------------
+ 2 files changed, 53 insertions(+), 48 deletions(-)
+
+commit 5442ccf14b789d38a4472be9bcfcc8345d38a902
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Mar 20 19:41:35 2013 +0100
+
+    Post branch version bump
+
+ configure.ac | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 483c21248f937b6e94b52dca3e1e53b9cb72d23b
@@ -3922,8 +7796,9 @@ Date:   Fri Feb 15 17:00:04 2013 +0530
     
     Added basic mallard tags, title and description.
 
+ help/C/pref-keystroke-compatibility.page      |  0
  help/C/pref-keystroke-compatibility.page.stub | 22 ----------------------
- 1 file changed, 22 deletions(-)
+ 2 files changed, 22 deletions(-)
 
 commit ae0f3e05f834b10821a4933166c08979d39dcbd6
 Author: Sindhu S <sindhus@live.in>
@@ -58491,9 +62366,10 @@ Date:   Wed Jan 16 06:06:17 2002 +0000
  Makefile.am          |  2 +-
  autogen.sh           | 16 ++++---------
  configure.in         |  3 ++-
+ po/POTFILES.in       |  0
  src/Makefile.am      |  6 +++--
  src/profile-editor.c | 65 ++++++++++++++++++++++++++++++++++++----------------
- 6 files changed, 63 insertions(+), 36 deletions(-)
+ 7 files changed, 63 insertions(+), 36 deletions(-)
 
 commit bf6127b77aab52eb0c5d74187009cf94359134f1
 Author: Havoc Pennington <hp@pobox.com>
@@ -58630,6 +62506,7 @@ Date:   Fri Dec 7 07:05:20 2001 +0000
  COPYING                  |  343 +++++++++++
  ChangeLog                |    4 +
  Makefile.am              |    3 +
+ NEWS                     |    0
  README                   |   18 +
  TODO                     |   33 +
  acconfig.h               |    9 +
@@ -58644,4 +62521,4 @@ Date:   Fri Dec 7 07:05:20 2001 +0000
  src/terminal-window.h    |   80 +++
  src/terminal.c           | 1447 ++++++++++++++++++++++++++++++++++++++++++++
  src/terminal.h           |   50 ++
- 18 files changed, 6530 insertions(+)
+ 19 files changed, 6530 insertions(+)

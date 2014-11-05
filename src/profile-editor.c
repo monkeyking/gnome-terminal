@@ -33,6 +33,8 @@
 #include "terminal-type-builtins.h"
 #include "terminal-util.h"
 #include "terminal-profiles-list.h"
+#include "terminal-libgsystem.h"
+#include "terminal-window.h"
 
 typedef struct _TerminalColorScheme TerminalColorScheme;
 
@@ -70,10 +72,11 @@ static const TerminalColorScheme color_schemes[] = {
 
 enum
 {
-  TERMINAL_PALETTE_TANGO = 0,
-  TERMINAL_PALETTE_LINUX = 1,
-  TERMINAL_PALETTE_XTERM = 2,
-  TERMINAL_PALETTE_RXVT  = 3,
+  TERMINAL_PALETTE_TANGO     = 0,
+  TERMINAL_PALETTE_LINUX     = 1,
+  TERMINAL_PALETTE_XTERM     = 2,
+  TERMINAL_PALETTE_RXVT      = 3,
+  TERMINAL_PALETTE_SOLARIZED = 4,
   TERMINAL_PALETTE_N_BUILTINS
 };
 
@@ -157,7 +160,27 @@ static const GdkRGBA terminal_palettes[TERMINAL_PALETTE_N_BUILTINS][TERMINAL_PAL
     { 1, 0, 1, 1 },
     { 0, 1, 1, 1 },
     { 1, 1, 1, 1 },
-  }
+  },
+
+  /* Solarized palette (1.0.0beta2): http://ethanschoonover.com/solarized */
+  {
+    { 0.02745,  0.211764, 0.258823, 1 },
+    { 0.862745, 0.196078, 0.184313, 1 },
+    { 0.521568, 0.6,      0,        1 },
+    { 0.709803, 0.537254, 0,        1 },
+    { 0.149019, 0.545098, 0.823529, 1 },
+    { 0.82745,  0.211764, 0.509803, 1 },
+    { 0.164705, 0.631372, 0.596078, 1 },
+    { 0.933333, 0.909803, 0.835294, 1 },
+    { 0,        0.168627, 0.211764, 1 },
+    { 0.796078, 0.294117, 0.086274, 1 },
+    { 0.345098, 0.431372, 0.458823, 1 },
+    { 0.396078, 0.482352, 0.513725, 1 },
+    { 0.513725, 0.580392, 0.588235, 1 },
+    { 0.423529, 0.443137, 0.768627, 1 },
+    { 0.57647,  0.631372, 0.631372, 1 },
+    { 0.992156, 0.964705, 0.890196, 1 },
+  },
 };
 
 static void profile_colors_notify_scheme_combo_cb (GSettings *profile,
@@ -228,7 +251,7 @@ modify_palette_entry (GSettings       *profile,
                       guint            i,
                       const GdkRGBA   *color)
 {
-  GdkRGBA *colors;
+  gs_free GdkRGBA *colors;
   gsize n_colors;
 
   /* FIXMEchpe: this can be optimised, don't really need to parse the colours! */
@@ -241,8 +264,6 @@ modify_palette_entry (GSettings       *profile,
       terminal_g_settings_set_rgba_palette (profile, TERMINAL_PROFILE_PALETTE_KEY,
                                             colors, n_colors);
     }
-
-  g_free (colors);
 }
 
 static void
@@ -316,7 +337,7 @@ profile_palette_notify_scheme_combo_cb (GSettings *profile,
                                         const char *key,
                                         GtkComboBox *combo)
 {
-  GdkRGBA *colors;
+  gs_free GdkRGBA *colors;
   gsize n_colors;
   guint i;
 
@@ -330,8 +351,6 @@ profile_palette_notify_scheme_combo_cb (GSettings *profile,
   g_signal_handlers_block_by_func (combo, G_CALLBACK (palette_scheme_combo_changed_cb), profile);
   gtk_combo_box_set_active (combo, i);
   g_signal_handlers_unblock_by_func (combo, G_CALLBACK (palette_scheme_combo_changed_cb), profile);
-
-  g_free (colors);
 }
 
 static void
@@ -359,7 +378,7 @@ profile_palette_notify_colorpickers_cb (GSettings *profile,
 {
   GtkWidget *w;
   GtkBuilder *builder;
-  GdkRGBA *colors;
+  gs_free GdkRGBA *colors;
   gsize n_colors, i;
 
   g_assert (strcmp (key, TERMINAL_PROFILE_PALETTE_KEY) == 0);
@@ -386,33 +405,29 @@ profile_palette_notify_colorpickers_cb (GSettings *profile,
           g_signal_handlers_unblock_by_func (w, G_CALLBACK (palette_color_notify_cb), profile);
         }
     }
-
-  g_free (colors);
 }
 
 static void
 custom_command_entry_changed_cb (GtkEntry *entry)
 {
   const char *command;
-  GError *error = NULL;
+  gs_free_error GError *error = NULL;
 
   command = gtk_entry_get_text (entry);
 
-  if (g_shell_parse_argv (command, NULL, NULL, &error))
+  if (command[0] == '\0' ||
+      g_shell_parse_argv (command, NULL, NULL, &error))
     {
-      gtk_entry_set_icon_from_stock (entry, GTK_PACK_END, NULL);
+      gtk_entry_set_icon_from_icon_name (entry, GTK_PACK_END, NULL);
     }
   else
     {
-      char *tooltip;
+      gs_free char *tooltip;
 
-      gtk_entry_set_icon_from_stock (entry, GTK_PACK_END, GTK_STOCK_DIALOG_WARNING);
+      gtk_entry_set_icon_from_icon_name (entry, GTK_PACK_END, "dialog-warning");
 
       tooltip = g_strdup_printf (_("Error parsing command: %s"), error->message);
       gtk_entry_set_icon_tooltip_text (entry, GTK_PACK_END, tooltip);
-      g_free (tooltip);
-
-      g_error_free (error);
     }
 }
 
@@ -433,7 +448,7 @@ init_color_scheme_menu (GtkWidget *widget)
 {
   GtkCellRenderer *renderer;
   GtkTreeIter iter;
-  GtkListStore *store;
+  gs_unref_object GtkListStore *store;
   guint i;
 
   store = gtk_list_store_new (1, G_TYPE_STRING);
@@ -446,7 +461,6 @@ init_color_scheme_menu (GtkWidget *widget)
                                       -1);
 
   gtk_combo_box_set_model (GTK_COMBO_BOX (widget), GTK_TREE_MODEL (store));
-  g_object_unref (store);
 
   renderer = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (widget), renderer, TRUE);
@@ -457,7 +471,7 @@ static void
 editor_response_cb (GtkWidget *editor,
                     int response,
                     gpointer use_data)
-{  
+{
   if (response == GTK_RESPONSE_HELP)
     {
       terminal_util_show_help ("profile", GTK_WINDOW (editor));
@@ -585,18 +599,14 @@ rgba_to_s (const GValue *value,
            gpointer user_data)
 {
   GdkRGBA *color;
-  char *s;
-  GVariant *variant;
+  gs_free char *s = NULL;
 
   color = g_value_get_boxed (value);
   if (color == NULL)
     return NULL;
 
   s = gdk_rgba_to_string (color);
-  variant = g_variant_new_string (s);
-  g_free (s);
-
-  return variant;
+  return g_variant_new_string (s);
 }
 
 static gboolean
@@ -660,6 +670,27 @@ enum_to_string (const GValue *value,
   return variant;
 }
 
+static gboolean
+scrollbar_policy_to_bool (GValue *value,
+                          GVariant *variant,
+                          gpointer user_data)
+{
+  const char *str;
+
+  g_variant_get (variant, "&s", &str);
+  g_value_set_boolean (value, g_str_equal (str, "always"));
+
+  return TRUE;
+}
+
+static GVariant *
+bool_to_scrollbar_policy (const GValue *value,
+                          const GVariantType *expected_type,
+                          gpointer user_data)
+{
+  return g_variant_new_string (g_value_get_boolean (value) ? "always" : "never");
+}
+
 /**
  * terminal_profile_edit:
  * @profile: a #GSettings
@@ -679,8 +710,9 @@ terminal_profile_edit (GSettings  *profile,
   GtkBuilder *builder;
   GError *error = NULL;
   GtkWidget *editor, *w;
-  char *uuid;
+  gs_free char *uuid = NULL;
   guint i;
+  gfloat style_darkness;
 
   editor = g_object_get_data (G_OBJECT (profile), "editor-window");
   if (editor)
@@ -723,7 +755,6 @@ terminal_profile_edit (GSettings  *profile,
   uuid = terminal_settings_list_dup_uuid_from_child (profiles_list, profile);
   gtk_label_set_text (GTK_LABEL (gtk_builder_get_object (builder, "profile-uuid")),
                       uuid);
-  g_free (uuid);
 
   w = (GtkWidget *) gtk_builder_get_object  (builder, "color-scheme-combobox");
   init_color_scheme_menu (w);
@@ -752,6 +783,14 @@ terminal_profile_edit (GSettings  *profile,
                         G_CALLBACK (palette_color_notify_cb),
                         profile);
     }
+
+  gtk_widget_style_get (GTK_WIDGET (
+              terminal_window_get_active (TERMINAL_WINDOW (transient_parent))),
+                        "background-darkness", &style_darkness,
+                        NULL);
+  gtk_widget_set_visible (gtk_builder_get_object (
+              builder,
+              "use-theme-transparency-checkbutton"), style_darkness >= 0);
 
   profile_palette_notify_colorpickers_cb (profile, TERMINAL_PROFILE_PALETTE_KEY, editor);
   g_signal_connect (profile, "changed::" TERMINAL_PROFILE_PALETTE_KEY,
@@ -920,12 +959,12 @@ terminal_profile_edit (GSettings  *profile,
   g_settings_bind_with_mapping (profile,
                                 TERMINAL_PROFILE_SCROLLBAR_POLICY_KEY,
                                 gtk_builder_get_object (builder,
-                                                        "scrollbar-policy-combobox"),
+                                                        "scrollbar-checkbutton"),
                                 "active",
                                 G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET,
-                                (GSettingsBindGetMapping) string_to_enum,
-                                (GSettingsBindSetMapping) enum_to_string,
-                                gtk_policy_type_get_type, NULL);
+                                (GSettingsBindGetMapping) scrollbar_policy_to_bool,
+                                (GSettingsBindSetMapping) bool_to_scrollbar_policy,
+                                NULL, NULL);
   g_settings_bind (profile, TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE_KEY,
                    gtk_builder_get_object (builder,
                                            "scroll-on-keystroke-checkbutton"),
@@ -941,14 +980,6 @@ terminal_profile_edit (GSettings  *profile,
   g_settings_bind (profile, TERMINAL_PROFILE_TITLE_KEY,
                    gtk_builder_get_object (builder, "title-entry"), "text",
                    G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
-  g_settings_bind_with_mapping (profile, TERMINAL_PROFILE_TITLE_MODE_KEY,
-                                gtk_builder_get_object (builder,
-                                                        "title-mode-combobox"),
-                                "active",
-                                G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET,
-                                (GSettingsBindGetMapping) string_to_enum,
-                                (GSettingsBindSetMapping) enum_to_string,
-                                terminal_title_mode_get_type, NULL);
   g_settings_bind (profile, TERMINAL_PROFILE_UPDATE_RECORDS_KEY,
                    gtk_builder_get_object (builder,
                                            "update-records-checkbutton"),
@@ -976,21 +1007,56 @@ terminal_profile_edit (GSettings  *profile,
   g_settings_bind (profile,
                    TERMINAL_PROFILE_USE_CUSTOM_COMMAND_KEY,
                    gtk_builder_get_object (builder, "custom-command-box"),
-                   "sensitive", G_SETTINGS_BIND_GET);
+                   "sensitive",
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
   g_settings_bind (profile,
                    TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY,
                    gtk_builder_get_object (builder, "font-hbox"),
                    "sensitive",
-                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_INVERT_BOOLEAN);
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_INVERT_BOOLEAN |
+                   G_SETTINGS_BIND_NO_SENSITIVITY);
   g_settings_bind (profile,
                    TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE_KEY,
                    gtk_builder_get_object (builder, "default-size-hbox"),
-                   "sensitive", G_SETTINGS_BIND_GET);
+                   "sensitive",
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
+  g_settings_bind (profile,
+                   TERMINAL_PROFILE_USE_THEME_COLORS_KEY,
+                   gtk_builder_get_object (builder, "colors-box"),
+                   "sensitive",
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_INVERT_BOOLEAN |
+                   G_SETTINGS_BIND_NO_SENSITIVITY);
   g_settings_bind_writable (profile,
                             TERMINAL_PROFILE_PALETTE_KEY,
                             gtk_builder_get_object (builder, "palette-box"),
                             "sensitive",
                             FALSE);
+  g_settings_bind (profile,
+                   TERMINAL_PROFILE_REWRAP_ON_RESIZE_KEY,
+                   gtk_builder_get_object (builder, "rewrap-on-resize-checkbutton"),
+                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+  g_settings_bind (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                   gtk_builder_get_object (builder, "use-transparent-background"),
+                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  g_settings_bind (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                   gtk_builder_get_object (builder, "background-transparent-scale-box"),
+                   "sensitive", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
+  g_settings_bind (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT,
+                   gtk_builder_get_object (builder, "background-transparent-adjustment"),
+                   "value", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  g_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+                   gtk_builder_get_object (builder, "use-theme-transparency-checkbutton"),
+                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+  if (style_darkness >= 0)
+      g_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+              gtk_builder_get_object (builder, "use-transparent-background-box"),
+              "sensitive",
+              G_SETTINGS_BIND_GET |
+              G_SETTINGS_BIND_INVERT_BOOLEAN |
+              G_SETTINGS_BIND_NO_SENSITIVITY);
+
 
   terminal_util_bind_mnemonic_label_sensitivity (editor);
 

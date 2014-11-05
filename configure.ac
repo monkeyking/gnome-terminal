@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[8])
-m4_define([gt_version_micro],[3])
+m4_define([gt_version_minor],[12])
+m4_define([gt_version_micro],[2])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -9,6 +9,7 @@ m4_define([gt_api_version],[0])
 AC_INIT([GNOME Terminal],[gt_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
 AC_CONFIG_SRCDIR([src/terminal.c])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE([1.9 foreign no-dist-gzip dist-bzip2])
 
@@ -28,17 +29,17 @@ AC_PROG_CC
 AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
-IT_PROG_INTLTOOL([0.40.0])
+IT_PROG_INTLTOOL([0.50.0])
 
 GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
 
 AM_GLIB_GNU_GETTEXT
 
-GLIB_REQUIRED=2.32.0
+GLIB_REQUIRED=2.39.2
 GIO_REQUIRED=2.33.2
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
-DCONF_REQUIRED=0.12.0
+DCONF_REQUIRED=0.14.0
 
 AC_MSG_CHECKING([which gtk+ version to compile against])
 AC_ARG_WITH([gtk],
@@ -53,27 +54,22 @@ AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
-       GTK_REQUIRED=3.6.0
+       GTK_REQUIRED=3.9.9
        VTE_PC_VERSION=-2.90
-       VTE_REQUIRED=0.34.6
+       VTE_REQUIRED=0.36.1
        ;;
 esac
 
-AC_MSG_CHECKING([for GDK target])
-case "$with_gtk" in
-  3.0) for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
-         GDK_TARGET="$target"
-         break
-       done
-       ;;
-esac
-AC_MSG_RESULT([$GDK_TARGET])
-
-case "$GDK_TARGET" in
-  x11) PLATFORM_DEPS="x11" ;;
-  win32|quartz) PLATFORM_DEPS="" ;;
-  *) AC_MSG_ERROR([unknown gdk target]) ;;
-esac
+PLATFORM_DEPS=
+for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
+  case "$target" in
+    x11) PLATFORM_DEPS="$PLATFORM_DEPS x11" ;;
+    broadway) ;;
+    wayland) ;;
+    win32|quartz) AC_MSG_WARN([unsupported GDK backend $target]) ;;
+    *) AC_MSG_WARN([unknown GDK backend $target]) ;;
+  esac
+done
 
 PKG_CHECK_MODULES([TERM],
   [vte$VTE_PC_VERSION >= $VTE_REQUIRED
@@ -85,18 +81,15 @@ PKG_CHECK_MODULES([TERM],
    uuid
    $PLATFORM_DEPS])
 
-# DConf broke API without changing the pkgconfig name
-AC_MSG_CHECKING([old DConf])
-PKG_CHECK_EXISTS([dconf >= 0.14],[have_old_dconf=no],[have_old_dconf=yes])
-AC_MSG_RESULT([$have_old_dconf])
-
-if test "$have_old_dconf" = "yes"; then
-  AC_DEFINE([HAVE_DCONF_1_2],[1],[Define to 1 if DConf is version 1.2])
-fi
-
 # ****
 # DBus
 # ****
+
+AC_ARG_WITH([dbus-interface-dir],
+  [AS_HELP_STRING([--with-dbus-interface-dir=PATH],[dbus interace file directory])],
+  [dbusinterfacedir="$withval"],
+  [dbusinterfacedir='${datadir}/dbus-1/interfaces'])
+AC_SUBST([dbusinterfacedir])
 
 AC_ARG_WITH([dbus-service-dir],
   [AS_HELP_STRING([--with-dbus-service-dir=PATH],[dbus service file directory])],
@@ -174,14 +167,39 @@ if test -z "$DESKTOP_FILE_VALIDATE"; then
   AC_MSG_ERROR([desktop-file-validate not found])
 fi
 
+AC_ARG_VAR([APPDATA_VALIDATE],[the appdata-validate programme])
+AC_PATH_PROG([APPDATA_VALIDATE],[appdata-validate],[])
+if test -z "$APPDATA_VALIDATE"; then
+  AC_MSG_ERROR([appdata-validate not found])
+fi
+
+# ***************************
+# GNOME Shell search provider
+# ***************************
+
+AC_MSG_CHECKING([whether to build the gnome-shell search provider])
+AC_ARG_ENABLE([search-provider],
+  [AS_HELP_STRING([--disable-search-provider],[Disable gnome-shell search provider])],
+  [],[enable_search_provider=yes])
+AC_MSG_RESULT([$enable_search_provider])
+
+if test "$enable_search_provider" = "yes"; then
+  AC_CHECK_FILE([$(eval echo $(eval echo $(eval echo ${dbusinterfacedir})))/org.gnome.ShellSearchProvider2.xml],[],
+    [AC_MSG_ERROR([gnome-shell search provider requested but interface definition file not found])])
+
+  AC_DEFINE([ENABLE_SEARCH_PROVIDER],[1],[Define to enable gnome-shell search provider])
+fi
+
+AM_CONDITIONAL([ENABLE_SEARCH_PROVIDER],[test "$enable_search_provider" = "yes"])
+
 # ******************
 # Nautilus extension
 # ******************
 
 AC_ARG_WITH([nautilus-extension],
-  [AS_HELP_STRING([--with-nautilus-extension],[Enable nautilus extension])],
+  [AS_HELP_STRING([--without-nautilus-extension],[Disable nautilus extension])],
   [],
-  [with_nautilus_extension=no])
+  [with_nautilus_extension=yes])
 
 if test "$with_nautilus_extension" = "yes"; then
   NAUTILUS_REQUIRED=3.0.0
@@ -189,7 +207,8 @@ if test "$with_nautilus_extension" = "yes"; then
   PKG_CHECK_MODULES([NAUTILUS],[
     libnautilus-extension >= $NAUTILUS_REQUIRED
     gio-2.0
-    gio-unix-2.0])
+    gio-unix-2.0
+    $PLATFORM_DEPS])
 
   AC_ARG_WITH([nautilus-dir],
     [AS_HELP_STRING([--with-nautilus-dir=PATH],[Nautilus extensions directory])],
@@ -272,13 +291,14 @@ CC_CHECK_FLAGS_APPEND([AM_CFLAGS],[CFLAGS],[ \
   -fno-strict-aliasing \
   -fvisibility=hidden \
   -fstack-protector \
+  -Wno-deprecated-declarations \
 ])
 
 # *************
 # Documentation
 # *************
 
-YELP_HELP_INIT
+YELP_HELP_INIT([no-lc-media-links no-lc-dist])
 
 # ****************************
 
@@ -310,8 +330,10 @@ gnome-terminal-$VERSION:
       prefix:                 ${prefix}
       source code location:   ${srcdir}
       compiler:               ${CC}
+      DBus interface dir:     ${dbusinterfacedir}
       DBus service dir:       ${dbusservicedir}
       Prefs migration:        ${enable_migration}
+      Search provider:        ${enable_search_provider}
       Nautilus extension:     ${with_nautilus_extension}
       Nautilus extension dir: ${nautilusextensiondir}
 "

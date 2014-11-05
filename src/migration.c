@@ -31,6 +31,7 @@
 #include "terminal-profiles-list.h"
 #include "terminal-type-builtins.h"
 #include "terminal-debug.h"
+#include "terminal-libgsystem.h"
 
 static gboolean clean = FALSE;
 static gboolean dry_run = FALSE;
@@ -85,7 +86,6 @@ enum {
 #define KEY_SCROLL_ON_KEYSTROKE "scroll_on_keystroke"
 #define KEY_SCROLL_ON_OUTPUT "scroll_on_output"
 #define KEY_SILENT_BELL "silent_bell"
-#define KEY_TITLE_MODE "title_mode"
 #define KEY_TITLE "title"
 #define KEY_UPDATE_RECORDS "update_records"
 #define KEY_USE_CUSTOM_COMMAND "use_custom_command"
@@ -332,6 +332,9 @@ migrate_global_prefs (GSettings *settings,
   migrate_string_list (client, GCONF_GLOBAL_PREFIX, "active_encodings",
                        settings, TERMINAL_SETTING_ENCODINGS_KEY);
 
+  if (verbose)
+      g_printerr("Migrating global\n");
+
   g_object_unref (client);
 
   return TRUE;
@@ -363,25 +366,56 @@ migrate_profile (TerminalSettingsList *list,
 {
   GSettings *settings;
   char *child_name, *path;
-  const char *name;
+  gchar *background_type = NULL, *bg_type_key, *bg_darkness_key;
+  gdouble background_darkness;
+  gs_free char *name;
+  gboolean is_default;
 
   if (g_strcmp0 (gconf_id, default_gconf_id) == 0) {
     /* Re-use the default list child */
     settings = terminal_settings_list_ref_default_child (list);
+    is_default = TRUE;
   } else {
     child_name = terminal_settings_list_add_child (list);
     settings = terminal_settings_list_ref_child (list, child_name);
     g_free (child_name);
+    is_default = FALSE;
   }
 
   path = gconf_concat_dir_and_key (GCONF_PROFILES_PREFIX, gconf_id);
 
+  bg_type_key = gconf_concat_dir_and_key (path, KEY_BACKGROUND_TYPE);
+  background_type = gconf_client_get_string (client, bg_type_key, NULL);
+  g_free (bg_type_key);
+  if (background_type)
+      g_settings_set_boolean (settings, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                              g_strcmp0(background_type, "transparent") == 0);
+  g_free (background_type);
+
+  // If we're migrating, set the 'use theme transparency' key to false, this
+  // will be copied from the old profile into transparency.
+  g_settings_set_boolean (settings, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+                          FALSE);
+
+  bg_darkness_key = gconf_concat_dir_and_key (path, KEY_BACKGROUND_DARKNESS);
+  background_darkness = gconf_client_get_float (client,
+                                                bg_darkness_key, NULL);
+
+  g_free (bg_darkness_key);
+  if (background_darkness) {
+      // Need to invert, the key has changed sense
+      g_settings_set_int (settings,
+                          TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT,
+                          1 - (int) (background_darkness * 100));
+  }
+
   migrate_string (client, path, KEY_VISIBLE_NAME,
                   settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY);
 
-  g_settings_get (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY, "&s", &name);
-  if (strlen (name) == 0)
-    g_settings_set_string (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY, _("Unnamed"));
+  g_settings_get (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY, "s", &name);
+  if (name[0] == '\0')
+    g_settings_set_string (settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY,
+                           is_default ? _("Default") : _("Unnamed"));
 
   migrate_string (client, path, KEY_FOREGROUND_COLOR,
                   settings, TERMINAL_PROFILE_FOREGROUND_COLOR_KEY);
@@ -392,9 +426,6 @@ migrate_profile (TerminalSettingsList *list,
   migrate_bool (client, path, KEY_BOLD_COLOR_SAME_AS_FG,
                 settings, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY,
                 FALSE);
-  migrate_genum (client, path, KEY_TITLE_MODE,
-                 settings, TERMINAL_PROFILE_TITLE_MODE_KEY,
-                 TERMINAL_TYPE_TITLE_MODE);
   migrate_string (client, path, KEY_TITLE,
                   settings, TERMINAL_PROFILE_TITLE_KEY);
   migrate_bool (client, path, KEY_ALLOW_BOLD,
@@ -475,7 +506,7 @@ migrate_profiles (GSettings *global_settings,
   TerminalSettingsList *list;
   GConfClient *client;
   GConfValue *value, *dvalue;
-  GSList *l;
+  GSList *l, *def = NULL;
   const char *default_profile;
 
   client = gconf_client_get_default ();
@@ -485,15 +516,24 @@ migrate_profiles (GSettings *global_settings,
       dvalue->type == GCONF_VALUE_STRING)
     default_profile = gconf_value_get_string (dvalue);
   else
-    default_profile = NULL;
+    default_profile = "Default";
 
   list = terminal_profiles_list_new ();
 
   value = gconf_client_get (client, GCONF_GLOBAL_PREFIX "/profile_list", NULL);
+  if (value == NULL) {
+      value = gconf_value_new (GCONF_VALUE_LIST);
+      gconf_value_set_list_type (value, GCONF_VALUE_STRING);
+      def = g_slist_append(def, gconf_value_new_from_string(GCONF_VALUE_STRING,
+                                                            "Default", NULL));
+      gconf_value_set_list_nocopy (value, def);
+  }
   if (value != NULL &&
       value->type == GCONF_VALUE_LIST &&
       gconf_value_get_list_type (value) == GCONF_VALUE_STRING) {
     for (l = gconf_value_get_list (value); l != NULL; l = l->next) {
+      if (verbose)
+          g_printerr ("Migrating %s\n", gconf_value_get_string (l->data));
       migrate_profile (list, client,
                        gconf_value_get_string (l->data),
                        default_profile);
@@ -626,10 +666,6 @@ main (int argc,
   int rv = EXIT_SUCCESS;
 
   setlocale (LC_ALL, "");
-
-#if !GLIB_CHECK_VERSION (2, 35, 3)
-  g_type_init ();
-#endif
 
   _terminal_debug_init ();
 

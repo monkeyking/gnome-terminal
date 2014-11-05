@@ -32,14 +32,16 @@ HELP_FILES = \
 	pref-menubar.page \
 	pref-profiles.page \
 	pref-scrolling.page \
-	pref-title.page \
+	pref-tab-window.page \
+	pref-theme.page \
 	profile.page \
+	prob-reset.page \
 	txt-copy-paste.page \
 	txt-links.page \
 	txt-search.page \
 	txt-select-text.page \
 	$(NULL)
 
-HELP_LINGUAS = de el es gl
+HELP_LINGUAS = cs de el es fr gl hu pt_BR ru
 
 -include $(top_srcdir)/git.mk
