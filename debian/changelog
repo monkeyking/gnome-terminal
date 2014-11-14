@@ -1,3 +1,29 @@
+gnome-terminal (3.14.1-1ubuntu1) vivid; urgency=medium
+
+  [ Iain Lane ]
+  * Merge with Debian, remaining changes:
+    - debian/patches/50_add_unity_quicklist.patch: Add Unity quicklist menu
+      item.
+    - debian/patches/52_support_apturl.patch: Support apt: urls.
+    - debian/patches/60_add_lp_handler.patch: Add a handler for launchpad bug
+      URLs.
+    - debian/patches/0001-Restore-transparency.patch: Restore transparency
+      support, dropped upstream. Patch from Debarishi Ray, modified by Iain
+      Lane to support a 'theme' default value.
+    - Add 61_cwd_fallback.patch: Provide fallback for reading current
+      directory if OSC 7 fails.
+  * debian/patches/0001-window-Make-the-drawing-robust-across-all-themes.patch:
+    Make sure the window always draws a background, even when transparency is
+    on.
+  * Disable shell provider, we don't want to build-dep on gnome-shell.
+
+  [ Tim Lunn ]
+  * Add gnome-shell_search_provider.patch: provide a local copy of the dbus
+    interface so can build shell search provider without depending on
+    gnome-shell which is in universe (LP: #1390224)
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 14 Nov 2014 16:39:19 +0000
+
 gnome-terminal (3.14.1-1) unstable; urgency=medium
 
   * New upstream release.
@@ -51,6 +77,12 @@ gnome-terminal (3.12.3-1) unstable; urgency=medium
 
  -- Andreas Henriksson <andreas@fatal.se>  Mon, 23 Jun 2014 20:47:43 +0200
 
+gnome-terminal (3.12.3-0ubuntu1) vivid; urgency=medium
+
+  * New upstream release 3.12.3.
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 06 Nov 2014 10:33:32 +0000
+
 gnome-terminal (3.12.2-3) unstable; urgency=medium
 
   * Explicitly disable search provider on non-linux.
@@ -76,6 +108,52 @@ gnome-terminal (3.12.2-1) unstable; urgency=medium
     - now included in upstream release.
 
  -- Andreas Henriksson <andreas@fatal.se>  Sun, 18 May 2014 22:27:40 +0200
+
+gnome-terminal (3.12.2-0ubuntu1) vivid; urgency=low
+
+  [ Iain Lane ]
+  * NOTE: This version changes behaviour around the "Switch to tab" keyboard
+    shortcuts. They are now active all the time, whereas previously they were
+    only active when you had a corresponding number of tabs open. If you need
+    to send these keys to your terminal, clear the shortcuts in the
+    preferences dialog.
+  * Drop 03_add_keywords.desktop: Not useful any more.
+  * Drop 20_add_alt_screen_toggle_ui.patch: Too much effort to maintain, not
+    deemed important enough to keep.
+  * Resynchronise with Debian, remaining changes:
+    - debian/patches/50_add_unity_quicklist.patch: Add Unity quicklist menu
+      item.
+    - debian/patches/60_add_lp_handler.patch: Add a handler for launchpad bug
+      URLs.
+  * Disable shell provider, we don't want to build-dep on gnome-shell.
+  * Bump build-dependencies according to configure.ac:
+    - intltool 0.50.0
+    - vte 0.36.0
+    - glib 2.39.2
+  * Make debian/patches/10_kfreebsd-f_dupfd_cloexec.patch apply again.
+  * Add build-dependency on libnautilus-extension-dev
+  * Add new patch debian/patches/nautilus-x11.patch
+    - build fails because of -Wl,-z,defs missing -lX11 in nautilus extension
+  * Include autoreconf.mk cdbs snippet and build-depend on dh-autoreconf
+  * Install new files in gnome-terminal
+    - nautilus extension
+  * debian/patches/0001-Restore-transparency.patch: Patch from Debarishi Ray
+    to re-add support for transparent terminals. Updated to support loading a
+    transparency value from the theme, if it provides one and to migrate the
+    settings from GConf.
+
+  [ Jeremy Bicha ]
+  * debian/rules:
+    - Build with --enable-distro-packaging to not override Ubuntu
+      environment variables
+  * debian/patches/52_support_apturl.patch:
+    - Support apt: URIs (LP: #217611)
+
+  [ Martin Pitt ]
+  * Add 61_cwd_fallback.patch: Provide fallback for reading current directory
+    if OSC 7 fails. (LP: #1132700)
+
+ -- Iain Lane <iain.lane@canonical.com>  Wed, 05 Nov 2014 15:55:30 +0000
 
 gnome-terminal (3.12.0-2) unstable; urgency=medium
 

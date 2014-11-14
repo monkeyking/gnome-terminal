@@ -5,8 +5,9 @@
 Source: gnome-terminal
 Section: gnome
 Priority: optional
-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Andreas Henriksson <andreas@fatal.se>, Emilio Pozuelo Monfort <pochu@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Uploaders: Andreas Henriksson <andreas@fatal.se>, Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Standards-Version: 3.9.5
 Build-Depends: cdbs (>= 0.4.41),
                debhelper (>= 8),
@@ -30,7 +31,6 @@ Build-Depends: cdbs (>= 0.4.41),
                desktop-file-utils,
                appdata-tools,
                gsettings-desktop-schemas-dev (>= 0.1.0),
-               gnome-shell [linux-any],
                libnautilus-extension-dev
 Vcs-Svn: svn://anonscm.debian.org/pkg-gnome/desktop/unstable/gnome-terminal/
 Vcs-Browser: http://anonscm.debian.org/viewvc/pkg-gnome/desktop/unstable/gnome-terminal/

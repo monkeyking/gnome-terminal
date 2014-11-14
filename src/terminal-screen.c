@@ -177,7 +177,8 @@ static const TerminalRegexPattern url_regex_patterns[] = {
   { "(?:www|ftp)" HOSTCHARS_CLASS "*\\." HOST PORT URLPATH , FLAVOR_DEFAULT_TO_HTTP, G_REGEX_CASELESS  },
   { "(?:callto:|h323:|sip:)" USERCHARS_CLASS "[" USERCHARS ".]*(?:" PORT "/[a-z0-9]+)?\\@" HOST, FLAVOR_VOIP_CALL, G_REGEX_CASELESS  },
   { "(?:mailto:)?" USERCHARS_CLASS "[" USERCHARS ".]*\\@" HOSTCHARS_CLASS "+\\." HOST, FLAVOR_EMAIL, G_REGEX_CASELESS  },
-  { "(?:news:|man:|info:)[-[:alnum:]\\Q^_{|}~!\"#$%&'()*+,./;:=?`\\E]+", FLAVOR_AS_IS, G_REGEX_CASELESS  },
+  { "(?:news:|man:|info:|apt:)[-[:alnum:]\\Q^_{|}~!\"#$%&'()*+,./;:=?`\\E]+", FLAVOR_AS_IS, G_REGEX_CASELESS  },
+  { "(?:lp: #)[[:digit:]]+", FLAVOR_LP, G_REGEX_CASELESS  },
 };
 
 static GRegex **url_regexes;
@@ -215,6 +216,63 @@ fake_dup3 (int fd, int fd2, int flags)
 #endif /* !__linux__ */
 
 G_DEFINE_TYPE (TerminalScreen, terminal_screen, VTE_TYPE_TERMINAL)
+
+static char *
+cwd_of_pid (int pid)
+{
+  static const char patterns[][18] = {
+    "/proc/%d/cwd",         /* Linux */
+    "/proc/%d/path/cwd",    /* Solaris >= 10 */
+  };
+  guint i;
+
+  if (pid == -1)
+    return NULL;
+
+  /* Try to get the working directory using various OS-specific mechanisms */
+  for (i = 0; i < G_N_ELEMENTS (patterns); ++i)
+    {
+      char cwd_file[64];
+      char buf[PATH_MAX + 1];
+      int len;
+
+      /* disable "format not a string literal" error, we know what we are doing */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
+      g_snprintf (cwd_file, sizeof (cwd_file), patterns[i], pid);
+#pragma GCC diagnostic pop
+      len = readlink (cwd_file, buf, sizeof (buf) - 1);
+
+      if (len > 0 && buf[0] == '/')
+        return g_strndup (buf, len);
+
+      /* If that didn't do it, try this hack */
+      if (len <= 0)
+        {
+          char *cwd, *working_dir = NULL;
+
+          cwd = g_get_current_dir ();
+          if (cwd != NULL)
+            {
+              /* On Solaris, readlink returns an empty string, but the
+               * link can be used as a directory, including as a target
+               * of chdir().
+               */
+              if (chdir (cwd_file) == 0)
+                {
+                  working_dir = g_get_current_dir ();
+                  (void) chdir (cwd);
+                }
+              g_free (cwd);
+            }
+
+          if (working_dir)
+            return working_dir;
+        }
+    }
+
+  return NULL;
+}
 
 static void
 free_tag_data (TagData *tagdata)
@@ -533,6 +591,10 @@ terminal_screen_class_init (TerminalScreenClass *klass)
 
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
 
+  gtk_widget_class_install_style_property (widget_class,
+     g_param_spec_float ("background-darkness", NULL, NULL, -1, 1, -1,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
   /* Precompile the regexes */
   n_url_regexes = G_N_ELEMENTS (url_regex_patterns);
   url_regexes = g_new0 (GRegex*, n_url_regexes);
@@ -764,7 +826,10 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_COLOR_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_KEY) ||
-      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY))
+      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND) ||
+      prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_THEME_TRANSPARENCY))
     update_color_scheme (screen);
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
@@ -823,6 +888,9 @@ update_color_scheme (TerminalScreen *screen)
   GdkRGBA fg, bg, bold, theme_fg, theme_bg;
   GdkRGBA *boldp;
   GtkStyleContext *context;
+  GtkWidget *toplevel;
+  gboolean transparent, theme_transparent;
+  gfloat style_darkness;
 
   context = gtk_widget_get_style_context (widget);
   gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &theme_fg);
@@ -854,9 +922,35 @@ update_color_scheme (TerminalScreen *screen)
     boldp = NULL;
 
   colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
+  theme_transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY);
+  transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND);
+
+  gtk_widget_style_get (GTK_WIDGET (screen),
+                        "background-darkness", &style_darkness,
+                        NULL);
+
+  if (theme_transparent && style_darkness >= 0)
+    {
+      bg.alpha = style_darkness;
+    }
+  else if (transparent)
+    {
+      gint transparency_percent;
+
+      transparency_percent = g_settings_get_int (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT);
+      bg.alpha = (100 - transparency_percent) / 100.0;
+    }
+  else
+      bg.alpha = 1.0;
+
   vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                            colors, n_colors);
   vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
+
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (screen));
+  if (toplevel != NULL && gtk_widget_is_toplevel (toplevel))
+    gtk_widget_set_app_paintable (toplevel, transparent);
+
 }
 
 static void
@@ -1534,11 +1628,20 @@ terminal_screen_button_press (GtkWidget      *widget,
 char *
 terminal_screen_get_current_dir (TerminalScreen *screen)
 {
+  TerminalScreenPrivate *priv = screen->priv;
   const char *uri;
 
   uri = vte_terminal_get_current_directory_uri (VTE_TERMINAL (screen));
   if (uri != NULL)
     return g_filename_from_uri (uri, NULL, NULL);
+
+  if (priv->child_pid > 0) {
+    char *cwd = cwd_of_pid (priv->child_pid);
+    if (cwd != NULL) {
+      g_debug ("terminal_screen_get_current_dir: VTE current dir n/a, reading from /proc: %s", cwd);
+      return cwd;
+    }
+  }
 
   if (screen->priv->initial_working_directory)
     return g_strdup (screen->priv->initial_working_directory);
