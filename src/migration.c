@@ -329,6 +329,9 @@ migrate_global_prefs (GSettings *settings,
   migrate_string_list (client, GCONF_GLOBAL_PREFIX, "active_encodings",
                        settings, TERMINAL_SETTING_ENCODINGS_KEY);
 
+  if (verbose)
+      g_printerr("Migrating global\n");
+
   g_object_unref (client);
 
   return TRUE;
@@ -360,6 +363,8 @@ migrate_profile (TerminalSettingsList *list,
 {
   GSettings *settings;
   char *child_name, *path;
+  gchar *background_type = NULL, *bg_type_key, *bg_darkness_key;
+  gdouble background_darkness;
   gs_free char *name;
   gboolean is_default;
 
@@ -375,6 +380,31 @@ migrate_profile (TerminalSettingsList *list,
   }
 
   path = gconf_concat_dir_and_key (GCONF_PROFILES_PREFIX, gconf_id);
+
+  bg_type_key = gconf_concat_dir_and_key (path, KEY_BACKGROUND_TYPE);
+  background_type = gconf_client_get_string (client, bg_type_key, NULL);
+  g_free (bg_type_key);
+  if (background_type)
+      g_settings_set_boolean (settings, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                              g_strcmp0(background_type, "transparent") == 0);
+  g_free (background_type);
+
+  // If we're migrating, set the 'use theme transparency' key to false, this
+  // will be copied from the old profile into transparency.
+  g_settings_set_boolean (settings, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+                          FALSE);
+
+  bg_darkness_key = gconf_concat_dir_and_key (path, KEY_BACKGROUND_DARKNESS);
+  background_darkness = gconf_client_get_float (client,
+                                                bg_darkness_key, NULL);
+
+  g_free (bg_darkness_key);
+  if (background_darkness) {
+      // Need to invert, the key has changed sense
+      g_settings_set_int (settings,
+                          TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT,
+                          1 - (int) (background_darkness * 100));
+  }
 
   migrate_string (client, path, KEY_VISIBLE_NAME,
                   settings, TERMINAL_PROFILE_VISIBLE_NAME_KEY);
@@ -466,7 +496,7 @@ migrate_profiles (GSettings *global_settings,
   TerminalSettingsList *list;
   GConfClient *client;
   GConfValue *value, *dvalue;
-  GSList *l;
+  GSList *l, *def = NULL;
   const char *default_profile;
 
   client = gconf_client_get_default ();
@@ -476,15 +506,24 @@ migrate_profiles (GSettings *global_settings,
       dvalue->type == GCONF_VALUE_STRING)
     default_profile = gconf_value_get_string (dvalue);
   else
-    default_profile = NULL;
+    default_profile = "Default";
 
   list = terminal_profiles_list_new ();
 
   value = gconf_client_get (client, GCONF_GLOBAL_PREFIX "/profile_list", NULL);
+  if (value == NULL) {
+      value = gconf_value_new (GCONF_VALUE_LIST);
+      gconf_value_set_list_type (value, GCONF_VALUE_STRING);
+      def = g_slist_append(def, gconf_value_new_from_string(GCONF_VALUE_STRING,
+                                                            "Default", NULL));
+      gconf_value_set_list_nocopy (value, def);
+  }
   if (value != NULL &&
       value->type == GCONF_VALUE_LIST &&
       gconf_value_get_list_type (value) == GCONF_VALUE_STRING) {
     for (l = gconf_value_get_list (value); l != NULL; l = l->next) {
+      if (verbose)
+          g_printerr ("Migrating %s\n", gconf_value_get_string (l->data));
       migrate_profile (list, client,
                        gconf_value_get_string (l->data),
                        default_profile);
