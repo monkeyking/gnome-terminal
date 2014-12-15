@@ -606,14 +606,14 @@ void
 terminal_app_edit_preferences (TerminalApp     *app,
                                GtkWindow       *transient_parent)
 {
-  terminal_prefs_show_preferences (NULL, "general");
+  terminal_prefs_show_preferences (transient_parent, "general");
 }
 
 void
 terminal_app_edit_encodings (TerminalApp     *app,
                              GtkWindow       *transient_parent)
 {
-  terminal_prefs_show_preferences (NULL, "encodings");
+  terminal_prefs_show_preferences (transient_parent, "encodings");
 }
 
 /**

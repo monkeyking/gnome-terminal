@@ -858,6 +858,7 @@ terminal_profile_edit (GSettings  *profile,
               terminal_window_get_active (TERMINAL_WINDOW (transient_parent))),
                         "background-darkness", &style_darkness,
                         NULL);
+
   gtk_widget_set_visible (gtk_builder_get_object (
               builder,
               "use-theme-transparency-checkbutton"), style_darkness >= 0);
