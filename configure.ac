@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
 m4_define([gt_version_minor],[14])
-m4_define([gt_version_micro],[1])
+m4_define([gt_version_micro],[2])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -187,12 +187,6 @@ AC_ARG_VAR([DESKTOP_FILE_VALIDATE],[the desktop-file-validate programme])
 AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
 if test -z "$DESKTOP_FILE_VALIDATE"; then
   AC_MSG_ERROR([desktop-file-validate not found])
-fi
-
-AC_ARG_VAR([APPDATA_VALIDATE],[the appdata-validate programme])
-AC_PATH_PROG([APPDATA_VALIDATE],[appdata-validate],[])
-if test -z "$APPDATA_VALIDATE"; then
-  AC_MSG_ERROR([appdata-validate not found])
 fi
 
 # ***************************
