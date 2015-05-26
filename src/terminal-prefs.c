@@ -427,7 +427,7 @@ profile_list_edit_button_clicked_cb (GtkWidget *button,
     return;
 
   terminal_app_edit_profile (terminal_app_get (), selected_profile,
-                             GTK_WINDOW (data->dialog), NULL);
+                             data->parent, NULL);
 }
 
 static void
