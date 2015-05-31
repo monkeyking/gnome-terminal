@@ -795,6 +795,13 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
     vte_terminal_set_rewrap_on_resize (vte_terminal,
                                        g_settings_get_boolean (profile, TERMINAL_PROFILE_REWRAP_ON_RESIZE_KEY));
 
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY))
+    {
+      gs_free char *word_char_exceptions;
+      g_settings_get (profile, TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY, "ms", &word_char_exceptions);
+      vte_terminal_set_word_char_exceptions (vte_terminal, word_char_exceptions);
+    }
+
   g_object_thaw_notify (object);
 }
 
@@ -1091,7 +1098,7 @@ get_child_environment (TerminalScreen *screen,
     {
       /* FIXME: moving the tab between windows, or the window between displays will make the next two invalid... */
       g_hash_table_replace (env_table, g_strdup ("WINDOWID"),
-			    g_strdup_printf ("%ld",
+			    g_strdup_printf ("%lu",
 					     GDK_WINDOW_XID (gtk_widget_get_window (window))));
       g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
     }
@@ -1904,7 +1911,9 @@ terminal_screen_has_foreground_process (TerminalScreen *screen,
   if (process_name)
     gs_transfer_out_value (process_name, &name);
 
-  for (i = 0; i < len - 1; i++)
+  if (len > 0 && data[len - 1] == '\0')
+    len--;
+  for (i = 0; i < len; i++)
     {
       if (data[i] == '\0')
         data[i] = ' ';

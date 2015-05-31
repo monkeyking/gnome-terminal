@@ -1,13 +1,13 @@
 # Czech translation of gnome-terminal help manual.
 #
 # Lucas Lommer <llommer@svn.gnome.org>, 2008, 2009, 2010.
-# Marek Černocký <marek@manet.cz>, 2010 (just fixes), 2013, 2014.
+# Marek Černocký <marek@manet.cz>, 2010 (just fixes), 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal gnome-3.14\n"
-"POT-Creation-Date: 2014-09-22 07:48+0000\n"
-"PO-Revision-Date: 2014-09-22 20:28+0200\n"
+"Project-Id-Version: gnome-terminal\n"
+"POT-Creation-Date: 2015-02-04 08:55+0000\n"
+"PO-Revision-Date: 2015-02-04 12:40+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: C/pref-keyboard-access.page:12 C/pref-menubar.page:13
 #: C/pref-profiles.page:12 C/pref-scrolling.page:12 C/prob-reset.page:11
 #: C/txt-copy-paste.page:11 C/txt-links.page:10 C/txt-search.page:10
-#: C/txt-select-text.page:12
+#: C/txt-select-text.page:14
 msgid "Sindhu S"
 msgstr "Sindhu S"
 
@@ -64,7 +64,7 @@ msgstr "Sindhu S"
 #: C/prob-reset.page:18 C/txt-copy-paste.page:13 C/txt-copy-paste.page:18
 #: C/txt-copy-paste.page:23 C/txt-links.page:12 C/txt-links.page:17
 #: C/txt-links.page:22 C/txt-search.page:12 C/txt-search.page:17
-#: C/txt-search.page:22 C/txt-select-text.page:14 C/txt-select-text.page:19
+#: C/txt-search.page:22 C/txt-select-text.page:16
 msgid "2013"
 msgstr "2013"
 
@@ -78,9 +78,9 @@ msgstr "2013"
 #: C/pref-keyboard-access.page:17 C/pref-menubar.page:18
 #: C/pref-profiles.page:17 C/pref-profile-char-width.page:11
 #: C/pref-profile-encoding.page:11 C/pref-scrolling.page:17
-#: C/pref-tab-window.page:12 C/pref-theme.page:11 C/profile.page:9
+#: C/pref-tab-window.page:13 C/pref-user-input.page:10 C/profile.page:9
 #: C/prob-reset.page:16 C/txt-copy-paste.page:16 C/txt-links.page:15
-#: C/txt-search.page:15 C/txt-select-text.page:17
+#: C/txt-search.page:15 C/txt-select-text.page:19
 msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
@@ -2864,7 +2864,7 @@ msgstr "Klikněte na <gui style=\"button\">Odstranit</gui>."
 
 #. (itstool) path: credit/years
 #: C/pref-profile-char-width.page:13 C/pref-profile-encoding.page:13
-#: C/pref-tab-window.page:14 C/pref-theme.page:13
+#: C/pref-user-input.page:12
 msgid "2014"
 msgstr "2014"
 
@@ -3091,19 +3091,24 @@ msgstr ""
 "Použití neomezeného posuvu zpět může u <app>Terminálu</app> způsobit při "
 "posouvání zpomalení!"
 
+#. (itstool) path: credit/years
+#: C/pref-tab-window.page:15
+msgid "2014–2015"
+msgstr "2013 – 2014"
+
 #. (itstool) path: info/desc
-#: C/pref-tab-window.page:24
+#: C/pref-tab-window.page:25
 msgid "Choose whether to open a new window or a new tab by default."
 msgstr ""
 "Zvolte si, jestli má být výchozí otevírání nových oken nebo nových karet."
 
 #. (itstool) path: page/title
-#: C/pref-tab-window.page:27
+#: C/pref-tab-window.page:28
 msgid "Windows and tabs"
 msgstr "Okna a karty"
 
 #. (itstool) path: page/p
-#: C/pref-tab-window.page:29
+#: C/pref-tab-window.page:30
 msgid ""
 "You can chose whether to open a new tab or a new <app>Terminal</app> window "
 "when you use <gui style=\"menuitem\">Open Terminal</gui>."
@@ -3112,13 +3117,13 @@ msgstr ""
 "terminál</gui> má otevřít nová karta nebo nové okno s <app>Terminálem</app>."
 
 #. (itstool) path: item/p
-#: C/pref-tab-window.page:34 C/pref-theme.page:33
+#: C/pref-tab-window.page:35
 msgid ""
-"Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem\">Profile "
-"Preferences</gui><gui style=\"tab\">General</gui></guiseq>."
+"Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem"
+"\">Preferences</gui><gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
 "Vyberte <guiseq><gui style=\"menu\">Upravit</gui> <gui style=\"menuitem"
-"\">Předvolby profilu</gui> <gui style=\"tab\">Obecné</gui></guiseq>."
+"\">Předvolby</gui> <gui style=\"tab\">Obecné</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-tab-window.page:39
@@ -3136,7 +3141,7 @@ msgid ""
 "terminal in a new tab, then pressing <gui style=\"menuitem\">New Terminal</"
 "gui> will open a new tab. On the other hand, if you hold down <key>Ctrl</"
 "key> and then press <gui style=\"menuitem\">New Terminal</gui>, then a new "
-"window will be openned instead."
+"window will be opened instead."
 msgstr ""
 "Ať zvolíte v předvolbách to či ono, můžete použít klávesu <key>Ctrl</key> k "
 "obrácení předvolby. Například, když máte své předvolby nastaveny na "
@@ -3146,27 +3151,61 @@ msgstr ""
 "otevře se místo toho nové okno."
 
 #. (itstool) path: info/desc
-#: C/pref-theme.page:23
-msgid "Use either the light or dark theme for <app>Terminal</app>."
-msgstr "Použijte pro <app>Terminál</app> světlý nebo tmavý motiv."
+#: C/pref-user-input.page:17
+msgid "Do not send user input to the application running in the terminal."
+msgstr "Jak neposílat uživatelské vstupy do aplikace běžící v terminálu."
 
 #. (itstool) path: page/title
-#: C/pref-theme.page:26
-msgid "Chose the window theme"
-msgstr "Jak vybrat motiv okna"
+#: C/pref-user-input.page:22
+msgid "Disable user input"
+msgstr "Zakázání uživatelského vstupu"
 
 #. (itstool) path: page/p
-#: C/pref-theme.page:28
+#: C/pref-user-input.page:24
 msgid ""
-"You can chose to use either the dark theme or the light theme for the "
-"terminal window."
-msgstr "Pro terminálové okno si můžete zvolit tmavý motiv nebo světlý motiv."
+"You can prevent user input into the terminal from being passed to the "
+"application which is currently running in the terminal. This will prevent "
+"any keypresses, mouse clicks and mouse movement from affecting the "
+"application. You will still be able to interact with the terminal itself "
+"using the keyboard for scrolling and your mouse for selecting text. You will "
+"also be able to copy selected text from the terminal, but you will not be "
+"able to paste text into the terminal."
+msgstr ""
+"Máte možnost bránit uživatelským vstupům do terminálu z aplikace, která v "
+"něm právě běží. Zamezí se vstupům v podobě jak zmáčknutí kláves, tak "
+"kliknutí myší a pohybu myší z dotčené aplikace. I nadále budete moci "
+"komunikovat přímo s terminálem pomocí klávesnice na posun a myši na výběr "
+"textu. Také budete moci kopírovat vybraný text z terminálu, ale nebude moci "
+"do terminálu text vkládat."
+
+#. (itstool) path: page/p
+#: C/pref-user-input.page:32
+msgid "To use the read only mode:"
+msgstr "Když chcete používat režim, kdy je povoleno jen čtení:"
 
 #. (itstool) path: item/p
-#: C/pref-theme.page:38
-msgid "To use the dark theme, select <gui>Use dark theme variant</gui>."
+#: C/pref-user-input.page:36
+msgid ""
+"Right click in the <app>Terminal</app> window or select the <gui style=\"menu"
+"\">Terminal</gui> menu."
 msgstr ""
-"Aby se použil tmavý motiv, vyberte <gui>Použít tmavou variantu motivu</gui>."
+"Klikněte pravým tlačítkem do okna <app>Terminál</app> a vyberte nabídku <gui "
+"style=\"menu\">Terminál</gui>."
+
+#. (itstool) path: item/p
+#: C/pref-user-input.page:40
+msgid "Select <gui style=\"menuitem\">Read-Only</gui> so that it is checked."
+msgstr ""
+"Vyberte <gui style=\"menuitem\">Jen ke čtení</gui>, aby byla zaškrtnutá."
+
+#. (itstool) path: page/p
+#: C/pref-user-input.page:44
+msgid ""
+"You can disable the read only mode by unchecking <gui style=\"menuitem"
+"\">Read-Only</gui>."
+msgstr ""
+"Zrušením zaškrtnutí položky <gui style=\"menuitem\">Jen ke čtení</gui> režim "
+"jen ke čtení vypnete."
 
 #. (itstool) path: page/title
 #: C/profile.page:18
@@ -3574,37 +3613,71 @@ msgstr ""
 "umožníte <app>Terminálu</app> vrátit se při hledání více zpět do historie "
 "výstupu."
 
+#. (itstool) path: credit/years
+#: C/txt-select-text.page:21
+msgid "2013, 2015"
+msgstr "2013, 2015"
+
 #. (itstool) path: info/desc
-#: C/txt-select-text.page:24
-msgid "Specify which characters should be considered as part of a word."
-msgstr "Určete, které znaky mají být považovány za část slova."
+#: C/txt-select-text.page:26
+msgid "Select individual words or lines in the terminal."
+msgstr "Jak v terminálu vybrat jednotlivá slova nebo řádky."
 
 #. (itstool) path: page/title
-#: C/txt-select-text.page:28
-msgid "Text selection"
-msgstr "Jak vybrat text"
-
-#. (itstool) path: page/p
 #: C/txt-select-text.page:30
-msgid "You can select a word or a sentence form your terminal output."
-msgstr "Ve výstupu svého terminálu můžete vybírat slova a věty."
+msgid "Text selection"
+msgstr "Výběr textu"
 
 #. (itstool) path: page/p
 #: C/txt-select-text.page:32
-msgid "To select a word in <app>Terminal</app> output:"
-msgstr "Abyste ve výstupu <app>Terminálu</app> vybrali celé slovo:"
+msgid ""
+"You can select a word or a sentence, or make a rectangular selection from "
+"your terminal output:"
+msgstr ""
+"Ve výstupu svého terminálu můžete vybírat slova nebo věty a nebo můžete "
+"označit obdélníkovou oblast:"
+
+#. (itstool) path: item/title
+#: C/txt-select-text.page:37
+msgid "Select a word"
+msgstr "Výběr slova"
 
 #. (itstool) path: item/p
-#: C/txt-select-text.page:36
-msgid "Double click on the desired word."
+#: C/txt-select-text.page:38
+msgid "Double click on the word."
 msgstr "Dvojitě klikněte na požadovaném slově."
 
-#. (itstool) path: page/p
-#: C/txt-select-text.page:40
-msgid "To select a line in <app>Terminal</app> output:"
-msgstr "Abyste ve výstupu <app>Terminálu</app> vybrali celý řádek:"
+#. (itstool) path: item/title
+#: C/txt-select-text.page:41
+msgid "Select a line"
+msgstr "Výběr řádku"
 
 #. (itstool) path: item/p
-#: C/txt-select-text.page:44
-msgid "Triple click on the desired line."
+#: C/txt-select-text.page:42
+msgid "Triple click on the line."
 msgstr "Trojitě klikněte na požadovaném řádku."
+
+#. (itstool) path: item/title
+#: C/txt-select-text.page:45
+msgid "Make a rectangular selection"
+msgstr "Výběr obdélníkové oblasti"
+
+#. (itstool) path: item/p
+#: C/txt-select-text.page:46
+msgid ""
+"Hold down the <key>Ctrl</key>, click and hold down the left mouse button "
+"then drag the mouse."
+msgstr ""
+"Držte zmáčknutou klávesu <key>Ctrl</key>, zmáčkněte a držte levé tlačítko "
+"myši a táhněte myší."
+
+#. (itstool) path: note/p
+#: C/txt-select-text.page:52
+msgid ""
+"If you are running an application in <app>Terminal</app> which accepts mouse "
+"input, you need to use the <key>Shift</key> modifier for the <app>Terminal</"
+"app> to catch the mouse input."
+msgstr ""
+"V případě, že máte v <app>Terminálu</app> spuštěnou aplikaci, která pracuje "
+"s myší, musíte navíc použít modifikátor <key>Shift</key>, aby vstup od myši "
+"zachytil <app>Terminál</app>."

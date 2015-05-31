@@ -1,15 +1,15 @@
 # Hungarian translation of gnome-terminal help
 # Copyright (C) 2013. Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-terminal help.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2013, 2014.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2013, 2014, 2015.
 # Attila Hammer <hammera at pickup dot hu>, 2014.
 # Balázs Úr <urbalazs@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal_help master\n"
-"POT-Creation-Date: 2014-09-30 07:54+0000\n"
-"PO-Revision-Date: 2014-09-30 16:18+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"POT-Creation-Date: 2015-03-12 09:03+0000\n"
+"PO-Revision-Date: 2015-03-13 22:57+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Kelemen Gábor <kelemeng at gnome dot hu>, 2013, 2014.\n"
+"Kelemen Gábor <kelemeng at gnome dot hu>, 2013, 2014, 2015.\n"
 "Attila Hammer <hammera at pickup dot hu>, 2014."
 
 #. (itstool) path: credit/name
@@ -35,7 +35,7 @@ msgstr ""
 #: C/pref-keyboard-access.page:12 C/pref-menubar.page:13
 #: C/pref-profiles.page:12 C/pref-scrolling.page:12 C/prob-reset.page:11
 #: C/txt-copy-paste.page:11 C/txt-links.page:10 C/txt-search.page:10
-#: C/txt-select-text.page:12
+#: C/txt-select-text.page:14
 msgid "Sindhu S"
 msgstr "Sindhu S"
 
@@ -63,7 +63,7 @@ msgstr "Sindhu S"
 #: C/prob-reset.page:18 C/txt-copy-paste.page:13 C/txt-copy-paste.page:18
 #: C/txt-copy-paste.page:23 C/txt-links.page:12 C/txt-links.page:17
 #: C/txt-links.page:22 C/txt-search.page:12 C/txt-search.page:17
-#: C/txt-search.page:22 C/txt-select-text.page:14 C/txt-select-text.page:19
+#: C/txt-search.page:22 C/txt-select-text.page:16
 msgid "2013"
 msgstr "2013"
 
@@ -77,9 +77,9 @@ msgstr "2013"
 #: C/pref-keyboard-access.page:17 C/pref-menubar.page:18
 #: C/pref-profiles.page:17 C/pref-profile-char-width.page:11
 #: C/pref-profile-encoding.page:11 C/pref-scrolling.page:17
-#: C/pref-tab-window.page:12 C/pref-theme.page:11 C/profile.page:9
+#: C/pref-tab-window.page:13 C/pref-user-input.page:10 C/profile.page:9
 #: C/prob-reset.page:16 C/txt-copy-paste.page:16 C/txt-links.page:15
-#: C/txt-search.page:15 C/txt-select-text.page:17
+#: C/txt-search.page:15 C/txt-select-text.page:19
 msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
@@ -2887,7 +2887,7 @@ msgstr "Nyomja meg a <gui style=\"button\">Törlés</gui> gombot."
 
 #. (itstool) path: credit/years
 #: C/pref-profile-char-width.page:13 C/pref-profile-encoding.page:13
-#: C/pref-tab-window.page:14 C/pref-theme.page:13
+#: C/pref-user-input.page:12
 msgid "2014"
 msgstr "2014"
 
@@ -3118,18 +3118,24 @@ msgstr ""
 "A végtelen visszagörgetés használata a <app>Terminált</app> lelassíthatja "
 "görgetés közben!"
 
+#. (itstool) path: credit/years
+#: C/pref-tab-window.page:15
+#| msgid "2013–2014"
+msgid "2014–2015"
+msgstr "2014–2015"
+
 #. (itstool) path: info/desc
-#: C/pref-tab-window.page:24
+#: C/pref-tab-window.page:25
 msgid "Choose whether to open a new window or a new tab by default."
 msgstr "Válassza ki, hogy alapesetben új ablak vagy új lap nyíljon meg."
 
 #. (itstool) path: page/title
-#: C/pref-tab-window.page:27
+#: C/pref-tab-window.page:28
 msgid "Windows and tabs"
 msgstr "Ablakok és lapok"
 
 #. (itstool) path: page/p
-#: C/pref-tab-window.page:29
+#: C/pref-tab-window.page:30
 msgid ""
 "You can chose whether to open a new tab or a new <app>Terminal</app> window "
 "when you use <gui style=\"menuitem\">Open Terminal</gui>."
@@ -3139,14 +3145,14 @@ msgstr ""
 "nyíljon meg."
 
 #. (itstool) path: item/p
-#: C/pref-tab-window.page:34 C/pref-theme.page:33
+#: C/pref-tab-window.page:35
 msgid ""
-"Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem\">Profile "
-"Preferences</gui><gui style=\"tab\">General</gui></guiseq>."
+"Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem"
+"\">Preferences</gui><gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
 "Válassza a <guiseq><gui style=\"menu\">Szerkesztés</gui> <gui style="
-"\"menuitem\">Profil beállításai</gui> <gui style=\"tab\">Általános</gui></"
-"guiseq> lapot."
+"\"menuitem\">Beállítások</gui> <gui style=\"tab\">Általános</gui></guiseq> "
+"lapot."
 
 #. (itstool) path: item/p
 #: C/pref-tab-window.page:39
@@ -3158,13 +3164,20 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/pref-tab-window.page:44
+#| msgid ""
+#| "Once you have set the preference, you can use <key>Ctrl</key> to invert "
+#| "the preference. For example, if you have your preferences set to open a "
+#| "new terminal in a new tab, then pressing <gui style=\"menuitem\">New "
+#| "Terminal</gui> will open a new tab. On the other hand, if you hold down "
+#| "<key>Ctrl</key> and then press <gui style=\"menuitem\">New Terminal</"
+#| "gui>, then a new window will be openned instead."
 msgid ""
 "Once you have set the preference, you can use <key>Ctrl</key> to invert the "
 "preference. For example, if you have your preferences set to open a new "
 "terminal in a new tab, then pressing <gui style=\"menuitem\">New Terminal</"
 "gui> will open a new tab. On the other hand, if you hold down <key>Ctrl</"
 "key> and then press <gui style=\"menuitem\">New Terminal</gui>, then a new "
-"window will be openned instead."
+"window will be opened instead."
 msgstr ""
 "Miután megadta ezt a beállítást, a <key>Ctrl</key> billentyű használatával a "
 "kiválasztott beállítás megfordítható. Ha azt választotta például, hogy az új "
@@ -3175,28 +3188,62 @@ msgstr ""
 "fog megjelenni."
 
 #. (itstool) path: info/desc
-#: C/pref-theme.page:23
-msgid "Use either the light or dark theme for <app>Terminal</app>."
-msgstr "Világos vagy sötét téma használata a <app>Terminálban</app>."
+#: C/pref-user-input.page:17
+msgid "Do not send user input to the application running in the terminal."
+msgstr "A terminálban futó alkalmazás ne kapjon felhasználói bemenetet."
 
 #. (itstool) path: page/title
-#: C/pref-theme.page:26
-msgid "Chose the window theme"
-msgstr "Az ablak témájának kiválasztása"
+#: C/pref-user-input.page:22
+msgid "Disable user input"
+msgstr "Felhasználói bemenet letiltása"
 
 #. (itstool) path: page/p
-#: C/pref-theme.page:28
+#: C/pref-user-input.page:24
 msgid ""
-"You can chose to use either the dark theme or the light theme for the "
-"terminal window."
-msgstr "Sötét és világos témát is választhat a Terminál ablakhoz."
+"You can prevent user input into the terminal from being passed to the "
+"application which is currently running in the terminal. This will prevent "
+"any keypresses, mouse clicks and mouse movement from affecting the "
+"application. You will still be able to interact with the terminal itself "
+"using the keyboard for scrolling and your mouse for selecting text. You will "
+"also be able to copy selected text from the terminal, but you will not be "
+"able to paste text into the terminal."
+msgstr ""
+"Megakadályozhatja, hogy a terminálba bevitt felhasználói bemenet eljusson az "
+"éppen futó alkalmazáshoz. Ez megakadályozza, hogy a billentyűleütések, "
+"egérkattintások és egérmozdulatok befolyásolják az alkalmazást. Magát a "
+"terminált továbbra is kezelheti a billentyűzettel görgethet és az egérrel "
+"kijelölhet szöveget. Lehetősége lesz a kijelölt szöveg kimásolására a "
+"terminálból, de a beillesztés nem fog működni."
+
+#. (itstool) path: page/p
+#: C/pref-user-input.page:32
+msgid "To use the read only mode:"
+msgstr "A csak olvasható mód használatához:"
 
 #. (itstool) path: item/p
-#: C/pref-theme.page:38
-msgid "To use the dark theme, select <gui>Use dark theme variant</gui>."
+#: C/pref-user-input.page:36
+msgid ""
+"Right click in the <app>Terminal</app> window or select the <gui style=\"menu"
+"\">Terminal</gui> menu."
 msgstr ""
-"Ha sötét témát szeretne választani, használja a <gui>Sötét témaváltozat "
-"használata</gui> lehetőséget."
+"Kattintson a jobb egérgombbal a <app>Terminál</app> ablakban, vagy válassza "
+"a <gui style=\"menu\">Terminál</gui> menüt."
+
+#. (itstool) path: item/p
+#: C/pref-user-input.page:40
+msgid "Select <gui style=\"menuitem\">Read-Only</gui> so that it is checked."
+msgstr ""
+"Válassza a <gui style=\"menuitem\">Csak olvasható</gui> menüpontot, így az "
+"ki lesz jelölve."
+
+#. (itstool) path: page/p
+#: C/pref-user-input.page:44
+msgid ""
+"You can disable the read only mode by unchecking <gui style=\"menuitem"
+"\">Read-Only</gui>."
+msgstr ""
+"A csak olvasható mód kikapcsolásához törölje a <gui style=\"menuitem\">Csak "
+"olvasható</gui> menüpont kijelölését."
 
 #. (itstool) path: page/title
 #: C/profile.page:18
@@ -3611,40 +3658,113 @@ msgstr ""
 "meg a <link xref=\"pref-scrolling#lines\">visszagörgetési sorok</link> "
 "számát, hogy a <app>Terminál</app> több korábbi kimenetben kereshessen."
 
+#. (itstool) path: credit/years
+#: C/txt-select-text.page:21
+msgid "2013, 2015"
+msgstr "2013, 2015"
+
 #. (itstool) path: info/desc
-#: C/txt-select-text.page:24
-msgid "Specify which characters should be considered as part of a word."
-msgstr "Adja meg, hogy mely karakterek legyenek a szavak részének tekintve."
+#: C/txt-select-text.page:26
+msgid "Select individual words or lines in the terminal."
+msgstr "Egyes szavak vagy sorok kijelölése a terminálban."
 
 #. (itstool) path: page/title
-#: C/txt-select-text.page:28
+#: C/txt-select-text.page:30
 msgid "Text selection"
 msgstr "Szövegkijelölés"
 
 #. (itstool) path: page/p
-#: C/txt-select-text.page:30
-msgid "You can select a word or a sentence from your terminal output."
-msgstr "A terminálkimenetből kijelölhet egy szót vagy mondatot."
-
-#. (itstool) path: page/p
 #: C/txt-select-text.page:32
-msgid "To select a word in <app>Terminal</app> output:"
-msgstr "Egy szó kijelölése a <app>Terminál</app> kimenetben:"
+#| msgid "You can select a word or a sentence from your terminal output."
+msgid ""
+"You can select a word or a sentence, or make a rectangular selection from "
+"your terminal output:"
+msgstr ""
+"A terminálkimenetből kijelölhet egy szót vagy mondatot, vagy egy négyzet "
+"alakú területet:"
+
+#. (itstool) path: item/title
+#: C/txt-select-text.page:37
+#| msgid "Select a profile"
+msgid "Select a word"
+msgstr "Szó kiválasztása"
 
 #. (itstool) path: item/p
-#: C/txt-select-text.page:36
-msgid "Double click on the desired word."
-msgstr "Kattintson duplán a kívánt szóra."
+#: C/txt-select-text.page:38
+#| msgid "Double click on the desired word."
+msgid "Double click on the word."
+msgstr "Kattintson duplán a szóra."
 
-#. (itstool) path: page/p
-#: C/txt-select-text.page:40
-msgid "To select a line in <app>Terminal</app> output:"
-msgstr "Egy sor kijelölése a <app>Terminál</app> kimenetben:"
+#. (itstool) path: item/title
+#: C/txt-select-text.page:41
+#| msgid "Select a profile"
+msgid "Select a line"
+msgstr "Sor kiválasztása"
 
 #. (itstool) path: item/p
-#: C/txt-select-text.page:44
-msgid "Triple click on the desired line."
-msgstr "Kattintson háromszor a kívánt sorra."
+#: C/txt-select-text.page:42
+#| msgid "Triple click on the desired line."
+msgid "Triple click on the line."
+msgstr "Kattintson háromszor a sorra."
+
+#. (itstool) path: item/title
+#: C/txt-select-text.page:45
+msgid "Make a rectangular selection"
+msgstr "Téglalap alakú kijelölés"
+
+#. (itstool) path: item/p
+#: C/txt-select-text.page:46
+#| msgid "Click and hold the left mouse button on the tab."
+msgid ""
+"Hold down the <key>Ctrl</key>, click and hold down the left mouse button "
+"then drag the mouse."
+msgstr ""
+"Tartsa lenyomva a <key>Ctrl</key> billentyűt, kattintson és tartsa lenyomva a "
+"bal egérgombot, és húzza az egeret."
+
+#. (itstool) path: note/p
+#: C/txt-select-text.page:52
+msgid ""
+"If you are running an application in <app>Terminal</app> which accepts mouse "
+"input, you need to use the <key>Shift</key> modifier for the <app>Terminal</"
+"app> to catch the mouse input."
+msgstr ""
+"Ha a <app>Terminálban</app> egérbevitelt elfogadó alkalmazást futtat, akkor "
+"nyomva kell tartani a <key>Shift</key> billentyűt, hogy a <app>Terminál</app> "
+"elfogja az egérbevitelt."
+
+#~ msgid "Use either the light or dark theme for <app>Terminal</app>."
+#~ msgstr "Világos vagy sötét téma használata a <app>Terminálban</app>."
+
+#~ msgid "Chose the window theme"
+#~ msgstr "Az ablak témájának kiválasztása"
+
+#~ msgid ""
+#~ "You can chose to use either the dark theme or the light theme for the "
+#~ "terminal window."
+#~ msgstr "Sötét és világos témát is választhat a Terminál ablakhoz."
+
+#~ msgid "To use the dark theme, select <gui>Use dark theme variant</gui>."
+#~ msgstr ""
+#~ "Ha sötét témát szeretne választani, használja a <gui>Sötét témaváltozat "
+#~ "használata</gui> lehetőséget."
+
+#~ msgid "To select a word in <app>Terminal</app> output:"
+#~ msgstr "Egy szó kijelölése a <app>Terminál</app> kimenetben:"
+
+#~ msgid "To select a line in <app>Terminal</app> output:"
+#~ msgstr "Egy sor kijelölése a <app>Terminál</app> kimenetben:"
+
+#~ msgid ""
+#~ "Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem"
+#~ "\">Profile Preferences</gui><gui style=\"tab\">General</gui></guiseq>."
+#~ msgstr ""
+#~ "Válassza a <guiseq><gui style=\"menu\">Szerkesztés</gui> <gui style="
+#~ "\"menuitem\">Profil beállításai</gui> <gui style=\"tab\">Általános</gui></"
+#~ "guiseq> lapot."
+
+#~ msgid "Specify which characters should be considered as part of a word."
+#~ msgstr "Adja meg, hogy mely karakterek legyenek a szavak részének tekintve."
 
 #~ msgid ""
 #~ "You can define selection criteria for text in <app>Terminal</app>. You "
