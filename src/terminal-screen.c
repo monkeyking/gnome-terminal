@@ -216,6 +216,63 @@ fake_dup3 (int fd, int fd2, int flags)
 
 G_DEFINE_TYPE (TerminalScreen, terminal_screen, VTE_TYPE_TERMINAL)
 
+static char *
+cwd_of_pid (int pid)
+{
+  static const char patterns[][18] = {
+    "/proc/%d/cwd",         /* Linux */
+    "/proc/%d/path/cwd",    /* Solaris >= 10 */
+  };
+  guint i;
+
+  if (pid == -1)
+    return NULL;
+
+  /* Try to get the working directory using various OS-specific mechanisms */
+  for (i = 0; i < G_N_ELEMENTS (patterns); ++i)
+    {
+      char cwd_file[64];
+      char buf[PATH_MAX + 1];
+      int len;
+
+      /* disable "format not a string literal" error, we know what we are doing */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
+      g_snprintf (cwd_file, sizeof (cwd_file), patterns[i], pid);
+#pragma GCC diagnostic pop
+      len = readlink (cwd_file, buf, sizeof (buf) - 1);
+
+      if (len > 0 && buf[0] == '/')
+        return g_strndup (buf, len);
+
+      /* If that didn't do it, try this hack */
+      if (len <= 0)
+        {
+          char *cwd, *working_dir = NULL;
+
+          cwd = g_get_current_dir ();
+          if (cwd != NULL)
+            {
+              /* On Solaris, readlink returns an empty string, but the
+               * link can be used as a directory, including as a target
+               * of chdir().
+               */
+              if (chdir (cwd_file) == 0)
+                {
+                  working_dir = g_get_current_dir ();
+                  (void) chdir (cwd);
+                }
+              g_free (cwd);
+            }
+
+          if (working_dir)
+            return working_dir;
+        }
+    }
+
+  return NULL;
+}
+
 static void
 free_tag_data (TagData *tagdata)
 {
@@ -809,6 +866,13 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
     vte_terminal_set_rewrap_on_resize (vte_terminal,
                                        g_settings_get_boolean (profile, TERMINAL_PROFILE_REWRAP_ON_RESIZE_KEY));
 
+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY))
+    {
+      gs_free char *word_char_exceptions;
+      g_settings_get (profile, TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY, "ms", &word_char_exceptions);
+      vte_terminal_set_word_char_exceptions (vte_terminal, word_char_exceptions);
+    }
+
   g_object_thaw_notify (object);
 }
 
@@ -1116,7 +1180,7 @@ get_child_environment (TerminalScreen *screen,
     {
       /* FIXME: moving the tab between windows, or the window between displays will make the next two invalid... */
       g_hash_table_replace (env_table, g_strdup ("WINDOWID"),
-			    g_strdup_printf ("%ld",
+			    g_strdup_printf ("%lu",
 					     GDK_WINDOW_XID (gtk_widget_get_window (window))));
       g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
     }
@@ -1534,11 +1598,20 @@ terminal_screen_button_press (GtkWidget      *widget,
 char *
 terminal_screen_get_current_dir (TerminalScreen *screen)
 {
+  TerminalScreenPrivate *priv = screen->priv;
   const char *uri;
 
   uri = vte_terminal_get_current_directory_uri (VTE_TERMINAL (screen));
   if (uri != NULL)
     return g_filename_from_uri (uri, NULL, NULL);
+
+  if (priv->child_pid > 0) {
+    char *cwd = cwd_of_pid (priv->child_pid);
+    if (cwd != NULL) {
+      g_debug ("terminal_screen_get_current_dir: VTE current dir n/a, reading from /proc: %s", cwd);
+      return cwd;
+    }
+  }
 
   if (screen->priv->initial_working_directory)
     return g_strdup (screen->priv->initial_working_directory);
@@ -1929,7 +2002,9 @@ terminal_screen_has_foreground_process (TerminalScreen *screen,
   if (process_name)
     gs_transfer_out_value (process_name, &name);
 
-  for (i = 0; i < len - 1; i++)
+  if (len > 0 && data[len - 1] == '\0')
+    len--;
+  for (i = 0; i < len; i++)
     {
       if (data[i] == '\0')
         data[i] = ' ';

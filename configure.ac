@@ -1,5 +1,5 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[14])
+m4_define([gt_version_minor],[16])
 m4_define([gt_version_micro],[2])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
@@ -53,7 +53,7 @@ case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.10.0
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.38.0
+       VTE_REQUIRED=0.40.2
        ;;
 esac
 
@@ -241,7 +241,7 @@ AM_CONDITIONAL([WITH_NAUTILUS_EXTENSION],[test "$with_nautilus_extension" = "yes
 # **********************
 
 if test -f /etc/os-release; then
-  DISTRO="$(source /etc/os-release && echo $ID)"
+  DISTRO="$(. /etc/os-release && echo $ID)"
 else
   DISTRO="unknown"
 fi
@@ -300,6 +300,7 @@ CC_CHECK_FLAGS_APPEND([WARN_CFLAGS],[CFLAGS],[ \
   -Wuninitialized \
   -Wunsafe-loop-optimizations \
   -Wwrite-strings \
+  -Wformat-signedness \
   -fno-common \
   -fdiagnostics-show-option \
   -fno-strict-aliasing \
