@@ -5,8 +5,9 @@
 Source: gnome-terminal
 Section: gnome
 Priority: optional
-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Andreas Henriksson <andreas@fatal.se>, Michael Biebl <biebl@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Uploaders: Andreas Henriksson <andreas@fatal.se>, Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Michael Biebl <biebl@debian.org>
 Standards-Version: 3.9.6
 Build-Depends: cdbs (>= 0.4.41),
                debhelper (>= 9),
@@ -29,7 +30,6 @@ Build-Depends: cdbs (>= 0.4.41),
                libgconf2-dev (>= 2.31.3),
                desktop-file-utils,
                gsettings-desktop-schemas-dev (>= 0.1.0),
-               gnome-shell [linux-any],
                libnautilus-extension-dev
 Vcs-Svn: svn://anonscm.debian.org/pkg-gnome/desktop/unstable/gnome-terminal/
 Vcs-Browser: http://anonscm.debian.org/viewvc/pkg-gnome/desktop/unstable/gnome-terminal/
@@ -40,6 +40,9 @@ Architecture: any
 Multi-Arch: foreign
 Depends: ${shlibs:Depends},
          ${misc:Depends},
+         python3,
+         python3-gi,
+         gir1.2-glib-2.0,
          gsettings-desktop-schemas (>= 0.1.0),
          gnome-terminal-data (>= ${gnome:Version}),
          gnome-terminal-data (<< ${gnome:NextVersion})
