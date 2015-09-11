@@ -34,6 +34,7 @@
 #include "terminal-util.h"
 #include "terminal-profiles-list.h"
 #include "terminal-libgsystem.h"
+#include "terminal-window.h"
 
 typedef struct _TerminalColorScheme TerminalColorScheme;
 
@@ -776,6 +777,7 @@ terminal_profile_edit (GSettings  *profile,
   GtkWidget *editor, *w;
   gs_free char *uuid = NULL;
   guint i;
+  gfloat style_darkness;
 
   editor = g_object_get_data (G_OBJECT (profile), "editor-window");
   if (editor)
@@ -783,7 +785,7 @@ terminal_profile_edit (GSettings  *profile,
       terminal_util_dialog_focus_widget (editor, widget_name);
 
       gtk_window_set_transient_for (GTK_WINDOW (editor),
-                                    GTK_WINDOW (transient_parent));
+                                    NULL);
       gtk_window_present (GTK_WINDOW (editor));
       return;
     }
@@ -858,6 +860,15 @@ terminal_profile_edit (GSettings  *profile,
                         G_CALLBACK (palette_color_notify_cb),
                         profile);
     }
+
+  gtk_widget_style_get (GTK_WIDGET (
+              terminal_window_get_active (TERMINAL_WINDOW (transient_parent))),
+                        "background-darkness", &style_darkness,
+                        NULL);
+
+  gtk_widget_set_visible (gtk_builder_get_object (
+              builder,
+              "use-theme-transparency-checkbutton"), style_darkness >= 0);
 
   profile_palette_notify_colorpickers_cb (profile, TERMINAL_PROFILE_PALETTE_KEY, editor);
   g_signal_connect (profile, "changed::" TERMINAL_PROFILE_PALETTE_KEY,
@@ -1106,12 +1117,33 @@ terminal_profile_edit (GSettings  *profile,
                    "active-id",
                    G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
+  g_settings_bind (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                   gtk_builder_get_object (builder, "use-transparent-background"),
+                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  g_settings_bind (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                   gtk_builder_get_object (builder, "background-transparent-scale-box"),
+                   "sensitive", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
+  g_settings_bind (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT,
+                   gtk_builder_get_object (builder, "background-transparent-adjustment"),
+                   "value", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  g_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+                   gtk_builder_get_object (builder, "use-theme-transparency-checkbutton"),
+                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+  if (style_darkness >= 0)
+      g_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+              gtk_builder_get_object (builder, "use-transparent-background-box"),
+              "sensitive",
+              G_SETTINGS_BIND_GET |
+              G_SETTINGS_BIND_INVERT_BOOLEAN |
+              G_SETTINGS_BIND_NO_SENSITIVITY);
+
   /* Finished! */
   terminal_util_bind_mnemonic_label_sensitivity (editor);
 
   terminal_util_dialog_focus_widget (editor, widget_name);
 
   gtk_window_set_transient_for (GTK_WINDOW (editor),
-                                GTK_WINDOW (transient_parent));
+                                NULL);
   gtk_window_present (GTK_WINDOW (editor));
 }
