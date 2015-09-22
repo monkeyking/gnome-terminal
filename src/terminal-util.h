@@ -26,8 +26,8 @@
 
 G_BEGIN_DECLS
 
-void terminal_util_show_error_dialog (GtkWindow *transient_parent, 
-                                      GtkWidget **weap_ptr, 
+void terminal_util_show_error_dialog (GtkWindow *transient_parent,
+                                      GtkWidget **weap_ptr,
                                       GError *error,
                                       const char *message_format, ...) G_GNUC_PRINTF(4, 5);
 
@@ -68,6 +68,10 @@ void terminal_util_add_proxy_env (GHashTable *env_table);
 GdkScreen *terminal_util_get_screen_by_display_name (const char *display_name,
                                                      int screen_number);
 
+char **terminal_util_get_etc_shells (void);
+
+gboolean terminal_util_get_is_shell (const char *command);
+
 const GdkRGBA *terminal_g_settings_get_rgba (GSettings  *settings,
                                              const char *key,
                                              GdkRGBA    *rgba);
@@ -84,35 +88,6 @@ void terminal_g_settings_set_rgba_palette (GSettings      *settings,
                                            gsize           n_colors);
 
 void terminal_util_bind_mnemonic_label_sensitivity (GtkWidget *widget);
-
-void terminal_util_object_class_undeprecate_property (GObjectClass *klass,
-                                                      const char *prop);
-
-#define TERMINAL_UTIL_OBJECT_CLASS_UNDEPRECATE_PROPERTY(klass, prop) \
-  { \
-    static volatile gsize once = 0; \
-    \
-    if (g_once_init_enter (&once)) { \
-      GParamSpec *pspec; \
-      \
-      pspec = g_object_class_find_property (klass, prop); \
-      g_warn_if_fail (pspec != NULL); \
-      if (pspec) { \
-        g_warn_if_fail (pspec->flags & G_PARAM_DEPRECATED); \
-        pspec->flags &= ~G_PARAM_DEPRECATED; \
-      } \
-      g_once_init_leave (&once, 1); \
-    } \
-  }
-
-#define TERMINAL_UTIL_OBJECT_TYPE_UNDEPRECATE_PROPERTY(type, prop) \
-  { \
-    GObjectClass *klass; \
-    \
-    klass = g_type_class_ref (type); \
-    TERMINAL_UTIL_OBJECT_CLASS_UNDEPRECATE_PROPERTY (klass, prop); \
-    g_type_class_unref (klass); \
-  }
 
 G_END_DECLS
 

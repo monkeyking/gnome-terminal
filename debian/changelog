@@ -1,3 +1,27 @@
+gnome-terminal (3.18.0-1) unstable; urgency=medium
+
+  [ Fabian Greffrath ]
+  * Add Conflicts and Replaces against the nautilus-open-terminal
+    package (Closes: #766919). The gnome-terminal package provides
+    the exact same functionality and removal of the former package
+    has been requested (see #789900).
+
+  [ Josselin Mouette ]
+  * Remove Debian menu entry.
+
+  [ Pedro Beja ]
+  * Remove obsolete flags --disable-factory, --title and --usage from manpage. 
+
+  [ Andreas Henriksson ]
+  * New upstream release.
+  * Update build-dependencies according to configure.ac changes:
+    - bump libglib2.0-dev to >= 2.42.0
+    - bump libvte-2.91-dev to >= 0.42.0
+    - bump valac to >= 0.26
+  * Have quilt refresh patches to make them apply cleanly.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Tue, 22 Sep 2015 17:52:00 +0200
+
 gnome-terminal (3.16.2-1) unstable; urgency=medium
 
   * New upstream release.

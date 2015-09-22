@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[16])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_minor],[18])
+m4_define([gt_version_micro],[0])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -33,7 +33,10 @@ IT_PROG_INTLTOOL([0.50.0])
 
 AM_GLIB_GNU_GETTEXT
 
-GLIB_REQUIRED=2.40.0
+GLIB_REQUIRED=2.42.0
+GLIB_MIN_REQUIRED=2.40
+GLIB_MAX_ALLOWED=2.42
+
 GIO_REQUIRED=2.34.0
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
 DCONF_REQUIRED=0.14.0
@@ -52,8 +55,10 @@ AC_MSG_RESULT([$with_gtk])
 case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.10.0
+       GTK_MIN_REQUIRED=3.8
+       GTK_MAX_ALLOWED=3.14
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.40.2
+       VTE_REQUIRED=0.42.0
        ;;
 esac
 
@@ -88,7 +93,7 @@ AC_ARG_ENABLE([gterminal],[AS_HELP_STRING([--disable-gterminal],[Disable gtermin
 AC_MSG_RESULT([$enable_gterminal])
 
 AS_IF([test "$enable_gterminal" = "yes"],[
-  AM_PROG_VALAC([0.24])
+  AM_PROG_VALAC([0.26])
 
   VALA_CHECK_PACKAGES([glib-2.0 gio-2.0 gio-unix-2.0 linux posix])
   PKG_CHECK_MODULES([GTERMINAL],
@@ -305,8 +310,7 @@ CC_CHECK_FLAGS_APPEND([WARN_CFLAGS],[CFLAGS],[ \
   -fno-strict-aliasing \
   -fvisibility=hidden \
   -fstack-protector \
-  -fstack-protector-strong\
-  -Wno-deprecated-declarations \
+  -fstack-protector-strong \
 ])
 
 # *********
@@ -340,6 +344,10 @@ AC_SUBST([WARN_CFLAGS])
 AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
+AC_DEFINE_UNQUOTED([GLIB_VERSION_MIN_REQUIRED],[GLIB_VERSION_[]AS_TR_SH([$GLIB_MIN_REQUIRED])],[Define the min required glib version])
+AC_DEFINE_UNQUOTED([GLIB_VERSION_MAX_ALLOWED],[GLIB_VERSION_[]AS_TR_SH([$GLIB_MAX_ALLOWED])],[Define the max allowed glib version])
+AC_DEFINE_UNQUOTED([GDK_VERSION_MIN_REQUIRED],[GDK_VERSION_[]AS_TR_SH([$GTK_MIN_REQUIRED])],[Define the min required gtk version])
+AC_DEFINE_UNQUOTED([GDK_VERSION_MAX_ALLOWED],[GDK_VERSION_[]AS_TR_SH([$GTK_MAX_ALLOWED])],[Define the max allowed gtk version])
 
 # ****************************
 
