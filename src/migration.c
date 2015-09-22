@@ -27,6 +27,9 @@
 #include <dconf.h>
 #include <vte/vte.h>
 
+#define G_SETTINGS_ENABLE_BACKEND
+#include <gio/gsettingsbackend.h>
+
 #include "terminal-schemas.h"
 #include "terminal-profiles-list.h"
 #include "terminal-type-builtins.h"
@@ -86,7 +89,6 @@ enum {
 #define KEY_SCROLL_ON_KEYSTROKE "scroll_on_keystroke"
 #define KEY_SCROLL_ON_OUTPUT "scroll_on_output"
 #define KEY_SILENT_BELL "silent_bell"
-#define KEY_UPDATE_RECORDS "update_records"
 #define KEY_USE_CUSTOM_COMMAND "use_custom_command"
 #define KEY_USE_SYSTEM_FONT "use_system_font"
 #define KEY_USE_THEME_COLORS "use_theme_colors"
@@ -334,10 +336,26 @@ migrate_global_prefs (GSettings *settings,
   return TRUE;
 }
 
+static gboolean
+settings_backend_is_dconf (void)
+{
+  gs_unref_object GSettingsBackend *backend;
+
+  backend = g_settings_backend_get_default ();
+
+  return g_str_equal (G_OBJECT_TYPE_NAME (backend), "DConfSettingsBackend");
+}
+
 static void
 do_clean (void)
 {
   DConfClient *client;
+
+  if (!settings_backend_is_dconf ()) {
+    if (verbose)
+      g_printerr ("Not using DConf settings backend; not cleaning.\n");
+    return;
+  }
 
   if (verbose)
     g_printerr ("Cleaning…\n");
@@ -424,9 +442,6 @@ migrate_profile (TerminalSettingsList *list,
                 TERMINAL_TYPE_EXIT_ACTION);
   migrate_bool (client, path, KEY_LOGIN_SHELL,
                 settings, TERMINAL_PROFILE_LOGIN_SHELL_KEY,
-                FALSE);
-  migrate_bool (client, path, KEY_UPDATE_RECORDS,
-                settings, TERMINAL_PROFILE_UPDATE_RECORDS_KEY,
                 FALSE);
   migrate_bool (client, path, KEY_USE_CUSTOM_COMMAND,
                 settings, TERMINAL_PROFILE_USE_CUSTOM_COMMAND_KEY,
