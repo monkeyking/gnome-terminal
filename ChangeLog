@@ -1,3 +1,155 @@
+commit d52e6beb2df7aedd0c98696ae3be4a36b4c8f0f0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 12 18:24:49 2015 +0200
+
+    Version 3.18.1
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 314794ee63d831a9c0c3a34227c939003522e41b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 12 11:10:58 2015 +0200
+
+    server: Use distinct exit code for gtk_init failure
+
+ src/server.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit e3c1226a7c419fb2770c5f188ce52b2ebbe12018
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 16 15:40:46 2015 +0100
+
+    i18n: *: Fix and mark incorrectly translated string as fuzzy
+    
+    https://mail.gnome.org/archives/gnome-i18n/2014-September/msg00155.html
+
+ po/fa.po | 3 ++-
+ po/lv.po | 3 ++-
+ po/vi.po | 3 ++-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
+
+commit 66ded608af82e06a0d1945c2b3f7afc6d450aedc
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Oct 7 15:37:51 2015 +0200
+
+    profile: editor: Make colour buttons show their dialogue in editor mode
+    
+    We use the colour buttons to edit the colour palette, so it's not good
+    usability to pop up the dialogue in palette mode. Since there is no way
+    to make the GtkColorButton's dialogue show up in editor mode, and since
+    GtkColorChooserDialog even unset editor mode on ::map, we need this gross
+    hack to work around it.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756192
+    (cherry picked from commit 097864897c293a64dda65cc14b34b81f3d4d0813)
+
+ src/profile-editor.c | 40 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+commit 448cb610ed7c9f243275050b4b3a530561f0f8ab
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Mon Oct 5 20:13:05 2015 +0200
+
+    window: Pass tab switching keys to the terminal for tabless windows
+    
+    This was removed as a side effect of
+    a319aeb66f36e728af1b4929ddd69574df838702
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730128
+
+ src/terminal-window.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit c3749f3cc2cd53c6865381b64544dd2fd9b33a32
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Fri Sep 25 08:31:22 2015 +0700
+
+    Updated Vietnamese translation
+    
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 661 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 339 insertions(+), 322 deletions(-)
+
+commit c810675f7be64da3fa324a440dfccbe6532862e7
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Thu Sep 24 06:06:39 2015 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+commit 5636cbb7dd6ded5de447d773b7682703e3d48732
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Thu Sep 24 00:12:56 2015 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 620 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 318 insertions(+), 302 deletions(-)
+
+commit ebc7321aa57ace55cc0095ad8042d0b64afd8683
+Author: Милош Поповић <gpopac@gmail.com>
+Date:   Tue Sep 22 11:54:02 2015 +0000
+
+    Updated Serbian Latin translation
+
+ po/sr@latin.po | 652 ++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 315 insertions(+), 337 deletions(-)
+
+commit f49442f6ff5b0a0e114242924edcfe4671560e41
+Author: Милош Поповић <gpopac@gmail.com>
+Date:   Tue Sep 22 11:52:59 2015 +0000
+
+    Updated Serbian translation
+
+ po/sr.po | 652 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 315 insertions(+), 337 deletions(-)
+
+commit 44c6df308a2e5c331b44797c8537da430bb92df7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Sep 19 16:58:34 2015 +0200
+
+    window: Exit early from screen-removed handler for now empty notebook
+    
+    When the notebook is now empty, it's not necessary to change anything else
+    since the window will be closed right away. Since GtkNotebook doesn't send
+    the switch-page signal when removing the last and only screen in the notebook,
+    priv->active_tab will point to an already freed object, which causes a
+    crash when the window tries to update itself for the new active tab.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=755240
+    (cherry picked from commit c8704ba3fef98d4acd59ec061566ff540b77c528)
+
+ src/terminal-window.c | 20 +++++++++++++++-----
+ 1 file changed, 15 insertions(+), 5 deletions(-)
+
+commit ece6bbee10191c60674669c810915ae741ee6d7c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Sep 19 16:56:15 2015 +0200
+
+    notebook: Don't change show-tabs when going to empty notebook
+    
+    The window will close anyway, so the change is unnecessary. This fixes
+    a crash in terminal-window's show-tabs change handler.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=755240
+    (cherry picked from commit 7b7c38d01b198c9e2b32e2e6161472178f7492fa)
+
+ src/terminal-notebook.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 87e7192d1eb9c73e444990c6b2085542d50edb52
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Sep 21 17:03:25 2015 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit dc1b274d39fbaae089f741b0af145c99124e753c
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Sep 21 16:53:27 2015 +0200
