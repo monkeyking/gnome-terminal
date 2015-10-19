@@ -301,7 +301,7 @@ profile_list_row_activated_cb (GtkTreeView *tree_view,
     return;
 
   terminal_app_edit_profile (terminal_app_get (),
-                             selected_profile, GTK_WINDOW (data->dialog), NULL);
+                             selected_profile, data->parent, NULL);
 }
 
 static GtkTreeView *
@@ -427,7 +427,7 @@ profile_list_edit_button_clicked_cb (GtkWidget *button,
     return;
 
   terminal_app_edit_profile (terminal_app_get (), selected_profile,
-                             GTK_WINDOW (data->dialog), NULL);
+                             data->parent, NULL);
 }
 
 static void
