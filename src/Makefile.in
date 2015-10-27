@@ -219,12 +219,12 @@ gnome_terminal_migration_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 am__gnome_terminal_server_SOURCES_DIST = eggshell.c eggshell.h \
 	profile-editor.c profile-editor.h server.c terminal-accels.c \
 	terminal-accels.h terminal-app.c terminal-app.h \
-	terminal-close-button.h terminal-close-button.c \
 	terminal-debug.c terminal-debug.h terminal-defines.h \
 	terminal-enums.h terminal-encoding.c terminal-encoding.h \
-	terminal-gdbus.c terminal-gdbus.h terminal-info-bar.c \
-	terminal-info-bar.h terminal-intl.h terminal-i18n.c \
-	terminal-i18n.h terminal-libgsystem.h terminal-mdi-container.c \
+	terminal-gdbus.c terminal-gdbus.h terminal-icon-button.h \
+	terminal-icon-button.c terminal-info-bar.c terminal-info-bar.h \
+	terminal-intl.h terminal-i18n.c terminal-i18n.h \
+	terminal-libgsystem.h terminal-mdi-container.c \
 	terminal-mdi-container.h terminal-notebook.c \
 	terminal-notebook.h terminal-prefs.c terminal-prefs.h \
 	terminal-profiles-list.c terminal-profiles-list.h \
@@ -244,10 +244,10 @@ am_gnome_terminal_server_OBJECTS =  \
 	gnome_terminal_server-server.$(OBJEXT) \
 	gnome_terminal_server-terminal-accels.$(OBJEXT) \
 	gnome_terminal_server-terminal-app.$(OBJEXT) \
-	gnome_terminal_server-terminal-close-button.$(OBJEXT) \
 	gnome_terminal_server-terminal-debug.$(OBJEXT) \
 	gnome_terminal_server-terminal-encoding.$(OBJEXT) \
 	gnome_terminal_server-terminal-gdbus.$(OBJEXT) \
+	gnome_terminal_server-terminal-icon-button.$(OBJEXT) \
 	gnome_terminal_server-terminal-info-bar.$(OBJEXT) \
 	gnome_terminal_server-terminal-i18n.$(OBJEXT) \
 	gnome_terminal_server-terminal-mdi-container.$(OBJEXT) \
@@ -576,10 +576,10 @@ gnome_terminal_server_built = terminal-marshal.c terminal-marshal.h \
 	$(am__append_3)
 gnome_terminal_server_SOURCES = eggshell.c eggshell.h profile-editor.c \
 	profile-editor.h server.c terminal-accels.c terminal-accels.h \
-	terminal-app.c terminal-app.h terminal-close-button.h \
-	terminal-close-button.c terminal-debug.c terminal-debug.h \
-	terminal-defines.h terminal-enums.h terminal-encoding.c \
-	terminal-encoding.h terminal-gdbus.c terminal-gdbus.h \
+	terminal-app.c terminal-app.h terminal-debug.c \
+	terminal-debug.h terminal-defines.h terminal-enums.h \
+	terminal-encoding.c terminal-encoding.h terminal-gdbus.c \
+	terminal-gdbus.h terminal-icon-button.h terminal-icon-button.c \
 	terminal-info-bar.c terminal-info-bar.h terminal-intl.h \
 	terminal-i18n.c terminal-i18n.h terminal-libgsystem.h \
 	terminal-mdi-container.c terminal-mdi-container.h \
@@ -658,6 +658,7 @@ TYPES_H_FILES = \
 
 # See bug #710862 about -Wsuggest-attribute=format
 @ENABLE_GTERMINAL_TRUE@gterminal_CFLAGS = \
+@ENABLE_GTERMINAL_TRUE@	--include config.h \
 @ENABLE_GTERMINAL_TRUE@	$(GTERMINAL_CFLAGS) \
 @ENABLE_GTERMINAL_TRUE@	$(AM_CFLAGS) \
 @ENABLE_GTERMINAL_TRUE@	-Wno-cast-qual \
@@ -809,7 +810,7 @@ CLEANFILES = \
 EXTRA_DIST = \
 	terminal.about \
 	terminal.xml \
-	terminal-appmenu.ui \
+	terminal-menus.ui \
 	terminal-window.ui \
 	terminal.gresource.xml \
 	terminal-marshal.list \
@@ -820,6 +821,7 @@ EXTRA_DIST = \
 	find-dialog.ui \
 	preferences.ui \
 	profile-preferences.ui \
+	terminal.common.css \
 	$(about_DATA) \
 	$(uimanager_DATA) \
 	$(builder_DATA) \
@@ -1050,12 +1052,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-accels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-app.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-close-button.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-debug.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-encoding.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-gdbus-generated.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-gdbus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-i18n.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-icon-button.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-info-bar.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-marshal.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-mdi-container.Po@am__quote@
@@ -1408,20 +1410,6 @@ gnome_terminal_server-terminal-app.obj: terminal-app.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-app.obj `if test -f 'terminal-app.c'; then $(CYGPATH_W) 'terminal-app.c'; else $(CYGPATH_W) '$(srcdir)/terminal-app.c'; fi`
 
-gnome_terminal_server-terminal-close-button.o: terminal-close-button.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-close-button.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-close-button.Tpo -c -o gnome_terminal_server-terminal-close-button.o `test -f 'terminal-close-button.c' || echo '$(srcdir)/'`terminal-close-button.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-close-button.Tpo $(DEPDIR)/gnome_terminal_server-terminal-close-button.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-close-button.c' object='gnome_terminal_server-terminal-close-button.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-close-button.o `test -f 'terminal-close-button.c' || echo '$(srcdir)/'`terminal-close-button.c
-
-gnome_terminal_server-terminal-close-button.obj: terminal-close-button.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-close-button.obj -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-close-button.Tpo -c -o gnome_terminal_server-terminal-close-button.obj `if test -f 'terminal-close-button.c'; then $(CYGPATH_W) 'terminal-close-button.c'; else $(CYGPATH_W) '$(srcdir)/terminal-close-button.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-close-button.Tpo $(DEPDIR)/gnome_terminal_server-terminal-close-button.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-close-button.c' object='gnome_terminal_server-terminal-close-button.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-close-button.obj `if test -f 'terminal-close-button.c'; then $(CYGPATH_W) 'terminal-close-button.c'; else $(CYGPATH_W) '$(srcdir)/terminal-close-button.c'; fi`
-
 gnome_terminal_server-terminal-debug.o: terminal-debug.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-debug.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-debug.Tpo -c -o gnome_terminal_server-terminal-debug.o `test -f 'terminal-debug.c' || echo '$(srcdir)/'`terminal-debug.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-debug.Tpo $(DEPDIR)/gnome_terminal_server-terminal-debug.Po
@@ -1463,6 +1451,20 @@ gnome_terminal_server-terminal-gdbus.obj: terminal-gdbus.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-gdbus.c' object='gnome_terminal_server-terminal-gdbus.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-gdbus.obj `if test -f 'terminal-gdbus.c'; then $(CYGPATH_W) 'terminal-gdbus.c'; else $(CYGPATH_W) '$(srcdir)/terminal-gdbus.c'; fi`
+
+gnome_terminal_server-terminal-icon-button.o: terminal-icon-button.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-icon-button.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-icon-button.Tpo -c -o gnome_terminal_server-terminal-icon-button.o `test -f 'terminal-icon-button.c' || echo '$(srcdir)/'`terminal-icon-button.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-icon-button.Tpo $(DEPDIR)/gnome_terminal_server-terminal-icon-button.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-icon-button.c' object='gnome_terminal_server-terminal-icon-button.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-icon-button.o `test -f 'terminal-icon-button.c' || echo '$(srcdir)/'`terminal-icon-button.c
+
+gnome_terminal_server-terminal-icon-button.obj: terminal-icon-button.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-icon-button.obj -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-icon-button.Tpo -c -o gnome_terminal_server-terminal-icon-button.obj `if test -f 'terminal-icon-button.c'; then $(CYGPATH_W) 'terminal-icon-button.c'; else $(CYGPATH_W) '$(srcdir)/terminal-icon-button.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-icon-button.Tpo $(DEPDIR)/gnome_terminal_server-terminal-icon-button.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-icon-button.c' object='gnome_terminal_server-terminal-icon-button.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-icon-button.obj `if test -f 'terminal-icon-button.c'; then $(CYGPATH_W) 'terminal-icon-button.c'; else $(CYGPATH_W) '$(srcdir)/terminal-icon-button.c'; fi`
 
 gnome_terminal_server-terminal-info-bar.o: terminal-info-bar.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-info-bar.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-info-bar.Tpo -c -o gnome_terminal_server-terminal-info-bar.o `test -f 'terminal-info-bar.c' || echo '$(srcdir)/'`terminal-info-bar.c

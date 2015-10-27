@@ -29,6 +29,10 @@
 #include <fcntl.h>
 #include <uuid.h>
 
+#if defined(__FreeBSD__) || defined(__DragonFly__) || defined(__OpenBSD__)
+#include <sys/sysctl.h>
+#endif
+
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
@@ -331,11 +335,21 @@ terminal_screen_realize (GtkWidget *widget)
   terminal_screen_set_font (screen);
 }
 
-void
+static void
 terminal_screen_update_style (TerminalScreen *screen)
 {
   update_color_scheme (screen);
   terminal_screen_set_font (screen);
+}
+
+static void
+terminal_screen_style_updated (GtkWidget *widget)
+{
+  TerminalScreen *screen = TERMINAL_SCREEN (widget);
+
+  GTK_WIDGET_CLASS (terminal_screen_parent_class)->style_updated (widget);
+
+  terminal_screen_update_style (screen);
 }
 
 #ifdef ENABLE_DEBUG
@@ -519,6 +533,7 @@ terminal_screen_class_init (TerminalScreenClass *klass)
   object_class->set_property = terminal_screen_set_property;
 
   widget_class->realize = terminal_screen_realize;
+  widget_class->style_updated = terminal_screen_style_updated;
   widget_class->drag_data_received = terminal_screen_drag_data_received;
   widget_class->button_press_event = terminal_screen_button_press;
   widget_class->popup_menu = terminal_screen_popup_menu;
@@ -942,8 +957,8 @@ update_color_scheme (TerminalScreen *screen)
   gfloat style_darkness;
 
   context = gtk_widget_get_style_context (widget);
-  gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &theme_fg);
-  gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &theme_bg);
+  gtk_style_context_get_color (context, gtk_style_context_get_state (context), &theme_fg);
+  gtk_style_context_get_background_color (context, gtk_style_context_get_state (context), &theme_bg);
 
   if (theme_fg.red == 0.0 && theme_fg.green == 0.0 && theme_fg.blue == 0.0 &&
       theme_bg.red == 0.0 && theme_bg.green == 0.0 && theme_bg.blue == 0.0)
@@ -1451,11 +1466,6 @@ terminal_screen_do_exec (TerminalScreen *screen,
     working_dir = g_get_home_dir ();
 
   env = get_child_environment (screen, working_dir, &shell);
-
-  if (!g_settings_get_boolean (profile, TERMINAL_PROFILE_LOGIN_SHELL_KEY))
-    pty_flags |= VTE_PTY_NO_LASTLOG;
-  if (!g_settings_get_boolean (profile, TERMINAL_PROFILE_UPDATE_RECORDS_KEY))
-    pty_flags |= VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP;
 
   argv = NULL;
   if (!get_child_command (screen, shell, &spawn_flags, &argv, &err) ||
@@ -2052,12 +2062,17 @@ terminal_screen_has_foreground_process (TerminalScreen *screen,
 {
   TerminalScreenPrivate *priv = screen->priv;
   gs_free char *command = NULL;
-  gs_free char *data = NULL;
+  gs_free char *data_buf = NULL;
   gs_free char *basename = NULL;
   gs_free char *name = NULL;
   VtePty *pty;
   int fd;
+#if defined(__FreeBSD__) || defined(__DragonFly__) || defined(__OpenBSD__)
+  int mib[4];
+#else
   char filename[64];
+#endif
+  char *data;
   gsize i;
   gsize len;
   int fgpid;
@@ -2074,9 +2089,36 @@ terminal_screen_has_foreground_process (TerminalScreen *screen,
   if (fgpid == -1 || fgpid == priv->child_pid)
     return FALSE;
 
+#if defined(__FreeBSD__) || defined(__DragonFly__)
+  mib[0] = CTL_KERN;
+  mib[1] = KERN_PROC;
+  mib[2] = KERN_PROC_ARGS;
+  mib[3] = fgpid;
+  if (sysctl (mib, G_N_ELEMENTS (mib), NULL, &len, NULL, 0) == -1)
+      return TRUE;
+
+  data_buf = g_malloc0 (len);
+  if (sysctl (mib, G_N_ELEMENTS (mib), data_buf, &len, NULL, 0) == -1)
+      return TRUE;
+  data = data_buf;
+#elif defined(__OpenBSD__)
+  mib[0] = CTL_KERN;
+  mib[1] = KERN_PROC_ARGS;
+  mib[2] = fgpid;
+  mib[3] = KERN_PROC_ARGV;
+  if (sysctl (mib, G_N_ELEMENTS (mib), NULL, &len, NULL, 0) == -1)
+      return TRUE;
+
+  data_buf = g_malloc0 (len);
+  if (sysctl (mib, G_N_ELEMENTS (mib), data_buf, &len, NULL, 0) == -1)
+      return TRUE;
+  data = ((char**)data_buf)[0];
+#else
   g_snprintf (filename, sizeof (filename), "/proc/%d/cmdline", fgpid);
-  if (!g_file_get_contents (filename, &data, &len, NULL))
+  if (!g_file_get_contents (filename, &data_buf, &len, NULL))
     return TRUE;
+  data = data_buf;
+#endif
 
   basename = g_path_get_basename (data);
   if (!basename)

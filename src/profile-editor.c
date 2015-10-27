@@ -533,16 +533,16 @@ init_encodings_combo (GtkWidget *widget)
 }
 
 static void
-editor_response_cb (GtkWidget *editor,
-                    int response,
-                    gpointer use_data)
+editor_help_button_clicked_cb (GtkWidget *button,
+                               GtkWidget *editor)
 {
-  if (response == GTK_RESPONSE_HELP)
-    {
-      terminal_util_show_help ("profile", GTK_WINDOW (editor));
-      return;
-    }
+  terminal_util_show_help ("profile", GTK_WINDOW (editor));
+}
 
+static void
+editor_close_button_clicked_cb (GtkWidget *button,
+                                GtkWidget *editor)
+{
   gtk_widget_destroy (editor);
 }
 
@@ -756,6 +756,44 @@ bool_to_scrollbar_policy (const GValue *value,
   return g_variant_new_string (g_value_get_boolean (value) ? "always" : "never");
 }
 
+/* ATTENTION: HACK HACK HACK!
+ * GtkColorButton usability is broken. It always pops up the
+ * GtkColorChooserDialog with show-editor=FALSE, which brings
+ * up the dialogue in palette mode, when all we want is pick
+ * a colour. Since there is no way to get to the colour
+ * dialogue of the button, and the dialogue always sets
+ * show-editor=FALSE in its map anyway, we need to override
+ * the map implementation, set show-editor=TRUE and chain to
+ * the parent's map. This is reasonably safe to do since that's
+ * all the map functiondoes, and we can change this for _all_
+ * colour chooser buttons, since they are used only in our
+ * profile preferences dialogue.
+ */
+
+static void
+fixup_color_chooser_dialog_map (GtkWidget *widget)
+{
+  g_object_set (GTK_COLOR_CHOOSER_DIALOG (widget), "show-editor", TRUE, NULL);
+
+  GTK_WIDGET_CLASS (g_type_class_peek_parent (GTK_COLOR_CHOOSER_DIALOG_GET_CLASS (widget)))->map (widget);
+}
+
+static void
+fixup_color_chooser_button (void)
+{
+  static gboolean done = FALSE;
+
+  if (!done) {
+    GtkColorChooserDialogClass *klass;
+    klass = g_type_class_ref (GTK_TYPE_COLOR_CHOOSER_DIALOG);
+    g_assert (klass != NULL);
+    GTK_WIDGET_CLASS (klass)->map = fixup_color_chooser_dialog_map;
+    g_type_class_unref (klass);
+    done = TRUE;
+  }
+}
+/* END HACK */
+
 /**
  * terminal_profile_edit:
  * @profile: a #GSettings
@@ -790,6 +828,8 @@ terminal_profile_edit (GSettings  *profile,
       return;
     }
 
+  fixup_color_chooser_button ();
+
   profiles_list = terminal_app_get_profiles_list (terminal_app_get ());
 
   builder = gtk_builder_new ();
@@ -800,13 +840,6 @@ terminal_profile_edit (GSettings  *profile,
   g_object_set_data_full (G_OBJECT (editor), "builder",
                           builder, (GDestroyNotify) g_object_unref);
 
-  /* Fixup dialogue padding, #735242 */
-  w = (GtkWidget *) gtk_builder_get_object (builder, "dialog-action-area");
-  gtk_widget_set_margin_left   (w, 5);
-  gtk_widget_set_margin_right  (w, 5);
-  gtk_widget_set_margin_top    (w, 5);
-  gtk_widget_set_margin_bottom (w, 5);
-
   /* Store the dialogue on the profile, so we can acccess it above to check if
    * there's already a profile editor for this profile.
    */
@@ -816,9 +849,11 @@ terminal_profile_edit (GSettings  *profile,
                     G_CALLBACK (profile_editor_destroyed),
                     profile);
 
-  g_signal_connect (editor, "response",
-                    G_CALLBACK (editor_response_cb),
-                    NULL);
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "close-button");
+  g_signal_connect (w, "clicked", G_CALLBACK (editor_close_button_clicked_cb), editor);
+
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "help-button");
+  g_signal_connect (w, "clicked", G_CALLBACK (editor_help_button_clicked_cb), editor);
 
   w = (GtkWidget *) gtk_builder_get_object  (builder, "profile-editor-notebook");
   gtk_widget_add_events (w, GDK_BUTTON_PRESS_MASK | GDK_SCROLL_MASK);
@@ -1059,10 +1094,6 @@ terminal_profile_edit (GSettings  *profile,
                    "active",
                    G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET |
                    G_SETTINGS_BIND_INVERT_BOOLEAN);
-  g_settings_bind (profile, TERMINAL_PROFILE_UPDATE_RECORDS_KEY,
-                   gtk_builder_get_object (builder,
-                                           "update-records-checkbutton"),
-                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
   g_settings_bind (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND_KEY,
                    gtk_builder_get_object (builder,
                                            "use-custom-command-checkbutton"),

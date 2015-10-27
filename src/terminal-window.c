@@ -35,6 +35,7 @@
 #include "terminal-debug.h"
 #include "terminal-enums.h"
 #include "terminal-encoding.h"
+#include "terminal-icon-button.h"
 #include "terminal-intl.h"
 #include "terminal-mdi-container.h"
 #include "terminal-notebook.h"
@@ -122,7 +123,7 @@ struct _TerminalWindowPrivate
 #endif
 #endif
 
-#if defined (ENABLE_DEBUG) && GTK_CHECK_VERSION (3, 13, 4)
+#if defined (ENABLE_DEBUG) && GTK_CHECK_VERSION (3, 14, 0)
 #define ENABLE_INSPECTOR
 #endif
 
@@ -1819,6 +1820,7 @@ static void
 terminal_window_update_tabs_menu_sensitivity (TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
+  GAction *gaction;
   GtkActionGroup *action_group = priv->action_group;
   GtkAction *action;
   int num_pages, page_num;
@@ -1854,6 +1856,9 @@ terminal_window_update_tabs_menu_sensitivity (TerminalWindow *window)
   action = gtk_action_group_get_action (action_group, "TabsNext");
   gtk_action_set_sensitive (action, not_last);
 #endif
+
+  gaction = g_action_map_lookup_action (G_ACTION_MAP (window), "switch-tab");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (gaction), num_pages > 1);
 
   action = gtk_action_group_get_action (action_group, "TabsMoveLeft");
   gtk_action_set_sensitive (action, not_first);
@@ -2060,6 +2065,9 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
   if (info->button == 0)
     gtk_menu_shell_select_first (GTK_MENU_SHELL (popup_menu), FALSE);
 
+  if (gtk_menu_get_attach_widget (GTK_MENU (popup_menu)))
+    gtk_menu_detach (GTK_MENU (popup_menu));
+  gtk_menu_attach_to_widget (GTK_MENU (popup_menu), GTK_WIDGET (screen), NULL);
   gtk_menu_popup (GTK_MENU (popup_menu),
                   NULL, NULL,
                   NULL, NULL, 
@@ -2153,6 +2161,38 @@ terminal_window_accel_activate_cb (GtkAccelGroup  *accel_group,
     }
 
   return retval;
+}
+
+static void
+terminal_window_fill_notebook_action_box (TerminalWindow *window)
+{
+  TerminalWindowPrivate *priv = window->priv;
+  GtkWidget *box, *button;
+  GtkAction *action;
+  GtkWidget *menu;
+
+  box = terminal_notebook_get_action_box (TERMINAL_NOTEBOOK (priv->mdi_container), GTK_PACK_END);
+
+  /* Create the NewTerminal button */
+  action = gtk_action_group_get_action (priv->action_group, "FileNewTab");
+
+  button = terminal_icon_button_new ("list-add");
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
+  gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+  gtk_widget_show (button);
+
+  /* Create Tabs menu button */
+  menu = gtk_ui_manager_get_widget (priv->ui_manager, "/TabsPopup");
+  gtk_widget_set_halign (menu, GTK_ALIGN_END);
+
+  button = gtk_menu_button_new ();
+  gtk_button_set_relief (GTK_BUTTON (button), FALSE);
+  gtk_button_set_focus_on_click (GTK_BUTTON (button), FALSE);
+  gtk_menu_button_set_popup (GTK_MENU_BUTTON (button), menu);
+
+  gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+  gtk_menu_button_set_align_widget (GTK_MENU_BUTTON (button), box);
+  gtk_widget_show (button);
 }
 
 /*****************************************/
@@ -2403,6 +2443,7 @@ terminal_window_init (TerminalWindow *window)
       { "Help", NULL, N_("_Help") },
       { "Popup", NULL, NULL },
       { "NotebookPopup", NULL, "" },
+      { "TabsPopup", NULL, "" },
 
       /* File menu */
       { "FileNewWindow", STOCK_NEW_WINDOW, N_("Open _Terminal"), "<shift><control>N",
@@ -2642,6 +2683,8 @@ terminal_window_init (TerminalWindow *window)
 
   g_signal_connect_swapped (priv->mdi_container, "notify::tab-pos",
                             G_CALLBACK (terminal_window_update_geometry), window);
+  g_signal_connect_swapped (priv->mdi_container, "notify::show-tabs",
+                            G_CALLBACK (terminal_window_update_geometry), window);
 
   /* FIXME hack hack! */
   if (GTK_IS_NOTEBOOK (priv->mdi_container)) {
@@ -2669,9 +2712,6 @@ terminal_window_init (TerminalWindow *window)
   g_action_map_add_action_entries (G_ACTION_MAP (window),
                                    gaction_entries, G_N_ELEMENTS (gaction_entries),
                                    window);
-
-  /* The GtkAction/GtkUIManager menus access this from inside gtk+, so suppress the warning */
-  TERMINAL_UTIL_OBJECT_TYPE_UNDEPRECATE_PROPERTY (GTK_TYPE_SETTINGS, "gtk-menu-images");
 
   /* Create the UI manager */
   manager = priv->ui_manager = gtk_ui_manager_new ();
@@ -2712,7 +2752,7 @@ terminal_window_init (TerminalWindow *window)
   /* Load the UI */
   error = NULL;
   priv->ui_id = gtk_ui_manager_add_ui_from_resource (manager,
-                                                     TERMINAL_RESOURCES_PATH_PREFIX "ui/terminal.xml",
+                                                     TERMINAL_RESOURCES_PATH_PREFIX "/ui/terminal.xml",
                                                      &error);
   g_assert_no_error (error);
 
@@ -2748,6 +2788,8 @@ terminal_window_init (TerminalWindow *window)
 
   terminal_window_update_size_to_menu (window);
 
+  terminal_window_fill_notebook_action_box (window);
+
   /* We have to explicitly call this, since screen-changed is NOT
    * emitted for the toplevel the first time!
    */
@@ -2765,12 +2807,8 @@ static void
 terminal_window_style_updated (GtkWidget *widget)
 {
   TerminalWindow *window = TERMINAL_WINDOW (widget);
-  TerminalWindowPrivate *priv = window->priv;
 
   GTK_WIDGET_CLASS (terminal_window_parent_class)->style_updated (widget);
-
-  if (priv->active_screen != NULL)
-    terminal_screen_update_style (priv->active_screen);
 
   terminal_window_update_size (window);
 }
@@ -2791,7 +2829,7 @@ terminal_window_class_init (TerminalWindowClass *klass)
   widget_class->screen_changed = terminal_window_screen_changed;
   widget_class->style_updated = terminal_window_style_updated;
 
-#if GTK_CHECK_VERSION (3, 13, 4)
+#if GTK_CHECK_VERSION (3, 14, 0)
 {
   GtkWindowClass *window_klass;
   GtkBindingSet *binding_set;
@@ -3220,6 +3258,7 @@ notebook_button_press_cb (GtkWidget *widget,
 {
   TerminalWindowPrivate *priv = window->priv;
   GtkNotebook *notebook = GTK_NOTEBOOK (widget);
+  GtkWidget *tab;
   GtkWidget *menu;
   GtkAction *action;
   int tab_clicked;
@@ -3240,6 +3279,10 @@ notebook_button_press_cb (GtkWidget *widget,
   gtk_action_activate (action);
 
   menu = gtk_ui_manager_get_widget (priv->ui_manager, "/NotebookPopup");
+  if (gtk_menu_get_attach_widget (GTK_MENU (menu)))
+    gtk_menu_detach (GTK_MENU (menu));
+  tab = gtk_notebook_get_nth_page (notebook, tab_clicked);
+  gtk_menu_attach_to_widget (GTK_MENU (menu), tab, NULL);
   gtk_menu_popup (GTK_MENU (menu), NULL, NULL, 
                   NULL, NULL, 
                   event->button, event->time);
@@ -3270,6 +3313,9 @@ notebook_popup_menu_cb (GtkWidget *widget,
   gtk_action_activate (action);
 
   menu = gtk_ui_manager_get_widget (priv->ui_manager, "/NotebookPopup");
+  if (gtk_menu_get_attach_widget (GTK_MENU (menu)))
+    gtk_menu_detach (GTK_MENU (menu));
+  gtk_menu_attach_to_widget (GTK_MENU (menu), tab_label, NULL);
   gtk_menu_popup (GTK_MENU (menu), NULL, NULL, 
                   position_menu_under_widget, tab_label,
                   0, gtk_get_current_event_time ());
@@ -3467,20 +3513,30 @@ mdi_screen_removed_cb (TerminalMdiContainer *container,
                                         G_CALLBACK (screen_close_cb),
                                         window);
 
+  /* We already got a switch-page signal whose handler sets the active tab to the
+   * new active tab, unless this screen was the only one in the notebook, so
+   * priv->active_tab is valid here.
+   */
+
+  pages = terminal_mdi_container_get_n_screens (container);
+  if (pages == 0)
+    {
+      priv->active_screen = NULL;
+
+      /* That was the last tab in the window; close it. */
+      gtk_widget_destroy (GTK_WIDGET (window));
+      return;
+    }
+
   terminal_window_update_tabs_menu_sensitivity (window);
   terminal_window_update_search_sensitivity (screen, window);
 
-  pages = terminal_mdi_container_get_n_screens (container);
   if (pages == 1)
     {
       TerminalScreen *active_screen = terminal_mdi_container_get_active_screen (container);
       gtk_widget_grab_focus (GTK_WIDGET(active_screen));  /* bug 742422 */
 
       terminal_window_update_size (window);
-    }
-  else if (pages == 0)
-    {
-      gtk_widget_destroy (GTK_WIDGET (window));
     }
 }
 

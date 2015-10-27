@@ -36,8 +36,6 @@ gnome_terminal_server_SOURCES = \
 	terminal-accels.h \
 	terminal-app.c \
 	terminal-app.h \
-	terminal-close-button.h \
-	terminal-close-button.c \
 	terminal-debug.c \
 	terminal-debug.h \
 	terminal-defines.h \
@@ -46,6 +44,8 @@ gnome_terminal_server_SOURCES = \
 	terminal-encoding.h \
 	terminal-gdbus.c \
 	terminal-gdbus.h \
+	terminal-icon-button.h \
+	terminal-icon-button.c \
 	terminal-info-bar.c \
 	terminal-info-bar.h \
 	terminal-intl.h \
@@ -195,6 +195,7 @@ gterminal_CPPFLAGS = \
 
 # See bug #710862 about -Wsuggest-attribute=format
 gterminal_CFLAGS = \
+	--include config.h \
 	$(GTERMINAL_CFLAGS) \
 	$(AM_CFLAGS) \
 	-Wno-cast-qual \
@@ -372,7 +373,7 @@ CLEANFILES = \
 EXTRA_DIST = \
 	terminal.about \
 	terminal.xml \
-	terminal-appmenu.ui \
+	terminal-menus.ui \
 	terminal-window.ui \
 	terminal.gresource.xml \
 	terminal-marshal.list \
@@ -383,6 +384,7 @@ EXTRA_DIST = \
 	find-dialog.ui \
 	preferences.ui \
 	profile-preferences.ui \
+	terminal.common.css \
 	$(about_DATA) \
 	$(uimanager_DATA) \
 	$(builder_DATA) \
