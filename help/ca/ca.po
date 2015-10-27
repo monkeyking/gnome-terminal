@@ -1,36 +1,26 @@
-# French translation for gnome-terminal.
-# Copyright (C) 2013 gnome-terminal's COPYRIGHT HOLDER
+# Catalan translation for gnome-terminal.
+# Copyright (C) 2015 gnome-terminal's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-terminal package.
 #
-# Yoann Fievez <yoann.fievez@gmail.com>, 2013.
-# Julien Hardelin <jhardlin@orange.fr>, 2013.
-# Alexandre Franke <alexandre.franke@gmail.com>, 2014 - 2015.
-# Alain Lojewski <allomervan@gmail.com>, 2014.
-# Guillaume Bernard <translate@filorin.fr>, 2015.
-#
+# Carles Ferrando Garcia <carles.ferrando@gmail.com>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal gnome-3-10\n"
-"POT-Creation-Date: 2015-03-13 21:58+0000\n"
-"PO-Revision-Date: 2015-03-13 23:59+0100\n"
-"Last-Translator: Guillaume Bernard <translate@filorin.fr>\n"
-"Language-Team: français <gnomefr@traduc.org>\n"
-"Language: fr\n"
+"Project-Id-Version: gnome-terminal master\n"
+"POT-Creation-Date: 2015-06-29 08:20+0000\n"
+"PO-Revision-Date: 2015-06-29 16:40+0200\n"
+"Last-Translator: Carles Ferrando Garcia <carles.ferrando@gmail.com>\n"
+"Language-Team: Catalan <Catalan <info@softcatala.org>>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
-"Yoann Fievez <yoann.fievez@gmail.com>, 2013\n"
-"Julien Hardelin <jhardlin@orange.fr>, 2013\n"
-"Alexandre Franke <alexandre.franke@gmail.com>, 2014\n"
-"Alain Lojewski <allomervan@gmail.com>, 2014\n"
-"Jérôme Sirgue <jsirgue@free.fr>, 2014\n"
-"Guillaume Bernard <translate@filorin.fr>, 2015"
+msgstr "Carles Ferrando Garcia <carles.ferrando@gmail.com>"
 
 #. (itstool) path: credit/name
 #: C/adv-keyboard-shortcuts.page:13 C/app-colors.page:11 C/app-cursor.page:11
@@ -105,12 +95,12 @@ msgstr "Michael Hill"
 #. (itstool) path: info/desc
 #: C/adv-keyboard-shortcuts.page:30
 msgid "View and edit keyboard shortcuts."
-msgstr "Afficher et modifier les raccourcis clavier"
+msgstr "Visualitza i edita les dreceres de teclat"
 
 #. (itstool) path: page/title
 #: C/adv-keyboard-shortcuts.page:33
 msgid "Keyboard shortcuts"
-msgstr "Raccourcis Clavier"
+msgstr "Dreceres de teclat"
 
 #. (itstool) path: page/p
 #: C/adv-keyboard-shortcuts.page:35
@@ -120,15 +110,15 @@ msgid ""
 "<app>Terminal</app> quickly. These shortcuts can be modified to suit your "
 "preferences."
 msgstr ""
-"Les raccourcis clavier sont des combinaisons de touches qui vous permettent "
-"d'effectuer des actions telles que l'ouverture de la boîte de dialogue des "
-"paramètres ou l'accès rapide à une fonctionnalité de <app>Terminal</app>. "
-"Ces raccourcis peuvent être modifiés en fonction de vos préférences."
+"Les dreceres de teclat són combinacions de tecles que us permeten realitzar "
+"accions, com obrir el diàleg de configuració o accedir a una "
+"característica dins del <app>Terminal</app> ràpidament. Aquestes dreceres "
+"poden ser modificades  per ajustar-se a les vostres preferències."
 
 #. (itstool) path: page/p
 #: C/adv-keyboard-shortcuts.page:40
 msgid "To change a keyboard shortcut:"
-msgstr "Pour changer un raccourci clavier : "
+msgstr "Canviar una drecera de teclat:"
 
 #. (itstool) path: item/p
 #: C/adv-keyboard-shortcuts.page:43 C/pref-keyboard-access.page:80
@@ -136,13 +126,13 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Preferences</gui> <gui style=\"tab\">Shortcuts</gui></guiseq>."
 msgstr ""
-"Sélectionner <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences</gui> <gui style=\"tab\">Raccourcis</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem"
+"\">Preferències </gui> <gui style=\"tab\">Dreceres</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/adv-keyboard-shortcuts.page:48
 msgid "Select the shortcut that you wish to edit by clicking on it."
-msgstr "Sélectionner le raccourci que vous voulez modifier en cliquant dessus"
+msgstr "Seleccioneu la drecera que voleu editar prement sobre ella."
 
 #. (itstool) path: item/p
 #: C/adv-keyboard-shortcuts.page:51
@@ -150,8 +140,8 @@ msgid ""
 "Once the shortcut is selected, click on the shortcut key combination to edit "
 "it."
 msgstr ""
-"Une fois que le raccourci est sélectionné, cliquez sur la combinaison de "
-"touches de raccourci pour le modifier."
+"Quan la drecera estigui seleccionada, premeu sobre la combinació de tecles "
+"de la drecera per editar-la."
 
 #. (itstool) path: item/p
 #: C/adv-keyboard-shortcuts.page:55
@@ -160,10 +150,9 @@ msgid ""
 "The keys that you can use include <key>Alt</key>, <key>Alt Gr</key>, "
 "<key>Ctrl</key>, <key>Shift</key>, number and letter keys."
 msgstr ""
-"Saisissez la combinaison de touches de raccourci souhaitée dans l'ordre que "
-"vous devrez saisir lors de son utilisation. Les touches que vous pouvez "
-"utiliser incluent les touches <key>Alt</key>, <key>Alt Gr</key>, <key>Ctrl</"
-"key>, <key>Maj</key>, ainsi que les touches de chiffres et de lettres."
+"Premeu la vostra combinació de tecles de la drecera desitjada que voleu "
+"entrar-hi. Les tecles podeu usar inclouen <key>Alt</key>, <key>Alt Gr</"
+"key>,  <key>Ctrl</key>, <key>Majúscules</key>, nombres i lletres."
 
 #. (itstool) path: note/p
 #: C/adv-keyboard-shortcuts.page:60
@@ -171,8 +160,8 @@ msgid ""
 "Mnemonic key combinations, such as <keyseq><key>Alt</key> <key>F</key></"
 "keyseq> will not work."
 msgstr ""
-"Les combinaisons mnémoniques telles que <keyseq><key>Alt</key> <key>F</key></"
-"keyseq> ne fonctionnent pas."
+"Combinacions mnemotècniques de tecles, com <keyseq><key>Alt</key> <key>F</"
+"key></keyseq> no funcionaran."
 
 #. (itstool) path: item/p
 #: C/adv-keyboard-shortcuts.page:65
@@ -180,8 +169,8 @@ msgid ""
 "Once you have entered your new shortcut, it will automatically be saved and "
 "you should see it in the list next to the corresponding action."
 msgstr ""
-"Une fois le nouveau raccourci saisi, il sera automatiquement enregistré et "
-"vous devriez le voir dans la liste à côté de l'action correspondante."
+"Quan hàgeu entrat la nova drecera, aquesta es desarà de forma automàtica i "
+"podreu veure-la al llistat al costat de l'acció corresponent."
 
 #. (itstool) path: note/p
 #: C/adv-keyboard-shortcuts.page:72
@@ -189,13 +178,13 @@ msgid ""
 "To disable a shortcut, edit it and press the <key>Backspace</key> instead of "
 "the new shortcut."
 msgstr ""
-"Pour désactiver un raccourci, affichez-le et appuyez sur la touche "
-"<key>Retour arrière</key> au lieu du nouveau raccourci."
+"Per deshabilitar una drecera, editeu-la i premeu la tecla <key>Retrocés</"
+"key> en comptes de la nova drecera."
 
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:77
 msgid "<gui style=\"menu\">File</gui> shortcuts"
-msgstr "Raccourcis de <gui style=\"menu\">Fichier</gui>"
+msgstr "<gui style=\"menu\">Fitxer</gui> dreceres"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:79
@@ -203,8 +192,8 @@ msgid ""
 "The default shortcuts for options under <gui style=\"menu\">File</gui> menu "
 "are:"
 msgstr ""
-"Les raccourcis par défaut pour les options du menu <gui style=\"menu"
-"\">Fichier</gui> sont : "
+"Les dreceres per defecte per a les opcions dins de <gui style=\"menu"
+"\">Fitxer</gui> menú són:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:85 C/adv-keyboard-shortcuts.page:119
@@ -212,59 +201,59 @@ msgstr ""
 #: C/adv-keyboard-shortcuts.page:252 C/adv-keyboard-shortcuts.page:273
 #: C/adv-keyboard-shortcuts.page:306
 msgid "Action"
-msgstr "Action"
+msgstr "Acció"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:86 C/adv-keyboard-shortcuts.page:120
 #: C/adv-keyboard-shortcuts.page:146 C/adv-keyboard-shortcuts.page:179
 #: C/adv-keyboard-shortcuts.page:253 C/adv-keyboard-shortcuts.page:274
 msgid "Keyboard Shortcut"
-msgstr "Raccourci Clavier"
+msgstr "Drecera de teclat"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:91
 msgid "New Tab"
-msgstr "Nouvel Onglet"
+msgstr "Pestanya nova"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:92
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>T</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>T</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>T</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:95
 msgid "New Window"
-msgstr "Nouvelle Fenêtre"
+msgstr "Finestra nova"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:96
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>N</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>N</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:99
 msgid "Close Tab"
-msgstr "Fermer l'onglet"
+msgstr "Tanca pestanya"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:100
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>W</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>W</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>W</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:103
 msgid "Close Window"
-msgstr "Fermer la Fenêtre"
+msgstr "Tanca finestra"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:104
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>Q</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>Q</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>Q</key></keyseq>"
 
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:111
 msgid "<gui style=\"menu\">Edit</gui> shortcuts"
-msgstr "Raccourcis <gui style=\"menu\">Édition</gui>"
+msgstr "<gui style=\"menu\">Edita</gui> dreceres"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:113
@@ -272,33 +261,33 @@ msgid ""
 "The default shortcuts for options under <gui style=\"menu\">Edit</gui> menu "
 "are:"
 msgstr ""
-"Les raccourcis par défaut pour les options du menu <gui style=\"menu"
-"\">Édition</gui> sont : "
+"Les dreceres per defecte per a les opcions dins de <gui style=\"menu"
+"\">Edita</gui> menú són:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:125
 msgid "Copy"
-msgstr "Copier"
+msgstr "Còpia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:126
 msgid "<keyseq><key>Ctrl</key><key>Shift</key><key>C</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Shift</key><key>C</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Majúscules</key><key>C</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:129
 msgid "Paste"
-msgstr "Coller"
+msgstr "Enganxa"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:130
 msgid "<keyseq><key>Ctrl</key><key>Shift</key><key>V</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Shift</key><key>V</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Majúscules</key><key>V</key></keyseq>"
 
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:137
 msgid "<gui style=\"menu\">View</gui> shortcuts"
-msgstr "Raccourcis <gui style=\"menu\">Affichage</gui>"
+msgstr "<gui style=\"menu\">Visualitza</gui> dreceres"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:139
@@ -306,13 +295,13 @@ msgid ""
 "The default shortcuts for options in the <gui style=\"menu\">View</gui> menu "
 "are:"
 msgstr ""
-"Les raccourcis par défaut des options dans le menu <gui style=\"menu"
-"\">Affichage</gui> sont : "
+"Les dreceres per defecte a les opcions de <gui style=\"menu\">Visualitza</"
+"gui> menú són:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:151
 msgid "Full Screen"
-msgstr "Plein écran"
+msgstr "Pantalla completa"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:152
@@ -322,7 +311,7 @@ msgstr "<key>F11</key>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:155
 msgid "Zoom In"
-msgstr "Zoom avant"
+msgstr "Apropa"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:156
@@ -332,7 +321,7 @@ msgstr "<keyseq><key>Ctrl</key><key>+</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:159
 msgid "Zoom Out"
-msgstr "Zoom arrière"
+msgstr "Allunya"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:160
@@ -342,7 +331,7 @@ msgstr "<keyseq><key>Ctrl</key><key>-</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:163
 msgid "Normal Size"
-msgstr "Taille normale"
+msgstr "Mida normal"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:164
@@ -352,57 +341,57 @@ msgstr "<keyseq><key>Ctrl</key><key>0</key></keyseq>"
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:171
 msgid "Tab shortcuts"
-msgstr "Raccourcis d'onglet"
+msgstr "Pestanya de dreceres"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:173
 msgid "The default shortcuts for working with tabs are:"
-msgstr "Les raccourcis par défaut pour travailler avec les onglets sont : "
+msgstr "Les dreceres per defecte per treballar amb les pestanyes són:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:184
 msgid "Switch to Previous Tab"
-msgstr "Passer à l'onglet précédent"
+msgstr "Canvia a la pestanya anterior"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:185
 msgid "<keyseq><key>Ctrl</key><key>Page Up</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Page haut</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Re Pàg</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:188
 msgid "Switch to Next Tab"
-msgstr "Passer à l'onglet suivant"
+msgstr "Canvia a la pestanya següent"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:189
 msgid "<keyseq><key>Ctrl</key><key>Page Down</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Page bas</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Av Pàg</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:192
 msgid "Move Tab to the Left"
-msgstr "Déplacer l'onglet vers la gauche"
+msgstr "Mou la pestanya a l'esquerra"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:193
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>Page Up</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>Page haut</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>Re Pàg</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:196
 msgid "Move Tab to the Right"
-msgstr "Déplacer l'onglet vers la droite"
+msgstr "Mou la pestanya a la dreta"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:197
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>Page Down</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>Page bas</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>Av Pàg</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:200
 msgid "Switch to Tab 1"
-msgstr "Passer à l'onglet 1"
+msgstr "Canvia a la pestanya 1"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:201
@@ -412,7 +401,7 @@ msgstr "<keyseq><key>Alt</key><key>1</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:204
 msgid "Switch to Tab 2"
-msgstr "Passer à l'onglet 2"
+msgstr "Canvia a la pestanya 2"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:205
@@ -422,7 +411,7 @@ msgstr "<keyseq><key>Alt</key><key>2</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:208
 msgid "Switch to Tab 3"
-msgstr "Passer à l'onglet 3"
+msgstr "Canvia a la pestanya 3"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:209
@@ -432,7 +421,7 @@ msgstr "<keyseq><key>Alt</key><key>3</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:212
 msgid "Switch to Tab 4"
-msgstr "Passer à l'onglet 4"
+msgstr "Canvia a la pestanya 4"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:213
@@ -442,7 +431,7 @@ msgstr "<keyseq><key>Alt</key><key>4</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:216
 msgid "Switch to Tab 5"
-msgstr "Passer à l'onglet 5"
+msgstr "Canvia a la pestanya 5"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:217
@@ -452,7 +441,7 @@ msgstr "<keyseq><key>Alt</key><key>5</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:220
 msgid "Switch to Tab 6"
-msgstr "Passer à l'onglet 6"
+msgstr "Canvia a la pestanya 6"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:221
@@ -462,7 +451,7 @@ msgstr "<keyseq><key>Alt</key><key>6</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:224
 msgid "Switch to Tab 7"
-msgstr "Passer à l'onglet 7"
+msgstr "Canvia a la pestanya 7"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:225
@@ -472,7 +461,7 @@ msgstr "<keyseq><key>Alt</key><key>7</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:228
 msgid "Switch to Tab 8"
-msgstr "Passer à l'onglet 8"
+msgstr "Canvia a la pestanya 8"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:229
@@ -482,7 +471,7 @@ msgstr "<keyseq><key>Alt</key><key>8</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:232
 msgid "Switch to Tab 9"
-msgstr "Passer à l'onglet 9"
+msgstr "Canvia a la pestanya 9"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:233
@@ -492,7 +481,7 @@ msgstr "<keyseq><key>Alt</key><key>9</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:236
 msgid "Switch to Tab 10"
-msgstr "Passer à l'onglet 10"
+msgstr "Canvia a la pestanya 10"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:237
@@ -502,7 +491,7 @@ msgstr "<keyseq><key>Alt</key><key>0</key></keyseq>"
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:244
 msgid "Help shortcuts"
-msgstr "Raccourcis de l'Aide"
+msgstr "Dreceres d'ajuda"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:246
@@ -510,13 +499,13 @@ msgid ""
 "The default shortcuts for accessing items in the <gui style=\"menu\">Help</"
 "gui> menu are:"
 msgstr ""
-"Les raccourcis par défaut pour accéder aux éléments dans le menu <gui style="
-"\"menu\">Aide</gui> sont : "
+"Les dreceres per defecte per accedir als elements al menú d'<gui style=\"menu"
+"\">Ajuda</gui> són:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:258
 msgid "Contents"
-msgstr "Sommaire"
+msgstr "Continguts"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:259
@@ -526,37 +515,37 @@ msgstr "<key>F1</key>"
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:266
 msgid "Other"
-msgstr "Autre"
+msgstr "Altres"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:268
 msgid "There are also some shortcuts that cannot be edited:"
-msgstr "Il y a aussi quelques raccourcis qui ne peuvent pas être modifiés : "
+msgstr "Hi ha algunes dreceres que no poden ser editades:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:279
 msgid "Scroll up by one line"
-msgstr "Défilement vers le haut ligne par ligne"
+msgstr "Desplaça amunt una línia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:280
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>Up</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>Haut</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>Amunt</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:283
 msgid "Scroll down by one line"
-msgstr "Défilement vers le bas ligne par ligne"
+msgstr "Desplaça avall una línia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:284
 msgid "<keyseq><key>Shift</key><key>Ctrl</key><key>Down</key></keyseq>"
-msgstr "<keyseq><key>Maj</key><key>Ctrl</key><key>Bas</key></keyseq>"
+msgstr "<keyseq><key>Majúscules</key><key>Ctrl</key><key>Avall</key></keyseq>"
 
 #. (itstool) path: section/title
 #: C/adv-keyboard-shortcuts.page:291
 msgid "Bash shortcuts"
-msgstr "Raccourcis Bash"
+msgstr "Dreceres Bash"
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:293
@@ -564,23 +553,25 @@ msgid ""
 "These are <app>Bash</app> shortcuts. <app>Bash</app> is usually the default "
 "shell."
 msgstr ""
-"Ce sont les raccourcis de <app>Bash</app>. <app>Bash</app> est "
-"habituellement le shell par défaut."
+"Hi ha dreceres <app>Bash</app>. <app>Bash</app> és normalment l'interpret "
+"d'ordres per defecte."
 
 #. (itstool) path: section/p
 #: C/adv-keyboard-shortcuts.page:301
 msgid "<app>Bash</app> shell specific keyboard shortcuts are:"
-msgstr "Les raccourcis clavier spécifiques du shell <app>Bash</app> sont : "
+msgstr ""
+"Les dreceres específiques al teclat de l'interpret d'ordres <app>Bash</app> "
+"són:"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:307
 msgid "Keyboard shortcut"
-msgstr "Raccourci Clavier"
+msgstr "Drecera de teclat"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:312
 msgid "Erase a word"
-msgstr "Effacer un mot"
+msgstr "Esborra una paraula"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:313 C/adv-keyboard-shortcuts.page:353
@@ -590,7 +581,7 @@ msgstr "<keyseq><key>Ctrl</key><key>W</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:316
 msgid "Erase a line"
-msgstr "Effacer une ligne"
+msgstr "Esborra una línia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:317
@@ -600,7 +591,7 @@ msgstr "<keyseq><key>Ctrl</key><key>U</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:320
 msgid "Move to the start of the line"
-msgstr "Se déplacer jusqu'au début de la ligne"
+msgstr "Ves al començament de la línia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:321
@@ -610,7 +601,7 @@ msgstr "<keyseq><key>Ctrl</key><key>A</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:324
 msgid "Move to the end of the line"
-msgstr "Se déplacer jusqu'à la fin de la ligne"
+msgstr "Ves al final de la línia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:325
@@ -620,7 +611,7 @@ msgstr "<keyseq><key>Ctrl</key><key>E</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:328
 msgid "Move back one character"
-msgstr "Reculer d'un caractère"
+msgstr "Ves un caràcter enrere"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:329
@@ -630,7 +621,7 @@ msgstr "<keyseq><key>Ctrl</key><key>B</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:332
 msgid "Move back one word"
-msgstr "Revenir en arrière d'un mot"
+msgstr "Ves una paraula enrere"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:333
@@ -640,7 +631,7 @@ msgstr "<keyseq><key>Alt</key><key>B</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:336
 msgid "Move forward one character"
-msgstr "Avancer d'un caractère"
+msgstr "Ves un caràcter endavant"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:337
@@ -650,7 +641,7 @@ msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:340
 msgid "Move forward one word"
-msgstr "Avancer d'un mot"
+msgstr "Ves una paraula endavant"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:341
@@ -660,7 +651,7 @@ msgstr "<keyseq><key>Alt</key><key>F</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:344
 msgid "Delete from the cursor to the beginning of the line."
-msgstr "Supprimer du curseur au début de la ligne"
+msgstr "Esborra des del cursor fins el començament de la línia."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:345
@@ -670,7 +661,7 @@ msgstr "<keyseq><key>Ctrl</key><key>u</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:348
 msgid "Delete from the cursor to the end of the line."
-msgstr "Supprimer depuis le curseur jusqu'à la fin de la ligne"
+msgstr "Esborra des del cursor fins el final de la línia."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:349
@@ -680,12 +671,12 @@ msgstr "<keyseq><key>Ctrl</key><key>K</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:352
 msgid "Delete from the cursor to the start of the word."
-msgstr "Supprimer depuis le curseur jusqu'au début du mot"
+msgstr "Esborra des del cursor fins el començament de la paraula."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:356
 msgid "Delete previous word"
-msgstr "Supprimer le mot précédent"
+msgstr "Esborra la paraula prèvia"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:357
@@ -693,13 +684,13 @@ msgid ""
 "<keyseq><key>Esc</key><key>Del</key></keyseq> or <keyseq><key>Esc</"
 "key><key>Backspace</key></keyseq>"
 msgstr ""
-"<keyseq><key>Échap</key><key>Suppr</key></keyseq> ou <keyseq><key>Échap</"
-"key><key>Retour arrière</key></keyseq>"
+"<keyseq><key>Esc</key><key>Supr</key></keyseq> o <keyseq><key>Esc</"
+"key><key>Retrocés</key></keyseq>"
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:361
 msgid "Pastes text from the clipboard."
-msgstr "Colle le texte contenu dans le presse-papiers."
+msgstr "Enganxa text des del porta-retalls."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:362
@@ -709,7 +700,8 @@ msgstr "<keyseq><key>Ctrl</key><key>Y</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:365
 msgid "Clear the screen leaving the current line at the top of the screen."
-msgstr "Effacer l'écran en laissant la ligne courante en haut de l'écran."
+msgstr ""
+"Esborra la pantalla deixant la línia actual al capdamunt de la pantalla."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:367
@@ -719,7 +711,7 @@ msgstr "<keyseq><key>Ctrl</key><key>L</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:370
 msgid "Reverse incremental search of history"
-msgstr "Recherche incrémentale en arrière dans l'historique"
+msgstr "Inverteix la cerca incremental de l'historial."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:371
@@ -729,7 +721,7 @@ msgstr "<keyseq><key>Ctrl</key><key>R</key></keyseq>"
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:374
 msgid "Reverse non-incremental search of history"
-msgstr "Recherche non-incrémentale en arrière dans l'historique"
+msgstr "Inverteix la cerca no incremental de l'historial."
 
 #. (itstool) path: td/p
 #: C/adv-keyboard-shortcuts.page:375
@@ -739,12 +731,12 @@ msgstr "<keyseq><key>Alt</key><key>P</key></keyseq>"
 #. (itstool) path: info/desc
 #: C/app-colors.page:28
 msgid "Change colors and backgrounds."
-msgstr "Changer les couleurs et les fonds d'écrans."
+msgstr "Canvia colors i fons."
 
 #. (itstool) path: page/title
 #: C/app-colors.page:32
 msgid "Color schemes"
-msgstr "Palettes de couleur"
+msgstr " Esquemes de color"
 
 #. (itstool) path: page/p
 #: C/app-colors.page:34
@@ -753,20 +745,20 @@ msgid ""
 "change the colors that are used for the text and background. You can use "
 "colors from your theme, select one of the presets or use a custom scheme."
 msgstr ""
-"Si vous n'aimez pas le thème par défaut de <app>Terminal</app>, vous voudrez "
-"changer les couleurs utilisées pour le texte et le fond d'écran. Vous pouvez "
-"utiliser les couleurs du thème de votre système, sélectionner un des pré-"
-"réglages ou utiliser une palette personnalisée."
+"Si no us agrada el tema per defecte del <app>Terminal</app>, podeu canviar "
+"els colors que utilitzeu al text i als fons. Podeu utilitzar colors del "
+"vostre tema, seleccioneu-ne un dels preseleccionats o utilitzeu un esquema "
+"personalitzat."
 
 #. (itstool) path: section/title
 #: C/app-colors.page:39
 msgid "Use colors from your system theme"
-msgstr "Utiliser les couleurs du thème de votre système"
+msgstr "Useu colors del tema del vostre sistema"
 
 #. (itstool) path: section/p
 #: C/app-colors.page:41
 msgid "To use colors from the system theme:"
-msgstr "Pour utiliser les couleurs du thème du système : "
+msgstr "Per utilitzar colors del tema del sistema:"
 
 #. (itstool) path: item/p
 #: C/app-colors.page:45 C/app-colors.page:68 C/app-colors.page:94
@@ -774,8 +766,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Profile Preferences</gui> <gui style=\"tab\">Colors</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences du profil</gui> <gui style=\"tab\">Couleurs</gui></guiseq>."
+"Seleccioneu <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem"
+"\">Preferències del perfil</gui> <gui style=\"tab\">Colors</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/app-colors.page:50
@@ -783,13 +775,13 @@ msgid ""
 "Check <gui style=\"checkbox\">Use colors from system theme</gui>. The "
 "changes will be applied automatically."
 msgstr ""
-"Cochez <gui style=\"checkbox\">Utiliser les couleurs du thème système</gui>. "
-"Ces changements seront appliqués automatiquement."
+"Habilita <gui style=\"checkbox\">Usa colors del tema del sistema</gui>. Els "
+"canvis s'aplicaran de forma automatitzada."
 
 #. (itstool) path: section/title
 #: C/app-colors.page:58
 msgid "Built-in schemes"
-msgstr "Palettes prédéfinies"
+msgstr "Esquemes integrats"
 
 #. (itstool) path: section/p
 #: C/app-colors.page:60
@@ -799,11 +791,11 @@ msgid ""
 "<gui>Green on black</gui>, <gui>White on black</gui>, <gui>Solarized light</"
 "gui>, <gui>Solarized dark</gui>. To set any of the built-in schemes:"
 msgstr ""
-"Vous pouvez choisir l'un des palettes de couleur prédéfinies : <gui>Noir sur "
-"jaune clair</gui>, <gui>Noir sur blanc</gui>, <gui>Gris sur noir</gui>, "
-"<gui>Vert sur noir</gui>, <gui>Blanc sur noir</gui>, <gui>Solarizé clair</"
-"gui>, <gui>Solarizé sombre</gui>. Pour choisir l'une des palettes "
-"prédéfinies :"
+"Podeu escollir un dels esquemes integrats de color: <gui>Negre sobre groc "
+"clar</gui>, <gui>Negre sobre blanc</gui>, <gui>Gris sobre negre</gui>, "
+"<gui>Verd sobre negre</gui>, <gui>Blanc sobre negre</gui>, <gui>Solarized "
+"clar</gui>, <gui>Solarized fosc</gui>. Per establir qualsevol d'aquests "
+"esquemes integrats:"
 
 #. (itstool) path: item/p
 #: C/app-colors.page:73
@@ -812,10 +804,9 @@ msgid ""
 "unchecked. Choose the desired color scheme from <gui>Built-in schemes</gui>. "
 "Color scheme choices are applied automatically."
 msgstr ""
-"Assurez-vous que <gui style=\"checkbox\">Utiliser les couleurs du thème du "
-"système</gui> est décoché. Choisissez la couleur désirée dans <gui>Palettes "
-"prédéfinies</gui>. Les choix de palettes de couleur sont appliqués "
-"automatiquement."
+"Comproveu que <gui style=\"checkbox\">Usa colors del tema del sistema</gui> "
+"està deshabilitat. Tria l'esquema de color desitjat de <gui>Esquemes "
+"integrats</gui>.L'esquema de color triat s'aplicarà de forma automàtica."
 
 #. (itstool) path: note/p
 #: C/app-colors.page:78
@@ -823,21 +814,21 @@ msgid ""
 "Applications can choose to use a color from the palette rather than the "
 "specified bold color."
 msgstr ""
-"Les applications peuvent choisir d'utiliser une couleur de la palette plutôt "
-"que la couleur du gras spécifiée."
+"Les aplicacions poden triar utilitzar un color de la paleta en lloc del color "
+"de la negreta especificat."
 
 #. (itstool) path: section/title
 #: C/app-colors.page:87
 msgid "Custom color scheme"
-msgstr "Palette de couleurs personnalisée"
+msgstr "Esquema de color personalitzat"
 
 #. (itstool) path: section/p
 #: C/app-colors.page:89
 msgid ""
 "You can use custom colors for the text and background in <app>Terminal</app>:"
 msgstr ""
-"Vous pouvez utiliser des couleurs personnalisées pour le texte et le fond "
-"d'écran dans <app>Terminal</app> : "
+"Podeu usar colors personalitzats per al text i els fons al <app>Terminal</"
+"app>:"
 
 #. (itstool) path: item/p
 #: C/app-colors.page:99
@@ -846,17 +837,15 @@ msgid ""
 "unchecked. Select <gui>Custom</gui> from the <gui>Built-in schemes</gui> "
 "drop-down list."
 msgstr ""
-"Assurez-vous que <gui style=\"checkbox\">Utiliser les couleurs du thème du "
-"système</gui> n'est pas cochée. Sélectionnez <gui>Personnalisée</gui> dans "
-"liste déroulante de <gui>Palettes prédéfinies</gui>."
+"Comproveu que <gui style=\"checkbox\">Usa colors del tema del sistema</gui> "
+"està deshabilitat. Selecciona <gui>Personalitzat</gui> a la llista "
+"desplegable de <gui>Esquemes integrats</gui>."
 
 #. (itstool) path: item/p
 #: C/app-colors.page:104
 msgid ""
 "Click on the color sample next to the component you would like to change."
-msgstr ""
-"Cliquez sur l'échantillon de couleur à côté du composant que vous souhaitez "
-"modifier."
+msgstr "Prem en la mostra de color al costat del component que vols canviar."
 
 #. (itstool) path: item/p
 #: C/app-colors.page:108
@@ -864,8 +853,8 @@ msgid ""
 "Choose your desired color from the color sample and click <gui style=\"button"
 "\">Select</gui>."
 msgstr ""
-"Choisissez la couleur désirée dans l'échantillon de couleur et cliquez sur "
-"<gui style=\"button\">Sélectionner</gui>."
+"Tria el color desitjat de la mostra de color i prem <gui style=\"button"
+"\">Selecciona</gui>."
 
 #. (itstool) path: item/p
 #: C/app-colors.page:110
@@ -873,14 +862,13 @@ msgid ""
 "If you wish to select a color from the color picker, click on <gui style="
 "\"button\">+</gui>. You can chose the desired color in the following ways:"
 msgstr ""
-"Si vous souhaitez sélectionner une couleur avec le sélecteur de couleurs, "
-"cliquez sur <gui style=\"button\">+</gui>. Vous pouvez choisir la couleur "
-"désirée par les moyens suivants :"
+"Si voleu seleccionar un color de la pipeta, premeu a <gui style=\"button\">"
+"+</gui>. Podeu triar el color de les següents formes:"
 
 #. (itstool) path: item/p
 #: C/app-colors.page:115
 msgid "Input the hexadecimal color code in the input box."
-msgstr "Saisissez le code hexadécimal de la couleur dans la zone de saisie."
+msgstr "Entra el codi de color hexadecimal al quadre d'entrada."
 
 #. (itstool) path: item/p
 #: C/app-colors.page:118
@@ -888,13 +876,13 @@ msgid ""
 "Drag the slider on the left to adjust the colors and click on the desired "
 "color in the color selection area."
 msgstr ""
-"Faites glisser le curseur sur la gauche pour ajuster les couleurs et cliquez "
-"sur la couleur souhaitée dans la zone de sélection de couleur."
+"Arrossegueu el control lliscant a l'esquerra per ajustar els colors i premeu "
+"al color desitjat a l'àrea de selecció de color."
 
 #. (itstool) path: item/p
 #: C/app-colors.page:122
 msgid "Your changes will be saved automatically."
-msgstr "Vos changements seront automatiquement enregistrés"
+msgstr "Els canvis es desaran de forma automàtica."
 
 #. (itstool) path: note/p
 #: C/app-colors.page:127
@@ -903,20 +891,19 @@ msgid ""
 "clicking on the color sample block. Once changed, your selection in the "
 "built-in scheme menu will change to <gui>Custom</gui>."
 msgstr ""
-"Vous pouvez également modifier la couleur quand vous avez choisi une palette "
-"prédéfinie en cliquant sur le bloc d'échantillon de couleur. Une fois "
-"modifiée, votre sélection dans le menu des palettes prédéfinies passera à "
-"<gui>Personnalisée</gui>."
+"També podeu alterar un color quan trieu un esquema integrat prement a la "
+"mostra de color. Una vegada canviat, la vostra selecció al menú del esquema "
+"integrat canviarà a <gui>Personalitza</gui>."
 
 #. (itstool) path: info/desc
 #: C/app-cursor.page:28
 msgid "Select different cursor style"
-msgstr "Sélectionner un style de curseur différent"
+msgstr "Selecciona un estil de cursor diferent"
 
 #. (itstool) path: page/title
 #: C/app-cursor.page:32
 msgid "Change cursor"
-msgstr "Changer le curseur"
+msgstr "Canvia el cursor"
 
 #. (itstool) path: page/p
 #: C/app-cursor.page:34
@@ -924,8 +911,8 @@ msgid ""
 "<app>Terminal</app> has three cursors from which to choose. To select your "
 "preferred cursor:"
 msgstr ""
-"<app>Terminal</app> dispose de trois curseurs au choix. Pour sélectionner le "
-"curseur qui vous plaît : "
+"<app>Terminal</app> té tres cursors on podeu escollir. Per seleccionar el "
+"cursor preferit:"
 
 #. (itstool) path: item/p
 #: C/app-cursor.page:39 C/app-fonts.page:62
@@ -933,8 +920,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Profile Preferences</gui> <gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
-"Sélectionner <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences du profil</gui> <gui style=\"tab\">Général</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem"
+"\">Preferències del perfil</gui> <gui style=\"tab\">General</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/app-cursor.page:44
@@ -942,9 +929,8 @@ msgid ""
 "Choose your desired cursor shape from the drop down list next to <gui>Cursor "
 "shape</gui>. You can choose from the following options:"
 msgstr ""
-"Choisissez la forme de curseur souhaitée dans la liste déroulante à côté de "
-"<gui>Forme du curseur</gui>. Vous pouvez choisir parmi les options "
-"suivantes :"
+"Tria la forma del cursor desitjada de la llista desplegable a <gui>Formes de "
+"cursor</gui>. Podeu triar alguna de les següents opcions:"
 
 #. (itstool) path: item/title
 #: C/app-cursor.page:48
@@ -954,7 +940,7 @@ msgstr "|"
 #. (itstool) path: item/p
 #: C/app-cursor.page:49
 msgid "<gui>I-Beam</gui>"
-msgstr "<gui>Barre verticale</gui>"
+msgstr "<gui>Forma d'I</gui>"
 
 #. (itstool) path: item/title
 #: C/app-cursor.page:52
@@ -974,33 +960,29 @@ msgstr "_"
 #. (itstool) path: item/p
 #: C/app-cursor.page:57
 msgid "<gui>Underline</gui>"
-msgstr "<gui>Souligné</gui>"
+msgstr "<gui>Subratllat</gui>"
 
 #. (itstool) path: item/p
 #: C/app-cursor.page:60
 msgid "Upon selection of the cursor, your choice is saved automatically."
-msgstr ""
-"Lors de la sélection du curseur, votre choix est enregistré automatiquement."
+msgstr "La vostra selecció del cursor és desada de forma automàtica."
 
 #. (itstool) path: item/p
 #: C/app-cursor.page:63
 msgid ""
 "To return to <app>Terminal</app>, click <gui style=\"button\">Close</gui>."
 msgstr ""
-"Pour retourner à <app>Terminal</app>, cliquez sur <gui style=\"button"
-"\">Fermer</gui>."
+"Per tornar al <app>Terminal</app>, prem<gui style=\"button\">Tanca</gui>."
 
 #. (itstool) path: info/desc
 #: C/app-fonts.page:28
 msgid "Use system fonts or choose a custom font for your terminal."
-msgstr ""
-"Utiliser les polices du système ou choisir une police personnalisée pour "
-"votre terminal."
+msgstr "Usa tipus de lletra del sistema o personalitzades per al vostre terminal."
 
 #. (itstool) path: page/title
 #: C/app-fonts.page:32
 msgid "Change font and style"
-msgstr "Changer la police et le style"
+msgstr "Canvia la font i l'estil"
 
 #. (itstool) path: page/p
 #: C/app-fonts.page:34
@@ -1008,19 +990,18 @@ msgid ""
 "When you work with a lot of <app>Terminal</app> text, you may want to change "
 "the default font to your preference. You have the following options:"
 msgstr ""
-"Lorsque vous travaillez sur beaucoup de texte <app>Terminal</app>, vous "
-"pouvez modifier la police par défaut selon vos préférences. Vous disposez "
-"des options suivantes :"
+"Quan treballeu amb molt de text al <app>Terminal</app>, podeu preferir "
+"canviar la mida de la lletra a preferències. Teniu les següents opcions:"
 
 #. (itstool) path: section/title
 #: C/app-fonts.page:39
 msgid "System fixed width font"
-msgstr "Police système à chasse fixe"
+msgstr "Tipus de lletra d'amplada fixa del sistema"
 
 #. (itstool) path: section/p
 #: C/app-fonts.page:41
 msgid "To use system default fonts:"
-msgstr "Pour utiliser les polices par défaut du système : "
+msgstr "Per usar tipus de lletra per defecte al sistema:"
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:45 C/app-terminal-sizes.page:79 C/pref-bell.page:43
@@ -1028,38 +1009,38 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem\"> "
 "Profile Preferences</gui> <gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences du profil</gui> <gui style=\"tab\">Général</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem\"> "
+"Preferències de perfil</gui> <gui style=\"tab\">General</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:49
 msgid "Select <gui style=\"checkbox\">Use the system fixed width font</gui>."
 msgstr ""
-"Sélectionner <gui style=\"checkbox\">Utiliser la police à chasse fixe du "
-"système</gui>."
+"Selecciona <gui style=\"checkbox\">Usa el tipus de lletra d'amplada fixa del "
+"sistema</gui>."
 
 #. (itstool) path: section/title
 #: C/app-fonts.page:56
 msgid "Set a custom font"
-msgstr "Définition d'une police personnalisée"
+msgstr "Configura un tipus de lletra personalitzat"
 
 #. (itstool) path: section/p
 #: C/app-fonts.page:58
 msgid "To set a custom font and size:"
-msgstr "Pour définir une taille et une police personnalisées : "
+msgstr "Per configurar un tipus de lletra personalitzat i la mida:"
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:67
 msgid ""
 "Ensure that <gui>Use the system fixed width font</gui> option is unchecked."
 msgstr ""
-"Assurez-vous que l'option <gui>Utiliser la police à chasse fixe du système</"
-"gui> n'est pas cochée."
+"Comprova que l'opció <gui>Usa el tipus de lletra d'amplada fixa del sistema</"
+"gui> està deshabilitat."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:71
 msgid "Click on the button next to <gui>Font</gui>."
-msgstr "Cliquez sur le bouton à coté de <gui>Police</gui>."
+msgstr "Prem al botó al costat de <gui>Tipus de lletra</gui>."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:74
@@ -1067,8 +1048,8 @@ msgid ""
 "Type the name of your desired font into the search field or browse the list "
 "of fonts."
 msgstr ""
-"Saisissez le nom de la police désirée dans le champ de recherche ou "
-"parcourez la liste des polices."
+"Escriu el nom del tipus de lletra al camp de cerca o navega per la llista de "
+"tipus de lletres."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:78
@@ -1078,11 +1059,12 @@ msgid ""
 "slider, or click on <gui style=\"button\">+</gui> to increase font size or "
 "<gui style=\"button\">-</gui> to decrease selected font size."
 msgstr ""
-"Faites glisser le curseur qui est en dessous de la liste des polices pour "
-"définir la taille de la police. Sinon, vous pouvez saisir la taille de la "
-"police dans le champ à côté du curseur, ou cliquer sur <gui style=\"button\">"
-"+</gui> pour augmenter la taille de la police ou <gui style=\"button\">-</"
-"gui> pour diminuer la taille de police sélectionnée."
+"Arrossegueu el control lliscant que és a sota de la llista del tipus de "
+"lletra per a configurar la mida del tipus de lletra. De forma alternativa, "
+"podeu escriure la mida del tipus de lletra dins del camp al costat del "
+"control lliscant, o prémer<gui style=\"button\">+</gui>per augmentar la mida "
+"del tipus de lletra o <gui style=\"button\">-</gui> per disminuir la mida "
+"del tipus de lletra seleccionat."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:84
@@ -1091,14 +1073,14 @@ msgid ""
 "changes and go back to previous dialog, click <gui style=\"button\">Cancel</"
 "gui>."
 msgstr ""
-"Cliquez sur <gui style=\"button\">Sélectionner</gui> pour appliquer vos "
-"changements. Pour annuler les changements et revenir dans la fenêtre de "
-"dialogue précédente, cliquez sur <gui style=\"button\">Annuler</gui>."
+"Prem <gui style=\"button\">Selecciona</gui> per aplicar els canvis. Per "
+"revertir els canvis i tornar enrere al diàleg previ, premeu <gui style="
+"\"button\">Cancel·la</gui>."
 
 #. (itstool) path: section/title
 #: C/app-fonts.page:93
 msgid "Bold text"
-msgstr "Texte gras"
+msgstr "Text en negreta"
 
 #. (itstool) path: section/p
 #: C/app-fonts.page:95
@@ -1106,9 +1088,9 @@ msgid ""
 "<app>Terminal</app> allows your shell to process text such as the prompt, "
 "directory names or man page headings to appear in bold style."
 msgstr ""
-"<app>Terminal</app> permet au shell de traiter des textes comme l'invite, "
-"les noms de répertoire, ou les en-têtes de page « man » (de manuels) pour "
-"qu'ils apparaissent en gras."
+"El <app>Terminal</app> permet a l'interpret d'ordres processar text com a "
+"l'indicador, noms de carpetes o capçaleres de pàgines de manual per "
+"aparèixer en negreta."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:100
@@ -1116,13 +1098,13 @@ msgid ""
 "Go to <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem\"> "
 "Profile Preferences</gui> <gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
-"Allez sur <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences du profil</gui> <gui style=\"tab\">Général</gui></guiseq>."
+"Ves a <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem\"> "
+"Preferències de perfil</gui> <gui style=\"tab\">General</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/app-fonts.page:104
 msgid "Select <gui style=\"checkbox\">Allow bold text</gui>."
-msgstr "Sélectionner <gui style=\"checkbox\">Activer le texte en gras</gui>."
+msgstr "Selecciona <gui style=\"checkbox\">Permet text en negreta</gui>."
 
 #. (itstool) path: note/p
 #: C/app-fonts.page:109
@@ -1131,25 +1113,27 @@ msgid ""
 "If you are using a shell other than Bash, then the described behavior may "
 "not be similar."
 msgstr ""
-"<gui style=\"checkbox\">Activer le texte en gras</gui> est une "
-"fonctionnalité spécifique du shell. Si vous utilisez un shell autre que Bash,"
-"le comportement décrit ne sera peut-être pas le même."
+"<gui style=\"checkbox\">Permet text en negreta</gui> és una característica "
+"especifica de l'interpret d'ordres. Si esteu utilitzant un interpret "
+"d'ordres diferent a Bash, llavors el comportament descrit ací pot ser "
+"diferent."
 
 #. (itstool) path: info/desc
 #: C/app-fullscreen.page:28
 msgid "Enable fullscreen mode"
-msgstr "Activer le mode plein écran"
+msgstr "Habilita el mode pantalla completa"
 
 #. (itstool) path: page/title
 #: C/app-fullscreen.page:31
 msgid "Fullscreen session"
-msgstr "Session plein écran"
+msgstr "Sessió amb pantalla completa"
 
 #. (itstool) path: page/p
 #: C/app-fullscreen.page:33
 msgid "Fullscreen mode allows <app>Terminal</app> to use the entire screen."
 msgstr ""
-"Le mode plein écran permet à <app>Terminal</app> d'utiliser tout l'écran"
+"El mode amb pantalla completa permet al <app>Terminal</app> usar la pantalla "
+"sencera."
 
 #. (itstool) path: page/p
 #: C/app-fullscreen.page:35
@@ -1160,16 +1144,16 @@ msgid ""
 "decoration, allowing you to view more <link xref=\"pref-scrolling"
 "\">scrollback lines</link> on the screen."
 msgstr ""
-"Ce mode est utile si vous avez un écran de petite taille et l'intention de "
-"travailler dans <app>Terminal</app> pour une longue durée, ou si vous "
-"travaillez sur de longues lignes affichées dans le terminal. Il cache "
-"temporairement la décoration de la fenêtre, vous permettant de visualiser "
-"sur l'écran plus de <link xref=\"pref-scrolling\">lignes de défilement</link>"
+"Aquest mode és útil si teniu un dispositiu amb un espai limitat a la "
+"pantalla i intenteu treballar en un <app>Terminal</app> durant molt de "
+"temps, o esteu treballant amb línies llargues en la sortida del terminal. "
+"Temporalment amaga la decoració de la finestra, permetent-vos veure més "
+"<link xref=\"pref-scrolling\">línies de desplaçament</link> a la pantalla."
 
 #. (itstool) path: page/p
 #: C/app-fullscreen.page:41
 msgid "To enable fullscreen mode:"
-msgstr "Pour activer le mode plein écran : "
+msgstr "Per habilitar el mode a pantalla completa:"
 
 #. (itstool) path: item/p
 #: C/app-fullscreen.page:45
@@ -1177,8 +1161,8 @@ msgid ""
 "Select <gui style=\"menu\">View</gui> and check <gui style=\"menuitem\">Full "
 "Screen</gui>, or press <key>F11</key>."
 msgstr ""
-"Sélectionnez <gui style=\"menu\">Affichage</gui> et cochez <gui style="
-"\"menuitem\">Plein écran</gui>, ou appuyez sur <key>F11</key>."
+"Selecciona <gui style=\"menu\">Visualitza</gui> i marca <gui style=\"menuitem"
+"\">Pantalla completa</gui>, o prem <key>F11</key>."
 
 #. (itstool) path: note/p
 #: C/app-fullscreen.page:51
@@ -1186,8 +1170,8 @@ msgid ""
 "The menubar will still be visible in fullscreen mode unless you have hidden "
 "it."
 msgstr ""
-"La barre de menu sera toujours visible en mode plein écran, sauf si vous "
-"l'avez cachée."
+"La barra del menú romandrà visible al mode pantalla completa llevat que "
+"l'amagueu."
 
 #. (itstool) path: note/p
 #: C/app-fullscreen.page:56
@@ -1195,13 +1179,13 @@ msgid ""
 "If you have more than one <app>Terminal</app> tab open, the tab bar will be "
 "visible in the fullscreen mode."
 msgstr ""
-"Si vous avez plus d'un onglet <app>Terminal</app> ouvert, la barre d'onglet "
-"sera visible dans le mode plein écran."
+"Si teniu més d'una pestanya oberta al <app>Terminal</app>, la barra de "
+"pestanyes romandrà visible al mode pantalla completa."
 
 #. (itstool) path: page/p
 #: C/app-fullscreen.page:60
 msgid "To disable fullscreen mode:"
-msgstr "Pour désactiver le mode plein écran : "
+msgstr "Per deshabilitar el mode pantalla completa:"
 
 #. (itstool) path: item/p
 #: C/app-fullscreen.page:64
@@ -1210,20 +1194,20 @@ msgid ""
 "\">Full Screen</gui>, or right click and select <gui style=\"menuitem"
 "\">Leave Full Screen</gui>. Alternatively, press <key>F11</key>."
 msgstr ""
-"Sélectionnez <gui style=\"menu\">Affichage</gui> et décochez <gui style="
-"\"menuitem\">Plein écran</gui>, ou faites un clic droit et sélectionnez <gui "
-"style=\"menuitem\">Quitter le plein écran</gui>. Vous pouvez aussi appuyer "
-"sur <key>F11</key>."
+"Selecciona <gui style=\"menu\">Visualitza</gui> i deshabilita <gui style="
+"\"menuitem\">Pantalla completa</gui>, o prem amb botó dret i selecciona  "
+"<gui style=\"menuitem\">Surt de la pantalla completa</gui>. De forma "
+"alternativa, prem <key>F11</key>."
 
 #. (itstool) path: info/desc
 #: C/app-terminal-sizes.page:28
 msgid "Change the <app>Terminal</app> window size"
-msgstr "Changer la taille de la fenêtre de <app>Terminal</app>"
+msgstr "Canvia la mida de la finestra del <app>Terminal</app>"
 
 #. (itstool) path: page/title
 #: C/app-terminal-sizes.page:32
 msgid "<app>Terminal</app> sizes"
-msgstr "Tailles de <app>Terminal</app>"
+msgstr "mides del <app>Terminal</app>"
 
 #. (itstool) path: page/p
 #: C/app-terminal-sizes.page:34
@@ -1233,29 +1217,29 @@ msgid ""
 "view long lines of terminal output with minimal line breaks on your display, "
 "you may require <app>Terminal</app> windows to be of a particular size."
 msgstr ""
-"Si vous travaillez avec certaines applications en ligne de commande qui ont "
-"des exigences de taille minimale pour le terminal afin de s'afficher "
-"correctement, ou si vous voulez voir de longues lignes affichées dans le "
-"terminal avec le moins possible de sauts de ligne, vous pouvez demander que "
-"les fenêtres de <app>Terminal</app> soient d'une taille particulière."
+"Si treballeu amb certes aplicacions de la línia d'ordres que tinguin uns "
+"requeriments mínims de mida per mostrar-se correctament, o si voleu veure "
+"línies llargues  a la sortida del terminal amb salts de línia mínims a la "
+"vostra pantalla, us caldran finestres de <app>Terminal</app> per assolir una "
+"mida particular."
 
 #. (itstool) path: page/p
 #: C/app-terminal-sizes.page:40
 msgid ""
 "You can change the <app>Terminal</app> window size to some preset values:"
 msgstr ""
-"Vous pouvez régler la taille de la fenêtre de <app>Terminal</app> à "
-"certaines valeurs prédéfinies :"
+"Podeu canviar la mida de la finestra del <app>Terminal</app> amb alguns "
+"valors predefinits:"
 
 #. (itstool) path: item/p
 #: C/app-terminal-sizes.page:45
 msgid "Select <gui style=\"menu\">Terminal</gui>."
-msgstr "Sélectionner <gui style=\"menu\">Terminal</gui>."
+msgstr "Selecciona <gui style=\"menu\">Terminal</gui>."
 
 #. (itstool) path: item/p
 #: C/app-terminal-sizes.page:48
 msgid "Choose one of the following options:"
-msgstr "Choisir une des options suivantes : "
+msgstr "Tria una de les següents opcions:"
 
 #. (itstool) path: item/p
 #: C/app-terminal-sizes.page:51
@@ -1285,11 +1269,10 @@ msgid ""
 "key><key>T</key></keyseq> and then pressing <key>1</key> to open a "
 "<app>Terminal</app> window of size <gui>80×24</gui> and so on."
 msgstr ""
-"Si vous avez activé les <link xref=\"pref-keyboard-access\"><gui>Touches "
-"d'accès du menu</gui></link>, vous pouvez accéder au menu en appuyant sur "
-"<keyseq><key>Alt</key><key>T</key></keyseq> ou alors en appuyant sur <key>1</"
-"key> pour ouvrir une fenêtre de <app>Terminal</app> d'une taille de "
-"<gui>80x24</gui> et ainsi de suite."
+"Si heu habilitat les <link xref=\"pref-keyboard-access\"><gui>tecles d'accés "
+"al menú</gui></link>, podeu accedir al menú al prémer <keyseq><key>Alt</"
+"key><key>T</key></keyseq> i llavors prémer  <key>1</key> per obrir la "
+"finestra del<app>Terminal</app> amb una mida de <gui>80×24</gui> etcètera."
 
 #. (itstool) path: page/p
 #: C/app-terminal-sizes.page:74
@@ -1297,15 +1280,14 @@ msgid ""
 "If you require custom size <app>Terminal</app> windows, you can also set the "
 "window size according to your requirements:"
 msgstr ""
-"Si vous avez besoin d'une taille personnalisée pour la fenêtre de "
-"<app>Terminal</app>, vous pouvez également définir la taille de la fenêtre "
-"selon vos besoins :"
+"Si us cal una finestra del <app>Terminal</app> amb la mida personalitzada, "
+"podeu també configurar la mida de la finestra d'acord amb les vostres "
+"necessitats:"
 
 #. (itstool) path: item/p
 #: C/app-terminal-sizes.page:83
 msgid "Check <gui>Use custom default terminal size</gui>."
-msgstr ""
-"Cochez <gui>Utiliser une taille de terminal personnalisée par défaut</gui>."
+msgstr "Habilita <gui>Usa mida personalitzada del terminal per defecte</gui>."
 
 #. (itstool) path: item/p
 #: C/app-terminal-sizes.page:86
@@ -1314,25 +1296,24 @@ msgid ""
 "in the corresponding input boxes. You can also click <gui style=\"button\">"
 "+</gui> to increase or <gui style=\"button\">-</gui> to decrease the size."
 msgstr ""
-"Définissez la <gui>Taille par défaut</gui> en saisissant le nombre souhaité "
-"de colonnes et de lignes dans les zones de saisie correspondantes. Vous "
-"pouvez également cliquer sur <gui style=\"button\">+</gui> pour augmenter ou "
-"<gui style=\"button\">-</gui> pour réduire la taille."
+"Configura <gui>Default size</gui> escrivint el nombre desitjat de columnes i "
+"files als quadres d'entrada. També podeu prémer <gui style=\"button\">+</"
+"gui> per augmentar o <gui style=\"button\">-</gui> per disminuir la mida."
 
 #. (itstool) path: info/desc
 #: C/app-zoom.page:27
 msgid "Increase or decrease text size."
-msgstr "Augmenter ou réduire la taille du texte."
+msgstr "Augmenta o disminueix la mida del text."
 
 #. (itstool) path: page/title
 #: C/app-zoom.page:31
 msgid "Zoom in and zoom out"
-msgstr "Zoom avant et zoom arrière"
+msgstr "Apropa i allunya"
 
 #. (itstool) path: page/p
 #: C/app-zoom.page:33
 msgid "To increase <app>Terminal</app> text size:"
-msgstr "Pour augmenter la taille du texte dans <app>Terminal</app> : "
+msgstr "Per augmentar la mida del text al <app>Terminal</app>:"
 
 #. (itstool) path: item/p
 #: C/app-zoom.page:37
@@ -1340,14 +1321,13 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">View</gui> <gui style=\"menuitem\">Zoom "
 "In</gui></guiseq> or press <keyseq><key>Ctrl</key><key>+</key></keyseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Affichage</gui> <gui style="
-"\"menuitem\">Zoom avant</gui></guiseq> ou appuyez sur<keyseq><key>Ctrl</"
-"key><key>+</key></keyseq>."
+"Selecciona <guiseq><gui style=\"menu\">Visualitza</gui> <gui style=\"menuitem"
+"\">Apropa</gui></guiseq> o prem <keyseq><key>Ctrl</key><key>+</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/app-zoom.page:43
 msgid "To decrease <app>Terminal</app> text size:"
-msgstr "Pour réduire la taille du texte de <app>Terminal</app> : "
+msgstr "Per disminuir la mida del text al <app>Terminal</app>:"
 
 #. (itstool) path: item/p
 #: C/app-zoom.page:47
@@ -1355,14 +1335,14 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">View</gui> <gui style=\"menuitem\">Zoom "
 "Out</gui></guiseq> or press <keyseq><key>Ctrl</key><key>-</key></keyseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Affichage</gui> <gui style="
-"\"menuitem\">Zoom arrière</gui></guiseq> ou appuyez sur<keyseq><key>Ctrl</"
-"key><key>-</key></keyseq>."
+"Selecciona <guiseq><gui style=\"menu\">Visualitza</gui> <gui style=\"menuitem"
+"\">Allunya</gui></guiseq> o prem <keyseq><key>Ctrl</key><key>-</key></"
+"keyseq>."
 
 #. (itstool) path: page/p
 #: C/app-zoom.page:53
 msgid "To restore <app>Terminal</app> text to default size:"
-msgstr "Pour restaurer la taille par défaut du texte de <app>Terminal</app> : "
+msgstr "Per restaurar la mida per defecte del text al <app>Terminal</app>:"
 
 #. (itstool) path: item/p
 #: C/app-zoom.page:57
@@ -1370,9 +1350,9 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">View</gui> <gui style=\"menuitem\">Normal "
 "Size</gui></guiseq> or press <keyseq><key>Ctrl</key><key>0</key></keyseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Affichage</gui> <gui style="
-"\"menuitem\">Taille normale</gui></guiseq> ou appuyez sur<keyseq><key>Ctrl</"
-"key><key>0</key></keyseq>."
+"Selecciona <guiseq><gui style=\"menu\">Visualitza</gui> <gui style=\"menuitem"
+"\">Mida normal </gui></guiseq>o prem <keyseq><key>Ctrl</key><key>0</key></"
+"keyseq>."
 
 #. (itstool) path: credit/years
 #: C/gs-execute-commands.page:21 C/gs-tabs.page:19 C/pref-scrolling.page:19
@@ -1382,14 +1362,12 @@ msgstr "2013–2014"
 #. (itstool) path: info/desc
 #: C/gs-execute-commands.page:31
 msgid "Launch programs or run commands using <app>Terminal</app>"
-msgstr ""
-"Lancer des programmes ou exécuter des commandes en utilisant <app>Terminal</"
-"app>"
+msgstr "Llança programes o executa ordres usant el <app>Terminal</app>"
 
 #. (itstool) path: page/title
 #: C/gs-execute-commands.page:34
 msgid "Execute a command"
-msgstr "Exécuter une commande"
+msgstr "Executa una ordre"
 
 #. (itstool) path: page/p
 #: C/gs-execute-commands.page:36
@@ -1398,25 +1376,24 @@ msgid ""
 "as a <em>command</em>. You can run both command line and graphical user "
 "interface (GUI) programs from the terminal."
 msgstr ""
-"Toute entrée saisie dans le <app>Terminal</app> pour être exécutée est "
-"considérée comme une <em>commande</em>. Vous pouvez exécuter aussi bien une "
-"ligne de commande que des programmes avec interface utilisateur graphique "
-"(GUI) à partir du terminal."
+"Qualsevol entrada al <app>Terminal</app> per a ser executada és una "
+"<em>ordre</em>. Podeu executar tant programes ordres com programes amb "
+"interfície gràfica (GUI) des del terminal."
 
 #. (itstool) path: page/p
 #: C/gs-execute-commands.page:40
 msgid "To execute commands:"
-msgstr "Pour exécuter des commandes : "
+msgstr "Per executar ordres:"
 
 #. (itstool) path: item/p
 #: C/gs-execute-commands.page:44
 msgid "Type the command in the <app>Terminal</app> prompt."
-msgstr "Saisissez la commande dans l'invite de <app>Terminal</app>."
+msgstr "Escriu l'ordre a l'indicador del <app>Terminal</app>."
 
 #. (itstool) path: item/p
 #: C/gs-execute-commands.page:47
 msgid "Press <key>Enter</key> to execute it."
-msgstr "Appuyez sur <key>Entrée</key> pour l'exécuter."
+msgstr "Prem <key>Intro</key> per executar-la."
 
 #. (itstool) path: page/p
 #: C/gs-execute-commands.page:51
@@ -1426,11 +1403,11 @@ msgid ""
 "output any error or debugging messages to the <app>Terminal</app> window. "
 "This information can be helpful when filing a bug report."
 msgstr ""
-"Si vous avez un programme qui se termine abruptement sans aucun "
-"avertissement ou message d'erreur, vous pouvez l'exécuter dans "
-"<app>Terminal</app>. Cela permettra au programme d'émettre une erreur ou des "
-"messages de débogage dans la fenêtre de <app>Terminal</app>. Cette "
-"information peut être utile lors de l'ouverture d'un rapport de bogue."
+"Si teniu un programa que es tanca de forma sobtada sense cap avís o error, "
+"podeu executar-lo en un <app>Terminal</app>. Això permet al programa mostrar "
+"les sortides amb el missatges de depuració o errors a la finestra del "
+"<app>Terminal</app>. Aquesta informació pot ser molt útil per enviar amb els "
+"informes d'error."
 
 #. (itstool) path: note/p
 #: C/gs-execute-commands.page:57
@@ -1438,21 +1415,21 @@ msgid ""
 "Read about the <link href=\"https://www.gnu.org/software/bash/manual/\">Bash "
 "shell</link> for more information on what you can do in a terminal."
 msgstr ""
-"Pour plus d'informations sur ce que vous pouvez faire avec un terminal, "
-"lisez le manuel de <link href=\"https://www.gnu.org/software/bash/manual/"
-"\">l'invite de commande Bash</link>"
+"Llegiu a propòsit del <link href=\"https://www.gnu.org/software/bash/manual/"
+"\">Interpret d'ordres Bash</link> per cercar més informació sobre el que "
+"podeu fer al terminal."
 
 #. (itstool) path: info/desc
 #: C/gs-tabs.page:29
 msgid "Enable, add, remove and reorder <app>Terminal</app> tabs."
 msgstr ""
-"Activer, ajouter, supprimer et réorganiser les onglets de <app>Terminal</"
+"Habilita, afegeix, suprimeix o reordena les pestanyes del <app>Terminal</"
 "app>."
 
 #. (itstool) path: page/title
 #: C/gs-tabs.page:32
 msgid "Use tabs"
-msgstr "Utilisation des onglets"
+msgstr "Usa pestanyes"
 
 #. (itstool) path: page/p
 #: C/gs-tabs.page:34
@@ -1460,9 +1437,9 @@ msgid ""
 "Before you can navigate around tabs using the menus, you need to check that "
 "they are <link xref=\"pref-tab-window\">enabled in your preferences</link>."
 msgstr ""
-"Avant de pouvoir naviguer entre les onglets avec les menus, vous devez "
-"vérifier qu'ils sont <link xref=\"pref-tab-window\">activés dans vos "
-"préférences</link>."
+"Abans de poder navegar a les pestanyes en la utilització de menús, us cal "
+"comprovar que les teniu <link xref=\"pref-tab-window\">habilitades a les "
+"vostres preferències</link>."
 
 #. (itstool) path: page/p
 #: C/gs-tabs.page:38
@@ -1474,44 +1451,44 @@ msgid ""
 "as running programs, browsing directories and editing text files in a single "
 "<app>Terminal</app> window."
 msgstr ""
-"La barre d'onglets apparaît en haut d'une fenêtre de <app>Terminal</app> qui "
-"possède plusieurs onglets ouverts (cela ressemble à une rangée de boutons). "
-"Cliquez pour changer d'onglets. Vous pouvez ouvrir plusieurs onglets pour "
-"gérer votre travail dans <app>Terminal</app>. Cela vous permettra "
-"d'effectuer plusieurs tâches, telles que l'exécution de programmes, la "
-"navigation dans les répertoires et la modification de fichiers texte dans "
-"une seule fenêtre de <app>Terminal</app>."
+"La barra de pestanyes es mostra a la part superior de la finestra del "
+"<app>Terminal</app>, que té múltiples pestanyes obertes (sembla una fila de "
+"botons). Premeu en la pestanya per commutar-la. Podeu obrir múltiples "
+"pestanyes per gestionar la vostra feina al <app>Terminal</app>. Això us "
+"permet multi tasca amb activitats com executar programes, navegar per "
+"directoris i editar fitxers de text en una única finestra de <app>Terminal</"
+"app>."
 
 #. (itstool) path: section/title
 #: C/gs-tabs.page:46
 msgid "Open a new tab"
-msgstr "Ouverture d'un nouvel onglet"
+msgstr "Obrir una nova pestanya"
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:48
 msgid "To open a new tab inside your current <app>Terminal</app> window:"
 msgstr ""
-"Pour ouvrir un nouvel onglet à l'intérieur de votre fenêtre actuelle de "
-"<app>Terminal</app> : "
+"Per obrir una nova pestanya dins de la finestra actual del <app>Terminal</"
+"app>:"
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:51
 msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>T</key></keyseq>."
 msgstr ""
-"Appuyez sur <keyseq><key>Maj</key><key>Ctrl</key><key>T</key></keyseq>."
+"Prem <keyseq><key>Majúscules</key><key>Ctrl</key><key>T</key></keyseq>."
 
 #. (itstool) path: section/title
 #: C/gs-tabs.page:88
 msgid "Remove a tab"
-msgstr "Suppression d'un onglet"
+msgstr "Suprimir una pestanya"
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:90
 msgid ""
 "To close an existing tab inside your current <app>Terminal</app> window:"
 msgstr ""
-"Pour fermer un onglet existant à l'intérieur de la fenêtre de <app>Terminal</"
-"app> active : "
+"Per a tancar una pestanya situada dins de la vostra finestra del "
+"<app>Terminal</app>:"
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:95
@@ -1519,8 +1496,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">File</gui><gui style=\"menuitem\">Close "
 "Terminal</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Fichier</gui><gui style=\"menuitem"
-"\">Fermer l'onglet</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Fitxer</gui><gui style=\"menuitem"
+"\">Tanca el Terminal</gui></guiseq>."
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:101
@@ -1529,35 +1506,35 @@ msgid ""
 "right corner of the tab or right click on the tab and select <gui style="
 "\"menuitem\">Close Terminal</gui>."
 msgstr ""
-"Vous pouvez aussi cliquer sur la croix <gui style=\"button\">×</gui> dans le "
-"coin supérieur droit de l'onglet ou faire un clic droit sur l'onglet et "
-"sélectionner <gui style=\"menuitem\">Fermer le terminal</gui>."
+"De forma alternativa, podeu prémer sobre  <gui style=\"button\">×</gui> a la "
+"cantonada superior dreta de la pestanya o prémer el botó dret sobre la "
+"pestanya i seleccionar <gui style=\"menuitem\">Tanca el terminal</gui>."
 
 #. (itstool) path: section/title
 #: C/gs-tabs.page:108
 msgid "Reorder tabs"
-msgstr "Réorganisation des onglets"
+msgstr "Reordena les pestanyes"
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:110
 msgid "To change the ordering of tabs in a window:"
-msgstr "Pour changer l'ordre des onglets dans la fenêtre : "
+msgstr "Per a canviar l'ordenació de les pestanyes en una finestra:"
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:113 C/gs-tabs.page:140 C/gs-tabs.page:168
 msgid "Click and hold the left mouse button on the tab."
-msgstr "Cliquez et maintenez le bouton gauche de la souris sur l'onglet."
+msgstr "Prem i retin el botó esquerre del ratolí a la pestanya."
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:116
 msgid "Drag the tab to the desired position among the other tabs."
 msgstr ""
-"Faites glisser l'onglet jusqu'à la position désirée parmi les autres onglets."
+"Arrossega la pestanya a la posició desitjada entre les altres pestanyes."
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:119 C/gs-tabs.page:149 C/gs-tabs.page:174
 msgid "Release the mouse button."
-msgstr "Relâchez le bouton de la souris."
+msgstr "Allibera el botó del ratolí. "
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:123
@@ -1565,8 +1542,8 @@ msgid ""
 "The tab will be placed in the position closest to where you released the "
 "tab, immediately beside other open tabs."
 msgstr ""
-"L'onglet sera placé à l'emplacement le plus proche de l'endroit où vous "
-"l'avez lâché, juste à côté d'autres onglets ouverts."
+"La pestanya es situarà a la posició on heu alliberat la pestanya, al costat "
+"de les altres pestanyes obertes."
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:126
@@ -1577,32 +1554,31 @@ msgid ""
 "tab to the right. This will reorder the tab position by moving it one place "
 "at a time."
 msgstr ""
-"Vous pouvez aussi changer la position d'un onglet par un clic droit sur cet "
-"onglet et en sélectionnant <gui style=\"menuitem\">Déplacer le terminal vers "
-"la gauche</gui> pour déplacer l'onglet vers la gauche ou <gui style="
-"\"menuitem\">Déplacer le terminal vers la droite</gui> pour déplacer "
-"l'onglet vers la droite. Cela va modifier la position de l'onglet en le "
-"déplaçant d'une place à la fois."
+"De forma alternativa, podeu reordenar una pestanya prement el botó dret "
+"sobre la pestanya i seleccionant <gui style=\"menuitem\">Mou a l'esquerra "
+"del terminal</gui> per moure la pestanya a l'esquerre o <gui style=\"menuitem"
+"\">Mou a la dreta del terminal</gui> per moure la pestanya a la dreta. Això "
+"reordenarà la posició de la pestanya movent-la una posició cada vegada."
 
 #. (itstool) path: section/title
 #: C/gs-tabs.page:135
 msgid "Move a tab to another <app>Terminal</app> window"
-msgstr "Déplacement d'un onglet vers une autre fenêtre de <app>Terminal</app>"
+msgstr "Mou la pestanya a una altra finestra del <app>Terminal</app>"
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:137
 msgid "If you want to move a tab from one window to another:"
-msgstr "Si vous souhaitez déplacer un onglet d'une fenêtre à l'autre :"
+msgstr "Si voleu moure la pestanya des d'una finestra a una altra:"
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:143
 msgid "Drag the tab to the new window."
-msgstr "Glissez l'onglet vers la nouvelle fenêtre."
+msgstr "Arrossegueu la pestanya a la nova finestra."
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:146
 msgid "Place it beside other tabs in the new window."
-msgstr "Placez-le à côté d'autres onglets dans la nouvelle fenêtre."
+msgstr "Poseu-la al costat de les altres pestanyes a la finestra nova."
 
 #. (itstool) path: note/p
 #: C/gs-tabs.page:154
@@ -1612,29 +1588,27 @@ msgid ""
 "reveal each of the open <app>Terminal</app> windows. You can release the tab "
 "that you are holding over the desired <app>Terminal</app> window."
 msgstr ""
-"Vous pouvez déplacer un onglet d'une fenêtre à une autre en faisant glisser "
-"l'onglet sur le coin actif <gui>Activités</gui> du <gui>Shell GNOME</gui>. "
-"Cela permet d'afficher chacune des fenêtres <app>Terminal</app> ouvertes. "
-"Vous pouvez alors relâcher l'onglet que vous tenez sur la fenêtre "
-"<app>Terminal</app> désirée."
+"Podeu moure una pestanya des d'una finestra a una altra arrossegant la "
+"pestanya al cantó <gui>Activitats</gui> a l'<gui>interpret d'ordres GNOMEl</"
+"gui>. Això mostrarà cadascuna de les finestres del <app>Terminal</app> "
+"obertes. Podeu alliberar la pestanya que esteu retenint sobre la finestra "
+"del <app>Terminal</app> desitjada."
 
 #. (itstool) path: section/title
 #: C/gs-tabs.page:163
 msgid "Move a tab to create a new <app>Terminal</app> window"
-msgstr ""
-"Déplacement d'un onglet pour créer une nouvelle fenêtre de <app>Terminal</"
-"app>"
+msgstr "Mou una pestanya per a crear una finestra de <app>Terminal</app> nova"
 
 #. (itstool) path: section/p
 #: C/gs-tabs.page:165
 msgid "To create a new window from an existing tab:"
-msgstr "Pour créer une nouvelle fenêtre à partir d'un onglet existant : "
+msgstr "Per a crear una finestra nova des d'una pestanya que ja existeix:"
 
 #. (itstool) path: item/p
 #: C/gs-tabs.page:171
 msgid "Drag the tab out of the current <app>Terminal</app> window."
 msgstr ""
-"Faites glisser l'onglet en dehors de la fenêtre <app>Terminal</app> active."
+"Arrossega la pestanya fora de la finestra del <app>Terminal</app> actual."
 
 #. (itstool) path: info/title
 #: C/index.page:8
@@ -1657,43 +1631,42 @@ msgstr "Jim Campbell"
 #: C/index.page:29
 msgid "Set up and use the highly customizable GNOME terminal emulator."
 msgstr ""
-"Configurer et utiliser l'émulateur de terminal GNOME fortement "
-"personnalisable."
+"Configura i utilitza l'altament personalitzable emulador de terminal GNOME."
 
 #. (itstool) path: page/title
 #: C/index.page:33
 msgid "<_:media-1/> Terminal Help"
-msgstr "<_:media-1/> Aide de Terminal"
+msgstr "<_:media-1/> Ajuda del terminal"
 
 #. (itstool) path: section/title
 #: C/index.page:40
 msgid "Getting started"
-msgstr "Premiers pas"
+msgstr "Primers passos"
 
 #. (itstool) path: section/title
 #: C/index.page:44
 msgid "Working with text"
-msgstr "Travail sur du texte"
+msgstr "Treball amb text"
 
 #. (itstool) path: section/title
 #: C/index.page:48
 msgid "Customize appearance"
-msgstr "Personnalisation de l'apparence"
+msgstr "Personalitza l'aparença "
 
 #. (itstool) path: section/title
 #: C/index.page:52
 msgid "Customize behavior"
-msgstr "Personnalisation du comportement"
+msgstr "Personalitza el comportament"
 
 #. (itstool) path: section/title
 #: C/index.page:56
 msgid "Advanced Settings"
-msgstr "Paramètres avancés"
+msgstr "Paràmetres avançats"
 
 #. (itstool) path: section/title
 #: C/index.page:60
 msgid "Troubleshooting"
-msgstr "Dépannage"
+msgstr "Solució de problemes"
 
 #. (itstool) path: media
 #. This is a reference to an external file such as an image or video. When
@@ -1712,12 +1685,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/introduction.page:29
 msgid "Learn about the GNOME terminal emulator."
-msgstr "Découvrir l'émulateur de terminal GNOME."
+msgstr "Aprèn sobre l'emulador de terminal del GNOME"
 
 #. (itstool) path: page/title
 #: C/introduction.page:32
 msgid "Introduction"
-msgstr "Introduction"
+msgstr "Introducció"
 
 #. (itstool) path: page/p
 #: C/introduction.page:34
@@ -1725,9 +1698,9 @@ msgid ""
 "<app>Terminal</app> is a terminal emulator application for accessing a UNIX "
 "shell environment which can be used to run programs available on your system."
 msgstr ""
-"<app>Terminal</app> est une application d'émulation de terminal pour accéder "
-"à un environnement de shell UNIX qui peut être utilisé pour exécuter des "
-"programmes disponibles sur votre système."
+"<app>Terminal</app> és una aplicació emuladora del terminal per l'accés a "
+"l'intèrpret d'ordres UNIX que pot usar-se per executar programes del vostre "
+"sistema."
 
 #. (itstool) path: page/p
 #: C/introduction.page:38
@@ -1735,30 +1708,28 @@ msgid ""
 "<app>Terminal</app> supports escape sequences that control cursor position "
 "and colors."
 msgstr ""
-"<app>Terminal</app> prend en charge les séquences d'échappement qui "
-"contrôlent la position du curseur et les couleurs."
+"<app>Terminal</app> suporta seqüencies d'escapament que controlen la posició "
+"del cursos i els colors."
 
 #. (itstool) path: figure/title
 #: C/introduction.page:42
 msgid "GNOME Terminal"
-msgstr "Terminal GNOME "
+msgstr " Terminal del GNOME"
 
 #. (itstool) path: figure/desc
 #: C/introduction.page:43
 msgid "Screenshot of GNOME <app>Terminal</app>"
-msgstr "Capture d'écran du <app>Terminal</app> GNOME"
+msgstr "Captura de pantalla del GNOME <app>Terminal</app>"
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
 msgid "Creative Commons Attribution-Share Alike 3.0 Unported License"
-msgstr ""
-"Licence Creative Commons Paternité - Partage sous des conditions identiques "
-"3.0 non portée"
+msgstr "Creative Commons Compartir Igual 3.0 llicència no portada"
 
 #. (itstool) path: p/link
 #: C/legal.xml:6
 msgid "GNU General Public License version 3"
-msgstr "Licence Publique Générale GNU version 3"
+msgstr "Llicència pública general GNU versió 3"
 
 #. (itstool) path: license/p
 #: C/legal.xml:3
@@ -1766,14 +1737,13 @@ msgid ""
 "This work is licensed under a <_:link-1/> and a <_:link-2/>. It may be "
 "redistributed and/or modified under either license."
 msgstr ""
-"Ce travail est sous double licence en vertu de <_:link-1/> et de <_:link-2/"
-">. Il peut être redistribué et/ou modifié sous l'une ou l'autre des deux "
-"licences."
+"Aquest treball està llicenciat sota una <_:link-1/> i una <_:link-2/>. Pot "
+"ser redistribuït i/o modificat sota la mateixa llicència. "
 
 #. (itstool) path: license/p
 #: C/legal.xml:9
 msgid "GPL 3 statement:"
-msgstr "Déclaration de GPL 3 :"
+msgstr "Declaració GPL 3:"
 
 #. (itstool) path: license/p
 #: C/legal.xml:10
@@ -1782,9 +1752,9 @@ msgid ""
 "the terms of the GNU General Public License version 3 as published by the "
 "Free Software Foundation."
 msgstr ""
-"Ce travail est un logiciel libre : vous pouvez le redistribuer et/ou le "
-"modifier selon les termes de la Licence Publique Générale GNU version 3, "
-"telle que publiée par la Free Software Foundation."
+"Aquest treball és programari lliure: podeu redistribuir-lo i/o modificar-lo "
+"sota els termes de la llicència publica general GNU versió 3 publicada per "
+"la Free Software Foundation."
 
 #. (itstool) path: license/p
 #: C/legal.xml:14
@@ -1794,10 +1764,10 @@ msgid ""
 "FOR A PARTICULAR PURPOSE. See the GNU General Public License for more "
 "details."
 msgstr ""
-"Ce travail est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE "
-"GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou "
-"D'ADAPTATION À UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU "
-"pour plus de détails."
+"Aquest treball es distribueix amb l'expectativa que serà útil, però SENSE "
+"CAP GARANTIA; ni tan sols la garantia implícita de COMERCIABILITAT o "
+"ADEQUACIÓ PER UN PROPÒSIT PARTICULAR. Vegeu la Llicència Pública General GNU "
+"per obtenir-ne més detalls."
 
 #. (itstool) path: license/p
 #: C/legal.xml:19
@@ -1805,18 +1775,18 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see http://www.gnu.org/licenses/."
 msgstr ""
-"Vous devriez avoir reçu une copie de la Licence Publique Générale GNU avec "
-"ce programme. Sinon, voir http://www.gnu.org/licenses/."
+"Hauríeu d'haver rebut una còpia de la Llicència Pública General GNU amb "
+"aquest programa. Si no l'heu rebuda, mireu http://www.gnu.org/licenses/."
 
 #. (itstool) path: info/desc
 #: C/overview.page:21
 msgid "What is a terminal?"
-msgstr "Qu'est-ce qu'un terminal ?"
+msgstr "Que és un terminal?"
 
 #. (itstool) path: page/title
 #: C/overview.page:24
 msgid "Overview of a terminal"
-msgstr "Présentation d'un terminal"
+msgstr "Resum de terminal"
 
 #. (itstool) path: page/p
 #: C/overview.page:26
@@ -1825,9 +1795,9 @@ msgid ""
 "following terms and their descriptions will help you to be familiar with "
 "<app>Terminal</app> and its capabilities."
 msgstr ""
-"<app>Terminal</app> est un programme de terminal pour <gui>GNOME</gui>. Les "
-"termes suivants et leurs descriptions vous aideront à vous familiariser avec "
-"<app>Terminal</app> et ses capacités."
+"<app>Terminal</app> és un programa terminal per a <gui>GNOME</gui>. Els "
+"següents termes i les seves descripcions us ajudaran a familiaritzar-vos amb "
+"el <app>Terminal</app> i les seves capacitats."
 
 #. (itstool) path: item/title
 #: C/overview.page:32
@@ -1840,13 +1810,13 @@ msgid ""
 "A terminal is a text input point in a computer also called the Command Line "
 "Interface (CLI)."
 msgstr ""
-"Un terminal est un point d'entrée de texte dans un ordinateur appelé aussi "
-"interface de ligne de commande (CLI)."
+"Un terminal és un punt d'entrada de text en una computadora anomenat també "
+"Interfície de línia d'ordres."
 
 #. (itstool) path: item/title
 #: C/overview.page:37
 msgid "Physical terminals"
-msgstr "Terminaux physiques"
+msgstr "Terminals físics"
 
 #. (itstool) path: item/p
 #: C/overview.page:38
@@ -1855,14 +1825,14 @@ msgid ""
 "produced as physical devices. To emulate these terminals, there are terminal "
 "emulators."
 msgstr ""
-"IBM 3270, VT100 et bien d'autres sont des bornes de matériels qui ne sont "
-"plus produites en tant que dispositifs physiques. Pour émuler ces terminaux, "
-"il existe des émulateurs de terminaux."
+"IBM 3270, VT100 i molts altres són terminals de maquinari que ja no es "
+"fabriquen com a dispositius físics. Per emular aquests terminals, hi ha "
+"emuladors de terminal."
 
 #. (itstool) path: item/title
 #: C/overview.page:43
 msgid "Terminal emulators"
-msgstr "Émulateurs de terminal"
+msgstr "Emuladors de terminal"
 
 #. (itstool) path: item/p
 #: C/overview.page:44
@@ -1870,8 +1840,8 @@ msgid ""
 "Emulation is the ability of a computer program to imitate another program or "
 "device."
 msgstr ""
-"L'émulation est la capacité d'un programme d'ordinateur à imiter un autre "
-"programme ou dispositif."
+"L'emulació és l'habilitat d'un programa d'ordinador d'imitar un altre "
+"programa o dispositiu."
 
 #. (itstool) path: item/p
 #: C/overview.page:47
@@ -1883,12 +1853,12 @@ msgid ""
 "or on a different one via <app>telnet</app>, <app>ssh</app>, or <app>dial-"
 "up</app>."
 msgstr ""
-"Un émulateur de terminal, également appelé tty, est un logiciel qui émule un "
-"terminal vidéo dans les ordinateurs modernes qui utilisent des interfaces "
-"graphiques et fournit un accès interactif à des applications qui s'exécutent "
-"uniquement dans les environnements de ligne de commande. Ces applications "
-"peuvent être exécutées sur la même machine ou sur une autre via <app>telnet</"
-"app>, <app>ssh</app>, ou <app>dial-up</app>."
+"Un emulador de terminal també anomenat tty és un programa que emula un "
+"terminal de vídeo en una computadora moderna que utilitza interfície gràfica "
+"i proporciona accés interactiu a les aplicacions que executa sols al entorns "
+"de línia d'ordres. Aquestes aplicacions poden estar executant-se ja sigui en "
+"la mateixa màquina o en una diferent a través de<app> telnet </ app>, <app> "
+"ssh </ app> o <app>dial-up</app>."
 
 #. (itstool) path: item/title
 #: C/overview.page:55
@@ -1903,16 +1873,15 @@ msgid ""
 "<app>Terminal</app> is largely based on the <app>VTE</app>. <app>VTE</app> "
 "has widgets that implement a fully functional terminal emulator."
 msgstr ""
-"L'environnement de terminal virtuel (VTE) est un émulateur de terminal qui "
-"émule un terminal de texte au sein d'un environnement d'interface "
-"utilisateur graphique (GUI). <app>Terminal</app> est en grande partie basé "
-"sur <app>VTE</app>. <app>VTE</app> dispose d'éléments graphiques qui "
-"concourent à un émulateur de terminal entièrement fonctionnel."
+"L'entorn terminal virtual (VTE) és un emulador de terminal que emula un "
+"terminal de text dins d'una interfície gràfica d'usuari (GUI). "
+"<app>Terminal</app> està basat en <app>VTE</app>. <app>VTE</app> té ginys "
+"que implementen un emulador de terminal completament funcional."
 
 #. (itstool) path: item/title
 #: C/overview.page:63
 msgid "Shell"
-msgstr "Shell"
+msgstr "Intèrpret d'ordres"
 
 #. (itstool) path: item/p
 #: C/overview.page:64
@@ -1922,15 +1891,15 @@ msgid ""
 "to view and browse the contents of directories. Popular shells are "
 "<app>bash</app>, <app>zsh</app>, <app>csh</app>."
 msgstr ""
-"Un <app>shell</app> est un programme qui fournit une interface pour appeler "
-"ou lancer des commandes ou d'autres programmes dans un terminal. Il vous "
-"permet également de visualiser et de parcourir le contenu des répertoires. "
-"Les plus connus sont <app>bash</app>, <app>zsh</app>, <app>csh</app>."
+"Un <em>interpret d'ordres</em> és un programa que proporciona una interfície "
+"per invocar o «llançar» ordres o altres programes dins del terminal. També "
+"us permet veure i navegar pel contingut de directoris. Alguns intèrprets "
+"d'ordres populars són <app>bash</app>, <app>zsh</app>, <app>csh</app>."
 
 #. (itstool) path: item/title
 #: C/overview.page:70
 msgid "Escape Sequences"
-msgstr "Séquences d'échappement"
+msgstr "Seqüencies d'escapament"
 
 #. (itstool) path: item/p
 #: C/overview.page:71
@@ -1941,17 +1910,16 @@ msgid ""
 "to distinguish if data being sent is a command to be executed or information "
 "to be stored and displayed."
 msgstr ""
-"Une séquence d'échappement est une série de caractères utilisée pour changer "
-"la signification des données dans un terminal. Les séquences d'échappement "
-"sont utilisées lorsque l'ordinateur ne dispose que d'un seul canal pour "
-"envoyer des informations dans les deux sens. Les séquences d'échappement "
-"sont utilisées pour distinguer si les données envoyées sont une commande à "
-"exécuter ou des informations à enregistrer ou à afficher."
+"Una seqüencia d'escapament és una serie de caràcters usats per canviar el "
+"significat d'una dada en un terminal. Les seqüencies d'escapament són "
+"utilitzades quan un ordinador té un sol canal per enviar informació d'anada "
+"i tornada. Les seqüencies d'escapament s'usen per distingir si la dada que "
+"s'envia és una ordre per a executar o informació per emmagatzemar o mostrar."
 
 #. (itstool) path: item/title
 #: C/overview.page:79
 msgid "Prompt"
-msgstr "Invite"
+msgstr "Indicador"
 
 #. (itstool) path: item/p
 #: C/overview.page:80
@@ -1960,9 +1928,9 @@ msgid ""
 "characters used in the command line environment to indicate the readiness of "
 "the shell to accept commands."
 msgstr ""
-"Une invite également appelée <em>invite de commande</em>. Il s'agit d'une "
-"séquence de caractères utilisée dans l'environnement de la ligne de commande "
-"pour indiquer l'état de préparation du shell à accepter des commandes."
+"Un indicador també anomenat <em>indicador d'ordres</em>. És una seqüencia de "
+"caràcters usats a l'entorn de la línia d'ordres per indicar que l'intèrpret "
+"d'ordres és a punt per rebre ordres."
 
 #. (itstool) path: item/p
 #: C/overview.page:84
@@ -1974,18 +1942,17 @@ msgid ""
 "as <sys>$</sys> for user and <sys>#</sys> for superuser (also called "
 "<sys>root</sys>)."
 msgstr ""
-"Une invite se termine généralement par des caractères <sys>$</sys>, <sys>%</"
-"sys>, <sys>#</sys> ou <sys>&gt;</sys> et inclut des informations sur le "
-"chemin du répertoire de travail actuel. Sur les systèmes Unix, il est "
-"fréquent que l'invite se termine par un caractère <sys>$</sys> ou <sys>%</"
-"sys> en fonction du rôle de l'utilisateur, comme <sys>$</sys> pour "
-"l'utilisateur et <sys>#</sys> pour le super-utilisateur (également appelé "
-"<sys>root</sys>)."
+"Un indicador acaba normalment amb els caràcters <sys>$</sys>, <sys>%</sys>, "
+"<sys>#</sys> o <sys>&gt;</sys> i inclou informació sobre el camí del "
+"directori de treball. En sistemes basats en Unix, és comú que l'indicador "
+"acabi en <sys>$</sys> o <sys>%</sys> tot depenent del rol de l'usuari com  "
+"<sys>$</sys>  per l'usuari de l'escriptori i <sys>#</sys> per l'usuari "
+"administrador (també anomenat <sys>root</sys>)."
 
 #. (itstool) path: item/title
 #: C/overview.page:93
 msgid "Command"
-msgstr "Commande"
+msgstr "Ordre"
 
 #. (itstool) path: item/p
 #: C/overview.page:94
@@ -1994,24 +1961,24 @@ msgid ""
 "It is a combination of the program name along with any other additional "
 "parameters passed as flags to alter the execution of the program."
 msgstr ""
-"Une saisie dans l'invite destinée à être exécutée est appelée <em>commande</"
-"em>. Il s'agit d'une combinaison du nom du programme associée à d'autres "
-"paramètres passés comme des drapeaux pour modifier l'exécution du programme."
+"Una entrada escrita a l'indicador per a ser executada s'anomena <em>ordre</"
+"em>. És una combinació del nom del programa amb paràmetres addicionals "
+"passats com a senyals per alterar l'execució del programa."
 
 #. (itstool) path: page/title
 #: C/pref.page:18
 msgid "<app>Terminal</app> preferences"
-msgstr "Préférences de <app>Terminal</app>"
+msgstr "Preferències del <app>Terminal</app>"
 
 #. (itstool) path: info/desc
 #: C/pref-bell.page:28
 msgid "Enable audible notification in <app>Terminal</app>"
-msgstr "Activer la notification sonore dans le <app>Terminal</app>"
+msgstr "Habilita la notificació sonora al <app>Terminal</app>"
 
 #. (itstool) path: page/title
 #: C/pref-bell.page:32
 msgid "Set audible bell"
-msgstr "Réglage du « bip »"
+msgstr "Configura la campana sonora"
 
 #. (itstool) path: page/p
 #: C/pref-bell.page:34
@@ -2022,22 +1989,21 @@ msgid ""
 "finished executing, or when a command ends execution with a warning, error "
 "or notification."
 msgstr ""
-"<app>Terminal</app> peut émettre un alarme sonore pour indiquer la survenue "
-"d'événements dans les fenêtres et les onglets de <app>Terminal</app>. Par "
-"exemple, un bip retentit lorsque l'on appuie sur la touche de "
-"<key>Tabulation</key> pour compléter automatiquement une commande, lorsque "
-"la commande a terminé son exécution, ou lorsque l'exécution d'une commande "
-"se termine par un avertissement, une erreur ou une notification."
+"El <app>Terminal</app> pot fer sonar una campana sonora per indicar "
+"esdeveniments a la finestra del <app>Terminal</app> i a les pestanyes. Per "
+"exemple, la campana sonarà quan la tecla <key>Tab</key> sigui premuda per "
+"auto completar una ordre, quan una ordre sigui executada amb èxit, o quan "
+"una ordre acabi amb un avís, error o notificació."
 
 #. (itstool) path: page/p
 #: C/pref-bell.page:40
 msgid "To be notified of these events:"
-msgstr "Pour être averti de ces événements :"
+msgstr "Per ser notificat d'aquests esdeveniments:"
 
 #. (itstool) path: item/p
 #: C/pref-bell.page:47
 msgid "Select <gui style=\"checkbox\">Terminal bell</gui>"
-msgstr "Sélectionnez <gui style=\"checkbox\">« Bip » du terminal</gui>"
+msgstr "Selecciona <gui style=\"checkbox\">Campana de Terminal</gui>"
 
 #. (itstool) path: item/p
 #: C/pref-bell.page:50
@@ -2045,8 +2011,8 @@ msgid ""
 "The setting will be saved automatically. Press <gui style=\"button\">Close</"
 "gui> to quit the preference dialog."
 msgstr ""
-"Le réglage sera enregistré automatiquement. Appuyez sur <gui style=\"button"
-"\">Fermer</gui> pour quitter la boîte de dialogue des préférences."
+"Aquest paràmetre es desarà de forma automàtica. Prem <gui style=\"button"
+"\">Tanca</gui> per sortir del diàleg de preferències."
 
 #. (itstool) path: note/p
 #: C/pref-bell.page:56
@@ -2054,8 +2020,8 @@ msgid ""
 "To preview the bell sound that your system produces, press "
 "<keyseq><key>Ctrl</key><key>G</key></keyseq>."
 msgstr ""
-"Pour vous faire une idée du son d'alarme produit par votre système, appuyez "
-"sur <keyseq><key>Ctrl</key><key>G</key></keyseq>."
+"Per comprovar el só de la campana del vostre sistema, premeu "
+"<keyseq><key>Ctrl</key><key>G</key></keyseq>."
 
 #. (itstool) path: credit/years
 #: C/pref-custom-exit.page:20 C/pref-custom-command.page:21
@@ -2069,13 +2035,13 @@ msgid ""
 "Set the behavior of <app>Terminal</app> when a custom command or the default "
 "shell exits."
 msgstr ""
-"Définir le comportement de <app>Terminal</app> quand une commande "
-"personnalisée ou le shell par défaut se termine."
+"Configura el comportament del <app>Terminal</app> quan una ordre "
+"personalitzada o l'interpret d'ordres per defecte surt."
 
 #. (itstool) path: page/title
 #: C/pref-custom-exit.page:34
 msgid "Set behavior on command exit"
-msgstr "Définition du comportement à la fin de la commande"
+msgstr "Configura el comportament de l'ordre de sortida"
 
 #. (itstool) path: page/p
 #: C/pref-custom-exit.page:36
@@ -2083,8 +2049,8 @@ msgid ""
 "You can set the terminal to exit, restart or remain open when the shell or a "
 "custom command exits:"
 msgstr ""
-"Vous pouvez configurer le terminal pour sortir, redémarrer ou rester ouvert "
-"lorsque le shell ou une commande personnalisée se termine : "
+"Podeu configurar el terminal per tancar-se, reiniciar-se o romandre oberta "
+"quan un interpret d'ordres o una ordre personalitzada surt."
 
 #. (itstool) path: item/p
 #: C/pref-custom-exit.page:41 C/pref-custom-command.page:47
@@ -2092,8 +2058,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem\">Profile "
 "Preferences</gui><gui style=\"tab\">Command</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences du profil</gui> <gui style=\"tab\">Commande</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui><gui style=\"menuitem"
+"\">Preferències de perfil</gui><gui style=\"tab\">Ordre</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-custom-exit.page:46
@@ -2101,28 +2067,28 @@ msgid ""
 "From the <gui>When command exits</gui> drop down list, select one of the "
 "following options:"
 msgstr ""
-"À partir de la liste déroulante de <gui>Quand la commande se termine</gui>, "
-"sélectionnez l'une des options suivantes :"
+"Des de la llista desplegable <gui>Quan l'ordre surti</gui>, selecciona una "
+"de les opcions següents:"
 
 #. (itstool) path: item/p
 #: C/pref-custom-exit.page:50
 msgid "<gui>Exit the terminal</gui>"
-msgstr "<gui>Quitter le terminal</gui>"
+msgstr "<gui>Surt del terminal</gui>"
 
 #. (itstool) path: item/p
 #: C/pref-custom-exit.page:53
 msgid "<gui>Restart the command</gui>"
-msgstr "<gui>Relancer la commande</gui>"
+msgstr "<gui>Reinicia l'ordre</gui>"
 
 #. (itstool) path: item/p
 #: C/pref-custom-exit.page:56
 msgid "<gui>Hold the terminal open</gui>"
-msgstr "<gui>Conserver le terminal ouvert</gui>"
+msgstr "<gui>Manté el terminal obert</gui>"
 
 #. (itstool) path: item/p
 #: C/pref-custom-exit.page:59
 msgid "The setting will be saved automatically when you select it."
-msgstr "Le réglage sera enregistré automatiquement après sélection."
+msgstr "La configuració es desarà de forma automàtica quan ho seleccioneu."
 
 #. (itstool) path: note/p
 #: C/pref-custom-exit.page:64
@@ -2132,24 +2098,24 @@ msgid ""
 "terminal</gui>, and have set the profile to be the default profile, "
 "<app>Terminal</app> may exit before you can see the output of the command."
 msgstr ""
-"Si vous avez <link xref=\"pref-custom-command\">défini une commande "
-"personnalisée</link> qui n'est pas interactive, que vous avez défini le "
-"comportement de sortie pour <gui>quitter le terminal</gui>, et avez défini "
-"le profil pour être le profil par défaut, <app>Terminal</app> peut se "
-"terminer avant que vous puissiez voir le résultat de la commande."
+"Si heu <link xref=\"pref-custom-command\">configurat una ordre "
+"personalitzada</link> que és no interactiva, heu configurat el comportament "
+"de sortida a <gui>Surt del terminal</gui>, i heu configurat el perfil per a "
+"ser el perfil per defecte, <app>Terminal</app> pot sortir abans de mostrar "
+"la sortida de l'ordre. "
 
 #. (itstool) path: info/desc
 #: C/pref-custom-command.page:31
 msgid ""
 "Set <app>Terminal</app> to run a command or a different shell on startup."
 msgstr ""
-"Régler <app>Terminal</app> pour exécuter une commande ou un autre shell au "
-"démarrage."
+"Configura <app>Terminal</app> per executar una ordre o un intèrpret d'ordres "
+"diferent a l'iniciar-se."
 
 #. (itstool) path: page/title
 #: C/pref-custom-command.page:35
 msgid "Custom commands and shells"
-msgstr "Shells et commandes personnalisés"
+msgstr "Ordres personalitzades i intèrprets d'ordres."
 
 #. (itstool) path: page/p
 #: C/pref-custom-command.page:37
@@ -2159,10 +2125,11 @@ msgid ""
 "<app>top</app> or a command line shell. The default shell is usually "
 "<app>Bash</app>."
 msgstr ""
-"Un <em>shell</em> est un logiciel qui fournit une interface pour les "
-"utilisateurs d'un système d'exploitation afin d'exécuter des <em>commandes</"
-"em>, qui peuvent être des programmes tels que <app>top</app> ou une ligne de "
-"commande shell. Le shell par défaut est généralement <app>Bash</app>."
+"Un <em>interpret d'ordres</em> és un programari que proporciona una "
+"interfície per als usuaris del sistema operatiu per executar <em>ordres</"
+"em>, amb les qual es poden fer programes com <app>top</app> o el terminal de "
+"la línia d'ordres. L'interpret d'ordres per defecte és normalment <app>Bash</"
+"app>."
 
 #. (itstool) path: page/p
 #: C/pref-custom-command.page:42
@@ -2170,19 +2137,20 @@ msgid ""
 "You can set <app>Terminal</app> to run a command when it starts up instead "
 "of awaiting input from you:"
 msgstr ""
-"Vous pouvez régler <app>Terminal</app> pour lancer une commande lors de son "
-"démarrage au lieu qu'il attende une entrée de votre part :"
+"Podeu configurar <app>Terminal</app> per executar una ordre quan comenci o "
+"mentre espera una entrada seva:"
 
 #. (itstool) path: item/p
 #: C/pref-custom-command.page:52
 msgid "Check <gui>Run a custom command instead of my shell</gui>."
 msgstr ""
-"Cochez <gui>Exécuter une commande personnalisée au lieu de mon shell</gui>."
+"Habilita <gui>Executa una ordre personalitzada a l'interpret d'ordres</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-custom-command.page:55
 msgid "In the text box, type the command or the desired shell."
-msgstr "Saisissez la commande ou le shell désiré dans le champ."
+msgstr ""
+"Al quadre de text, escriviu l'ordre desitjada per a l'interpret d'ordres."
 
 #. (itstool) path: item/p
 #: C/pref-custom-command.page:56
@@ -2191,9 +2159,9 @@ msgid ""
 "including any arguments that you specify. Environment variables will be "
 "inherited from the terminal as it is a child process of the terminal."
 msgstr ""
-"La commande sera passée au terminal exactement comme vous l'écrivez, y "
-"compris les arguments que vous spécifiez. Les variables d'environnement "
-"seront héritées du terminal car c'est un processus enfant du terminal."
+"L'ordre es passarà exactament com l'escriviu, incloent-hi els arguments que "
+"especifiqueu. Les variables d'entorn seran heretades del terminal ja que es "
+"consideren processos fills del terminal."
 
 #. (itstool) path: item/p
 #: C/pref-custom-command.page:61
@@ -2201,8 +2169,8 @@ msgid ""
 "Open a new <app>Terminal</app> tab or window to see how the custom shell or "
 "command executes."
 msgstr ""
-"Ouvrir un nouvel onglet ou une nouvelle fenêtre de <app>Terminal</app> pour "
-"voir comment le shell personnalisé ou la commande s'exécute."
+"Obriu una pestanya nova al <app>Terminal</app> o finestra per veure com "
+"l'interpret d'ordres personalitzat o l'ordre s'executa."
 
 #. (itstool) path: page/p
 #: C/pref-custom-command.page:66
@@ -2210,9 +2178,8 @@ msgid ""
 "You can also <link xref=\"pref-custom-exit\">set the behavior</link> of the "
 "terminal once the command finishes executing."
 msgstr ""
-"Vous pouvez également <link xref=\"pref-custom-exit\">définir le "
-"comportement</link> du terminal une fois que la commande a terminé son "
-"exécution."
+"També podeu <link xref=\"pref-custom-exit\">configurar el comportament</"
+"link> del terminal una vegada acabi l'execució de l'ordre."
 
 #. (itstool) path: note/p
 #: C/pref-custom-command.page:70
@@ -2221,19 +2188,19 @@ msgid ""
 "where the command or shell resides is not in the <code>PATH</code> variable "
 "of your system."
 msgstr ""
-"Il se peut que vous ayez à saisir le chemin complet vers la commande ou le "
-"shell, si le répertoire dans lequel le shell ou la commande réside n'est pas "
-"dans la variable <code>PATH</code> de votre système."
+"Podeu necessitar entrar el camí sencer a l'ordre o a l'interpret d'ordres si "
+"el directori on l'interpret es troba no és al <code>CAMÍ</code> de la "
+"variable del vostre sistema."
 
 #. (itstool) path: info/desc
 #: C/pref-encoding.page:27
 msgid "Change to a different character set support."
-msgstr "Changer pour un jeux de caractères différents."
+msgstr "Canvia a un caràcter diferent la configuració del suport."
 
 #. (itstool) path: page/title
 #: C/pref-encoding.page:31
 msgid "Character encoding"
-msgstr "Codage de caractères"
+msgstr "Codificació de caràcters"
 
 #. (itstool) path: page/p
 #: C/pref-encoding.page:33
@@ -2241,8 +2208,9 @@ msgid ""
 "The default <em>character encoding</em> is usually UTF-8. You may want to "
 "change character encoding in <app>Terminal</app> if you:"
 msgstr ""
-"Le <em>codage de caractères</em> par défaut est généralement UTF-8. Vous "
-"pouvez modifier le codage de caractères dans <app>Terminal</app> si vous : "
+"La <em>codificació de caràcters</em> per defecte és normalment UTF-8. Podeu "
+"voler canviar la codificació de caràcters al <app>Terminal</app> si "
+"vosaltres:"
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:38
@@ -2250,26 +2218,27 @@ msgid ""
 "are working with file or directory names that use characters unavailable in "
 "your default encoding."
 msgstr ""
-"travaillez sur des noms de fichiers ou de répertoires qui utilisent des "
-"caractères non disponibles dans le codage par défaut,"
+"esteu treballant amb un fitxer o directori de noms que utilitzen caràcters "
+"no disponibles per a la vostra codificació."
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:42
 msgid ""
 "use an external hard disk that uses different encoding from your system."
 msgstr ""
-"utilisez un disque dur externe qui emploie un codage différent de celui de "
-"votre système,"
+"utilitzeu un disc dur extern que utilitza una codificació diferent al vostre "
+"sistema operatiu."
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:46
 msgid "connect to a remote computer that uses a different encoding."
-msgstr "êtes connecté à un ordinateur distant qui utilise un codage différent."
+msgstr ""
+"connecteu amb un ordinador remot que utilitza una codificació diferent."
 
 #. (itstool) path: section/title
 #: C/pref-encoding.page:51
 msgid "Change the default character encoding"
-msgstr "Changer le codage par défaut des caractères"
+msgstr "Canvia la codificació de caràcters per defecte"
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:55
@@ -2277,18 +2246,18 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
 "\">Set Character Encoding</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
-"\">Définir le codage des caractères</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
+"\">Configura la configuració de caràcters</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:59
 msgid "Select the desired character encoding."
-msgstr "Sélectionnez le codage de caractères désiré."
+msgstr "Selecciona la codificació de caràcters desitjada."
 
 #. (itstool) path: section/title
 #: C/pref-encoding.page:66
 msgid "Add more options to the character encoding menu"
-msgstr "Addition d'autres options au menu de codage de caractères"
+msgstr "Afegeix més opcions al menú de codificació de caràcters"
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:70
@@ -2297,19 +2266,19 @@ msgid ""
 "\">Set Character Encoding</gui> <gui style=\"menuitem\">Add or Remove…</"
 "gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
-"\">Définir le codage des caractères</gui> <gui style=\"menuitem\">Ajouter ou "
-"supprimer…</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
+"\">Configura la configuració de caràcters</gui> <gui style=\"menuitem"
+"\">Afegeix o elimina…</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:75
 msgid "Browse from the available encodings."
-msgstr "Parcourir les codages disponibles."
+msgstr "Navega per les codificacions disponibles."
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:78
 msgid "Select the encodings that you want to be added to the menu."
-msgstr "Sélectionnez les codages que vous voulez ajouter à votre menu."
+msgstr "Selecciona les codificacions que voleu afegir al menú."
 
 #. (itstool) path: item/p
 #: C/pref-encoding.page:81
@@ -2317,8 +2286,8 @@ msgid ""
 "Click <gui style=\"button\">Close</gui> to quit the dialog and return to "
 "<app>Terminal</app>."
 msgstr ""
-"Cliquez sur <gui style=\"button\">Fermer</gui> pour quitter la boîte de "
-"dialogue et retourner à <app>Terminal</app>."
+"Prem <gui style=\"button\">Tanca</gui> per sortir del diàleg i tornar al "
+"<app>Terminal</app>."
 
 #. (itstool) path: note/p
 #: C/pref-encoding.page:87 C/pref-profile-encoding.page:52
@@ -2326,20 +2295,18 @@ msgid ""
 "Most modern operating systems now support and use UTF-8 character encoding "
 "by default."
 msgstr ""
-"Les systèmes d'exploitation les plus modernes savent maintenant gérer et "
-"utiliser le codage de caractères UTF-8 par défaut."
+"Els sistemes operatius més moderns suporten avui en dia i usen la "
+"codificació UTF-8  per defecte."
 
 #. (itstool) path: info/desc
 #: C/pref-keyboard-access.page:29
 msgid "Navigate around <app>Terminal</app> menus using keyboard keys."
-msgstr ""
-"Naviguer à travers les menus de <app>Terminal</app> en utilisant les touches "
-"du clavier."
+msgstr "Navega pels menús del <app>Terminal</app> usant tecles del teclat."
 
 #. (itstool) path: page/title
 #: C/pref-keyboard-access.page:32
 msgid "Keyboard accessibility"
-msgstr "Accessibilité du clavier"
+msgstr "Accessibilitat del teclat"
 
 #. (itstool) path: note/p
 #: C/pref-keyboard-access.page:35
@@ -2347,8 +2314,8 @@ msgid ""
 "These keys will only have an effect in windows in which the menubar is set "
 "to be visible."
 msgstr ""
-"Ces touches n'auront d'effet que dans les fenêtres où la barre de menus est "
-"configurée pour être visible."
+"Aquestes tecles sols tindran efecte a la finestra on la barra de menú "
+"estigui configurada com visible."
 
 #. (itstool) path: page/p
 #: C/pref-keyboard-access.page:39
@@ -2358,15 +2325,15 @@ msgid ""
 "to the first menu in the menubar which is called a <em>menu accelerator key</"
 "em>."
 msgstr ""
-"Vous pouvez naviguer dans le menu de <app>Terminal</app> en utilisant une "
-"combinaison de touches qui sont appelées <em>mnémoniques</em> ou une touche "
-"spéciale qui vous emmène directement au premier menu dans la barre de menus "
-"et qui s'appelle <em>touche d'accès au menu</em>."
+"Podeu navegar pel menú del <app>Terminal</app> usant una combinació de "
+"tecles que s'anomenen <em>mnemonics</em> o una tecla especial que prem "
+"directament el primer menú de la barra, la qual s'anomena <em>tecla "
+"acceleradora de menú</em>."
 
 #. (itstool) path: section/title
 #: C/pref-keyboard-access.page:45
 msgid "Mnemonics"
-msgstr "Mnémoniques"
+msgstr "Mnemonics"
 
 #. (itstool) path: section/p
 #: C/pref-keyboard-access.page:47
@@ -2375,9 +2342,9 @@ msgid ""
 "and a letter of the menu item. The letter that you need to use to access the "
 "menu will be underlined when you hold down the <key>Alt</key>."
 msgstr ""
-"Le menu de <app>Terminal</app> est accessible par la touche <key>Alt</key> "
-"et une lettre de l'élément de menu. La lettre que vous devez utiliser pour "
-"accéder au menu sera soulignée lorsque vous maintiendrez enfoncée la touche "
+"El menú <app>Terminal</app> pot ser accessible amb la combinació de la tecla "
+"<key>Alt</key> i una lletra de l'element del menú. La lletra que necessiteu "
+"per accedir al menú està subratllada quan es manté premuda la tecla "
 "<key>Alt</key>."
 
 #. (itstool) path: section/p
@@ -2388,15 +2355,15 @@ msgid ""
 "style=\"menu\">File</gui> menu using <keyseq><key>Alt</key><key>F</key></"
 "keyseq>."
 msgstr ""
-"Par exemple, affichez le menu <gui style=\"menu\">Édition</gui> en utilisant "
-"<keyseq><key>Alt</key><key>D</key></keyseq>. De même, vous pouvez accéder au "
-"menu <gui style=\"menu\">Fichier</gui> en utilisant <keyseq><key>Alt</"
+"Per exemple, mireu el menú <gui style=\"menu\">Edita</gui> usant "
+"<keyseq><key>Alt</key><key>E</key></keyseq>. De forma semblant, podeu "
+"accedir al menú <gui style=\"menu\">Fitxer</gui> usant <keyseq><key>Alt</"
 "key><key>F</key></keyseq>."
 
 #. (itstool) path: section/p
 #: C/pref-keyboard-access.page:57
 msgid "To enable mnemonics:"
-msgstr "Pour activer les mnémoniques : "
+msgstr "Per habilitar mnemonics:"
 
 #. (itstool) path: item/p
 #: C/pref-keyboard-access.page:61 C/pref-menubar.page:60
@@ -2404,18 +2371,18 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem\"> "
 "Preferences</gui> <gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences</gui> <gui style=\"tab\">Général</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem\"> "
+"Preferències</gui> <gui style=\"tab\">General</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-keyboard-access.page:65
 msgid "Check <gui style=\"checkbox\">Enable mnemonics</gui>."
-msgstr "Cochez <gui style=\"checkbox\">Activer les mnémoniques</gui>."
+msgstr "Marca <gui style=\"checkbox\">Habilita mnemonics</gui>."
 
 #. (itstool) path: section/title
 #: C/pref-keyboard-access.page:72
 msgid "Menu accelerator key"
-msgstr "Touche d'accès au menu"
+msgstr "Tecla acceleradora del menú"
 
 #. (itstool) path: section/p
 #: C/pref-keyboard-access.page:74
@@ -2423,25 +2390,25 @@ msgid ""
 "This setting brings up the <gui style=\"menu\">File</gui> menu the menu "
 "accelerator key is pressed. This key is usually <key>F10</key> by default."
 msgstr ""
-"Ce paramètre affiche le menu <gui style=\"menu\">Fichier</gui> quand la "
-"touche d'accès au menu est enfoncée. Cette touche est généralement <key>F10</"
-"key> par défaut."
+"Aquest paràmetre fa aparèixer el menú <gui style=\"menu\">Fitxer</gui> quan "
+"la tecla acceleradora del menú està premuda. La tecla és normalment "
+"<key>F10</key> per defecte."
 
 #. (itstool) path: item/p
 #: C/pref-keyboard-access.page:85
 msgid "Check <gui style=\"checkbox\">Enable the menu accelerator key</gui>."
 msgstr ""
-"Cochez <gui style=\"checkbox\">Activer la touche d'accès au menu</gui>."
+"Marca <gui style=\"checkbox\">Habilita la tecla del menú acceleradora</gui>."
 
 #. (itstool) path: info/desc
 #: C/pref-menubar.page:30
 msgid "Hide and restore the menubar."
-msgstr "Masquer et restaurer la barre de menu."
+msgstr "Amaga i restaura la barra del menú."
 
 #. (itstool) path: page/title
 #: C/pref-menubar.page:34
 msgid "Menubar visibility"
-msgstr "Affichage de la barre de menu"
+msgstr "Visibilitat de la barra del menú"
 
 #. (itstool) path: page/p
 #: C/pref-menubar.page:36
@@ -2449,9 +2416,9 @@ msgid ""
 "You can enable or disable the menubar as desired. This may be useful if you "
 "have limited screen space. To hide the menubar:"
 msgstr ""
-"Vous pouvez activer ou désactiver la barre de menu comme vous le souhaitez. "
-"Cela peut être utile si la surface de votre écran est limitée. Pour masquer "
-"la barre de menus : "
+"Podeu habilitar o deshabilitar la barra del menú com desitgeu. Això pot ser "
+"útil si teniu una resolució de pantalla limitada. Per amagar la barra del "
+"menú:"
 
 #. (itstool) path: item/p
 #: C/pref-menubar.page:41
@@ -2459,13 +2426,13 @@ msgid ""
 "Select <gui style=\"menu\">View</gui> and deselect <gui style=\"menuitem"
 "\">Show Menubar</gui>."
 msgstr ""
-"Sélectionnez <gui style=\"menu\">Affichage</gui> et dé-sélectionnez <gui "
-"style=\"menuitem\">Afficher la barre de menu</gui>."
+"Selecciona <gui style=\"menu\">Visualitza</gui> i des-selecciona  <gui style="
+"\"menuitem\">Mostra la barra del menú</gui>."
 
 #. (itstool) path: page/p
 #: C/pref-menubar.page:46
 msgid "To restore the menubar:"
-msgstr "Pour restaurer la barre de menu : "
+msgstr "Per restaurar la barra del menú:"
 
 #. (itstool) path: item/p
 #: C/pref-menubar.page:50
@@ -2473,8 +2440,8 @@ msgid ""
 "Right click in <app>Terminal</app> and select <gui style=\"menuitem\">Show "
 "Menubar</gui>."
 msgstr ""
-"Faites un clic droit dans <app>Terminal</app> et sélectionnez <gui style="
-"\"menuitem\">Afficher la barre de menu</gui>."
+"Botó dret a <app>Terminal</app> i selecciona <gui style=\"menuitem\">Mostra "
+"la barra del menú</gui>."
 
 #. (itstool) path: page/p
 #: C/pref-menubar.page:55
@@ -2482,15 +2449,15 @@ msgid ""
 "To enable the menubar by default in all <app>Terminal</app> windows that you "
 "open:"
 msgstr ""
-"Pour activer la barre de menu par défaut dans toutes les fenêtres de "
-"<app>Terminal</app> que vous avez ouvertes :"
+"Per habilitar la barra del menú per defecte a totes les finestres del "
+"<app>Terminal</app> que obriu:"
 
 #. (itstool) path: item/p
 #: C/pref-menubar.page:64
 msgid "Select <gui>Show menubar by default in new terminals</gui>."
 msgstr ""
-"Sélectionnez<gui>Afficher la barre de menu par défaut dans les nouveaux "
-"terminaux</gui>."
+"Selecciona <gui>Mostra la barra del menú per defecte als terminals nous</"
+"gui>."
 
 #. (itstool) path: note/p
 #: C/pref-menubar.page:69
@@ -2498,18 +2465,18 @@ msgid ""
 "You can <link xref=\"adv-keyboard-shortcuts\">set a keyboard shortcut</link> "
 "to show and hide the menubar."
 msgstr ""
-"Vous pouvez <link xref=\"adv-keyboard-shortcuts\">définir un raccourci "
-"clavier</link> pour afficher et masquer la barre de menu."
+"Podeu <link xref=\"adv-keyboard-shortcuts\">configurar una drecera al "
+"teclat</link> per mostrar i amagar la barra del menú."
 
 #. (itstool) path: info/desc
 #: C/pref-profiles.page:29
 msgid "Create, edit and delete profiles."
-msgstr "Créer, modifier et supprimer des profils."
+msgstr "Crea, edita i suprimeix perfils."
 
 #. (itstool) path: page/title
 #: C/pref-profiles.page:32
 msgid "Manage profiles"
-msgstr "Gestion des profils"
+msgstr "Gestiona perfils"
 
 #. (itstool) path: page/p
 #: C/pref-profiles.page:40
@@ -2520,27 +2487,27 @@ msgid ""
 "shell</link>, set a profile exclusively to connect to remote computers using "
 "SSH or set a profile that launches a <app>GNU Screen</app> session."
 msgstr ""
-"Un profil est un ensemble de paramètres de <app>Terminal</app>. "
-"<app>Terminal</app> prend en charge plusieurs profils. Vous pouvez "
-"configurer les profils de <app>Terminal</app> dans <link xref=\"pref-custom-"
-"command\">Lancer une commande ou un shell personnalisés</link>, définir un "
-"profil exclusivement pour vous connecter à des ordinateurs distants à l'aide "
-"de SSH ou définir un profil qui lance une session <app>GNU Screen</app>."
+"Un perfil és una col·lecció de paràmetres del <app>Terminal</app>. El "
+"<app>Terminal</app> suporta múltiples perfils. Podeu configurar els perfils "
+"del <app>Terminal</app> per  <link xref=\"pref-custom-command\">executar una "
+"ordre personalitzada o un interpret d'ordres</link>, configurar un perfil de "
+"forma exclusiva per connectar-se a ordinadors remots usant SSH o configurar "
+"un perfil que llanci una sessió <app>GNU Screen</app>."
 
 #. (itstool) path: page/p
 #: C/pref-profiles.page:47
 msgid "The available <app>Terminal</app> settings include:"
-msgstr "Les paramètres de <app>Terminal</app> disponibles incluent : "
+msgstr "Les configuracions disponibles per al <app>Terminal</app> inclouen:"
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:51
 msgid "Profile name."
-msgstr "Nom du profil."
+msgstr "Nom de perfil."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:54
 msgid "Font and background colors."
-msgstr "Couleurs de la police et du fond d'écran."
+msgstr "Tipus de lletra i colors de fons."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:57
@@ -2548,13 +2515,13 @@ msgid ""
 "<gui style=\"tab\">Compatibility</gui> with <key>Backspace</key> and "
 "<key>Delete</key> keys."
 msgstr ""
-"<gui style=\"tab\">Compatibilité</gui> avec les touches <key>Retour arrière</"
-"key> et <key>Supprimer</key>."
+"<gui style=\"tab\">Compatibilitat</gui> amb les tecles <key>Retrocés</key> i "
+"<key>Suprimeix</key>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:61
 msgid "<gui style=\"tab\">Scrolling</gui>."
-msgstr "<gui style=\"tab\">Défilement</gui>."
+msgstr "<gui style=\"tab\">Desplaçament</gui>."
 
 #. (itstool) path: page/p
 #: C/pref-profiles.page:65
@@ -2563,14 +2530,14 @@ msgid ""
 "selected another profile. Any changes that you make to the settings will be "
 "stored in the currently used profile."
 msgstr ""
-"Le profil par défaut est chargé quand un nouveau terminal est ouvert, sauf "
-"si vous avez choisi un autre profil. Toutes les modifications que vous "
-"apportez aux paramètres seront stockées dans le profil actuellement utilisé."
+"El perfil per defecte es carrega quan el nou terminal s'obre llevat que "
+"hàgeu seleccionat un altre perfil. Qualsevol canvi que feu als paràmetres "
+"es desarà al perfil actual."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:70
 msgid "Set a default profile"
-msgstr "Définir un profil par défaut"
+msgstr "Configura el perfil per defecte"
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:72
@@ -2578,8 +2545,8 @@ msgid ""
 "The default profile is a collection of profile settings applied on the "
 "launch of every <app>Terminal</app> tab or window."
 msgstr ""
-"Le profil par défaut est une collection de paramètres de profil appliqués "
-"lors du lancement de chaque onglet ou fenêtre de <app>Terminal</app>."
+"El perfil per defecte és un col·lecció de paràmetres de perfils aplicats en "
+"el llançament de cada pestanya o finestra al <app>Terminal</app>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:77 C/pref-profiles.page:170 C/pref-profiles.page:250
@@ -2588,8 +2555,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem"
 "\">Preferences</gui> <gui style=\"tab\">Profiles</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences</gui> <gui style=\"tab\">Profils</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem"
+"\">Preferències</gui> <gui style=\"tab\">Perfils</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:82
@@ -2597,13 +2564,13 @@ msgid ""
 "Select the profile to be set as default from the <gui>Profile used when "
 "launching a new terminal</gui> drop down list."
 msgstr ""
-"Sélectionnez le profil à définir par défaut à partir de <gui>Profil utilisé "
-"lors du lancement d'un nouveau terminal</gui> dans la liste déroulante."
+"Selecciona el perfil per configurar per defecte de la llista desplegable "
+"<gui>Perfil usat quan es llanci un nou terminal</gui>."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:90
 msgid "Select a profile"
-msgstr "Sélectionnez un profil"
+msgstr "Selecciona un perfil"
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:92
@@ -2612,14 +2579,14 @@ msgid ""
 "by selecting a profile from <guiseq><gui style=\"menu\">Terminal</gui> <gui "
 "style=\"menuitem\">Change Profile</gui></guiseq>."
 msgstr ""
-"Vous pouvez changer le profil de l'onglet ou de la fenêtre active de "
-"<app>Terminal</app> en sélectionnant un profil via <guiseq><gui style=\"menu"
-"\">Terminal</gui><gui style=\"menuitem\">Changer de profil</gui></guiseq>."
+"Podeu canviar el perfil de la pestanya o finestra actual al <app>Terminal</"
+"app> seleccionant un perfil de <guiseq><gui style=\"menu\">Terminal</gui> "
+"<gui style=\"menuitem\">Canvia perfil</gui></guiseq>."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:99
 msgid "Create a new profile"
-msgstr "Création d'un nouveau profil"
+msgstr "Crea un nou perfil"
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:101
@@ -2627,8 +2594,8 @@ msgid ""
 "Any changes to a new profile are saved automatically. To create a new "
 "profile:"
 msgstr ""
-"Tout changement pour un nouveau profil est automatiquement enregistré. Pour "
-"créer un nouveau profil : "
+"Qualsevol canvi al nou perfil es desarà de forma automàtica. Per crear un "
+"nou perfil:"
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:106
@@ -2636,8 +2603,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">File</gui> <gui style=\"menuitem\">New "
 "Profile</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Fichier</gui> <gui style=\"menuitem"
-"\">Nouveau profil</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Fitxer</gui> <gui style=\"menuitem"
+"\">Perfil nou</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:110
@@ -2645,8 +2612,8 @@ msgid ""
 "Enter a name for the new profile next to <gui style=\"input\">Profile name</"
 "gui>."
 msgstr ""
-"Saisissez un nom pour le nouveau profil à côté de <gui style=\"input\">Nom "
-"du profil</gui>."
+"Entreu un nom per al nou perfil a continuació de <gui style=\"input\">Nom "
+"del perfil</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:114
@@ -2655,9 +2622,9 @@ msgid ""
 "\">cursor shape</link> and <link xref=\"app-terminal-sizes\">window size</"
 "link> in the <gui style=\"tab\">General</gui> tab."
 msgstr ""
-"Sélectionnez <link xref=\"app-fonts\">police</link>, <link xref=\"app-cursor"
-"\">forme du curseur</link> et <link xref=\"app-terminal-sizes\">taille de la "
-"fenêtre</link> dans l'onglet <gui style=\"tab\">Général</gui>."
+"Selecciona <link xref=\"app-fonts\">tipus de lletra</link>, <link xref=\"app-"
+"cursor\">forma del cursor</link> i<link xref=\"app-terminal-sizes\">mida de "
+"la finestra</link> a la pestanya <gui style=\"tab\">General</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:120
@@ -2667,10 +2634,10 @@ msgid ""
 "custom-command\">custom shell</link> in the <gui style=\"tab\">Command</gui> "
 "tab."
 msgstr ""
-"Définissez le comportement que vous préférez pour la <link xref=\"pref-"
-"custom-exit\">commande <cmd>exit</cmd></link>. Vous pouvez également définir "
-"un <link xref=\"pref-custom-command\">shell personnalisé</link> dans "
-"l'onglet <gui style=\"tab\">Commande</gui>."
+"Configureu el vostre comportament favorit per l' <link xref=\"pref-custom-"
+"exit\"><cmd>ordre</cmd> surt</link>. Podeu també configurar un <link xref="
+"\"pref-custom-command\">intèrpret d'ordres personalitzat</link> a la "
+"pestanya <gui style=\"tab\">Ordre</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:127
@@ -2678,8 +2645,8 @@ msgid ""
 "Set your preferred <link xref=\"app-colors\">theme and colors</link> in the "
 "<gui style=\"tab\">Colors</gui> tab."
 msgstr ""
-"Définissez vos <link xref=\"app-colors\">palette et couleurs</link> "
-"préférées dans l'onglet <gui style=\"tab\">Couleurs</gui>."
+"Configureu els vostres <link xref=\"app-colors\">temes i colors</link> "
+"favorits a la pestanya <gui style=\"tab\">Colors</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:131
@@ -2687,21 +2654,19 @@ msgid ""
 "Set your <link xref=\"pref-scrolling\">scrolling preference</link> in the "
 "<gui style=\"tab\">Scrolling</gui> tab."
 msgstr ""
-"Définissez votre <link xref=\"pref-scrolling\">préférence de défilement</"
-"link> dans l'onglet <gui style=\"tab\">Défilement</gui>."
+"Configureu les <link xref=\"pref-scrolling\">preferències de desplaçament</"
+"link> a la pestanya <gui style=\"tab\">Desplaçament</gui>."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:139
 msgid "Create a new profile based on an existing profile"
-msgstr "Création d'un nouveau profil basé sur un profil existant"
+msgstr "Creeu un nou perfil basat en el perfil existent"
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:141
 msgid ""
 "You can create a new profile based on settings from an existing profile:"
-msgstr ""
-"Vous pouvez créer un nouveau profil en fonction des paramètres d'un profil "
-"existant : "
+msgstr "Podeu crear un perfil nou basat en els paràmetres del perfil existent:"
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:146
@@ -2714,13 +2679,13 @@ msgid ""
 "\">New Profile</gui></guiseq> to clone the profile that you are currently "
 "using."
 msgstr ""
-"Sélectionnez le profil que vous souhaitez modifier via <guiseq><gui style="
-"\"menu\">Terminal</gui> <gui style=\"menuitem\">Changer de profil</gui> <gui "
-"style=\"menuitem\"><var>Nom du profil</var></gui></guiseq> où <var>Nom du "
-"profil</var> est le nom du profil que vous souhaitez modifier. Vous pouvez "
-"aussi sélectionner <guiseq> <gui style=\"menu\">Fichier</gui> <gui style="
-"\"menuitem\">Nouveau profil</gui></guiseq> pour cloner le profil que vous "
-"êtes en train d'utiliser actuellement."
+"Seleccioneu el perfil que voleu editar a<guiseq><gui style=\"menu"
+"\">Terminal</gui> <gui style=\"menuitem\">Canvia el perfil</gui> <gui style="
+"\"menuitem\"><var>Nom del perfil</var></gui></guiseq> on <var>Nom del "
+"perfil</var> és el nom del perfil que voleu editar. De forma alternativa "
+"podeu seleccionar <guiseq> <gui style=\"menu\">Fitxer</gui> <gui style="
+"\"menuitem\">Perfil nou</gui></guiseq> per clonar el perfil actual que voleu "
+"usar."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:157
@@ -2730,10 +2695,10 @@ msgid ""
 "name</gui> on the tab <gui style=\"tab\">General </gui>, the new profile "
 "will not overwrite the profile that it is based on."
 msgstr ""
-"Définissez les <link xref=\"#edit-profile\">préférences de profil</link> que "
-"vous souhaitez. Elles sont enregistrées automatiquement. Si vous ne mettez "
-"pas à jour le <gui>nom du profil</gui> dans l'onglet <gui style=\"tab"
-"\">Général </gui>, le nouveau profil n'écrase pas le profil dont il est issu."
+"Configureu les vostres <link xref=\"#edit-profile\">preferències de perfil</"
+"link>. Aquest es desarà de forma automatitzada. Si no voleu actualitzar el "
+"<gui>Nom del perfil</gui> a la pestanya <gui style=\"tab\">General </gui>, "
+"el nou perfil no sobreescriurà  el perfil en el qual està basat."
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:165
@@ -2741,18 +2706,18 @@ msgid ""
 "Alternatively, you can create a copy of the existing profile first and then "
 "edit the profile:"
 msgstr ""
-"Vous pouvez aussi d'abord faire une copie du profil existant et ensuite la "
-"modifier : "
+"De forma alternativa, podeu crear primer una copia del perfil existent i "
+"després editar el perfil:"
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:175
 msgid "Select your desired profile."
-msgstr "Sélectionnez le profil désiré."
+msgstr "Seleccioneu el vostre perfil desitjat."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:178
 msgid "Click <gui style=\"button\">Clone</gui>."
-msgstr "Cliquez sur <gui style=\"button\">Cloner</gui>."
+msgstr "Prem <gui style=\"button\">Clona</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:181
@@ -2761,10 +2726,9 @@ msgid ""
 "These will be saved automatically. If you do not update the profile name, "
 "the new profile will not overwrite the profile that it is based on."
 msgstr ""
-"Définissez les <link xref=\"#edit-profile\">préférences de profil</link> que "
-"vous souhaitez. Elles sont enregistrées automatiquement. Si vous ne mettez "
-"pas à jour le nom du profil, le nouveau profil n'écrase pas le profil dont "
-"il est issu."
+"Configureu les vostres <link xref=\"#edit-profile\">preferències de perfil</"
+"link>. Aquestes es desaran de forma automàtica. Si no actualitzeu el nom del "
+"perfil, el nou perfil no sobreescriurà el perfil en qual està basat."
 
 #. (itstool) path: note/p
 #: C/pref-profiles.page:189
@@ -2773,14 +2737,14 @@ msgid ""
 "an existing profile. Any changes to settings will be stored in the new "
 "profile."
 msgstr ""
-"La création d'un nouveau profil à partir d'un profil existant n'affectera "
-"pas les paramètres du profil existant. Toutes les modifications apportées "
-"aux paramètres seront stockées dans le nouveau profil."
+"La creació d'un nou perfil a partir d'un perfil existent no afecta les "
+"configuracions del perfil existent. Qualsevol canvi als paràmetres serà "
+"desat al nou perfil."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:197
 msgid "Edit a profile"
-msgstr "Modification d'un profil"
+msgstr "Edita un perfil"
 
 #. (itstool) path: note/p
 #: C/pref-profiles.page:200
@@ -2793,14 +2757,13 @@ msgid ""
 "copy of the default profile</link> then edit the copy to create a custom "
 "profile."
 msgstr ""
-"Si vous modifiez le profil par défaut, vous ne pourrez plus le restaurer à "
-"ses paramètres d'origine ! Si vous n'aviez pas encore créé d'autre profil de "
-"<app>Terminal</app> et que vous avez personnalisé le profil par défaut, "
-"alors <app>Terminal</app> <em>risque</em> de devenir inutilisable si par "
-"malchance un des paramètres pose problème. C'est pourquoi nous vous "
-"recommandons de <link xref=\"#create-profile-from-existing\">faire une copie "
-"du profil par défaut</link> d'abord, puis de le modifier ensuite pour créer "
-"un profil personnalisé."
+"Si el perfil per defecte s'edita, no podran ser restaurat als paràmetres "
+"originals! Si no heu creat un altre perfil <app>Terminal</app> i heu "
+"personalitzat el perfil per defecte, <app>Terminal</app> <em>pot</em> tornar-"
+"se inusable si qualsevol paràmetre provoca problemes. És recomanable per a "
+"vostè  <link xref=\"#create-profile-from-existing\">crear una copia del "
+"perfil per defecte</link> i després editar la copia per crear un perfil "
+"personalitzat."
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:209
@@ -2809,9 +2772,9 @@ msgid ""
 "<guiseq><gui style=\"menu\">Edit</gui> <gui style=\"menuitem\">Profile "
 "Preferences</gui></guiseq>."
 msgstr ""
-"Vous pouvez effectuer des changements sur les profils existants. Pour "
-"modifier un profil, sélectionnez <guiseq><gui style=\"menu\">Édition</gui> "
-"<gui style=\"menuitem\">Préférences du profil</gui></guiseq>."
+"Podeu fer canvis als perfils existents. Per editar un perfil, seleccioneu "
+"<guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem\">Preferències "
+"del perfil</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:215
@@ -2820,9 +2783,9 @@ msgid ""
 "\">cursor shapes</link> and <link xref=\"app-terminal-sizes\"><app>Terminal</"
 "app> size</link>."
 msgstr ""
-"Sélectionnez <link xref=\"app-fonts\">police</link>, <link xref=\"app-cursor"
-"\">formes du curseur</link> et <link xref=\"app-terminal-sizes\">taille de "
-"<app>Terminal</app></link>."
+"Selecciona <link xref=\"app-fonts\">tipus de lletra</link>, <link xref=\"app-"
+"cursor\">forma del cursor</link> i <link xref=\"app-terminal-sizes"
+"\"><app>Mida del Terminal</app> </link>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:220
@@ -2832,10 +2795,10 @@ msgid ""
 "\">custom login shell</link> or change <link xref=\"pref-scrolling"
 "\">scrollbar preferences</link>."
 msgstr ""
-"Vous pouvez aussi modifier le comportement de <app>Terminal</app> pour la "
-"<link xref=\"pref-custom-exit\">sortie de commande</link>, définir un <link "
-"xref=\"pref-login-shell\">shell de connexion personnalisé</link> ou changer "
-"les <link xref=\"pref-scrolling\">préférences de la barre de défilement</"
+"També podeu canviar el comportament del  <app>Terminal</app> a <link xref="
+"\"pref-custom-exit\">l'ordre surt</link>, configura una <link xref=\"pref-"
+"login-shell\">entrada a un interpret d'ordres personalitzada</link> o canvia "
+"les <link xref=\"pref-scrolling\"> preferències de la barra de desplaçament</"
 "link>."
 
 #. (itstool) path: item/p
@@ -2844,9 +2807,9 @@ msgid ""
 "To change the <app>Terminal</app> background and text colors, see <link xref="
 "\"app-colors\"><app>Terminal</app> color schemes</link>."
 msgstr ""
-"Pour changer le fond d'écran de <app>Terminal</app> et les couleurs du "
-"texte, consultez <link xref=\"app-colors\"> les palettes de couleur de "
-"<app>Terminal</app></link>."
+"Per canviar el fons i els colors del text del <app>Terminal</app>, mireu "
+"<link xref=\"app-colors\">els esquemes de color del<app>Terminal</app></"
+"link>."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:230
@@ -2854,8 +2817,8 @@ msgid ""
 "Changes to profile are saved immediately. To return to <app>Terminal</app>, "
 "click <gui style=\"button\">Close</gui>."
 msgstr ""
-"Les changements de profil sont enregistrés immédiatement. Pour revenir dans "
-"<app>Terminal</app>, cliquez sur <gui style=\"button\">Fermer</gui>."
+"Les canvis del perfil es desen de forma immediata. Per retornar al "
+"<app>Terminal</app>,  premeu <gui style=\"button\"> Tanca </gui>."
 
 #. (itstool) path: note/p
 #: C/pref-profiles.page:236
@@ -2864,25 +2827,26 @@ msgid ""
 "<guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem\">Change "
 "Profile</gui></guiseq>."
 msgstr ""
-"Pour vous assurer que vous êtes en train de modifier le profil souhaité, "
-"sélectionnez le profil à partir de <guiseq><gui style=\"menu\">Terminal</"
-"gui><gui style=\"menuitem\">Changer le profil</gui></guiseq>."
+"Per estar segur que esteu editant el perfil que desitgeu, seleccioneu el "
+"perfil de <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
+"\">Canvia perfil</gui></guiseq>."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:244
 msgid "Rename an existing profile"
-msgstr "Renommage d'un profil existant"
+msgstr "Canvia el nom a un perfil existent"
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:246
 msgid "You can rename existing profiles, including the default profile:"
 msgstr ""
-"Vous pouvez renommer un profil existant, incluant le profil par défaut : "
+"Podeu canviar el nom a perfils que ja existeixen, incloent-hi el perfil per "
+"defecte:"
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:255
 msgid "Select the profile you wish to rename."
-msgstr "Sélectionnez un profil que vous souhaitez renommer."
+msgstr "Selecciona el perfil al qual voleu canviar el nom."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:258
@@ -2890,41 +2854,40 @@ msgid ""
 "Click <gui style=\"button\">Edit</gui>. This will open the profile "
 "preferences dialog for the selected profile."
 msgstr ""
-"Cliquez sur <gui style=\"button\">Modifier</gui>. Cela ouvre la boîte de "
-"dialogue des préférences pour le profil sélectionné."
+"Prem <gui style=\"button\">Edita</gui>. Això obrirà el diàleg amb les "
+"preferències del perfil per al perfil seleccionat."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:262
 msgid "In the text box for <gui>Profile name</gui>, type the new profile name."
 msgstr ""
-"Dans le champ <gui>Nom du profil</gui>, saisissez le nouveau nom de profil."
+"Al quadre de text en <gui>Nom del perfil</gui>, escriviu el nom del perfil "
+"nou."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:266
 msgid "Click <gui style=\"button\">Close</gui> to return."
-msgstr ""
-"Cliquez sur <gui style=\"button\">Fermer</gui> pour retourner à "
-"<app>Terminal</app>."
+msgstr "Premeu <gui style=\"button\">Tanca</gui> per tornar."
 
 #. (itstool) path: section/title
 #: C/pref-profiles.page:273
 msgid "Delete a Profile"
-msgstr "Suppression d'un profil"
+msgstr "Suprimeix un perfil"
 
 #. (itstool) path: section/p
 #: C/pref-profiles.page:275
 msgid "To delete a profile:"
-msgstr "Pour supprimer un profil : "
+msgstr "Per suprimir un perfil:"
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:284
 msgid "Select the profile you wish to delete."
-msgstr "Sélectionnez le profil que vous souhaitez supprimer."
+msgstr "Selecciona el perfil que voleu suprimir."
 
 #. (itstool) path: item/p
 #: C/pref-profiles.page:287
 msgid "Click <gui style=\"button\">Delete</gui>."
-msgstr "Cliquez sur <gui style=\"button\">Supprimer</gui>."
+msgstr "Prem <gui style=\"button\">Suprimeix</gui>."
 
 #. (itstool) path: credit/years
 #: C/pref-profile-char-width.page:13 C/pref-profile-encoding.page:13
@@ -2935,12 +2898,12 @@ msgstr "2014"
 #. (itstool) path: info/desc
 #: C/pref-profile-char-width.page:23
 msgid "Display ambiguous-width characters as wide instead of narrow."
-msgstr "Afficher les caractères de largeur ambigüe en large plutôt qu'étroit."
+msgstr "Mostra els caràcters d'amplada ambigua com amples en lloc d'estrets."
 
 #. (itstool) path: page/title
 #: C/pref-profile-char-width.page:27
 msgid "Characters look too narrow"
-msgstr "Le caractère parait trop étroit"
+msgstr "Caràcters d'aspecte massa estret"
 
 #. (itstool) path: page/p
 #: C/pref-profile-char-width.page:29
@@ -2953,14 +2916,14 @@ msgid ""
 "can change your profile preferences to display ambiguous characters as wide, "
 "which can be better if you are reading running prose."
 msgstr ""
-"Certains caractères, tels certaines lettres grecques ou logogrames "
-"asiatiques, peuvent occuper une ou deux cellules dans la fenêtre de "
-"terminal. Ces caractères sont souvent désignés comme <em>caractères ambigus</"
-"em>. Par défaut, ces caractères sont affichés avec une largeur étroite dans "
-"<app>Terminal</app>, ce qui a meilleure apparence dans certaines situations "
-"ou l'alignement parfait est important, comme l'art ASCII. Vous pouvez "
-"changer vos préférences de profil pour afficher en large les caractères "
-"ambigus, ce qui peut être plus adapté si vous lisez un texte en prose."
+"Alguns caràcters, com algunes lletres gregues i alguns logogrames asiàtics, "
+"poden omplir dos o més cel·les en una finestra de terminal. Aquestes "
+"caràcters són anomenats <em>caràcters ambigus </em>. Per defecte, aquests "
+"caràcters es mostren amb una amplada estreta al <app>Terminal</app>, que "
+"millora la imatge en situacions on la disposició perfecta és important, com "
+"a l'art ASCII. Podeu canviar les preferències del perfil per mostrar "
+"caràcters ambigus com amples, que pot ser millor si estàs llegint prosa "
+"corrent."
 
 #. (itstool) path: item/p
 #: C/pref-profile-char-width.page:39 C/pref-profile-encoding.page:37
@@ -2968,8 +2931,8 @@ msgid ""
 "Open <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem"
 "\">Preferences</gui><gui style=\"tab\">Profiles</gui></guiseq>."
 msgstr ""
-"Ouvrez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences</gui> <gui style=\"tab\">Profils</gui></guiseq>."
+"Obre <guiseq><gui style=\"menu\">Edita</gui><gui style=\"menuitem"
+"\">Preferències</gui><gui style=\"tab\">Perfils</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-profile-char-width.page:43 C/pref-profile-encoding.page:41
@@ -2977,8 +2940,8 @@ msgid ""
 "Select the profile that you want to edit and press <gui style=\"button"
 "\">Edit</gui> to open the profile preferences for editing."
 msgstr ""
-"Sélectionnez le profil que vous voulez éditer et cliquez sur <gui style="
-"\"button\">Modifier</gui> pour ouvrir la boîte de dialogue des préférences."
+"Seleccioneu el perfil que voleu editar i premeu <gui style=\"button\">Edita</"
+"gui> per obrir les preferències del perfil a editar."
 
 #. (itstool) path: item/p
 #: C/pref-profile-char-width.page:48
@@ -2986,18 +2949,18 @@ msgid ""
 "Open the <gui style=\"tab\">Compatibility</gui> tab and set the ambiguous-"
 "width characters to <gui>Wide</gui>."
 msgstr ""
-"Ouvrez l'onglet <gui style=\"tab\">Compatibilité</gui> et choisissez la "
-"largeur des caractères ambigus."
+"Obriu la pestanya <gui style=\"tab\">Compatibilitat</gui> i configureu els "
+"caràcters amb amplària ambigua per <gui>Ampliar</gui>."
 
 #. (itstool) path: info/desc
 #: C/pref-profile-encoding.page:23
 msgid "Set a different encoding for each saved profile."
-msgstr "Sélectionner un encodage différent pour chaque profil sauvegardé."
+msgstr "Configura una codificació diferent per cada perfil desat."
 
 #. (itstool) path: page/title
 #: C/pref-profile-encoding.page:27
 msgid "Change profile character encoding"
-msgstr "Changer le codage des caractères du profil"
+msgstr "Canvia la codificació del caràcters del perfil"
 
 #. (itstool) path: page/p
 #: C/pref-profile-encoding.page:29
@@ -3007,11 +2970,11 @@ msgid ""
 "different character encoding for a specific task, you can <link xref=\"pref-"
 "profiles#new-profile\">create a new profile</link> with a different encoding."
 msgstr ""
-"Vous devriez pouvoir utiliser le choix d'encodage par défaut, UTF-8, pour "
-"tous vos usages du terminal. Si vous avez besoin régulièrement d'utiliser un "
-"autre encodage de caractères pour une tâche spécifique, vous pouvez <link "
-"xref=\"pref-profiles#new-profile\">creer un nouveau profil</link> avec un "
-"encodage différent."
+"Normalment usareu la codificació per defecte, UTF-8, per a tots els "
+"terminals que necessiteu. Si trobeu que us cal usar regularment una "
+"codificació diferent per una tasca especifica, podeu <link xref=\"pref-"
+"profiles#new-profile\">crear un nou perfil</link> amb una codificació "
+"diferent."
 
 #. (itstool) path: item/p
 #: C/pref-profile-encoding.page:46
@@ -3019,20 +2982,20 @@ msgid ""
 "Open the <gui style=\"tab\">Compatibility</gui> tab and set the character "
 "encoding."
 msgstr ""
-"Ouvrez l'onglet <gui style=\"tab\">Compatibilité</gui> et choisissez "
-"l'encodage des caractères."
+"Obre la pestanya <gui style=\"tab\">Compatibilitat</gui> i configura la "
+"codificació del caràcter."
 
 #. (itstool) path: info/desc
 #: C/pref-scrolling.page:24
 msgid "Change the scroll output and scrollbar behavior."
 msgstr ""
-"Modifier le défilement de l'affichage et le comportement de la barre de "
-"défilement."
+"Canvia la sortida del desplaçament i el comportament de la barra del "
+"desplaçament."
 
 #. (itstool) path: page/title
 #: C/pref-scrolling.page:27
 msgid "Scrollbar preferences"
-msgstr "Préférences de la barre de défilement"
+msgstr "Preferències de la barra de desplaçament"
 
 #. (itstool) path: page/p
 #: C/pref-scrolling.page:29
@@ -3041,19 +3004,19 @@ msgid ""
 "to have your terminal behave in a specific manner so that it is easier to "
 "work with."
 msgstr ""
-"Quand un grand nombre de sorties s'affichent sur votre terminal, il peut "
-"être utile de le configurer spécialement pour qu'il soit plus facile à "
-"utiliser."
+"Quan un lot de sortides s'imprimeix a una pantalla de terminal, pot ser útil "
+"tindre un terminal amb un comportament d'una forma especifica per ser més "
+"fàcil treballar."
 
 #. (itstool) path: section/title
 #: C/pref-scrolling.page:34
 msgid "Scrollbar visibility"
-msgstr "Affichage de la barre de défilement"
+msgstr "Visibilitat de la barra de desplaçament"
 
 #. (itstool) path: section/p
 #: C/pref-scrolling.page:36
 msgid "You can disable the scrollbar:"
-msgstr "Vous pouvez désactiver la barre de défilement:"
+msgstr "Per deshabilitar la barra de desplaçament:"
 
 #. (itstool) path: item/p
 #: C/pref-scrolling.page:40 C/pref-scrolling.page:61 C/pref-scrolling.page:80
@@ -3062,23 +3025,24 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem\">Profile "
 "Preferences</gui><gui style=\"tab\">Scrolling</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences du profil</gui> <gui style=\"tab\">Défilement</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui><gui style=\"menuitem"
+"\">Preferències del perfil</gui><gui style=\"tab\">Desplaçament</gui></"
+"guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-scrolling.page:45
 msgid "Uncheck <gui>Show scrollbar</gui>."
-msgstr "Décochez <gui>Afficher la barre de défilement</gui>."
+msgstr "Desmarca <gui>Mostra la barra de desplaçament</gui>."
 
 #. (itstool) path: section/p
 #: C/pref-scrolling.page:49
 msgid "Your preference is saved immediately."
-msgstr "Vos préférences sont automatiquement enregistrées."
+msgstr "La vostra preferència s'ha desat de forma immediata. "
 
 #. (itstool) path: section/title
 #: C/pref-scrolling.page:54
 msgid "Scroll on output"
-msgstr "Défilement sur la sortie"
+msgstr "Desplaçament a la sortida"
 
 #. (itstool) path: section/p
 #: C/pref-scrolling.page:56
@@ -3086,18 +3050,18 @@ msgid ""
 "You can lock scrolling so that it always shows the newest output while a "
 "command executes."
 msgstr ""
-"Vous pouvez bloquer le défilement afin d'afficher en permanence les "
-"dernières sorties tandis qu'une commande s'exécute."
+"Podeu bloquejar el desplaçament de forma que sempre mostri la sortida més "
+"nova quan una ordre s'executa."
 
 #. (itstool) path: item/p
 #: C/pref-scrolling.page:66
 msgid "Check <gui style=\"checkbox\">Scroll on output</gui>."
-msgstr "Cochez <gui style=\"checkbox\">Défilement sur la sortie</gui>."
+msgstr "Marca <gui style=\"checkbox\">Desplaçament a la sortida</gui>."
 
 #. (itstool) path: section/title
 #: C/pref-scrolling.page:73
 msgid "Scroll on input"
-msgstr "Défilement lors de la saisie"
+msgstr "Desplaçament a l'entrada"
 
 #. (itstool) path: section/p
 #: C/pref-scrolling.page:75
@@ -3105,19 +3069,18 @@ msgid ""
 "You can set the terminal to automatically scroll to the bottom of the window "
 "when you input text into the prompt."
 msgstr ""
-"Vous pouvez régler le terminal pour qu'il défile automatiquement au bas de "
-"la fenêtre quand vous tapez un texte dans l'invite de commande."
+"Podeu configurar el terminal per desplaçar-se de forma automàtica a la part "
+"inferior de la finestra quan entreu text a l'indicador."
 
 #. (itstool) path: item/p
 #: C/pref-scrolling.page:85
 msgid "Check <gui style=\"checkbox\">Scroll on keystroke</gui>."
-msgstr ""
-"Cochez <gui style=\"checkbox\">Défilement sur pression d'une touche</gui>."
+msgstr "Marca <gui style=\"checkbox\">Desplaçament en prémer una tecla</gui>."
 
 #. (itstool) path: section/title
 #: C/pref-scrolling.page:91
 msgid "Scrollback lines"
-msgstr "Lignes de défilement"
+msgstr "Línies de desplaçament enrere"
 
 #. (itstool) path: section/p
 #: C/pref-scrolling.page:93
@@ -3126,10 +3089,10 @@ msgid ""
 "memory. You may want to do this if you rarely restart your terminal so that "
 "there is a limit to how much memory the scrollback can use."
 msgstr ""
-"Vous pouvez limiter le nombre de lignes de sortie du terminal stockées en "
-"mémoire. Cela peut être utile si vous redémarrez peut souvent votre "
-"terminal, afin de limiter la quantité de mémoire consommée par la barre de "
-"défilement."
+"Podeu limitar el nombre de línies del terminal de sortida que hi ha "
+"emmagatzemades en memòria. Podeu fer això si alguna vegada reinicieu el "
+"terminal i d'aquesta forma teniu un límit a la quantitat de memòria a usar "
+"en desplaçaments enrere."
 
 #. (itstool) path: item/p
 #: C/pref-scrolling.page:104
@@ -3137,8 +3100,8 @@ msgid ""
 "Check <gui>Limit scrollback to</gui> and enter a number of lines which is "
 "greater than 0 to limit scrollback."
 msgstr ""
-"Cochez <gui>Limitez les lignes d'historique à </gui> et saisissez un nombre "
-"de lignes supérieur à zéro pour limiter le défilement."
+"Marca <gui>Limit al desplaçament enrere</gui> i entreu un nombre de línies "
+"que sigui més gran que 0 per posar el límit al desplaçament enrere."
 
 #. (itstool) path: item/p
 #: C/pref-scrolling.page:108
@@ -3146,8 +3109,8 @@ msgid ""
 "Optionally, you can click on <gui style=\"button\">+</gui> to increase and "
 "<gui style=\"button\">-</gui> to decrease lines."
 msgstr ""
-"Cliquez sur le <gui style=\"button\">+</gui> pour augmenter ou le <gui style="
-"\"button\">-</gui> pour diminuer le nombre de lignes."
+"De forma opcional, podeu prémer a <gui style=\"button\">+</gui> per "
+"augmentar i a <gui style=\"button\">-</gui> per disminuir les línies. "
 
 #. (itstool) path: note/p
 #: C/pref-scrolling.page:114
@@ -3155,8 +3118,8 @@ msgid ""
 "Using unlimited scrollback can make your <app>Terminal</app> sluggish during "
 "scrolling!"
 msgstr ""
-"L'utilisation de l'option défilement illimité peut rendre <app>Terminal</"
-"app> très lent pendant le défilement !"
+"Si utilitzeu desplaçament enrere sense límit podeu tornar lent el "
+"<app>Terminal</app> durant el desplaçament."
 
 #. (itstool) path: credit/years
 #: C/pref-tab-window.page:15
@@ -3167,12 +3130,12 @@ msgstr "2014–2015"
 #: C/pref-tab-window.page:25
 msgid "Choose whether to open a new window or a new tab by default."
 msgstr ""
-"Choisir l'ouverture par défaut d'une nouvelle fenêtre ou d'un nouvel onglet."
+"Trieu si voleu obrir una nova finestra o una pestanya nova per defecte."
 
 #. (itstool) path: page/title
 #: C/pref-tab-window.page:28
 msgid "Windows and tabs"
-msgstr "Fenêtres et onglets"
+msgstr "Finestres i pestanyes"
 
 #. (itstool) path: page/p
 #: C/pref-tab-window.page:30
@@ -3180,8 +3143,9 @@ msgid ""
 "You can chose whether to open a new tab or a new <app>Terminal</app> window "
 "when you use <gui style=\"menuitem\">Open Terminal</gui>."
 msgstr ""
-"Vous pouvez décider d'<gui style=\"menuitem\">ouvrir <app>Terminal</app></"
-"gui> soit dans une nouvelle fenêtre, soit dans un nouvel onglet."
+"Podeu decidir si voleu obrir una nova pestanya o una finestra de "
+"<app>Terminal</app> quan s'utilitzeu <gui style=\"menuitem\"> Obre terminal "
+"</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-tab-window.page:35
@@ -3189,16 +3153,16 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Edit</gui><gui style=\"menuitem"
 "\">Preferences</gui><gui style=\"tab\">General</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Préférences</gui> <gui style=\"tab\">Général</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Edita</gui><gui style=\"menuitem"
+"\">Preferències</gui><gui style=\"tab\">General</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/pref-tab-window.page:39
 msgid ""
 "Set <gui>Open new terminals in:</gui> to <gui>Tab</gui> or <gui>Window</gui>."
 msgstr ""
-"Définissez <gui>Ouvrir un nouveau terminal dans :</gui> un <gui>Onglet</gui> "
-"ou dans une <gui>Fenêtre</gui>."
+"Configura <gui>Obre terminals nous en:</gui> una <gui>Pestanya</gui> o una "
+"<gui>Finestra</gui>."
 
 #. (itstool) path: page/p
 #: C/pref-tab-window.page:44
@@ -3210,25 +3174,23 @@ msgid ""
 "key> and then press <gui style=\"menuitem\">New Terminal</gui>, then a new "
 "window will be opened instead."
 msgstr ""
-"Une fois vos préférences configurées, la touche <key>Ctrl</key> permet "
-"d'inverser votre choix. De fait, si vous aviez choisi d'ouvrir un nouveau "
-"terminal dans un nouvel onglet, alors cliquer sur <gui style=\"menuitem"
-"\">Nouveau Terminal</gui> l'ouvre dans un nouvel onglet. Inversement, si "
-"vous maintenez en même temps la touche <key>Ctrl</key> enfoncée, cliquer sur "
-"<gui style=\"menuitem\">Nouveau Terminal</gui> l'ouvre dans une nouvelle "
-"fenêtre."
+"Una vegada heu configurat les preferències, podeu usar <key>Ctrl</key> per "
+"invertir les preferències. Per exemple, si heu configurat les preferències "
+"per obrir un terminal nou en una pestanya nova, llavors al prémer <gui style="
+"\"menuitem\">Terminal nou</gui>  s'obrirà una pestanya nova. D'un altre "
+"costat si manteniu premuda <key>Ctrl</key> i premeu <gui style=\"menuitem\"> "
+"Terminal nou </gui>, llavors s'obrirà una finestra nova al seu lloc."
 
 #. (itstool) path: info/desc
 #: C/pref-user-input.page:17
 msgid "Do not send user input to the application running in the terminal."
 msgstr ""
-"Ne pas envoyer de saisie utilisateur à l'application en cours dans le "
-"terminal."
+"No envieu entrades d'usuari a una aplicació que s'executi en un terminal."
 
 #. (itstool) path: page/title
 #: C/pref-user-input.page:22
 msgid "Disable user input"
-msgstr "Désactiver la saisie utilisateur"
+msgstr "Deshabilita l'entrada d'usuari"
 
 #. (itstool) path: page/p
 #: C/pref-user-input.page:24
@@ -3241,19 +3203,18 @@ msgid ""
 "also be able to copy selected text from the terminal, but you will not be "
 "able to paste text into the terminal."
 msgstr ""
-"Vous pouvez empêcher le transfert de la saisie utilisateur dans le terminal "
-"vers l'application en cours d'exécution dans le terminal. Cela va empêcher que "
-"les touches pressées, les clics et les mouvements de souris affectent "
-"l'application. Vous pourrez toujours interagir avec le terminal lui-même en "
-"utilisant le clavier pour le défilement et la souris pour sélectionner du "
-"texte. Vous serez également en mesure de copier le texte sélectionné à "
-"partir du terminal, mais vous ne pourrez pas coller du texte dans le "
-"terminal."
+"Podeu impedir les entrades d'usuari dins del terminal una vegada estigui en "
+"marxa una aplicació dins del terminal. Això impedirà qualsevol el teclejat, "
+"el clics de ratolí i els moviments de ratolí que afectin a l'aplicació. "
+"Podreu encara interactuar amb el vostre propi terminal, utilitzar el teclat "
+"per al desplaçament i el punter del ratolí per seleccionar text. També sereu "
+"capaç de copiar el text seleccionat des de la terminal, però que no sereu "
+"capaç d'enganxar text en el terminal."
 
 #. (itstool) path: page/p
 #: C/pref-user-input.page:32
 msgid "To use the read only mode:"
-msgstr "Pour utiliser le mode de lecture seule :"
+msgstr "Per utilitzar el mode de sols lectura:"
 
 #. (itstool) path: item/p
 #: C/pref-user-input.page:36
@@ -3261,15 +3222,15 @@ msgid ""
 "Right click in the <app>Terminal</app> window or select the <gui style=\"menu"
 "\">Terminal</gui> menu."
 msgstr ""
-"Faites un clic droit dans <app>Terminal</app> ou sélectionnez le menu <gui "
-"style=\"menuitem\">Terminal</gui>."
+"Botó dret a la finestra del <app>Terminal</app> o seleccioneu  el menú <gui "
+"style=\"menu\">Terminal</gui>."
 
 #. (itstool) path: item/p
 #: C/pref-user-input.page:40
 msgid "Select <gui style=\"menuitem\">Read-Only</gui> so that it is checked."
 msgstr ""
-"Sélectionnez <gui style=\"menuitem\">Lecture Seule</gui> pour qu'il soit "
-"validé."
+"Seleccioneu <gui style=\"menuitem\">Sols lectura</gui> i comproveu que queda "
+"marcat."
 
 #. (itstool) path: page/p
 #: C/pref-user-input.page:44
@@ -3277,13 +3238,13 @@ msgid ""
 "You can disable the read only mode by unchecking <gui style=\"menuitem"
 "\">Read-Only</gui>."
 msgstr ""
-"Vous pouvez désactiver le mode de lecture seule en décochant <gui style="
-"\"menuitem\">Lecture seule</gui>."
+"Podeu deshabilitar el mode de sols lectura desmarcant <gui style=\"menuitem"
+"\">Sols lectura</gui>."
 
 #. (itstool) path: page/title
 #: C/profile.page:18
 msgid "Profile preferences"
-msgstr "Préférences du profil"
+msgstr "Preferències del perfil"
 
 #. (itstool) path: info/desc
 #: C/prob-reset.page:23
@@ -3291,13 +3252,13 @@ msgid ""
 "How do I recover my <app>Terminal</app> screen when it becomes stuck or has "
 "lot of strange symbols on it?"
 msgstr ""
-"Comment retrouver l'écran normal de <app>Terminal</app> s'il lui arrive de "
-"geler ou d'afficher plein de symboles bizarres ?"
+"Com recuperar la meva pantalla del <app>Terminal</app> quan es penja o té un "
+"munt d'estranys símbols a dins?"
 
 #. (itstool) path: page/title
 #: C/prob-reset.page:27
 msgid "Reset your <app>Terminal</app> output"
-msgstr "Réinitialisation de la sortie de <app>Terminal</app>"
+msgstr "Reinicieu la sortida del vostre <app>Terminal</app>"
 
 #. (itstool) path: page/p
 #: C/prob-reset.page:29
@@ -3307,21 +3268,20 @@ msgid ""
 "printed when you press keys. You can recover your <app>Terminal</app> in the "
 "following ways:"
 msgstr ""
-"Il peut arriver qu'après avoir ouvert par erreur un fichier autre que du "
-"texte, ou d'avoir lancé une commande hasardeuse, l'écran de <app>Terminal</"
-"app> se fige ou affiche des caractères bizarres lorsque vous appuyez sur des "
-"touches. Vous pouvez alors récupérer votre <app>Terminal</app> de plusieurs "
-"façons :"
+"Després de veure un fitxer binari amb errors, o llançar alguna ordre, pot "
+"succeir que la pantalla del <app>Terminal</app> no respongui, o tingui "
+"lletres estranyes quan premeu tecles. Podeu recuperar el <app>Terminal</app> "
+"d'aquestes formes:"
 
 #. (itstool) path: section/title
 #: C/prob-reset.page:35
 msgid "Reset"
-msgstr "Réinitialisation"
+msgstr "Reiniciar"
 
 #. (itstool) path: section/p
 #: C/prob-reset.page:37
 msgid "Reset <app>Terminal</app> screen."
-msgstr "Réinitialiser l'écran de <app>Terminal</app>."
+msgstr "Reinicia la pantalla del <app>Terminal</app>."
 
 #. (itstool) path: item/p
 #: C/prob-reset.page:41
@@ -3329,18 +3289,18 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Terminal</gui><gui style=\"menuitem"
 "\">Reset</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Terminal</gui><gui style=\"menuitem"
-"\">Réinitialiser</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Terminal</gui><gui style=\"menuitem"
+"\">Reinicia</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/prob-reset.page:45 C/prob-reset.page:65
 msgid "To obtain the prompt press <key>Enter</key>."
-msgstr "Pour obtenir la main, appuyez sur <key>Entrée</key>."
+msgstr "Per obtindre l'indicador premeu <key>Intro</key>."
 
 #. (itstool) path: section/title
 #: C/prob-reset.page:52
 msgid "Reset and Clear"
-msgstr "Réinitialisation et suppression"
+msgstr "Reiniciar i netejar"
 
 #. (itstool) path: section/p
 #: C/prob-reset.page:54
@@ -3350,10 +3310,10 @@ msgid ""
 "of all terminal output. To <gui style=\"menuitem\">Reset and Clear</gui> "
 "your <app>Terminal</app>:"
 msgstr ""
-"En plus de réinitialiser votre <app>Terminal</app>, la fonction <gui style="
-"\"menuitem\">Réinitialiser et effacer</gui> supprime toutes les sorties "
-"présentes à l'écran du terminal. Pour <gui style=\"menuitem\">Réinitialiser "
-"et effacer</gui> <app>Terminal</app> :"
+"A més a més de reiniciar el <app>Terminal</app>, <gui style=\"menuitem"
+"\">Reinicia i neteja</gui> neteja la pantalla visible del <app>Terminal</"
+"app> a totes les sortides de tots els terminals. Per <gui style=\"menuitem"
+"\">Reiniciar i netejar</gui> el vostre <app>Terminal</app>:"
 
 #. (itstool) path: item/p
 #: C/prob-reset.page:61
@@ -3361,8 +3321,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
 "\">Reset and Clear</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
-"\">Réinitialiser et effacer</gui></guiseq>."
+"Selecciona <guiseq><gui style=\"menu\">Terminal</gui> <gui style=\"menuitem"
+"\">Reinicia i neteja</gui></guiseq>."
 
 #. (itstool) path: note/p
 #: C/prob-reset.page:69
@@ -3370,18 +3330,18 @@ msgid ""
 "<gui>Reset and clear</gui> provides the similar functionality than the "
 "terminal command <cmd>reset</cmd>."
 msgstr ""
-"<gui>Réinitialiser et effacer</gui> déclenche la même action que l'exécution "
-"de la commande <cmd>reset</cmd>."
+"<gui>Reinicia i neteja</gui> proporciona una funcionalitat semblant a "
+"l'ordre de terminal <cmd>reset</cmd>."
 
 #. (itstool) path: info/desc
 #: C/txt-copy-paste.page:28
 msgid "Copy and paste text in <app>Terminal</app>."
-msgstr "Copier et coller du texte dans <app>Terminal</app>."
+msgstr "Copieu i enganxeu text al <app>Terminal</app>."
 
 #. (itstool) path: page/title
 #: C/txt-copy-paste.page:32
 msgid "Copy and paste"
-msgstr "Copier et coller"
+msgstr "Copia i enganxa"
 
 #. (itstool) path: page/p
 #: C/txt-copy-paste.page:34
@@ -3389,14 +3349,13 @@ msgid ""
 "You can copy and paste text in <app>Terminal</app> in a similar way to other "
 "applications. However, the keyboard shortcuts differ."
 msgstr ""
-"Vous pouvez copier et coller du texte dans <app>Terminal</app> de la même "
-"manière que dans les autres applications. Cependant, les raccourcis claviers "
-"diffèrent."
+"Podeu copiar i enganxar text al <app>Terminal</app> d'una forma semblant a "
+"altres aplicacions. De totes formes, les dreceres de teclat són diferents."
 
 #. (itstool) path: item/title
 #: C/txt-copy-paste.page:39
 msgid "<gui>Copy</gui>"
-msgstr "<gui>Copier</gui>"
+msgstr "<gui>Copia</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-copy-paste.page:40
@@ -3406,15 +3365,15 @@ msgid ""
 "Alternatively, you can press <keyseq><key>Ctrl</key><key>Shift</key><key>C</"
 "key></keyseq>."
 msgstr ""
-"Sélectionnez les portions de texte que vous souhaitez copier, puis cliquez "
-"sur <guiseq><gui style=\"menu\">Édition</gui> <gui style=\"menuitem"
-"\">Copier</gui></guiseq>. Vous pouvez aussi appuyer sur <keyseq><key>Ctrl</"
-"key><key>Maj</key><key>C</key></keyseq>."
+"Ressalteu les porcions de text que voleu copiar, llavors seleccioneu "
+"<guiseq><gui style=\"menu\">Edita</gui> <gui style=\"menuitem\">Copia</gui></"
+"guiseq>. De forma alternativa, podeu prémer <keyseq><key> Ctrl </key><key> "
+"Majúscules </key><key>C</key></keyseq>."
 
 #. (itstool) path: item/title
 #: C/txt-copy-paste.page:46
 msgid "<gui>Paste</gui>"
-msgstr "<gui>Coller</gui>"
+msgstr "<gui>Enganxa</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-copy-paste.page:47
@@ -3423,9 +3382,9 @@ msgid ""
 "\">Paste</gui>. Alternatively, you can press <keyseq><key>Ctrl</"
 "key><key>Shift</key><key>V</key></keyseq>."
 msgstr ""
-"Faites un clic droit dans la fenêtre de <app>Terminal</app> et choisissez "
-"<guiseq><gui style=\"menuitem\">Coller</gui></guiseq>. Vous pouvez aussi "
-"appuyer sur <keyseq><key>Ctrl</key><key>Maj</key><key>V</key></keyseq>."
+"Botó dret sobre <app>Terminal</app> i seleccioneu <gui style=\"menuitem"
+"\">Enganxa</gui>. De forma alternativa, podeu prémer <keyseq><key>Ctrl</"
+"key><key>Majúscules</key><key>V</key></keyseq>."
 
 #. (itstool) path: note/p
 #: C/txt-copy-paste.page:55
@@ -3433,18 +3392,18 @@ msgid ""
 "The standard keyboard shortcuts, such as <keyseq><key>Ctrl</key><key>C</"
 "key></keyseq>, cannot be used to copy and paste text."
 msgstr ""
-"Les raccourcis de clavier standards, tels que <keyseq><key>Ctrl</key><key>C</"
-"key></keyseq>, ne peuvent pas être utilisés pour copier et coller du texte."
+"Les dreceres de teclat estàndard, com <keyseq><key>Ctrl</key><key>C</key></"
+"keyseq>, no poden ser usades per copiar text ni enganxar text."
 
 #. (itstool) path: info/desc
 #: C/txt-links.page:27
 msgid "Open links to web and email addresses."
-msgstr "Ouvrir les liens vers des adresses Web et courriel."
+msgstr "Obre enllaços web i adreces de correu."
 
 #. (itstool) path: page/title
 #: C/txt-links.page:30
 msgid "Hyperlinks and email addresses"
-msgstr "Hyperliens et adresses de courriel"
+msgstr "Hiperenllaços i adreces de correu"
 
 #. (itstool) path: page/p
 #: C/txt-links.page:32
@@ -3454,11 +3413,11 @@ msgid ""
 "addresses are automatically highlighted when you point your cursor to the "
 "text, indicating that the link can be opened in an application."
 msgstr ""
-"<app>Terminal</app> analyse la sortie du terminal et détecte automatiquement "
-"les bouts de texte qui sont des adresses Web ou des adresses de courriel. "
-"Les adresses Web et courriel sont automatiquement mises en surbrillance "
-"lorsque vous pointez le curseur sur le texte, indiquant que le lien peut "
-"être ouvert dans une application."
+"El <app>Terminal</app> analitza la sortida del terminal i de forma "
+"automàtica detecta fragments de text que són adreces web o adreces de "
+"correu. Les adreces web i de correu són automàticament ressaltades quan "
+"apunta el vostre cursor al text, indicant que l'enllaç pot ser obert per una "
+"aplicació."
 
 #. (itstool) path: page/p
 #: C/txt-links.page:37
@@ -3467,15 +3426,14 @@ msgid ""
 "<output>username@example.com</output> generated as a part of terminal output "
 "by programs such as <app>wget</app> or <app>curl</app>."
 msgstr ""
-"Par exemple, vous pouvez voir <output>http://www.gnome.org</output> ou "
-"<output>nomutilisateur@exemple.com</output> généré dans le cadre de la "
-"sortie du terminal par des programmes tels que <app>wget</app> ou <app>curl</"
-"app>."
+"per exemple, podeu veure <output>http://www.gnome.org</output> o "
+"<output>username@example.com</output> generades com una part del terminal de "
+"sortida amb programes com <app>wget</app> o <app>curl</app>."
 
 #. (itstool) path: section/title
 #: C/txt-links.page:42
 msgid "Open or copy web addresses"
-msgstr "Ouverture ou copie d'adresses Web"
+msgstr "Obre o copia adreces web"
 
 #. (itstool) path: section/p
 #: C/txt-links.page:44
@@ -3483,44 +3441,43 @@ msgid ""
 "Web addresses are also called hyperlinks. They can be copied to the system "
 "clipboard or opened in your preferred web browser."
 msgstr ""
-"Les adresses Web sont également appelées hyperliens. Elles peuvent être "
-"copiées dans le presse-papiers du système ou ouvertes dans votre navigateur "
-"Web préféré."
+"Les adreces web també s'anomenen  hiperenllaços. Poden ser copiades al porta-"
+"retalls del sistema o oberts amb el vostre navegador favorit."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:49
 msgid "Copy a hyperlink:"
-msgstr "Copier un hyperlien : "
+msgstr "Copia un hiperenllaç: "
 
 #. (itstool) path: item/p
 #: C/txt-links.page:52
 msgid "Right click on the link in <app>Terminal</app>."
-msgstr "Faites un clic droit sur le lien dans <app>Terminal</app>."
+msgstr "Botó dret sobre l'enllaç al <app>Terminal</app>."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:55
 msgid "Select <gui style=\"menuitem\">Copy Link Address</gui>."
-msgstr "Sélectionnez <gui style=\"menuitem\">Copier l'adresse du lien</gui>."
+msgstr "Selecciona <gui style=\"menuitem\">Copia l'enllaç de l'adreça</gui>."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:60
 msgid "Open a hyperlink in your web browser:"
-msgstr "Ouvrir un hyperlien dans votre navigateur Web : "
+msgstr "Obre un hiperenllaç al vostre navegador:"
 
 #. (itstool) path: item/p
 #: C/txt-links.page:63
 msgid "Right click on the hyperlink."
-msgstr "Faites un clic droit sur l'hyperlien."
+msgstr "Botó dret sobre l'hiperenllaç."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:66
 msgid "Select <gui style=\"menuitem\">Open Link</gui>."
-msgstr "Sélectionnez <gui style=\"menuitem\">Ouvrir le lien</gui>."
+msgstr "Selecciona <gui style=\"menuitem\">Obre l'enllaç</gui>."
 
 #. (itstool) path: section/title
 #: C/txt-links.page:75
 msgid "Email or copy email addresses"
-msgstr "Envoi par courrier électronique ou copie d'adresses de courriel"
+msgstr "Correu electrònic o copia les adreces de correu"
 
 #. (itstool) path: section/p
 #: C/txt-links.page:77
@@ -3528,56 +3485,54 @@ msgid ""
 "Email addresses can be copied to the system clipboard or opened in your "
 "preferred email client."
 msgstr ""
-"Les adresses de courriel peuvent être copiées dans le presse-papiers du "
-"système ou ouvertes directement dans votre client de messagerie préféré."
+"Les adreces de correu poder copiar-se al porta-retall del sistema o obertes "
+"amb el vostre client de correu."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:82
 msgid "Copy an email address:"
-msgstr "Pou copier une adresse de courriel : "
+msgstr "Copia una adreça de correu:"
 
 #. (itstool) path: item/p
 #: C/txt-links.page:85
 msgid "Right click on the email address in <app>Terminal</app>."
-msgstr "Faites un clic droit sur l'adresse courriel dans <app>Terminal</app>."
+msgstr "Botó dret sobre l'adreça de correu al <app>Terminal</app>."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:88
 msgid "Select <gui style=\"menuitem\">Copy E-mail Address</gui>."
 msgstr ""
-"Sélectionnez <gui style=\"menuitem\">Copier l'adresse de courriel</gui>."
+"Selecciona <gui style=\"menuitem\">Copia l'adreça de correu electrònic</gui>."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:93
 msgid "Send mail to the email address using your email client:"
-msgstr ""
-"Pour envoyer un courrier électronique à l'adresse de courriel avec votre "
-"client de messagerie : "
+msgstr "Envia un correu a l'adreça de correu usant un client de correu:"
 
 #. (itstool) path: item/p
 #: C/txt-links.page:96
 msgid "Right click on the address."
-msgstr "Faites un clic droit sur l'adresse."
+msgstr "Botó dret sobre l'adreça."
 
 #. (itstool) path: item/p
 #: C/txt-links.page:99
 msgid "Select <gui style=\"menuitem\">Sent Mail To…</gui>."
-msgstr "Sélectionnez <gui style=\"menuitem\">Envoyer un courriel à…</gui>"
+msgstr "Seleccioneu <gui style=\"menuitem\">S'està enviant correu a ...</gui>."
 
 #. (itstool) path: info/desc
 #: C/txt-search.page:27
 msgid "Search the <app>Terminal</app> output."
-msgstr "Effectuer une recherche dans la sortie de <app>Terminal</app>."
+msgstr "Cerca la sortida del <app>Terminal</app>."
 
 #. (itstool) path: page/title
 #: C/txt-search.page:31
 msgid "Use <gui style=\"menuitem\">Find</gui>"
-msgstr "Utilisation de <gui style=\"menuitem\">Rechercher</gui>"
+msgstr "Usa <gui style=\"menuitem\">Cerca</gui>"
 
 #. (itstool) path: page/p
 #: C/txt-search.page:33
 msgid "You can search text in the <app>Terminal</app> output:"
-msgstr "Pour rechercher du texte dans la sortie de <app>Terminal</app> : "
+msgstr "Podeu cercar text a la sortida del <app>Terminal</app>:"
 
 #. (itstool) path: item/p
 #: C/txt-search.page:37
@@ -3585,8 +3540,8 @@ msgid ""
 "Select <guiseq><gui style=\"menu\">Search</gui> <gui style=\"menuitem\">Find…"
 "</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"menu\">Rechercher</gui> <gui style="
-"\"menuitem\">Rechercher…</gui></guiseq>."
+"Seleccioneu <guiseq><gui style=\"menu\">Cerca</gui> <gui style=\"menuitem"
+"\">Cerca...</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/txt-search.page:41
@@ -3594,21 +3549,20 @@ msgid ""
 "Type in the search keyword and press <gui style=\"button\">Find</gui>. To "
 "cancel, press <gui style=\"button\">Close</gui>."
 msgstr ""
-"Saisissez le mots-clé de recherche et appuyez sur <gui style=\"button"
-"\">Rechercher</gui>. Pour annuler, appuyez sur <gui style=\"button\">Fermer</"
-"gui>."
+"Escriviu el terme de cerca i premeu <gui style=\"button\">Cerca</gui>. Per "
+"cancel·lar premeu <gui style=\"button\">Tanca </gui>."
 
 #. (itstool) path: page/p
 #: C/txt-search.page:46
 msgid "You can search using the following options to narrow down your results:"
 msgstr ""
-"Vous pouvez effectuer une recherche en utilisant les options suivantes pour "
-"affiner vos résultats : "
+"Podeu cercar utilitzant les següents opcions per restringir més els "
+"resultats:"
 
 #. (itstool) path: item/title
 #: C/txt-search.page:51
 msgid "<gui style=\"checkbox\">Match case</gui>"
-msgstr "<gui style=\"checkbox\">Respecter la casse</gui>"
+msgstr "<gui style=\"checkbox\">Coincidència de majúscules i minúscules</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-search.page:52
@@ -3616,13 +3570,15 @@ msgid ""
 "Make the search case sensitive: this restricts results to only those that "
 "match the case of your search keyword."
 msgstr ""
-"Rend la recherche sensible à la casse : cela limite les résultats à ceux qui "
-"correspondent à la typographie de votre mot-clé."
+"Fer la cerca distingint majúscules i minúscules: Això restringeix els "
+"resultats a sols aquells en que es distingeix majúscules i minúscules del "
+"termes de cerca."
 
 #. (itstool) path: item/title
 #: C/txt-search.page:56
 msgid "<gui style=\"checkbox\">Match entire word only</gui>"
-msgstr "<gui style=\"checkbox\">Mots entiers seulement</gui>"
+msgstr ""
+"<gui style=\"checkbox\">Coincidència només amb la paraula sencera</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-search.page:57
@@ -3632,16 +3588,15 @@ msgid ""
 "for \"gnome\", <app>Terminal</app> will show only results that match this "
 "keyword exactly and omit results such as \"gnome-terminal\"."
 msgstr ""
-"<app>Terminal</app> va rechercher le mot-clé dans son intégralité et va "
-"ignorer les résultats qui correspondent partiellement à ce mot. Par exemple, "
-"si vous avez recherché \"gnome\", <app>Terminal</app> n'affichera que les "
-"résultats qui correspondent à ce mot-clé exactement et omettra des résultats "
-"tels que \"gnome-terminal\"."
+"El <app>Terminal</app> cercarà la paraula clau sencera i ignorarà resultats "
+"parcials amb la paraula clau de cerca. Per exemple, si heu cercat \"gnome\", "
+"<app>Terminal</app> mostrarà sols els resultats que coincideixen amb aquesta "
+"cerca de forma exacta i ometrà resultats com \"gnome-terminal\"."
 
 #. (itstool) path: item/title
 #: C/txt-search.page:64
 msgid "<gui style=\"checkbox\">Match as regular expression</gui>"
-msgstr "<gui style=\"checkbox\">Utiliser comme expression régulière</gui>"
+msgstr "<gui style=\"checkbox\">Cerca una expressió regular</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-search.page:65
@@ -3650,14 +3605,14 @@ msgid ""
 "your search keywords. <app>Terminal</app> will display the results that "
 "match these search terms."
 msgstr ""
-"Vous pouvez utiliser des motifs d'expressions régulières, également connu "
-"comme les modèles regex, dans vos mots clés de recherche. <app>Terminal</"
-"app> affichera les résultats qui correspondent à ces critères de recherche."
+"Podeu usar patrons d'expressions regulars, també coneguts com patrons regex, "
+"en la cerca de paraules clau. <app>Terminal</app> mostrarà els resultats que "
+"concordin amb els termes de cerca."
 
 #. (itstool) path: item/title
 #: C/txt-search.page:70
 msgid "<gui style=\"checkbox\">Search backwards</gui>"
-msgstr "<gui style=\"checkbox\">Rechercher en arrière</gui>"
+msgstr "<gui style=\"checkbox\">Cerca enrere</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-search.page:71
@@ -3667,15 +3622,14 @@ msgid ""
 "for a keyword that could have occurred recently, thus enabling you to find "
 "the keyword quickly."
 msgstr ""
-"<app>Terminal</app> va rechercher le mot-clé à partir de la dernière sortie "
-"et continuer la recherche vers le haut. Cette option est recommandée lorsque "
-"vous êtes à la recherche d'un mot clé rencontré récemment, vous permettant "
-"ainsi de trouver le mot rapidement."
+"<app>Terminal</app> cercarà la paraula clau des de la darrera sortida i "
+"continuarà la cerca cap amunt. Aquesta opció es recomana quan esteu cercant "
+"una paraula clau recent, el que us permetrà trobar la cerca més ràpidament."
 
 #. (itstool) path: item/title
 #: C/txt-search.page:77
 msgid "<gui style=\"checkbox\">Wrap around</gui>"
-msgstr "<gui style=\"checkbox\">Recherche circulaire</gui>"
+msgstr "<gui style=\"checkbox\">Continua des de l'inici</gui>"
 
 #. (itstool) path: item/p
 #: C/txt-search.page:78
@@ -3684,9 +3638,9 @@ msgid ""
 "the end of available terminal output and then restarts the search from the "
 "top."
 msgstr ""
-"<app>Terminal</app> recherche depuis votre position actuelle dans le "
-"défilement jusqu'à la fin des sorties de terminal disponibles, puis "
-"redémarre la recherche depuis le haut."
+"<app>Terminal</app> cerca la vostra localització actual a la barra de "
+"desplaçament cap al final de la sortida disponible del terminal i llavors "
+"reinicia la cerca des de dalt."
 
 #. (itstool) path: note/p
 #: C/txt-search.page:85
@@ -3695,10 +3649,10 @@ msgid ""
 "<link xref=\"pref-scrolling#lines\">scrollback lines</link> to a higher "
 "limit to allow <app>Terminal</app> to search further back."
 msgstr ""
-"Si vous prévoyez de travailler avec un grand nombre de sorties de "
-"<app>Terminal</app>, augmentez les <link xref=\"pref-scrolling#scrollback-"
-"lines\">lignes de défilement</link>pour permettre à <app>Terminal</app> de "
-"rechercher plus loin en arrière."
+"Si espereu treballar amb un lot de sortides de <app>Terminal</app>, "
+"incrementa les <link xref=\"pref-scrolling#lines\">Línies de desplaçament "
+"enrere</link> cap un limit superior per permetre al <app>Terminal</app> "
+"cercar més enrere."
 
 #. (itstool) path: credit/years
 #: C/txt-select-text.page:21
@@ -3708,12 +3662,12 @@ msgstr "2013, 2015"
 #. (itstool) path: info/desc
 #: C/txt-select-text.page:26
 msgid "Select individual words or lines in the terminal."
-msgstr "Sélectionner des mots ou des lignes dans le terminal."
+msgstr "Selecciona mots individuals o línies al terminal."
 
 #. (itstool) path: page/title
 #: C/txt-select-text.page:30
 msgid "Text selection"
-msgstr "Sélection de texte"
+msgstr "Selecció de text"
 
 #. (itstool) path: page/p
 #: C/txt-select-text.page:32
@@ -3721,33 +3675,33 @@ msgid ""
 "You can select a word or a sentence, or make a rectangular selection from "
 "your terminal output:"
 msgstr ""
-"Vous pouvez sélectionner un mot, une phrase, ou réaliser une sélection "
-"rectangulaire de la sortie de votre terminal :"
+"Podeu seleccionar un mot o una sentencia, o feu una selecció rectangular des "
+"de la sortida del terminal:"
 
 #. (itstool) path: item/title
 #: C/txt-select-text.page:37
 msgid "Select a word"
-msgstr "Sélectionnez un mot"
+msgstr "Selecciona un mot"
 
 #. (itstool) path: item/p
 #: C/txt-select-text.page:38
 msgid "Double click on the word."
-msgstr "Double-cliquez sur le mot désiré."
+msgstr "Prem dues vegades sobre el mot."
 
 #. (itstool) path: item/title
 #: C/txt-select-text.page:41
 msgid "Select a line"
-msgstr "Sélectionnez une ligne"
+msgstr "Selecciona una línia"
 
 #. (itstool) path: item/p
 #: C/txt-select-text.page:42
 msgid "Triple click on the line."
-msgstr "Triple-cliquez sur la ligne désirée."
+msgstr "Prem tres vegades sobre la línia."
 
 #. (itstool) path: item/title
 #: C/txt-select-text.page:45
 msgid "Make a rectangular selection"
-msgstr "Réaliser une sélection rectangulaire"
+msgstr "Fes una selecció rectangular"
 
 #. (itstool) path: item/p
 #: C/txt-select-text.page:46
@@ -3755,8 +3709,8 @@ msgid ""
 "Hold down the <key>Ctrl</key>, click and hold down the left mouse button "
 "then drag the mouse."
 msgstr ""
-"Maintenez la touche <key>CTRL</key>, cliquez et maintenez le bouton gauche "
-"de la souris sur l'onglet puis déplacez la."
+"Manteniu premuda <key>Ctrl</key>, premeu i manteniu el botó esquerre del "
+"ratolí, llavors arrossegueu el ratolí."
 
 #. (itstool) path: note/p
 #: C/txt-select-text.page:52
@@ -3765,6 +3719,6 @@ msgid ""
 "input, you need to use the <key>Shift</key> modifier for the <app>Terminal</"
 "app> to catch the mouse input."
 msgstr ""
-"Si vous exécutez une application dans un <app>Terminal</app> qui accepte la "
-"saisie à la souris, vous devez utiliser la touche <key>Maj</key> pour "
-"permettre au terminal de la capturer."
+"Si esteu executant una aplicació al <app>Terminal</app>  que accepta "
+"entrades de ratolí, us cal usar el modificador <key>Majúscules</key> al "
+"<app>Terminal</app> per captar l'entrada del ratolí."
