@@ -1924,7 +1924,18 @@ popup_copy_url_callback (GtkAction *action,
     return;
 
   clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
-  gtk_clipboard_set_text (clipboard, info->string, -1);
+
+  if (info->flavour == FLAVOR_LP)
+    {
+      char *uri;
+      uri = terminal_util_get_lp_url (info->string);
+      gtk_clipboard_set_text (clipboard, uri, -1);
+      g_free (uri);
+    }
+  else
+    {
+      gtk_clipboard_set_text (clipboard, info->string, -1);
+    }
 }
 
 static void
@@ -2017,7 +2028,9 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
 
   can_paste = targets != NULL && gtk_targets_include_text (targets, n_targets);
   can_paste_uris = targets != NULL && gtk_targets_include_uri (targets, n_targets);
-  show_link = info->string != NULL && (info->flavour == FLAVOR_AS_IS || info->flavour == FLAVOR_DEFAULT_TO_HTTP);
+  show_link = info->string != NULL && (info->flavour == FLAVOR_AS_IS ||
+                                       info->flavour == FLAVOR_DEFAULT_TO_HTTP ||
+                                       info->flavour == FLAVOR_LP);
   show_email_link = info->string != NULL && info->flavour == FLAVOR_EMAIL;
   show_call_link = info->string != NULL && info->flavour == FLAVOR_VOIP_CALL;
 
@@ -2226,6 +2239,26 @@ terminal_window_realize (GtkWidget *widget)
   /* Need to do this now since this requires the window to be realized */
   if (priv->active_screen != NULL)
     sync_screen_icon_title (priv->active_screen, NULL, window);
+}
+
+static gboolean
+terminal_window_draw (GtkWidget *widget,
+                      cairo_t   *cr)
+{
+  if (gtk_widget_get_app_paintable (widget))
+    {
+      GtkStyleContext *context;
+      int width;
+      int height;
+
+      context = gtk_widget_get_style_context (widget);
+      width = gtk_widget_get_allocated_width (widget);
+      height = gtk_widget_get_allocated_height (widget);
+      gtk_render_background (context, cr, 0, 0, width, height);
+      gtk_render_frame (context, cr, 0, 0, width, height);
+    }
+
+  return GTK_WIDGET_CLASS (terminal_window_parent_class)->draw (widget, cr);
 }
 
 static gboolean
@@ -2590,6 +2623,8 @@ terminal_window_init (TerminalWindow *window)
   TerminalWindowPrivate *priv;
   TerminalApp *app;
   TerminalSettingsList *profiles_list;
+  GdkScreen *screen;
+  GdkVisual *visual;
   GtkActionGroup *action_group;
   GtkAction *action;
   GtkUIManager *manager;
@@ -2604,6 +2639,11 @@ terminal_window_init (TerminalWindow *window)
   priv = window->priv = G_TYPE_INSTANCE_GET_PRIVATE (window, TERMINAL_TYPE_WINDOW, TerminalWindowPrivate);
 
   gtk_widget_init_template (GTK_WIDGET (window));
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (window));
+  visual = gdk_screen_get_rgba_visual (screen);
+  if (visual != NULL)
+    gtk_widget_set_visual (GTK_WIDGET (window), visual);
 
   uuid_generate (u);
   uuid_unparse (u, uuidstr);
@@ -2784,6 +2824,7 @@ terminal_window_class_init (TerminalWindowClass *klass)
 
   widget_class->show = terminal_window_show;
   widget_class->realize = terminal_window_realize;
+  widget_class->draw = terminal_window_draw;
   widget_class->window_state_event = terminal_window_state_event;
   widget_class->screen_changed = terminal_window_screen_changed;
   widget_class->style_updated = terminal_window_style_updated;
