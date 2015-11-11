@@ -350,7 +350,7 @@ gnome_terminal_server_SOURCES += \
 	terminal-search-provider.h \
 	$(NULL)
 
-terminal-search-provider-gdbus-generated.c terminal-search-provider-gdbus-generated.h: $(dbusinterfacedir)/org.gnome.ShellSearchProvider2.xml Makefile
+terminal-search-provider-gdbus-generated.c terminal-search-provider-gdbus-generated.h: $(srcdir)/org.gnome.ShellSearchProvider2.xml Makefile
 	$(AM_V_GEN) $(GDBUS_CODEGEN) \
 			--interface-prefix=org.gnome.Shell \
 			--c-namespace=Terminal \
