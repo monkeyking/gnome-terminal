@@ -136,6 +136,8 @@ static void terminal_screen_system_font_changed_cb (GSettings *,
 static gboolean terminal_screen_popup_menu (GtkWidget *widget);
 static gboolean terminal_screen_button_press (GtkWidget *widget,
                                               GdkEventButton *event);
+static void terminal_screen_hierarchy_changed (GtkWidget *widget,
+                                               GtkWidget *previous_toplevel);
 static gboolean terminal_screen_do_exec (TerminalScreen *screen,
                                          FDSetupData    *data,
                                          GError **error);
@@ -457,6 +459,7 @@ terminal_screen_class_init (TerminalScreenClass *klass)
   widget_class->drag_data_received = terminal_screen_drag_data_received;
   widget_class->button_press_event = terminal_screen_button_press;
   widget_class->popup_menu = terminal_screen_popup_menu;
+  widget_class->hierarchy_changed = terminal_screen_hierarchy_changed;
 
   terminal_class->child_exited = terminal_screen_child_exited;
 
@@ -537,6 +540,10 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
+
+  gtk_widget_class_install_style_property (widget_class,
+     g_param_spec_float ("background-darkness", NULL, NULL, -1, 1, -1,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   /* Precompile the regexes */
   n_url_regexes = G_N_ELEMENTS (url_regex_patterns);
@@ -769,7 +776,10 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_COLOR_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_BOLD_COLOR_KEY) ||
-      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY))
+      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND) ||
+      prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_THEME_TRANSPARENCY))
     update_color_scheme (screen);
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
@@ -825,6 +835,32 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
 }
 
 static void
+update_toplevel_transparency (TerminalScreen *screen)
+{
+  GtkWidget *widget = GTK_WIDGET (screen);
+  TerminalScreenPrivate *priv = screen->priv;
+  GSettings *profile = priv->profile;
+  GtkWidget *toplevel;
+
+  toplevel = gtk_widget_get_toplevel (widget);
+  if (toplevel != NULL && gtk_widget_is_toplevel (toplevel))
+    {
+      gboolean transparent;
+
+      transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND);
+      if (gtk_widget_get_app_paintable (toplevel) != transparent)
+        {
+          gtk_widget_set_app_paintable (toplevel, transparent);
+
+          /* The opaque region of the toplevel isn't updated until the toplevel is allocated;
+           * set_app_paintable() doesn't force an allocation, so do that manually.
+           */
+          gtk_widget_queue_resize (toplevel);
+        }
+    }
+}
+
+static void
 update_color_scheme (TerminalScreen *screen)
 {
   GtkWidget *widget = GTK_WIDGET (screen);
@@ -835,6 +871,9 @@ update_color_scheme (TerminalScreen *screen)
   GdkRGBA fg, bg, bold, theme_fg, theme_bg;
   GdkRGBA *boldp;
   GtkStyleContext *context;
+  GtkWidget *toplevel;
+  gboolean transparent, theme_transparent;
+  gfloat style_darkness;
 
   context = gtk_widget_get_style_context (widget);
   gtk_style_context_get_color (context, gtk_style_context_get_state (context), &theme_fg);
@@ -866,9 +905,33 @@ update_color_scheme (TerminalScreen *screen)
     boldp = NULL;
 
   colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
+  theme_transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY);
+  transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND);
+
+  gtk_widget_style_get (GTK_WIDGET (screen),
+                        "background-darkness", &style_darkness,
+                        NULL);
+
+  if (theme_transparent && style_darkness >= 0)
+    {
+      bg.alpha = style_darkness;
+    }
+  else if (transparent)
+    {
+      gint transparency_percent;
+
+      transparency_percent = g_settings_get_int (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT);
+      bg.alpha = (100 - transparency_percent) / 100.0;
+    }
+  else
+      bg.alpha = 1.0;
+
   vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                            colors, n_colors);
   vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
+
+  update_toplevel_transparency (screen);
+
 }
 
 static void
@@ -1466,6 +1529,13 @@ terminal_screen_do_popup (TerminalScreen *screen,
 
   g_signal_emit (screen, signals[SHOW_POPUP_MENU], 0, info);
   terminal_screen_popup_info_unref (info);
+}
+
+static void
+terminal_screen_hierarchy_changed (GtkWidget *widget,
+                                   GtkWidget *previous_toplevel)
+{
+  update_toplevel_transparency (TERMINAL_SCREEN (widget));
 }
 
 static gboolean
