@@ -228,12 +228,13 @@ am__gnome_terminal_server_SOURCES_DIST = eggshell.c eggshell.h \
 	terminal-intl.h terminal-i18n.c terminal-i18n.h \
 	terminal-libgsystem.h terminal-mdi-container.c \
 	terminal-mdi-container.h terminal-notebook.c \
-	terminal-notebook.h terminal-prefs.c terminal-prefs.h \
-	terminal-profiles-list.c terminal-profiles-list.h \
-	terminal-regex.h terminal-schemas.h terminal-settings-list.c \
-	terminal-settings-list.h terminal-screen.c terminal-screen.h \
+	terminal-notebook.h terminal-pcre2.h terminal-prefs.c \
+	terminal-prefs.h terminal-profiles-list.c \
+	terminal-profiles-list.h terminal-regex.h terminal-schemas.h \
+	terminal-settings-list.c terminal-settings-list.h \
+	terminal-screen.c terminal-screen.h \
 	terminal-screen-container.c terminal-screen-container.h \
-	terminal-search-dialog.c terminal-search-dialog.h \
+	terminal-search-popover.c terminal-search-popover.h \
 	terminal-tab-label.c terminal-tab-label.h terminal-tabs-menu.c \
 	terminal-tabs-menu.h terminal-util.c terminal-util.h \
 	terminal-version.h terminal-window.c terminal-window.h \
@@ -259,7 +260,7 @@ am_gnome_terminal_server_OBJECTS =  \
 	gnome_terminal_server-terminal-settings-list.$(OBJEXT) \
 	gnome_terminal_server-terminal-screen.$(OBJEXT) \
 	gnome_terminal_server-terminal-screen-container.$(OBJEXT) \
-	gnome_terminal_server-terminal-search-dialog.$(OBJEXT) \
+	gnome_terminal_server-terminal-search-popover.$(OBJEXT) \
 	gnome_terminal_server-terminal-tab-label.$(OBJEXT) \
 	gnome_terminal_server-terminal-tabs-menu.$(OBJEXT) \
 	gnome_terminal_server-terminal-util.$(OBJEXT) \
@@ -667,6 +668,8 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE2_CFLAGS = @PCRE2_CFLAGS@
+PCRE2_LIBS = @PCRE2_LIBS@
 PKG_CONFIG = @PKG_CONFIG@
 PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
@@ -771,13 +774,13 @@ gnome_terminal_server_SOURCES = eggshell.c eggshell.h profile-editor.c \
 	terminal-info-bar.c terminal-info-bar.h terminal-intl.h \
 	terminal-i18n.c terminal-i18n.h terminal-libgsystem.h \
 	terminal-mdi-container.c terminal-mdi-container.h \
-	terminal-notebook.c terminal-notebook.h terminal-prefs.c \
-	terminal-prefs.h terminal-profiles-list.c \
+	terminal-notebook.c terminal-notebook.h terminal-pcre2.h \
+	terminal-prefs.c terminal-prefs.h terminal-profiles-list.c \
 	terminal-profiles-list.h terminal-regex.h terminal-schemas.h \
 	terminal-settings-list.c terminal-settings-list.h \
 	terminal-screen.c terminal-screen.h \
 	terminal-screen-container.c terminal-screen-container.h \
-	terminal-search-dialog.c terminal-search-dialog.h \
+	terminal-search-popover.c terminal-search-popover.h \
 	terminal-tab-label.c terminal-tab-label.h terminal-tabs-menu.c \
 	terminal-tabs-menu.h terminal-util.c terminal-util.h \
 	terminal-version.h terminal-window.c terminal-window.h $(NULL) \
@@ -1028,7 +1031,7 @@ EXTRA_DIST = \
 	terminal-type-builtins.h.template \
 	org.gnome.Terminal.xml \
 	nautilus.symbols \
-	find-dialog.ui \
+	search-popover.ui \
 	preferences.ui \
 	profile-preferences.ui \
 	terminal.common.css \
@@ -1290,7 +1293,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-resources.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-screen-container.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-screen.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-search-popover.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-search-provider-gdbus-generated.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-search-provider.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_terminal_server-terminal-settings-list.Po@am__quote@
@@ -1816,19 +1819,19 @@ gnome_terminal_server-terminal-screen-container.obj: terminal-screen-container.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-screen-container.obj `if test -f 'terminal-screen-container.c'; then $(CYGPATH_W) 'terminal-screen-container.c'; else $(CYGPATH_W) '$(srcdir)/terminal-screen-container.c'; fi`
 
-gnome_terminal_server-terminal-search-dialog.o: terminal-search-dialog.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-search-dialog.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Tpo -c -o gnome_terminal_server-terminal-search-dialog.o `test -f 'terminal-search-dialog.c' || echo '$(srcdir)/'`terminal-search-dialog.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Tpo $(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-search-dialog.c' object='gnome_terminal_server-terminal-search-dialog.o' libtool=no @AMDEPBACKSLASH@
+gnome_terminal_server-terminal-search-popover.o: terminal-search-popover.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-search-popover.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-search-popover.Tpo -c -o gnome_terminal_server-terminal-search-popover.o `test -f 'terminal-search-popover.c' || echo '$(srcdir)/'`terminal-search-popover.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-search-popover.Tpo $(DEPDIR)/gnome_terminal_server-terminal-search-popover.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-search-popover.c' object='gnome_terminal_server-terminal-search-popover.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-search-dialog.o `test -f 'terminal-search-dialog.c' || echo '$(srcdir)/'`terminal-search-dialog.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-search-popover.o `test -f 'terminal-search-popover.c' || echo '$(srcdir)/'`terminal-search-popover.c
 
-gnome_terminal_server-terminal-search-dialog.obj: terminal-search-dialog.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-search-dialog.obj -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Tpo -c -o gnome_terminal_server-terminal-search-dialog.obj `if test -f 'terminal-search-dialog.c'; then $(CYGPATH_W) 'terminal-search-dialog.c'; else $(CYGPATH_W) '$(srcdir)/terminal-search-dialog.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Tpo $(DEPDIR)/gnome_terminal_server-terminal-search-dialog.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-search-dialog.c' object='gnome_terminal_server-terminal-search-dialog.obj' libtool=no @AMDEPBACKSLASH@
+gnome_terminal_server-terminal-search-popover.obj: terminal-search-popover.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-search-popover.obj -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-search-popover.Tpo -c -o gnome_terminal_server-terminal-search-popover.obj `if test -f 'terminal-search-popover.c'; then $(CYGPATH_W) 'terminal-search-popover.c'; else $(CYGPATH_W) '$(srcdir)/terminal-search-popover.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_terminal_server-terminal-search-popover.Tpo $(DEPDIR)/gnome_terminal_server-terminal-search-popover.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='terminal-search-popover.c' object='gnome_terminal_server-terminal-search-popover.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-search-dialog.obj `if test -f 'terminal-search-dialog.c'; then $(CYGPATH_W) 'terminal-search-dialog.c'; else $(CYGPATH_W) '$(srcdir)/terminal-search-dialog.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -c -o gnome_terminal_server-terminal-search-popover.obj `if test -f 'terminal-search-popover.c'; then $(CYGPATH_W) 'terminal-search-popover.c'; else $(CYGPATH_W) '$(srcdir)/terminal-search-popover.c'; fi`
 
 gnome_terminal_server-terminal-tab-label.o: terminal-tab-label.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_terminal_server_CPPFLAGS) $(CPPFLAGS) $(gnome_terminal_server_CFLAGS) $(CFLAGS) -MT gnome_terminal_server-terminal-tab-label.o -MD -MP -MF $(DEPDIR)/gnome_terminal_server-terminal-tab-label.Tpo -c -o gnome_terminal_server-terminal-tab-label.o `test -f 'terminal-tab-label.c' || echo '$(srcdir)/'`terminal-tab-label.c

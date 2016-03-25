@@ -43,7 +43,7 @@ void terminal_util_set_atk_name_description (GtkWidget  *widget,
 
 void terminal_util_open_url (GtkWidget *parent,
                              const char *orig_url,
-                             TerminalURLFlavour flavor,
+                             TerminalURLFlavor flavor,
                              guint32 user_time);
 
 void terminal_util_transform_uris_to_quoted_fuse_paths (char **uris);
@@ -88,6 +88,8 @@ void terminal_g_settings_set_rgba_palette (GSettings      *settings,
                                            gsize           n_colors);
 
 void terminal_util_bind_mnemonic_label_sensitivity (GtkWidget *widget);
+
+char *terminal_util_number_info (const char *str);
 
 G_END_DECLS
 

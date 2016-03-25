@@ -8,11 +8,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal GNOME-3.18\n"
+"Project-Id-Version: gnome-terminal master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "terminal&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-24 20:56+0000\n"
-"PO-Revision-Date: 2015-09-25 08:30+0700\n"
+"POT-Creation-Date: 2015-09-24 21:00+0000\n"
+"PO-Revision-Date: 2015-09-25 08:23+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: ../gnome-terminal.appdata.xml.in.h:1 ../gnome-terminal.desktop.in.in.h:1
 #: ../src/server.c:167 ../src/terminal-accels.c:222 ../src/terminal.c:240
 #: ../src/terminal-tab-label.c:81 ../src/terminal-tabs-menu.c:180
-#: ../src/terminal-window.c:2619 ../src/terminal-window.c:2971
+#: ../src/terminal-window.c:2655 ../src/terminal-window.c:3011
 msgid "Terminal"
 msgstr "Thiết bị cuối"
 
@@ -54,35 +54,6 @@ msgid "shell;prompt;command;commandline;cmd;"
 msgstr ""
 "shell;hệ vỏ;he vo;prompt;nhắc lệnh;nhac lenh;command;lệnh;lenh;commandline;"
 "dòng lệnh;dong lenh;cmd;"
-
-#: ../src/find-dialog.ui.h:1 ../src/terminal-accels.c:164
-#: ../src/terminal-accels.c:221
-msgid "Find"
-msgstr "Tìm"
-
-#: ../src/find-dialog.ui.h:2
-msgid "_Search for:"
-msgstr "_Tìm: "
-
-#: ../src/find-dialog.ui.h:3
-msgid "_Match case"
-msgstr "Phân _biệt HOA/thường"
-
-#: ../src/find-dialog.ui.h:4
-msgid "Match _entire word only"
-msgstr "Chỉ khớp với t_oàn từ"
-
-#: ../src/find-dialog.ui.h:5
-msgid "Match as _regular expression"
-msgstr "Khớp bằng _biểu thức chính quy"
-
-#: ../src/find-dialog.ui.h:6
-msgid "Search _backwards"
-msgstr "Tìm n_gược"
-
-#: ../src/find-dialog.ui.h:7
-msgid "_Wrap around"
-msgstr "_Cuộn"
 
 #: ../src/gterminal.vala:29
 msgid "Suppress output"
@@ -1176,6 +1147,38 @@ msgstr "Đặt _lại tùy chọn tương thích mặc định"
 msgid "Compatibility"
 msgstr "Tương thích"
 
+#: ../src/search-popover.ui.h:1
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: ../src/search-popover.ui.h:2
+msgid "Search for previous occurrence"
+msgstr "Tìm đến chỗ khớp trước"
+
+#: ../src/search-popover.ui.h:3
+msgid "Search for next occurrence"
+msgstr "Tìm đến chỗ khớp kế tiếp"
+
+#: ../src/search-popover.ui.h:4
+msgid "Toggle search options"
+msgstr "Bật/tắt tùy chọn tìm kiếm"
+
+#: ../src/search-popover.ui.h:5
+msgid "_Match case"
+msgstr "Phân _biệt HOA/thường"
+
+#: ../src/search-popover.ui.h:6
+msgid "Match _entire word only"
+msgstr "Chỉ khớp với t_oàn từ"
+
+#: ../src/search-popover.ui.h:7
+msgid "Match as _regular expression"
+msgstr "Khớp bằng _biểu thức chính quy"
+
+#: ../src/search-popover.ui.h:8
+msgid "_Wrap around"
+msgstr "_Cuộn"
+
 #: ../src/terminal-accels.c:148
 msgid "New Terminal in New Tab"
 msgstr "Mở thiết bị cuối trong thanh mới"
@@ -1201,15 +1204,19 @@ msgid "Close All Terminals"
 msgstr "Đóng mọi thiết bị cuối"
 
 #. Edit menu
-#: ../src/terminal-accels.c:159 ../src/terminal-window.c:2435
-#: ../src/terminal-window.c:2552
+#: ../src/terminal-accels.c:159 ../src/terminal-window.c:2471
+#: ../src/terminal-window.c:2588
 msgid "Copy"
 msgstr "Chép"
 
-#: ../src/terminal-accels.c:160 ../src/terminal-window.c:2438
-#: ../src/terminal-window.c:2555
+#: ../src/terminal-accels.c:160 ../src/terminal-window.c:2474
+#: ../src/terminal-window.c:2591
 msgid "Paste"
 msgstr "Dán"
+
+#: ../src/terminal-accels.c:164 ../src/terminal-accels.c:221
+msgid "Find"
+msgstr "Tìm"
 
 #: ../src/terminal-accels.c:165
 msgid "Find Next"
@@ -1232,15 +1239,15 @@ msgid "Full Screen"
 msgstr "Toàn màn hình"
 
 #. View menu
-#: ../src/terminal-accels.c:173 ../src/terminal-window.c:2455
+#: ../src/terminal-accels.c:173 ../src/terminal-window.c:2491
 msgid "Zoom In"
 msgstr "Phóng to"
 
-#: ../src/terminal-accels.c:174 ../src/terminal-window.c:2458
+#: ../src/terminal-accels.c:174 ../src/terminal-window.c:2494
 msgid "Zoom Out"
 msgstr "Thu nhỏ"
 
-#: ../src/terminal-accels.c:175 ../src/terminal-window.c:2461
+#: ../src/terminal-accels.c:175 ../src/terminal-window.c:2497
 msgid "Normal Size"
 msgstr "Cỡ bình thường"
 
@@ -1467,11 +1474,11 @@ msgstr "Thiết bị cuối _mới"
 msgid "_Preferences"
 msgstr "Tù_y thích"
 
-#: ../src/terminal-menus.ui.h:3 ../src/terminal-window.c:2406
+#: ../src/terminal-menus.ui.h:3 ../src/terminal-window.c:2442
 msgid "_Help"
 msgstr "Trợ g_iúp"
 
-#: ../src/terminal-menus.ui.h:4 ../src/terminal-window.c:2523
+#: ../src/terminal-menus.ui.h:4 ../src/terminal-window.c:2559
 msgid "_About"
 msgstr "_Giới thiệu"
 
@@ -1710,7 +1717,7 @@ msgstr "_Bảng mã"
 msgid "No command supplied nor shell requested"
 msgstr "Không có lệnh nào được cung cấp và cũng không yêu cầu hệ vỏ"
 
-#: ../src/terminal-screen.c:1314 ../src/terminal-window.c:2450
+#: ../src/terminal-screen.c:1314 ../src/terminal-window.c:2486
 msgid "_Profile Preferences"
 msgstr "Tùy thích Hồ _sơ"
 
@@ -1818,7 +1825,7 @@ msgstr "_Lưu"
 #. * _%u is used as the accelerator (with u between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:1210
+#: ../src/terminal-window.c:1246
 #, c-format
 msgid "_%u. %s"
 msgstr "_%u. %s"
@@ -1828,207 +1835,207 @@ msgstr "_%u. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:1216
+#: ../src/terminal-window.c:1252
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:2399
+#: ../src/terminal-window.c:2435
 msgid "_File"
 msgstr "Tậ_p tin"
 
 #. File menu
-#: ../src/terminal-window.c:2400 ../src/terminal-window.c:2412
-#: ../src/terminal-window.c:2418 ../src/terminal-window.c:2561
+#: ../src/terminal-window.c:2436 ../src/terminal-window.c:2448
+#: ../src/terminal-window.c:2454 ../src/terminal-window.c:2597
 msgid "Open _Terminal"
 msgstr "Mở _Thiết bị cuối"
 
-#: ../src/terminal-window.c:2401
+#: ../src/terminal-window.c:2437
 msgid "_Edit"
 msgstr "_Sửa"
 
-#: ../src/terminal-window.c:2402
+#: ../src/terminal-window.c:2438
 msgid "_View"
 msgstr "Trình _bày"
 
-#: ../src/terminal-window.c:2403
+#: ../src/terminal-window.c:2439
 msgid "_Search"
 msgstr "Tìm _kiếm"
 
-#: ../src/terminal-window.c:2404
+#: ../src/terminal-window.c:2440
 msgid "_Terminal"
 msgstr "_Thiết bị cuối"
 
-#: ../src/terminal-window.c:2405
+#: ../src/terminal-window.c:2441
 msgid "Ta_bs"
 msgstr "Th_anh"
 
-#: ../src/terminal-window.c:2415
+#: ../src/terminal-window.c:2451
 msgid "Open Ta_b"
 msgstr "Mở th_anh"
 
-#: ../src/terminal-window.c:2421
+#: ../src/terminal-window.c:2457
 msgid "New _Profile"
 msgstr "Hồ _sơ mới"
 
-#: ../src/terminal-window.c:2424
+#: ../src/terminal-window.c:2460
 msgid "_Save Contents"
 msgstr "_Lưu nội dung"
 
-#: ../src/terminal-window.c:2427 ../src/terminal-window.c:3704
+#: ../src/terminal-window.c:2463 ../src/terminal-window.c:3747
 msgid "C_lose Terminal"
 msgstr "Đón_g thiết bị cuối"
 
-#: ../src/terminal-window.c:2430
+#: ../src/terminal-window.c:2466
 msgid "_Close All Terminals"
 msgstr "Đóng mọi thiết bị _cuối"
 
-#: ../src/terminal-window.c:2441 ../src/terminal-window.c:2558
+#: ../src/terminal-window.c:2477 ../src/terminal-window.c:2594
 msgid "Paste _Filenames"
 msgstr "Dán _tên tập tin"
 
-#: ../src/terminal-window.c:2444
+#: ../src/terminal-window.c:2480
 msgid "Select All"
 msgstr "Chọn tất cả"
 
-#: ../src/terminal-window.c:2447
+#: ../src/terminal-window.c:2483
 msgid "Pre_ferences"
 msgstr "_Tùy thích"
 
 #. Search menu
-#: ../src/terminal-window.c:2466
+#: ../src/terminal-window.c:2502
 msgid "_Find…"
 msgstr "Tì_m…"
 
-#: ../src/terminal-window.c:2469
+#: ../src/terminal-window.c:2505
 msgid "Find Ne_xt"
 msgstr "Tìm _kế"
 
-#: ../src/terminal-window.c:2472
+#: ../src/terminal-window.c:2508
 msgid "Find Pre_vious"
 msgstr "Tìm _lùi"
 
-#: ../src/terminal-window.c:2475
+#: ../src/terminal-window.c:2511
 msgid "_Clear Highlight"
 msgstr "_Xóa tô sáng"
 
-#: ../src/terminal-window.c:2479
+#: ../src/terminal-window.c:2515
 msgid "Go to _Line..."
 msgstr "Nhảy tới _dòng…"
 
-#: ../src/terminal-window.c:2482
+#: ../src/terminal-window.c:2518
 msgid "_Incremental Search..."
 msgstr "Tìm _gia tăng…"
 
 #. Terminal menu
-#: ../src/terminal-window.c:2488
+#: ../src/terminal-window.c:2524
 msgid "Change _Profile"
 msgstr "Thay đổi _hồ sơ"
 
-#: ../src/terminal-window.c:2489
+#: ../src/terminal-window.c:2525
 msgid "Set _Character Encoding"
 msgstr "Đặt _bảng mã"
 
-#: ../src/terminal-window.c:2490
+#: ../src/terminal-window.c:2526
 msgid "_Reset"
 msgstr "Đặt _lại"
 
-#: ../src/terminal-window.c:2493
+#: ../src/terminal-window.c:2529
 msgid "Reset and C_lear"
 msgstr "Đặt lại và _xóa"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:2498
+#: ../src/terminal-window.c:2534
 msgid "_Add or Remove…"
 msgstr "Thê_m hay Bỏ…"
 
 #. Tabs menu
-#: ../src/terminal-window.c:2503
+#: ../src/terminal-window.c:2539
 msgid "_Previous Terminal"
 msgstr "_Thiết bị cuối trước"
 
-#: ../src/terminal-window.c:2506
+#: ../src/terminal-window.c:2542
 msgid "_Next Terminal"
 msgstr "_Thiết bị cuối kế"
 
-#: ../src/terminal-window.c:2509
+#: ../src/terminal-window.c:2545
 msgid "Move Terminal _Left"
 msgstr "Dời Thiết bị cuối t_rái"
 
-#: ../src/terminal-window.c:2512
+#: ../src/terminal-window.c:2548
 msgid "Move Terminal _Right"
 msgstr "Dời thiết bị cuối sang _phải"
 
-#: ../src/terminal-window.c:2515
+#: ../src/terminal-window.c:2551
 msgid "_Detach Terminal"
 msgstr "Tách _rời Thiết bị cuối"
 
 #. Help menu
-#: ../src/terminal-window.c:2520
+#: ../src/terminal-window.c:2556
 msgid "_Contents"
 msgstr "Mụ_c lục"
 
-#: ../src/terminal-window.c:2527
+#: ../src/terminal-window.c:2563
 msgid "_Inspector"
 msgstr "_Bộ xem xét"
 
 #. Popup menu
-#: ../src/terminal-window.c:2533
+#: ../src/terminal-window.c:2569
 msgid "_Send Mail To…"
 msgstr "_Gửi thư cho…"
 
-#: ../src/terminal-window.c:2536
+#: ../src/terminal-window.c:2572
 msgid "_Copy E-mail Address"
 msgstr "_Chép địa chỉ thư"
 
-#: ../src/terminal-window.c:2539
+#: ../src/terminal-window.c:2575
 msgid "C_all To…"
 msgstr "Gọ_i cho…"
 
-#: ../src/terminal-window.c:2542
+#: ../src/terminal-window.c:2578
 msgid "_Copy Call Address"
 msgstr "_Chép địa chỉ gọi"
 
-#: ../src/terminal-window.c:2545
+#: ../src/terminal-window.c:2581
 msgid "_Open Link"
 msgstr "_Mở liên kết"
 
-#: ../src/terminal-window.c:2548
+#: ../src/terminal-window.c:2584
 msgid "_Copy Link Address"
 msgstr "_Chép địa chỉ liên kết"
 
-#: ../src/terminal-window.c:2551
+#: ../src/terminal-window.c:2587
 msgid "P_rofiles"
 msgstr "Hồ _sơ"
 
-#: ../src/terminal-window.c:2564
+#: ../src/terminal-window.c:2600
 msgid "L_eave Full Screen"
 msgstr "_Thôi toàn màn hình"
 
 #. View Menu
-#: ../src/terminal-window.c:2572
+#: ../src/terminal-window.c:2608
 msgid "Show _Menubar"
 msgstr "Hiện thanh t_rình đơn"
 
-#: ../src/terminal-window.c:2576
+#: ../src/terminal-window.c:2612
 msgid "_Full Screen"
 msgstr "T_oàn màn hình"
 
 #. Terminal menu
-#: ../src/terminal-window.c:2581
+#: ../src/terminal-window.c:2617
 msgid "Read-_Only"
 msgstr "_Chỉ-đọc"
 
-#: ../src/terminal-window.c:3691
+#: ../src/terminal-window.c:3734
 msgid "Close this window?"
 msgstr "Đóng cửa sổ này?"
 
-#: ../src/terminal-window.c:3691
+#: ../src/terminal-window.c:3734
 msgid "Close this terminal?"
 msgstr "Đóng thiết bị cuối này?"
 
-#: ../src/terminal-window.c:3695
+#: ../src/terminal-window.c:3738
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
@@ -2036,7 +2043,7 @@ msgstr ""
 "Vẫn còn có một số tiến trình đang chạy trong cửa sổ này. Đóng cửa sổ thì ép "
 "buộc kết thúc tất cả."
 
-#: ../src/terminal-window.c:3699
+#: ../src/terminal-window.c:3742
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2044,21 +2051,15 @@ msgstr ""
 "Vẫn còn có một tiến trình đang chạy trong cửa sổ này. Đóng cửa sổ thì sẽ ép "
 "buộc kết thúc nó."
 
-#: ../src/terminal-window.c:3704
+#: ../src/terminal-window.c:3747
 msgid "C_lose Window"
 msgstr "Đón_g cửa sổ"
 
-#~ msgid "Search"
-#~ msgstr "Tìm kiếm"
+#~ msgid "_Search for:"
+#~ msgstr "_Tìm: "
 
-#~ msgid "Search for previous occurrence"
-#~ msgstr "Tìm đến chỗ khớp trước"
-
-#~ msgid "Search for next occurrence"
-#~ msgstr "Tìm đến chỗ khớp kế tiếp"
-
-#~ msgid "Toggle search options"
-#~ msgstr "Bật/tắt tùy chọn tìm kiếm"
+#~ msgid "Search _backwards"
+#~ msgstr "Tìm n_gược"
 
 #~ msgid "Whether to update login records when launching terminal command"
 #~ msgstr ""
