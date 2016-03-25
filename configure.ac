@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[18])
-m4_define([gt_version_micro],[3])
+m4_define([gt_version_minor],[20])
+m4_define([gt_version_micro],[0])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -40,6 +40,7 @@ GLIB_MAX_ALLOWED=2.42
 GIO_REQUIRED=2.34.0
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
 DCONF_REQUIRED=0.14.0
+PCRE2_REQUIRED=10.00
 
 AC_MSG_CHECKING([which gtk+ version to compile against])
 AC_ARG_WITH([gtk],
@@ -54,13 +55,15 @@ AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
-       GTK_REQUIRED=3.10.0
+       GTK_REQUIRED=3.12.0
        GTK_MIN_REQUIRED=3.8
        GTK_MAX_ALLOWED=3.14
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.42.1
+       VTE_REQUIRED=0.44.0
        ;;
 esac
+
+#
 
 PLATFORM_DEPS=
 for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
@@ -73,6 +76,30 @@ for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
   esac
 done
 
+# PCRE2
+
+AC_MSG_CHECKING([whether PCRE2 support is requested])
+AC_ARG_WITH([pcre2],
+  [AS_HELP_STRING([--without-pcre2],[Disable pcre2 support])],
+  [],[with_pcre2=no])
+AC_MSG_RESULT([$with_pcre2])
+
+PCRE2_PKGS=
+if test "$with_pcre2" = "yes"; then
+  PCRE2_PKGS="libpcre2-8 >= $PCRE2_REQUIRED"
+  VTE_REQUIRED=0.45.0
+
+  PKG_CHECK_MODULES([PCRE2],[$PCRE2_PKGS],,
+    [AC_MSG_ERROR([PCRE2 requested but libpcre2-8 not found. Use --without-pcre2 to disable PCRE2])])
+
+  AC_DEFINE([WITH_PCRE2],[1],[Define to 1 to enable pcre2 support])
+  EXTRA_DEPS="$EXTRA_DEPS $PCRE2_PKGS"
+fi
+
+AM_CONDITIONAL([WITH_PCRE2],[test "$with_pcre2" = "yes"])
+
+# pkg-config checks
+
 PKG_CHECK_MODULES([TERM],
   [vte-$VTE_API_VERSION >= $VTE_REQUIRED
    glib-2.0 >= $GLIB_REQUIRED
@@ -81,7 +108,8 @@ PKG_CHECK_MODULES([TERM],
    gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
    dconf >= $DCONF_REQUIRED
    uuid
-   $PLATFORM_DEPS])
+   $PLATFORM_DEPS
+   $PCRE2_PKGS])
 
 # ****
 # Vala
@@ -353,7 +381,7 @@ AC_DEFINE_UNQUOTED([GDK_VERSION_MAX_ALLOWED],[GDK_VERSION_[]AS_TR_SH([$GTK_MAX_A
 
 AC_CONFIG_FILES([
 Makefile
-gnome-terminal.desktop.in
+org.gnome.Terminal.desktop.in
 src/Makefile
 src/terminal-version.h
 help/Makefile
@@ -369,6 +397,7 @@ gnome-terminal-$VERSION:
       prefix:                 ${prefix}
       source code location:   ${srcdir}
       compiler:               ${CC}
+      PCRE2:                  ${with_pcre2}
       gterminal:              ${enable_gterminal}
       DBus interface dir:     ${dbusinterfacedir}
       DBus service dir:       ${dbusservicedir}

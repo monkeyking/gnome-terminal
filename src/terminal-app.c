@@ -56,6 +56,8 @@
 
 #define SYSTEM_PROXY_SETTINGS_SCHEMA            "org.gnome.system.proxy"
 
+#define GTK_SETTING_PREFER_DARK_THEME           "gtk-application-prefer-dark-theme"
+
 /*
  * Session state is stored entirely in the RestartCommand command line.
  *
@@ -305,6 +307,25 @@ terminal_app_encoding_list_notify_cb (GSettings   *settings,
   g_signal_emit (app, signals[ENCODING_LIST_CHANGED], 0);
 }
 
+#if GTK_CHECK_VERSION (3, 19, 0)
+static void
+terminal_app_theme_variant_changed_cb (GSettings   *settings,
+                                       const char  *key,
+                                       GtkSettings *gtk_settings)
+{
+  TerminalThemeVariant theme;
+
+  theme = g_settings_get_enum (settings, key);
+  if (theme == TERMINAL_THEME_VARIANT_SYSTEM)
+    gtk_settings_reset_property (gtk_settings, GTK_SETTING_PREFER_DARK_THEME);
+  else
+    g_object_set (gtk_settings,
+                  GTK_SETTING_PREFER_DARK_THEME,
+                  theme == TERMINAL_THEME_VARIANT_DARK,
+                  NULL);
+}
+#endif /* GTK+ 3.19 */
+
 /* App menu callbacks */
 
 static void
@@ -409,6 +430,20 @@ terminal_app_init (TerminalApp *app)
 
   /* Terminal global settings */
   app->global_settings = g_settings_new (TERMINAL_SETTING_SCHEMA);
+
+#if GTK_CHECK_VERSION (3, 19, 0)
+  {
+  GtkSettings *gtk_settings;
+
+  gtk_settings = gtk_settings_get_default ();
+  terminal_app_theme_variant_changed_cb (app->global_settings,
+                                         TERMINAL_SETTING_THEME_VARIANT_KEY, gtk_settings);
+  g_signal_connect (app->global_settings,
+                    "changed::" TERMINAL_SETTING_THEME_VARIANT_KEY,
+                    G_CALLBACK (terminal_app_theme_variant_changed_cb),
+                    gtk_settings);
+  }
+#endif /* GTK+ 3.19 */
 
   /* Check if we need to migrate from gconf to dconf */
   maybe_migrate_settings (app);
@@ -574,7 +609,9 @@ TerminalScreen *
 terminal_app_new_terminal (TerminalApp     *app,
                            TerminalWindow  *window,
                            GSettings       *profile,
+                           const char      *encoding,
                            char           **override_command,
+                           const char      *title,
                            const char      *working_dir,
                            char           **child_env,
                            double           zoom)
@@ -584,7 +621,7 @@ terminal_app_new_terminal (TerminalApp     *app,
   g_return_val_if_fail (TERMINAL_IS_APP (app), NULL);
   g_return_val_if_fail (TERMINAL_IS_WINDOW (window), NULL);
 
-  screen = terminal_screen_new (profile, override_command,
+  screen = terminal_screen_new (profile, encoding, override_command, title,
                                 working_dir, child_env, zoom);
 
   terminal_window_add_screen (window, screen, -1);
