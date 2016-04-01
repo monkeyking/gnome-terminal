@@ -3200,13 +3200,18 @@ terminal_window_update_size (TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
   int grid_width, grid_height;
+  int pixel_width, pixel_height;
 
   /* be sure our geometry is up-to-date */
   terminal_window_update_geometry (window);
 
   terminal_screen_get_size (priv->active_screen, &grid_width, &grid_height);
 
-  gtk_window_resize_to_geometry (GTK_WINDOW (window), grid_width, grid_height);
+  /* the "old" struct members were updated by update_geometry */
+  pixel_width = priv->old_base_width + grid_width * priv->old_char_width;
+  pixel_height = priv->old_base_height + grid_height * priv->old_char_height;
+
+  gtk_window_resize (GTK_WINDOW (window), pixel_width, pixel_height);
 }
 
 void
