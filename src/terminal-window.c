@@ -3200,13 +3200,18 @@ terminal_window_update_size (TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
   int grid_width, grid_height;
+  int pixel_width, pixel_height;
 
   /* be sure our geometry is up-to-date */
   terminal_window_update_geometry (window);
 
   terminal_screen_get_size (priv->active_screen, &grid_width, &grid_height);
 
-  gtk_window_resize_to_geometry (GTK_WINDOW (window), grid_width, grid_height);
+  /* the "old" struct members were updated by update_geometry */
+  pixel_width = priv->old_base_width + grid_width * priv->old_char_width;
+  pixel_height = priv->old_base_height + grid_height * priv->old_char_height;
+
+  gtk_window_resize (GTK_WINDOW (window), pixel_width, pixel_height);
 }
 
 void
@@ -3562,8 +3567,9 @@ terminal_window_update_geometry (TerminalWindow *window)
   GtkWidget *widget;
   GdkGeometry hints;
   GtkBorder padding;
-  int char_width;
-  int char_height;
+  GtkRequisition toplevel_request, widget_request;
+  int base_width, base_height;
+  int char_width, char_height;
   
   if (priv->active_screen == NULL)
     return;
@@ -3587,8 +3593,14 @@ terminal_window_update_geometry (TerminalWindow *window)
       padding.top + padding.bottom != priv->old_base_height ||
       widget != (GtkWidget*) priv->old_geometry_widget)
     {
-      hints.base_width = padding.left + padding.right;
-      hints.base_height = padding.top + padding.bottom;
+      gtk_widget_get_preferred_size (GTK_WIDGET (window), NULL, &toplevel_request);
+      gtk_widget_get_preferred_size (widget, NULL, &widget_request);
+
+      base_width = toplevel_request.width - widget_request.width;
+      base_height = toplevel_request.height - widget_request.height;
+
+      hints.base_width = base_width + padding.left + padding.right;
+      hints.base_height = base_height + padding.top + padding.bottom;
 
 #define MIN_WIDTH_CHARS 4
 #define MIN_HEIGHT_CHARS 1
@@ -3596,12 +3608,12 @@ terminal_window_update_geometry (TerminalWindow *window)
       hints.width_inc = char_width;
       hints.height_inc = char_height;
 
-      /* min size is min size of just the geometry widget, remember. */
+      /* min size is min size of the whole window, remember. */
       hints.min_width = hints.base_width + hints.width_inc * MIN_WIDTH_CHARS;
       hints.min_height = hints.base_height + hints.height_inc * MIN_HEIGHT_CHARS;
       
       gtk_window_set_geometry_hints (GTK_WINDOW (window),
-                                     widget,
+                                     NULL,
                                      &hints,
                                      GDK_HINT_RESIZE_INC |
                                      GDK_HINT_MIN_SIZE |
