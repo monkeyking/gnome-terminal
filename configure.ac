@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
 m4_define([gt_version_minor],[20])
-m4_define([gt_version_micro],[0])
+m4_define([gt_version_micro],[1])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -25,6 +25,7 @@ fi
 AM_MAINTAINER_MODE([enable])
 
 PKG_PROG_PKG_CONFIG
+AC_PROG_MKDIR_P
 AC_PROG_CC
 AC_ISC_POSIX
 AC_HEADER_STDC

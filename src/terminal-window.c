@@ -3224,7 +3224,19 @@ terminal_window_update_size (TerminalWindow *window)
   TerminalWindowPrivate *priv = window->priv;
   int grid_width, grid_height;
   int pixel_width, pixel_height;
+  GdkWindow *gdk_window;
 
+  gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
+
+  if (gdk_window != NULL &&
+      (gdk_window_get_state (gdk_window) &
+       (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_TILED)))
+    {
+      /* Don't adjust the size of maximized or tiled (snapped, half-maximized)
+       * windows: if we do, there will be ugly gaps of up to 1 character cell
+       * around otherwise tiled windows. */
+      return;
+    }
 
   /* be sure our geometry is up-to-date */
   terminal_window_update_geometry (window);
