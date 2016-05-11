@@ -92,6 +92,8 @@ struct _TerminalWindowPrivate
   guint icon_title_set : 1;
 };
 
+#define TERMINAL_WINDOW_CSS_NAME "terminal-window"
+
 #define PROFILE_DATA_KEY "GT::Profile"
 
 #define FILE_NEW_TERMINAL_UI_PATH         "/menubar/File/FileNewTerminalProfiles"
@@ -2232,7 +2234,7 @@ terminal_window_fill_notebook_action_box (TerminalWindow *window)
   gtk_widget_set_halign (menu, GTK_ALIGN_END);
 
   button = gtk_menu_button_new ();
-  gtk_button_set_relief (GTK_BUTTON (button), FALSE);
+  gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
   gtk_button_set_focus_on_click (GTK_BUTTON (button), FALSE);
   gtk_menu_button_set_popup (GTK_MENU_BUTTON (button), menu);
 
@@ -2829,6 +2831,13 @@ terminal_window_class_init (TerminalWindowClass *klass)
   g_type_class_add_private (object_class, sizeof (TerminalWindowPrivate));
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/terminal/ui/window.ui");
+
+#if GTK_CHECK_VERSION(3, 19, 5)
+  gtk_widget_class_set_css_name(widget_class, TERMINAL_WINDOW_CSS_NAME);
+#else
+  if (gtk_check_version(3, 19, 5) == NULL)
+    g_printerr("gnome-terminal needs to be recompiled against a newer gtk+ version.\n");
+#endif
 }
 
 static void
