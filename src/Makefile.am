@@ -18,8 +18,8 @@ dbusservice_DATA = org.gnome.Terminal.service
 
 # It is correct for this to be in ${prefix}/lib, even on systems where that
 # does not match ${libdir}. This is what systemd uses on such platforms.
-systemd_userdir = $(prefix)/lib/systemd/user
-systemd_user_DATA = gnome-terminal-server.service
+systemduserdir = $(prefix)/lib/systemd/user
+nodist_systemduser_DATA = gnome-terminal-server.service
 
 gnome_terminal_server_built = \
 	terminal-marshal.c \
@@ -150,9 +150,8 @@ org.gnome.Terminal.service: Makefile
 
 gnome-terminal-server.service: Makefile
 	$(AM_V_GEN) ( echo "[Unit]"; \
-		      echo "Description=GNOME Terminal"; \
+		      echo "Description=GNOME Terminal Server"; \
 		      echo "[Service]"; \
-		      echo "# Don't kill screen sessions, backgrounded X apps etc."; \
 		      echo "KillMode=process"; \
 		      echo "Type=dbus"; \
 		      echo "BusName=org.gnome.Terminal"; \
