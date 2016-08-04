@@ -32,6 +32,8 @@
 #include "terminal-schemas.h"
 #include "terminal-libgsystem.h"
 
+#define TERMINAL_NOTEBOOK_STYLE_CLASS "terminal-notebook"
+
 #define TERMINAL_NOTEBOOK_GET_PRIVATE(notebook)(G_TYPE_INSTANCE_GET_PRIVATE ((notebook), TERMINAL_TYPE_NOTEBOOK, TerminalNotebookPrivate))
 
 struct _TerminalNotebookPrivate
@@ -446,11 +448,15 @@ static void
 terminal_notebook_init (TerminalNotebook *notebook)
 {
   TerminalNotebookPrivate *priv;
+  GtkStyleContext *context;
 
   priv = notebook->priv = TERMINAL_NOTEBOOK_GET_PRIVATE (notebook);
 
   priv->active_screen = NULL;
   priv->policy = GTK_POLICY_AUTOMATIC;
+
+  context = gtk_widget_get_style_context (GTK_WIDGET (notebook));
+  gtk_style_context_add_class (context, TERMINAL_NOTEBOOK_STYLE_CLASS);
 }
 
 static void

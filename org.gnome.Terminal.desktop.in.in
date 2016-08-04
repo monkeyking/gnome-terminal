@@ -15,3 +15,9 @@ Categories=GNOME;GTK;System;TerminalEmulator;
 StartupNotify=true
 X-GNOME-SingleWindow=false
 OnlyShowIn=GNOME;Unity;
+Actions=New
+
+[Desktop Action New]
+_Name=New Terminal
+Exec=gnome-terminal
+OnlyShowIn=Unity

@@ -9,9 +9,13 @@ include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
 include /usr/share/gnome-pkg-tools/1/rules/gnome-version.mk
 -include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
+include /usr/share/gnome-pkg-tools/1/rules/make-compat-desktop-file.mk
+
+DEB_MK_COMPAT_DESKTOP_gnome-terminal := $(CURDIR)/debian/gnome-terminal/usr/share/applications/org.gnome.Terminal.desktop $(CURDIR)/debian/gnome-terminal/usr/share/applications/gnome-terminal.desktop
+
 LDFLAGS += -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
-DEB_CONFIGURE_EXTRA_FLAGS += --enable-distro-packaging
+DEB_CONFIGURE_EXTRA_FLAGS += --enable-distro-packaging --enable-debug
 
 ifneq ($(DEB_HOST_ARCH_OS),linux)
     DEB_CONFIGURE_EXTRA_FLAGS += --disable-search-provider
@@ -26,3 +30,9 @@ build/gnome-terminal::
 
 clean::
 	rm -f debian/gnome-terminal.1
+
+binary-post-install/gnome-terminal::
+	mv $(CURDIR)/debian/gnome-terminal/usr/bin/gnome-terminal \
+		$(CURDIR)/debian/gnome-terminal/usr/bin/gnome-terminal.real
+	install -m0755 $(CURDIR)/debian/gnome-terminal.wrap \
+		$(CURDIR)/debian/gnome-terminal/usr/bin/gnome-terminal

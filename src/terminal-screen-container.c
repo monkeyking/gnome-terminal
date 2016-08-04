@@ -43,6 +43,8 @@ enum
   PROP_WINDOW_PLACEMENT_SET
 };
 
+#define TERMINAL_SCREEN_CONTAINER_CSS_NAME "terminal-screen-container"
+
 G_DEFINE_TYPE (TerminalScreenContainer, terminal_screen_container, GTK_TYPE_OVERLAY)
 
 /* helper functions */
@@ -97,9 +99,25 @@ terminal_screen_container_init (TerminalScreenContainer *container)
   priv->vscrollbar_policy = GTK_POLICY_AUTOMATIC;
 }
 
+static gboolean
+scrollbar_bg_draw_cb (GtkWidget *widget, cairo_t *cr, TerminalScreenContainer *container)
+{
+  TerminalScreenContainerPrivate *priv = container->priv;
+  GdkRGBA * bg = terminal_screen_get_bg_color (priv->screen);
+
+  cairo_save (cr);
+  cairo_set_source_rgba (cr, bg->red, bg->green, bg->blue, bg->alpha);
+  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+  cairo_paint (cr);
+  cairo_restore (cr);
+
+  return FALSE;
+}
+
 static void
 terminal_screen_container_constructed (GObject *object)
 {
+  GtkWidget *scrollbar;
   TerminalScreenContainer *container = TERMINAL_SCREEN_CONTAINER (object);
   TerminalScreenContainerPrivate *priv = container->priv;
 
@@ -108,9 +126,12 @@ terminal_screen_container_constructed (GObject *object)
   g_assert (priv->screen != NULL);
 
   priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  priv->vscrollbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
-  priv->vscrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
-                                        gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->screen)));
+  scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
+                                 gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->screen)));
+
+  gtk_box_pack_start (GTK_BOX (priv->vscrollbar), scrollbar, TRUE, TRUE, 0);
 
   gtk_box_pack_start (GTK_BOX (priv->hbox), GTK_WIDGET (priv->screen), TRUE, TRUE, 0);
   gtk_box_pack_start (GTK_BOX (priv->hbox), priv->vscrollbar, FALSE, FALSE, 0);
@@ -119,6 +140,11 @@ terminal_screen_container_constructed (GObject *object)
   gtk_widget_show_all (priv->hbox);
 
   _terminal_screen_update_scrollbar (priv->screen);
+
+  g_signal_connect (G_OBJECT (priv->vscrollbar), "draw",
+                    G_CALLBACK (scrollbar_bg_draw_cb), container);
+  g_signal_connect_swapped (priv->screen, "notify::bg-color",
+                            G_CALLBACK (gtk_widget_queue_draw), priv->vscrollbar);
 }
 
 static void
@@ -213,6 +239,10 @@ terminal_screen_container_class_init (TerminalScreenContainerClass *klass)
                         GTK_POLICY_AUTOMATIC,
                         G_PARAM_READWRITE |
                         G_PARAM_STATIC_STRINGS));
+
+#if GTK_CHECK_VERSION(3, 19, 5)
+  gtk_widget_class_set_css_name(widget_class, TERMINAL_SCREEN_CONTAINER_CSS_NAME);
+#endif
 
    gtk_widget_class_install_style_property (widget_class,
                                             g_param_spec_enum ("window-placement", NULL, NULL,

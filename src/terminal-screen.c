@@ -93,6 +93,8 @@ struct _TerminalScreenPrivate
   int child_pid;
   GSList *match_tags;
   guint launch_child_source_id;
+  GdkRGBA bg_color;
+  GdkRGBA fg_color;
 };
 
 enum
@@ -110,7 +112,9 @@ enum {
   PROP_ICON_TITLE,
   PROP_ICON_TITLE_SET,
   PROP_TITLE,
-  PROP_INITIAL_ENVIRONMENT
+  PROP_INITIAL_ENVIRONMENT,
+  PROP_BG_COLOR,
+  PROP_FG_COLOR
 };
 
 enum
@@ -122,6 +126,8 @@ enum
   TARGET_NETSCAPE_URL,
   TARGET_TAB
 };
+
+#define TERMINAL_SCREEN_STYLE_CLASS "terminal-screen"
 
 static void terminal_screen_constructed (GObject             *object);
 static void terminal_screen_dispose     (GObject             *object);
@@ -182,6 +188,7 @@ static const TerminalRegexPattern url_regex_patterns[] = {
 
 static const TerminalRegexPattern extra_regex_patterns[] = {
   { "(0[Xx][[:xdigit:]]+|[[:digit:]]+)", FLAVOR_NUMBER },
+  { "(?:lp: #)[[:digit:]]+", FLAVOR_LP },
 };
 
 #ifdef WITH_PCRE2
@@ -440,8 +447,13 @@ terminal_screen_init (TerminalScreen *screen)
   guint i;
   uuid_t u;
   char uuidstr[37];
+  GtkStyleContext *context;
 
   priv = screen->priv = G_TYPE_INSTANCE_GET_PRIVATE (screen, TERMINAL_TYPE_SCREEN, TerminalScreenPrivate);
+
+  context = gtk_widget_get_style_context (GTK_WIDGET (screen));
+
+  gtk_style_context_add_class (context, TERMINAL_SCREEN_STYLE_CLASS);
 
   uuid_generate (u);
   uuid_unparse (u, uuidstr);
@@ -530,6 +542,12 @@ terminal_screen_get_property (GObject *object,
       case PROP_TITLE:
         g_value_set_string (value, terminal_screen_get_title (screen));
         break;
+      case PROP_BG_COLOR:
+        g_value_set_boxed (value, terminal_screen_get_bg_color (screen));
+        break;
+      case PROP_FG_COLOR:
+        g_value_set_boxed (value, terminal_screen_get_bg_color (screen));
+        break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
@@ -555,6 +573,8 @@ terminal_screen_set_property (GObject *object,
       case PROP_ICON_TITLE:
       case PROP_ICON_TITLE_SET:
       case PROP_TITLE:
+      case PROP_FG_COLOR:
+      case PROP_BG_COLOR:
         /* not writable */
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -660,7 +680,26 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                          G_TYPE_STRV,
                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
+  g_object_class_install_property
+    (object_class,
+     PROP_BG_COLOR,
+     g_param_spec_boxed ("bg-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+  g_object_class_install_property
+    (object_class,
+     PROP_FG_COLOR,
+     g_param_spec_boxed ("fg-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
+
+  gtk_widget_class_install_style_property (widget_class,
+     g_param_spec_float ("background-darkness", NULL, NULL, -1, 1, -1,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
 
   n_url_regexes = G_N_ELEMENTS (url_regex_patterns);
   precompile_regexes (url_regex_patterns, n_url_regexes, &url_regexes, &url_regex_flavors);
@@ -865,6 +904,22 @@ terminal_screen_get_icon_title_set (TerminalScreen *screen)
   return vte_terminal_get_icon_title (VTE_TERMINAL (screen)) != NULL;
 }
 
+GdkRGBA*
+terminal_screen_get_bg_color (TerminalScreen *screen)
+{
+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+
+  return &screen->priv->bg_color;
+}
+
+GdkRGBA*
+terminal_screen_get_fg_color (TerminalScreen *screen)
+{
+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+
+  return &screen->priv->fg_color;
+}
+
 static void
 terminal_screen_profile_changed_cb (GSettings     *profile,
                                     const char    *prop_name,
@@ -926,7 +981,10 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
       prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_COLORS_SET_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_BACKGROUND_COLOR_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_FOREGROUND_COLOR_KEY) ||
-      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY))
+      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND) ||
+      prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_THEME_TRANSPARENCY))
     update_color_scheme (screen);
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
@@ -997,6 +1055,9 @@ update_color_scheme (TerminalScreen *screen)
   GdkRGBA *highlight_bgp = NULL, *highlight_fgp = NULL;
   GtkStyleContext *context;
   gboolean use_theme_colors;
+  GtkWidget *toplevel;
+  gboolean transparent, theme_transparent;
+  gfloat style_darkness;
 
   context = gtk_widget_get_style_context (widget);
   gtk_style_context_get_color (context, gtk_style_context_get_state (context), &theme_fg);
@@ -1048,6 +1109,27 @@ update_color_scheme (TerminalScreen *screen)
     }
 
   colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
+  theme_transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY);
+  transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND);
+
+  gtk_widget_style_get (GTK_WIDGET (screen),
+                        "background-darkness", &style_darkness,
+                        NULL);
+
+  if (theme_transparent && style_darkness >= 0)
+    {
+      bg.alpha = style_darkness;
+    }
+  else if (transparent)
+    {
+      gint transparency_percent;
+
+      transparency_percent = g_settings_get_int (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT);
+      bg.alpha = (100 - transparency_percent) / 100.0;
+    }
+  else
+      bg.alpha = 1.0;
+
   vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                            colors, n_colors);
   vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
@@ -1055,6 +1137,22 @@ update_color_scheme (TerminalScreen *screen)
   vte_terminal_set_color_cursor_foreground (VTE_TERMINAL (screen), cursor_fgp);
   vte_terminal_set_color_highlight (VTE_TERMINAL (screen), highlight_bgp);
   vte_terminal_set_color_highlight_foreground (VTE_TERMINAL (screen), highlight_fgp);
+
+  if (gdk_rgba_hash (&priv->bg_color) != gdk_rgba_hash (&bg))
+    {
+      priv->bg_color = bg;
+      g_object_notify (G_OBJECT (screen), "bg-color");
+    }
+
+  if (gdk_rgba_hash (&priv->fg_color) != gdk_rgba_hash (&fg))
+    {
+      priv->fg_color = fg;
+      g_object_notify (G_OBJECT (screen), "fg-color");
+    }
+
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (screen));
+  if (toplevel != NULL && gtk_widget_is_toplevel (toplevel))
+    gtk_widget_set_app_paintable (toplevel, transparent);
 }
 
 static void
