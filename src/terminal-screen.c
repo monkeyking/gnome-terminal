@@ -182,6 +182,7 @@ static const TerminalRegexPattern url_regex_patterns[] = {
 
 static const TerminalRegexPattern extra_regex_patterns[] = {
   { "(0[Xx][[:xdigit:]]+|[[:digit:]]+)", FLAVOR_NUMBER },
+  { "(?:lp: #)[[:digit:]]+", FLAVOR_LP },
 };
 
 #ifdef WITH_PCRE2
