@@ -1130,6 +1130,10 @@ update_color_scheme (TerminalScreen *screen)
   else
       bg.alpha = 1.0;
 
+  /* If this gets out of range, let's not crash */
+  if (bg.alpha < 0.0 || bg.alpha > 1.0)
+      bg.alpha = 1.0;
+
   vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                            colors, n_colors);
   vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
