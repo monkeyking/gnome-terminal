@@ -92,6 +92,10 @@ struct _TerminalWindowPrivate
   int old_csd_width;
   int old_csd_height;
 
+  /* Width and height of the padding around the geometry widget. */
+  int old_padding_width;
+  int old_padding_height;
+
   void *old_geometry_widget; /* only used for pointer value as it may be freed */
 
   GtkWidget *confirm_close_dialog;
@@ -102,6 +106,7 @@ struct _TerminalWindowPrivate
 
   guint disposed : 1;
   guint present_on_insert : 1;
+
   guint realized : 1;
 
   /* Workaround until gtk+ bug #535557 is fixed */
@@ -906,21 +911,13 @@ search_popover_notify_regex_cb (TerminalSearchPopover *popover,
                                 TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
-#ifdef WITH_PCRE2
   VteRegex *regex;
-#else
-  GRegex *regex;
-#endif
 
   if (G_UNLIKELY (priv->active_screen == NULL))
     return;
 
   regex = terminal_search_popover_get_regex (popover);
-#ifdef WITH_PCRE2
   vte_terminal_search_set_regex (VTE_TERMINAL (priv->active_screen), regex, 0);
-#else
-  vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), regex, 0);
-#endif
 
   terminal_window_update_search_sensitivity (priv->active_screen, window);
 }
@@ -995,11 +992,7 @@ action_find_cb (GSimpleAction *action,
   } else if (g_str_equal (mode, "previous")) {
     vte_terminal_search_find_previous (VTE_TERMINAL (priv->active_screen));
   } else if (g_str_equal (mode, "clear")) {
-#ifdef WITH_PCRE2
     vte_terminal_search_set_regex (VTE_TERMINAL (priv->active_screen), NULL, 0);
-#else
-    vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), NULL, 0);
-#endif
   } else
     return;
 }
@@ -1808,11 +1801,7 @@ terminal_window_update_search_sensitivity (TerminalScreen *screen,
   if (screen != priv->active_screen)
     return;
 
-#ifdef WITH_PCRE2
   can_search = vte_terminal_search_get_regex (VTE_TERMINAL (screen)) != NULL;
-#else
-  can_search = vte_terminal_search_get_gregex (VTE_TERMINAL (screen)) != NULL;
-#endif
 
   action = gtk_action_group_get_action (priv->action_group, "SearchFindNext");
   gtk_action_set_sensitive (action, can_search);
@@ -2712,10 +2701,14 @@ terminal_window_init (TerminalWindow *window)
 
   priv->old_char_width = -1;
   priv->old_char_height = -1;
+
   priv->old_chrome_width = -1;
   priv->old_chrome_height = -1;
   priv->old_csd_width = -1;
   priv->old_csd_height = -1;
+  priv->old_padding_width = -1;
+  priv->old_padding_height = -1;
+
   priv->old_geometry_widget = NULL;
 
   /* GAction setup */
@@ -3620,13 +3613,14 @@ terminal_window_update_geometry (TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
   GtkWidget *widget;
-  GtkRequisition toplevel_request, vbox_request;
   GdkGeometry hints;
+  GtkBorder padding;
+  GtkRequisition vbox_request, widget_request;
   int grid_width, grid_height;
   int char_width, char_height;
   int chrome_width, chrome_height;
-  int csd_width, csd_height;
-
+  int csd_width = 0, csd_height = 0;
+  
   if (priv->active_screen == NULL)
     return;
 
@@ -3638,40 +3632,70 @@ terminal_window_update_geometry (TerminalWindow *window)
    * window, but that doesn't make too much sense.
    */
   terminal_screen_get_cell_size (priv->active_screen, &char_width, &char_height);
+
   terminal_screen_get_size (priv->active_screen, &grid_width, &grid_height);
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "%dx%d cells of %dx%d px = %dx%d px\n",
                          grid_width, grid_height, char_width, char_height,
                          char_width * grid_width, char_height * grid_height);
 
+  gtk_style_context_get_padding(gtk_widget_get_style_context(widget),
+                                gtk_widget_get_state_flags(widget),
+                                &padding);
+
+  _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "padding = %dx%d px\n",
+                         padding.left + padding.right,
+                         padding.top + padding.bottom);
+
   gtk_widget_get_preferred_size (priv->main_vbox, NULL, &vbox_request);
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "content area requests %dx%d px\n",
                          vbox_request.width, vbox_request.height);
 
-  gtk_widget_get_preferred_size (GTK_WIDGET (window), NULL, &toplevel_request);
-  _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "window requests %dx%d px\n",
-                         toplevel_request.width, toplevel_request.height);
 
   chrome_width = vbox_request.width - (char_width * grid_width);
   chrome_height = vbox_request.height - (char_height * grid_height);
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "chrome: %dx%d px\n",
                          chrome_width, chrome_height);
 
-  csd_width = toplevel_request.width - vbox_request.width;
-  csd_height = toplevel_request.height - vbox_request.height;
-  _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "CSDs: %dx%d px%s\n",
-                         csd_width, csd_height,
-                         priv->realized ? "" : " (just a guess)");
+  if (priv->realized)
+    {
+      /* Only when having been realize the CSD can be calculated. Do this by
+       * using the actual allocation rather then the preferred size as the
+       * the preferred size takes the natural size of e.g. the title bar into
+       * account which can be far wider then the contents size when using a
+       * very long title */
+      GtkAllocation toplevel_allocation;
+
+      gtk_widget_get_allocation (GTK_WIDGET (window), &toplevel_allocation);
+      _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "window allocation %dx%d px\n",
+                         toplevel_allocation.width, toplevel_allocation.height);
+
+      csd_width =  toplevel_allocation.width - vbox_request.width;
+      csd_height = toplevel_allocation.height - vbox_request.height;
+      _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "CSDs: %dx%d px\n",
+                             csd_width, csd_height);
+    }
+
+  gtk_widget_get_preferred_size (widget, NULL, &widget_request);
+  _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "terminal widget requests %dx%d px\n",
+                         widget_request.width, widget_request.height);
 
   if (!priv->realized)
     {
       /* Don't actually set the geometry hints until we have been realized,
-       * because we don't know precisely how large the client-side decorations
-       * are going to be. We also avoid setting priv->old_csd_width or
+       * because we don't know how large the client-side decorations are going
+       * to be. We also avoid setting priv->old_csd_width or
        * priv->old_csd_height, so that next time through this function we'll
-       * definitely recalculate the hints. */
+       * definitely recalculate the hints.
+       *
+       * Similarly, the size request doesn't seem to include the padding
+       * until we've been redrawn at least once. Don't resize the window
+       * until we've done that. */
+      _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY, "not realized yet\n");
     }
   else if (char_width != priv->old_char_width ||
       char_height != priv->old_char_height ||
+      padding.left + padding.right != priv->old_padding_width ||
+      padding.top + padding.bottom != priv->old_padding_height ||
       chrome_width != priv->old_chrome_width ||
       chrome_height != priv->old_chrome_height ||
       csd_width != priv->old_csd_width ||
@@ -3719,12 +3743,14 @@ terminal_window_update_geometry (TerminalWindow *window)
                              window);
     }
 
-  /* We need these for the size calculation in terminal_window_update_size(),
-   * so we set them unconditionally. */
+  /* We need these for the size calculation in terminal_window_update_size()
+   * (at least under GTK >= 3.19), so we set them unconditionally. */
   priv->old_char_width = char_width;
   priv->old_char_height = char_height;
   priv->old_chrome_width = chrome_width;
   priv->old_chrome_height = chrome_height;
+  priv->old_padding_width = padding.left + padding.right;
+  priv->old_padding_height = padding.top + padding.bottom;
 }
 
 static void

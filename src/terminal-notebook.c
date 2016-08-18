@@ -137,7 +137,9 @@ terminal_notebook_add_screen (TerminalMdiContainer *container,
                            "tab-fill", TRUE,
                            NULL);
   gtk_notebook_set_tab_reorderable (gtk_notebook, screen_container, TRUE);
+#if 0
   gtk_notebook_set_tab_detachable (gtk_notebook, screen_container, TRUE);
+#endif
 }
 
 static void
@@ -152,13 +154,8 @@ terminal_notebook_remove_screen (TerminalMdiContainer *container,
   update_tab_visibility (notebook, -1);
 
   screen_container = terminal_screen_container_get_from_screen (screen);
-#if GTK_CHECK_VERSION(3, 16, 0)
-  gtk_notebook_detach_tab (GTK_NOTEBOOK (notebook),
-                           GTK_WIDGET (screen_container));
-#else
   gtk_container_remove (GTK_CONTAINER (notebook),
                         GTK_WIDGET (screen_container));
-#endif
 }
 
 static TerminalScreen *

@@ -78,7 +78,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@WITH_NAUTILUS_EXTENSION_TRUE@am__append_1 = org.gnome.Terminal.Nautilus.appdata.xml
+@WITH_NAUTILUS_EXTENSION_TRUE@am__append_1 = org.gnome.Terminal.Nautilus.metainfo.xml
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -325,8 +325,6 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-PCRE2_CFLAGS = @PCRE2_CFLAGS@
-PCRE2_LIBS = @PCRE2_LIBS@
 PKG_CONFIG = @PKG_CONFIG@
 PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
@@ -427,7 +425,7 @@ nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 DESKTOP_FILE_VALIDATE_FLAGS = 
 appdata_in_files = \
 	org.gnome.Terminal.appdata.xml.in \
-	org.gnome.Terminal.Nautilus.appdata.xml.in \
+	org.gnome.Terminal.Nautilus.metainfo.xml.in \
 	$(NULL)
 
 appdatadir = $(datadir)/appdata

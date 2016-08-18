@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[20])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_minor],[21])
+m4_define([gt_version_micro],[90])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -35,7 +35,7 @@ IT_PROG_INTLTOOL([0.50.0])
 AM_GLIB_GNU_GETTEXT
 
 GLIB_REQUIRED=2.42.0
-GLIB_MIN_REQUIRED=2.40
+GLIB_MIN_REQUIRED=2.42
 GLIB_MAX_ALLOWED=2.42
 
 GIO_REQUIRED=2.34.0
@@ -58,9 +58,9 @@ case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.12.0
        GTK_MIN_REQUIRED=3.8
-       GTK_MAX_ALLOWED=3.14
+       GTK_MAX_ALLOWED=3.20
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.44.2
+       VTE_REQUIRED=0.45.90
        ;;
 esac
 
@@ -77,28 +77,6 @@ for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
   esac
 done
 
-# PCRE2
-
-AC_MSG_CHECKING([whether PCRE2 support is requested])
-AC_ARG_WITH([pcre2],
-  [AS_HELP_STRING([--without-pcre2],[Disable pcre2 support])],
-  [],[with_pcre2=no])
-AC_MSG_RESULT([$with_pcre2])
-
-PCRE2_PKGS=
-if test "$with_pcre2" = "yes"; then
-  PCRE2_PKGS="libpcre2-8 >= $PCRE2_REQUIRED"
-  VTE_REQUIRED=0.45.0
-
-  PKG_CHECK_MODULES([PCRE2],[$PCRE2_PKGS],,
-    [AC_MSG_ERROR([PCRE2 requested but libpcre2-8 not found. Use --without-pcre2 to disable PCRE2])])
-
-  AC_DEFINE([WITH_PCRE2],[1],[Define to 1 to enable pcre2 support])
-  EXTRA_DEPS="$EXTRA_DEPS $PCRE2_PKGS"
-fi
-
-AM_CONDITIONAL([WITH_PCRE2],[test "$with_pcre2" = "yes"])
-
 # pkg-config checks
 
 PKG_CHECK_MODULES([TERM],
@@ -109,8 +87,8 @@ PKG_CHECK_MODULES([TERM],
    gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
    dconf >= $DCONF_REQUIRED
    uuid
-   $PLATFORM_DEPS
-   $PCRE2_PKGS])
+   libpcre2-8 >= $PCRE2_REQUIRED
+   $PLATFORM_DEPS])
 
 # ****
 # Vala
@@ -188,39 +166,51 @@ AM_CONDITIONAL([ENABLE_MIGRATION],[test "$enable_migration" = "yes"])
 # ***********
 
 AC_ARG_VAR([GLIB_GENMARSHAL],[the glib-genmarschal programme])
-AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
 if test -z "$GLIB_GENMARSHAL"; then
-  AC_MSG_ERROR([glib-genmarshal not found])
+  AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
+  if test -z "$GLIB_GENMARSHAL"; then
+    AC_MSG_ERROR([glib-genmarshal not found])
+  fi
 fi
 
 AC_ARG_VAR([GLIB_MKENUMS],[the glib-mkenums programme])
-AC_PATH_PROG([GLIB_MKENUMS],[glib-mkenums],[])
 if test -z "$GLIB_MKENUMS"; then
-  AC_MSG_ERROR([glib-mkenums not found])
+  AC_PATH_PROG([GLIB_MKENUMS],[glib-mkenums],[])
+  if test -z "$GLIB_MKENUMS"; then
+    AC_MSG_ERROR([glib-mkenums not found])
+  fi
 fi
 
 AC_ARG_VAR([GLIB_COMPILE_RESOURCES],[the glib-compile-resources programme])
-AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
 if test -z "$GLIB_COMPILE_RESOURCES"; then
-  AC_MSG_ERROR([glib-compile-resources not found])
+  AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
+  if test -z "$GLIB_COMPILE_RESOURCES"; then
+    AC_MSG_ERROR([glib-compile-resources not found])
+  fi
 fi
 
 AC_ARG_VAR([GDBUS_CODEGEN],[the gdbus-codegen programme])
-AC_PATH_PROG([GDBUS_CODEGEN],[gdbus-codegen],[])
 if test -z "$GDBUS_CODEGEN"; then
-  AC_MSG_ERROR([gdbus-codegen not found])
+  AC_PATH_PROG([GDBUS_CODEGEN],[gdbus-codegen],[])
+  if test -z "$GDBUS_CODEGEN"; then
+    AC_MSG_ERROR([gdbus-codegen not found])
+  fi
 fi
 
 AC_ARG_VAR([XMLLINT],[the xmllint programme])
-AC_PATH_PROG([XMLLINT],[xmllint],[])
 if test -z "$XMLLINT"; then
-  AC_MSG_ERROR([xmllint not found])
+  AC_PATH_PROG([XMLLINT],[xmllint],[])
+  if test -z "$XMLLINT"; then
+    AC_MSG_ERROR([xmllint not found])
+  fi
 fi
 
 AC_ARG_VAR([DESKTOP_FILE_VALIDATE],[the desktop-file-validate programme])
-AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
 if test -z "$DESKTOP_FILE_VALIDATE"; then
-  AC_MSG_ERROR([desktop-file-validate not found])
+  AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
+  if test -z "$DESKTOP_FILE_VALIDATE"; then
+    AC_MSG_ERROR([desktop-file-validate not found])
+  fi
 fi
 
 # ***************************
@@ -374,10 +364,10 @@ AC_SUBST([WARN_CFLAGS])
 AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
-AC_DEFINE_UNQUOTED([GLIB_VERSION_MIN_REQUIRED],[GLIB_VERSION_[]AS_TR_SH([$GLIB_MIN_REQUIRED])],[Define the min required glib version])
-AC_DEFINE_UNQUOTED([GLIB_VERSION_MAX_ALLOWED],[GLIB_VERSION_[]AS_TR_SH([$GLIB_MAX_ALLOWED])],[Define the max allowed glib version])
-AC_DEFINE_UNQUOTED([GDK_VERSION_MIN_REQUIRED],[GDK_VERSION_[]AS_TR_SH([$GTK_MIN_REQUIRED])],[Define the min required gtk version])
-AC_DEFINE_UNQUOTED([GDK_VERSION_MAX_ALLOWED],[GDK_VERSION_[]AS_TR_SH([$GTK_MAX_ALLOWED])],[Define the max allowed gtk version])
+AC_DEFINE_UNQUOTED([GLIB_VERSION_MIN_REQUIRED],[G_ENCODE_VERSION(${GLIB_MIN_REQUIRED/./,})],[Define the min required glib version])
+AC_DEFINE_UNQUOTED([GLIB_VERSION_MAX_ALLOWED],[G_ENCODE_VERSION(${GLIB_MAX_ALLOWED/./,})],[Define the max allowed glib version])
+AC_DEFINE_UNQUOTED([GDK_VERSION_MIN_REQUIRED],[G_ENCODE_VERSION(${GTK_MIN_REQUIRED/./,})],[Define the min required gtk version])
+AC_DEFINE_UNQUOTED([GDK_VERSION_MAX_ALLOWED],[G_ENCODE_VERSION(${GTK_MAX_ALLOWED/./,})],[Define the max allowed gtk version])
 
 # ****************************
 
@@ -399,7 +389,6 @@ gnome-terminal-$VERSION:
       prefix:                 ${prefix}
       source code location:   ${srcdir}
       compiler:               ${CC}
-      PCRE2:                  ${with_pcre2}
       gterminal:              ${enable_gterminal}
       DBus interface dir:     ${dbusinterfacedir}
       DBus service dir:       ${dbusservicedir}
