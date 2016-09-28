@@ -43,6 +43,8 @@ enum
   PROP_WINDOW_PLACEMENT_SET
 };
 
+#define TERMINAL_SCREEN_CONTAINER_CSS_NAME "terminal-screen-container"
+
 G_DEFINE_TYPE (TerminalScreenContainer, terminal_screen_container, GTK_TYPE_OVERLAY)
 
 /* helper functions */
@@ -237,6 +239,10 @@ terminal_screen_container_class_init (TerminalScreenContainerClass *klass)
                         GTK_POLICY_AUTOMATIC,
                         G_PARAM_READWRITE |
                         G_PARAM_STATIC_STRINGS));
+
+#if GTK_CHECK_VERSION(3, 19, 5)
+  gtk_widget_class_set_css_name(widget_class, TERMINAL_SCREEN_CONTAINER_CSS_NAME);
+#endif
 
    gtk_widget_class_install_style_property (widget_class,
                                             g_param_spec_enum ("window-placement", NULL, NULL,
