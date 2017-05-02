@@ -19,7 +19,10 @@
 #include "config.h"
 #define _GNU_SOURCE /* for dup3 */
 
+#ifdef WITH_PCRE2
 #include "terminal-pcre2.h"
+#endif
+
 #include "terminal-regex.h"
 #include "terminal-screen.h"
 
@@ -63,6 +66,8 @@
 
 #define URL_MATCH_CURSOR  (GDK_HAND2)
 
+#define SPAWN_TIMEOUT (30 * 1000 /* 30s */)
+
 typedef struct {
   int *fd_list;
   int fd_list_len;
@@ -90,6 +95,8 @@ struct _TerminalScreenPrivate
   int child_pid;
   GSList *match_tags;
   guint launch_child_source_id;
+  GdkRGBA bg_color;
+  GdkRGBA fg_color;
 };
 
 enum
@@ -107,7 +114,9 @@ enum {
   PROP_ICON_TITLE,
   PROP_ICON_TITLE_SET,
   PROP_TITLE,
-  PROP_INITIAL_ENVIRONMENT
+  PROP_INITIAL_ENVIRONMENT,
+  PROP_BG_COLOR,
+  PROP_FG_COLOR
 };
 
 enum
@@ -119,6 +128,8 @@ enum
   TARGET_NETSCAPE_URL,
   TARGET_TAB
 };
+
+#define TERMINAL_SCREEN_STYLE_CLASS "terminal-screen"
 
 static void terminal_screen_constructed (GObject             *object);
 static void terminal_screen_dispose     (GObject             *object);
@@ -175,14 +186,20 @@ static const TerminalRegexPattern url_regex_patterns[] = {
   { REGEX_URL_VOIP,  FLAVOR_VOIP_CALL },
   { REGEX_EMAIL,     FLAVOR_EMAIL },
   { REGEX_NEWS_MAN,  FLAVOR_AS_IS },
+  { REGEX_LP,        FLAVOR_LP },
 };
 
 static const TerminalRegexPattern extra_regex_patterns[] = {
   { "(0[Xx][[:xdigit:]]+|[[:digit:]]+)", FLAVOR_NUMBER },
 };
 
+#ifdef WITH_PCRE2
 static VteRegex **url_regexes;
 static VteRegex **extra_regexes;
+#else
+static GRegex **url_regexes;
+static GRegex **extra_regexes;
+#endif
 static TerminalURLFlavor *url_regex_flavors;
 static TerminalURLFlavor *extra_regex_flavors;
 static guint n_url_regexes;
@@ -286,18 +303,27 @@ free_tag_data (TagData *tagdata)
 static void
 precompile_regexes (const TerminalRegexPattern *regex_patterns,
                     guint n_regexes,
+#ifdef WITH_PCRE2
                     VteRegex ***regexes,
+#else
+                    GRegex ***regexes,
+#endif
                     TerminalURLFlavor **regex_flavors)
 {
   guint i;
 
+#ifdef WITH_PCRE2
   *regexes = g_new0 (VteRegex*, n_regexes);
+#else
+  *regexes = g_new0 (GRegex*, n_regexes);
+#endif
   *regex_flavors = g_new0 (TerminalURLFlavor, n_regexes);
 
   for (i = 0; i < n_regexes; ++i)
     {
       GError *error = NULL;
 
+#ifdef WITH_PCRE2
       (*regexes)[i] = vte_regex_new_for_match (regex_patterns[i].pattern, -1,
                                                PCRE2_UTF | PCRE2_NO_UTF_CHECK | PCRE2_MULTILINE,
                                                &error);
@@ -308,6 +334,13 @@ precompile_regexes (const TerminalRegexPattern *regex_patterns,
         g_printerr ("Failed to JIT regex '%s': %s\n", regex_patterns[i].pattern, error->message);
         g_clear_error (&error);
       }
+#else
+      (*regexes)[i] = g_regex_new (regex_patterns[i].pattern,
+                                   G_REGEX_OPTIMIZE |
+                                   G_REGEX_MULTILINE,
+                                   0, &error);
+      g_assert_no_error (error);
+#endif
 
       (*regex_flavors)[i] = regex_patterns[i].flavor;
     }
@@ -416,8 +449,13 @@ terminal_screen_init (TerminalScreen *screen)
   guint i;
   uuid_t u;
   char uuidstr[37];
+  GtkStyleContext *context;
 
   priv = screen->priv = G_TYPE_INSTANCE_GET_PRIVATE (screen, TERMINAL_TYPE_SCREEN, TerminalScreenPrivate);
+
+  context = gtk_widget_get_style_context (GTK_WIDGET (screen));
+
+  gtk_style_context_add_class (context, TERMINAL_SCREEN_STYLE_CLASS);
 
   uuid_generate (u);
   uuid_unparse (u, uuidstr);
@@ -433,7 +471,11 @@ terminal_screen_init (TerminalScreen *screen)
 
       tag_data = g_slice_new (TagData);
       tag_data->flavor = url_regex_flavors[i];
+#ifdef WITH_PCRE2
       tag_data->tag = vte_terminal_match_add_regex (terminal, url_regexes[i], 0);
+#else
+      tag_data->tag = vte_terminal_match_add_gregex (terminal, url_regexes[i], 0);
+#endif
       vte_terminal_match_set_cursor_type (terminal, tag_data->tag, URL_MATCH_CURSOR);
 
       priv->match_tags = g_slist_prepend (priv->match_tags, tag_data);
@@ -502,6 +544,12 @@ terminal_screen_get_property (GObject *object,
       case PROP_TITLE:
         g_value_set_string (value, terminal_screen_get_title (screen));
         break;
+      case PROP_BG_COLOR:
+        g_value_set_boxed (value, terminal_screen_get_bg_color (screen));
+        break;
+      case PROP_FG_COLOR:
+        g_value_set_boxed (value, terminal_screen_get_bg_color (screen));
+        break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
@@ -527,6 +575,8 @@ terminal_screen_set_property (GObject *object,
       case PROP_ICON_TITLE:
       case PROP_ICON_TITLE_SET:
       case PROP_TITLE:
+      case PROP_FG_COLOR:
+      case PROP_BG_COLOR:
         /* not writable */
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -632,7 +682,26 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                          G_TYPE_STRV,
                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
+  g_object_class_install_property
+    (object_class,
+     PROP_BG_COLOR,
+     g_param_spec_boxed ("bg-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+  g_object_class_install_property
+    (object_class,
+     PROP_FG_COLOR,
+     g_param_spec_boxed ("fg-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
+
+  gtk_widget_class_install_style_property (widget_class,
+     g_param_spec_float ("background-darkness", NULL, NULL, -1, 1, -1,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
 
   n_url_regexes = G_N_ELEMENTS (url_regex_patterns);
   precompile_regexes (url_regex_patterns, n_url_regexes, &url_regexes, &url_regex_flavors);
@@ -837,6 +906,22 @@ terminal_screen_get_icon_title_set (TerminalScreen *screen)
   return vte_terminal_get_icon_title (VTE_TERMINAL (screen)) != NULL;
 }
 
+GdkRGBA*
+terminal_screen_get_bg_color (TerminalScreen *screen)
+{
+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+
+  return &screen->priv->bg_color;
+}
+
+GdkRGBA*
+terminal_screen_get_fg_color (TerminalScreen *screen)
+{
+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+
+  return &screen->priv->fg_color;
+}
+
 static void
 terminal_screen_profile_changed_cb (GSettings     *profile,
                                     const char    *prop_name,
@@ -898,7 +983,10 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
       prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_COLORS_SET_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_BACKGROUND_COLOR_KEY) ||
       prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_FOREGROUND_COLOR_KEY) ||
-      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY))
+      prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND) ||
+      prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT) ||
+      prop_name == I_(TERMINAL_PROFILE_USE_THEME_TRANSPARENCY))
     update_color_scheme (screen);
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
@@ -969,6 +1057,9 @@ update_color_scheme (TerminalScreen *screen)
   GdkRGBA *highlight_bgp = NULL, *highlight_fgp = NULL;
   GtkStyleContext *context;
   gboolean use_theme_colors;
+  GtkWidget *toplevel;
+  gboolean transparent, theme_transparent;
+  gfloat style_darkness;
 
   context = gtk_widget_get_style_context (widget);
   gtk_style_context_get_color (context, gtk_style_context_get_state (context), &theme_fg);
@@ -1020,6 +1111,31 @@ update_color_scheme (TerminalScreen *screen)
     }
 
   colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
+  theme_transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY);
+  transparent = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND);
+
+  gtk_widget_style_get (GTK_WIDGET (screen),
+                        "background-darkness", &style_darkness,
+                        NULL);
+
+  if (theme_transparent && style_darkness >= 0)
+    {
+      bg.alpha = style_darkness;
+    }
+  else if (transparent)
+    {
+      gint transparency_percent;
+
+      transparency_percent = g_settings_get_int (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT);
+      bg.alpha = (100 - transparency_percent) / 100.0;
+    }
+  else
+      bg.alpha = 1.0;
+
+  /* If this gets out of range, let's not crash */
+  if (bg.alpha < 0.0 || bg.alpha > 1.0)
+      bg.alpha = 1.0;
+
   vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                            colors, n_colors);
   vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
@@ -1027,6 +1143,22 @@ update_color_scheme (TerminalScreen *screen)
   vte_terminal_set_color_cursor_foreground (VTE_TERMINAL (screen), cursor_fgp);
   vte_terminal_set_color_highlight (VTE_TERMINAL (screen), highlight_bgp);
   vte_terminal_set_color_highlight_foreground (VTE_TERMINAL (screen), highlight_fgp);
+
+  if (gdk_rgba_hash (&priv->bg_color) != gdk_rgba_hash (&bg))
+    {
+      priv->bg_color = bg;
+      g_object_notify (G_OBJECT (screen), "bg-color");
+    }
+
+  if (gdk_rgba_hash (&priv->fg_color) != gdk_rgba_hash (&fg))
+    {
+      priv->fg_color = fg;
+      g_object_notify (G_OBJECT (screen), "fg-color");
+    }
+
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (screen));
+  if (toplevel != NULL && gtk_widget_is_toplevel (toplevel))
+    gtk_widget_set_app_paintable (toplevel, transparent);
 }
 
 static void
@@ -1290,9 +1422,7 @@ get_child_environment (TerminalScreen *screen,
 					     GDK_WINDOW_XID (gtk_widget_get_window (window))));
       g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
     }
-  else
 #endif
-    g_hash_table_remove (env_table, "WINDOWID");
 
   /* We need to put the working directory also in PWD, so that
    * e.g. bash starts in the right directory if @cwd is a symlink.
@@ -1430,6 +1560,50 @@ terminal_screen_child_setup (FDSetupData *data)
   }
 }
 
+static void
+spawn_result_cb (VteTerminal *terminal,
+                 GPid pid,
+                 GError *error,
+                 gpointer user_data)
+{
+  TerminalScreen *screen;
+  TerminalScreenPrivate *priv;
+
+  /* Terminal was destroyed while the spawn operation was in progress; nothing to do. */
+  if (terminal == NULL)
+    return;
+
+  screen = TERMINAL_SCREEN (terminal);
+  priv = screen->priv;
+
+  priv->child_pid = pid;
+
+  if (error) {
+    GtkWidget *info_bar;
+
+    vte_terminal_set_pty (terminal, NULL);
+    info_bar = terminal_info_bar_new (GTK_MESSAGE_ERROR,
+                                      _("_Profile Preferences"), RESPONSE_EDIT_PROFILE,
+                                      _("_Relaunch"), RESPONSE_RELAUNCH,
+                                      NULL);
+    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
+                                   _("There was an error creating the child process for this terminal"));
+    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
+                                   "%s", error->message);
+    g_signal_connect (info_bar, "response",
+                      G_CALLBACK (info_bar_response_cb), screen);
+
+    gtk_widget_set_halign (info_bar, GTK_ALIGN_FILL);
+    gtk_widget_set_valign (info_bar, GTK_ALIGN_START);
+    gtk_overlay_add_overlay (GTK_OVERLAY (terminal_screen_container_get_from_screen (screen)),
+                             info_bar);
+    gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+    gtk_widget_show (info_bar);
+
+    return;
+  }
+}
+
 static gboolean
 terminal_screen_do_exec (TerminalScreen *screen,
                          FDSetupData    *data /* adopting */,
@@ -1440,13 +1614,11 @@ terminal_screen_do_exec (TerminalScreen *screen,
   GSettings *profile;
   char **env, **argv;
   char *shell = NULL;
-  GError *err = NULL;
   const char *working_dir;
   VtePtyFlags pty_flags = VTE_PTY_DEFAULT;
   GSpawnFlags spawn_flags = G_SPAWN_SEARCH_PATH_FROM_ENVP |
                             VTE_SPAWN_NO_PARENT_ENVV;
-  GPid pid;
-  gboolean result = FALSE;
+  GCancellable *cancellable = NULL;
 
   if (priv->child_pid != -1) {
     g_set_error_literal (error, G_DBUS_ERROR, G_DBUS_ERROR_FAILED,
@@ -1471,53 +1643,27 @@ terminal_screen_do_exec (TerminalScreen *screen,
   env = get_child_environment (screen, working_dir, &shell);
 
   argv = NULL;
-  if (!get_child_command (screen, shell, &spawn_flags, &argv, &err) ||
-      !vte_terminal_spawn_sync (terminal,
-                                pty_flags,
-                                working_dir,
-                                argv,
-                                env,
-                                spawn_flags,
-                                (GSpawnChildSetupFunc) (data ? terminal_screen_child_setup : NULL), 
-                                data,
-                                &pid,
-                                NULL /* cancellable */,
-                                &err)) {
-    GtkWidget *info_bar;
+  if (!get_child_command (screen, shell, &spawn_flags, &argv, error))
+    return FALSE;
 
-    info_bar = terminal_info_bar_new (GTK_MESSAGE_ERROR,
-                                      _("_Profile Preferences"), RESPONSE_EDIT_PROFILE,
-                                      _("_Relaunch"), RESPONSE_RELAUNCH,
-                                      NULL);
-    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
-                                   _("There was an error creating the child process for this terminal"));
-    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
-                                   "%s", err->message);
-    g_signal_connect (info_bar, "response",
-                      G_CALLBACK (info_bar_response_cb), screen);
+  vte_terminal_spawn_async (terminal,
+                            pty_flags,
+                            working_dir,
+                            argv,
+                            env,
+                            spawn_flags,
+                            (GSpawnChildSetupFunc) (data ? terminal_screen_child_setup : NULL),
+                            data,
+                            (GDestroyNotify) (data ? free_fd_setup_data : NULL),
+                            SPAWN_TIMEOUT,
+                            cancellable,
+                            spawn_result_cb, NULL);
 
-    gtk_widget_set_halign (info_bar, GTK_ALIGN_FILL);
-    gtk_widget_set_valign (info_bar, GTK_ALIGN_START);
-    gtk_overlay_add_overlay (GTK_OVERLAY (terminal_screen_container_get_from_screen (screen)),
-                             info_bar);
-    gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
-    gtk_widget_show (info_bar);
-
-    g_propagate_error (error, err);
-    goto out;
-  }
-
-  priv->child_pid = pid;
-
-  result = TRUE;
-
-out:
   g_free (shell);
   g_strfreev (argv);
   g_strfreev (env);
-  free_fd_setup_data (data);
 
-  return result;
+  return TRUE; /* can't report any more errors since they only occur async */
 }
 
 static gboolean
@@ -2067,7 +2213,12 @@ terminal_screen_check_extra (TerminalScreen *screen,
   memset(matches, 0, sizeof(char*) * n_extra_regexes);
 
   if (
-      vte_terminal_event_check_regex_simple (VTE_TERMINAL (screen),
+#ifdef WITH_PCRE2
+      vte_terminal_event_check_regex_simple(
+#else
+      vte_terminal_event_check_gregex_simple(
+#endif
+                                             VTE_TERMINAL (screen),
                                              event,
                                              extra_regexes,
                                              n_extra_regexes,
@@ -2129,6 +2280,9 @@ terminal_screen_has_foreground_process (TerminalScreen *screen,
   gsize i;
   gsize len;
   int fgpid;
+
+  if (priv->child_pid == -1)
+    return FALSE;
 
   pty = vte_terminal_get_pty (VTE_TERMINAL (screen));
   if (pty == NULL)

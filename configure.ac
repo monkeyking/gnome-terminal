@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[22])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_minor],[24])
+m4_define([gt_version_micro],[1])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -60,7 +60,7 @@ case "$with_gtk" in
        GTK_MIN_REQUIRED=3.8
        GTK_MAX_ALLOWED=3.20
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.46.1
+       VTE_REQUIRED=0.48.2
        ;;
 esac
 
@@ -77,6 +77,27 @@ for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
   esac
 done
 
+# PCRE2
+
+AC_MSG_CHECKING([whether PCRE2 support is requested])
+AC_ARG_WITH([pcre2],
+  [AS_HELP_STRING([--without-pcre2],[Disable pcre2 support])],
+  [],[with_pcre2=no])
+AC_MSG_RESULT([$with_pcre2])
+
+PCRE2_PKGS=
+if test "$with_pcre2" = "yes"; then
+  PCRE2_PKGS="libpcre2-8 >= $PCRE2_REQUIRED"
+
+  PKG_CHECK_MODULES([PCRE2],[$PCRE2_PKGS],,
+    [AC_MSG_ERROR([PCRE2 requested but libpcre2-8 not found. Use --without-pcre2 to disable PCRE2])])
+
+  AC_DEFINE([WITH_PCRE2],[1],[Define to 1 to enable pcre2 support])
+  EXTRA_DEPS="$EXTRA_DEPS $PCRE2_PKGS"
+fi
+
+AM_CONDITIONAL([WITH_PCRE2],[test "$with_pcre2" = "yes"])
+
 # pkg-config checks
 
 PKG_CHECK_MODULES([TERM],
@@ -87,8 +108,8 @@ PKG_CHECK_MODULES([TERM],
    gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
    dconf >= $DCONF_REQUIRED
    uuid
-   libpcre2-8 >= $PCRE2_REQUIRED
-   $PLATFORM_DEPS])
+   $PLATFORM_DEPS
+   $PCRE2_PKGS])
 
 # ****
 # Vala
@@ -389,6 +410,7 @@ gnome-terminal-$VERSION:
       prefix:                 ${prefix}
       source code location:   ${srcdir}
       compiler:               ${CC}
+      PCRE2:                  ${with_pcre2}
       gterminal:              ${enable_gterminal}
       DBus interface dir:     ${dbusinterfacedir}
       DBus service dir:       ${dbusservicedir}
