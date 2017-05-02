@@ -1,7 +1,8 @@
 Source: gnome-terminal
 Section: gnome
 Priority: optional
-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
 Standards-Version: 3.9.8
 Build-Depends: debhelper (>= 10),
@@ -13,8 +14,8 @@ Build-Depends: debhelper (>= 10),
                libdconf-dev (>= 0.14.0),
                libgtk-3-dev (>= 3.20),
                libglib2.0-dev (>= 2.42.0),
-               libpcre2-dev (>= 10.00),
-               libvte-2.91-dev (>= 0.46.1),
+#               libpcre2-dev (>= 10.00),
+               libvte-2.91-dev (>= 0.48.2),
                libsm-dev,
                gnome-pkg-tools (>= 0.10),
                docbook-to-man,
@@ -34,6 +35,9 @@ Architecture: any
 Multi-Arch: foreign
 Depends: ${shlibs:Depends},
          ${misc:Depends},
+         python3,
+         python3-gi,
+         gir1.2-glib-2.0,
          gsettings-desktop-schemas (>= 0.1.0),
          gnome-terminal-data (>= ${gnome:Version}),
          gnome-terminal-data (<< ${gnome:NextVersion})
