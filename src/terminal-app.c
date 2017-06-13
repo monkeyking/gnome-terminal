@@ -339,8 +339,11 @@ app_menu_preferences_cb (GSimpleAction *action,
                          gpointer       user_data)
 {
   TerminalApp *app = user_data;
+  GtkWindow *window;
 
-  terminal_app_edit_preferences (app, NULL);
+  window = gtk_application_get_active_window (GTK_APPLICATION (app));
+
+  terminal_app_edit_preferences (app, window);
 }
 
 static void
