@@ -237,7 +237,7 @@ terminal_app_new_profile (TerminalApp *app,
   if (profile == NULL)
     return;
 
-  terminal_profile_edit (profile, NULL, "profile-name-entry");
+  terminal_profile_edit (profile, transient_parent, "profile-name-entry");
 }
 
 void
@@ -339,8 +339,11 @@ app_menu_preferences_cb (GSimpleAction *action,
                          gpointer       user_data)
 {
   TerminalApp *app = user_data;
+  GtkWindow *window;
 
-  terminal_app_edit_preferences (app, NULL);
+  window = gtk_application_get_active_window (GTK_APPLICATION (app));
+
+  terminal_app_edit_preferences (app, window);
 }
 
 static void
@@ -675,21 +678,21 @@ terminal_app_edit_profile (TerminalApp     *app,
                            GtkWindow       *transient_parent,
                            const char      *widget_name)
 {
-  terminal_profile_edit (profile, NULL, widget_name);
+  terminal_profile_edit (profile, transient_parent, widget_name);
 }
 
 void
 terminal_app_edit_preferences (TerminalApp     *app,
                                GtkWindow       *transient_parent)
 {
-  terminal_prefs_show_preferences (NULL, "general");
+  terminal_prefs_show_preferences (transient_parent, "general");
 }
 
 void
 terminal_app_edit_encodings (TerminalApp     *app,
                              GtkWindow       *transient_parent)
 {
-  terminal_prefs_show_preferences (NULL, "encodings");
+  terminal_prefs_show_preferences (transient_parent, "encodings");
 }
 
 /**
