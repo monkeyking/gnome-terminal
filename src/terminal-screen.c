@@ -966,6 +966,17 @@ update_color_scheme (TerminalScreen *screen)
   gtk_style_context_get_color (context, gtk_style_context_get_state (context), &theme_fg);
   gtk_style_context_get_background_color (context, gtk_style_context_get_state (context), &theme_bg);
 
+  if (theme_fg.red == 0.0 && theme_fg.green == 0.0 && theme_fg.blue == 0.0 &&
+      theme_bg.red == 0.0 && theme_bg.green == 0.0 && theme_bg.blue == 0.0)
+    {
+      /* The GTK-default Raleigh theme in 3.12 ends up assigning
+       * black background and black foreground, which is clearly not
+       * useful. */
+      theme_bg.red = 1.0;
+      theme_bg.green = 1.0;
+      theme_bg.blue = 1.0;
+    }
+
   use_theme_colors = g_settings_get_boolean (profile, TERMINAL_PROFILE_USE_THEME_COLORS_KEY);
   if (use_theme_colors ||
       (!terminal_g_settings_get_rgba (profile, TERMINAL_PROFILE_FOREGROUND_COLOR_KEY, &fg) ||
