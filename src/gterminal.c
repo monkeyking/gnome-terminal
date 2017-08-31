@@ -276,7 +276,7 @@ static const GOptionEntry GTERMINAL_GLOBAL_OPTIONS_entries[3] = {{"app-id", (gch
 static const GOptionEntry GTERMINAL_OPEN_OPTIONS_exec_entries[5] = {{"stdin", (gchar) 0, (gint) G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &gterminal_open_options_pass_stdin, "Forward stdin", NULL}, {"stdout", (gchar) 0, (gint) G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &gterminal_open_options_pass_stdout, "Forward stdout", NULL}, {"stderr", (gchar) 0, (gint) G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &gterminal_open_options_pass_stderr, "Forward stderr", NULL}, {"fd", (gchar) 0, 0, G_OPTION_ARG_STRING_ARRAY, &gterminal_open_options_pass_fds, "Forward file descriptor", "FD"}, {NULL, (gchar) 0, 0, 0, NULL, NULL, NULL}};
 static const GOptionEntry GTERMINAL_OPEN_OPTIONS_window_entries[5] = {{"maximise", (gchar) 0, 0, G_OPTION_ARG_NONE, &gterminal_open_options_maximise, "Maximise the window", NULL}, {"fullscreen", (gchar) 0, 0, G_OPTION_ARG_NONE, &gterminal_open_options_fullscreen, "Full-screen the window", NULL}, {"geometry", (gchar) 0, 0, G_OPTION_ARG_STRING, &gterminal_open_options_geometry, "Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X" \
 "+Y)", "GEOMETRY"}, {"role", (gchar) 0, 0, G_OPTION_ARG_STRING, &gterminal_open_options_role, "Set the window role", "ROLE"}, {NULL, (gchar) 0, 0, 0, NULL, NULL, NULL}};
-static const GOptionEntry GTERMINAL_OPEN_OPTIONS_terminal_entries[4] = {{"profile", (gchar) 0, 0, G_OPTION_ARG_CALLBACK, (void*) gterminal_open_options_option_profile, "Use the given profile instead of the default profile", "UUID"}, {"cwd", (gchar) 0, 0, G_OPTION_ARG_FILENAME, &gterminal_open_options_working_directory, "Set the working directory", "DIRNAME"}, {"zoom", (gchar) 0, 0, G_OPTION_ARG_CALLBACK, (void*) gterminal_open_options_option_zoom, "Set the terminal's zoom factor (1.0 = normal size)", "ZOOM"}, {NULL, (gchar) 0, 0, 0, NULL, NULL, NULL}};
+static const GOptionEntry GTERMINAL_OPEN_OPTIONS_terminal_entries[4] = {{"profile", (gchar) 0, 0, G_OPTION_ARG_CALLBACK, (void*) gterminal_open_options_option_profile, "Use the given profile instead of the default profile", "UUID"}, {"cwd", (gchar) 0, 0, G_OPTION_ARG_FILENAME, &gterminal_open_options_working_directory, "Set the working directory", "DIRNAME"}, {"zoom", (gchar) 0, 0, G_OPTION_ARG_CALLBACK, (void*) gterminal_open_options_option_zoom, "Set the terminal’s zoom factor (1.0 = normal size)", "ZOOM"}, {NULL, (gchar) 0, 0, 0, NULL, NULL, NULL}};
 static const GOptionEntry GTERMINAL_OPEN_OPTIONS_processing_entries[2] = {{"wait", (gchar) 0, 0, G_OPTION_ARG_NONE, &gterminal_open_options_wait_for_remote, "Wait until the child exits", NULL}, {NULL, (gchar) 0, 0, 0, NULL, NULL, NULL}};
 static const GDBusMethodInfo * const _gterminal_server_dbus_method_info[] = {NULL};
 static const GDBusSignalInfo * const _gterminal_server_dbus_signal_info[] = {NULL};
@@ -402,7 +402,7 @@ static gboolean gterminal_global_options_option_app_id (const gchar* option_name
 		const gchar* _tmp2_ = NULL;
 		const gchar* _tmp3_ = NULL;
 		GError* _tmp4_ = NULL;
-		_tmp2_ = _ ("\"%s\" is not a valid application ID");
+		_tmp2_ = _ ("“%s” is not a valid application ID");
 		_tmp3_ = value;
 		_tmp4_ = g_error_new (G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE, _tmp2_, _tmp3_);
 		_inner_error_ = _tmp4_;
@@ -708,7 +708,7 @@ static gboolean gterminal_open_options_post_parse (GOptionContext* context, GOpt
 					const gchar* _tmp35_ = NULL;
 					GError* _tmp36_ = NULL;
 					gboolean _tmp37_ = FALSE;
-					_tmp32_ = _ ("Invalid argument \"%s\" to --fd option");
+					_tmp32_ = _ ("Invalid argument “%s” to --fd option");
 					_tmp33_ = gterminal_open_options_pass_fds;
 					_tmp33__length1 = _vala_array_length (gterminal_open_options_pass_fds);
 					_tmp34_ = i;
@@ -996,7 +996,7 @@ static gboolean gterminal_open_options_option_zoom (const gchar* option_name, co
 		const gchar* _tmp4_ = NULL;
 		GError* _tmp5_ = NULL;
 		gboolean _tmp6_ = FALSE;
-		_tmp3_ = _ ("\"%s\" is not a valid zoom factor");
+		_tmp3_ = _ ("“%s” is not a valid zoom factor");
 		_tmp4_ = value;
 		_tmp5_ = g_error_new (G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE, _tmp3_, _tmp4_);
 		_inner_error_ = _tmp5_;
@@ -1016,7 +1016,7 @@ static gboolean gterminal_open_options_option_zoom (const gchar* option_name, co
 		const gchar* _tmp11_ = NULL;
 		GError* _tmp12_ = NULL;
 		gboolean _tmp13_ = FALSE;
-		_tmp10_ = _ ("Zoom value \"%s\" is outside allowed range");
+		_tmp10_ = _ ("Zoom value “%s” is outside allowed range");
 		_tmp11_ = value;
 		_tmp12_ = g_error_new (G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE, _tmp10_, _tmp11_);
 		_inner_error_ = _tmp12_;
@@ -1980,7 +1980,7 @@ gint gterminal_apply_map (GTerminalVerb* commands, int commands_length1, gchar**
 		const gchar* _tmp54_ = NULL;
 		GError* _tmp55_ = NULL;
 		gint _tmp56_ = 0;
-		_tmp52_ = _ ("Unknown command \"%s\"");
+		_tmp52_ = _ ("Unknown command “%s”");
 		_tmp53_ = argv;
 		_tmp53__length1 = argv_length1;
 		_tmp54_ = _tmp53_[0];
@@ -2115,7 +2115,7 @@ gint gterminal_open (gchar** argv, int argv_length1, GError** error) {
 		const gchar* _tmp8_ = NULL;
 		GError* _tmp9_ = NULL;
 		gint _tmp10_ = 0;
-		_tmp6_ = _ ("'%s' needs the command to run as arguments after '--'");
+		_tmp6_ = _ ("“%s” needs the command to run as arguments after “--”");
 		_tmp7_ = argv;
 		_tmp7__length1 = argv_length1;
 		_tmp8_ = _tmp7_[0];
@@ -2144,7 +2144,7 @@ gint gterminal_open (gchar** argv, int argv_length1, GError** error) {
 			const gchar* _tmp15_ = NULL;
 			GError* _tmp16_ = NULL;
 			gint _tmp17_ = 0;
-			_tmp15_ = _ ("Extraneous arguments after '--'");
+			_tmp15_ = _ ("Extraneous arguments after “--”");
 			_tmp16_ = g_error_new_literal (G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE, _tmp15_);
 			_inner_error_ = _tmp16_;
 			g_propagate_error (error, _inner_error_);
