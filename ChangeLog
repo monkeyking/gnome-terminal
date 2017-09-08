@@ -1,67 +1,544 @@
-commit e3c4b25833ef067097e78864a87249d5b021c66e
+commit f8b8ba344f1226b7041a3dd5f515ea6bd95a5f95
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Mon Sep 4 20:54:04 2017 +0200
+
+    Version 3.25.92
+
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit cfc99c9399445e4abc1c6e4d5a59b923a4ead9da
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Mon Sep 4 20:51:11 2017 +0200
+
+    util: Set application on about dialogue
+    
+    This makes the shell able to find the correct description and
+    icon when the about dialogue is shown; and also holds the
+    application until the dialogue is dismissed.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=786427
+
+ src/terminal-util.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+commit 12c9f4a1923cb5dba7037499280b4d4bd26494ba
+Author: Rafael Fontenelle <rafaelff@gnome.org>
+Date:   Sun Sep 3 18:49:20 2017 +0000
+
+    Update Brazilian Portuguese translation
+
+ po/pt_BR.po | 392 +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 214 insertions(+), 178 deletions(-)
+
+commit 356caf5ea25fd7b671deffebae924f11a2fa4359
+Author: Gianvito Cavasoli <gianvito@gmx.it>
+Date:   Sun Sep 3 12:46:14 2017 +0000
+
+    Update Italian translation
+
+ po/it.po | 419 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 191 insertions(+), 228 deletions(-)
+
+commit b67159501fa39aabbf22bf39dbcc81a0401bf1ab
+Author: Dušan Kazik <prescott66@gmail.com>
+Date:   Sat Sep 2 08:27:16 2017 +0000
+
+    Update Slovak translation
+
+ po/sk.po | 365 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 198 insertions(+), 167 deletions(-)
+
+commit 02048b02922a2f7144893c133e883b3362037def
+Author: Alexander Shopov <ash@kambanaria.org>
+Date:   Sat Sep 2 09:31:56 2017 +0300
+
+    Updated Bulgarian translation
+
+ po/bg.po | 646 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 335 insertions(+), 311 deletions(-)
+
+commit e1e96f3f85cfb88a0ff74b79ceb2df6f8f286b91
+Author: Yuras Shumovich <shumovichy@gmail.com>
+Date:   Fri Sep 1 17:29:01 2017 +0000
+
+    Update Belarusian translation
+
+ po/be.po | 343 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 185 insertions(+), 158 deletions(-)
+
+commit f461840e6d87e520769f7f2cffd84032034f8e3a
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Fri Sep 1 08:21:09 2017 +0700
+
+    Updated Vietnamese translation
+    
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 340 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 185 insertions(+), 155 deletions(-)
+
+commit e00ce6566fd06d2f0976da4877a56ef7ba8f32f7
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Thu Aug 31 21:45:42 2017 +0200
+
+    util: Strip off hostname from file:// URIs
+    
+    This works around a bug in LibreOffice.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=781800
+
+ src/terminal-util.c | 75 ++++++++++++++++++++++++++++++++++++++++-------------
+ src/terminal-util.h |  4 +--
+ 2 files changed, 59 insertions(+), 20 deletions(-)
+
+commit 5c32151688c2eea462128593a8c313e154712f1d
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Thu Aug 31 21:43:56 2017 +0200
+
+    util: Handle invalid UTF-8 in hyperlink tooltip
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=786814
+
+ src/terminal-util.c | 57 +++++++++++++++++++++++++++++++++++++++++++++++++++--
+ src/terminal-util.h |  3 +++
+ 2 files changed, 58 insertions(+), 2 deletions(-)
+
+commit a0ba407d83e61fe34958819bfc979e6ce3a4e9d9
+Author: Jiri Grönroos <jiri.gronroos@iki.fi>
+Date:   Wed Aug 30 11:42:40 2017 +0000
+
+    Update Finnish translation
+
+ po/fi.po | 377 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 190 insertions(+), 187 deletions(-)
+
+commit b92aac961a44cb133c6e8537f25122ff334d8f98
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Mon Aug 28 10:25:55 2017 +0300
+
+    Update Latvian translation
+
+ po/lv.po | 425 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 194 insertions(+), 231 deletions(-)
+
+commit cb98bac8e7940f91f2a991ae32e179c048a6af4b
+Author: Cheng-Chia Tseng <pswo10680@gmail.com>
+Date:   Sun Aug 27 14:51:51 2017 +0000
+
+    Update Chinese (Taiwan) translation
+
+ po/zh_TW.po | 376 ++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 203 insertions(+), 173 deletions(-)
+
+commit fcf1511fa77dc0a7c9c202e85ec03a4efc88b743
+Author: Ask Hjorth Larsen <asklarsen@gmail.com>
+Date:   Sat Aug 26 19:19:58 2017 +0200
+
+    Updated Danish translation
+
+ po/da.po | 1274 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 644 insertions(+), 630 deletions(-)
+
+commit 2274566839b6afcf20f905cd329f20ff9395ad2c
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Wed Aug 23 23:33:03 2017 +0300
+
+    Updated Lithuanian translation
+
+ po/lt.po | 345 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 190 insertions(+), 155 deletions(-)
+
+commit ff922dc9d63913bbc2ffde493ffc7ef451bd4ea2
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Sat Aug 19 07:18:42 2017 +0000
+
+    Update French translation
+
+ po/fr.po | 364 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 198 insertions(+), 166 deletions(-)
+
+commit 33f92135314f09b60ef01dd6acaa9a88013ce858
+Author: Daniel Șerbănescu <daniel@serbanescu.dk>
+Date:   Fri Aug 18 18:36:27 2017 +0000
+
+    Update Romanian translation
+
+ po/ro.po | 4363 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 2505 insertions(+), 1858 deletions(-)
+
+commit 5f785db18558e14e88345a06bd9ab674cf697f66
+Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
+Date:   Mon Aug 14 21:40:59 2017 +0200
+
+    Updated Serbian translation
+
+ po/sr.po       | 354 ++++++++++++++++++++++++--------------------
+ po/sr@latin.po | 451 ++++++++++++++++++++++++++-------------------------------
+ 2 files changed, 401 insertions(+), 404 deletions(-)
+
+commit 524c54a0b56e478b8c4d364f5ffc5a110cec475b
+Author: Fran Dieguez <frandieguez@gnome.org>
+Date:   Sun Aug 13 10:03:49 2017 +0000
+
+    Update Galician translation
+
+ po/gl.po | 353 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 194 insertions(+), 159 deletions(-)
+
+commit d940da4ec1c1329319ca591ef53f6f03b6ba6f03
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Fri Aug 11 23:19:40 2017 +0200
+
+    Update Polish translation
+
+ po/pl.po | 351 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 196 insertions(+), 155 deletions(-)
+
+commit 2fe1cad2dd65180c24f2e10a236c99a74c9d5910
+Author: Anish Sheela <aneesh.nl@gmail.com>
+Date:   Sun Aug 6 07:11:22 2017 +0000
+
+    Update Malayalam translation
+
+ po/ml.po | 1710 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 1089 insertions(+), 621 deletions(-)
+
+commit 86245a6a2c3f77dd17e37fbe994aed781b609f74
+Author: Balasankar C <c.balasankar@gmail.com>
+Date:   Sat Aug 5 16:19:51 2017 +0000
+
+    Update Malayalam translation
+
+ po/ml.po | 2003 ++++++++++++++++++--------------------------------------------
+ 1 file changed, 582 insertions(+), 1421 deletions(-)
+
+commit 20d1877439a65af7ea4b2f4923c67095c9fbd221
+Author: Marek Cernocky <marek_cernocky@conel.cz>
+Date:   Wed Aug 2 06:59:20 2017 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 364 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 197 insertions(+), 167 deletions(-)
+
+commit 2b904921cbf803efac4ab7fcb1d08f3cc7e80094
+Author: gogo <trebelnik2@gmail.com>
+Date:   Sat Jul 29 17:15:22 2017 +0000
+
+    Update Croatian translation
+
+ po/hr.po | 324 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 171 insertions(+), 153 deletions(-)
+
+commit 661e763edd747359e197ae2754be22b748647a6b
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Fri Jul 21 18:40:57 2017 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 674 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 369 insertions(+), 305 deletions(-)
+
+commit f0b586b0b06b6d3f7cc43da0e2515e9fed2f734e
+Author: Jeremy Bicha <jbicha@ubuntu.com>
+Date:   Mon Jul 10 08:33:45 2017 -0400
+
+    Fix Spanish translation header
+    
+    See https://bugzilla.gnome.org/show_bug.cgi?id=771765
+
+ po/es.po | 34 +++++++++++++++++-----------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
+
+commit 4e684205615c6dceda965fa774b165b6595a4c60
+Author: Jordi Mas <jmas@softcatala.org>
+Date:   Sun Jul 9 09:12:24 2017 +0200
+
+    Update Catalan translation
+
+ po/ca.po | 347 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 190 insertions(+), 157 deletions(-)
+
+commit 095d24cd8f6ff7d10a5603344f1eeeef5ff60751
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Jun 5 14:16:03 2017 +0000
+
+    Update Spanish translation
+
+ po/es.po | 438 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 200 insertions(+), 238 deletions(-)
+
+commit cda8ee277d23376bbc3b7158fe958d8b9b904783
+Author: Ting-Wei Lan <lantw@src.gnome.org>
+Date:   Sun May 21 10:57:09 2017 +0800
+
+    build: Use tr command to replace strings
+    
+    '${PARAMETER/PATTERN/STRING}' syntax is not supported by POSIX shell,
+    so it can cause syntax error if /bin/sh is not bash.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=782894
+
+ configure.ac | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit c9caf610417bffdf5a0677e819f13b4fe612bc92
+Author: Марко Костић <marko.m.kostic@gmail.com>
+Date:   Sat May 27 22:36:49 2017 +0000
+
+    Update Serbian translation
+    
+    (cherry picked from commit 53bf4a1cd79c2b80673fbbb7e3117a3beea002f9)
+
+ po/sr.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 1b4f61d32f64e5e534341c2b3f9c51e567b4928f
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Tue May 16 16:12:44 2017 +0000
+
+    Update Friulian translation
+
+ po/fur.po | 300 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 159 insertions(+), 141 deletions(-)
+
+commit c01e45dd48b6004542d05be1aa3de11bfb016a37
+Author: Balázs Úr <urbalazs@gmail.com>
+Date:   Sun May 14 19:22:00 2017 +0000
+
+    Update Hungarian translation
+
+ po/hu.po | 802 ++++++++++++++++-----------------------------------------------
+ 1 file changed, 203 insertions(+), 599 deletions(-)
+
+commit 6942f609be2bc4a0afb5f0cc7dc8d9e608ee7f02
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Sat May 13 14:57:39 2017 +0200
+
+    Fix typo in Latvian translation
+    
+    Fixes https://bugzilla.gnome.org/show_bug.cgi?id=779573
+
+ po/lv.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2ebbc7faabe08f36741ea944d1a44e1edf726ab1
+Author: Mario Blättermann <mario.blaettermann@gmail.com>
+Date:   Fri May 12 15:08:38 2017 +0000
+
+    Update German translation
+
+ po/de.po | 1374 +++++++++-----------------------------------------------------
+ 1 file changed, 191 insertions(+), 1183 deletions(-)
+
+commit 3e5720aecc212ba3120062b594e503f3c24ee0e9
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Thu May 11 14:13:16 2017 +0000
+
+    Update Kazakh translation
+
+ po/kk.po | 340 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 185 insertions(+), 155 deletions(-)
+
+commit 5c830dc5c9d135e9d6dc0ed6fd0c6d920fb0fd99
+Author: Kukuh Syafaat <syafaatkukuh@gmail.com>
+Date:   Wed May 10 09:23:44 2017 +0000
+
+    Update Indonesian translation
+
+ po/id.po | 300 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 159 insertions(+), 141 deletions(-)
+
+commit 0f1308e92fdecdbc194431936b61a588a3521056
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Tue May 9 11:24:42 2017 +0200
+
+    accels: Add accel for Copy as HTML
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=365121
+
+ src/org.gnome.Terminal.gschema.xml | 4 ++++
+ src/terminal-accels.c              | 5 ++++-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 84f6f297d6dcecd1544f4e685ac85e21fbc7cdc9
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Sun May 7 14:18:11 2017 +0200
+
+    window: Support copying the selection to clipboard as HTML
+    
+    Based on a patch by "Sean" <worknesday@gmail.com>.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=365121
+
+ configure.ac          |  2 +-
+ src/terminal-window.c | 52 ++++++++++++++++++++++++++++++++++++++++++---------
+ src/terminal.xml      |  2 ++
+ 3 files changed, 46 insertions(+), 10 deletions(-)
+
+commit 96e9d7876b016b4771f1577ef2c116b99ebd796b
 Author: Марко Костић <marko.m.kostic@gmail.com>
 Date:   Fri May 5 19:59:09 2017 +0000
 
     Update Serbian translation
+    
+    (cherry picked from commit e3c4b25833ef067097e78864a87249d5b021c66e)
 
  po/sr.po | 129 ++++++++++++++-------------------------------------------------
  1 file changed, 29 insertions(+), 100 deletions(-)
 
-commit baaba509f0adbb9cb44314be998d65d339f933ed
-Author: Yuras Shumovich <shumovichy@gmail.com>
-Date:   Sat Apr 22 09:34:18 2017 +0000
+commit 8d08f2efe6101b7c34256dc1b5db629262425799
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Apr 30 11:23:28 2017 +0000
 
-    Update Belarusian translation
+    Update Friulian translation
 
- po/be.po | 1630 ++++++++++++++++++++++++++++++++++++++------------------------
- 1 file changed, 990 insertions(+), 640 deletions(-)
+ po/fur.po | 174 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 93 insertions(+), 81 deletions(-)
 
-commit e64770bb39ff6c42b7f1a052f819f08fcf418c15
+commit a02e82442449fc146eb0c40176f702f1fdf69b6b
+Author: gogo <trebelnik2@gmail.com>
+Date:   Sat Apr 29 23:24:20 2017 +0000
+
+    Update Croatian translation
+
+ po/hr.po | 170 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 91 insertions(+), 79 deletions(-)
+
+commit 80de2e81b2756bd848b5ad22bd25bb3070009730
+Author: Kukuh Syafaat <syafaatkukuh@gmail.com>
+Date:   Wed Apr 26 04:38:29 2017 +0000
+
+    Update Indonesian translation
+
+ po/id.po | 170 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 91 insertions(+), 79 deletions(-)
+
+commit 5c4bec25bf4638b19387415771d4bede8809d50b
 Author: Christian Persch <chpe@src.gnome.org>
-Date:   Mon Apr 10 21:33:08 2017 +0200
+Date:   Tue Apr 25 12:59:50 2017 +0200
 
     Post release version bump
 
  configure.ac | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit f5fc62021572237f2578638cf133bec8cd04c2b8
+commit ae1f5e4a42931a6778675924852ecb1e8fd39e68
 Author: Christian Persch <chpe@src.gnome.org>
-Date:   Mon Apr 10 21:29:46 2017 +0200
+Date:   Tue Apr 25 12:54:18 2017 +0200
 
-    Version 3.24.1
+    Version 3.25.1
 
- configure.ac | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-commit 1962030be4b7d97dbef527da30526d17e13e1976
+commit 1c6f8db736efc62d9a9b38bfbc43ec03c8544696
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Tue Apr 25 01:50:08 2017 +0200
+
+    all: Add support for OSC 8 hyperlinks (HTML-like anchors)
+    
+    The escape sequences
+      OSC 8 ; params ; URI BEL
+      OSC 8 ; params ; URI ST
+    turn subsequent characters into an HTML-like anchor to the given address.
+    Terminate the hyperlink with the same escape sequence with an empty URI.
+    
+    Params is an optional colon-separated list of key=value assignments. Cells
+    having the same URI and "id" parameter, or cells lacking an "id" that were
+    printed in a single OSC 8 run are underlined together on mouseover.
+    
+    For further details, see
+    https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=779734
+
+ src/terminal-screen.c | 41 +++++++++++++++++++++++++---
+ src/terminal-screen.h |  1 +
+ src/terminal-util.c   | 47 ++++++++++++++++++++++++++++++++
+ src/terminal-util.h   |  2 ++
+ src/terminal-window.c | 75 ++++++++++++++++++++++++++++++++++++++++++++++++---
+ src/terminal.xml      |  3 +++
+ 6 files changed, 161 insertions(+), 8 deletions(-)
+
+commit 0847eaa78232d5ba63648e83980a0223e07ac2aa
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Tue Apr 25 01:36:19 2017 +0200
+
+    util: Refuse to open file://some-other-host/path/to/file URIs
+
+ src/terminal-util.c | 38 +++++++++++++++++++++++++++++++++++++-
+ src/terminal-util.h |  3 +++
+ 2 files changed, 40 insertions(+), 1 deletion(-)
+
+commit 27275a3463fcba079337a55877ea4170c1419129
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Sun Apr 23 23:42:06 2017 +0200
+
+    regex: Allow balanced pairs of parentheses in URLs
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=763980
+
+ src/terminal-regex.c | 25 +++++++++++++++++++++++--
+ src/terminal-regex.h | 19 ++++++++++++-------
+ 2 files changed, 35 insertions(+), 9 deletions(-)
+
+commit 412de8f46183d3e5eb43b40d2d925dd8d0e503ae
+Author: Yuras Shumovich <shumovichy@gmail.com>
+Date:   Sat Apr 22 09:34:18 2017 +0000
+
+    Update Belarusian translation
+    
+    (cherry picked from commit baaba509f0adbb9cb44314be998d65d339f933ed)
+
+ po/be.po | 1630 ++++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 990 insertions(+), 640 deletions(-)
+
+commit 3b5a9c8ebc84352ee8077cfe48ce9497d55dfeff
 Author: gogo <trebelnik2@gmail.com>
 Date:   Sat Apr 8 19:54:44 2017 +0000
 
     Update Croatian translation
+    
+    (cherry picked from commit 1962030be4b7d97dbef527da30526d17e13e1976)
 
  po/hr.po | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-commit 27ed9ef764e3a8eb611e8fecc447bc06c813396c
+commit cb5ace98346402806807f5a173293aaf11240cd5
 Author: gogo <trebelnik2@gmail.com>
 Date:   Sat Apr 8 17:43:19 2017 +0000
 
     Update Croatian translation
+    
+    (cherry picked from commit 27ed9ef764e3a8eb611e8fecc447bc06c813396c)
 
  po/hr.po | 630 ++++++++++++++++++++++++++++++++-------------------------------
  1 file changed, 319 insertions(+), 311 deletions(-)
 
-commit ab74b12586ce11ebab548eaa100089e668a82f01
+commit 4af2e1dbd68294e773b16a6f68c1ea09b754f084
 Author: Tom Tryfonidis <tomtryf@gnome.org>
 Date:   Fri Apr 7 10:34:19 2017 +0000
 
     Update Greek translation
+    
+    (cherry picked from commit ab74b12586ce11ebab548eaa100089e668a82f01)
 
  po/el.po | 417 ++++++++++++++++++++++++++++++++-------------------------------
  1 file changed, 212 insertions(+), 205 deletions(-)
 
-commit 8f3137e45b6ba08a33559c5a2038d867bae3c31d
+commit 61c579cc422ff15d682e167591531dfa761c2a90
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Mon Apr 3 21:32:53 2017 +0200
+
+    all: Fix a typo in comments
+
+ src/terminal-regex.c  | 2 +-
+ src/terminal-screen.c | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 601301cc85f88aa173803a7a2777b6d56c346af1
 Author: Piotr Drąg <piotrdrag@gmail.com>
 Date:   Sat Mar 25 17:18:07 2017 +0100
 
@@ -70,23 +547,25 @@ Date:   Sat Mar 25 17:18:07 2017 +0100
  po/pl.po | 56 +++++++++++++++++++++++++++++---------------------------
  1 file changed, 29 insertions(+), 27 deletions(-)
 
-commit 242780936438e7bb3f5d2a9f556fc00d1870cfb8
+commit 8ba2d6495d32f25ec0da58c6aad85db0750b6e30
 Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
 Date:   Tue Mar 21 05:32:41 2017 +0000
 
     Update Kazakh translation
+    
+    (cherry picked from commit 242780936438e7bb3f5d2a9f556fc00d1870cfb8)
 
  po/kk.po | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
-commit 7d53d0df049e73197634fc1e7ce14c80e133d46c
+commit a10414603290641bc03e760e95a74ad5f6f5846e
 Author: Christian Persch <chpe@src.gnome.org>
-Date:   Mon Mar 20 22:09:22 2017 +0100
+Date:   Mon Mar 20 22:07:34 2017 +0100
 
-    Post release version bump
+    Post branch version bump
 
- configure.ac | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit 623375c2f8d17dc56e9c241e4db257131f96d9da
 Author: Christian Persch <chpe@src.gnome.org>
