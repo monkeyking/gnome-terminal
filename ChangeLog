@@ -1,3 +1,65 @@
+commit 01bc2c2877f0a6205960a743187e0f46afb8f851
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Mon Oct 30 23:25:32 2017 +0100
+
+    Version 3.26.2
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7e368f88386cbe9ac20b8351f6181d9009d7cd1a
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Mon Oct 30 22:55:59 2017 +0100
+
+    window: Fix tiled check
+    
+    Add new tiled window states to the check.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=789356
+    (cherry picked from commit 2f33a3630f7093fc4370f2a48437c3d2cd11a961)
+
+ src/terminal-window.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+commit 22c189b69f3aa1772da2fe4c4075cc3880dafe6f
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Mon Oct 30 22:55:59 2017 +0100
+
+    build: Don't call glib-genmarshal with both --header and --body
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=788031
+    (cherry picked from commit 0ea635f3dec365e22bf9a35313e28ca2cedbd563)
+
+ src/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 63a81326207011ba934af98d9a5b3657350b4fcc
+Author: Mingcong Bai <jeffbai@aosc.xyz>
+Date:   Sat Oct 21 19:57:17 2017 +0800
+
+    Update zh_CN translation
+
+ po/zh_CN.po | 577 ++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 309 insertions(+), 268 deletions(-)
+
+commit 994cc0960e16116e29a1ff25cb17ba7118962332
+Author: Xavi Ivars <xavi.ivars@gmail.com>
+Date:   Thu Oct 5 14:13:53 2017 +0200
+
+    [l10n] Updated Catalan (Valencian) translation
+
+ po/ca@valencia.po | 1417 +++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 841 insertions(+), 576 deletions(-)
+
+commit f8636b3a1c8ee66e64279f6d48aff3849269f1d2
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Mon Oct 2 20:41:11 2017 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 7433fe62ba5b9379e014216c8261e4f2aa8c4c92
 Author: Christian Persch <chpe@src.gnome.org>
 Date:   Mon Oct 2 20:37:49 2017 +0200
