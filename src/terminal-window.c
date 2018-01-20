@@ -2048,7 +2048,18 @@ popup_copy_url_callback (GtkAction *action,
     return;
 
   clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
-  gtk_clipboard_set_text (clipboard, info->url, -1);
+
+  if (info->url_flavor == FLAVOR_LP)
+    {
+      char *uri;
+      uri = terminal_util_get_lp_url (info->url);
+      gtk_clipboard_set_text (clipboard, uri, -1);
+      g_free (uri);
+    }
+  else
+    {
+      gtk_clipboard_set_text (clipboard, info->url, -1);
+    }
 }
 
 static void
@@ -2144,7 +2155,9 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
   can_paste = targets != NULL && gtk_targets_include_text (targets, n_targets);
   can_paste_uris = targets != NULL && gtk_targets_include_uri (targets, n_targets);
   show_hyperlink = info->hyperlink != NULL;
-  show_link = !show_hyperlink && info->url != NULL && (info->url_flavor == FLAVOR_AS_IS || info->url_flavor == FLAVOR_DEFAULT_TO_HTTP);
+  show_link = !show_hyperlink && info->url != NULL && (info->url_flavor == FLAVOR_AS_IS ||
+                                    info->url_flavor == FLAVOR_DEFAULT_TO_HTTP ||
+                                    info->url_flavor == FLAVOR_LP);
   show_email_link = !show_hyperlink && info->url != NULL && info->url_flavor == FLAVOR_EMAIL;
   show_call_link = !show_hyperlink && info->url != NULL && info->url_flavor == FLAVOR_VOIP_CALL;
   show_number_info = info->number_info != NULL;
