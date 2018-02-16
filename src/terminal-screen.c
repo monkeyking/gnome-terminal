@@ -94,6 +94,8 @@ struct _TerminalScreenPrivate
   int child_pid;
   GSList *match_tags;
   guint launch_child_source_id;
+  GdkRGBA bg_color;
+  GdkRGBA fg_color;
 };
 
 enum
@@ -111,7 +113,9 @@ enum {
   PROP_ICON_TITLE,
   PROP_ICON_TITLE_SET,
   PROP_TITLE,
-  PROP_INITIAL_ENVIRONMENT
+  PROP_INITIAL_ENVIRONMENT,
+  PROP_BG_COLOR,
+  PROP_FG_COLOR
 };
 
 enum
@@ -463,6 +467,12 @@ terminal_screen_get_property (GObject *object,
       case PROP_TITLE:
         g_value_set_string (value, terminal_screen_get_title (screen));
         break;
+      case PROP_BG_COLOR:
+        g_value_set_boxed (value, terminal_screen_get_bg_color (screen));
+        break;
+      case PROP_FG_COLOR:
+        g_value_set_boxed (value, terminal_screen_get_bg_color (screen));
+        break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
@@ -488,6 +498,8 @@ terminal_screen_set_property (GObject *object,
       case PROP_ICON_TITLE:
       case PROP_ICON_TITLE_SET:
       case PROP_TITLE:
+      case PROP_FG_COLOR:
+      case PROP_BG_COLOR:
         /* not writable */
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -593,6 +605,20 @@ terminal_screen_class_init (TerminalScreenClass *klass)
      g_param_spec_boxed ("initial-environment", NULL, NULL,
                          G_TYPE_STRV,
                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+  g_object_class_install_property
+    (object_class,
+     PROP_BG_COLOR,
+     g_param_spec_boxed ("bg-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+  g_object_class_install_property
+    (object_class,
+     PROP_FG_COLOR,
+     g_param_spec_boxed ("fg-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
 
@@ -802,6 +828,22 @@ gboolean
 terminal_screen_get_icon_title_set (TerminalScreen *screen)
 {
   return vte_terminal_get_icon_title (VTE_TERMINAL (screen)) != NULL;
+}
+
+GdkRGBA*
+terminal_screen_get_bg_color (TerminalScreen *screen)
+{
+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+
+  return &screen->priv->bg_color;
+}
+
+GdkRGBA*
+terminal_screen_get_fg_color (TerminalScreen *screen)
+{
+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+
+  return &screen->priv->fg_color;
 }
 
 static void
@@ -1055,6 +1097,18 @@ update_color_scheme (TerminalScreen *screen)
   vte_terminal_set_color_cursor_foreground (VTE_TERMINAL (screen), cursor_fgp);
   vte_terminal_set_color_highlight (VTE_TERMINAL (screen), highlight_bgp);
   vte_terminal_set_color_highlight_foreground (VTE_TERMINAL (screen), highlight_fgp);
+
+  if (gdk_rgba_hash (&priv->bg_color) != gdk_rgba_hash (&bg))
+    {
+      priv->bg_color = bg;
+      g_object_notify (G_OBJECT (screen), "bg-color");
+    }
+
+  if (gdk_rgba_hash (&priv->fg_color) != gdk_rgba_hash (&fg))
+    {
+      priv->fg_color = fg;
+      g_object_notify (G_OBJECT (screen), "fg-color");
+    }
 
   update_toplevel_transparency (screen);
 }
