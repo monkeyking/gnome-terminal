@@ -194,20 +194,6 @@ static TerminalURLFlavor *extra_regex_flavors;
 static guint n_url_regexes;
 static guint n_extra_regexes;
 
-#ifdef F_DUPFD_CLOEXEC
-static inline int dup_cloexec(int fd, int hint)
-{
-  return fcntl (fd, F_DUPFD_CLOEXEC, hint);
-}
-#else
-static inline int dup_cloexec(int fd, int hint)
-{
-  if ((fd = fcntl (fd, F_DUPFD, hint)) == -1)
-    return -1;
-  return fcntl (fd, F_SETFD, FD_CLOEXEC);
-}
-#endif
-
 /* See bug #697024 */
 #ifndef __linux__
 
@@ -1304,12 +1290,6 @@ get_child_environment (TerminalScreen *screen,
    */
   g_hash_table_remove (env_table, "WINDOWID");
 
-  /* We need to put the working directory also in PWD, so that
-   * e.g. bash starts in the right directory if @cwd is a symlink.
-   * See bug #502146.
-   */
-  g_hash_table_replace (env_table, g_strdup ("PWD"), g_strdup (cwd));
-
   terminal_util_add_proxy_env (env_table);
 
   /* Add gnome-terminal private env vars used to communicate back to g-t-server */
@@ -1407,7 +1387,7 @@ terminal_screen_child_setup (FDSetupData *data)
       for (j = 0; j < n_fds; j++) {
         if (fds[j] == target_fd) {
           do {
-            fd = dup_cloexec(fds[j], 3);
+            fd = fcntl (fds[j], F_DUPFD_CLOEXEC, 3);
           } while (fd == -1 && errno == EINTR);
           if (fd == -1)
             _exit (127);
