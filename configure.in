@@ -1,12 +1,13 @@
-AC_INIT(src/terminal.c)
+AC_INIT([GNOME Terminal],[2.15.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal],[gnome-terminal])
+AC_CONFIG_SRCDIR([src/terminal.c])
 
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE(gnome-terminal, 2.14.2)
+AM_INIT_AUTOMAKE([1.9 foreign])
 
 GETTEXT_PACKAGE=gnome-terminal
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[Gettext package])
 
 AC_C_BIGENDIAN
 
@@ -16,7 +17,7 @@ AC_PROG_CC
 AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
-AC_PROG_INTLTOOL
+IT_PROG_INTLTOOL([0.35])
 
 changequote(,)dnl
 if test "x$GCC" = "xyes"; then
@@ -39,7 +40,6 @@ if test "x$GCC" = "xyes"; then
 fi
 changequote([,])dnl
 
-ALL_LINGUAS="am ar az be bg bn br bs ca cs cy da de dz el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu hy id it ja ko ku lt lv mk ml mn ms nb ne nl nn no pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv ta th tr uk vi wa xh zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 AC_PATH_XTRA
@@ -77,17 +77,20 @@ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
 if $PKG_CONFIG --atleast-version 2.0.0 xft && $PKG_CONFIG --atleast-version 1.1.1 pangoxft ; then
    using_xft2=yes
+   CFLAGS="`$PKG_CONFIG --cflags xft pangoxft` `$PKG_CONFIG --variable=xrenderlibs xft` $CFLAGS"
+   LIBS="`$PKG_CONFIG --libs xft pangoxft` $LIBS"
 else
    using_xft2=no
 fi
 
-AC_OUTPUT([
+GNOME_DOC_INIT
+
+AC_CONFIG_FILES([
 Makefile
 gnome-terminal.desktop.in
 src/Makefile
 src/skey/Makefile
 help/Makefile
-help/C/Makefile
 help/bg/Makefile
 help/ro/Makefile
 help/de/Makefile
@@ -102,6 +105,7 @@ help/zh_CN/Makefile
 help/zh_TW/Makefile
 po/Makefile.in
 ])
+AC_OUTPUT
 dnl ==========================================================================
 
 if test x$using_xft2 = xno; then

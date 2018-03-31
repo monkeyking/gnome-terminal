@@ -1,23 +1,82 @@
-2006-05-28  Guilherme de S. Pastore  <gpastore@gnome.org>
+2006-05-17  Behdad Esfahbod  <behdad@gnome.org>
 
 	* NEWS: updated.
 
-	* configure.in: release 2.14.2.
+	* configure.in: released 2.15.1.
 
-2006-04-09  Guilherme de S. Pastore  <gpastore@gnome.org>
+	* configure.in: Remove m4 macro dir directive.
+
+2006-05-16  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* configure.in: bumped dependency on intltool to 0.35.
+
+2006-05-14  Guilherme de S. Pastore  <gpastore@gnome.org>
 
 	* NEWS: updated.
 
-	* configure.in: release 2.14.1.
+	* configure.in: released 2.15.0.
+
+2006-05-14  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: improved proxy settings exporting,
+	  which now includes authentication. Closes bug #339134.
+
+2006-05-07  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* configure.in: applied patch from Brian Cameron to allow
+	  recognition of Xrender on Solaris. Closes bug #339979.
+
+2006-04-29  Behdad Esfahbod  <behdad@gnome.org>
+
+	* configure.in, po/LINGUAS: Use new intltool syntax.
+	(#337904)
+
+2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Remove obsolete entry for no_NO
+	* po/no.po: And the translation.
+
+2006-04-05  Tommi Vainikainen  <thv@iki.fi>
+
+	* .cvsignore, Makefile.am, autogen.sh, configure.in,
+	m4/.cvsignore: Migrated to gnome-doc-utils. Autoconf+Automake
+	adjustments.
+	* acconfig.h: Removed in migration.
+	* po/.cvsignore, src/skey/.cvsignore: Added missing generated
+	files.
+
+2006-04-02  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-screen.c: include the final slash if there
+	  is one on URL highlighting. Closes bug #329003.
+
+2006-04-02  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal.c (terminal_app_get_clone_command): store
+	  the full geometry (including window position) on session
+	  save. Closes bug #336910.
+
+2006-04-01  Behdad Esfahbod  <behdad@gnome.org>
+
+	* src/terminal-window.c (terminal_window_set_size_force_grid):
+	Remove the old hack that was causing superfluous resize when a tab is
+	drag-n-dropped to a separate window.  We'll see if regressions happen.
+	Closes bug #336325 (may open new ones ;).
+
+2006-04-01  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* src/terminal-window.c: applied patch to fix the close button
+	  of the about dialog after changes in GTK+. Closes bug #335945.
+
+	* src/terminal-window.c: marked the license text for translation.
 
 2006-03-26  Tommi Vainikainen  <thv@iki.fi>
 
 	* configure.in (ALL_LINGUAS): Added Dzongkha (dz).
 
-2006-03-19  Jérémy Ar Floc'h  <jeremy.lefloch@gmail.com>
+2006-03-20  Vladimer Sichinava  <vlsichinava@gmail.com>
 
-	* configure.in: Added Breton translation.
-	* po/br.po: Added Breton translation.
+        * configure.in: Added "ka" (Georgian) to ALL_LINGUAS
 
 2006-03-12  Guilherme de S. Pastore  <gpastore@gnome.org>
 

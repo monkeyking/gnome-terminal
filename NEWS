@@ -1,23 +1,34 @@
-2.14.2
+2.15.1
 ===
 
-- New and updated translations:
-  * Dzongkha [Mindu Dorji]
-  * Hungarian [Gabor Kelemen]
-  * Indonesian [Mohammad DAMT]
-  * Polish [Gnome PL Team]
-  * Spanish [Francisco Javier F. Serrador]
+- Use intltool 0.35 to fix the bug with no translations in tarball.
+  (bug #342068)
+- Remove the m4 directory.
 
-2.14.1
+2.15.0
 ===
+
+Thanks for this release go to Behdad Esfahbod, Guilherme de S. Pastore,
+Tommi Vainikainen and all the translators listed below.
+
+- Migrated to gnome-doc-utils.
+- Migrated to po/LINGUAS (bug #337904).
+- Exports authentication proxy settings (bug #339134).
+- Correctly recognizes Xrender on Solaris (bug #339979).
+- Fixes the close button of the about dialog (bug #335945).
+- Includes final slashes on URL highlighting (bug #329003).
+- Eliminates superfluous resize on drag-n-drop (bug #336325).
+- Stores the position of the window on session save (bug #336910).
 
 - New and updated translations:
   * Belarusian [Ales Nyakhaychyk]
-  * Breton [Jérémy Le Floc'h]
-  * Chinese Traditional [Lin-Chieh Shangkuan]
   * Dutch [Wouter Bolsterlee]
+  * Dzongkha [Tommi Vainikainen]
   * Estonian [Ivar Smolin]
   * French [Laurent Richard]
+  * Georgian [Vladimer Sichinava]
+  * Hungarian [Gabor Kelemen]
+  * Spanish [Francisco Javier F. Serrador]
 
 2.14.0
 ===
