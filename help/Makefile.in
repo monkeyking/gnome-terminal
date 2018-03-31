@@ -127,6 +127,7 @@ GDU_MODULE_VERSION_CHECK_LIBS = @GDU_MODULE_VERSION_CHECK_LIBS@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
+GREP = @GREP@
 HELP_DIR = @HELP_DIR@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -195,17 +196,14 @@ TERM_LIBS = @TERM_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
+XMKMF = @XMKMF@
 X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
-ac_pt_PKG_CONFIG = @ac_pt_PKG_CONFIG@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -222,29 +220,40 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
 host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = @libdir@
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 _clean_doc_header = $(if $(DOC_H_FILE),clean-doc-header)
 _DOC_REAL_FORMATS = $(if $(DOC_USER_FORMATS),$(DOC_USER_FORMATS),$(DOC_FORMATS))
+_DOC_REAL_LINGUAS = $(if $(filter environment,$(origin LINGUAS)),		\
+	$(filter $(LINGUAS),$(DOC_LINGUAS)),					\
+	$(DOC_LINGUAS))
+
 
 ################################################################################
 rngdoc_args = \
@@ -288,37 +297,22 @@ db2omf_args = \
 
 _DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(srcdir)/$(DOC_MODULE).omf.in))
 _DOC_OMF_DB = $(if $(_DOC_OMF_IN),						\
-	$(foreach lc,C $(DOC_LINGUAS),$(DOC_MODULE)-$(lc).omf))
+	$(foreach lc,C $(_DOC_REAL_LINGUAS),$(DOC_MODULE)-$(lc).omf))
 
 _DOC_OMF_HTML = $(if $(_DOC_OMF_IN),						\
-	$(foreach lc,C $(DOC_LINGUAS),$(DOC_MODULE)-html-$(lc).omf))
+	$(foreach lc,C $(_DOC_REAL_LINGUAS),$(DOC_MODULE)-html-$(lc).omf))
 
 
 # FIXME
 _DOC_OMF_ALL = \
-	$(if $(findstring docbook,$(_DOC_REAL_FORMATS)),$(_DOC_OMF_DB))		\
-	$(if $(findstring html,$(_DOC_REAL_FORMATS)),$(_DOC_OMF_HTML))
-
-
-################################################################################
-_DOC_DSK_IN = $(if $(DOC_MODULE),$(wildcard $(srcdir)/$(DOC_MODULE).desktop.in))
-_DOC_DSK_DB = $(if $(_DOC_DSK_IN),						\
-	$(foreach lc,C $(DOC_LINGUAS),$(DOC_MODULE).db.$(lc).desktop))
-
-_DOC_DSK_HTML = $(if $(_DOC_DSK_IN),						\
-	$(foreach lc,C $(DOC_LINGUAS),$(DOC_MODULE).html.$(lc).desktop))
-
-
-# FIXME
-_DOC_DSK_ALL = \
-	$(if $(findstring docbook,$(_DOC_REAL_FORMATS)),$(_DOC_DSK_DB))		\
-	$(if $(findstring html,$(_DOC_REAL_FORMATS)),$(_DOC_DSK_HTML))
+	$(if $(filter docbook,$(_DOC_REAL_FORMATS)),$(_DOC_OMF_DB))		\
+	$(if $(filter html HTML,$(_DOC_REAL_FORMATS)),$(_DOC_OMF_HTML))
 
 
 ################################################################################
 _CVSIGNORE_TOP = $(if $(DOC_MODULE), .cvsignore)
 _CVSIGNORE_C = $(if $(DOC_MODULE), C/.cvsignore)
-_CVSIGNORE_LC = $(if $(DOC_MODULE),$(foreach lc,$(DOC_LINGUAS),$(lc)/.cvsignore))
+_CVSIGNORE_LC = $(if $(DOC_MODULE),$(foreach lc,$(_DOC_REAL_LINGUAS),$(lc)/.cvsignore))
 _CVSIGNORE_TOP_FILES = $(_DOC_OMF_ALL) $(_DOC_DSK_ALL)
 _CVSIGNORE_C_FILES = $(_RNGDOC_C_DOCS) $(_XSLDOC_C_DOCS)
 _CVSIGNORE_LC_FILES = $(_DOC_LC_DOCS)
@@ -342,55 +336,57 @@ _DOC_C_FIGURES = $(if $(DOC_FIGURES),					\
 
 
 # FIXME: probably have to shell escape to determine the file names
-_DOC_C_HTML = $(shell xsltproc --xinclude 				\
-	--stringparam db.chunk.basename "$(DOC_MODULE)"			\
-	$(_chunks) "C/$(DOC_MODULE).xml")
+_DOC_C_HTML = $(foreach f,						\
+	$(shell xsltproc --xinclude 					\
+	  --stringparam db.chunk.basename "$(DOC_MODULE)"		\
+	  $(_chunks) "C/$(DOC_MODULE).xml"),				\
+	C/$(f).xhtml)
 
 
 ###############################################################################
-_DOC_POFILES = $(if $(DOC_MODULE),					\
-	$(foreach lc,$(DOC_LINGUAS),$(lc)/$(lc).po))
+_DOC_POFILES = $(if $(DOC_MODULE),						\
+	$(foreach lc,$(_DOC_REAL_LINGUAS),$(lc)/$(lc).po))
 
-_DOC_LC_MODULES = $(if $(DOC_MODULE),					\
-	$(foreach lc,$(DOC_LINGUAS),$(lc)/$(DOC_MODULE).xml))
+_DOC_LC_MODULES = $(if $(DOC_MODULE),						\
+	$(foreach lc,$(_DOC_REAL_LINGUAS),$(lc)/$(DOC_MODULE).xml))
 
 _DOC_LC_INCLUDES = \
-	$(foreach lc,$(DOC_LINGUAS),$(foreach inc,$(_DOC_C_INCLUDES),	\
+	$(foreach lc,$(_DOC_REAL_LINGUAS),$(foreach inc,$(_DOC_C_INCLUDES),	\
 		$(lc)/$(notdir $(inc)) ))
 
 _RNGDOC_LC_DOCS = \
-	$(foreach lc,$(DOC_LINGUAS),$(foreach doc,$(_RNGDOC_C_DOCS),	\
+	$(foreach lc,$(_DOC_REAL_LINGUAS),$(foreach doc,$(_RNGDOC_C_DOCS),	\
 		$(lc)/$(notdir $(doc)) ))
 
 _XSLDOC_LC_DOCS = \
-	$(foreach lc,$(DOC_LINGUAS),$(foreach doc,$(_XSLDOC_C_DOCS),	\
+	$(foreach lc,$(_DOC_REAL_LINGUAS),$(foreach doc,$(_XSLDOC_C_DOCS),	\
 		$(lc)/$(notdir $(doc)) ))
 
 
 # FIXME: probably have to shell escape to determine the file names
 _DOC_LC_HTML = \
-	$(foreach lc,$(DOC_LINGUAS),$(foreach doc,$(_DOC_C_HTML),	\
+	$(foreach lc,$(_DOC_REAL_LINGUAS),$(foreach doc,$(_DOC_C_HTML),		\
 		$(lc)/$(notdir $(doc)) ))
 
 _DOC_LC_DOCS = \
-	$(_DOC_LC_MODULES)	$(_DOC_LC_INCLUDES)			\
-	$(_RNGDOC_LC_DOCS)	$(_XSLDOC_LC_DOCS)			\
-	$(if $(findstring html,$(_DOC_REAL_FORMATS)),$(_DOC_LC_HTML))
+	$(_DOC_LC_MODULES)	$(_DOC_LC_INCLUDES)				\
+	$(_RNGDOC_LC_DOCS)	$(_XSLDOC_LC_DOCS)				\
+	$(if $(filter html HTML,$(_DOC_REAL_FORMATS)),$(_DOC_LC_HTML))
 
-_DOC_LC_FIGURES = $(foreach lc,$(DOC_LINGUAS),				\
+_DOC_LC_FIGURES = $(foreach lc,$(_DOC_REAL_LINGUAS),				\
 	$(patsubst C/%,$(lc)/%,$(_DOC_C_FIGURES)) )
 
 _DOC_SRC_FIGURES = \
-	$(foreach fig,$(_DOC_C_FIGURES), $(foreach lc,C $(DOC_LINGUAS),	\
+	$(foreach fig,$(_DOC_C_FIGURES), $(foreach lc,C $(_DOC_REAL_LINGUAS),	\
 		$(wildcard $(srcdir)/$(lc)/$(patsubst C/%,%,$(fig))) ))
 
 _DOC_POT = $(if $(DOC_MODULE),$(DOC_MODULE).pot)
 
 ################################################################################
-_DOC_HTML_ALL = $(if $(findstring html,$(_DOC_REAL_FORMATS)), \
+_DOC_HTML_ALL = $(if $(filter html HTML,$(_DOC_REAL_FORMATS)), \
 	$(_DOC_C_HTML) $(_DOC_LC_HTML))
 
-_DOC_HTML_TOPS = $(foreach lc,C $(DOC_LINGUAS),$(lc)/$(DOC_MODULE).html)
+_DOC_HTML_TOPS = $(foreach lc,C $(_DOC_REAL_LINGUAS),$(lc)/$(DOC_MODULE).xhtml)
 @ENABLE_SK_FALSE@_ENABLE_SK = false
 
 ################################################################################
@@ -399,7 +395,7 @@ _clean_rngdoc = $(if $(RNGDOC_DIRS),clean-doc-rngdoc)
 _clean_xsldoc = $(if $(XSLDOC_DIRS),clean-doc-xsldoc)
 _clean_omf = $(if $(_DOC_OMF_IN),clean-doc-omf)
 _clean_dsk = $(if $(_DOC_DSK_IN),clean-doc-dsk)
-_clean_lc = $(if $(DOC_LINGUAS),clean-doc-lc)
+_clean_lc = $(if $(_DOC_REAL_LINGUAS),clean-doc-lc)
 _clean_dir = $(if $(DOC_MODULE),clean-doc-dir)
 DOC_MODULE = gnome-terminal
 DOC_ENTITIES = legal.xml
@@ -835,22 +831,10 @@ $(_DOC_OMF_DB) : $(DOC_MODULE)-%.omf : %/$(DOC_MODULE).xml
 
 $(_DOC_OMF_HTML) : $(_DOC_OMF_IN)
 $(_DOC_OMF_HTML) : $(DOC_MODULE)-html-%.omf : %/$(DOC_MODULE).xml
-	xsltproc -o $@ $(call db2omf_args,$@,$<,'html')
+	xsltproc -o $@ $(call db2omf_args,$@,$<,'xhtml')
 
 .PHONY: omf
 omf: $(_DOC_OMF_ALL)
-
-# FIXME
-$(_DOC_DSK_DB) : $(_DOC_DSK_IN)
-$(_DOC_DSK_DB) : $(DOC_MODULE).db.%.desktop : %/$(DOC_MODULE).xml
-	cp $(_DOC_DSK_IN) $@
-
-$(_DOC_DSK_HTML) : $(_DOC_DSK_IN)
-$(_DOC_DSK_HTML) : $(DOC_MODULE).html.%.desktop : %/$(DOC_MODULE).xml
-	cp $(_DOC_DSK_IN) $@
-
-.PHONY: dsk
-dsk: $(_DOC_DSK_ALL)
 
 $(_CVSIGNORE_TOP) : $(_CVSIGNORE_TOP_FILES)
 	if ! test -f $@; then touch $@; fi
@@ -935,7 +919,7 @@ $(_DOC_POT): $(_DOC_C_DOCS_NOENT)
 	$(_xml2po) -e -o $@ $^
 
 $(_DOC_HTML_TOPS): $(_DOC_C_DOCS) $(_DOC_LC_DOCS)
-	xsltproc -o $@ --xinclude --param db.chunk.chunk_top "false()" --stringparam db.chunk.basename "$(DOC_MODULE)" --stringparam db.chunk.extension ".html" $(_db2html) $(patsubst %.html,%.xml,$@)
+	xsltproc -o $@ --xinclude --param db.chunk.chunk_top "false()" --stringparam db.chunk.basename "$(DOC_MODULE)" --stringparam db.chunk.extension ".xhtml" $(_db2html) $(patsubst %.xhtml,%.xml,$@)
 
 all:							\
 	$(_DOC_C_DOCS)		$(_DOC_LC_DOCS)		\
@@ -956,14 +940,14 @@ clean-doc-lc:
 	    rm -f "$$po"; \
 	  fi; \
 	done
-	@for lc in C $(DOC_LINGUAS); do \
+	@for lc in C $(_DOC_REAL_LINGUAS); do \
 	  if test -f "$$lc/.xml2po.mo"; then \
 	    echo "rm -f $$lc/.xml2po.mo"; \
 	    rm -f "$$lc/.xml2po.mo"; \
 	  fi; \
 	done
 clean-doc-dir:
-	@for lc in C $(DOC_LINGUAS); do \
+	@for lc in C $(_DOC_REAL_LINGUAS); do \
 	  for dir in `find $$lc -depth -type d`; do \
 	    if ! test $$dir -ef $(srcdir)/$$dir; then \
 	      echo "rmdir $$dir"; \
@@ -997,7 +981,7 @@ doc-dist-hook: 					\
 #	$(if $(_DOC_DSK_IN),dist-doc-dsk)
 
 dist-doc-docs: $(_DOC_C_DOCS) $(_DOC_LC_DOCS) $(_DOC_POFILES)
-	@for lc in C $(DOC_LINGUAS); do \
+	@for lc in C $(_DOC_REAL_LINGUAS); do \
 	  echo " $(mkinstalldirs) $(distdir)/$$lc"; \
 	  $(mkinstalldirs) "$(distdir)/$$lc"; \
 	done
@@ -1039,7 +1023,7 @@ check:							\
 	$(if $(_DOC_OMF_IN),check-doc-omf)
 
 check-doc-docs: $(_DOC_C_DOCS) $(_DOC_LC_DOCS)
-	@for lc in C $(DOC_LINGUAS); do \
+	@for lc in C $(_DOC_REAL_LINGUAS); do \
 	  if test -f "$$lc"; \
 	    then d=; \
 	    xmlpath="$$lc"; \
@@ -1066,7 +1050,7 @@ install-data-local:					\
 #	$(if $(_DOC_DSK_IN),install-doc-dsk)
 
 install-doc-docs:
-	@for lc in C $(DOC_LINGUAS); do \
+	@for lc in C $(_DOC_REAL_LINGUAS); do \
 	  echo "$(mkinstalldirs) $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$lc"; \
 	  $(mkinstalldirs) $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$lc; \
 	done
@@ -1078,7 +1062,7 @@ install-doc-docs:
 
 install-doc-figs:
 	@list='$(patsubst C/%,%,$(_DOC_C_FIGURES))'; for fig in $$list; do \
-	  for lc in C $(DOC_LINGUAS); do \
+	  for lc in C $(_DOC_REAL_LINGUAS); do \
 	    if test -f "$$lc/$$fig"; then \
 	      figfile="$$lc/$$fig"; \
 	    elif test -f "$(srcdir)/$$lc/$$fig"; then \
