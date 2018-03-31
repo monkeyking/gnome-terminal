@@ -6,7 +6,7 @@
 
 G_BEGIN_DECLS
 
-/* BOOLEAN:STRING,INT,UINT (../../../src/terminal-marshal.list:1) */
+/* BOOLEAN:STRING,INT,UINT (../../src/terminal-marshal.list:1) */
 G_GNUC_INTERNAL void _terminal_marshal_BOOLEAN__STRING_INT_UINT (GClosure     *closure,
                                                                  GValue       *return_value,
                                                                  guint         n_param_values,
