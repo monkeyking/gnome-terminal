@@ -1,3 +1,118 @@
+commit 370e60acf022942ec01c96ad19dd4f85790c3680
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 5 13:48:20 2009 +0200
+
+    Remove debug spew
+
+ src/terminal-util.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit 50f2fccfff8ee12517834f5f619f7c775dbb9772
+Author: Marios Zindilis <m.zindilis@major.org>
+Date:   Sat Oct 17 18:34:07 2009 +0300
+
+    Updated Greek documentation translation for GNOME Terminal
+
+ help/el/el.po |   17 +++++++----------
+ 1 files changed, 7 insertions(+), 10 deletions(-)
+
+commit 83128ce6992d088c8799d469dfb1d9188d832ef7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Oct 16 21:11:11 2009 +0200
+
+    Prepare 2.28.1
+
+ NEWS         |    5 +++++
+ configure.ac |    4 ++--
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit dd84d8c13ed2db207917a768c856c0dcd7271bbe
+Author: Åsmund Skjæveland <aasmunds@ulrik.uio.no>
+Date:   Thu Oct 15 15:36:35 2009 +0200
+
+    Updated Norwegian Nynorsk translation
+
+ po/nn.po | 3274 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 1780 insertions(+), 1494 deletions(-)
+
+commit 5e762c85ca1c4e712112028d389d98a21980ef33
+Author: Leonid Kanter <leon@asplinux.ru>
+Date:   Wed Oct 14 23:08:19 2009 +0300
+
+    Updated Russian translation
+
+ po/ru.po |  484 ++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 files changed, 301 insertions(+), 183 deletions(-)
+
+commit c0bdb9abca61f603fbc0b9137dcc279513e551c3
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Mon Oct 5 09:18:27 2009 -0400
+
+    Plug a small memory leak
+    
+    See bug 597378.
+
+ src/terminal-util.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+commit cc0006d7d66696af349f28dbd9d00be966d1c586
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Sep 28 22:11:42 2009 +0200
+
+    Allow unlimited scrollback
+    
+    Vte 0.22 implements an efficient store of the scrollback, so we can
+    allow unlimited number of lines here.
+
+ configure.ac           |    2 +-
+ src/terminal-profile.c |    4 +---
+ 2 files changed, 2 insertions(+), 4 deletions(-)
+
+commit 0d89d169828bec7112d0d563ccbc30c2d8df8d26
+Author: Mark Krapivner <mark125@gmail.com>
+Date:   Fri Sep 25 10:18:16 2009 +0300
+
+    Updated Hebrew translation
+
+ po/he.po |  292 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 142 insertions(+), 150 deletions(-)
+
+commit 10078f155954d1528240b09c8041cedb18b6ff51
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Thu Sep 24 10:27:30 2009 +0200
+
+    Updated Spanish translation
+
+ po/es.po |  265 ++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 130 insertions(+), 135 deletions(-)
+
+commit 2f05f532bb4d1f9b0fda290b986139d31128cc4d
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   Tue Sep 22 14:25:00 2009 +0530
+
+    Upadated Oriya Translation
+
+ po/or.po |   37 ++++++++++++++++++++++++++++++++-----
+ 1 files changed, 32 insertions(+), 5 deletions(-)
+
+commit ca0dd7a140022e101243ab4eeb7fe66ec5909cf5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Sep 21 13:41:23 2009 +0200
+
+    Post release version bump
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit a9466e2c995e2fa3b5a82d5a39c42c4a4853d1b7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Sep 21 13:38:25 2009 +0200
+
+    Version 2.28.0
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
 commit 8eafa0e1ad06655492f337e16ceb175146a46713
 Author: Shankar Prasad <svenkate@redhat.com>
 Date:   Mon Sep 21 11:11:37 2009 +0530
