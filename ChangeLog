@@ -1,3 +1,132 @@
+commit dd46f0beaf43270bb842b87dc82617fe6dcaf827
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon May 9 21:56:49 2016 +0200
+
+    Version 3.20.2
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 17842c0b8b18827ba360a7f29f90189cfaa5b993
+Author: Simon McVittie <smcv@debian.org>
+Date:   Fri Apr 15 18:32:30 2016 +0200
+
+    server: Add a systemd user service
+    
+    This is used to implement the D-Bus session service if
+    "dbus-daemon --session" was configured to use systemd activation,
+    most commonly via the units installed by configuring dbus 1.10+
+    with --enable-user-session.
+    
+    With this service, child processes such as the user's shell
+    end up in the cgroup …/user@UID.service/org.gnome.Terminal.service
+    instead of in …/user@UID.service/dbus.service.
+    
+    Use KillMode=process so systemd doesn't kill screen sessions,
+    backgrounded programmes etc.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=759115
+    (cherry picked from commit 4f34660f0d1e7a61eaed6123d314a69664a7adeb)
+
+ configure.ac    |  1 +
+ src/Makefile.am | 16 ++++++++++++++++
+ 2 files changed, 17 insertions(+)
+
+commit 95265bd112fb89bb0e8717db08a0a232f60b4064
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun May 8 10:46:24 2016 +0200
+
+    window: Fix relief on tab menu button
+    
+    (cherry picked from commit 33839ed2881a96948655d6993e727ef06465d794)
+
+ src/terminal-window.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 0be7d526b6727eacda9dbc3f9527b77f450bd92d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun May 8 10:42:55 2016 +0200
+
+    window: Set widget CSS name
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=765590
+    (cherry picked from commit 13a7c920b2250e9295fa10cee88bacc39d9f2612)
+
+ src/terminal-window.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit 1ff7a1428da115f7914daf9e4a56bfabc3b9fa66
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Apr 18 13:36:22 2016 +0200
+
+    l10n: de: Ergänze fehlenden Doppelpunkt
+
+ po/de.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 73204c0586a18e22eb7d8c188ae4ba89814ffe37
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Mon May 2 22:48:52 2016 +0200
+
+    nautilus: Fix handing sftp folders with % character
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=765828
+    (cherry picked from commit 62e90aa7314347a39f3cfac11f876f5047633a8d)
+
+ src/terminal-nautilus.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 8b39ab134c2b44722e6477f4b1d1ee56b76c4fd0
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Tue May 3 17:57:43 2016 +0200
+
+    Fix GSettings default value translations
+
+ po/be.po    | 2 +-
+ po/ca.po    | 2 +-
+ po/fi.po    | 2 +-
+ po/kk.po    | 2 +-
+ po/lv.po    | 2 +-
+ po/pt.po    | 2 +-
+ po/pt_BR.po | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
+
+commit ef3d0bd772ee67bc6db321cc1582dc5ae41f6f03
+Author: Tiago Santos <tiagofsantos81@sapo.pt>
+Date:   Thu Apr 28 19:40:20 2016 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 839 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 498 insertions(+), 341 deletions(-)
+
+commit 6a297e7a5fc9d0f34dd76fff128738d08a69eb2a
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Sun Apr 24 16:11:56 2016 +0300
+
+    Update Latvian translation
+
+ po/lv.po | 72 +++++++++++++++++++---------------------------------------------
+ 1 file changed, 21 insertions(+), 51 deletions(-)
+
+commit 251ba72486155dbc020450cd02f70a4c769679b7
+Author: Felipe Braga <fbobraga@gmail.com>
+Date:   Mon Apr 18 20:21:16 2016 +0000
+
+    Updated Brazilian Portuguese translation
+
+ help/pt_BR/pt_BR.po | 2358 +++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 1422 insertions(+), 936 deletions(-)
+
+commit 57d4b7083d631b87447504fd6076d4ea6579a7c8
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Mon Apr 11 10:20:18 2016 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 81fa812ee383ecf71ef6a62ab522a1279012300c
 Author: Alexander Shopov <ash@kambanaria.org>
 Date:   Sun Apr 10 18:33:46 2016 +0300
@@ -1345,16 +1474,14 @@ Date:   Tue Jan 27 19:04:19 2015 +0100
     
     https://bugzilla.gnome.org/show_bug.cgi?id=711059
 
- Makefile.am                            |  4 ++--
- configure.ac                           |  2 +-
- gnome-terminal.appdata.xml.in          | 38 ----------------------------------
- gnome-terminal.desktop.in.in           | 16 --------------
- org.gnome.Terminal.appdata.xml.in      | 38 ++++++++++++++++++++++++++++++++++
- org.gnome.Terminal.desktop.in.in       | 16 ++++++++++++++
- po/POTFILES.in                         |  4 ++--
- po/POTFILES.skip                       |  2 +-
- src/gnome-terminal-search-provider.ini |  2 +-
- 9 files changed, 61 insertions(+), 61 deletions(-)
+ Makefile.am                                                        | 4 ++--
+ configure.ac                                                       | 2 +-
+ gnome-terminal.appdata.xml.in => org.gnome.Terminal.appdata.xml.in | 2 +-
+ gnome-terminal.desktop.in.in => org.gnome.Terminal.desktop.in.in   | 0
+ po/POTFILES.in                                                     | 4 ++--
+ po/POTFILES.skip                                                   | 2 +-
+ src/gnome-terminal-search-provider.ini                             | 2 +-
+ 7 files changed, 8 insertions(+), 8 deletions(-)
 
 commit 5d30d73781359481aa8f350b2784c7f5350945cc
 Author: Akom Chotiphantawanon <knight2000@gmail.com>
@@ -2746,16 +2873,15 @@ Date:   Wed Feb 25 15:36:20 2015 +0100
     
     https://bugzilla.gnome.org/show_bug.cgi?id=734791
 
- configure.ac               |  4 ++--
- src/Makefile.am            |  2 +-
- src/terminal-app.c         | 12 +-----------
- src/terminal-app.h         |  2 +-
- src/terminal-appmenu.ui    | 48 ----------------------------------------------
- src/terminal-menus.ui      | 48 ++++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-util.c        |  2 +-
- src/terminal-window.c      |  2 +-
- src/terminal.gresource.xml |  2 +-
- 9 files changed, 56 insertions(+), 66 deletions(-)
+ configure.ac                                   |  4 ++--
+ src/Makefile.am                                |  2 +-
+ src/terminal-app.c                             | 12 +-----------
+ src/terminal-app.h                             |  2 +-
+ src/{terminal-appmenu.ui => terminal-menus.ui} |  2 +-
+ src/terminal-util.c                            |  2 +-
+ src/terminal-window.c                          |  2 +-
+ src/terminal.gresource.xml                     |  2 +-
+ 8 files changed, 9 insertions(+), 19 deletions(-)
 
 commit 9ccf8b09f9aa0eb96a34498afdf749b5bad7d92f
 Author: Christian Persch <chpe@gnome.org>
@@ -8123,10 +8249,9 @@ Date:   Thu Feb 6 21:32:43 2014 +0100
     
     Else commits are useless :)
 
- help/C/prob-reset.page      | 73 +++++++++++++++++++++++++++++++++++++++++++++
- help/C/prob-reset.page.page | 73 ---------------------------------------------
- help/Makefile.am            |  1 +
- 3 files changed, 74 insertions(+), 73 deletions(-)
+ help/C/{prob-reset.page.page => prob-reset.page} | 0
+ help/Makefile.am                                 | 1 +
+ 2 files changed, 1 insertion(+)
 
 commit 2d082c4443ea85bf4a63954e6242ae00765cf407
 Author: Baptiste Mille-Mathias <baptistem@gnome.org>
@@ -8136,9 +8261,8 @@ Date:   Thu Feb 6 13:44:55 2014 +0100
     
     https://bugzilla.gnome.org/show_bug.cgi?id=698735
 
- help/C/prob-reset.page.page | 73 +++++++++++++++++++++++++++++++++++++++++++++
- help/C/prob-reset.page.stub | 73 ---------------------------------------------
- 2 files changed, 73 insertions(+), 73 deletions(-)
+ help/C/{prob-reset.page.stub => prob-reset.page.page} | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 commit e2c1ecfa89bc4ffc342048372c08dd8daf2c2d28
 Author: Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
@@ -8204,9 +8328,8 @@ Date:   Thu Jan 30 17:11:47 2014 +0000
 
     Resetting a terminal is rather a problem than a preference page.
 
- help/C/pref-reset.page.stub | 66 ----------------------------------------
- help/C/prob-reset.page.stub | 73 +++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 73 insertions(+), 66 deletions(-)
+ help/C/{pref-reset.page.stub => prob-reset.page.stub} | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
 commit 04654feabfe1582c4c526dd157a0b70a588bd9b5
 Author: Debarshi Ray <debarshir@gnome.org>
@@ -9548,11 +9671,10 @@ Date:   Thu Sep 12 19:42:08 2013 +0200
 
     schemas: Use intltool native support for gsettings schemas
 
- po/POTFILES.in                        |   2 +-
- src/Makefile.am                       |   9 +-
- src/org.gnome.Terminal.gschema.xml    | 633 ++++++++++++++++++++++++++++++++++
- src/org.gnome.Terminal.gschema.xml.in | 633 ----------------------------------
- 4 files changed, 638 insertions(+), 639 deletions(-)
+ po/POTFILES.in                                     |   2 +-
+ src/Makefile.am                                    |   9 +-
+ ...chema.xml.in => org.gnome.Terminal.gschema.xml} | 248 ++++++++++-----------
+ 3 files changed, 129 insertions(+), 130 deletions(-)
 
 commit ab5b3f3e6a93327223a21e05bb555a6641c7b5a8
 Author: Christian Persch <chpe@gnome.org>
@@ -11062,27 +11184,27 @@ Date:   Mon Apr 15 14:28:14 2013 +0200
 
     i18n: Split gettext initialisation into a helper routine
 
- src/Makefile.am                 | 10 ++++++++--
- src/client.c                    |  7 +++----
- src/profile-editor.c            |  2 +-
- src/server.c                    |  7 +++----
- src/terminal-accels.c           |  6 ++++--
- src/terminal-app.c              |  2 +-
- src/terminal-encoding.c         |  5 +++--
- src/terminal-i18n.c             | 31 +++++++++++++++++++++++++++++++
- src/terminal-i18n.h             | 29 +++++++++++++++++++++++++++++
- src/terminal-intl.h             |  6 +++++-
- src/terminal-nautilus.c         |  5 +++--
- src/terminal-options.c          |  2 +-
- src/terminal-prefs.c            |  3 ++-
- src/terminal-screen-container.c |  3 +--
- src/terminal-screen.c           |  1 +
- src/terminal-tab-label.c        |  4 +++-
- src/terminal-tabs-menu.c        |  3 ++-
- src/terminal-util.c             |  3 ++-
- src/terminal-window.c           |  6 +++++-
- src/terminal.c                  |  7 +++----
- 20 files changed, 111 insertions(+), 31 deletions(-)
+ src/Makefile.am                          | 10 ++++++++--
+ src/client.c                             |  7 +++----
+ src/profile-editor.c                     |  2 +-
+ src/server.c                             |  7 +++----
+ src/terminal-accels.c                    |  6 ++++--
+ src/terminal-app.c                       |  2 +-
+ src/terminal-encoding.c                  |  5 +++--
+ src/{terminal-intl.h => terminal-i18n.c} | 16 +++++++++++-----
+ src/{terminal-intl.h => terminal-i18n.h} | 14 +++++++++-----
+ src/terminal-intl.h                      |  6 +++++-
+ src/terminal-nautilus.c                  |  5 +++--
+ src/terminal-options.c                   |  2 +-
+ src/terminal-prefs.c                     |  3 ++-
+ src/terminal-screen-container.c          |  3 +--
+ src/terminal-screen.c                    |  1 +
+ src/terminal-tab-label.c                 |  4 +++-
+ src/terminal-tabs-menu.c                 |  3 ++-
+ src/terminal-util.c                      |  3 ++-
+ src/terminal-window.c                    |  6 +++++-
+ src/terminal.c                           |  7 +++----
+ 20 files changed, 71 insertions(+), 41 deletions(-)
 
 commit c13fc01f5730161dd63ebabd405770922dad4f98
 Author: OKANO Takayoshi <kano@na.rim.or.jp>
@@ -11782,10 +11904,9 @@ Date:   Fri Mar 15 11:15:06 2013 +0000
     Rename the custom shells to custom command because the feature is called
     custom command in the terminal and shells are a type of command.
 
- help/C/pref-custom-command.page | 71 +++++++++++++++++++++++++++++++++++++++++
- help/C/pref-custom-shells.page  | 71 -----------------------------------------
- help/Makefile.am                |  2 +-
- 3 files changed, 72 insertions(+), 72 deletions(-)
+ help/C/{pref-custom-shells.page => pref-custom-command.page} | 0
+ help/Makefile.am                                             | 2 +-
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
 commit d5bb673c8a1b5479bb8073db6cd99aa565b24097
 Author: Christian Persch <chpe@gnome.org>
@@ -12391,10 +12512,9 @@ Date:   Sun Mar 3 16:26:08 2013 +0000
     consistently. Leave review for later, stub page as the help needs to be
     merged to master now.
 
- help/C/pref-reset.page      | 61 -----------------------------------------
- help/C/pref-reset.page.stub | 66 +++++++++++++++++++++++++++++++++++++++++++++
- help/Makefile.am            |  1 -
- 3 files changed, 66 insertions(+), 62 deletions(-)
+ help/C/{pref-reset.page => pref-reset.page.stub} | 11 ++++++++---
+ help/Makefile.am                                 |  1 -
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
 commit 06280cd25214f1b0fb3f775ac17f35f8d37f81ae
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12547,9 +12667,8 @@ Date:   Sun Mar 3 13:10:43 2013 +0530
 
     help: Unstubbed, made changes asked, submitting for review
 
- help/C/pref-reset.page      | 59 ++++++++++++++++++++++++++++++++++++++++++
- help/C/pref-reset.page.stub | 63 ---------------------------------------------
- 2 files changed, 59 insertions(+), 63 deletions(-)
+ help/C/{pref-reset.page.stub => pref-reset.page} | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
 commit 54a3b1950f177a294506eef47657fa18b6d32cd5
 Author: Sindhu S <sindhus@live.in>
@@ -12570,9 +12689,8 @@ Date:   Sun Mar 3 12:52:45 2013 +0530
     Removed review notes after reading them and ensuring changes
     have been made as asked or changes exist.
 
- help/C/pref-profiles.page      | 270 ++++++++++++++++++++++++++++++++++++++++
- help/C/pref-profiles.page.stub | 273 -----------------------------------------
- 2 files changed, 270 insertions(+), 273 deletions(-)
+ help/C/{pref-profiles.page.stub => pref-profiles.page} | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 commit 442b4b0cc327e28019a98bd637e5d853261b941b
 Author: Sindhu S <sindhus@live.in>
@@ -12591,9 +12709,8 @@ Date:   Sun Mar 3 12:39:53 2013 +0530
     
     Unstubbed pref-login-shell and submitted for review.
 
- help/C/pref-login-shell.page      | 120 ++++++++++++++++++++++++++++++++++++++
- help/C/pref-login-shell.page.stub | 120 --------------------------------------
- 2 files changed, 120 insertions(+), 120 deletions(-)
+ help/C/{pref-login-shell.page.stub => pref-login-shell.page} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit df1d49926d84a523149b99c5fd8878c1e46de66f
 Author: Sindhu S <sindhus@live.in>
@@ -12666,10 +12783,9 @@ Date:   Sun Mar 3 00:15:15 2013 +0000
     
     Page not started; remove from Makefile.am
 
- help/C/prob-recover-default-profile.page      | 22 ----------------------
- help/C/prob-recover-default-profile.page.stub | 22 ++++++++++++++++++++++
- help/Makefile.am                              |  1 -
- 3 files changed, 22 insertions(+), 23 deletions(-)
+ ...cover-default-profile.page => prob-recover-default-profile.page.stub} | 0
+ help/Makefile.am                                                         | 1 -
+ 2 files changed, 1 deletion(-)
 
 commit fdcc959f63b4bf168bf500b96d6a285f1d8d2ceb
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12680,10 +12796,9 @@ Date:   Sun Mar 3 00:13:24 2013 +0000
     Page not complete, possibly should not be included; remove from
     Makefile.am
 
- help/C/prob-add-to-path.page      | 65 ------------------------------------
- help/C/prob-add-to-path.page.stub | 69 +++++++++++++++++++++++++++++++++++++++
- help/Makefile.am                  |  1 -
- 3 files changed, 69 insertions(+), 66 deletions(-)
+ help/C/{prob-add-to-path.page => prob-add-to-path.page.stub} | 4 ++++
+ help/Makefile.am                                             | 1 -
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
 commit a14ef2127daf7e54acb5898a58648f02f235033e
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12691,10 +12806,9 @@ Date:   Sun Mar 3 00:06:14 2013 +0000
 
     help: stub pref-reset.page
 
- help/C/pref-reset.page      | 59 ------------------------------------------
- help/C/pref-reset.page.stub | 63 +++++++++++++++++++++++++++++++++++++++++++++
- help/Makefile.am            |  1 -
- 3 files changed, 63 insertions(+), 60 deletions(-)
+ help/C/{pref-reset.page => pref-reset.page.stub} | 8 ++++++--
+ help/Makefile.am                                 | 1 -
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
 commit 5e9f53dec9d873eae80cee09764ae742d61efb6c
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12704,10 +12818,9 @@ Date:   Sat Mar 2 23:56:19 2013 +0000
     
     Page is not ready for review yet.
 
- help/C/pref-profiles.page      | 270 ----------------------------------------
- help/C/pref-profiles.page.stub | 273 +++++++++++++++++++++++++++++++++++++++++
- help/Makefile.am               |   1 -
- 3 files changed, 273 insertions(+), 271 deletions(-)
+ help/C/{pref-profiles.page => pref-profiles.page.stub} | 3 +++
+ help/Makefile.am                                       | 1 -
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
 commit 11ab35f444728f580b4e827353bda4b73c6f0042
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12724,10 +12837,9 @@ Date:   Sat Mar 2 23:48:49 2013 +0000
 
     help: stubbed pref-login-shell.page
 
- help/C/pref-login-shell.page      | 120 --------------------------------------
- help/C/pref-login-shell.page.stub | 120 ++++++++++++++++++++++++++++++++++++++
- help/Makefile.am                  |   1 -
- 3 files changed, 120 insertions(+), 121 deletions(-)
+ help/C/{pref-login-shell.page => pref-login-shell.page.stub} | 0
+ help/Makefile.am                                             | 1 -
+ 2 files changed, 1 deletion(-)
 
 commit ab7dda9c959409e66249939a958729f09aa14048
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12791,10 +12903,9 @@ Date:   Sat Mar 2 23:16:35 2013 +0000
     
     Stubbed unfinished page.
 
- help/C/pref-compatibility.page      | 144 ----------------------------------
- help/C/pref-compatibility.page.stub | 150 ++++++++++++++++++++++++++++++++++++
- help/Makefile.am                    |   1 -
- 3 files changed, 150 insertions(+), 145 deletions(-)
+ ...atibility.page => pref-compatibility.page.stub} | 26 +++++++++++++---------
+ help/Makefile.am                                   |  1 -
+ 2 files changed, 16 insertions(+), 11 deletions(-)
 
 commit 2b2f947da6c3cf19e2c2ac3b459a5cbc1d8aad8d
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -12940,9 +13051,8 @@ Date:   Wed Feb 27 00:31:25 2013 +0530
 
     help: Stubbed adv-custom-colors.page
 
- help/C/adv-custom-colors.page      | 25 -------------------------
- help/C/adv-custom-colors.page.stub | 25 +++++++++++++++++++++++++
- 2 files changed, 25 insertions(+), 25 deletions(-)
+ help/C/{adv-custom-colors.page => adv-custom-colors.page.stub} | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 1b51e8e398de69bf99aaa1f901449eca3889c84f
 Author: Sindhu S <sindhus@live.in>
@@ -13686,9 +13796,8 @@ Date:   Fri Feb 22 20:02:20 2013 +0530
     
     Page ID reflects the change in filename.
 
- help/C/gs-execute-commands.page | 37 +++++++++++++++++++++++++++++++++++++
- help/C/gs-run-program.page      | 36 ------------------------------------
- 2 files changed, 37 insertions(+), 36 deletions(-)
+ ...gs-run-program.page => gs-execute-commands.page} | 21 +++++++++++----------
+ 1 file changed, 11 insertions(+), 10 deletions(-)
 
 commit cac99e94e08c9b54200ea8bda2bf29a1e6fb1f56
 Author: Sindhu S <sindhus@live.in>
@@ -14629,9 +14738,8 @@ Date:   Thu Feb 14 23:37:57 2013 +0000
 
     help: review app-zoom.page
 
- help/C/app-zoom-in-out.page | 33 ---------------------------------
- help/C/app-zoom.page        | 38 ++++++++++++++++++++++++++++++++++++++
- 2 files changed, 38 insertions(+), 33 deletions(-)
+ help/C/{app-zoom-in-out.page => app-zoom.page} | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
 commit 59484fb088ac8787dc035110f8037947c65e074e
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -14756,9 +14864,8 @@ Date:   Sat Feb 9 12:51:16 2013 +0530
 
     help: tbr-common-problems to prob-common-problems
 
- help/C/prob-common-problems.page | 24 ++++++++++++++++++++++++
- help/C/tbr-common-problems.page  | 24 ------------------------
- 2 files changed, 24 insertions(+), 24 deletions(-)
+ help/C/{tbr-common-problems.page => prob-common-problems.page} | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 9993d86051d86f894204232116607e912dfb18e0
 Author: Sindhu S <sindhus@live.in>
@@ -14933,9 +15040,8 @@ Date:   Wed Feb 6 15:36:09 2013 +0530
     Added help on available Terminal cursors and how to set them,
     included proper mallard tags.
 
- help/C/app-cursor.page | 41 +++++++++++++++++++++++++++++++++++++++++
- help/C/cursor.page     | 40 ----------------------------------------
- 2 files changed, 41 insertions(+), 40 deletions(-)
+ help/C/{cursor.page => app-cursor.page} | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
 commit 020e8a109189fa89ce275e2f991f1afba40c85d7
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -14943,25 +15049,16 @@ Date:   Tue Feb 5 23:45:37 2013 +0000
 
     help: stubbed pages that have not been started
 
- help/C/app-colors.page                        | 43 ---------------------------
- help/C/app-colors.page.stub                   | 43 +++++++++++++++++++++++++++
- help/C/pref-keystroke-compatibility.page.stub | 22 ++++++++++++++
- help/C/pref-keystrokecompatibility.page       | 22 --------------
- help/C/pref-login-shell.page.stub             | 23 ++++++++++++++
- help/C/pref-loginshell.page                   | 23 --------------
- help/C/pref-menubar.page                      | 22 --------------
- help/C/pref-menubar.page.stub                 | 22 ++++++++++++++
- help/C/pref-reset.page.stub                   | 23 ++++++++++++++
- help/C/pref-scrolling.page                    | 22 --------------
- help/C/pref-scrolling.page.stub               | 22 ++++++++++++++
- help/C/reset.page                             | 23 --------------
- help/C/search.page                            | 21 -------------
- help/C/search.page.stub                       | 21 +++++++++++++
- help/C/select-text.page.stub                  | 25 ++++++++++++++++
- help/C/set-title.page                         | 24 ---------------
- help/C/set-title.page.stub                    | 24 +++++++++++++++
- help/C/textselection.page                     | 25 ----------------
- 18 files changed, 225 insertions(+), 225 deletions(-)
+ help/C/{app-colors.page => app-colors.page.stub}                          | 0
+ ...keystrokecompatibility.page => pref-keystroke-compatibility.page.stub} | 0
+ help/C/{pref-loginshell.page => pref-login-shell.page.stub}               | 0
+ help/C/{pref-menubar.page => pref-menubar.page.stub}                      | 0
+ help/C/{reset.page => pref-reset.page.stub}                               | 0
+ help/C/{pref-scrolling.page => pref-scrolling.page.stub}                  | 0
+ help/C/{search.page => search.page.stub}                                  | 0
+ help/C/{textselection.page => select-text.page.stub}                      | 0
+ help/C/{set-title.page => set-title.page.stub}                            | 0
+ 9 files changed, 0 insertions(+), 0 deletions(-)
 
 commit fe4bf9fbc9b6babefe8172465b13f98da412674f
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -14969,23 +15066,22 @@ Date:   Tue Feb 5 23:35:20 2013 +0000
 
     help: review
 
- help/C/app-colors.page          | 23 +++++++++++++++++++++--
- help/C/copy-paste.page          |  2 ++
- help/C/cursor.page              | 25 +++++++++++++++++++++----
- help/C/introduction.page        | 11 +++++++----
- help/C/overview.page            | 32 ++++++++++++++++++++++++++++++++
- help/C/overview1.page           | 22 ----------------------
- help/C/pref-app-background.page | 22 ++++++++++++++++++----
- help/C/pref-customexit.page     |  3 +++
- help/C/pref-customshells.page   |  2 ++
- help/C/pref-encoding.page       | 12 ++++++++++--
- help/C/pref-profiles.page       | 41 +++++++++++++++++++++++++++++++++--------
- help/C/pref-titlebyprogram.page |  2 ++
- help/C/reset.page               |  4 +++-
- help/C/set-title.page           |  2 ++
- help/C/tabbed-terminals.page    |  4 +++-
- help/C/textselection.page       |  3 +++
- 16 files changed, 162 insertions(+), 48 deletions(-)
+ help/C/app-colors.page                   | 23 ++++++++++++++++--
+ help/C/copy-paste.page                   |  2 ++
+ help/C/cursor.page                       | 25 +++++++++++++++----
+ help/C/introduction.page                 | 11 +++++----
+ help/C/{overview1.page => overview.page} | 16 ++++++++++---
+ help/C/pref-app-background.page          | 22 +++++++++++++----
+ help/C/pref-customexit.page              |  3 +++
+ help/C/pref-customshells.page            |  2 ++
+ help/C/pref-encoding.page                | 12 ++++++++--
+ help/C/pref-profiles.page                | 41 +++++++++++++++++++++++++-------
+ help/C/pref-titlebyprogram.page          |  2 ++
+ help/C/reset.page                        |  4 +++-
+ help/C/set-title.page                    |  2 ++
+ help/C/tabbed-terminals.page             |  4 +++-
+ help/C/textselection.page                |  3 +++
+ 15 files changed, 143 insertions(+), 29 deletions(-)
 
 commit 301404cb85f1a0427bda307220f79612084c4d42
 Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
@@ -15131,9 +15227,8 @@ Date:   Fri Jan 25 01:10:25 2013 +0530
     belong to the preferences section anymore.
     textselection.page has modified text.
 
- help/C/pref-textselection.page | 22 ----------------------
- help/C/textselection.page      | 22 ++++++++++++++++++++++
- 2 files changed, 22 insertions(+), 22 deletions(-)
+ help/C/{pref-textselection.page => textselection.page} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit e18044020eec5655ebb11dca584bb5d49aa833ae
 Author: Sindhu S <sindhus@live.in>
@@ -15218,9 +15313,8 @@ Date:   Thu Jan 10 17:00:50 2013 +0530
     Renamed keystrokes.page to pref-keystrokecompatibility.page
     Included suitable page title and description.
 
- help/C/keystrokes.page                  | 22 ----------------------
- help/C/pref-keystrokecompatibility.page | 22 ++++++++++++++++++++++
- 2 files changed, 22 insertions(+), 22 deletions(-)
+ help/C/{keystrokes.page => pref-keystrokecompatibility.page} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit 70b354f7cf150499cde154f5ec55353fed76d32a
 Author: Sindhu S <sindhus@live.in>
@@ -16300,20 +16394,19 @@ Date:   Mon Jan 28 11:31:48 2013 +0100
 
     prefs: Move keybinding prefs dialogue to its own source file
 
- po/POTFILES.in             |   2 +-
- src/Makefile.am            |   4 +-
- src/keybinding-editor.ui   | 160 ---------------------------------------------
- src/preferences.ui         | 160 +++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-accels.c      |  61 ++---------------
- src/terminal-accels.h      |   2 +-
- src/terminal-app.c         |   5 +-
- src/terminal-app.h         |   2 +-
- src/terminal-prefs.c       |  93 ++++++++++++++++++++++++++
- src/terminal-prefs.h       |  29 ++++++++
- src/terminal-window.c      |  14 ++--
- src/terminal.gresource.xml |   2 +-
- src/terminal.xml           |   2 +-
- 13 files changed, 304 insertions(+), 232 deletions(-)
+ po/POTFILES.in                               |  2 +-
+ src/Makefile.am                              |  4 +-
+ src/{keybinding-editor.ui => preferences.ui} |  2 +-
+ src/terminal-accels.c                        | 61 ++----------------
+ src/terminal-accels.h                        |  2 +-
+ src/terminal-app.c                           |  5 +-
+ src/terminal-app.h                           |  2 +-
+ src/terminal-prefs.c                         | 93 ++++++++++++++++++++++++++++
+ src/{terminal-accels.h => terminal-prefs.h}  | 14 ++---
+ src/terminal-window.c                        | 14 ++---
+ src/terminal.gresource.xml                   |  2 +-
+ src/terminal.xml                             |  2 +-
+ 12 files changed, 121 insertions(+), 82 deletions(-)
 
 commit 9dffc2ac32c829ed5523fc90491834447392c572
 Author: Kjartan Maraas <kmaraas@gnome.org>
@@ -17729,11 +17822,10 @@ Date:   Sun Dec 9 20:29:45 2012 +0100
 
     schemas: Rename profile schema
 
- src/Makefile.am                                   |   2 +-
- src/org.gnome.Terminal.Preferences.gschema.xml.in | 384 ----------------------
- src/org.gnome.Terminal.gschema.xml.in             | 384 ++++++++++++++++++++++
- src/terminal-schemas.h                            |   4 +-
- 4 files changed, 387 insertions(+), 387 deletions(-)
+ src/Makefile.am                                                       | 2 +-
+ ...l.Preferences.gschema.xml.in => org.gnome.Terminal.gschema.xml.in} | 2 +-
+ src/terminal-schemas.h                                                | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
 commit 65cd6d3f99f6bf83c8784958e34946e9b0479945
 Author: Christian Persch <chpe@gnome.org>
@@ -18679,13 +18771,12 @@ Date:   Mon May 28 20:47:36 2012 -0400
     
     https://bugzilla.gnome.org/show_bug.cgi?id=677003
 
- Makefile.am               |    2 -
- autogen.sh                |    1 +
- configure.ac              |    2 +-
- help/C/gnome-terminal.xml | 1140 ---------------------------------------------
- help/C/index.docbook      | 1140 +++++++++++++++++++++++++++++++++++++++++++++
- help/Makefile.am          |   20 +-
- 6 files changed, 1150 insertions(+), 1155 deletions(-)
+ Makefile.am                                  |  2 --
+ autogen.sh                                   |  1 +
+ configure.ac                                 |  2 +-
+ help/C/{gnome-terminal.xml => index.docbook} |  0
+ help/Makefile.am                             | 20 ++++++++------------
+ 5 files changed, 10 insertions(+), 15 deletions(-)
 
 commit b45b1f8be2c44d41a18186e0b5859c32bc00c1c2
 Author: Christian Persch <chpe@gnome.org>
@@ -19526,13 +19617,11 @@ Date:   Fri Mar 30 18:27:01 2012 +0200
 
     build: Rename source files
 
- src/Makefile.am           |   6 +-
- src/terminal-app.c        |   2 +-
- src/terminal-controller.c | 263 ----------------------------------------------
- src/terminal-controller.h |  63 -----------
- src/terminal-gdbus.c      | 263 ++++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-gdbus.h      |  63 +++++++++++
- 6 files changed, 330 insertions(+), 330 deletions(-)
+ src/Makefile.am                                 | 6 +++---
+ src/terminal-app.c                              | 2 +-
+ src/{terminal-controller.c => terminal-gdbus.c} | 2 +-
+ src/{terminal-controller.h => terminal-gdbus.h} | 0
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
 commit f5fad240d85e8044055a50482452f9b4a53dc237
 Author: Christian Persch <chpe@gnome.org>
@@ -19972,13 +20061,13 @@ Date:   Wed Nov 16 19:14:38 2011 +0100
     
     Make the''gnome-terminal' command simply invoke dbus.
 
- configure.ac           |  12 ++
- src/Makefile.am        | 106 ++++++++++---
- src/server.c           | 359 ++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-options.c |   6 +
- src/terminal-util.c    |   1 +
- src/terminal.c         | 399 ++++++++-----------------------------------------
- 6 files changed, 522 insertions(+), 361 deletions(-)
+ configure.ac                 |  12 ++
+ src/Makefile.am              | 106 +++++++++---
+ src/{terminal.c => server.c} | 312 +++++----------------------------
+ src/terminal-options.c       |   6 +
+ src/terminal-util.c          |   1 +
+ src/terminal.c               | 399 +++++++------------------------------------
+ 6 files changed, 202 insertions(+), 634 deletions(-)
 
 commit a9e294229521d91c916dba765c773fcf85260a5b
 Author: Christian Persch <chpe@gnome.org>
@@ -23676,7 +23765,7 @@ Date:   Mon May 3 21:43:20 2010 -0400
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit bf4ac37ca3a684ab2f2cefce2c267e9049cdab3c
-Merge: 05c54efd9313 89e2381f0a82
+Merge: 05c54ef 89e2381
 Author: Behdad Esfahbod <behdad@behdad.org>
 Date:   Mon May 3 21:43:09 2010 -0400
 
@@ -23804,17 +23893,16 @@ Date:   Mon Apr 26 12:17:25 2010 -0400
     
     Rewrite search.  Adapted dialog UI / code from gedit.  Calls new vte API.
 
- src/Makefile.am               |   8 +-
- src/find-dialog.glade         | 235 +++++++++++++++
- src/gnome-terminal.schemas.in |  47 ---
- src/search-find.glade         | 203 -------------
- src/terminal-search-dialog.c  | 378 +++++++++++++++++++++++
- src/terminal-search-dialog.h  |  49 +++
- src/terminal-search.c         | 682 ------------------------------------------
- src/terminal-search.h         |  28 --
- src/terminal-window.c         | 209 ++++++++++++-
- src/terminal.xml              |  16 +-
- 10 files changed, 874 insertions(+), 981 deletions(-)
+ src/Makefile.am                              |   8 +-
+ src/{search-find.glade => find-dialog.glade} |  84 +++-
+ src/gnome-terminal.schemas.in                |  47 --
+ src/terminal-search-dialog.c                 | 378 +++++++++++++++
+ src/terminal-search-dialog.h                 |  49 ++
+ src/terminal-search.c                        | 682 ---------------------------
+ src/terminal-search.h                        |  28 --
+ src/terminal-window.c                        | 209 +++++++-
+ src/terminal.xml                             |  16 +-
+ 9 files changed, 697 insertions(+), 804 deletions(-)
 
 commit e2f1058018f792528371aa915f95d0461bb28a5d
 Author: Carles Ferrando <carles.ferrando@gmail.com>
@@ -23876,15 +23964,12 @@ Date:   Tue Apr 13 09:45:43 2010 -0400
 
     [search] Rename 'find' stuff to 'search'
 
- src/Makefile.am         |   6 +-
- src/search-find.glade   | 203 ++++++++++++++
- src/terminal-find.c     | 684 ------------------------------------------------
- src/terminal-find.glade | 203 --------------
- src/terminal-find.h     |  28 --
- src/terminal-search.c   | 682 +++++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-search.h   |  28 ++
- src/terminal-window.c   |   2 +-
- 8 files changed, 917 insertions(+), 919 deletions(-)
+ src/Makefile.am                                |  6 +--
+ src/{terminal-find.glade => search-find.glade} |  0
+ src/{terminal-find.c => terminal-search.c}     | 54 +++++++++++++-------------
+ src/{terminal-find.h => terminal-search.h}     |  0
+ src/terminal-window.c                          |  2 +-
+ 5 files changed, 30 insertions(+), 32 deletions(-)
 
 commit 8c0dc0d0b170e08bc542f9512ca346af20db9342
 Author: Behdad Esfahbod <behdad@behdad.org>
@@ -30247,16 +30332,14 @@ Date:   Sat Oct 11 21:15:45 2008 +0000
     
     svn path=/trunk/; revision=3156
 
- po/POTFILES.in          |   2 +-
- src/Makefile.am         |   4 +-
- src/encoding.c          | 714 ------------------------------------------------
- src/encoding.h          |  48 ----
- src/terminal-app.c      |   2 +-
- src/terminal-encoding.c | 714 ++++++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-encoding.h |  48 ++++
- src/terminal-window.c   |   2 +-
- src/terminal.c          |   1 -
- 9 files changed, 767 insertions(+), 768 deletions(-)
+ po/POTFILES.in                          | 2 +-
+ src/Makefile.am                         | 4 ++--
+ src/terminal-app.c                      | 2 +-
+ src/{encoding.c => terminal-encoding.c} | 2 +-
+ src/{encoding.h => terminal-encoding.h} | 0
+ src/terminal-window.c                   | 2 +-
+ src/terminal.c                          | 1 -
+ 7 files changed, 6 insertions(+), 7 deletions(-)
 
 commit 52304737e959c67fce38ed92aefdff39456d3bc9
 Author: Christian Persch <chpe@src.gnome.org>
@@ -30523,11 +30606,11 @@ Date:   Tue Oct 7 14:30:40 2008 +0000
     
     svn path=/trunk/; revision=3129
 
- src/Makefile.am        |    2 +
- src/terminal-options.c | 1268 ++++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-options.h |  107 ++++
- src/terminal.c         | 1304 +-----------------------------------------------
- 4 files changed, 1380 insertions(+), 1301 deletions(-)
+ src/Makefile.am                        |    2 +
+ src/{terminal.c => terminal-options.c} |  653 +---------------
+ src/terminal-options.h                 |  107 +++
+ src/terminal.c                         | 1304 +-------------------------------
+ 4 files changed, 120 insertions(+), 1946 deletions(-)
 
 commit 66a3183d6c6170fd16b16c77a97bfdd8891ec19b
 Author: Christian Persch <chpe@src.gnome.org>
@@ -30965,13 +31048,11 @@ Date:   Wed Sep 24 20:11:05 2008 +0000
     
     svn path=/trunk/; revision=3079
 
- src/Makefile.am       |   4 +-
- src/eggshell.c        | 114 ++++++++++++++++++++++++++++++++++++++++++++++++++
- src/eggshell.h        |  40 ++++++++++++++++++
- src/eggusershell.c    | 114 --------------------------------------------------
- src/eggusershell.h    |  40 ------------------
- src/terminal-screen.c |   4 +-
- 6 files changed, 158 insertions(+), 158 deletions(-)
+ src/Makefile.am                    | 4 ++--
+ src/{eggusershell.c => eggshell.c} | 8 ++++----
+ src/{eggusershell.h => eggshell.h} | 2 +-
+ src/terminal-screen.c              | 4 ++--
+ 4 files changed, 9 insertions(+), 9 deletions(-)
 
 commit 2c9bc380e6dafdf29759c010377288802c4650cf
 Author: Christian Persch <chpe@src.gnome.org>
@@ -31814,11 +31895,10 @@ Date:   Mon Aug 25 14:54:25 2008 +0000
     
     svn path=/trunk/; revision=3003
 
- po/ChangeLog   |    5 +
- po/LINGUAS     |    2 +-
- po/sr@Latn.po  | 2887 --------------------------------------------------------
- po/sr@latin.po | 2887 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 2893 insertions(+), 2888 deletions(-)
+ po/ChangeLog                   | 5 +++++
+ po/LINGUAS                     | 2 +-
+ po/{sr@Latn.po => sr@latin.po} | 0
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
 commit 621482ae913d59b411210855a586f7ab6804fea2
 Author: Shankar Prasad <sprasad@src.gnome.org>
@@ -32229,12 +32309,10 @@ Date:   Mon Aug 4 17:32:08 2008 +0000
     
     svn path=/trunk/; revision=2972
 
- Makefile.am             |    2 +
- help/ChangeLog          |  217 ---
- help/ChangeLog.pre-2-23 |  217 +++
- po/ChangeLog            | 4869 -----------------------------------------------
- po/ChangeLog.pre-2-23   | 4869 +++++++++++++++++++++++++++++++++++++++++++++++
- 5 files changed, 5088 insertions(+), 5086 deletions(-)
+ Makefile.am                            | 2 ++
+ help/{ChangeLog => ChangeLog.pre-2-23} | 0
+ po/{ChangeLog => ChangeLog.pre-2-23}   | 0
+ 3 files changed, 2 insertions(+)
 
 commit cc8e9db9bb5d44b0614289ae7a525d5c5ee24ed4
 Author: Christian Persch <chpe@src.gnome.org>
@@ -33133,10 +33211,9 @@ Date:   Sun Jun 15 20:44:04 2008 +0000
     
     svn path=/trunk/; revision=2889
 
- autogen.sh   |   8 ----
- configure.ac | 129 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- configure.in | 129 -----------------------------------------------------------
- 3 files changed, 129 insertions(+), 137 deletions(-)
+ autogen.sh                   | 8 --------
+ configure.in => configure.ac | 0
+ 2 files changed, 8 deletions(-)
 
 commit cc26d54ac83a3ea507bb1756bb21c412ed13b474
 Author: Christian Persch <chpe@src.gnome.org>
@@ -33431,10 +33508,9 @@ Date:   Tue Jun 3 20:56:55 2008 +0000
     
     svn path=/trunk/; revision=2865
 
- ChangeLog          | 4754 ----------------------------------------------------
- ChangeLog.pre-2-23 | 4754 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- Makefile.am        |    1 +
- 3 files changed, 4755 insertions(+), 4754 deletions(-)
+ ChangeLog => ChangeLog.pre-2-23 | 0
+ Makefile.am                     | 1 +
+ 2 files changed, 1 insertion(+)
 
 commit c9d57d137499a9dc94b07c95dca9e8733021b624
 Author: Christian Persch <chpe@src.gnome.org>
@@ -35316,9 +35392,8 @@ Date:   Thu May 29 19:46:59 2008 +0000
     
     svn path=/trunk/; revision=2707
 
- src/terminal.ui  | 79 --------------------------------------------------------
- src/terminal.xml | 79 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 79 insertions(+), 79 deletions(-)
+ src/{terminal.ui => terminal.xml} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
 
 commit 806eeff4feca08df8a5c248f83a6925e906b0743
 Author: Christian Persch <chpe@src.gnome.org>
@@ -36461,20 +36536,20 @@ Date:   Thu May 29 19:38:31 2008 +0000
     
     svn path=/trunk/; revision=2611
 
- src/Makefile.am       |   2 +
- src/encoding.c        |   1 +
- src/profile-editor.c  |   1 +
- src/skey-popup.c      |   1 +
- src/terminal-accels.c |   1 +
- src/terminal-app.c    |   1 +
- src/terminal-screen.c |   1 +
- src/terminal-screen.h |   6 ++
- src/terminal-util.c   | 248 ++++++++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-util.h   |  53 +++++++++++
- src/terminal-window.c |   1 +
- src/terminal.c        | 207 +----------------------------------------
- src/terminal.h        |  34 -------
- 13 files changed, 317 insertions(+), 240 deletions(-)
+ src/Makefile.am                     |   2 +
+ src/encoding.c                      |   1 +
+ src/profile-editor.c                |   1 +
+ src/skey-popup.c                    |   1 +
+ src/terminal-accels.c               |   1 +
+ src/terminal-app.c                  |   1 +
+ src/terminal-screen.c               |   1 +
+ src/terminal-screen.h               |   6 +
+ src/terminal-util.c                 | 248 ++++++++++++++++++++++++++++++++++++
+ src/{terminal.h => terminal-util.h} |  14 +-
+ src/terminal-window.c               |   1 +
+ src/terminal.c                      | 207 +-----------------------------
+ src/terminal.h                      |  34 -----
+ 13 files changed, 267 insertions(+), 251 deletions(-)
 
 commit ea8c945f8db718ec7d7ec4bde9a09c2e39557005
 Author: Christian Persch <chpe@src.gnome.org>
@@ -36661,13 +36736,13 @@ Date:   Thu May 29 19:37:09 2008 +0000
     
     svn path=/trunk/; revision=2597
 
- src/Makefile.am       |    9 +-
- src/terminal-app.c    | 1683 +++++++++++++++++++++++++++++++++++++++++++++
- src/terminal-app.h    |   92 +++
- src/terminal-window.c |    1 +
- src/terminal.c        | 1818 ++++---------------------------------------------
- src/terminal.h        |   43 --
- 6 files changed, 1929 insertions(+), 1717 deletions(-)
+ src/Makefile.am                    |    9 +-
+ src/terminal-app.c                 | 1683 +++++++++++++++++++++++++++++++++
+ src/{terminal.h => terminal-app.h} |   56 +-
+ src/terminal-window.c              |    1 +
+ src/terminal.c                     | 1818 +++---------------------------------
+ src/terminal.h                     |   43 -
+ 6 files changed, 1859 insertions(+), 1751 deletions(-)
 
 commit 7dff6436078e5c9f7e645ad0240265ea0f112276
 Author: Christian Persch <chpe@src.gnome.org>
@@ -36705,10 +36780,10 @@ Date:   Thu May 29 19:36:51 2008 +0000
     
     svn path=/trunk/; revision=2594
 
- src/skey/Makefile.am |  81 ++++++++++++++----------
- src/skey/skey.c      | 167 ------------------------------------------------
- src/skey/test.c      | 174 +++++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 222 insertions(+), 200 deletions(-)
+ src/skey/Makefile.am        |  81 ++++++++++++---------
+ src/skey/skey.c             | 167 --------------------------------------------
+ src/skey/{skey.c => test.c} |  31 --------
+ 3 files changed, 48 insertions(+), 231 deletions(-)
 
 commit 38b34f77b46df7750c2ef63caee8ca8893cd4bcd
 Author: Christian Persch <chpe@src.gnome.org>
@@ -44078,11 +44153,11 @@ Date:   Thu Aug 24 07:18:19 2006 +0000
     	* zh_TW.po: Updated Traditional Chinese translation(Taiwan).
     	* LINGUAS: Added Chinese Hong Kong (zh_HK).
 
- po/ChangeLog |    6 +
- po/LINGUAS   |    1 +
- po/zh_HK.po  | 2520 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- po/zh_TW.po  |  376 +++------
- 4 files changed, 2642 insertions(+), 261 deletions(-)
+ po/ChangeLog              |   6 +
+ po/LINGUAS                |   1 +
+ po/{zh_TW.po => zh_HK.po} | 388 +++++++++++++++-------------------------------
+ po/zh_TW.po               | 376 ++++++++++++++------------------------------
+ 4 files changed, 243 insertions(+), 528 deletions(-)
 
 commit 608e12cf7933d0554dc1dbfd42c44392030e4444
 Author: Daniel Nylander <po@danielnylander.se>
@@ -54088,11 +54163,10 @@ Date:   Fri Apr 9 23:28:11 2004 +0000
     	* gnome-terminal.desktop.in: delete this
     	* gnome-terminal.desktop.in.in: and add this with a @VERSION@ field.
 
- ChangeLog                    | 13 ++++++++++---
- configure.in                 |  3 ++-
- gnome-terminal.desktop.in    | 13 -------------
- gnome-terminal.desktop.in.in | 14 ++++++++++++++
- 4 files changed, 26 insertions(+), 17 deletions(-)
+ ChangeLog                                                 | 13 ++++++++++---
+ configure.in                                              |  3 ++-
+ gnome-terminal.desktop.in => gnome-terminal.desktop.in.in |  1 +
+ 3 files changed, 13 insertions(+), 4 deletions(-)
 
 commit ad43cafdad26773f67f28d3c5494d5c9bb2560b0
 Author: Guntupalli Karunakar <karunakar@src.gnome.org>
@@ -63793,14 +63867,14 @@ Date:   Wed May 15 09:59:19 2002 +0000
 
     Added Vietnamese file
 
- ChangeLog    |    4 +
- configure.in |    2 +-
- po/ChangeLog |    6 +
- po/en_GB.po  |    1 -
- po/ms.po     |    2 +-
- po/uk.po     |    8 +-
- po/vi.po     | 1543 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 7 files changed, 1559 insertions(+), 7 deletions(-)
+ ChangeLog           |    4 +
+ configure.in        |    2 +-
+ po/ChangeLog        |    6 +
+ po/en_GB.po         |    1 -
+ po/ms.po            |    2 +-
+ po/uk.po            |    8 +-
+ po/{ms.po => vi.po} | 1108 +++++++++++++++++++++++----------------------------
+ 7 files changed, 512 insertions(+), 619 deletions(-)
 
 commit c6df885d9fe34880817cbea3085b9fdf2fca2d37
 Author: Yuri Syrota <rasta@src.gnome.org>
@@ -68682,12 +68756,12 @@ Date:   Mon Feb 11 01:16:43 2002 +0000
     
     	* src/Makefile.am (bin_PROGRAMS): rename binary to gnome-terminal
 
- ChangeLog       | 10 ++++++++++
- Makefile.am     |  3 ++-
- NEWS            |  1 +
- configure.in    | 11 +++++++----
- po/ChangeLog    |  0
- src/Makefile.am |  7 ++++---
+ ChangeLog            | 10 ++++++++++
+ Makefile.am          |  3 ++-
+ NEWS                 |  1 +
+ configure.in         | 11 +++++++----
+ NEWS => po/ChangeLog |  0
+ src/Makefile.am      |  7 ++++---
  6 files changed, 24 insertions(+), 8 deletions(-)
 
 commit fdc914c43667a7ca1a5f99d29c417ee505a93fd4
