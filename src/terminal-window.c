@@ -1820,6 +1820,7 @@ static void
 terminal_window_update_tabs_menu_sensitivity (TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
+  GAction *gaction;
   GtkActionGroup *action_group = priv->action_group;
   GtkAction *action;
   int num_pages, page_num;
@@ -1855,6 +1856,9 @@ terminal_window_update_tabs_menu_sensitivity (TerminalWindow *window)
   action = gtk_action_group_get_action (action_group, "TabsNext");
   gtk_action_set_sensitive (action, not_last);
 #endif
+
+  gaction = g_action_map_lookup_action (G_ACTION_MAP (window), "switch-tab");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (gaction), num_pages > 1);
 
   action = gtk_action_group_get_action (action_group, "TabsMoveLeft");
   gtk_action_set_sensitive (action, not_first);
@@ -3468,20 +3472,30 @@ mdi_screen_removed_cb (TerminalMdiContainer *container,
                                         G_CALLBACK (screen_close_cb),
                                         window);
 
+  /* We already got a switch-page signal whose handler sets the active tab to the
+   * new active tab, unless this screen was the only one in the notebook, so
+   * priv->active_tab is valid here.
+   */
+
+  pages = terminal_mdi_container_get_n_screens (container);
+  if (pages == 0)
+    {
+      priv->active_screen = NULL;
+
+      /* That was the last tab in the window; close it. */
+      gtk_widget_destroy (GTK_WIDGET (window));
+      return;
+    }
+
   terminal_window_update_tabs_menu_sensitivity (window);
   terminal_window_update_search_sensitivity (screen, window);
 
-  pages = terminal_mdi_container_get_n_screens (container);
   if (pages == 1)
     {
       TerminalScreen *active_screen = terminal_mdi_container_get_active_screen (container);
       gtk_widget_grab_focus (GTK_WIDGET(active_screen));  /* bug 742422 */
 
       terminal_window_update_size (window);
-    }
-  else if (pages == 0)
-    {
-      gtk_widget_destroy (GTK_WIDGET (window));
     }
 }
 
