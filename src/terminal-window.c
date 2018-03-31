@@ -477,6 +477,8 @@ terminal_window_update_set_profile_menu_active_profile (TerminalWindow *window)
       g_signal_handlers_block_by_func (action, G_CALLBACK (terminal_set_profile_toggled_callback), window);
       gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
       g_signal_handlers_unblock_by_func (action, G_CALLBACK (terminal_set_profile_toggled_callback), window);
+
+      break;
     }
   g_list_free (actions);
 }
@@ -1378,8 +1380,8 @@ terminal_window_realize (GtkWidget *widget)
   GdkColormap *colormap;
 
   screen = gtk_widget_get_screen (GTK_WIDGET (window));
-  colormap = gdk_screen_get_rgba_colormap (screen);
-  if (colormap != NULL && gdk_screen_is_composited (screen))
+  if (gdk_screen_is_composited (screen) &&
+      (colormap = gdk_screen_get_rgba_colormap (screen)) != NULL)
     {
       /* Set RGBA colormap if possible so VTE can use real transparency */
       gtk_widget_set_colormap (widget, colormap);

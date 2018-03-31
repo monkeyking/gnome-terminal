@@ -1,3 +1,248 @@
+commit 79620951f3ce37fac18f346d95b3c5b14a01feca
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Jan 19 17:22:06 2009 +0000
+
+    Bump version to 2.23.5
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3281 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit eb999c040d3154cfd56f19976713e562a35e4bdb
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Jan 19 17:21:07 2009 +0000
+
+    Remove invalid po files from LINGUAS
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3280 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/LINGUAS |    3 ---
+ 1 files changed, 0 insertions(+), 3 deletions(-)
+
+commit 12c3e53f06d985270ee49834d74317d15ac94b15
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Jan 15 23:11:30 2009 +0000
+
+    Break out of the loop once the work's done.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3279 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+commit 61808db8986ef11706237ce6a023be90efc73beb
+Author: kmaraas <kmaraas@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Jan 12 14:08:07 2009 +0000
+
+    Updated Norwegian bokmål translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3276 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/nb.po |   55 ++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 28 insertions(+), 27 deletions(-)
+
+commit 513b2ce169f9dd191bc88ae916efd934c0332114
+Author: tkaroonb <tkaroonb@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Jan 12 08:55:12 2009 +0000
+
+    2009-01-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+    
+    	* th.po: Updated Thai translation.
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3275 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/th.po |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+commit b41d0b16d383314fcb6ad033cb8e0b7dbbe34b96
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Jan 10 17:25:45 2009 +0000
+
+    Check for sm cflags and libs, and add them to the g-t cflags/libs
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3274 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac    |    9 ++++++++-
+ src/Makefile.am |    3 +++
+ 2 files changed, 11 insertions(+), 1 deletions(-)
+
+commit 81f8f4ed9b4996cbd287990b09ecd2111146eaa1
+Author: lferrett <lferrett@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Thu Jan 8 13:39:22 2009 +0000
+
+    Removed extra semi colon (Bug #567007)
+    
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3273 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/it.po |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 07ad5003375b6222c1e42ec6b791df51d5cc5ecb
+Author: kmaraas <kmaraas@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Jan 5 06:58:16 2009 +0000
+
+    Update Norwegian bokmål translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3271 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/nb.po |  127 ++++++++++++++++++++++++++++++++++++++++----------------------
+ 1 files changed, 82 insertions(+), 45 deletions(-)
+
+commit 401ce0221023f74cdfa89091deeabd16af27942d
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sun Jan 4 19:34:12 2009 +0000
+
+    Remove extra ,
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3270 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-accels.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 8a36a3548c923c4abbaeaf610893b3d61fd69868
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Jan 3 17:16:25 2009 +0000
+
+    Fix again.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3269 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ChangeLog.pre-2-23 |    4 +---
+ 1 files changed, 1 insertions(+), 3 deletions(-)
+
+commit b4523f66e28b5f89adeaec09c4a9ce4e30847065
+Author: ganlu <ganlu@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Sat Jan 3 11:12:21 2009 +0000
+
+    Updated Chinese Simplified translation
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3268 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/ChangeLog.pre-2-23 |    4 +
+ po/zh_CN.po           | 2022 +++++++++++++++++++++++++------------------------
+ 2 files changed, 1027 insertions(+), 999 deletions(-)
+
+commit 0a46fcb5803e03a1ea76d5bd1821196ed31609f3
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Dec 24 22:35:00 2008 +0000
+
+    Call g_thread_init(). Bug #565516
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3265 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal.c |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit 048f9225abc03e1c682ebbff584a9e29bad52038
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Wed Dec 24 22:34:52 2008 +0000
+
+    chdir() to /home/chpe in the factory process, so we don't hog any mountpoints. Bug #565328, based on a patch by Mads Chr. Olesen.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3264 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal.c |   11 +++++++++--
+ 1 files changed, 9 insertions(+), 2 deletions(-)
+
+commit a02739fce795a31cc4080ea69b2df7bcb254914f
+Author: kelemeng <kelemeng@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Dec 23 11:33:41 2008 +0000
+
+    Translation updated
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3262 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/hu.po |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit d9841e750ed44bf4865c9e4255e8617174d4fc7e
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Dec 16 20:04:19 2008 +0000
+
+    Reorder this conditional so we only get the RGBA colourmap if
+    compositing is enabled.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3261 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-window.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 52e48c345e6c3d68af2cb2ba4acecb33bca255f1
+Author: jorgegonz <jorgegonz@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Dec 16 19:30:09 2008 +0000
+
+    Updated Spanish translation
+    
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3260 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/es.po |  174 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 99 insertions(+), 75 deletions(-)
+
+commit e3eb630d4a1025a48605708c21e101b48f3d63a0
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Dec 16 12:45:27 2008 +0000
+
+    Bug 506686 – could be smarter when parsing parenthesis (for URL construction)
+    Patch by Maxim Ermilov.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3259 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-screen.c |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 41aa4c6a050c929de0078ffaf4ba9132ecdb7f1c
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Dec 16 12:45:19 2008 +0000
+
+    Fix signed/unsigned compiler warning.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3258 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/terminal-util.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit fb21bb77cee9703e9a323d456653348232e155af
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Tue Dec 16 12:45:08 2008 +0000
+
+    Set the default keybindings also in the table in the code. Fixes accels
+    with borked GConf; part of bug #564649.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3257 e32f9464-e525-0410-8908-8a3b6990da27
+
+ src/gnome-terminal.schemas.in |    2 +-
+ src/terminal-accels.c         |   52 ++++++++++++++++++++--------------------
+ 2 files changed, 27 insertions(+), 27 deletions(-)
+
+commit 0934940319985a6532ee6155a60275cd3a00ec9a
+Author: kmaraas <kmaraas@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Dec 15 22:06:20 2008 +0000
+
+    Updated Norwegian bokmål translation.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3256 e32f9464-e525-0410-8908-8a3b6990da27
+
+ po/nb.po | 1479 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 844 insertions(+), 635 deletions(-)
+
+commit 1a64afff7dc9bd75e828d5af4446c02c527172eb
+Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
+Date:   Mon Dec 15 21:33:35 2008 +0000
+
+    Post release version bump.
+    
+    git-svn-id: svn+ssh://svn.gnome.org/svn/gnome-terminal/trunk@3255 e32f9464-e525-0410-8908-8a3b6990da27
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
 commit 81ebad415e40eec2d8475fff7b0ee6742d8f54cf
 Author: chpe <chpe@e32f9464-e525-0410-8908-8a3b6990da27>
 Date:   Mon Dec 15 21:26:11 2008 +0000

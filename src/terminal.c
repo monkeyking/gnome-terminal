@@ -22,6 +22,7 @@
 #include <config.h>
 
 #include <glib.h>
+#include <glib/gstdio.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -215,8 +216,7 @@ main (int argc, char **argv)
   int i;
   char **argv_copy;
   int argc_copy;
-  const char *startup_id;
-  const char *display_name;
+  const char *startup_id, *display_name, *home_dir;
   GdkDisplay *display;
   TerminalOptions *options;
   DBusGConnection *connection;
@@ -227,6 +227,9 @@ main (int argc, char **argv)
   bindtextdomain (GETTEXT_PACKAGE, TERM_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
+
+  /* GConf uses ORBit2 which need GThread. See bug #565516 */
+  g_thread_init (NULL);
 
   _terminal_debug_init ();
 
@@ -439,6 +442,13 @@ factory_disabled:
 
   terminal_app_handle_options (terminal_app_get (), options, NULL);
   terminal_options_free (options);
+
+  /* Now change directory to $HOME so we don't prevent unmounting, e.g. if the
+   * factory is started by nautilus-open-terminal. See bug #565328.
+   */
+  home_dir = g_get_home_dir ();
+  if (home_dir)
+    g_chdir (home_dir);
 
   gtk_main ();
 
