@@ -18,6 +18,7 @@
 #include "config.h"
 
 #include "terminal-screen-container.h"
+#include "terminal-util.h"
 #include "terminal-debug.h"
 
 #include <gtk/gtk.h>
@@ -64,10 +65,13 @@ terminal_screen_container_style_updated (GtkWidget *widget)
                         "window-placement-set", &set,
                         NULL);
 
-  if (!set)
+  if (!set) {
+    TERMINAL_UTIL_OBJECT_TYPE_UNDEPRECATE_PROPERTY (GTK_TYPE_SETTINGS,
+                                                    "gtk-scrolled-window-placement");
     g_object_get (gtk_widget_get_settings (widget),
                   "gtk-scrolled-window-placement", &corner,
                   NULL);
+  }
 
   switch (corner) {
     case GTK_CORNER_TOP_LEFT:
@@ -96,20 +100,13 @@ terminal_screen_container_init (TerminalScreenContainer *container)
   priv->vscrollbar_policy = GTK_POLICY_AUTOMATIC;
 }
 
-static GObject *
-terminal_screen_container_constructor (GType type,
-                                       guint n_construct_properties,
-                                       GObjectConstructParam *construct_params)
+static void
+terminal_screen_container_constructed (GObject *object)
 {
-  GObject *object;
-  TerminalScreenContainer *container;
-  TerminalScreenContainerPrivate *priv;
+  TerminalScreenContainer *container = TERMINAL_SCREEN_CONTAINER (object);
+  TerminalScreenContainerPrivate *priv = container->priv;
 
-  object = G_OBJECT_CLASS (terminal_screen_container_parent_class)->constructor
-             (type, n_construct_properties, construct_params);
-
-  container = TERMINAL_SCREEN_CONTAINER (object);
-  priv = container->priv;
+  G_OBJECT_CLASS (terminal_screen_container_parent_class)->constructed (object);
 
   g_assert (priv->screen != NULL);
 
@@ -125,8 +122,6 @@ terminal_screen_container_constructor (GType type,
   gtk_widget_show_all (priv->hbox);
 
   _terminal_screen_update_scrollbar (priv->screen);
-
-  return object;
 }
 
 static void
@@ -190,7 +185,7 @@ terminal_screen_container_class_init (TerminalScreenContainerClass *klass)
 
   g_type_class_add_private (gobject_class, sizeof (TerminalScreenContainerPrivate));
 
-  gobject_class->constructor = terminal_screen_container_constructor;
+  gobject_class->constructed = terminal_screen_container_constructed;
   gobject_class->get_property = terminal_screen_container_get_property;
   gobject_class->set_property = terminal_screen_container_set_property;
 

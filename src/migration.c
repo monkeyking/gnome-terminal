@@ -86,14 +86,11 @@ enum {
 #define KEY_SCROLL_ON_KEYSTROKE "scroll_on_keystroke"
 #define KEY_SCROLL_ON_OUTPUT "scroll_on_output"
 #define KEY_SILENT_BELL "silent_bell"
-#define KEY_TITLE "title"
 #define KEY_UPDATE_RECORDS "update_records"
 #define KEY_USE_CUSTOM_COMMAND "use_custom_command"
-#define KEY_USE_CUSTOM_DEFAULT_SIZE "use_custom_default_size"
 #define KEY_USE_SYSTEM_FONT "use_system_font"
 #define KEY_USE_THEME_COLORS "use_theme_colors"
 #define KEY_VISIBLE_NAME "visible_name"
-#define KEY_WORD_CHARS "word_chars"
 
 static const GConfEnumStringPair erase_binding_pairs[] = {
   { VTE_ERASE_AUTO, "auto" },
@@ -396,19 +393,12 @@ migrate_profile (TerminalSettingsList *list,
   migrate_bool (client, path, KEY_BOLD_COLOR_SAME_AS_FG,
                 settings, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY,
                 FALSE);
-  migrate_string (client, path, KEY_TITLE,
-                  settings, TERMINAL_PROFILE_TITLE_KEY);
   migrate_bool (client, path, KEY_ALLOW_BOLD,
                 settings, TERMINAL_PROFILE_ALLOW_BOLD_KEY,
                 FALSE);
   migrate_bool (client, path, KEY_SILENT_BELL,
                 settings, TERMINAL_PROFILE_AUDIBLE_BELL_KEY,
                 TRUE);
-  migrate_string (client, path, KEY_WORD_CHARS,
-                 settings, TERMINAL_PROFILE_WORD_CHARS_KEY);
-  migrate_bool (client, path, KEY_USE_CUSTOM_DEFAULT_SIZE,
-                settings, TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE_KEY,
-                FALSE);
   migrate_int (client, path, KEY_DEFAULT_SIZE_COLUMNS,
                settings, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS_KEY);
   migrate_int (client, path, KEY_DEFAULT_SIZE_ROWS,
@@ -445,10 +435,10 @@ migrate_profile (TerminalSettingsList *list,
                   settings, TERMINAL_PROFILE_CUSTOM_COMMAND_KEY);
   migrate_genum (client, path, KEY_CURSOR_BLINK_MODE,
                  settings, TERMINAL_PROFILE_CURSOR_BLINK_MODE_KEY,
-                 VTE_TYPE_TERMINAL_CURSOR_BLINK_MODE);
+                 VTE_TYPE_CURSOR_BLINK_MODE);
   migrate_genum (client, path, KEY_CURSOR_SHAPE,
                  settings, TERMINAL_PROFILE_CURSOR_SHAPE_KEY,
-                 VTE_TYPE_TERMINAL_CURSOR_SHAPE);
+                 VTE_TYPE_CURSOR_SHAPE);
   migrate_palette (client, path, settings);
   migrate_string (client, path, KEY_FONT,
                   settings, TERMINAL_PROFILE_FONT_KEY);
@@ -463,7 +453,7 @@ migrate_profile (TerminalSettingsList *list,
                 settings, TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY,
                 FALSE);
   migrate_string (client, path, KEY_ENCODING,
-                  settings, TERMINAL_PROFILE_ENCODING);
+                  settings, TERMINAL_PROFILE_ENCODING_KEY);
 
   g_free (path);
   g_object_unref (settings);
@@ -544,7 +534,6 @@ migrate_accels (GSettings *global_settings,
     { "zoom_in",          "zoom-in"            },
     { "zoom_out",         "zoom-out"           },
     { "zoom_normal",      "zoom-normal"        },
-    { "set_window_title", "set-terminal-title" },
     { "reset",            "reset"              },
     { "reset_and_clear",  "reset-and-clear"    },
     { "prev_tab",         "prev-tab"           },

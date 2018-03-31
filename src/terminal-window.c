@@ -120,6 +120,10 @@ struct _TerminalWindowPrivate
 #endif
 #endif
 
+#if defined (ENABLE_DEBUG) && GTK_CHECK_VERSION (3, 13, 4)
+#define ENABLE_INSPECTOR
+#endif
+
 static void terminal_window_dispose     (GObject             *object);
 static void terminal_window_finalize    (GObject             *object);
 static gboolean terminal_window_state_event (GtkWidget            *widget,
@@ -179,13 +183,13 @@ static void view_zoom_out_callback            (GtkAction *action,
                                                TerminalWindow *window);
 static void view_zoom_normal_callback         (GtkAction *action,
                                                TerminalWindow *window);
-static void terminal_set_title_callback       (GtkAction *action,
-                                               TerminalWindow *window);
 static void terminal_add_encoding_callback    (GtkAction *action,
                                                TerminalWindow *window);
 static void terminal_reset_callback           (GtkAction *action,
                                                TerminalWindow *window);
 static void terminal_reset_clear_callback     (GtkAction *action,
+                                               TerminalWindow *window);
+static void terminal_readonly_toggled_callback(GtkToggleAction *action,
                                                TerminalWindow *window);
 static void tabs_next_or_previous_tab_cb      (GtkAction *action,
                                                TerminalWindow *window);
@@ -199,6 +203,10 @@ static void help_contents_callback        (GtkAction *action,
                                            TerminalWindow *window);
 static void help_about_callback           (GtkAction *action,
                                            TerminalWindow *window);
+#ifdef ENABLE_INSPECTOR
+static void help_inspector_callback       (GtkAction *action,
+                                           TerminalWindow *window);
+#endif
 
 static gboolean find_larger_zoom_factor  (double  current,
                                           double *found);
@@ -400,7 +408,7 @@ action_new_terminal_cb (GSimpleAction *action,
 
   new_working_directory = terminal_screen_get_current_dir (priv->active_screen);
   terminal_app_new_terminal (app, window, profile,
-                             NULL, NULL,
+                             NULL,
                              new_working_directory,
                              terminal_screen_get_initial_environment (priv->active_screen),
                              1.0);
@@ -484,9 +492,9 @@ save_contents_dialog_on_response (GtkDialog *dialog, gint response_id, gpointer 
        * This is a sync operation.
        * Should be replaced with the async version when vte implements that.
        */
-      vte_terminal_write_contents (terminal, stream,
-				   VTE_TERMINAL_WRITE_DEFAULT,
-				   NULL, &error);
+      vte_terminal_write_contents_sync (terminal, stream,
+					VTE_WRITE_DEFAULT,
+					NULL, &error);
       g_object_unref (stream);
     }
 
@@ -718,88 +726,6 @@ action_move_tab_cb (GSimpleAction *action,
 }
 
 static void
-terminal_set_title_dialog_response_cb (GtkWidget *dialog,
-                                       int response,
-                                       TerminalScreen *screen)
-{
-  if (response == GTK_RESPONSE_OK)
-    {
-      GtkEntry *entry;
-      const char *text;
-
-      entry = GTK_ENTRY (g_object_get_data (G_OBJECT (dialog), "title-entry"));
-      text = gtk_entry_get_text (entry);
-      terminal_screen_set_user_title (screen, text);
-    }
-
-  gtk_widget_destroy (dialog);
-}
-
-static void
-action_set_title_cb (GSimpleAction *action,
-                     GVariant *parameter,
-                     gpointer user_data)
-{
-  TerminalWindow *window = user_data;
-  TerminalWindowPrivate *priv = window->priv;
-  GtkWidget *dialog, *message_area, *hbox, *label, *entry;
-
-  if (priv->active_screen == NULL)
-    return;
-
-  /* FIXME: hook the screen up so this dialogue closes if the terminal screen closes */
-
-  dialog = gtk_message_dialog_new (GTK_WINDOW (window),
-                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_OTHER,
-                                   GTK_BUTTONS_OK_CANCEL,
-                                   "%s", "");
-
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Set Title"));
-  gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-  gtk_window_set_role (GTK_WINDOW (dialog), "gnome-terminal-change-title");
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
-  /* Alternative button order was set automatically by GtkMessageDialog */
-
-  g_signal_connect (dialog, "response",
-                    G_CALLBACK (terminal_set_title_dialog_response_cb), priv->active_screen);
-  g_signal_connect (dialog, "delete-event",
-                    G_CALLBACK (terminal_util_dialog_response_on_delete), NULL);
-
-  message_area = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
-  gtk_container_foreach (GTK_CONTAINER (message_area), (GtkCallback) gtk_widget_hide, NULL);
-
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
-  gtk_box_pack_start (GTK_BOX (message_area), hbox, FALSE, FALSE, 0);
-
-  label = gtk_label_new_with_mnemonic (_("_Title:"));
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-
-  entry = gtk_entry_new ();
-  gtk_entry_set_width_chars (GTK_ENTRY (entry), 32);
-  gtk_entry_set_activates_default (GTK_ENTRY (entry), TRUE);
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-  gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
-  gtk_widget_show_all (hbox);
-
-  gtk_widget_grab_focus (entry);
-  gtk_entry_set_text (GTK_ENTRY (entry), terminal_screen_get_user_title (priv->active_screen));
-  gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
-  g_object_set_data (G_OBJECT (dialog), "title-entry", entry);
-
-  gtk_window_present (GTK_WINDOW (dialog));
-}
-
-static void
-terminal_set_title_callback (GtkAction *action,
-                             TerminalWindow *window)
-{
-  g_action_activate (g_action_map_lookup_action (G_ACTION_MAP (window), "set-title"),
-                     NULL);
-}
-
-static void
 action_zoom_cb (GSimpleAction *action,
                 GVariant *parameter,
                 gpointer user_data)
@@ -819,17 +745,17 @@ action_zoom_cb (GSimpleAction *action,
   if (value == 0) {
     zoom = PANGO_SCALE_MEDIUM;
   } else if (value == 1) {
-    zoom = terminal_screen_get_font_scale (priv->active_screen);
+    zoom = vte_terminal_get_font_scale (VTE_TERMINAL (priv->active_screen));
     if (!find_larger_zoom_factor (zoom, &zoom))
       return;
   } else if (value == -1) {
-    zoom = terminal_screen_get_font_scale (priv->active_screen);
+    zoom = vte_terminal_get_font_scale (VTE_TERMINAL (priv->active_screen));
     if (!find_smaller_zoom_factor (zoom, &zoom))
       return;
   } else
     g_assert_not_reached ();
 
-  terminal_screen_set_font_scale (priv->active_screen, zoom);
+  vte_terminal_set_font_scale (VTE_TERMINAL (priv->active_screen), zoom);
   terminal_window_update_zoom_sensitivity (window);
 }
 
@@ -958,7 +884,7 @@ find_response_cb (GtkWidget *dialog,
   regex = terminal_search_dialog_get_regex (dialog);
   flags = terminal_search_dialog_get_search_flags (dialog);
 
-  vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), regex);
+  vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), regex, 0);
   vte_terminal_search_set_wrap_around (VTE_TERMINAL (priv->active_screen),
 				       (flags & TERMINAL_SEARCH_FLAG_WRAP_AROUND));
 
@@ -1004,7 +930,7 @@ action_find_cb (GSimpleAction *action,
   } else if (g_str_equal (mode, "previous")) {
     vte_terminal_search_find_previous (VTE_TERMINAL (priv->active_screen));
   } else if (g_str_equal (mode, "clear")) {
-    vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), NULL);
+    vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), NULL, 0);
   } else
     return;
 }
@@ -1377,7 +1303,7 @@ terminal_window_update_set_profile_menu (TerminalWindow *window)
     }
 
   profiles_list = terminal_app_get_profiles_list (terminal_app_get ());
-  profiles = terminal_profiles_list_ref_children (profiles_list);
+  profiles = terminal_profiles_list_ref_children_sorted (profiles_list);
 
   action = gtk_action_group_get_action (priv->action_group, "TerminalProfiles");
   single_profile = !profiles || profiles->next == NULL; /* list length <= 1 */
@@ -1495,7 +1421,7 @@ terminal_window_update_new_terminal_menus (TerminalWindow *window)
     }
 
   profiles_list = terminal_app_get_profiles_list (terminal_app_get ());
-  profiles = terminal_profiles_list_ref_children (profiles_list);
+  profiles = terminal_profiles_list_ref_children_sorted (profiles_list);
 
   have_single_profile = !profiles || !profiles->next;
 
@@ -1561,7 +1487,8 @@ terminal_set_encoding_callback (GtkToggleAction *action,
   g_assert (encoding);
 
   vte_terminal_set_encoding (VTE_TERMINAL (priv->active_screen),
-                             terminal_encoding_get_charset (encoding));
+                             terminal_encoding_get_charset (encoding),
+                             NULL);
 }
 
 static void
@@ -1599,7 +1526,7 @@ terminal_window_update_encoding_menu (TerminalWindow *window)
   if (priv->active_screen)
     charset = vte_terminal_get_encoding (VTE_TERMINAL (priv->active_screen));
   else
-    charset = "current";
+    charset = "UTF-8";
 
   app = terminal_app_get ();
   active_encoding = terminal_app_ensure_encoding (app, charset);
@@ -1618,7 +1545,7 @@ terminal_window_update_encoding_menu (TerminalWindow *window)
       char name[128];
       gs_free char *display_name;
 
-      g_snprintf (name, sizeof (name), SET_ENCODING_ACTION_NAME_PREFIX "%s", terminal_encoding_get_id (e));
+      g_snprintf (name, sizeof (name), SET_ENCODING_ACTION_NAME_PREFIX "%s", terminal_encoding_get_charset (e));
       display_name = g_strdup_printf ("%s (%s)", e->name, terminal_encoding_get_charset (e));
 
       encoding_action = gtk_radio_action_new (name,
@@ -1630,7 +1557,7 @@ terminal_window_update_encoding_menu (TerminalWindow *window)
       gtk_radio_action_set_group (encoding_action, group);
       group = gtk_radio_action_get_group (encoding_action);
 
-      if (charset && strcmp (terminal_encoding_get_id (e), charset) == 0)
+      if (charset && strcmp (terminal_encoding_get_charset (e), charset) == 0)
         gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (encoding_action), TRUE);
 
       g_signal_connect (encoding_action, "toggled",
@@ -1673,6 +1600,22 @@ terminal_window_update_encoding_menu_active_encoding (TerminalWindow *window)
   g_signal_handlers_block_by_func (action, G_CALLBACK (terminal_set_encoding_callback), window);
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
   g_signal_handlers_unblock_by_func (action, G_CALLBACK (terminal_set_encoding_callback), window);
+}
+
+static void
+terminal_window_update_terminal_menu (TerminalWindow *window)
+{
+  TerminalWindowPrivate *priv = window->priv;
+  GtkAction *action;
+
+  if (!priv->active_screen)
+    return;
+
+  action = gtk_action_group_get_action(priv->action_group, "TerminalReadOnly");
+  g_signal_handlers_block_by_func (action, G_CALLBACK (terminal_readonly_toggled_callback), window);
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+                                !vte_terminal_get_input_enabled (VTE_TERMINAL (priv->active_screen)));
+  g_signal_handlers_unblock_by_func (action, G_CALLBACK (terminal_readonly_toggled_callback), window);
 }
 
 static void
@@ -1777,7 +1720,7 @@ terminal_window_update_zoom_sensitivity (TerminalWindow *window)
   if (screen == NULL)
     return;
 
-  current = terminal_screen_get_font_scale (screen);
+  current = vte_terminal_get_font_scale (VTE_TERMINAL (screen));
 
   action = gtk_action_group_get_action (priv->action_group, "ViewZoomOut");
   gtk_action_set_sensitive (action, find_smaller_zoom_factor (current, &zoom));
@@ -1855,43 +1798,18 @@ update_edit_menu (GtkClipboard *clipboard,
 
 static void
 screen_resize_window_cb (TerminalScreen *screen,
-                         guint width,
-                         guint height,
+                         guint columns,
+                         guint rows,
                          TerminalWindow* window)
 {
   TerminalWindowPrivate *priv = window->priv;
-  VteTerminal *terminal = VTE_TERMINAL (screen);
   GtkWidget *widget = GTK_WIDGET (screen);
-  guint grid_width, grid_height;
-  int char_width, char_height;
-  GtkBorder *inner_border = NULL;
-  GtkAllocation widget_allocation;
 
-  gtk_widget_get_allocation (widget, &widget_allocation);
-  /* Don't do anything if we're maximised or fullscreened */
-  // FIXME: realized && ... instead? 
-  if (!gtk_widget_get_realized (widget) ||
+  if (gtk_widget_get_realized (widget) &&
       (gdk_window_get_state (gtk_widget_get_window (widget)) & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) != 0)
     return;
 
-  /* NOTE: width and height already include the VteTerminal's padding! */
-
-  /* Short-circuit */
-  if (((int) width) == widget_allocation.width &&
-      ((int) height) == widget_allocation.height)
-    return;
-
-  /* The resize-window signal sucks. Re-compute grid widths */
-
-  char_width = vte_terminal_get_char_width (terminal);
-  char_height = vte_terminal_get_char_height (terminal);
-
-  gtk_widget_style_get (GTK_WIDGET (terminal), "inner-border", &inner_border, NULL);
-  grid_width = (width - (inner_border ? (inner_border->left + inner_border->right) : 0)) / char_width;
-  grid_height = (height - (inner_border ? (inner_border->top + inner_border->bottom) : 0)) / char_height;
-  gtk_border_free (inner_border);
-
-  vte_terminal_set_size (terminal, grid_width, grid_height);
+  vte_terminal_set_size (VTE_TERMINAL (priv->active_screen), columns, rows);
 
   if (screen == priv->active_screen)
     terminal_window_update_size (window);
@@ -2226,7 +2144,7 @@ terminal_window_accel_activate_cb (GtkAccelGroup  *accel_group,
 
 /*****************************************/
 
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
 static void
 terminal_window_size_request_cb (GtkWidget *widget,
                                  GtkRequisition *req)
@@ -2246,7 +2164,7 @@ terminal_window_size_allocate_cb (GtkWidget *widget,
                          allocation->width, allocation->height,
                          allocation->x, allocation->y);
 }
-#endif /* GNOME_ENABLE_DEBUG */
+#endif /* ENABLE_DEBUG */
 
 static void
 terminal_window_realize (GtkWidget *widget)
@@ -2421,7 +2339,6 @@ terminal_window_init (TerminalWindow *window)
     { "reset",               action_reset_cb,          "b",    NULL, NULL },
     { "switch-tab",          action_switch_tab_cb,     "i",    NULL, NULL },
     { "move-tab",            action_move_tab_cb,       "i",    NULL, NULL },
-    { "set-title",           action_set_title_cb,      NULL,   NULL, NULL },
     { "zoom",                action_zoom_cb,           "i",    NULL, NULL },
     { "detach-tab",          action_detach_tab_cb,     NULL,   NULL, NULL },
     { "find",                action_find_cb,           "s",    NULL, NULL },
@@ -2449,10 +2366,10 @@ terminal_window_init (TerminalWindow *window)
       { "NotebookPopup", NULL, "" },
 
       /* File menu */
-      { "FileNewWindow", STOCK_NEW_WINDOW, N_("Open _Terminal"), NULL,
+      { "FileNewWindow", STOCK_NEW_WINDOW, N_("Open _Terminal"), "<shift><control>N",
         NULL,
         G_CALLBACK (file_new_terminal_callback) },
-      { "FileNewTab", STOCK_NEW_TAB, N_("Open Ta_b"), NULL,
+      { "FileNewTab", STOCK_NEW_TAB, N_("Open Ta_b"), "<shift><control>T",
         NULL,
         G_CALLBACK (file_new_terminal_callback) },
       { "FileNewTerminal", STOCK_NEW_TAB, N_("Open _Terminal"), NULL,
@@ -2464,18 +2381,18 @@ terminal_window_init (TerminalWindow *window)
       { "FileSaveContents", "document-save", N_("_Save Contents"), "",
         NULL,
         G_CALLBACK (file_save_contents_callback) },
-      { "FileCloseTab", "window-close", N_("C_lose Terminal"), NULL,
+      { "FileCloseTab", "window-close", N_("C_lose Terminal"), "<shift><control>W",
         NULL,
         G_CALLBACK (file_close_tab_callback) },
-      { "FileCloseWindow", "window-close", N_("_Close All Terminals"), NULL,
+      { "FileCloseWindow", "window-close", N_("_Close All Terminals"), "<shift><control>Q",
         NULL,
         G_CALLBACK (file_close_window_callback) },
 
       /* Edit menu */
-      { "EditCopy", "edit-copy", N_("Copy"), NULL,
+      { "EditCopy", "edit-copy", N_("Copy"), "<shift><control>C",
         NULL,
         G_CALLBACK (edit_copy_callback) },
-      { "EditPaste", "edit-paste", N_("Paste"), NULL,
+      { "EditPaste", "edit-paste", N_("Paste"), "<shift><control>V",
         NULL,
         G_CALLBACK (edit_paste_callback) },
       { "EditPasteURIPaths", "edit-paste", N_("Paste _Filenames"), "",
@@ -2492,27 +2409,27 @@ terminal_window_init (TerminalWindow *window)
         G_CALLBACK (edit_current_profile_callback) },
 
       /* View menu */
-      { "ViewZoomIn", "zoom-in", N_("Zoom In"), NULL,
+      { "ViewZoomIn", "zoom-in", N_("Zoom In"), "<control>plus",
         NULL,
         G_CALLBACK (view_zoom_in_callback) },
-      { "ViewZoomOut", "zoom-out", N_("Zoom Out"), NULL,
+      { "ViewZoomOut", "zoom-out", N_("Zoom Out"), "<control>minus",
         NULL,
         G_CALLBACK (view_zoom_out_callback) },
-      { "ViewZoom100", "zoom-original", N_("Normal Size"), NULL,
+      { "ViewZoom100", "zoom-original", N_("Normal Size"), "<control>0",
         NULL,
         G_CALLBACK (view_zoom_normal_callback) },
 
       /* Search menu */
-      { "SearchFind", "edit-find", N_("_Find…"), NULL,
+      { "SearchFind", "edit-find", N_("_Find…"), "<shift><control>F",
 	NULL,
 	G_CALLBACK (search_find_callback) },
-      { "SearchFindNext", NULL, N_("Find Ne_xt"), NULL,
+      { "SearchFindNext", NULL, N_("Find Ne_xt"), "<shift><control>G",
 	NULL,
 	G_CALLBACK (search_find_next_callback) },
-      { "SearchFindPrevious", NULL, N_("Find Pre_vious"), NULL,
+      { "SearchFindPrevious", NULL, N_("Find Pre_vious"), "<shift><control>H",
 	NULL,
 	G_CALLBACK (search_find_prev_callback) },
-      { "SearchClearHighlight", NULL, N_("_Clear Highlight"), NULL,
+      { "SearchClearHighlight", NULL, N_("_Clear Highlight"), "<shift><control>J",
 	NULL,
 	G_CALLBACK (search_clear_highlight_callback) },
 #if 0
@@ -2526,9 +2443,6 @@ terminal_window_init (TerminalWindow *window)
 
       /* Terminal menu */
       { "TerminalProfiles", NULL, N_("Change _Profile") },
-      { "TerminalSetTitle", NULL, N_("_Set Title…"), NULL,
-        NULL,
-        G_CALLBACK (terminal_set_title_callback) },
       { "TerminalSetEncoding", NULL, N_("Set _Character Encoding") },
       { "TerminalReset", NULL, N_("_Reset"), NULL,
         NULL,
@@ -2543,16 +2457,16 @@ terminal_window_init (TerminalWindow *window)
         G_CALLBACK (terminal_add_encoding_callback) },
 
       /* Tabs menu */
-      { "TabsPrevious", NULL, N_("_Previous Terminal"), NULL,
+      { "TabsPrevious", NULL, N_("_Previous Terminal"), "<control>Page_Up",
         NULL,
         G_CALLBACK (tabs_next_or_previous_tab_cb) },
-      { "TabsNext", NULL, N_("_Next Terminal"), NULL,
+      { "TabsNext", NULL, N_("_Next Terminal"), "<control>Page_Down",
         NULL,
         G_CALLBACK (tabs_next_or_previous_tab_cb) },
-      { "TabsMoveLeft", NULL, N_("Move Terminal _Left"), NULL,
+      { "TabsMoveLeft", NULL, N_("Move Terminal _Left"), "<shift><control>Page_Up",
         NULL,
         G_CALLBACK (tabs_move_left_callback) },
-      { "TabsMoveRight", NULL, N_("Move Terminal _Right"), NULL,
+      { "TabsMoveRight", NULL, N_("Move Terminal _Right"), "<shift><control>Page_Down",
         NULL,
         G_CALLBACK (tabs_move_right_callback) },
       { "TabsDetach", NULL, N_("_Detach Terminal"), NULL,
@@ -2560,12 +2474,17 @@ terminal_window_init (TerminalWindow *window)
         G_CALLBACK (tabs_detach_tab_callback) },
 
       /* Help menu */
-      { "HelpContents", "help-browser", N_("_Contents"), NULL,
+      { "HelpContents", "help-browser", N_("_Contents"), "F1",
         NULL,
         G_CALLBACK (help_contents_callback) },
       { "HelpAbout", "help-about", N_("_About"), NULL,
         NULL,
         G_CALLBACK (help_about_callback) },
+#ifdef ENABLE_INSPECTOR
+      { "HelpInspector", NULL, N_("_Inspector"), NULL,
+        NULL,
+        G_CALLBACK (help_inspector_callback) },
+#endif
 
       /* Popup menu */
       { "PopupSendEmail", NULL, N_("_Send Mail To…"), NULL,
@@ -2614,6 +2533,11 @@ terminal_window_init (TerminalWindow *window)
       { "ViewFullscreen", NULL, N_("_Full Screen"), NULL,
         NULL,
         G_CALLBACK (view_fullscreen_toggled_callback),
+        FALSE },
+      /* Terminal menu */
+      { "TerminalReadOnly", NULL, N_("Read-_Only"), NULL,
+        NULL,
+        G_CALLBACK (terminal_readonly_toggled_callback),
         FALSE }
     };
   TerminalWindowPrivate *priv;
@@ -2641,7 +2565,7 @@ terminal_window_init (TerminalWindow *window)
   g_signal_connect (G_OBJECT (window), "delete_event",
                     G_CALLBACK(terminal_window_delete_event),
                     NULL);
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
   _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_GEOMETRY)
     {
       g_signal_connect_after (window, "size-request", G_CALLBACK (terminal_window_size_request_cb), NULL);
@@ -2695,6 +2619,9 @@ terminal_window_init (TerminalWindow *window)
                                    gaction_entries, G_N_ELEMENTS (gaction_entries),
                                    window);
 
+  /* The GtkAction/GtkUIManager menus access this from inside gtk+, so suppress the warning */
+  TERMINAL_UTIL_OBJECT_TYPE_UNDEPRECATE_PROPERTY (GTK_TYPE_SETTINGS, "gtk-menu-images");
+
   /* Create the UI manager */
   manager = priv->ui_manager = gtk_ui_manager_new ();
 
@@ -2737,6 +2664,15 @@ terminal_window_init (TerminalWindow *window)
                                                      TERMINAL_RESOURCES_PATH_PREFIX "ui/terminal.xml",
                                                      &error);
   g_assert_no_error (error);
+
+#ifdef ENABLE_INSPECTOR
+  gtk_ui_manager_add_ui (manager, priv->ui_id,
+                         "/menubar/Help", NULL, NULL,
+                         GTK_UI_MANAGER_SEPARATOR, FALSE);
+  gtk_ui_manager_add_ui (manager, priv->ui_id,
+                         "/menubar/Help", "HelpInspector", "HelpInspector",
+                         GTK_UI_MANAGER_MENUITEM, FALSE);
+#endif
 
   priv->menubar = gtk_ui_manager_get_widget (manager, "/menubar");
   gtk_box_pack_start (GTK_BOX (main_vbox),
@@ -2802,6 +2738,19 @@ terminal_window_class_init (TerminalWindowClass *klass)
   widget_class->window_state_event = terminal_window_state_event;
   widget_class->screen_changed = terminal_window_screen_changed;
   widget_class->style_updated = terminal_window_style_updated;
+
+#if GTK_CHECK_VERSION (3, 13, 4)
+{
+  GtkWindowClass *window_klass;
+  GtkBindingSet *binding_set;
+
+  window_klass = g_type_class_ref (GTK_TYPE_WINDOW);
+  binding_set = gtk_binding_set_by_class (window_klass);
+  gtk_binding_entry_skip (binding_set, GDK_KEY_I, GDK_CONTROL_MASK|GDK_SHIFT_MASK);
+  gtk_binding_entry_skip (binding_set, GDK_KEY_D, GDK_CONTROL_MASK|GDK_SHIFT_MASK);
+  g_type_class_unref (window_klass);
+}
+#endif
 
   g_type_class_add_private (object_class, sizeof (TerminalWindowPrivate));
 
@@ -2937,7 +2886,7 @@ terminal_window_new (GApplication *app)
 {
   return g_object_new (TERMINAL_TYPE_WINDOW,
                        "application", app,
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
                        "show-menubar", _terminal_debug_on (TERMINAL_DEBUG_APPMENU),
 #else
                        "show-menubar", FALSE,
@@ -3030,9 +2979,9 @@ sync_screen_icon_title_set (TerminalScreen *screen,
 }
 
 static void
-screen_font_desc_changed_cb (TerminalScreen *screen,
-                             GParamSpec *psepc,
-                             TerminalWindow *window)
+screen_font_any_changed_cb (TerminalScreen *screen,
+                            GParamSpec *psepc,
+                            TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
 
@@ -3331,6 +3280,7 @@ mdi_screen_switched_cb (TerminalMdiContainer *container,
 
   terminal_window_update_tabs_menu_sensitivity (window);
   terminal_window_update_encoding_menu_active_encoding (window);
+  terminal_window_update_terminal_menu (window);
   terminal_window_update_set_profile_menu_active_profile (window);
   terminal_window_update_copy_sensitivity (screen, window);
   terminal_window_update_zoom_sensitivity (window);
@@ -3362,7 +3312,9 @@ mdi_screen_added_cb (TerminalMdiContainer *container,
   g_signal_connect (screen, "notify::icon-title-set",
                     G_CALLBACK (sync_screen_icon_title_set), window);
   g_signal_connect (screen, "notify::font-desc",
-                    G_CALLBACK (screen_font_desc_changed_cb), window);
+                    G_CALLBACK (screen_font_any_changed_cb), window);
+  g_signal_connect (screen, "notify::font-scale",
+                    G_CALLBACK (screen_font_any_changed_cb), window);
   g_signal_connect (screen, "selection-changed",
                     G_CALLBACK (terminal_window_update_copy_sensitivity), window);
 
@@ -3441,7 +3393,7 @@ mdi_screen_removed_cb (TerminalMdiContainer *container,
                                         window);
 
   g_signal_handlers_disconnect_by_func (G_OBJECT (screen),
-                                        G_CALLBACK (screen_font_desc_changed_cb),
+                                        G_CALLBACK (screen_font_any_changed_cb),
                                         window);
 
   g_signal_handlers_disconnect_by_func (G_OBJECT (screen),
@@ -3539,18 +3491,18 @@ terminal_window_update_geometry (TerminalWindow *window)
       char_height != priv->old_char_height ||
       widget != (GtkWidget*) priv->old_geometry_widget)
     {
-      GtkBorder *inner_border = NULL;
+      GtkBorder padding;
       
       /* FIXME Since we're using xthickness/ythickness to compute
        * padding we need to change the hints when the theme changes.
        */
 
-      gtk_widget_style_get (widget, "inner-border", &inner_border, NULL);
+      gtk_style_context_get_padding(gtk_widget_get_style_context(widget),
+                                    gtk_widget_get_state_flags(widget),
+                                    &padding);
 
-      hints.base_width = (inner_border ? (inner_border->left + inner_border->right) : 0);
-      hints.base_height = (inner_border ? (inner_border->top + inner_border->bottom) : 0);
-
-      gtk_border_free (inner_border);
+      hints.base_width = padding.left + padding.right;
+      hints.base_height = padding.top + padding.bottom;
 
 #define MIN_WIDTH_CHARS 4
 #define MIN_HEIGHT_CHARS 1
@@ -3809,6 +3761,19 @@ terminal_reset_clear_callback (GtkAction *action,
 }
 
 static void
+terminal_readonly_toggled_callback (GtkToggleAction *action,
+                                    TerminalWindow *window)
+{
+  TerminalWindowPrivate *priv = window->priv;
+
+  if (priv->active_screen == NULL)
+    return;
+
+  vte_terminal_set_input_enabled(VTE_TERMINAL(priv->active_screen),
+                                 !gtk_toggle_action_get_active (action));
+}
+
+static void
 tabs_next_or_previous_tab_cb (GtkAction *action,
                               TerminalWindow *window)
 {
@@ -3864,6 +3829,15 @@ help_about_callback (GtkAction *action,
 {
   terminal_util_show_about (NULL);
 }
+
+#ifdef ENABLE_INSPECTOR
+static void
+help_inspector_callback (GtkAction *action,
+                         TerminalWindow *window)
+{
+  gtk_window_set_interactive_debugging (TRUE);
+}
+#endif
 
 GtkUIManager *
 terminal_window_get_ui_manager (TerminalWindow *window)

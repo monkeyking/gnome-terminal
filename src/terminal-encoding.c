@@ -139,9 +139,9 @@ terminal_encoding_new (const char *charset,
 
   encoding = g_slice_new (TerminalEncoding);
   encoding->refcount = 1;
-  encoding->id = g_strdup (charset);
+  encoding->charset = g_intern_string (charset);
   encoding->name = g_strdup (display_name);
-  encoding->valid = encoding->validity_checked = force_valid;
+  encoding->valid = encoding->validity_checked = force_valid || g_str_equal (charset, "UTF-8");
   encoding->is_custom = is_custom;
   encoding->is_active = FALSE;
 
@@ -164,16 +164,7 @@ terminal_encoding_unref (TerminalEncoding *encoding)
     return;
 
   g_free (encoding->name);
-  g_free (encoding->id);
   g_slice_free (TerminalEncoding, encoding);
-}
-
-const char *
-terminal_encoding_get_id (TerminalEncoding *encoding)
-{
-  g_return_val_if_fail (encoding != NULL, NULL);
-
-  return encoding->id;
 }
 
 const char *
@@ -181,15 +172,7 @@ terminal_encoding_get_charset (TerminalEncoding *encoding)
 {
   g_return_val_if_fail (encoding != NULL, NULL);
 
-  if (strcmp (encoding->id, "current") == 0)
-    {
-      const char *charset;
-
-      g_get_charset (&charset);
-      return charset;
-    }
-
-  return encoding->id;
+  return encoding->charset;
 }
 
 gboolean
@@ -219,7 +202,7 @@ terminal_encoding_is_valid (TerminalEncoding *encoding)
                     (converted != NULL) &&
                     (strcmp (converted, ascii_sample) == 0);
 
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
   _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_ENCODINGS)
   {
     if (!encoding->valid)
@@ -267,16 +250,6 @@ terminal_encodings_get_builtins (void)
                                                NULL,
                                                (GDestroyNotify) terminal_encoding_unref);
 
-
-  /* Placeholder entry for the current locale's charset */
-  encoding = terminal_encoding_new ("current",
-                                    _("Current Locale"),
-                                    FALSE,
-                                    TRUE);
-  g_hash_table_insert (encodings_hashtable,
-                       (gpointer) terminal_encoding_get_id (encoding),
-                       encoding);
-
   for (i = 0; i < G_N_ELEMENTS (encodings); ++i)
     {
       encoding = terminal_encoding_new (encodings[i].charset,
@@ -284,7 +257,7 @@ terminal_encodings_get_builtins (void)
                                         FALSE,
                                         FALSE);
       g_hash_table_insert (encodings_hashtable,
-                           (gpointer) terminal_encoding_get_id (encoding),
+                           (gpointer) terminal_encoding_get_charset (encoding),
                            encoding);
     }
 

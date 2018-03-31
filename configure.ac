@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[12])
-m4_define([gt_version_micro],[3])
+m4_define([gt_version_minor],[13])
+m4_define([gt_version_micro],[90])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -31,12 +31,9 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.50.0])
 
-GNOME_COMMON_INIT
-GNOME_DEBUG_CHECK
-
 AM_GLIB_GNU_GETTEXT
 
-GLIB_REQUIRED=2.39.2
+GLIB_REQUIRED=2.40.0
 GIO_REQUIRED=2.33.2
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
 DCONF_REQUIRED=0.14.0
@@ -55,8 +52,8 @@ AC_MSG_RESULT([$with_gtk])
 case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.9.9
-       VTE_PC_VERSION=-2.90
-       VTE_REQUIRED=0.36.3
+       VTE_API_VERSION=2.91
+       VTE_REQUIRED=0.37.90
        ;;
 esac
 
@@ -72,7 +69,7 @@ for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
 done
 
 PKG_CHECK_MODULES([TERM],
-  [vte$VTE_PC_VERSION >= $VTE_REQUIRED
+  [vte-$VTE_API_VERSION >= $VTE_REQUIRED
    glib-2.0 >= $GLIB_REQUIRED
    gio-2.0 >= $GIO_REQUIRED
    gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
@@ -80,6 +77,31 @@ PKG_CHECK_MODULES([TERM],
    dconf >= $DCONF_REQUIRED
    uuid
    $PLATFORM_DEPS])
+
+# ****
+# Vala
+# ****
+
+AC_MSG_CHECKING([whether gterminal is requested])
+AC_ARG_ENABLE([gterminal],[AS_HELP_STRING([--disable-gterminal],[Disable gterminal])],
+  [],[enable_gterminal=yes])
+AC_MSG_RESULT([$enable_gterminal])
+
+AS_IF([test "$enable_gterminal" = "yes"],[
+  AM_PROG_VALAC([0.24])
+
+  VALA_CHECK_PACKAGES([glib-2.0 gio-2.0 gio-unix-2.0 linux posix])
+  PKG_CHECK_MODULES([GTERMINAL],
+    [glib-2.0 >= $GLIB_REQUIRED
+     gio-2.0 >= $GIO_REQUIRED
+     gio-unix-2.0 >= $GIO_REQUIRED
+     gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
+     dconf >= $DCONF_REQUIRED
+     uuid
+     $PLATFORM_DEPS])
+])
+
+AM_CONDITIONAL([ENABLE_GTERMINAL],[test "$enable_gterminal" = "yes"])
 
 # ****
 # DBus
@@ -118,7 +140,7 @@ AC_MSG_RESULT([$enable_migration])
 if test "$enable_migration" = "yes"; then
  PKG_CHECK_MODULES([MIGRATOR],[
    gio-2.0 >= $GIO_REQUIRED
-   vte$VTE_PC_VERSION >= $VTE_REQUIRED
+   vte-$VTE_API_VERSION >= $VTE_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
    dconf >= $DCONF_REQUIRED
    uuid])
@@ -247,16 +269,15 @@ fi
 # Compilation
 # ***********
 
-CC_CHECK_FLAGS_APPEND([AM_CFLAGS],[CFLAGS],[ \
+WARN_CFLAGS=
+CC_CHECK_FLAGS_APPEND([WARN_CFLAGS],[CFLAGS],[ \
   -pipe \
   -Waggregate-return \
   -Wall \
   -Wcast-align \
   -Wendif-labels \
   -Werror=declaration-after-statement \
-  -Werror=format=2 \
-  -Werror=format-nonliteral \
-  -Werror=format-security \
+  "-Werror=format=2 -Werror=format-nonliteral -Werror=format-security" \
   -Werror=implicit-function-declaration \
   -Werror=init-self \
   -Werror=missing-include-dirs \
@@ -264,7 +285,6 @@ CC_CHECK_FLAGS_APPEND([AM_CFLAGS],[CFLAGS],[ \
   -Werror=pointer-arith \
   -Wextra \
   -Wfloat-equal \
-  -Wformat-nonliteral \
   -Wimplicit \
   -Wlogical-op \
   -Wmissing-declarations \
@@ -290,8 +310,23 @@ CC_CHECK_FLAGS_APPEND([AM_CFLAGS],[CFLAGS],[ \
   -fno-strict-aliasing \
   -fvisibility=hidden \
   -fstack-protector \
+  -fstack-protector-strong\
   -Wno-deprecated-declarations \
 ])
+
+# *********
+# Debugging
+# *********
+
+AC_MSG_CHECKING([whether to enable special debug support])
+AC_ARG_ENABLE([debug],
+        [AS_HELP_STRING([--enable-debug],[Enable special debug support])],
+        [],[enable_debug=no])
+AC_MSG_RESULT([$enable_debug])
+
+if test "$enable_debug" = "yes"; then
+   AC_DEFINE([ENABLE_DEBUG],[1],[Define to 1 to enable special debug support])
+fi
 
 # *************
 # Documentation
@@ -305,6 +340,8 @@ AC_SUBST([TERMINAL_MAJOR_VERSION],[gt_version_major])
 AC_SUBST([TERMINAL_MINOR_VERSION],[gt_version_minor])
 AC_SUBST([TERMINAL_MICRO_VERSION],[gt_version_micro])
 AC_SUBST([TERMINAL_API_VERSION],[gt_api_version])
+AC_SUBST([GTK_API_VERSION])
+AC_SUBST([WARN_CFLAGS])
 AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
@@ -329,8 +366,10 @@ gnome-terminal-$VERSION:
       prefix:                 ${prefix}
       source code location:   ${srcdir}
       compiler:               ${CC}
+      gterminal:              ${enable_gterminal}
       DBus interface dir:     ${dbusinterfacedir}
       DBus service dir:       ${dbusservicedir}
+      Debug:                  ${enable_debug}
       Prefs migration:        ${enable_migration}
       Search provider:        ${enable_search_provider}
       Nautilus extension:     ${with_nautilus_extension}

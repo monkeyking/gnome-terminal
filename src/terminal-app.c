@@ -109,7 +109,7 @@ maybe_migrate_settings (TerminalApp *app)
 #ifdef ENABLE_MIGRATION
   const char * const argv[] = { 
     TERM_LIBEXECDIR "/gnome-terminal-migration",
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
     "--verbose", 
 #endif
     NULL 
@@ -176,7 +176,7 @@ terminal_app_new_profile (TerminalApp *app,
   if (profile == NULL)
     return;
 
-  terminal_profile_edit (profile, transient_parent, "profile-name-entry");
+  terminal_profile_edit (profile, NULL, "profile-name-entry");
 }
 
 void
@@ -228,20 +228,19 @@ terminal_app_encoding_list_notify_cb (GSettings   *settings,
   /* Mark all as non-active, then re-enable the active ones */
   g_hash_table_foreach (app->encodings, (GHFunc) encoding_mark_active, GUINT_TO_POINTER (FALSE));
 
-  /* First add the locale's charset */
-  encoding = g_hash_table_lookup (app->encodings, "current");
-  g_assert (encoding);
-  if (terminal_encoding_is_valid (encoding))
-    encoding->is_active = TRUE;
-
   /* Also always make UTF-8 available */
   encoding = g_hash_table_lookup (app->encodings, "UTF-8");
   g_assert (encoding);
-  if (terminal_encoding_is_valid (encoding))
-    encoding->is_active = TRUE;
+  g_assert (terminal_encoding_is_valid (encoding));
+  encoding->is_active = TRUE;
 
   g_settings_get (settings, key, "^as", &encodings);
-  for (i = 0; encodings[i] != NULL; ++i) {
+  for (i = 0; encodings[i] != NULL; ++i)
+    {
+      /* Pre-3.13, not supported anymore */
+      if (g_str_equal (encodings[i], "current"))
+        continue;
+
       encoding = terminal_app_ensure_encoding (app, encodings[i]);
       if (!terminal_encoding_is_valid (encoding))
         continue;
@@ -388,10 +387,13 @@ terminal_app_init (TerminalApp *app)
   terminal_accels_init (G_APPLICATION (app), settings);
 
 #if 1
+{
   /* Legacy gtkuimanager menu accelerator */
   /* Disallow in-place menu accel changes. Only needed on gtk 3.8,
    * it's unused and ignored from 3.10 onward. */
+  TERMINAL_UTIL_OBJECT_TYPE_UNDEPRECATE_PROPERTY (GTK_TYPE_SETTINGS, "gtk-can-change-accels");
   g_object_set (gtk_settings_get_default (), "gtk-can-change-accels", FALSE, NULL);
+}
 #endif
 }
 
@@ -540,7 +542,6 @@ terminal_app_new_terminal (TerminalApp     *app,
                            TerminalWindow  *window,
                            GSettings       *profile,
                            char           **override_command,
-                           const char      *title,
                            const char      *working_dir,
                            char           **child_env,
                            double           zoom)
@@ -550,7 +551,7 @@ terminal_app_new_terminal (TerminalApp     *app,
   g_return_val_if_fail (TERMINAL_IS_APP (app), NULL);
   g_return_val_if_fail (TERMINAL_IS_WINDOW (window), NULL);
 
-  screen = terminal_screen_new (profile, override_command, title,
+  screen = terminal_screen_new (profile, override_command,
                                 working_dir, child_env, zoom);
 
   terminal_window_add_screen (window, screen, -1);
@@ -598,21 +599,21 @@ terminal_app_edit_profile (TerminalApp     *app,
                            GtkWindow       *transient_parent,
                            const char      *widget_name)
 {
-  terminal_profile_edit (profile, transient_parent, widget_name);
+  terminal_profile_edit (profile, NULL, widget_name);
 }
 
 void
 terminal_app_edit_preferences (TerminalApp     *app,
                                GtkWindow       *transient_parent)
 {
-  terminal_prefs_show_preferences (transient_parent, "general");
+  terminal_prefs_show_preferences (NULL, "general");
 }
 
 void
 terminal_app_edit_encodings (TerminalApp     *app,
                              GtkWindow       *transient_parent)
 {
-  terminal_prefs_show_preferences (transient_parent, "encodings");
+  terminal_prefs_show_preferences (NULL, "encodings");
 }
 
 /**
@@ -638,15 +639,17 @@ charset_validated (const char *charset)
   gsize i;
 
   if (charset == NULL)
-    return "current"; 
+    goto out;
 
   for (i = 0; charset[i] != '\0'; i++) {
     char c = charset[i];
     if (!(g_ascii_isalnum(c) || c == '_' || c == '-'))
-      return "UTF-8";
+      goto out;
   }
 
   return charset;
+ out:
+  return "UTF-8";
 }
 
 /**
@@ -675,7 +678,7 @@ terminal_app_ensure_encoding (TerminalApp *app,
                                         TRUE,
                                         TRUE /* scary! */);
       g_hash_table_insert (app->encodings,
-                          (gpointer) terminal_encoding_get_id (encoding),
+                          (gpointer) terminal_encoding_get_charset (encoding),
                           encoding);
     }
 
