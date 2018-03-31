@@ -501,7 +501,7 @@ option_load_save_config_cb (const gchar *option_name,
       return FALSE;
     }
 
-  options->config_file = g_strdup (value);
+  options->config_file = terminal_util_resolve_relative_path (options->default_working_dir, value);
   options->load_config = strcmp (option_name, "--load-config") == 0;
   options->save_config = strcmp (option_name, "--save-config") == 0;
 
@@ -664,6 +664,7 @@ digest_options_callback (GOptionContext *context,
  * @display_name: the default X display name
  * @startup_id: the startup notification ID
  * @env: the environment as variable=value pairs
+ * @remote_arguments: whether the caller is the factory process or not
  * @ignore_unknown_options: whether to ignore unknown options when parsing
  *   the arguments
  * @argcp: (inout) address of the argument count. Changed if any arguments were handled
@@ -682,6 +683,7 @@ terminal_options_parse (const char *working_directory,
                         const char *display_name,
                         const char *startup_id,
                         char **env,
+                        gboolean remote_arguments,
                         gboolean ignore_unknown_options,
                         int *argcp,
                         char ***argvp,
@@ -698,6 +700,7 @@ terminal_options_parse (const char *working_directory,
 
   options = g_slice_new0 (TerminalOptions);
 
+  options->remote_arguments = remote_arguments;
   options->default_window_menubar_forced = FALSE;
   options->default_window_menubar_state = TRUE;
   options->default_fullscreen = FALSE;

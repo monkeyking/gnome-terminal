@@ -27,6 +27,7 @@
 
 #include "terminal-intl.h"
 
+#include "terminal-debug.h"
 #include "terminal-app.h"
 #include "terminal-accels.h"
 #include "terminal-screen.h"
@@ -1681,7 +1682,14 @@ terminal_app_handle_options (TerminalApp *app,
                                                         options->screen_number);
 
   if (options->save_config)
-    return terminal_app_save_config_file (app, options->config_file, error);
+    {
+      if (options->remote_arguments)
+        return terminal_app_save_config_file (app, options->config_file, error);
+      
+      g_set_error_literal (error, TERMINAL_OPTION_ERROR, TERMINAL_OPTION_ERROR_NOT_IN_FACTORY,
+                            "Cannot use \"--save-config\" when starting the factory process");
+      return FALSE;
+    }
 
   if (options->load_config)
     {
@@ -1717,7 +1725,7 @@ terminal_app_handle_options (TerminalApp *app,
 }
 #endif
 
-  /* Make sure we option at least one window */
+  /* Make sure we open at least one window */
   terminal_options_ensure_window (options);
 
   for (lw = options->initial_windows;  lw != NULL; lw = lw->next)
@@ -1797,6 +1805,10 @@ terminal_app_handle_options (TerminalApp *app,
 
       if (iw->geometry)
         {
+          _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
+                                "[window %p] applying geometry %s\n",
+                                window, iw->geometry);
+
           if (!gtk_window_parse_geometry (GTK_WINDOW (window), iw->geometry))
             g_printerr (_("Invalid geometry string \"%s\"\n"), iw->geometry);
         }
@@ -1877,6 +1889,9 @@ terminal_app_edit_encodings (TerminalApp     *app,
 TerminalWindow *
 terminal_app_get_current_window (TerminalApp *app)
 {
+  if (app->windows == NULL)
+    return NULL;
+
   return g_list_last (app->windows)->data;
 }
 
@@ -2014,8 +2029,8 @@ terminal_app_save_config (TerminalApp *app,
       terminal_window_save_state (window, key_file, group);
     }
 
-  g_ptr_array_add (window_names_array, NULL);
   len = window_names_array->len;
+  g_ptr_array_add (window_names_array, NULL);
   window_names = (char **) g_ptr_array_free (window_names_array, FALSE);
   g_key_file_set_string_list (key_file, TERMINAL_CONFIG_GROUP, TERMINAL_CONFIG_PROP_WINDOWS, (const char * const *) window_names, len);
   g_strfreev (window_names);

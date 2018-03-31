@@ -253,6 +253,8 @@ main (int argc, char **argv)
   guint32 request_name_ret;
   GError *error = NULL;
   const char *home_dir;
+  char *working_directory;
+  int ret = EXIT_SUCCESS;
 
   setlocale (LC_ALL, "");
 
@@ -274,10 +276,13 @@ main (int argc, char **argv)
 
   startup_id = g_getenv ("DESKTOP_STARTUP_ID");
 
-  options = terminal_options_parse (NULL,
+  working_directory = g_get_current_dir ();
+
+  options = terminal_options_parse (working_directory,
                                     NULL,
                                     startup_id,
                                     NULL,
+                                    FALSE,
                                     FALSE,
                                     &argc, &argv,
                                     &error,
@@ -286,6 +291,9 @@ main (int argc, char **argv)
                                     egg_sm_client_get_option_group (),
 #endif
                                     NULL);
+
+  g_free (working_directory);
+
   if (!options)
     {
       g_printerr (_("Failed to parse arguments: %s\n"), error->message);
@@ -360,7 +368,6 @@ main (int argc, char **argv)
   /* Forward to the existing factory and exit */
   if (request_name_ret != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
     {
-      char *working_directory;
       char **env;
       const char *evalue;
       GPtrArray *env_ptr_array;
@@ -368,7 +375,6 @@ main (int argc, char **argv)
       GArray *working_directory_array, *display_name_array, *startup_id_array;
       GArray *env_array, *argv_array;
       gboolean retval;
-      int ret = EXIT_SUCCESS;
 
       _terminal_debug_print (TERMINAL_DEBUG_FACTORY,
                              "Forwarding arguments to existing instance\n");
@@ -454,7 +460,7 @@ factory_disabled:
    */
   if (!gconf_spawn_daemon (&error))
     {
-      g_printerr ("Failed to summon the GConf demon: %s\n", error->message);
+      g_printerr ("Failed to summon the GConf demon; exiting.  %s\n", error->message);
       g_error_free (error);
       exit (1);
     }
@@ -480,8 +486,17 @@ factory_disabled:
   terminal_app_initialize (options->use_factory);
   g_signal_connect (terminal_app_get (), "quit", G_CALLBACK (gtk_main_quit), NULL);
 
-  terminal_app_handle_options (terminal_app_get (), options, TRUE /* allow resume */, NULL);
+  terminal_app_handle_options (terminal_app_get (), options, TRUE /* allow resume */, &error);
   terminal_options_free (options);
+
+  if (error)
+    {
+      g_printerr ("Error handling options: %s\n", error->message);
+      g_clear_error (&error);
+
+      ret = EXIT_FAILURE;
+      goto shutdown;
+    }
 
   /* Now change directory to $HOME so we don't prevent unmounting, e.g. if the
    * factory is started by nautilus-open-terminal. See bug #565328.
@@ -493,23 +508,17 @@ factory_disabled:
 
   gtk_main ();
 
+shutdown:
+
   terminal_app_shutdown ();
 
   if (factory)
     g_object_unref (factory);
 
-  return 0;
+  return ret;
 }
 
 /* Factory stuff */
-
-static gboolean
-handle_new_terminal_event (TerminalOptions *options)
-{
-  terminal_app_handle_options (terminal_app_get (), options, FALSE /* no resume */, NULL);
-
-  return FALSE;
-}
 
 static gboolean
 terminal_factory_handle_arguments (TerminalFactory *terminal_factory,
@@ -525,6 +534,7 @@ terminal_factory_handle_arguments (TerminalFactory *terminal_factory,
   char **env = NULL, **argv = NULL, **argv_copy = NULL;
   int argc;
   GError *arg_error = NULL;
+  gboolean retval;
 
   working_directory = terminal_util_array_to_string (working_directory_array, &arg_error);
   if (arg_error)
@@ -542,6 +552,12 @@ terminal_factory_handle_arguments (TerminalFactory *terminal_factory,
   if (arg_error)
     goto out;
 
+  _terminal_debug_print (TERMINAL_DEBUG_FACTORY,
+                         "Factory invoked with working-dir='%s' display='%s' startup-id='%s'\n",
+                         working_directory ? working_directory : "(null)",
+                         display_name ? display_name : "(null)",
+                         startup_id ? startup_id : "(null)");
+
   /* Copy the arguments since terminal_options_parse potentially modifies the array */
   argv_copy = (char **) g_memdup (argv, (argc + 1) * sizeof (char *));
 
@@ -549,6 +565,7 @@ terminal_factory_handle_arguments (TerminalFactory *terminal_factory,
                                     display_name,
                                     startup_id,
                                     env,
+                                    TRUE,
                                     TRUE,
                                     &argc, &argv_copy,
                                     error,
@@ -571,10 +588,8 @@ out:
   if (!options)
     return FALSE;
 
-  g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-                   (GSourceFunc) handle_new_terminal_event,
-                   options,
-                   (GDestroyNotify) terminal_options_free);
+  retval = terminal_app_handle_options (terminal_app_get (), options, FALSE /* no resume */, error);
 
-  return TRUE;
+  terminal_options_free (options);
+  return retval;
 }
