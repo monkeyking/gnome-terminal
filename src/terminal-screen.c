@@ -69,7 +69,6 @@ struct _TerminalScreenPrivate
   guint gconf_connection_id;
   GtkWidget *hbox;
   GtkWidget *scrollbar;
-  char **environ;
 };
 
 static GList* used_ids = NULL;
@@ -88,6 +87,7 @@ enum
   FLAVOR_AS_IS = 0,
   FLAVOR_DEFAULT_TO_HTTP,
   FLAVOR_MAILTO,
+  FLAVOR_EMAIL,
   FLAVOR_SKEY
 };
 
@@ -266,10 +266,9 @@ terminal_screen_init (TerminalScreen *screen)
   if (screen->priv->working_dir == NULL) /* shouldn't ever happen */
     screen->priv->working_dir = g_strdup (g_get_home_dir ());
   screen->priv->child_pid = -1;
-  screen->priv->environ = NULL;
 
   screen->priv->recheck_working_dir_idle = 0;
-  
+
   screen->priv->term = terminal_widget_new ();
 
   screen->priv->font_scale = PANGO_SCALE_MEDIUM;
@@ -283,24 +282,32 @@ terminal_screen_init (TerminalScreen *screen)
 #define URLPATH   "/[" PATHCHARS "]*[^]'.}>) \t\r\n,\\\"]"
 
   terminal_widget_match_add (screen->priv->term,
-      "\\<(" SCHEME "://(" USER "@)?)[" HOSTCHARS ".]+(:[0-9]+)?(" URLPATH ")?", FLAVOR_AS_IS);
+			     "\\<(" SCHEME "://(" USER "@)?)[" HOSTCHARS ".]+"
+			     "(:[0-9]+)?(" URLPATH ")?", FLAVOR_AS_IS);
 
   terminal_widget_match_add (screen->priv->term,
-      "\\<(www|ftp)[" HOSTCHARS "]*\\.[" HOSTCHARS ".]+(:[0-9]+)?(" URLPATH ")?", FLAVOR_DEFAULT_TO_HTTP);
+			     "\\<(www|ftp)[" HOSTCHARS "]*\\.[" HOSTCHARS ".]+"
+			     "(:[0-9]+)?(" URLPATH ")?",
+			     FLAVOR_DEFAULT_TO_HTTP);
 
-  terminal_widget_match_add (screen->priv->term,       
-      "\\<(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+\\>", FLAVOR_MAILTO);
-	  
   terminal_widget_match_add (screen->priv->term,
-      "\\<news:[-A-Z\\^_a-z{|}~!\"#$%&'()*+,./0-9;:=?`]+@[" HOSTCHARS ".]+(:[0-9]+)?\\>", FLAVOR_AS_IS);
+			     "\\<mailto:[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
+			     "(\\.[a-z0-9][a-z0-9-]*)+\\>", FLAVOR_MAILTO);
 
+  terminal_widget_match_add (screen->priv->term,
+			     "\\<[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
+			     "(\\.[a-z0-9][a-z0-9-]*)+\\>", FLAVOR_EMAIL);
+
+  terminal_widget_match_add (screen->priv->term,
+			     "\\<news:[-A-Z\\^_a-z{|}~!\"#$%&'()*+,./0-9;:=?`]+"
+			     "@[" HOSTCHARS ".]+(:[0-9]+)?\\>", FLAVOR_AS_IS);
 
   terminal_screen_setup_dnd (screen);
-  
+
   g_object_set_data (G_OBJECT (screen->priv->term),
                      "terminal-screen",
                      screen);
-  
+
   g_signal_connect (G_OBJECT (screen->priv->term),
                     "realize",
                     G_CALLBACK (terminal_screen_update_on_realize),
@@ -310,7 +317,7 @@ terminal_screen_init (TerminalScreen *screen)
                     "style_set",
                     G_CALLBACK (style_set_callback),
                     screen);
-  
+
   g_signal_connect (G_OBJECT (screen->priv->term),
                     "popup_menu",
                     G_CALLBACK (terminal_screen_popup_menu),
@@ -452,7 +459,6 @@ terminal_screen_finalize (GObject *object)
   g_free (screen->priv->matched_string);
   g_strfreev (screen->priv->override_command);
   g_free (screen->priv->working_dir);
-  g_strfreev (screen->priv->environ);
   
   g_free (screen->priv);
   
@@ -1103,24 +1109,18 @@ get_child_environment (GtkWidget      *term,
   char **p;
   int i;
   char **retval;
-  char **env;
 #define EXTRA_ENV_VARS 7
   
   profile = screen->priv->profile;
-  /* if screen->priv->environ is defined, we should use that instead */
-  if (screen->priv->environ)
-	  env = screen->priv->environ;
-  else
-	  env = environ;
 
   /* count env vars that are set */
-  for (p = env; *p; p++)
+  for (p = environ; *p; p++)
     ;
   
-  i = p - env;
+  i = p - environ;
   retval = g_new (char *, i + 1 + EXTRA_ENV_VARS);
 
-  for (i = 0, p = env; *p; p++)
+  for (i = 0, p = environ; *p; p++)
     {
       /* Strip all these out, we'll replace some of them */
       if ((strncmp (*p, "COLUMNS=", 8) == 0) ||
@@ -1233,7 +1233,7 @@ new_window_callback (GtkWidget      *menu_item,
                              NULL,
                              FALSE, FALSE, FALSE,
                              NULL, NULL, NULL, dir, NULL, 1.0,
-                             NULL, name, -1, NULL);
+                             NULL, name, -1);
 
   g_free (name);
 }
@@ -1252,7 +1252,7 @@ new_tab_callback (GtkWidget      *menu_item,
                              NULL,
                              FALSE, FALSE, FALSE,
                              NULL, NULL, NULL, dir, NULL, 1.0,
-                             NULL, NULL, -1, NULL);
+                             NULL, NULL, -1);
 }
 
 static void
@@ -1337,6 +1337,7 @@ open_url (TerminalScreen *screen,
     case FLAVOR_DEFAULT_TO_HTTP:
       url = g_strdup_printf ("http:%s", orig_url);
       break;
+    case FLAVOR_EMAIL:
     case FLAVOR_MAILTO:
       if (strncmp ("mailto:", orig_url, 7) != 0)
         {
@@ -1425,9 +1426,9 @@ popup_menu_detach (GtkWidget *attach_widget,
 
 static GtkWidget*
 append_menuitem (GtkWidget  *menu,
-                 const char *text,
-                 GCallback   callback,
-                 gpointer    data)
+		 const char *text,
+		 GCallback   callback,
+		 gpointer    data)
 {
   GtkWidget *menu_item;
   
@@ -1553,16 +1554,31 @@ popup_clipboard_request_callback (GtkClipboard *clipboard,
 
   if (screen->priv->matched_string != NULL) 
     {
-      menu_item = append_menuitem (screen->priv->popup_menu,
-                                   _("_Open Link"),
-                                   G_CALLBACK (open_url_callback),
-                                   screen);
-      
-      menu_item = append_menuitem (screen->priv->popup_menu,
-                                   _("_Copy Link Address"),
-                                   G_CALLBACK (copy_url_callback),
-                                   screen);
-  
+      if (screen->priv->matched_flavor == FLAVOR_EMAIL)
+	{
+	  menu_item = append_menuitem (screen->priv->popup_menu,
+				       _("_Send Mail To..."),
+				       G_CALLBACK (open_url_callback),
+				       screen);
+
+	  menu_item = append_menuitem (screen->priv->popup_menu,
+				       _("_Copy E-mail Address"),
+				       G_CALLBACK (copy_url_callback),
+				       screen);
+  	}
+      else
+	{
+	  menu_item = append_menuitem (screen->priv->popup_menu,
+				       _("_Open Link"),
+				       G_CALLBACK (open_url_callback),
+				       screen);
+
+	  menu_item = append_menuitem (screen->priv->popup_menu,
+				       _("_Copy Link Address"),
+				       G_CALLBACK (copy_url_callback),
+				       screen);
+	}
+
       menu_item = gtk_separator_menu_item_new ();
       gtk_widget_show (menu_item);
       gtk_menu_shell_append (GTK_MENU_SHELL (screen->priv->popup_menu), menu_item);
@@ -1845,16 +1861,6 @@ terminal_screen_set_working_dir (TerminalScreen *screen,
 
   g_free (screen->priv->working_dir);
   screen->priv->working_dir = g_strdup (dirname);
-}
-
-void
-terminal_screen_set_environ (TerminalScreen *screen,
-                             char          **env)
-{
-  g_return_if_fail (TERMINAL_IS_SCREEN (screen));
-
-  g_free (screen->priv->environ);
-  screen->priv->environ = g_strdupv (env);
 }
 
 const char*
