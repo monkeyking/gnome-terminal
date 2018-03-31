@@ -33,6 +33,7 @@
 #include "terminal-app.h"
 #include "terminal-util.h"
 #include "terminal-version.h"
+#include "terminal-libgsystem.h"
 
 static GOptionContext *get_goption_context (TerminalOptions *options);
 
@@ -219,8 +220,18 @@ add_new_window (TerminalOptions *options,
 static void
 deprecated_option_warning (const gchar *option_name)
 {
-  g_printerr (_("Option \"%s\" is deprecated and might be removed in a later version of gnome-terminal."),
+  g_printerr (_("Option “%s” is deprecated and might be removed in a later version of gnome-terminal."),
               option_name);
+  g_printerr ("\n");
+}
+
+static void
+deprecated_command_option_warning (const char *option_name)
+{
+  deprecated_option_warning (option_name);
+
+  /* %s is being replaced with "-- " (without quotes), which must be used literally, not translatable */
+  g_printerr (_("Use “%s” to terminate the options and put the command line to execute after it."), "-- ");
   g_printerr ("\n");
 }
 
@@ -230,7 +241,7 @@ unsupported_option_callback (const gchar *option_name,
                              gpointer     data,
                              GError     **error)
 {
-  g_printerr (_("Option \"%s\" is no longer supported in this version of gnome-terminal."),
+  g_printerr (_("Option “%s” is no longer supported in this version of gnome-terminal."),
               option_name);
   g_printerr ("\n");
   return TRUE; /* we do not want to bail out here but continue */
@@ -243,7 +254,7 @@ unsupported_option_fatal_callback (const gchar *option_name,
                                    GError     **error)
 {
   g_set_error (error, G_OPTION_ERROR, G_OPTION_ERROR_UNKNOWN_OPTION,
-               _("Option \"%s\" is no longer supported in this version of gnome-terminal."),
+               _("Option “%s” is no longer supported in this version of gnome-terminal."),
                option_name);
   return FALSE;
 }
@@ -255,7 +266,12 @@ option_version_cb (const gchar *option_name,
                    gpointer     data,
                    GError     **error)
 {
-  g_print ("%s %s\n", _("GNOME Terminal"), VERSION);
+  g_print ("%s %s ", _("GNOME Terminal"), VERSION);
+  g_print (_("Using VTE version %u.%u.%u"),
+           vte_get_major_version (),
+           vte_get_minor_version (),
+           vte_get_micro_version ());
+  g_print (" %s\n", vte_get_features ());
 
   exit (EXIT_SUCCESS);
 }
@@ -290,12 +306,14 @@ option_command_callback (const gchar *option_name,
   GError *err = NULL;
   char  **exec_argv;
 
+  deprecated_command_option_warning (option_name);
+
   if (!g_shell_parse_argv (value, NULL, &exec_argv, &err))
     {
       g_set_error(error,
                   G_OPTION_ERROR,
                   G_OPTION_ERROR_BAD_VALUE,
-                  _("Argument to \"%s\" is not a valid command: %s"),
+                  _("Argument to “%s” is not a valid command: %s"),
                    "--command/-e",
                   err->message);
       g_error_free (err);
@@ -484,7 +502,7 @@ option_show_menubar_callback (const gchar *option_name,
       iw = g_list_last (options->initial_windows)->data;
       if (iw->force_menubar_state && iw->menubar_state == TRUE)
         {
-          g_printerr (_("\"%s\" option given twice for the same window\n"),
+          g_printerr (_("“%s” option given twice for the same window\n"),
                         "--show-menubar");
 
           return TRUE;
@@ -517,7 +535,7 @@ option_hide_menubar_callback (const gchar *option_name,
 
       if (iw->force_menubar_state && iw->menubar_state == FALSE)
         {
-          g_printerr (_("\"%s\" option given twice for the same window\n"),
+          g_printerr (_("“%s” option given twice for the same window\n"),
                         "--hide-menubar");
           return TRUE;
         }
@@ -582,10 +600,6 @@ option_geometry_callback (const gchar *option_name,
                           GError     **error)
 {
   TerminalOptions *options = data;
-
-  /* See https://bugzilla.gnome.org/show_bug.cgi?id=760944 */
-  if (gtk_check_version (3, 19, 5) == NULL)
-    return unsupported_option_callback (option_name, value, data, error);
 
   if (options->initial_windows)
     {
@@ -714,14 +728,14 @@ option_zoom_callback (const gchar *option_name,
       g_set_error (error,
                    G_OPTION_ERROR,
                    G_OPTION_ERROR_BAD_VALUE,
-                   _("\"%s\" is not a valid zoom factor"),
+                   _("“%s” is not a valid zoom factor"),
                    value);
       return FALSE;
     }
 
   if (zoom < (TERMINAL_SCALE_MINIMUM + 1e-6))
     {
-      g_printerr (_("Zoom factor \"%g\" is too small, using %g\n"),
+      g_printerr (_("Zoom factor “%g” is too small, using %g\n"),
                   zoom,
                   TERMINAL_SCALE_MINIMUM);
       zoom = TERMINAL_SCALE_MINIMUM;
@@ -729,7 +743,7 @@ option_zoom_callback (const gchar *option_name,
 
   if (zoom > (TERMINAL_SCALE_MAXIMUM - 1e-6))
     {
-      g_printerr (_("Zoom factor \"%g\" is too large, using %g\n"),
+      g_printerr (_("Zoom factor “%g” is too large, using %g\n"),
                   zoom,
                   TERMINAL_SCALE_MAXIMUM);
       zoom = TERMINAL_SCALE_MAXIMUM;
@@ -767,7 +781,7 @@ digest_options_callback (GOptionContext *context,
           g_set_error (error,
                        G_OPTION_ERROR,
                        G_OPTION_ERROR_BAD_VALUE,
-                       _("Option \"%s\" requires specifying the command to run"
+                       _("Option “%s” requires specifying the command to run"
                          " on the rest of the command line"),
                        "--execute/-x");
           return FALSE;
@@ -844,6 +858,9 @@ terminal_options_parse (const char *working_directory,
 
       if (!is_execute && !is_dashdash)
         continue;
+
+      if (is_execute)
+        deprecated_command_option_warning (argv[i]);
 
       options->execute = is_execute;
 
@@ -1081,6 +1098,7 @@ get_goption_context (TerminalOptions *options)
       unsupported_option_callback,
       NULL, NULL
     },
+    { "preferences", 0, 0, G_OPTION_ARG_NONE, &options->show_preferences, N_("Show preferences window"), NULL },
     { "version", 0, G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_CALLBACK, option_version_cb, NULL, NULL },
     { NULL, 0, 0, 0, NULL, NULL, NULL }
   };
@@ -1217,7 +1235,7 @@ get_goption_context (TerminalOptions *options)
       0,
       G_OPTION_ARG_CALLBACK,
       option_zoom_callback,
-      N_("Set the terminal's zoom factor (1.0 = normal size)"),
+      N_("Set the terminal’s zoom factor (1.0 = normal size)"),
       N_("ZOOM")
     },
     { NULL, 0, 0, 0, NULL, NULL, NULL }
@@ -1303,10 +1321,11 @@ get_goption_context (TerminalOptions *options)
 
   GOptionContext *context;
   GOptionGroup *group;
+  gs_free char *parameter;
 
-  context = g_option_context_new (NULL);
+  parameter = g_strdup_printf ("[-- %s …]", _("COMMAND"));
+  context = g_option_context_new (parameter);
   g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
-  g_option_context_set_description (context, N_("GNOME Terminal Emulator"));
   g_option_context_set_ignore_unknown_options (context, FALSE);
 
   g_option_context_add_group (context, gtk_get_option_group (TRUE));

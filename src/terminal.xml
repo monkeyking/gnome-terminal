@@ -72,6 +72,8 @@
     <menu action="Help">
       <menuitem action="HelpContents" />
       <menuitem action="HelpAbout" />
+      <separator />
+      <menuitem action="HelpInspector" />
     </menu>
   </menubar>
 
@@ -104,6 +106,8 @@
   <popup name="NotebookPopup" action="NotebookPopup">
     <menuitem action="TabsMoveLeft"/>
     <menuitem action="TabsMoveRight"/>
+    <separator />
+    <menuitem action="TabsDetach"/>
     <separator />
     <menuitem action="FileCloseTab"/>
   </popup>

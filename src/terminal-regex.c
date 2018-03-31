@@ -296,6 +296,11 @@ main (int argc, char **argv)
   assert_match (REGEX_EMAIL, "Write to foo@[1.2.3.4]",       "foo@[1.2.3.4]");
   assert_match (REGEX_EMAIL, "Write to foo@[1.2.3.456]",     NULL);
   assert_match (REGEX_EMAIL, "Write to foo@[1::2345]",       "foo@[1::2345]");
+  assert_match (REGEX_EMAIL, "Write to foo@[dead::beef]",    "foo@[dead::beef]");
+  assert_match (REGEX_EMAIL, "Write to foo@1.2.3.4",         NULL);
+  assert_match (REGEX_EMAIL, "Write to foo@1.2.3.456",       NULL);
+  assert_match (REGEX_EMAIL, "Write to foo@1::2345",         NULL);
+  assert_match (REGEX_EMAIL, "Write to foo@dead::beef",      NULL);
   assert_match (REGEX_EMAIL, "<baz email=\"foo@bar.com\"/>", "foo@bar.com");
   assert_match (REGEX_EMAIL, "<baz email='foo@bar.com'/>",   "foo@bar.com");
   assert_match (REGEX_EMAIL, "<email>foo@bar.com</email>",   "foo@bar.com");
@@ -311,6 +316,19 @@ main (int argc, char **argv)
   assert_match (REGEX_URL_VOIP, "sip:atlanta.com;method=REGISTER?to=alice%40atlanta.com",     ENTIRE);
   assert_match (REGEX_URL_VOIP, "SIP:alice;day=tuesday@atlanta.com",                          ENTIRE);
   assert_match (REGEX_URL_VOIP, "Dial sip:alice@192.0.2.4.",                                  "sip:alice@192.0.2.4");
+
+  /* Extremely long match, bug 770147 */
+  assert_match (REGEX_URL_AS_IS, "http://www.example.com/ThisPathConsistsOfMoreThan1024Characters"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                                 "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", ENTIRE);
 
   printf("terminal-regex tests passed :)\n");
   return 0;

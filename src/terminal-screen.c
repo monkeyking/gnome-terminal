@@ -19,10 +19,7 @@
 #include "config.h"
 #define _GNU_SOURCE /* for dup3 */
 
-#ifdef WITH_PCRE2
 #include "terminal-pcre2.h"
-#endif
-
 #include "terminal-regex.h"
 #include "terminal-screen.h"
 
@@ -65,6 +62,8 @@
 #include "eggshell.h"
 
 #define URL_MATCH_CURSOR  (GDK_HAND2)
+
+#define SPAWN_TIMEOUT (30 * 1000 /* 30s */)
 
 typedef struct {
   int *fd_list;
@@ -184,13 +183,8 @@ static const TerminalRegexPattern extra_regex_patterns[] = {
   { "(0[Xx][[:xdigit:]]+|[[:digit:]]+)", FLAVOR_NUMBER },
 };
 
-#ifdef WITH_PCRE2
 static VteRegex **url_regexes;
 static VteRegex **extra_regexes;
-#else
-static GRegex **url_regexes;
-static GRegex **extra_regexes;
-#endif
 static TerminalURLFlavor *url_regex_flavors;
 static TerminalURLFlavor *extra_regex_flavors;
 static guint n_url_regexes;
@@ -223,30 +217,21 @@ free_tag_data (TagData *tagdata)
 static void
 precompile_regexes (const TerminalRegexPattern *regex_patterns,
                     guint n_regexes,
-#ifdef WITH_PCRE2
                     VteRegex ***regexes,
-#else
-                    GRegex ***regexes,
-#endif
                     TerminalURLFlavor **regex_flavors)
 {
   guint i;
 
-#ifdef WITH_PCRE2
   *regexes = g_new0 (VteRegex*, n_regexes);
-#else
-  *regexes = g_new0 (GRegex*, n_regexes);
-#endif
   *regex_flavors = g_new0 (TerminalURLFlavor, n_regexes);
 
   for (i = 0; i < n_regexes; ++i)
     {
       GError *error = NULL;
 
-#ifdef WITH_PCRE2
-      (*regexes)[i] = vte_regex_new (regex_patterns[i].pattern, -1,
-                                     PCRE2_UTF | PCRE2_NO_UTF_CHECK | PCRE2_MULTILINE,
-                                     &error);
+      (*regexes)[i] = vte_regex_new_for_match (regex_patterns[i].pattern, -1,
+                                               PCRE2_UTF | PCRE2_NO_UTF_CHECK | PCRE2_MULTILINE,
+                                               &error);
       g_assert_no_error (error);
 
       if (!vte_regex_jit ((*regexes)[i], PCRE2_JIT_COMPLETE, &error) ||
@@ -254,13 +239,6 @@ precompile_regexes (const TerminalRegexPattern *regex_patterns,
         g_printerr ("Failed to JIT regex '%s': %s\n", regex_patterns[i].pattern, error->message);
         g_clear_error (&error);
       }
-#else
-      (*regexes)[i] = g_regex_new (regex_patterns[i].pattern,
-                                   G_REGEX_OPTIMIZE |
-                                   G_REGEX_MULTILINE,
-                                   0, &error);
-      g_assert_no_error (error);
-#endif
 
       (*regex_flavors)[i] = regex_patterns[i].flavor;
     }
@@ -386,11 +364,7 @@ terminal_screen_init (TerminalScreen *screen)
 
       tag_data = g_slice_new (TagData);
       tag_data->flavor = url_regex_flavors[i];
-#ifdef WITH_PCRE2
       tag_data->tag = vte_terminal_match_add_regex (terminal, url_regexes[i], 0);
-#else
-      tag_data->tag = vte_terminal_match_add_gregex (terminal, url_regexes[i], 0);
-#endif
       vte_terminal_match_set_cursor_type (terminal, tag_data->tag, URL_MATCH_CURSOR);
 
       priv->match_tags = g_slist_prepend (priv->match_tags, tag_data);
@@ -1374,6 +1348,50 @@ terminal_screen_child_setup (FDSetupData *data)
   }
 }
 
+static void
+spawn_result_cb (VteTerminal *terminal,
+                 GPid pid,
+                 GError *error,
+                 gpointer user_data)
+{
+  TerminalScreen *screen;
+  TerminalScreenPrivate *priv;
+
+  /* Terminal was destroyed while the spawn operation was in progress; nothing to do. */
+  if (terminal == NULL)
+    return;
+
+  screen = TERMINAL_SCREEN (terminal);
+  priv = screen->priv;
+
+  priv->child_pid = pid;
+
+  if (error) {
+    GtkWidget *info_bar;
+
+    vte_terminal_set_pty (terminal, NULL);
+    info_bar = terminal_info_bar_new (GTK_MESSAGE_ERROR,
+                                      _("_Profile Preferences"), RESPONSE_EDIT_PROFILE,
+                                      _("_Relaunch"), RESPONSE_RELAUNCH,
+                                      NULL);
+    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
+                                   _("There was an error creating the child process for this terminal"));
+    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
+                                   "%s", error->message);
+    g_signal_connect (info_bar, "response",
+                      G_CALLBACK (info_bar_response_cb), screen);
+
+    gtk_widget_set_halign (info_bar, GTK_ALIGN_FILL);
+    gtk_widget_set_valign (info_bar, GTK_ALIGN_START);
+    gtk_overlay_add_overlay (GTK_OVERLAY (terminal_screen_container_get_from_screen (screen)),
+                             info_bar);
+    gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+    gtk_widget_show (info_bar);
+
+    return;
+  }
+}
+
 static gboolean
 terminal_screen_do_exec (TerminalScreen *screen,
                          FDSetupData    *data /* adopting */,
@@ -1384,13 +1402,11 @@ terminal_screen_do_exec (TerminalScreen *screen,
   GSettings *profile;
   char **env, **argv;
   char *shell = NULL;
-  GError *err = NULL;
   const char *working_dir;
   VtePtyFlags pty_flags = VTE_PTY_DEFAULT;
   GSpawnFlags spawn_flags = G_SPAWN_SEARCH_PATH_FROM_ENVP |
                             VTE_SPAWN_NO_PARENT_ENVV;
-  GPid pid;
-  gboolean result = FALSE;
+  GCancellable *cancellable = NULL;
 
   if (priv->child_pid != -1) {
     g_set_error_literal (error, G_DBUS_ERROR, G_DBUS_ERROR_FAILED,
@@ -1415,53 +1431,27 @@ terminal_screen_do_exec (TerminalScreen *screen,
   env = get_child_environment (screen, working_dir, &shell);
 
   argv = NULL;
-  if (!get_child_command (screen, shell, &spawn_flags, &argv, &err) ||
-      !vte_terminal_spawn_sync (terminal,
-                                pty_flags,
-                                working_dir,
-                                argv,
-                                env,
-                                spawn_flags,
-                                (GSpawnChildSetupFunc) (data ? terminal_screen_child_setup : NULL), 
-                                data,
-                                &pid,
-                                NULL /* cancellable */,
-                                &err)) {
-    GtkWidget *info_bar;
+  if (!get_child_command (screen, shell, &spawn_flags, &argv, error))
+    return FALSE;
 
-    info_bar = terminal_info_bar_new (GTK_MESSAGE_ERROR,
-                                      _("_Profile Preferences"), RESPONSE_EDIT_PROFILE,
-                                      _("_Relaunch"), RESPONSE_RELAUNCH,
-                                      NULL);
-    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
-                                   _("There was an error creating the child process for this terminal"));
-    terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
-                                   "%s", err->message);
-    g_signal_connect (info_bar, "response",
-                      G_CALLBACK (info_bar_response_cb), screen);
+  vte_terminal_spawn_async (terminal,
+                            pty_flags,
+                            working_dir,
+                            argv,
+                            env,
+                            spawn_flags,
+                            (GSpawnChildSetupFunc) (data ? terminal_screen_child_setup : NULL),
+                            data,
+                            (GDestroyNotify) (data ? free_fd_setup_data : NULL),
+                            SPAWN_TIMEOUT,
+                            cancellable,
+                            spawn_result_cb, NULL);
 
-    gtk_widget_set_halign (info_bar, GTK_ALIGN_FILL);
-    gtk_widget_set_valign (info_bar, GTK_ALIGN_START);
-    gtk_overlay_add_overlay (GTK_OVERLAY (terminal_screen_container_get_from_screen (screen)),
-                             info_bar);
-    gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
-    gtk_widget_show (info_bar);
-
-    g_propagate_error (error, err);
-    goto out;
-  }
-
-  priv->child_pid = pid;
-
-  result = TRUE;
-
-out:
   g_free (shell);
   g_strfreev (argv);
   g_strfreev (env);
-  free_fd_setup_data (data);
 
-  return result;
+  return TRUE; /* can't report any more errors since they only occur async */
 }
 
 static gboolean
@@ -2002,12 +1992,7 @@ terminal_screen_check_extra (TerminalScreen *screen,
   memset(matches, 0, sizeof(char*) * n_extra_regexes);
 
   if (
-#ifdef WITH_PCRE2
-      vte_terminal_event_check_regex_simple(
-#else
-      vte_terminal_event_check_gregex_simple(
-#endif
-                                             VTE_TERMINAL (screen),
+      vte_terminal_event_check_regex_simple (VTE_TERMINAL (screen),
                                              event,
                                              extra_regexes,
                                              n_extra_regexes,
@@ -2069,6 +2054,9 @@ terminal_screen_has_foreground_process (TerminalScreen *screen,
   gsize i;
   gsize len;
   int fgpid;
+
+  if (priv->child_pid == -1)
+    return FALSE;
 
   pty = vte_terminal_get_pty (VTE_TERMINAL (screen));
   if (pty == NULL)
