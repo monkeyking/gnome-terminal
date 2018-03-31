@@ -837,12 +837,15 @@ create_preview_pixbuf (const gchar *file)
       gchar *mime_type;
 
       mime_type = (gchar *)gnome_vfs_get_mime_type (file);
-      thumbs = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+      if (mime_type != NULL) {
+        thumbs = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
 
-      pixbuf = gnome_thumbnail_factory_generate_thumbnail (thumbs,
-                                                           file,
-                                                           mime_type);
-      g_free (mime_type);
+        pixbuf = gnome_thumbnail_factory_generate_thumbnail (thumbs,
+                                                             file,
+                                                             mime_type);
+        g_free (mime_type);
+        g_object_unref (thumbs);
+      }
     }
   }				
   return pixbuf;
@@ -1977,11 +1980,13 @@ profile_editor_update_background_image (GtkWidget       *editor,
                                         TerminalProfile *profile)
 {
   GtkWidget *w;
+  const char *f;
 
   w = profile_editor_get_widget (editor, "background-image-filechooser");
 
-  gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (w),
-                                 terminal_profile_get_background_image_file (profile));
+  f = terminal_profile_get_background_image_file (profile);
+  if (f && *f)
+    gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (w), f);
 }
 
 static void
