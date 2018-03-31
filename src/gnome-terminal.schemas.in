@@ -619,10 +619,11 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-         <short>Support skey dingus clicking</short>
-         <long>
-	 Popup a dialog when an s/key challenge response query is
-         detected and clicked on.  Typing a password into the dialog
+         <short><!-- Translators: S/Key is the name of an application, so it should
+         not be translated. -->Highlight S/Key challenges</short>
+         <long><!-- Translators: S/Key is the name of an application, so it should
+         not be translated. -->Popup a dialog when an S/Key challenge response query is
+	 detected and clicked on.  Typing a password into the dialog
          will send it to the terminal.
          </long>
       </locale>
@@ -862,6 +863,56 @@
           in the same format used for GTK+ resource files.
           If you set the option to the special string "disabled", then there 
           will be no keyboard shortcut for this action.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/move_tab_left</key>
+      <applyto>/apps/gnome-terminal/keybindings/move_tab_left</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <default>&lt;Ctrl&gt;&lt;Shift&gt;Page_Up</default>
+      <locale name="C">
+         <short>Accelerator to move current tab left.</short>
+         <long>
+          Accelerator key to move current tab left. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there 
+          will be no keybinding for this action.
+         </long>
+      </locale>
+    </schema>
+    
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/move_tab_right</key>
+      <applyto>/apps/gnome-terminal/keybindings/move_tab_right</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <default>&lt;Ctrl&gt;&lt;Shift&gt;Page_Down</default>
+      <locale name="C">
+         <short>Accelerator to move current tab right.</short>
+         <long>
+          Accelerator key to move current tab right. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there 
+          will be no keybinding for this action.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/detach_tab</key>
+      <applyto>/apps/gnome-terminal/keybindings/detach_tab</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <locale name="C">
+         <short>Accelerator to detach current tab.</short>
+         <long>
+          Accelerator key to detach current tab. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there 
+          will be no keybinding for this action.
          </long>
       </locale>
     </schema>

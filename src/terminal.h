@@ -42,6 +42,7 @@ void terminal_app_new_profile (TerminalApp     *app,
 void terminal_app_new_terminal (TerminalApp     *app,
                                 TerminalProfile *profile,
                                 TerminalWindow  *window,
+                                TerminalScreen  *screen,
                                 gboolean         force_menubar_state,
                                 gboolean         forced_menubar_state,
                                 gboolean         start_fullscreen,
@@ -53,7 +54,8 @@ void terminal_app_new_terminal (TerminalApp     *app,
                                 double           zoom,
                                 const char      *startup_id,
                                 const char      *display_name,
-                                int              screen_number);
+                                int              screen_number,
+				char           **env);
 
 void terminal_app_manage_profiles (TerminalApp     *app,
                                    GtkWindow       *transient_parent);
