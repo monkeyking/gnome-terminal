@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal HEAD\n"
+"Project-Id-Version: gnome-terminal 2.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-07 15:02+0100\n"
-"PO-Revision-Date: 2006-03-12 16:39+0200\n"
+"POT-Creation-Date: 2006-03-19 15:01+0100\n"
+"PO-Revision-Date: 2006-03-21 20:03+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -383,8 +383,8 @@ msgid ""
 "Restart the command\n"
 "Hold the terminal open"
 msgstr ""
-"Suletakse terminal\n"
-"Taaskäivitatakse käsk\n"
+"Terminal suletakse\n"
+"Käivitatakse käsk uuesti\n"
 "Jäetakse terminal avatuks"
 
 #: ../src/gnome-terminal.glade2.h:42
@@ -413,6 +413,9 @@ msgid ""
 "On the right side\n"
 "Disabled"
 msgstr ""
+"Vasakus servas\n"
+"Paremas servas\n"
+"Puudub"
 
 #: ../src/gnome-terminal.glade2.h:50
 msgid "Password:"
@@ -444,11 +447,11 @@ msgstr ""
 "Asendab algse pealkirja\n"
 "Paigutatakse algse pealkirja ette\n"
 "Paigutatakse algse pealkirja järele\n"
-"Ei kuvata"
+"Jäetakse kuvamata"
 
 #: ../src/gnome-terminal.glade2.h:59
 msgid "Ru_n a custom command instead of my shell"
-msgstr "Käivita kesta asemel o_ma käsk"
+msgstr "Kesta asemel käivitada o_ma käsk"
 
 #: ../src/gnome-terminal.glade2.h:60
 msgid "S/Key Challenge Response"
@@ -496,7 +499,7 @@ msgstr "Pealkiri ja käsk"
 
 #: ../src/gnome-terminal.glade2.h:71
 msgid "Use colors from s_ystem theme"
-msgstr "Süsteemi teema värvide _kasutamine"
+msgstr "_Kasutatakse süsteemi teema värve"
 
 #: ../src/gnome-terminal.glade2.h:72
 msgid "When command _exits:"
@@ -524,7 +527,7 @@ msgstr "_Delete klahv põhjustab:"
 
 #: ../src/gnome-terminal.glade2.h:78
 msgid "_Dynamically-set title:"
-msgstr "_Jooksult sätitud pealkirja:"
+msgstr "_Jooksult sätitud pealkiri:"
 
 #: ../src/gnome-terminal.glade2.h:79
 msgid "_None (use solid color)"
@@ -532,7 +535,7 @@ msgstr "P_uudub (kasutatakse ühtlast värvi)"
 
 #: ../src/gnome-terminal.glade2.h:80
 msgid "_Profile name:"
-msgstr "_Profiili nimi:"
+msgstr "Profiili _nimi:"
 
 #: ../src/gnome-terminal.glade2.h:81
 msgid "_Reset Compatibility Options to Defaults"
@@ -540,11 +543,11 @@ msgstr "Taasta ühilduvusvalikute _algväärtused"
 
 #: ../src/gnome-terminal.glade2.h:82
 msgid "_Run command as a login shell"
-msgstr "Käsu käivitamine _login kestana"
+msgstr "Käsk käivitatakse _login kestana"
 
 #: ../src/gnome-terminal.glade2.h:83
 msgid "_Scrollbar is:"
-msgstr "_Kerimisriba asub:"
+msgstr "K_erimisriba asukoht:"
 
 #: ../src/gnome-terminal.glade2.h:84
 msgid "_Shortcut keys:"
@@ -564,7 +567,7 @@ msgstr "Käsu käivitamisel _uuendatakse sisselogimiskirjeid"
 
 #: ../src/gnome-terminal.glade2.h:88
 msgid "_Use the system terminal font"
-msgstr "_Süsteemi terminali kirjatüübi kasutamine"
+msgstr "Süsteemi _terminali kirjatüübi kasutamine"
 
 #: ../src/gnome-terminal.glade2.h:89
 msgid "_lines"
@@ -580,6 +583,9 @@ msgid ""
 "is a list of encodings to appear there. The special encoding name \"current"
 "\" means to display the encoding of the current locale."
 msgstr ""
+"Võimalike kodeeringute alamhulk, mis on kasutatav \"Kodeering\" alammenüüst. "
+"Siinkirjeldatud loend ilmub selles alammenüüs. Kodeeringute erinimi "
+"\"current\" tähendab käesoleva lokaadi vaikimisi kodeeringut."
 
 #: ../src/gnome-terminal.schemas.in.h:2
 msgid ""
@@ -588,6 +594,10 @@ msgid ""
 "implementation, there are only two levels of darkness possible, so the "
 "setting behaves as a boolean, where 0.0 disables the darkening effect."
 msgstr ""
+"0.0 ja 1.0 vahel olev väärtus, mille abil määratakse taustapildi tumendamise "
+"aste. 1.0 tähendab täielikku tumendust. Käesoleva teostuse puhul on võimalik "
+"ainult 2 tumendusastme väärtust, seega käsitletakse seda kui tõeväärtust, "
+"kus 0.0 keelab tumendusefekti."
 
 #: ../src/gnome-terminal.schemas.in.h:3
 msgid ""
@@ -742,6 +752,8 @@ msgstr ""
 #: ../src/gnome-terminal.schemas.in.h:33
 msgid "If true, allow applications in the terminal to make text boldface."
 msgstr ""
+"Kui märgitud, siis on terminalis töötavatel rakendustel võimalik jämedat "
+"kirja väljastada."
 
 #: ../src/gnome-terminal.schemas.in.h:34
 msgid ""
@@ -1208,6 +1220,9 @@ msgid ""
 "via gtkrc (gtk-menu-bar-accel = \"whatever\"). This option allows the "
 "standard menubar accelerator to be disabled."
 msgstr ""
+"Tavaliselt saab menüüribale ligi F10 klahvi abil. Seda saab ka kohandada "
+"gtkrc abil (gtk-menu-bar-accel = \"misiganes\"). Selle võtme abil saab "
+"standardset menüüriba kiirklahvi keelata."
 
 #: ../src/gnome-terminal.schemas.in.h:108
 msgid "Number of lines to keep in scrollback"
@@ -1251,6 +1266,8 @@ msgstr ""
 msgid ""
 "Profile to be used when opening a new window or tab. Must be in profile_list."
 msgstr ""
+"Uue akna või saki avamisel kasutatav profiil. See peab olema võtmes "
+"profile_list loetletud."
 
 #: ../src/gnome-terminal.schemas.in.h:117
 msgid "Profile to use for new terminals"
@@ -1313,6 +1330,8 @@ msgid ""
 "Type of terminal background. May be \"solid\" for a solid color, \"image\" "
 "for an image, or \"transparent\" for pseudo-transparency."
 msgstr ""
+"Terminali tausta liik. Võimalikud väärtused on \"solid\" ühtlase värvuse "
+"jaoks, \"image\" pildi jaoks ja \"transparent\" pseudoläbipaistvuse jaoks."
 
 #: ../src/gnome-terminal.schemas.in.h:128
 msgid "What to do with dynamic title"
@@ -1337,7 +1356,7 @@ msgstr ""
 
 #: ../src/gnome-terminal.schemas.in.h:132
 msgid "Whether the menubar has access keys"
-msgstr ""
+msgstr "Kas menüüriba kasutab kiirklahve"
 
 #: ../src/gnome-terminal.schemas.in.h:133
 msgid "Whether the standard GTK shortcut for menubar access is enabled"
@@ -1352,10 +1371,12 @@ msgid ""
 "Whether to ask for confirmation when closing a terminal window which has "
 "more than one open tab."
 msgstr ""
+"Kas rohkem kui ühte sakki omava terminaliakna sulgemisel peab kasutajalt "
+"kinnitust küsima."
 
 #: ../src/gnome-terminal.schemas.in.h:136
 msgid "Whether to ask for confirmation when closing terminal windows"
-msgstr ""
+msgstr "Kas terminaliakende sulgemisel peab kinnitust küsima"
 
 #: ../src/gnome-terminal.schemas.in.h:137
 msgid "Whether to blink the cursor"
@@ -1371,6 +1392,9 @@ msgid ""
 "with some applications run inside the terminal so it's possible to turn them "
 "off."
 msgstr ""
+"Kas menüüriba menüüsid saab avada Alt+märk klahvikombinatsioonide abil. See "
+"võib takistada mõne terminalis töödava rakenduse kasutamist ja seetõttu on "
+"seda võimalik välja lülitada."
 
 #: ../src/gnome-terminal.schemas.in.h:140
 msgid "Whether to launch the command in the terminal as a login shell"
