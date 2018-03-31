@@ -293,7 +293,7 @@
      <sect2 id="gnome-terminal-profiles"> 
         <title>Profily terminálu</title> 
         <para>Můžete vytvořit nový profil a ten použít pro úpravu vlastností terminálu jako písma, barvy a efektů, rolování výstupu, titulku okna nebo kompatibility. Také můžete určit příkaz, který se spustí při startu <application>Terminálu GNOME</application> s tímto profilem.</para>
-          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
+          <para>Profily terminálu lze vytvářet v okně <guilabel>Profily</guilabel>, které je dostupné z nabídky <guimenu>Upravit</guimenu>. Můžete vytvořit tolik různých profilů, kolik chcete. Při startu terminálu pak můžete vybrat profil, který se má použít, případně jej můžete měnit během používání terminálu. Zvolit profil při startu aplikace z příkazové řádky můžete použitím následujícího příkazu:</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>jméno_profilu</replaceable></command> 
         </para>
@@ -426,8 +426,7 @@
                      <para>Zvolte z menu <menuchoice><guimenu>Upravit</guimenu><guisubmenu>Aktuální profil</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>
-                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
+                     <para>Klepněte pravým tlačítkem do okna terminálu a zvolte <menuchoice><guimenuitem>Profily</guimenuitem><guimenuitem>Předvolby profilu</guimenuitem></menuchoice> z kontextové nabídky.</para>
                   </listitem> 
                   <listitem> 
                      <para>Zvolte z nabídky <menuchoice><guimenu>Upravit</guimenu><guisubmenu>Profily</guisubmenu></menuchoice>, zvolte profil, který chcete upravit a klepněte na tlačítko <guibutton>Upravit</guibutton>. Informace o tom, co lze u profilu nastavit, popisuje <xref linkend="gnome-terminal-prefs"/>.</para>

@@ -1,4 +1,253 @@
-commit 3ecd605351555544746b6e069b45330424c532c2
+commit 652e9c55c26b2ca834f8312b2b624225d81ef48b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 26 20:46:10 2010 +0200
+
+    Distcheck with gtk2
+
+ Makefile.am |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit f2949b43b13bc772b4546b91588d33bb3d2d5bb2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 26 16:31:09 2010 +0200
+
+    Version 2.32.0
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 7bbd8083350eccbfb3353ec2973ced0078d78ff8
+Author: Yuri Kozlov <yuray@komyakino.ru>
+Date:   Sun Sep 26 17:25:11 2010 +0400
+
+    Updated Russian translation
+
+ po/ru.po | 1577 +++++++++++++++++++++++---------------------------------------
+ 1 files changed, 580 insertions(+), 997 deletions(-)
+
+commit 984b7a34e97a22b22d9ac4442307164c243436ed
+Author: Gheyret Kenji <gheyret@yahoo.com>
+Date:   Sun Sep 26 12:53:05 2010 +0200
+
+    [i18n] Added Uighur translation
+
+ po/LINGUAS |    1 +
+ po/ug.po   | 2678 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 2679 insertions(+), 0 deletions(-)
+
+commit 41d7aa71281a4b1677909709410ee5733be671cb
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   Sun Sep 26 03:40:17 2010 +0900
+
+    Updated Korean translation
+
+ po/ko.po |  992 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 535 insertions(+), 457 deletions(-)
+
+commit 0e4537c6062767097f60d1ec7180af440586086b
+Author: Marek Černocký <marek@manet.cz>
+Date:   Sat Sep 25 14:44:51 2010 +0200
+
+    Updated Czech translation
+
+ help/cs/cs.po |   29 +++++++++++++++++------------
+ 1 files changed, 17 insertions(+), 12 deletions(-)
+
+commit bf1424ee3ac97160d5f10d3191b4937e153941e0
+Author: Daniel S. Koda <danielskoda@gmail.com>
+Date:   Tue Sep 21 16:16:15 2010 -0300
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po |  481 +++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 251 insertions(+), 230 deletions(-)
+
+commit ecc82420bc343e1ab2c8f4ff9e5a468efc1520b9
+Author: Chris Coulson <chris.coulson@canonical.com>
+Date:   Mon Sep 20 15:11:37 2010 +0100
+
+    Bug 630163 - Set _NET_WM_DESKTOP on the new X window
+    
+    Set _NET_WM_DESKTOP on the new X window when handling composited-changed,
+    rather than the old window (which has already been destroyed)
+
+ src/terminal-window.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit b61bfc9bedb7d3bd9bbe651479a0b6fb15b18524
+Author: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>
+Date:   Mon Sep 20 18:15:45 2010 +0900
+
+    Updated Japanese translation
+
+ po/ja.po |   42 +++++++++++++++++++++---------------------
+ 1 files changed, 21 insertions(+), 21 deletions(-)
+
+commit 851f004f966a28fc0da56ae74d9fd0faaf92ae9b
+Author: Wouter Bolsterlee <wbolster@gnome.org>
+Date:   Sun Sep 19 21:12:02 2010 +0200
+
+    Updated Dutch translation by Wouter Bolsterlee
+
+ po/nl.po |  387 ++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 190 insertions(+), 197 deletions(-)
+
+commit bae4d682d4a3ec3afbea14c86c2f8ffd6d267171
+Author: Claudio Arseni <claudio.arseni@gmail.com>
+Date:   Sat Sep 18 17:05:07 2010 +0200
+
+    [l10n] Updated Italian translation
+
+ po/it.po |  953 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 501 insertions(+), 452 deletions(-)
+
+commit 29a351612366d9508294d4d0ddcb61e31a2bae4f
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Wed Sep 15 23:40:31 2010 +0200
+
+    Updated Polish translation
+
+ po/pl.po |  938 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 501 insertions(+), 437 deletions(-)
+
+commit bf2f956cb81054dcb51583b113cd1dcd606a07be
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Mon Sep 13 21:46:16 2010 +0200
+
+    Updated Swedish translation
+
+ po/sv.po |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit cbf1e13426eaa1bb403065539ff59575bb558091
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sun Sep 5 22:48:55 2010 +0300
+
+    Updated Lithuanian translation
+
+ po/lt.po |  999 +++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 540 insertions(+), 459 deletions(-)
+
+commit e2e0de26592ae2562a3f91094f8fb38f930ae7bc
+Author: Duarte Loreto <happyguy_pt@hotmail.com>
+Date:   Sat Sep 4 23:43:24 2010 +0100
+
+    Updated Portuguese translation
+
+ po/pt.po |  951 +++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 514 insertions(+), 437 deletions(-)
+
+commit ae7dd9dbb2c8036018b4a8a557e035a80476d3ac
+Author: chpe <chpe@gnome.org>
+Date:   Sat Sep 4 22:50:01 2010 +0200
+
+    Ignore chdir return value here
+
+ src/terminal-screen.c |    2 +-
+ src/terminal.c        |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit b0585b996cb92e40badff0b33306f1ae57499ed3
+Author: Christian Kirbach <Christian.Kirbach@googlemail.com>
+Date:   Sat Sep 4 16:16:55 2010 +0200
+
+    [l10n] Updated German translation
+
+ po/de.po |  725 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 363 insertions(+), 362 deletions(-)
+
+commit f60bc8328ae55f30a704e05da730e2ffeac487d8
+Author: Shushi Kurose <md81bird@hitaki.net>
+Date:   Sat Sep 4 18:10:55 2010 +0900
+
+    Updated Japanese translation.
+
+ po/ja.po |  391 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 196 insertions(+), 195 deletions(-)
+
+commit 394a76f41e55ee1e3026744b8a3e7c84997f8f29
+Author: drtv <vasudeven@git.gnome.org>
+Date:   Fri Sep 3 19:58:24 2010 +0530
+
+    Updated Tamil translation
+
+ po/ta.po |  370 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 185 insertions(+), 185 deletions(-)
+
+commit b948eed15b81bf87939d41d7c71ffff900e23a08
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Sep 3 13:58:32 2010 +0200
+
+    Fix some compiler warnings
+
+ src/terminal.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 95a9a8d7f809c4d8af6f0fa1cd8b2fe2739e3f97
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Dec 4 00:10:06 2009 +0100
+
+    Make this data static
+
+ src/eggshell.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 974c42c270ea0472febeedf6dc7e73b0a36d9d9a
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Fri Sep 3 01:26:25 2010 +0200
+
+    Updated Swedish translation
+
+ po/sv.po |  993 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 527 insertions(+), 466 deletions(-)
+
+commit 9113a38a6980c20e03e55e3cee8bc8b1e02ca180
+Author: Michael Kotsarinis <mk73628@gmail.com>
+Date:   Tue Aug 31 23:17:10 2010 +0300
+
+    l10n: Updated Greek translation for gnome-terminal
+
+ po/el.po |  954 +++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 516 insertions(+), 438 deletions(-)
+
+commit 83a15fc3dd437d291bcd6df792e146d0db40a1bd
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   Tue Aug 31 09:50:29 2010 +0100
+
+    Update British English translation
+
+ po/en_GB.po |  936 +++++++++++++++++++++++++++++++++--------------------------
+ 1 files changed, 518 insertions(+), 418 deletions(-)
+
+commit 65e7c40005026be81fc84d23af6637c19385e592
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Tue Aug 31 08:17:00 2010 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 62bbd2cd4be01ba6b02e5421f8b466eed9b46ad9
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Sun Aug 29 20:27:13 2010 +0200
+
+    Updated Hungarian translation
+
+ po/hu.po |  454 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 218 insertions(+), 236 deletions(-)
+
+commit 3feebe5a1c4aa9970141e0d4154ec0855c643039
+Author: Милош Поповић <gpopac@gmail.com>
+Date:   Sun Aug 29 20:49:15 2010 +0200
+
+    Updated Serbian translation
+
+ po/sr.po       |  913 ++++++++++++++++++++++++++++++--------------------------
+ po/sr@latin.po |  886 ++++++++++++++++++++++++++++++------------------------
+ 2 files changed, 992 insertions(+), 807 deletions(-)
+
+commit ecc7e84c4e6d360b0fd128f1a7229cafd9223f72
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sun Aug 29 13:58:41 2010 +0200
 
@@ -6,6 +255,24 @@ Date:   Sun Aug 29 13:58:41 2010 +0200
 
  configure.ac |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit f28e434ef183779951714905b73238d210ccef4d
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Fri Aug 27 18:57:17 2010 +0300
+
+    [l10n] Updated Estonian translation
+
+ po/et.po |   20 ++++++++++----------
+ 1 files changed, 10 insertions(+), 10 deletions(-)
+
+commit 2ff06f7ea3d5873798e2da7ec1eb865d11af1fa3
+Author: Bruno Brouard <annoa.b@gmail.com>
+Date:   Thu Aug 26 14:57:24 2010 +0200
+
+    Updated French translation
+
+ po/fr.po |  268 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 133 insertions(+), 135 deletions(-)
 
 commit 538d91d91171399d4f31c70de62db3db8e15ed23
 Author: Christian Persch <chpe@gnome.org>
