@@ -1,3 +1,44 @@
+2008-01-30  Andre Klapper  <a9016009@gmx.de>
+
+	Bug 511700 – port to gio
+
+	* configure.in:
+	* src/profile-editor.c:
+	* src/terminal-screen.c: Port to gio, cleanup.
+ 
+2008-02-10  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 515587 – Use of explicit suffix in 'Icon' field of application
+	launcher
+
+	* gnome-terminal.desktop.in.in: Drop the png extension from icon name.
+
+2008-02-05  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 514661 – crash launching g-t with specific args
+
+	* src/terminal.c (option_command_callback): Set err to NULL before
+	calling into GError-taking API.
+
+2008-02-05  Christian Persch  <chpe@gnome.org>
+
+	* src/terminal-screen.c: (terminal_screen_class_init),
+	(terminal_screen_dispose), (terminal_screen_finalize): Disconnect from
+	the settings notify on dispose instead of finalise. Possibly fixes the
+	crash in bug #514318.
+
+2008-02-04  Christian Persch  <chpe@gnome.org>
+
+	* gnome-terminal.desktop.in.in: Direct bug-buddy bugs to the BBB component.
+
+2008-01-30  Christian Persch  <chpe@gnome.org>
+
+	* src/Makefile.am: Don't dist the generated schemas file.
+
+2008-01-30  Christian Persch  <chpe@gnome.org>
+
+	=== Release 2.21.90 ===
+
 2008-01-28  Christian Persch  <chpe@gnome.org>
 
 	* src/terminal.c: (terminal_util_set_atk_name_description): 
