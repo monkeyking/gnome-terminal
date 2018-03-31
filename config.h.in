@@ -1,7 +1,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Define if building universal (internal helper macro) */
-#undef AC_APPLE_UNIVERSAL_BUILD
+/* Define to 1 to enable prefs migration from GConf to GSettings */
+#undef ENABLE_MIGRATION
 
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
@@ -17,6 +17,9 @@
 
 /* Define to 1 if you have the `dcgettext' function. */
 #undef HAVE_DCGETTEXT
+
+/* Define to 1 if DConf is version 1.2 */
+#undef HAVE_DCONF_1_2
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
@@ -87,18 +90,3 @@
 
 /* Version number of package */
 #undef VERSION
-
-/* Define if smclient is enabled */
-#undef WITH_SMCLIENT
-
-/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
-   significant byte first (like Motorola and SPARC, unlike Intel). */
-#if defined AC_APPLE_UNIVERSAL_BUILD
-# if defined __BIG_ENDIAN__
-#  define WORDS_BIGENDIAN 1
-# endif
-#else
-# ifndef WORDS_BIGENDIAN
-#  undef WORDS_BIGENDIAN
-# endif
-#endif

@@ -1,34 +1,42 @@
-3.6.1
+3.8.0
 =====
-  * Fix opening http-less URLs (685599)
-  * Translation updates
-
-3.6.0
-=====
- * Documentation updates
+ * Bug fixes
  * Translation updates
 
-3.4.1.1
-=======
- * No changes
-
-3.4.1
-=====
+3.7.91
+======
+ * Rewritten help in mallard (Sindhu S, Ekaterina Gerasimova, Michael Hill)
+ * Bug fixes
  * Translation updates
 
-3.4.0
+3.7.2
 =====
- * Add default encoding profile property (#108711)
- * Works with gtk+ broadway backend
+ * Bug fixes: #691931, #691932, #692021, #691997, #692055, #692148
+ * More bug fixes
  * Translation updates
 
-3.2.0
+3.7.1
 =====
- * Drop GTK 2 support
- * Translation updates
+ * GConf->GSettings migration fixes
+ * Keybindings fixes
+
+3.7.0
+=====
+
+ * Terminal now uses GSettings and DConf instead of GConf. The existing
+   profiles and settings will be automatically migrated from GConf when
+   first running this version.
+ * To make new tabs opened within Terminal have the same same working
+   directory as the current tab, it is necessary for the shell running in the
+   terminal to cooperate. For this, vte installs a bash shell script that you
+   must use in your bash PS1 prompt. For example, you can put this at the end
+   of your ~/.bashrc: export PS1='\[$(__vte_ps1)\]'$PS1
+ * Many bugs fixed
+ * Many translations updated
 
 3.0.0
 =====
+
  * Bugs fixed: http://bugzilla.gnome.org/buglist.cgi?product=gnome-terminal&bug_status=RESOLVED&resolution=FIXED&chfieldfrom=2010-09-27&chfieldto=2011-04-04+23:59:00&chfield=bug_status
  * Translations updates
 

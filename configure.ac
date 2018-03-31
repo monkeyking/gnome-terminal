@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[6])
-m4_define([gt_version_micro],[1])
+m4_define([gt_version_minor],[8])
+m4_define([gt_version_micro],[0])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -18,8 +18,6 @@ GETTEXT_PACKAGE=gnome-terminal
 AC_SUBST([GETTEXT_PACKAGE])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[Gettext package])
 
-AC_C_BIGENDIAN
-
 if test -z "$enable_maintainer_mode"; then
   enable_maintainer_mode=yes
 fi
@@ -32,17 +30,15 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.40.0])
 
-# User documentation
-YELP_HELP_INIT
-
+GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
 
 AM_GLIB_GNU_GETTEXT
 
-GLIB_REQUIRED=2.26.0
-GIO_REQUIRED=2.26.0
-GCONF_REQUIRED=2.31.3
+GLIB_REQUIRED=2.32.0
+GIO_REQUIRED=2.33.2
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
+DCONF_REQUIRED=0.12.0
 
 AC_MSG_CHECKING([which gtk+ version to compile against])
 AC_ARG_WITH([gtk],
@@ -57,9 +53,9 @@ AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
   3.0) GTK_API_VERSION=3.0
-       GTK_REQUIRED=3.0.0
+       GTK_REQUIRED=3.6.0
        VTE_PC_VERSION=-2.90
-       VTE_REQUIRED=0.30.0
+       VTE_REQUIRED=0.34.0
        ;;
 esac
 
@@ -82,79 +78,183 @@ esac
 PKG_CHECK_MODULES([TERM],
   [vte$VTE_PC_VERSION >= $VTE_REQUIRED
    glib-2.0 >= $GLIB_REQUIRED
-   gthread-2.0
    gio-2.0 >= $GIO_REQUIRED
    gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
-   gconf-2.0 >= $GCONF_REQUIRED
    gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
+   dconf >= $DCONF_REQUIRED
+   uuid
    $PLATFORM_DEPS])
 
-# ********
-# smclient
-# ********
+# DConf broke API without changing the pkgconfig name
+AC_MSG_CHECKING([old DConf])
+PKG_CHECK_EXISTS([dconf >= 0.14],[have_old_dconf=no],[have_old_dconf=yes])
+AC_MSG_RESULT([$have_old_dconf])
 
-SMCLIENT_PKGS=
-AC_MSG_CHECKING([which smclient backend to use])
-AC_ARG_WITH([smclient],
-  [AS_HELP_STRING([--with-smclient-backend],[which smclient backend to use (xsmp/win32/quartz)])],
+if test "$have_old_dconf" = "yes"; then
+  AC_DEFINE([HAVE_DCONF_1_2],[1],[Define to 1 if DConf is version 1.2])
+fi
+
+# ****
+# DBus
+# ****
+
+AC_ARG_WITH([dbus-service-dir],
+  [AS_HELP_STRING([--with-dbus-service-dir=PATH],[dbus service file directory])],
+  [dbusservicedir="$withval"],
+  [dbusservicedir='${datadir}/dbus-1/services'])
+AC_SUBST([dbusservicedir])
+
+# *********
+# GSettings
+# *********
+
+GLIB_GSETTINGS
+
+# *************************
+# GConf-GSettings Migration
+# *************************
+
+GCONF_REQUIRED=2.31.3
+
+AC_MSG_CHECKING([whether to build the GConf to GSettings migrator])
+AC_ARG_ENABLE([migration],
+        [AS_HELP_STRING([--disable-migration],[Disable prefs migration from GConf to GSettings])],
+        [],[enable_migration=yes])
+AC_MSG_RESULT([$enable_migration])
+
+if test "$enable_migration" = "yes"; then
+ PKG_CHECK_MODULES([MIGRATOR],[
+   gio-2.0 >= $GIO_REQUIRED
+   vte$VTE_PC_VERSION >= $VTE_REQUIRED
+   gconf-2.0 >= $GCONF_REQUIRED
+   dconf >= $DCONF_REQUIRED
+   uuid])
+  AC_DEFINE([ENABLE_MIGRATION],[1],[Define to 1 to enable prefs migration from GConf to GSettings])
+fi
+
+AM_CONDITIONAL([ENABLE_MIGRATION],[test "$enable_migration" = "yes"])
+
+# ***********
+# Build tools
+# ***********
+
+AC_ARG_VAR([GLIB_GENMARSHAL],[the glib-genmarschal programme])
+AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
+if test -z "$GLIB_GENMARSHAL"; then
+  AC_MSG_ERROR([glib-genmarshal not found])
+fi
+
+AC_ARG_VAR([GLIB_MKENUMS],[the glib-mkenums programme])
+AC_PATH_PROG([GLIB_MKENUMS],[glib-mkenums],[])
+if test -z "$GLIB_MKENUMS"; then
+  AC_MSG_ERROR([glib-mkenums not found])
+fi
+
+AC_ARG_VAR([GLIB_COMPILE_RESOURCES],[the glib-compile-resources programme])
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
+if test -z "$GLIB_COMPILE_RESOURCES"; then
+  AC_MSG_ERROR([glib-compile-resources not found])
+fi
+
+AC_ARG_VAR([GDBUS_CODEGEN],[the gdbus-codegen programme])
+AC_PATH_PROG([GDBUS_CODEGEN],[gdbus-codegen],[])
+if test -z "$GDBUS_CODEGEN"; then
+  AC_MSG_ERROR([gdbus-codegen not found])
+fi
+
+AC_ARG_VAR([XMLLINT],[the xmllint programme])
+AC_PATH_PROG([XMLLINT],[xmllint],[])
+if test -z "$XMLLINT"; then
+  AC_MSG_ERROR([xmllint not found])
+fi
+
+AC_ARG_VAR([DESKTOP_FILE_VALIDATE],[the desktop-file-validate programme])
+AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
+if test -z "$DESKTOP_FILE_VALIDATE"; then
+  AC_MSG_ERROR([desktop-file-validate not found])
+fi
+
+# ******************
+# Nautilus extension
+# ******************
+
+AC_ARG_WITH([nautilus-extension],
+  [AS_HELP_STRING([--without-nautilus-extension],[Disable nautilus extension])],
   [],
-  [case "$GDK_TARGET" in
-    x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
-    win32|quartz) with_smclient=$GDK_TARGET ;;
-    *) with_smclient=no ;;
-   esac])
-AC_MSG_RESULT([$with_smclient])
+  [with_nautilus_extension=no])
 
-if test "$with_smclient" != "no"; then
-  AC_DEFINE([WITH_SMCLIENT],[1],[Define if smclient is enabled])
+if test "$with_nautilus_extension" = "yes"; then
+  NAUTILUS_REQUIRED=3.0.0
+
+  PKG_CHECK_MODULES([NAUTILUS],[
+    libnautilus-extension >= $NAUTILUS_REQUIRED
+    gio-2.0
+    gio-unix-2.0])
+
+  AC_ARG_WITH([nautilus-dir],
+    [AS_HELP_STRING([--with-nautilus-dir=PATH],[Nautilus extensions directory])],
+    [nautilusextensiondir="$withval"],
+    [nautilusextensiondir='${libdir}/nautilus/extensions-3.0'])
+  AC_SUBST([nautilusextensiondir])
+
 fi
 
-if test -n "$SMCLIENT_PKGS"; then
-  PKG_CHECK_MODULES([SMCLIENT],[$SMCLIENT_PKGS])
-  AC_SUBST([SMCLIENT_CFLAGS])
-  AC_SUBST([SMCLIENT_LIBS])
-fi
+AM_CONDITIONAL([WITH_NAUTILUS_EXTENSION],[test "$with_nautilus_extension" = "yes"])
 
-AM_CONDITIONAL([WITH_SMCLIENT],[test "$with_smclient" != "no"])
-AM_CONDITIONAL([WITH_SMCLIENT_XSMP],[test "$with_smclient" = "xsmp"])
-AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
-AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
+# ***********
+# Compilation
+# ***********
 
-# *****
-# GConf
-# *****
-
-AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-
-if test x"$GCONFTOOL" = xno; then
-  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
-fi
-
-AM_GCONF_SOURCE_2
-
-GLIB_GENMARSHAL="$($PKG_CONFIG --variable=glib_genmarshal glib-2.0)"
-AC_SUBST([GLIB_GENMARSHAL])
-GLIB_MKENUMS="$($PKG_CONFIG --variable=glib_mkenums glib-2.0)"
-AC_SUBST([GLIB_MKENUMS])
-
-AC_PATH_PROG([GTK_BUILDER_CONVERT],[gtk-builder-convert],[false])
-
-if test "$GTK_BUILDER_CONVERT" = "false"; then
-  AC_MSG_ERROR([gtk-builder-convert not found])
-fi
-
-case "$with_gtk" in
-  2.0) GTK_BUILDER_CONVERT_FLAGS="" ;;
-  3.0) GTK_BUILDER_CONVERT_FLAGS="--target-version=3.0" ;;
-esac
-
-AC_SUBST([GTK_BUILDER_CONVERT_FLAGS])
+CC_CHECK_FLAGS_APPEND([AM_CFLAGS],[CFLAGS],[ \
+  -pipe \
+  -Waggregate-return \
+  -Wall \
+  -Wcast-align \
+  -Wendif-labels \
+  -Werror=declaration-after-statement \
+  -Werror=format=2 \
+  -Werror=format-nonliteral \
+  -Werror=format-security \
+  -Werror=implicit-function-declaration \
+  -Werror=init-self \
+  -Werror=missing-include-dirs \
+  -Werror=missing-prototypes \
+  -Werror=pointer-arith \
+  -Wextra \
+  -Wfloat-equal \
+  -Wformat-nonliteral \
+  -Wimplicit \
+  -Wlogical-op \
+  -Wmissing-declarations \
+  -Wmissing-include-dirs \
+  -Wmissing-format-attribute \
+  -Wmissing-noreturn \
+  -Wnested-externs \
+  -Wno-missing-field-initializers \
+  -Wno-switch-enum \
+  -Wno-unused-parameter \
+  -Wold-style-definition \
+  -Wpacked \
+  -Wshadow \
+  -Wsign-compare \
+  -Wstrict-aliasing=2 \
+  -Wstrict-prototypes \
+  -Wundef \
+  -Wuninitialized \
+  -Wunsafe-loop-optimizations \
+  -Wwrite-strings \
+  -fno-common \
+  -fdiagnostics-show-option \
+  -fno-strict-aliasing \
+  -fvisibility=hidden \
+  -fstack-protector \
+])
 
 # *************
 # Documentation
 # *************
 
-GNOME_DOC_INIT
+YELP_HELP_INIT
 
 # ****************************
 
@@ -162,8 +262,7 @@ AC_SUBST([TERMINAL_MAJOR_VERSION],[gt_version_major])
 AC_SUBST([TERMINAL_MINOR_VERSION],[gt_version_minor])
 AC_SUBST([TERMINAL_MICRO_VERSION],[gt_version_micro])
 AC_SUBST([TERMINAL_API_VERSION],[gt_api_version])
-
-AC_SUBST([AM_CPPFLAGS],["$AM_CPPFLAGS -DGLIB_DISABLE_DEPRECATION_WARNINGS"])
+AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
@@ -184,9 +283,11 @@ AC_OUTPUT
 echo "
 gnome-terminal-$VERSION:
 
-	prefix:                 ${prefix}
-	source code location:	${srcdir}
-	compiler:		${CC}
-
-        using smclient:         ${with_smclient}
+      prefix:                 ${prefix}
+      source code location:   ${srcdir}
+      compiler:               ${CC}
+      DBus service dir:       ${dbusservicedir}
+      Prefs migration:        ${enable_migration}
+      Nautilus extension:     ${with_nautilus_extension}
+      Nautilus extension dir: ${nautilusextensiondir}
 "

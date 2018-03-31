@@ -2,19 +2,18 @@
  * Copyright © 2001 Havoc Pennington
  * Copyright © 2007, 2008 Christian Persch
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3, or (at your option)
- *  any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope tab_label it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <config.h>
@@ -35,6 +34,7 @@ struct _TerminalTabLabelPrivate
   GtkWidget *label;
   GtkWidget *close_button;
   gboolean bold;
+  GtkPositionType tab_pos;
 };
 
 enum
@@ -78,6 +78,32 @@ sync_tab_label (TerminalScreen *screen,
   gtk_widget_set_tooltip_text (hbox, title);
 }
 
+static void
+notify_tab_pos_cb (GtkNotebook *notebook,
+                   GParamSpec *pspec G_GNUC_UNUSED,
+                   TerminalTabLabel *label)
+{
+  TerminalTabLabelPrivate *priv = label->priv;
+  GtkPositionType pos;
+
+  pos = gtk_notebook_get_tab_pos (notebook);
+  if (pos == priv->tab_pos)
+    return;
+
+  priv->tab_pos = pos;
+
+  switch (pos) {
+    case GTK_POS_LEFT:
+    case GTK_POS_RIGHT:
+      gtk_widget_hide (priv->close_button);
+      break;
+    case GTK_POS_TOP:
+    case GTK_POS_BOTTOM:
+      gtk_widget_show (priv->close_button);
+      break;
+  }
+}
+
 /* public functions */
 
 /* Class implementation */
@@ -86,16 +112,53 @@ static void
 terminal_tab_label_parent_set (GtkWidget *widget,
                                GtkWidget *old_parent)
 {
+  GtkWidget *parent;
   void (* parent_set) (GtkWidget *, GtkWidget *) = GTK_WIDGET_CLASS (terminal_tab_label_parent_class)->parent_set;
+
+  if (GTK_IS_NOTEBOOK (old_parent)) {
+    g_signal_handlers_disconnect_by_func (old_parent, 
+                                          G_CALLBACK (notify_tab_pos_cb), 
+                                          widget);
+  }
 
   if (parent_set)
     parent_set (widget, old_parent);
+
+  parent = gtk_widget_get_parent (widget);
+  if (GTK_IS_NOTEBOOK (parent)) {
+    notify_tab_pos_cb (GTK_NOTEBOOK (parent), NULL, TERMINAL_TAB_LABEL (widget));
+    g_signal_connect (parent, "notify::tab-pos", 
+                      G_CALLBACK (notify_tab_pos_cb), widget);
+  }
+}
+
+static void
+terminal_tab_label_get_preferred_width (GtkWidget *widget,
+                                        int *minimum_width,
+                                        int *natural_width)
+{
+  TerminalTabLabel *tab_label = TERMINAL_TAB_LABEL (widget);
+  TerminalTabLabelPrivate *priv = tab_label->priv;
+
+  if (priv->tab_pos == GTK_POS_LEFT || 
+      priv->tab_pos == GTK_POS_RIGHT) {
+    if (natural_width)
+      *natural_width = 160;
+    if (minimum_width)
+      *minimum_width = 160;
+  }
+  else
+    GTK_WIDGET_CLASS (terminal_tab_label_parent_class)->get_preferred_width (widget, minimum_width, natural_width);
 }
 
 static void
 terminal_tab_label_init (TerminalTabLabel *tab_label)
 {
-  tab_label->priv = TERMINAL_TAB_LABEL_GET_PRIVATE (tab_label);
+  TerminalTabLabelPrivate *priv;
+
+  priv = tab_label->priv = TERMINAL_TAB_LABEL_GET_PRIVATE (tab_label);
+
+  priv->tab_pos = (GtkPositionType) -1; /* invalid */
 }
 
 static GObject *
@@ -152,6 +215,24 @@ terminal_tab_label_finalize (GObject *object)
 }
 
 static void
+terminal_tab_label_get_property (GObject *object,
+                                 guint prop_id,
+                                 GValue *value,
+                                 GParamSpec *pspec)
+{
+  TerminalTabLabel *tab_label = TERMINAL_TAB_LABEL (object);
+
+  switch (prop_id) {
+    case PROP_SCREEN:
+      g_value_set_object (value, terminal_tab_label_get_screen (tab_label));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
 terminal_tab_label_set_property (GObject *object,
                                  guint prop_id,
                                  const GValue *value,
@@ -178,9 +259,11 @@ terminal_tab_label_class_init (TerminalTabLabelClass *klass)
 
   gobject_class->constructor = terminal_tab_label_constructor;
   gobject_class->finalize = terminal_tab_label_finalize;
+  gobject_class->get_property = terminal_tab_label_get_property;
   gobject_class->set_property = terminal_tab_label_set_property;
 
   widget_class->parent_set = terminal_tab_label_parent_set;
+  widget_class->get_preferred_width = terminal_tab_label_get_preferred_width;
 
   signals[CLOSE_BUTTON_CLICKED] =
     g_signal_new (I_("close-button-clicked"),
@@ -197,7 +280,7 @@ terminal_tab_label_class_init (TerminalTabLabelClass *klass)
      PROP_SCREEN,
      g_param_spec_object ("screen", NULL, NULL,
                           TERMINAL_TYPE_SCREEN,
-                          G_PARAM_WRITABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB |
+                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB |
                           G_PARAM_CONSTRUCT_ONLY));
 
   g_type_class_add_private (gobject_class, sizeof (TerminalTabLabelPrivate));
@@ -262,4 +345,18 @@ terminal_tab_label_set_bold (TerminalTabLabel *tab_label,
 
   if (free_list)
     pango_attr_list_unref (attr_list);
+}
+
+/**
+ * terminal_tab_label_get_screen:
+ * @tab_label: a #TerminalTabLabel
+ *
+ * Returns: (transfer none): the #TerminalScreen for @tab_label
+ */
+TerminalScreen *
+terminal_tab_label_get_screen (TerminalTabLabel *tab_label)
+{
+  g_return_val_if_fail (TERMINAL_IS_TAB_LABEL (tab_label), NULL);
+
+  return tab_label->priv->screen;
 }

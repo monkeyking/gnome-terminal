@@ -2,6 +2,8 @@ SUBDIRS = src po help
 
 NULL =
 
+ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
+
 DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-scrollkeeper \
 	--disable-schemas-install \
@@ -12,6 +14,13 @@ desktopdir = $(datadir)/applications
 desktop_in_files = @PACKAGE@.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
+
+desktop-file-validate: $(desktop_DATA)
+	for f in $^; do \
+		$(DESKTOP_FILE_VALIDATE) $$f; \
+	done
+
+check-local: desktop-file-validate
 
 EXTRA_DIST = 			\
 	ChangeLog.pre-2-23	\
@@ -39,11 +48,6 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/mkinstalldirs \
 	`find "$(srcdir)" -type f -name Makefile.in -print` \
 	$(NULL)
-
-# hack from sound-juicer to get around scrollkeeper's leaving a big
-# mess behind.
-distuninstallcheck_listfiles = 	\
-        find -regex '.*/var/scrollkeeper/.*' -prune -or -type f -print
 
 # Build ChangeLog from GIT  history
 ChangeLog:
