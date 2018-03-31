@@ -929,6 +929,15 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
     _terminal_screen_update_scrollbar (screen);
 
   if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_ENCODING))
+    {
+      TerminalEncoding *encoding;
+
+      encoding = terminal_profile_get_property_boxed (profile, TERMINAL_PROFILE_ENCODING);
+      vte_terminal_set_encoding (vte_terminal, terminal_encoding_get_charset (encoding));
+    }
+
+  if (!prop_name ||
       prop_name == I_(TERMINAL_PROFILE_TITLE_MODE) ||
       prop_name == I_(TERMINAL_PROFILE_TITLE))
     {
@@ -1384,15 +1393,14 @@ get_child_environment (TerminalScreen *screen,
   g_hash_table_replace (env_table, g_strdup ("COLORTERM"), g_strdup (EXECUTABLE_NAME));
   
 #ifdef GDK_WINDOWING_X11
-  /* FIXME: moving the tab between windows, or the window between displays will make the next two invalid... */
-  g_hash_table_replace (env_table, g_strdup ("WINDOWID"), 
-                        g_strdup_printf ("%ld", 
-#if GTK_CHECK_VERSION (2, 91, 6)
-                                         GDK_WINDOW_XID (gtk_widget_get_window (window))));
-#else
-                                         GDK_WINDOW_XWINDOW (gtk_widget_get_window (window))));
-#endif
-  g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
+  if (GDK_IS_X11_SCREEN (gtk_widget_get_screen (window)))
+    {
+      /* FIXME: moving the tab between windows, or the window between displays will make the next two invalid... */
+      g_hash_table_replace (env_table, g_strdup ("WINDOWID"),
+			    g_strdup_printf ("%ld",
+					     GDK_WINDOW_XID (gtk_widget_get_window (window))));
+      g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
+    }
 #endif
 
   terminal_util_add_proxy_env (env_table);
