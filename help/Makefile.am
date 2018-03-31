@@ -31,6 +31,8 @@ HELP_FILES = \
 	pref-keyboard-access.page \
 	pref-menubar.page \
 	pref-profiles.page \
+	pref-profile-char-width.page \
+	pref-profile-encoding.page \
 	pref-scrolling.page \
 	pref-tab-window.page \
 	pref-theme.page \
@@ -42,6 +44,6 @@ HELP_FILES = \
 	txt-select-text.page \
 	$(NULL)
 
-HELP_LINGUAS = cs de el es fr gl hu pt_BR ru
+HELP_LINGUAS = cs de el es fi fr gl hu pt_BR ru
 
 -include $(top_srcdir)/git.mk

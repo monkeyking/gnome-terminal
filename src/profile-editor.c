@@ -64,7 +64,17 @@ static const TerminalColorScheme color_schemes[] = {
   { N_("White on black"),
     { 1, 1, 1, 1 },
     { 0, 0, 0, 1 }
-  }
+  },
+  /* Translators: "Solarized" is the name of a colour scheme, "light" can be translated */
+  { N_("Solarized light"),
+    { 0.396078, 0.482352, 0.513725, 1 },
+    { 0.992156, 0.964705, 0.890196, 1 }
+  },
+  /* Translators: "Solarized" is the name of a colour scheme, "dark" can be translated */
+  { N_("Solarized dark"),
+    { 0.513725, 0.580392, 0.588235, 1 },
+    { 0,        0.168627, 0.211764, 1 }
+  },
 };
 
 #define TERMINAL_PALETTE_SIZE (16)
@@ -431,11 +441,21 @@ custom_command_entry_changed_cb (GtkEntry *entry)
 }
 
 static void
+default_size_reset_cb (GtkWidget *button,
+                       GSettings *profile)
+{
+  g_settings_reset (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS_KEY);
+  g_settings_reset (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS_KEY);
+}
+
+static void
 reset_compat_defaults_cb (GtkWidget *button,
                           GSettings *profile)
 {
   g_settings_reset (profile, TERMINAL_PROFILE_DELETE_BINDING_KEY);
   g_settings_reset (profile, TERMINAL_PROFILE_BACKSPACE_BINDING_KEY);
+  g_settings_reset (profile, TERMINAL_PROFILE_ENCODING_KEY);
+  g_settings_reset (profile, TERMINAL_PROFILE_CJK_UTF8_AMBIGUOUS_WIDTH_KEY);
 }
 
 /*
@@ -464,6 +484,51 @@ init_color_scheme_menu (GtkWidget *widget)
   renderer = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (widget), renderer, TRUE);
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (widget), renderer, "text", 0, NULL);
+}
+
+enum {
+  ENCODINGS_COLUMN_ID,
+  ENCODINGS_COLUMN_MARKUP
+};
+
+static void
+init_encodings_combo (GtkWidget *widget)
+{
+  GtkCellRenderer *renderer;
+  GHashTableIter ht_iter;
+  gpointer key, value;
+  gs_unref_object GtkListStore *store;
+
+  store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+
+  g_hash_table_iter_init (&ht_iter, terminal_app_get_encodings (terminal_app_get ()));
+  while (g_hash_table_iter_next (&ht_iter, &key, &value)) {
+    TerminalEncoding *encoding = value;
+    GtkTreeIter iter;
+    gs_free char *name;
+
+    name = g_markup_printf_escaped ("%s <span size=\"small\">%s</span>",
+                                    terminal_encoding_get_charset (encoding),
+                                    encoding->name);
+    gtk_list_store_insert_with_values (store, &iter, -1,
+                                       ENCODINGS_COLUMN_MARKUP, name,
+                                       ENCODINGS_COLUMN_ID, terminal_encoding_get_charset (encoding),
+                                       -1);
+  }
+
+  /* Now turn on sorting */
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
+                                        ENCODINGS_COLUMN_MARKUP,
+                                        GTK_SORT_ASCENDING);
+
+  gtk_combo_box_set_id_column (GTK_COMBO_BOX (widget), ENCODINGS_COLUMN_ID);
+  gtk_combo_box_set_model (GTK_COMBO_BOX (widget), GTK_TREE_MODEL (store));
+
+  /* Cell renderer */
+  renderer = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (widget), renderer, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (widget), renderer,
+                                  "markup", ENCODINGS_COLUMN_MARKUP, NULL);
 }
 
 static void
@@ -754,6 +819,11 @@ terminal_profile_edit (GSettings  *profile,
   gtk_label_set_text (GTK_LABEL (gtk_builder_get_object (builder, "profile-uuid")),
                       uuid);
 
+  g_signal_connect (gtk_builder_get_object  (builder, "default-size-reset-button"),
+                    "clicked",
+                    G_CALLBACK (default_size_reset_cb),
+                    profile);
+
   w = (GtkWidget *) gtk_builder_get_object  (builder, "color-scheme-combobox");
   init_color_scheme_menu (w);
 
@@ -851,7 +921,7 @@ terminal_profile_edit (GSettings  *profile,
                                 G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET,
                                 (GSettingsBindGetMapping) string_to_enum,
                                 (GSettingsBindSetMapping) enum_to_string,
-                                vte_terminal_erase_binding_get_type, NULL);
+                                vte_erase_binding_get_type, NULL);
   g_settings_bind (profile, TERMINAL_PROFILE_BOLD_COLOR_SAME_AS_FG_KEY,
                    gtk_builder_get_object (builder,
                                            "bold-color-same-as-fg-checkbox"),
@@ -878,7 +948,7 @@ terminal_profile_edit (GSettings  *profile,
                                 G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET,
                                 (GSettingsBindGetMapping) string_to_enum,
                                 (GSettingsBindSetMapping) enum_to_string,
-                                vte_terminal_cursor_shape_get_type, NULL);
+                                vte_cursor_shape_get_type, NULL);
   g_settings_bind (profile, TERMINAL_PROFILE_CUSTOM_COMMAND_KEY,
                    gtk_builder_get_object (builder, "custom-command-entry"),
                    "text", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
@@ -901,7 +971,7 @@ terminal_profile_edit (GSettings  *profile,
                                 G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET,
                                 (GSettingsBindGetMapping) string_to_enum,
                                 (GSettingsBindSetMapping) enum_to_string,
-                                vte_terminal_erase_binding_get_type, NULL);
+                                vte_erase_binding_get_type, NULL);
   g_settings_bind_with_mapping (profile, TERMINAL_PROFILE_EXIT_ACTION_KEY,
                                 gtk_builder_get_object (builder,
                                                         "exit-action-combobox"),
@@ -937,8 +1007,10 @@ terminal_profile_edit (GSettings  *profile,
                    "value", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
   g_settings_bind (profile, TERMINAL_PROFILE_SCROLLBACK_UNLIMITED_KEY,
                    gtk_builder_get_object (builder,
-                                           "scrollback-unlimited-checkbutton"),
-                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+                                           "scrollback-limited-checkbutton"),
+                   "active",
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET |
+                   G_SETTINGS_BIND_INVERT_BOOLEAN);
   g_settings_bind (profile, TERMINAL_PROFILE_SCROLLBACK_UNLIMITED_KEY,
                    gtk_builder_get_object (builder,
                                            "scrollback-box"),
@@ -965,11 +1037,10 @@ terminal_profile_edit (GSettings  *profile,
                    "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
   g_settings_bind (profile, TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY,
                    gtk_builder_get_object (builder,
-                                           "system-font-checkbutton"),
-                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
-  g_settings_bind (profile, TERMINAL_PROFILE_TITLE_KEY,
-                   gtk_builder_get_object (builder, "title-entry"), "text",
-                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+                                           "custom-font-checkbutton"),
+                   "active",
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET |
+                   G_SETTINGS_BIND_INVERT_BOOLEAN);
   g_settings_bind (profile, TERMINAL_PROFILE_UPDATE_RECORDS_KEY,
                    gtk_builder_get_object (builder,
                                            "update-records-checkbutton"),
@@ -978,17 +1049,10 @@ terminal_profile_edit (GSettings  *profile,
                    gtk_builder_get_object (builder,
                                            "use-custom-command-checkbutton"),
                    "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
-  g_settings_bind (profile, TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE_KEY,
-                   gtk_builder_get_object (builder,
-                                           "use-custom-default-size-checkbutton"),
-                   "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
   g_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_COLORS_KEY,
                    gtk_builder_get_object (builder,
                                            "use-theme-colors-checkbutton"),
                    "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
-  g_settings_bind (profile, TERMINAL_PROFILE_WORD_CHARS_KEY,
-                   gtk_builder_get_object (builder, "word-chars-entry"),
-                   "text", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
   g_settings_bind (profile, TERMINAL_PROFILE_AUDIBLE_BELL_KEY,
                    gtk_builder_get_object (builder, "bell-checkbutton"),
                    "active",
@@ -1001,15 +1065,10 @@ terminal_profile_edit (GSettings  *profile,
                    G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
   g_settings_bind (profile,
                    TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY,
-                   gtk_builder_get_object (builder, "font-hbox"),
+                   gtk_builder_get_object (builder, "font-selector"),
                    "sensitive",
                    G_SETTINGS_BIND_GET | G_SETTINGS_BIND_INVERT_BOOLEAN |
                    G_SETTINGS_BIND_NO_SENSITIVITY);
-  g_settings_bind (profile,
-                   TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE_KEY,
-                   gtk_builder_get_object (builder, "default-size-hbox"),
-                   "sensitive",
-                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
   g_settings_bind (profile,
                    TERMINAL_PROFILE_USE_THEME_COLORS_KEY,
                    gtk_builder_get_object (builder, "colors-box"),
@@ -1026,6 +1085,21 @@ terminal_profile_edit (GSettings  *profile,
                    gtk_builder_get_object (builder, "rewrap-on-resize-checkbutton"),
                    "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
+  /* Compatibility options */
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "encoding-combobox");
+  init_encodings_combo (w);
+  g_settings_bind (profile,
+                   TERMINAL_PROFILE_ENCODING_KEY,
+                   w,
+                   "active-id", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+  w = (GtkWidget *) gtk_builder_get_object  (builder, "cjk-ambiguous-width-combobox");
+  g_settings_bind (profile, TERMINAL_PROFILE_CJK_UTF8_AMBIGUOUS_WIDTH_KEY,
+                   w,
+                   "active-id",
+                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+  /* Finished! */
   terminal_util_bind_mnemonic_label_sensitivity (editor);
 
   terminal_util_dialog_focus_widget (editor, widget_name);
