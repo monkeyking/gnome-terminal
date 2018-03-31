@@ -1034,7 +1034,7 @@ get_goption_context (TerminalOptions *options)
       0,
       G_OPTION_ARG_CALLBACK,
       option_geometry_callback,
-      N_("Set the window geometry from the provided X geometry specification; see the \"X\" man page for more information"),
+      N_("Set the window size; for example: 80x24, or 80x24+200+200 (ROWSxCOLS+X+Y)"),
       N_("GEOMETRY")
     },
     {
@@ -1101,7 +1101,7 @@ get_goption_context (TerminalOptions *options)
       0,
       G_OPTION_ARG_CALLBACK,
       option_zoom_callback,
-      N_("Set the terminalx's zoom factor (1.0 = normal size)"),
+      N_("Set the terminal's zoom factor (1.0 = normal size)"),
       N_("ZOOM")
     },
     { NULL, 0, 0, 0, NULL, NULL, NULL }

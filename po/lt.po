@@ -10,21 +10,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-07 12:47+0300\n"
+"POT-Creation-Date: 2009-09-07 11:41+0300\n"
 "PO-Revision-Date: 2009-09-07 11:46+0300\n"
 "Last-Translator: Gintautas Miliauskas <gintautas@miliauskas.lt>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.4.0\n"
 
 #: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:119
 #: ../src/terminal-accels.c:222 ../src/terminal.c:304
-#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1884
+#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1890
 msgid "Terminal"
 msgstr "Terminalas"
 
@@ -1491,7 +1491,7 @@ msgstr "Sumažinti"
 msgid "Normal Size"
 msgstr "Normalus dydis"
 
-#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3462
+#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3374
 msgid "Set Title"
 msgstr "Nustatyti pavadinimą"
 
@@ -1647,12 +1647,12 @@ msgstr ""
 msgid "Choose base profile"
 msgstr "Pasirinkite pagrindinį profilį"
 
-#: ../src/terminal-app.c:1789
+#: ../src/terminal-app.c:1794
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr "Nėra profilio „%s“, naudojamas numatytasis profilis\n"
 
-#: ../src/terminal-app.c:1813
+#: ../src/terminal-app.c:1818
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Klaidingas geometrijos aprašymas „%s“\n"
@@ -1667,12 +1667,12 @@ msgid "Failed to parse arguments: %s\n"
 msgstr "Nepavyko apdoroti argumentų: %s\n"
 
 #. Incompatible factory version, fall back, to new instance
-#: ../src/terminal.c:427
+#: ../src/terminal.c:423
 #, c-format
 msgid "Incompatible factory version; creating a new instance.\n"
 msgstr "Nesuderinama gamyklos versija; kuriamas naujas egzempliorius.\n"
 
-#: ../src/terminal.c:433
+#: ../src/terminal.c:429
 #, c-format
 msgid "Factory error: %s\n"
 msgstr "Gamyklos klaida: %s\n"
@@ -1841,7 +1841,7 @@ msgstr ""
 "Ši gnome-terminal versija nebepalaiko nustatymo „%s“. Derėtų sukurti profilį "
 "su šiuo nustatymu ir pasinaudoti naujuoju „--profile“ parametru\n"
 
-#: ../src/terminal-options.c:188 ../src/terminal-window.c:3683
+#: ../src/terminal-options.c:188 ../src/terminal-window.c:3595
 msgid "GNOME Terminal"
 msgstr "GNOME terminalas"
 
@@ -2038,11 +2038,11 @@ msgstr "Rodyti terminalo nustatymus"
 msgid "Unnamed"
 msgstr "Be pavadinimo"
 
-#: ../src/terminal-screen.c:1276
+#: ../src/terminal-screen.c:1288
 msgid "There was a problem with the command for this terminal"
 msgstr "Terminale iškilo problema su šia komanda"
 
-#: ../src/terminal-screen.c:1585
+#: ../src/terminal-screen.c:1604
 msgid "There was an error creating the child process for this terminal"
 msgstr "Klaida bandant sukurti šio terminalo antrinį procesą"
 
@@ -2101,7 +2101,7 @@ msgstr ""
 #. * _%d is used as the accelerator (with d between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:430
+#: ../src/terminal-window.c:432
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
@@ -2110,190 +2110,190 @@ msgstr "_%d. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:436
+#: ../src/terminal-window.c:438
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1697
+#: ../src/terminal-window.c:1703
 msgid "_File"
 msgstr "_Failas"
 
 #. File menu
-#: ../src/terminal-window.c:1698 ../src/terminal-window.c:1709
-#: ../src/terminal-window.c:1831
+#: ../src/terminal-window.c:1704 ../src/terminal-window.c:1715
+#: ../src/terminal-window.c:1837
 msgid "Open _Terminal"
 msgstr "Naujas _terminalas"
 
-#: ../src/terminal-window.c:1699 ../src/terminal-window.c:1712
-#: ../src/terminal-window.c:1834
+#: ../src/terminal-window.c:1705 ../src/terminal-window.c:1718
+#: ../src/terminal-window.c:1840
 msgid "Open Ta_b"
 msgstr "Nauja _kortelė"
 
-#: ../src/terminal-window.c:1700
+#: ../src/terminal-window.c:1706
 msgid "_Edit"
 msgstr "K_eisti"
 
-#: ../src/terminal-window.c:1701
+#: ../src/terminal-window.c:1707
 msgid "_View"
 msgstr "R_odymas"
 
-#: ../src/terminal-window.c:1702
+#: ../src/terminal-window.c:1708
 msgid "_Terminal"
 msgstr "_Terminalas"
 
-#: ../src/terminal-window.c:1703
+#: ../src/terminal-window.c:1709
 msgid "Ta_bs"
 msgstr "_Kortelės"
 
-#: ../src/terminal-window.c:1704
+#: ../src/terminal-window.c:1710
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/terminal-window.c:1715
+#: ../src/terminal-window.c:1721
 msgid "New _Profile…"
 msgstr "Naujas _profilis…"
 
-#: ../src/terminal-window.c:1718 ../src/terminal-window.c:1840
+#: ../src/terminal-window.c:1724 ../src/terminal-window.c:1846
 msgid "C_lose Tab"
 msgstr "Už_verti kortelę"
 
-#: ../src/terminal-window.c:1721
+#: ../src/terminal-window.c:1727
 msgid "_Close Window"
 msgstr "_Užverti langą"
 
-#: ../src/terminal-window.c:1732 ../src/terminal-window.c:1828
+#: ../src/terminal-window.c:1738 ../src/terminal-window.c:1834
 msgid "Paste _Filenames"
 msgstr "Įdėti _failų vardus"
 
-#: ../src/terminal-window.c:1738
+#: ../src/terminal-window.c:1744
 msgid "P_rofiles…"
 msgstr "P_rofiliai…"
 
-#: ../src/terminal-window.c:1741
+#: ../src/terminal-window.c:1747
 msgid "_Keyboard Shortcuts…"
 msgstr "_Spartieji klavišai…"
 
-#: ../src/terminal-window.c:1744
+#: ../src/terminal-window.c:1750
 msgid "Pr_ofile Preferences"
 msgstr "Profilio _nustatymai"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1760
+#: ../src/terminal-window.c:1766
 msgid "Change _Profile"
 msgstr "_Pakeisti profilį"
 
-#: ../src/terminal-window.c:1761
+#: ../src/terminal-window.c:1767
 msgid "_Set Title…"
 msgstr "_Nustatyti pavadinimą…"
 
-#: ../src/terminal-window.c:1764
+#: ../src/terminal-window.c:1770
 msgid "Set _Character Encoding"
 msgstr "N_ustatyti simbolių koduotę"
 
-#: ../src/terminal-window.c:1765
+#: ../src/terminal-window.c:1771
 msgid "_Reset"
 msgstr "_Atstatyti"
 
-#: ../src/terminal-window.c:1768
+#: ../src/terminal-window.c:1774
 msgid "Reset and C_lear"
 msgstr "Atstatyti ir išva_lyti"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1773
+#: ../src/terminal-window.c:1779
 msgid "_Add or Remove…"
 msgstr "_Pridėti arba pašalinti..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1778
+#: ../src/terminal-window.c:1784
 msgid "_Previous Tab"
 msgstr "_Ankstesnė kortelė"
 
-#: ../src/terminal-window.c:1781
+#: ../src/terminal-window.c:1787
 msgid "_Next Tab"
 msgstr "_Kita kortelė"
 
-#: ../src/terminal-window.c:1784
+#: ../src/terminal-window.c:1790
 msgid "Move Tab _Left"
 msgstr "Perkelti kortelę kai_rėn"
 
-#: ../src/terminal-window.c:1787
+#: ../src/terminal-window.c:1793
 msgid "Move Tab _Right"
 msgstr "Perkelti kortelę _dešinėn"
 
-#: ../src/terminal-window.c:1790
+#: ../src/terminal-window.c:1796
 msgid "_Detach tab"
 msgstr "Atka_binti kortelę"
 
 #. Help menu
-#: ../src/terminal-window.c:1795
+#: ../src/terminal-window.c:1801
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: ../src/terminal-window.c:1798
+#: ../src/terminal-window.c:1804
 msgid "_About"
 msgstr "_Apie"
 
 #. Popup menu
-#: ../src/terminal-window.c:1803
+#: ../src/terminal-window.c:1809
 msgid "_Send Mail To…"
 msgstr "_Siųsti laišką…"
 
-#: ../src/terminal-window.c:1806
+#: ../src/terminal-window.c:1812
 msgid "_Copy E-mail Address"
 msgstr "_Kopijuoti el.pašto adresą"
 
-#: ../src/terminal-window.c:1809
+#: ../src/terminal-window.c:1815
 msgid "C_all To…"
 msgstr "_Skambinti…"
 
-#: ../src/terminal-window.c:1812
+#: ../src/terminal-window.c:1818
 msgid "_Copy Call Address"
 msgstr "_Kopijuoti skambučio adresą"
 
-#: ../src/terminal-window.c:1815
+#: ../src/terminal-window.c:1821
 msgid "_Open Link"
 msgstr "_Atverti nuorodą"
 
-#: ../src/terminal-window.c:1818
+#: ../src/terminal-window.c:1824
 msgid "_Copy Link Address"
 msgstr "_Kopijuoti nuorodos adresą"
 
-#: ../src/terminal-window.c:1821
+#: ../src/terminal-window.c:1827
 msgid "P_rofiles"
 msgstr "P_rofiliai"
 
-#: ../src/terminal-window.c:1837 ../src/terminal-window.c:3111
+#: ../src/terminal-window.c:1843 ../src/terminal-window.c:3023
 msgid "C_lose Window"
 msgstr "_Užverti langą"
 
-#: ../src/terminal-window.c:1843
+#: ../src/terminal-window.c:1849
 msgid "L_eave Full Screen"
 msgstr "_Palikti visą ekraną"
 
-#: ../src/terminal-window.c:1846
+#: ../src/terminal-window.c:1852
 msgid "_Input Methods"
 msgstr "Įved_imo metodai"
 
 #. View Menu
-#: ../src/terminal-window.c:1852
+#: ../src/terminal-window.c:1858
 msgid "Show _Menubar"
 msgstr "Rodyti _meniu"
 
-#: ../src/terminal-window.c:1856
+#: ../src/terminal-window.c:1862
 msgid "_Full Screen"
 msgstr "_Visame ekrane"
 
-#: ../src/terminal-window.c:3098
+#: ../src/terminal-window.c:3010
 msgid "Close this window?"
 msgstr "Užverti langą?"
 
-#: ../src/terminal-window.c:3098
+#: ../src/terminal-window.c:3010
 msgid "Close this terminal?"
 msgstr "Užverti terminalą?"
 
-#: ../src/terminal-window.c:3102
+#: ../src/terminal-window.c:3014
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
@@ -2301,7 +2301,7 @@ msgstr ""
 "Yra procesų, veikiančių šio lango terminaluose. Jei uždarysite langą, jie "
 "visi bus nutraukti."
 
-#: ../src/terminal-window.c:3106
+#: ../src/terminal-window.c:3018
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2309,23 +2309,23 @@ msgstr ""
 "Šiame terminale vis dar veikia procesas. Jei uždarysite terminalą, jis bus "
 "nutrauktas."
 
-#: ../src/terminal-window.c:3111
+#: ../src/terminal-window.c:3023
 msgid "C_lose Terminal"
 msgstr "_Užverti terminalą"
 
-#: ../src/terminal-window.c:3479
+#: ../src/terminal-window.c:3391
 msgid "_Title:"
 msgstr "_Pavadinimas:"
 
-#: ../src/terminal-window.c:3666
+#: ../src/terminal-window.c:3578
 msgid "Contributors:"
 msgstr "Pagalbininkai:"
 
-#: ../src/terminal-window.c:3685
+#: ../src/terminal-window.c:3597
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "Terminalo emuliatorius GNOME darbo aplinkai"
 
-#: ../src/terminal-window.c:3692
+#: ../src/terminal-window.c:3604
 msgid "translator-credits"
 msgstr ""
 "Paskutinysis vertėjas:\n"

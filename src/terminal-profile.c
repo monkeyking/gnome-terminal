@@ -54,9 +54,13 @@ enum
   PROP_BACKGROUND_IMAGE_FILE,
   PROP_BACKGROUND_TYPE,
   PROP_BACKSPACE_BINDING,
+  PROP_BOLD_COLOR,
+  PROP_BOLD_COLOR_SAME_AS_FG,
   PROP_CURSOR_BLINK_MODE,
   PROP_CURSOR_SHAPE,
   PROP_CUSTOM_COMMAND,
+  PROP_DEFAULT_SIZE_COLUMNS,
+  PROP_DEFAULT_SIZE_ROWS,
   PROP_DEFAULT_SHOW_MENUBAR,
   PROP_DELETE_BINDING,
   PROP_EXIT_ACTION,
@@ -67,6 +71,7 @@ enum
   PROP_PALETTE,
   PROP_SCROLL_BACKGROUND,
   PROP_SCROLLBACK_LINES,
+  PROP_SCROLLBACK_UNLIMITED,
   PROP_SCROLLBAR_POSITION,
   PROP_SCROLL_ON_KEYSTROKE,
   PROP_SCROLL_ON_OUTPUT,
@@ -89,10 +94,14 @@ enum
 #define KEY_BACKGROUND_IMAGE_FILE "background_image"
 #define KEY_BACKGROUND_TYPE "background_type"
 #define KEY_BACKSPACE_BINDING "backspace_binding"
+#define KEY_BOLD_COLOR "bold_color"
+#define KEY_BOLD_COLOR_SAME_AS_FG "bold_color_same_as_fg"
 #define KEY_CURSOR_BLINK_MODE "cursor_blink_mode"
 #define KEY_CURSOR_SHAPE "cursor_shape"
 #define KEY_CUSTOM_COMMAND "custom_command"
 #define KEY_DEFAULT_SHOW_MENUBAR "default_show_menubar"
+#define KEY_DEFAULT_SIZE_COLUMNS "default_size_columns"
+#define KEY_DEFAULT_SIZE_ROWS "default_size_rows"
 #define KEY_DELETE_BINDING "delete_binding"
 #define KEY_EXIT_ACTION "exit_action"
 #define KEY_FONT "font"
@@ -101,6 +110,7 @@ enum
 #define KEY_PALETTE "palette"
 #define KEY_SCROLL_BACKGROUND "scroll_background"
 #define KEY_SCROLLBACK_LINES "scrollback_lines"
+#define KEY_SCROLLBACK_UNLIMITED "scrollback_unlimited"
 #define KEY_SCROLLBAR_POSITION "scrollbar_position"
 #define KEY_SCROLL_ON_KEYSTROKE "scroll_on_keystroke"
 #define KEY_SCROLL_ON_OUTPUT "scroll_on_output"
@@ -118,6 +128,7 @@ enum
 /* Keep these in sync with the GConf schema! */
 #define DEFAULT_ALLOW_BOLD            (TRUE)
 #define DEFAULT_BACKGROUND_COLOR      ("#FFFFDD")
+#define DEFAULT_BOLD_COLOR_SAME_AS_FG (TRUE)
 #define DEFAULT_BACKGROUND_DARKNESS   (0.5)
 #define DEFAULT_BACKGROUND_IMAGE_FILE ("")
 #define DEFAULT_BACKGROUND_IMAGE      (NULL)
@@ -127,6 +138,8 @@ enum
 #define DEFAULT_CURSOR_SHAPE          (VTE_CURSOR_SHAPE_BLOCK)
 #define DEFAULT_CUSTOM_COMMAND        ("")
 #define DEFAULT_DEFAULT_SHOW_MENUBAR  (TRUE)
+#define DEFAULT_DEFAULT_SIZE_COLUMNS  (80)
+#define DEFAULT_DEFAULT_SIZE_ROWS     (24)
 #define DEFAULT_DELETE_BINDING        (VTE_ERASE_DELETE_SEQUENCE)
 #define DEFAULT_EXIT_ACTION           (TERMINAL_EXIT_CLOSE)
 #define DEFAULT_FONT                  ("Monospace 12")
@@ -136,6 +149,7 @@ enum
 #define DEFAULT_PALETTE               (terminal_palettes[TERMINAL_PALETTE_TANGO])
 #define DEFAULT_SCROLL_BACKGROUND     (TRUE)
 #define DEFAULT_SCROLLBACK_LINES      (512)
+#define DEFAULT_SCROLLBACK_UNLIMITED  (FALSE)
 #define DEFAULT_SCROLLBAR_POSITION    (TERMINAL_SCROLLBAR_RIGHT)
 #define DEFAULT_SCROLL_ON_KEYSTROKE   (TRUE)
 #define DEFAULT_SCROLL_ON_OUTPUT      (FALSE)
@@ -380,7 +394,7 @@ values_equal (GParamSpec *pspec,
 
   if (g_param_values_cmp (pspec, va, vb) == 0)
     return TRUE;
-  
+
   if (G_PARAM_SPEC_VALUE_TYPE (pspec) == GDK_TYPE_COLOR)
     return gdk_color_equal (g_value_get_boxed (va), g_value_get_boxed (vb));
 
@@ -483,6 +497,7 @@ terminal_profile_reset_property_internal (TerminalProfile *profile,
   switch (pspec->param_id)
     {
       case PROP_FOREGROUND_COLOR:
+      case PROP_BOLD_COLOR:
         g_value_set_boxed (value, &DEFAULT_FOREGROUND_COLOR);
         break;
 
@@ -601,7 +616,7 @@ terminal_profile_gconf_notify_cb (GConfClient *client,
 
       if (!gdk_color_parse (gconf_value_get_string (gconf_value), &color))
         goto out;
-      
+
       g_value_set_boxed (&value, &color);
     }
   else if (G_PARAM_SPEC_VALUE_TYPE (pspec) == PANGO_TYPE_FONT_DESCRIPTION)
@@ -945,6 +960,7 @@ terminal_profile_init (TerminalProfile *profile)
   /* A few properties don't have defaults via the param spec; set them explicitly */
   object_class = G_OBJECT_CLASS (TERMINAL_PROFILE_GET_CLASS (profile));
   terminal_profile_reset_property_internal (profile, g_object_class_find_property (object_class, TERMINAL_PROFILE_FOREGROUND_COLOR), FALSE);
+  terminal_profile_reset_property_internal (profile, g_object_class_find_property (object_class, TERMINAL_PROFILE_BOLD_COLOR), FALSE);
   terminal_profile_reset_property_internal (profile, g_object_class_find_property (object_class, TERMINAL_PROFILE_BACKGROUND_COLOR), FALSE);
   terminal_profile_reset_property_internal (profile, g_object_class_find_property (object_class, TERMINAL_PROFILE_FONT), FALSE);
   terminal_profile_reset_property_internal (profile, g_object_class_find_property (object_class, TERMINAL_PROFILE_PALETTE), FALSE);
@@ -1275,9 +1291,11 @@ terminal_profile_class_init (TerminalProfileClass *klass)
     propGConf)
 
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (ALLOW_BOLD, DEFAULT_ALLOW_BOLD, KEY_ALLOW_BOLD);
+  TERMINAL_PROFILE_PROPERTY_BOOLEAN (BOLD_COLOR_SAME_AS_FG, DEFAULT_BOLD_COLOR_SAME_AS_FG, KEY_BOLD_COLOR_SAME_AS_FG);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (DEFAULT_SHOW_MENUBAR, DEFAULT_DEFAULT_SHOW_MENUBAR, KEY_DEFAULT_SHOW_MENUBAR);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (LOGIN_SHELL, DEFAULT_LOGIN_SHELL, KEY_LOGIN_SHELL);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_BACKGROUND, DEFAULT_SCROLL_BACKGROUND, KEY_SCROLL_BACKGROUND);
+  TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLLBACK_UNLIMITED, DEFAULT_SCROLLBACK_UNLIMITED, KEY_SCROLLBACK_UNLIMITED);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_KEYSTROKE, DEFAULT_SCROLL_ON_KEYSTROKE, KEY_SCROLL_ON_KEYSTROKE);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_OUTPUT, DEFAULT_SCROLL_ON_OUTPUT, KEY_SCROLL_ON_OUTPUT);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SILENT_BELL, DEFAULT_SILENT_BELL, KEY_SILENT_BELL);
@@ -1288,6 +1306,7 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (USE_THEME_COLORS, DEFAULT_USE_THEME_COLORS, KEY_USE_THEME_COLORS);
 
   TERMINAL_PROFILE_PROPERTY_BOXED (BACKGROUND_COLOR, GDK_TYPE_COLOR, KEY_BACKGROUND_COLOR);
+  TERMINAL_PROFILE_PROPERTY_BOXED (BOLD_COLOR, GDK_TYPE_COLOR, KEY_BOLD_COLOR);
   TERMINAL_PROFILE_PROPERTY_BOXED (FONT, PANGO_TYPE_FONT_DESCRIPTION, KEY_FONT);
   TERMINAL_PROFILE_PROPERTY_BOXED (FOREGROUND_COLOR, GDK_TYPE_COLOR, KEY_FOREGROUND_COLOR);
 
@@ -1303,6 +1322,8 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_ENUM (SCROLLBAR_POSITION, TERMINAL_TYPE_SCROLLBAR_POSITION, DEFAULT_SCROLLBAR_POSITION, KEY_SCROLLBAR_POSITION);
   TERMINAL_PROFILE_PROPERTY_ENUM (TITLE_MODE, TERMINAL_TYPE_TITLE_MODE, DEFAULT_TITLE_MODE, KEY_TITLE_MODE);
 
+  TERMINAL_PROFILE_PROPERTY_INT (DEFAULT_SIZE_COLUMNS, 1, 1024, DEFAULT_DEFAULT_SIZE_COLUMNS, KEY_DEFAULT_SIZE_COLUMNS);
+  TERMINAL_PROFILE_PROPERTY_INT (DEFAULT_SIZE_ROWS, 1, 1024, DEFAULT_DEFAULT_SIZE_ROWS, KEY_DEFAULT_SIZE_ROWS);
   TERMINAL_PROFILE_PROPERTY_INT (SCROLLBACK_LINES, 1, G_MAXINT, DEFAULT_SCROLLBACK_LINES, KEY_SCROLLBACK_LINES);
 
   TERMINAL_PROFILE_PROPERTY_OBJECT (BACKGROUND_IMAGE, GDK_TYPE_PIXBUF, NULL);
