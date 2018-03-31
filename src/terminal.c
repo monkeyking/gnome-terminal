@@ -87,6 +87,13 @@ terminal_factory_handle_arguments (TerminalFactory *factory,
 #include "terminal-factory-client.h"
 #include "terminal-factory-server.h"
 
+static GType terminal_factory_get_type (void);
+
+G_DEFINE_TYPE_WITH_CODE (TerminalFactory, terminal_factory, G_TYPE_OBJECT,
+  dbus_g_object_type_install_info (g_define_type_id,
+                                   &dbus_glib_terminal_factory_object_info)
+);
+ 
 static void
 terminal_factory_class_init (TerminalFactoryClass *factory_class)
 {
@@ -97,13 +104,6 @@ terminal_factory_init (TerminalFactory *factory)
 {
 }
 
-static GType terminal_factory_get_type (void);
-
-G_DEFINE_TYPE_WITH_CODE (TerminalFactory, terminal_factory, G_TYPE_OBJECT,
-  dbus_g_object_type_install_info (g_define_type_id,
-                                   &dbus_glib_terminal_factory_object_info)
-);
- 
 /* Settings storage works as follows:
  *   /apps/gnome-terminal/global/
  *   /apps/gnome-terminal/profiles/Foo/
@@ -181,19 +181,18 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
 
 static void
 about_url_hook (GtkAboutDialog *about,
-	        const char *link,
+	        const char *uri,
 	        gpointer user_data)
 {
   GError *error = NULL;
 
   if (!gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (about)),
-                      link,
+                      uri,
                       gtk_get_current_event_time (),
                       &error))
     {
-      terminal_util_show_error_dialog (GTK_WINDOW (about), NULL,
-                                       _("Could not open link: %s"),
-                                       error->message);
+      terminal_util_show_error_dialog (GTK_WINDOW (about), NULL, error,
+                                       "%s", _("Could not open link"));
       g_error_free (error);
     }
 }
@@ -237,8 +236,8 @@ get_factory_name_for_display (const char *display_name)
 }
 
 /* Evil hack alert: this is exported from libgconf-2 but not in a public header */
-extern gboolean gconf_ping_daemon (void);
-         
+extern gboolean gconf_spawn_daemon(GError** err);
+
 int
 main (int argc, char **argv)
 {
@@ -253,6 +252,7 @@ main (int argc, char **argv)
   DBusGProxy *proxy;
   guint32 request_name_ret;
   GError *error = NULL;
+  const char *home_dir;
 
   setlocale (LC_ALL, "");
 
@@ -329,7 +329,7 @@ main (int argc, char **argv)
     {
       g_printerr ("Failed to get the session bus: %s\nFalling back to non-factory mode.\n",
                   error->message);
-      g_error_free (error);
+      g_clear_error (&error);
       goto factory_disabled;
     }
 
@@ -353,7 +353,7 @@ main (int argc, char **argv)
                                           &error))
     {
       g_printerr ("Failed name request: %s\n", error->message);
-      g_error_free (error);
+      g_clear_error (&error);
       goto factory_disabled;
     }
 
@@ -364,7 +364,7 @@ main (int argc, char **argv)
       char **env;
       const char *evalue;
       GPtrArray *env_ptr_array;
-      int i, envc;
+      int envc;
       GArray *working_directory_array, *display_name_array, *startup_id_array;
       GArray *env_array, *argv_array;
       gboolean retval;
@@ -419,7 +419,7 @@ main (int argc, char **argv)
             {
               /* Incompatible factory version, fall back, to new instance */
               g_printerr (_("Incompatible factory version; creating a new instance.\n"));
-              g_error_free (error);
+              g_clear_error (&error);
 
               goto factory_disabled;
             }
@@ -449,10 +449,13 @@ factory_disabled:
   /* If the gconf daemon isn't available (e.g. because there's no dbus
    * session bus running), we'd crash later on. Tell the user about it
    * now, and exit. See bug #561663.
+   * Don't use gconf_ping_daemon() here since the server may just not
+   * be running yet, but able to be started. See comments on bug #564649.
    */
-  if (!gconf_ping_daemon ())
+  if (!gconf_spawn_daemon (&error))
     {
-      g_printerr ("Failed to contact the GConf daemon; exiting.\n");
+      g_printerr ("Failed to summon the GConf demon: %s\n", error->message);
+      g_error_free (error);
       exit (1);
     }
 
@@ -469,7 +472,7 @@ factory_disabled:
                                      "applications",
                                      PACKAGE ".desktop",
                                      NULL);
-    egg_set_desktop_file (desktop_file);
+    egg_set_desktop_file_without_defaults (desktop_file);
     g_free (desktop_file);
   }
 #endif
@@ -480,11 +483,13 @@ factory_disabled:
   terminal_app_handle_options (terminal_app_get (), options, TRUE /* allow resume */, NULL);
   terminal_options_free (options);
 
-  /* Now change directory to / so we don't prevent unmounting, e.g. if the
+  /* Now change directory to $HOME so we don't prevent unmounting, e.g. if the
    * factory is started by nautilus-open-terminal. See bug #565328.
+   * On failure back to /.
    */
-  if (chdir ("/") < 0)
-    g_warning ("Failed to chdir to /: %s", g_strerror (errno));
+  home_dir = g_get_home_dir ();
+  if (home_dir == NULL || chdir (home_dir) < 0)
+    (void) chdir ("/");
 
   gtk_main ();
 
@@ -507,7 +512,7 @@ handle_new_terminal_event (TerminalOptions *options)
 }
 
 static gboolean
-terminal_factory_handle_arguments (TerminalFactory *factory,
+terminal_factory_handle_arguments (TerminalFactory *terminal_factory,
                                    const GArray *working_directory_array,
                                    const GArray *display_name_array,
                                    const GArray *startup_id_array,

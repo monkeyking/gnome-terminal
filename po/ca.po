@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-26 20:02+0200\n"
-"PO-Revision-Date: 2009-05-02 14:42+0200\n"
+"POT-Creation-Date: 2009-04-26 19:22+0200\n"
+"PO-Revision-Date: 2009-05-02 14:40+0200\n"
 "Last-Translator: Joan Duran <jodufi@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:119
 #: ../src/terminal-accels.c:222 ../src/terminal.c:294
-#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1747
+#: ../src/terminal-profile.c:144 ../src/terminal-window.c:1760
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -1546,7 +1546,7 @@ msgstr "Redueix el zoom"
 msgid "Normal Size"
 msgstr "Mida normal"
 
-#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3275
+#: ../src/terminal-accels.c:155 ../src/terminal-window.c:3297
 msgid "Set Title"
 msgstr "Estableix el títol"
 
@@ -1655,16 +1655,16 @@ msgstr "Ajuda"
 msgid "Disabled"
 msgstr "Inhabilitada"
 
-#: ../src/terminal-accels.c:753
+#: ../src/terminal-accels.c:755
 #, c-format
 msgid "The shortcut key “%s” is already bound to the “%s” action"
 msgstr "La tecla de drecera «%s» ja està assignada a l'acció «%s»"
 
-#: ../src/terminal-accels.c:911
+#: ../src/terminal-accels.c:913
 msgid "_Action"
 msgstr "_Acció"
 
-#: ../src/terminal-accels.c:930
+#: ../src/terminal-accels.c:932
 msgid "Shortcut _Key"
 msgstr "_Tecla de drecera"
 
@@ -1697,16 +1697,16 @@ msgid ""
 msgstr ""
 "Ja teniu un perfil anomenat «%s». Voleu crear-ne un altre amb el mateix nom?"
 
-#: ../src/terminal-app.c:1207
+#: ../src/terminal-app.c:1208
 msgid "Choose base profile"
 msgstr "Seleccioneu el perfil base"
 
-#: ../src/terminal-app.c:1766
+#: ../src/terminal-app.c:1771
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr "No existeix el perfil «%s», s'utilitzarà el perfil predeterminat\n"
 
-#: ../src/terminal-app.c:1786
+#: ../src/terminal-app.c:1791
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Cadena geomètrica no vàlida «%s»\n"
@@ -1897,7 +1897,7 @@ msgstr ""
 "Podeu crear un perfil amb la configuració desitjada i utilitzar l'opció nova "
 "«--profile»\n"
 
-#: ../src/terminal-options.c:187 ../src/terminal-window.c:3494
+#: ../src/terminal-options.c:187 ../src/terminal-window.c:3517
 msgid "GNOME Terminal"
 msgstr "Terminal del GNOME"
 
@@ -2099,12 +2099,12 @@ msgstr "Mostra les opcions individuals per terminal"
 msgid "Unnamed"
 msgstr "Sense nom"
 
-#: ../src/terminal-screen.c:1227
+#: ../src/terminal-screen.c:1281
 #, c-format
 msgid "There was a problem with the command for this terminal: %s"
 msgstr "Hi ha un problema amb l'ordre per aquest terminal: %s"
 
-#: ../src/terminal-screen.c:1525
+#: ../src/terminal-screen.c:1585
 msgid "There was an error creating the child process for this terminal"
 msgstr "S'ha produït un error en crear el subprocés per aquest terminal"
 
@@ -2117,12 +2117,12 @@ msgstr "Tanca la pestanya"
 msgid "Switch to this tab"
 msgstr "Canvia a aquesta pestanya"
 
-#: ../src/terminal-util.c:170
+#: ../src/terminal-util.c:168
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "S'ha produït un error en mostrar l'ajuda: %s"
 
-#: ../src/terminal-util.c:242
+#: ../src/terminal-util.c:240
 #, c-format
 msgid ""
 "Could not open the address “%s”:\n"
@@ -2131,7 +2131,7 @@ msgstr ""
 "No s'ha pogut obrir l'adreça «%s»:\n"
 "%s"
 
-#: ../src/terminal-util.c:317
+#: ../src/terminal-util.c:315
 msgid ""
 "GNOME Terminal is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -2143,7 +2143,7 @@ msgstr ""
 "estat publicada per la Free Software Foundation; ja sigui la versió 2 de la "
 "Llicència o bé (si ho preferiu) qualsevol altra versió posterior."
 
-#: ../src/terminal-util.c:321
+#: ../src/terminal-util.c:319
 msgid ""
 "GNOME Terminal is distributed in the hope that it will be useful, but "
 "WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
@@ -2155,7 +2155,7 @@ msgstr ""
 "ADEQUACIÓ PER UN PROPÒSIT PARTICULAR. Vegeu la Llicència Pública General GNU "
 "per obtenir-ne més detalls."
 
-#: ../src/terminal-util.c:325
+#: ../src/terminal-util.c:323
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "GNOME Terminal; if not, write to the Free Software Foundation, Inc., 51 "
@@ -2185,187 +2185,192 @@ msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1570
+#: ../src/terminal-window.c:1580
 msgid "_File"
 msgstr "_Fitxer"
 
 #. File menu
-#: ../src/terminal-window.c:1571 ../src/terminal-window.c:1582
-#: ../src/terminal-window.c:1704
+#: ../src/terminal-window.c:1581 ../src/terminal-window.c:1592
+#: ../src/terminal-window.c:1714
 msgid "Open _Terminal"
 msgstr "Obre un _terminal"
 
-#: ../src/terminal-window.c:1572 ../src/terminal-window.c:1585
-#: ../src/terminal-window.c:1707
+#: ../src/terminal-window.c:1582 ../src/terminal-window.c:1595
+#: ../src/terminal-window.c:1717
 msgid "Open Ta_b"
 msgstr "Obre una _pestanya"
 
-#: ../src/terminal-window.c:1573
+#: ../src/terminal-window.c:1583
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/terminal-window.c:1574
+#: ../src/terminal-window.c:1584
 msgid "_View"
 msgstr "_Visualitza"
 
-#: ../src/terminal-window.c:1575
+#: ../src/terminal-window.c:1585
 msgid "_Terminal"
 msgstr "_Terminal"
 
 #
-#: ../src/terminal-window.c:1576
+#: ../src/terminal-window.c:1586
 msgid "Ta_bs"
 msgstr "_Pestanyes"
 
-#: ../src/terminal-window.c:1577
+#: ../src/terminal-window.c:1587
 msgid "_Help"
 msgstr "A_juda"
 
 #
-#: ../src/terminal-window.c:1588
+#: ../src/terminal-window.c:1598
 msgid "New _Profile…"
 msgstr "_Perfil nou..."
 
-#: ../src/terminal-window.c:1591 ../src/terminal-window.c:1713
+#: ../src/terminal-window.c:1601 ../src/terminal-window.c:1723
 msgid "C_lose Tab"
 msgstr "Tanca la p_estanya"
 
-#: ../src/terminal-window.c:1594 ../src/terminal-window.c:2929
+#: ../src/terminal-window.c:1604
 msgid "_Close Window"
 msgstr "Tanca la _finestra"
 
-#: ../src/terminal-window.c:1605 ../src/terminal-window.c:1701
+#: ../src/terminal-window.c:1615 ../src/terminal-window.c:1711
 msgid "Paste _Filenames"
 msgstr "Enganxa els _noms de fitxers"
 
-#: ../src/terminal-window.c:1611
+#: ../src/terminal-window.c:1621
 msgid "P_rofiles…"
 msgstr "P_erfils..."
 
-#: ../src/terminal-window.c:1614
+#: ../src/terminal-window.c:1624
 msgid "_Keyboard Shortcuts…"
 msgstr "_Dreceres de teclat..."
 
-#: ../src/terminal-window.c:1617
+#: ../src/terminal-window.c:1627
 msgid "Pr_ofile Preferences"
 msgstr "_Preferències del perfil"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1633
+#: ../src/terminal-window.c:1643
 msgid "Change _Profile"
 msgstr "Canvia de _perfil"
 
 #
-#: ../src/terminal-window.c:1634
+#: ../src/terminal-window.c:1644
 msgid "_Set Title…"
 msgstr "_Estableix el títol..."
 
-#: ../src/terminal-window.c:1637
+#: ../src/terminal-window.c:1647
 msgid "Set _Character Encoding"
 msgstr "Estableix la _codificació dels caràcters"
 
-#: ../src/terminal-window.c:1638
+#: ../src/terminal-window.c:1648
 msgid "_Reset"
 msgstr "_Reinicia"
 
-#: ../src/terminal-window.c:1641
+#: ../src/terminal-window.c:1651
 msgid "Reset and C_lear"
 msgstr "Reinicia i _neteja"
 
 #
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1646
+#: ../src/terminal-window.c:1656
 msgid "_Add or Remove…"
 msgstr "_Afegeix o suprimeix..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1651
+#: ../src/terminal-window.c:1661
 msgid "_Previous Tab"
 msgstr "Pestanya _anterior"
 
-#: ../src/terminal-window.c:1654
+#: ../src/terminal-window.c:1664
 msgid "_Next Tab"
 msgstr "Pestanya _següent"
 
 #
-#: ../src/terminal-window.c:1657
+#: ../src/terminal-window.c:1667
 msgid "Move Tab _Left"
 msgstr "Mou la pestanya a l'_esquerra"
 
 #
-#: ../src/terminal-window.c:1660
+#: ../src/terminal-window.c:1670
 msgid "Move Tab _Right"
 msgstr "Mou la pestanya a la _dreta"
 
 #
-#: ../src/terminal-window.c:1663
+#: ../src/terminal-window.c:1673
 msgid "_Detach tab"
 msgstr "_Separa la pestanya"
 
 #. Help menu
-#: ../src/terminal-window.c:1668
+#: ../src/terminal-window.c:1678
 msgid "_Contents"
 msgstr "_Continguts"
 
-#: ../src/terminal-window.c:1671
+#: ../src/terminal-window.c:1681
 msgid "_About"
 msgstr "_Quant a"
 
 #. Popup menu
-#: ../src/terminal-window.c:1676
+#: ../src/terminal-window.c:1686
 msgid "_Send Mail To…"
 msgstr "En_via un correu a..."
 
-#: ../src/terminal-window.c:1679
+#: ../src/terminal-window.c:1689
 msgid "_Copy E-mail Address"
 msgstr "_Copia l'adreça de correu"
 
-#: ../src/terminal-window.c:1682
+#: ../src/terminal-window.c:1692
 msgid "C_all To…"
 msgstr "Truc_a a..."
 
-#: ../src/terminal-window.c:1685
+#: ../src/terminal-window.c:1695
 msgid "_Copy Call Address"
 msgstr "_Copia l'adreça de trucada"
 
-#: ../src/terminal-window.c:1688
+#: ../src/terminal-window.c:1698
 msgid "_Open Link"
 msgstr "_Obre l'enllaç"
 
-#: ../src/terminal-window.c:1691
+#: ../src/terminal-window.c:1701
 msgid "_Copy Link Address"
 msgstr "_Copia l'adreça de l'enllaç"
 
-#: ../src/terminal-window.c:1694
+#: ../src/terminal-window.c:1704
 msgid "P_rofiles"
 msgstr "Pe_rfils"
 
-#: ../src/terminal-window.c:1710
+#: ../src/terminal-window.c:1720 ../src/terminal-window.c:2946
 msgid "C_lose Window"
 msgstr "Tanca la _finestra"
 
-#: ../src/terminal-window.c:1716
+#: ../src/terminal-window.c:1726
+#, fuzzy
+msgid "L_eave Full Screen"
+msgstr "_Pantalla completa"
+
+#: ../src/terminal-window.c:1729
 msgid "_Input Methods"
 msgstr "Mètodes d'_entrada"
 
 #. View Menu
-#: ../src/terminal-window.c:1722
+#: ../src/terminal-window.c:1735
 msgid "Show _Menubar"
 msgstr "Mostra la _barra del menú"
 
-#: ../src/terminal-window.c:1726
+#: ../src/terminal-window.c:1739
 msgid "_Full Screen"
 msgstr "_Pantalla completa"
 
-#: ../src/terminal-window.c:2916
+#: ../src/terminal-window.c:2933
 msgid "Close this terminal?"
 msgstr "Voleu tancar aquest terminal?"
 
-#: ../src/terminal-window.c:2916
+#: ../src/terminal-window.c:2933
 msgid "Close this window?"
 msgstr "Voleu tancar aquesta finestra?"
 
-#: ../src/terminal-window.c:2920
+#: ../src/terminal-window.c:2937
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
@@ -2373,7 +2378,7 @@ msgstr ""
 "Encara s'estan executant processos en alguns terminals d'aquesta finestra. "
 "Si la tanqueu es mataran tots."
 
-#: ../src/terminal-window.c:2924
+#: ../src/terminal-window.c:2941
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
@@ -2381,23 +2386,24 @@ msgstr ""
 "Encara s'està executant un procés en aquest terminal. Si el tanqueu es "
 "matarà aquest procés."
 
-#: ../src/terminal-window.c:2929
-msgid "_Close Terminal"
+#: ../src/terminal-window.c:2946
+#, fuzzy
+msgid "C_lose Terminal"
 msgstr "_Tanca el terminal"
 
-#: ../src/terminal-window.c:3291
+#: ../src/terminal-window.c:3314
 msgid "_Title:"
 msgstr "Tít_ol:"
 
-#: ../src/terminal-window.c:3477
+#: ../src/terminal-window.c:3500
 msgid "Contributors:"
 msgstr "Col·laboradors:"
 
-#: ../src/terminal-window.c:3496
+#: ../src/terminal-window.c:3519
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "Un emulador de terminal per a l'escriptori GNOME"
 
-#: ../src/terminal-window.c:3503
+#: ../src/terminal-window.c:3526
 msgid "translator-credits"
 msgstr ""
 "Nada Nada <qk269@hotmail.com>\n"
