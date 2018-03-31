@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY app "GNOME Terminal">
+<!ENTITY appversion "2.5.90">
+<!ENTITY manrevision "2.8">
+<!ENTITY date "March 2004">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002 
+    
+  -->
+<article id="index" lang="de"> 
+  <articleinfo> 
+     <title>GNOME Terminal Handbuch</title> 
+     <abstract role="description">
+       <para>
+	 User manual for the GNOME Terminal application.
+       </para>
+     </abstract>
+     <copyright> 
+        <year>2002</year> 
+        <year>2003</year> 
+        <year>2004</year> 
+        <holder>Sun Microsystems</holder> 
+     </copyright> 
+     <copyright> 
+        <year>2000</year> 
+        <holder>Miguel de Icaza</holder> 
+     </copyright> 
+     <copyright> 
+        <year>2000</year> 
+        <holder>Michael Zucchi</holder> 
+     </copyright>
+     <copyright> 
+        <year>2000</year> 
+        <holder>Alexander Kirillov</holder> 
+     </copyright><copyright><year>2007</year><holder>Jan Arne Petersen (jap@gnome.org)</holder></copyright>
+     <publisher> 
+        <publishername>GNOME-Dokumentationsprojekt</publishername> 
+     </publisher>    <legalnotice id="legalnotice">
+         <para>Das vorliegende Dokument kann gemäß den Bedingungen der GNU Free Documentation License (GFDL), Version 1.1 oder jeder späteren, von der Free Software Foundation veröffentlichten Version ohne unveränderbare Abschnitte sowie ohne Texte auf dem vorderen und hinteren Buchdeckel kopiert, verteilt und/oder modifiziert werden. Eine Kopie der GFDL finden Sie unter diesem <ulink type="help" url="ghelp:fdl">Link</ulink> oder in der mit diesem Handbuch gelieferten Datei COPYING-DOCs.</para>
+          <para>Das vorliegende Handbuch ist Teil einer Reihe von GNOME-Handbüchern, die unter der GFDL verteilt werden. Wenn Sie dieses Handbuch separat verteilen möchten, können Sie dies tun, indem Sie dem Handbuch eine Kopie der Lizenz, wie in Abschnitt 6 der Lizenz beschrieben, hinzufügen.</para>
+ 
+         <para>Bei vielen der von Firmen zur Unterscheidung ihrer Produkte und Dienstleistungen verwendeten Namen handelt es sich um Marken. An den Stellen, an denen derartige Namen in einer GNOME-Dokumentation vorkommen und wenn die Mitglieder des GNOME Documentation Project über diese Marken informiert wurden, sind die Namen in Grossbuchstaben oder mit großen Anfangsbuchstaben geschrieben.</para>
+ 
+         <para>DAS DOKUMENT UND MODIFIZIERTE VERSIONEN DES DOKUMENTS WERDEN GEMÄSS DER BEDINGUNGEN DER GNU FREE DOCUMENTATION LICENSE MIT DER FOLGENDEN VEREINBARUNG BEREITGESTELLT: <orderedlist>
+                 <listitem>
+                   <para>DAS DOKUMENT WIRD "WIE VORLIEGEND" GELIEFERT, OHNE JEGLICHE GEWÄHRLEISTUNG, WEDER AUSDRÜCKLICH NOCH STILLSCHWEIGEND, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF, GEWÄHRLEISTUNGEN, DASS DAS DOKUMENT ODER EINE MODIFIZIERTE VERSION DES DOKUMENTS FREI VON HANDELSÜBLICHEN FEHLERN UND FÜR EINEN BESTIMMTEN ZWECK GEEIGNET IST UND KEINE RECHTE DRITTER VERLETZT. JEGLICHES RISIKO IN BEZUG AUF DIE QUALITÄT, GENAUIGKEIT UND LEISTUNG DES DOKUMENTS ODER EINER MODIFIZIERTEN VERSION DES DOKUMENTS TRAGEN SIE. SOLLTE SICH EIN DOKUMENT ODER EINE MODIFIZIERTE VERSION DAVON IN IRGENDEINER WEISE ALS FEHLERHAFT ERWEISEN, TRAGEN SIE (NICHT DER URSPRÜNGLICHE VERFASSER, AUTOR ODER EIN MITWIRKENDER) DIE KOSTEN FÜR JEGLICHE ERFORDERLICHE SERVICE-, REPARATUR- UND KORREKTURMASSNAHMEN: DIESE BESCHRÄNKUNG DER GEWÄHRLEISTUNG IST WESENTLICHER BESTANDTEIL DIESER LIZENZ. JEDE VERWENDUNG EINES DOKUMENTS ODER EINER MODIFIZIERTEN VERSION DES DOKUMENTS UNTERLIEGT DIESER BESCHRÄNKUNG; UND</para>
+                 </listitem>
+                 <listitem>
+                   <para>UNTER KEINEN UMSTÄNDEN UND GEMÄSS KEINER RECHTSLEHRE, WEDER AUFGRUND VON UNERLAUBTEN HANDLUNGEN (EINSCHLIESSLICH FAHRLÄSSIGKEIT), VERTRÄGEN ODER SONSTIGEM, KANN DER AUTOR, DER URSPRÜNGLICHE VERFASSER, EIN MITWIRKENDER ODER EIN VERTEILER DES DOKUMENTS ODER EINER MODIFIZIERTEN VERSION DES DOKUMENTS ODER EIN LIEFERANT EINER DIESER PARTEIEN VON EINER PERSON FÜR DIREKTE, INDIREKTE, BESONDERE, ZUFÄLLIGE ODER ALS FOLGE AUFGETRETENE SCHÄDEN IRGENDEINER ART, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF, SCHÄDEN DURCH GESCHÄFTSWERTVERLUSTE, ARBEITSAUSFÄLLE, COMPUTERAUSFÄLLE ODER -FUNKTIONSSTÖRUNGEN ODER JEGLICHE ANDERE SCHÄDEN ODER VERLUSTE, DIE DURCH ODER IM ZUSAMMENHANG MIT DER VERWENDUNG DES DOKUMENTS ODER EINER MODIFIZIERTEN VERSION DES DOKUMENTS ENTSTANDEN SIND, SELBST WENN DIESE PARTEI ÜBER MÖGLICHE SCHÄDEN INFORMIERT WORDEN SEIN SOLLTE, HAFTBAR GEMACHT WERDEN.</para>
+                 </listitem>
+           </orderedlist></para>
+   </legalnotice>
+  
+     <authorgroup> 
+        <author> 
+          <firstname>Sun</firstname> 
+          <surname>GNOME-Dokumentationsteam</surname> 
+          <affiliation> 
+             <orgname>Sun Microsystems</orgname> 
+          </affiliation> 
+        </author> 
+        <author> 
+          <firstname>Miguel</firstname> 
+          <surname>de Icaza</surname> 
+          <affiliation> 
+             <orgname>GNOME-Dokumentationsprojekt</orgname> 
+          </affiliation> 
+        </author> 
+        <author> 
+          <firstname>Michael</firstname> 
+          <surname>Zucchi</surname> 
+          <affiliation> 
+             <orgname>GNOME-Dokumentationsprojekt</orgname> 
+          </affiliation> 
+        </author> 
+        <author> 
+          <firstname>Alexander</firstname> 
+          <surname>Kirillov</surname> 
+          <affiliation> 
+             <orgname>GNOME-Dokumentationsprojekt</orgname> 
+          </affiliation> 
+        </author> 
+     </authorgroup> 
+     <publisher role="maintainer">
+       <publishername>GNOME-Dokumentationsprojekt</publishername>
+     </publisher>
+     <revhistory> 
+        <revision> 
+          <revnumber>GNOME-Terminal-Handbuch V2.8</revnumber> 
+          <date>März 2004</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision> 
+	<revision> 
+          <revnumber>GNOME-Terminal-Handbuch V2.7</revnumber> 
+          <date>November 2003</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+	<revision> 
+          <revnumber>GNOME-Terminal-Handbuch V2.6</revnumber> 
+          <date>September 2003</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+	<revision> 
+          <revnumber>GNOME-Terminal-Handbuch V2.5</revnumber> 
+          <date>Mai 2003</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+			<revision> 
+          <revnumber>GNOME-Terminal-Handbuch V2.4</revnumber> 
+          <date>Januar 2003</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+        <revision> 
+          <revnumber>GNOME-Terminal-Handbuch V2.3</revnumber> 
+          <date>August 2002</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+        <revision> 
+          <revnumber>GNOME-Terminal-Handbuch Version 2.2</revnumber> 
+          <date>August 2002</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+        <revision> 
+          <revnumber>GNOME-Terminal-Handbuch Version 2.1</revnumber> 
+          <date>August 2002</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision>
+        <revision> 
+          <revnumber>GNOME-Terminal-Handbuch Version 2.0</revnumber> 
+          <date>April 2002</date> 
+          <revdescription> 
+             <para role="author">Sun GNOME Dokumentationsteam</para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision> 
+        <revision> 
+          <revnumber>GNOME-Terminal-Benutzerhandbuch</revnumber> 
+          <date>Mai 2000</date> 
+          <revdescription> 
+             <para role="author">Miguel de Icaza, Michael Zucchi, Alexander Kirollov <email>docs@gnome.org</email></para>
+             <para role="publisher">GNOME-Dokumentationsprojekt</para>
+          </revdescription> 
+        </revision> 
+     </revhistory> 
+     <releaseinfo>In diesem Handbuch wird Version 2.5.90 von GNOME Terminal beschrieben.</releaseinfo> 
+     <legalnotice> 
+        <title>Feedback</title> 
+        <para>Wenn Sie Fehler finden oder Vorschläge zur GNOME Terminal-Anwendung oder diesem Handbuch haben, folgen Sie den Anweisungen auf der <ulink url="ghelp:user-guide?feedback" type="help">GNOME Feedback Page</ulink>.</para>
+     </legalnotice> 
+  </articleinfo> 
+  <indexterm> 
+     <primary>GNOME Terminal</primary> 
+  </indexterm> 
+  <indexterm> 
+     <primary>Terminal-Anwendung</primary> 
+  </indexterm> 
+  <sect1 id="gnome-terminal-introduction"> 
+     <title>Einführung</title> 
+     <para><application>GNOME Terminal</application> ist eine Anwendung zur Terminal-Emulation, mit der Sie die folgende Aufgaben erledigen können:</para>
+     <variablelist> 
+        <varlistentry> 
+          <term>Zugriff auf eine UNIX-Shell in der GNOME-Umgebung</term> 
+          <listitem> 
+             <para>Eine Shell ist ein Programm, das die Befehle interpretiert und ausführt, die Sie in eine Befehlszeile eingeben. Beim Starten von <application>GNOME-Terminal</application> startet die Anwendung die in Ihrem Systemkonto angegebene Standardshell. Sie können jederzeit zu einer anderen Shell wechseln.</para>
+          </listitem> 
+        </varlistentry> 
+        <varlistentry> 
+          <term>Ausführen von Anwendungen, die für VT102-, VT220- und <application>xterm</application>-Terminals vorgesehen sind</term> 
+          <listitem> 
+             <para><application>GNOME Terminal</application> emuliert das vom X Consortium entwickelte Programm <application>xterm</application>. Das Programm <application>xterm</application> wiederum emuliert das DEC VT102-Terminal und unterstützt außerdem die DEC VT220-Escape-Sequenzen. Eine Escape-Sequenz ist eine Serie von Zeichen, die mit dem Zeichen <keycap>Esc</keycap> beginnt. <application>GNOME Terminal</application> akzeptiert alle Escape-Sequenzen, die die VT102- und VT220-Terminals für Funktionen wie die Positionierung des Cursors und das Löschen des Bildschirms verwenden.</para>
+          </listitem> 
+        </varlistentry> 
+     </variablelist> 
+  </sect1> 
+  <sect1 id="gnome-terminal-get-started"> 
+     <title>Erste Schritte</title> 
+     <para>In den folgenden Abschnitten werden die ersten Schritte bei der Arbeit mit <application>GNOME Terminal</application> dargestellt.</para>
+     <sect2 id="gnome-terminal-to-start"> 
+        <title>So starten Sie die Anwendung GNOME Terminal</title> 
+        <para>Sie können <application>GNOME Terminal</application> auf eine der folgenden Arten starten:</para>
+        <variablelist> 
+          <varlistentry> 
+             <term><guimenu>Anwendungs</guimenu>-Menü</term> 
+             <listitem>
+                <para>Wählen Sie <menuchoice><guimenu>Zubehör</guimenu><guimenuitem>Terminal</guimenuitem></menuchoice>.</para>
+             </listitem>
+          </varlistentry> 
+          <varlistentry> 
+             <term>Befehlszeile</term> 
+             <listitem> 
+                <para>Führen Sie folgenden Befehl aus: <command>gnome-terminal</command></para>
+                <para>Sie können den Ausführungsmodus von <application>GNOME Terminal</application> mit Hilfe von Befehlszeilenoptionen ändern. Um die Befehlszeilenoptionen anzuzeigen, führen Sie folgenden Befehl aus: <command>gnome-terminal --help</command></para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-first-start"> 
+        <title>Erstmaliger Start von GNOME Terminal</title> 
+        <para>Wenn Sie <application>GNOME Terminal</application> zum ersten Mal starten, öffnet die Anwendung ein Terminalfenster mit einer Reihe von Standardeinstellungen. Diese Standardeinstellungen werden als Standardprofil bezeichnet. Der Name des Profils erscheint in der Titelleiste des <application>GNOME Terminal</application>-Fensters.</para>
+        <figure id="gnome-terminal_default"> 
+          <title>Beispiel für ein GNOME Terminal-Standardfenster</title> 
+          <screenshot> 
+             <screeninfo>GNOME Terminal-Standardfenster</screeninfo> 
+             <mediaobject> 
+                <imageobject>
+                  <imagedata fileref="figures/gnome-terminal-default.png" format="PNG"/> 
+                </imageobject> 
+                <textobject> 
+                  <phrase>GNOME Terminal-Standardfenster</phrase> 
+                </textobject> 
+             </mediaobject> 
+          </screenshot> 
+        </figure> 
+        <para>Im Terminalfenster wird eine Eingabeaufforderung angezeigt, an der Sie UNIX-Befehle eingeben können. Die Eingabeaufforderung kann als %, #, &gt;, $ oder ein anderes Sonderzeichen dargestellt werden. Der Cursor befindet sich hinter der Eingabeaufforderung. Wenn Sie einen UNIX-Befehl eingeben und die <keycap>Eingabetaste</keycap> drücken, wird der Befehl vom Computer ausgeführt. <application>GNOME Terminal</application> verwendet normalerweise die Standardshell des Benutzers, der die Anwendung startet.</para>
+        <para><application>GNOME Terminal</application> setzt außerdem die folgenden Umgebungsvariablen:</para>
+        <variablelist> 
+          <varlistentry> 
+             <term> 
+                <varname>TERM</varname></term> 
+             <listitem> 
+                <para>Standardmäßig auf <literal>xterm</literal> gesetzt.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <varname>COLORTERM</varname></term> 
+             <listitem> 
+                <para>Standardmäßig auf <literal>gnome-terminal</literal> gesetzt.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <varname>WINDOWID</varname></term> 
+             <listitem> 
+                <para>Standardmäßig auf die X11-Fenster-ID eingestellt.</para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+
+     <sect2 id="gnome-terminal-profiles"> 
+        <title>Terminalprofile</title> 
+        <para>Sie können ein neues Profil erstellen und dieses auf das Terminal anwenden, um Eigenschaften wie Schriftart, Farbe, Effekte, Bildlaufverhalten, Fenstertitel und Kompatibilität zu ändern. Im Profil können Sie auch den Befehl zum Starten von <application>GNOME Terminal</application> definieren.</para>
+          <para>Jedes Terminalprofil wird im Dialogfeld <guilabel>Profile</guilabel> definiert. Dieses Dialogfeld öffnen Sie über das Menü <guimenu>Bearbeiten</guimenu>. Sie können beliebig viele unterschiedliche Profile definieren. Wenn Sie ein Terminal starten, können Sie das Profil für das Terminal auswählen; es ist aber auch möglich, das Terminalprofil während der Arbeit mit dem Terminal zu wechseln. Verwenden Sie den folgenden Befehl, um ein Anfangsprofil für ein Terminal anzugeben, wenn Sie die Anwendung über eine Befehlszeile starten:</para>
+        <para>
+          <command>gnome-terminal --window-with-profile=<replaceable>Profilname</replaceable></command> 
+        </para>
+        <para>Der Name des aktuellen Profils erscheint in der <application>GNOME Terminal</application>-Titelleiste, falls Sie im Dialogfeld <guilabel>Profil bearbeiten</guilabel> keinen anderen Titelleistennamen angeben.</para>
+        <para>Informationen zum Definieren und Verwenden eines neuen Terminalprofils finden Sie unter <xref linkend="gnome-terminal-manage-profiles"/>.</para>
+     </sect2> 
+     <sect2 id="gnome-terminal-more-windows"> 
+        <title>Arbeiten mit mehreren Terminals</title> 
+        <para>
+          <application>GNOME Terminal</application> provides a tab feature that enables you to open several terminals in a single window. Each terminal opens in a separate tab. Click on the appropriate tab to display the terminal in the window. Each tabbed terminal in a window is a separate subprocess, so you can use each terminal for different tasks. You can apply a different profile to each tabbed terminal in the window.  </para>
+       <para>
+          The titlebar of the terminal window shows either the name of the current profile, or the name specified by the current profile. <xref linkend="gnome-terminal-tabbed"/> shows a <application>GNOME Terminal</application> window with four tabs. In this case, each of the four tabs has a different profile. The name of the profile in the active tab, Profile 1, appears in the titlebar.  </para>
+        <figure id="gnome-terminal-tabbed"> 
+          <title>Beispiel für ein Terminalfenster mit Registerkarten</title> 
+          <screenshot> 
+             <screeninfo>GNOME Terminal-Standardfenster</screeninfo> 
+             <mediaobject> 
+                <imageobject>
+                  <imagedata fileref="figures/gnome-terminal-tabbed.png" format="PNG"/> 
+                </imageobject> 
+                <textobject> 
+                  <phrase>GNOME Terminal-Standardfenster</phrase> 
+                </textobject> 
+             </mediaobject> 
+          </screenshot> 
+        </figure> 
+        <para>Informationen zum Öffnen eines neuen Terminals im Registerkartenformat finden Sie unter <xref linkend="gnome-terminal-windows"/>.</para>
+     </sect2> 
+
+  </sect1> 
+
+  <sect1 id="gnome-terminal-usage"> 
+     <title>Verwendung</title> 
+
+     <sect2 id="gnome-terminal-windows"> 
+        <title>Öffnen und Schließen von Terminals</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term>So öffnen Sie ein neues Terminalfenster:</term> 
+             <listitem> 
+                <para>Wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Terminal öffnen</guimenuitem></menuchoice>.</para>
+                <para>
+                  The new terminal inherits the application settings and default shell from the parent terminal.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So schließen Sie ein Terminalfenster:</term> 
+             <listitem> 
+                <para>Wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Fenster schließen</guimenuitem></menuchoice>.</para>
+                <para>Damit werden das Terminal sowie alle Unterprozesse geschlossen, die Sie in diesem Terminal geöffnet haben. Beim Schließen des letzten Terminalfensters wird die Anwendung <application>GNOME Terminal</application> beendet.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So fügen Sie in ein Fenster ein neues Terminal im Registerformat hinzu:</term> 
+             <listitem> 
+                <para>
+                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>To display a tabbed terminal:</term> 
+             <listitem> 
+                <para>
+                  Click on the tab of the tabbed terminal that you want to display, or select a tab title from the <guimenu>Tabs</guimenu> menu.
+                </para>
+                <para>
+                  Alternatively, choose <menuchoice><guimenu>Tabs</guimenu><guimenuitem>Next Tab</guimenuitem></menuchoice> or <menuchoice><guimenu>Tabs</guimenu><guimenuitem>Previous Tab</guimenuitem></menuchoice> to navigate between tabs.
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So schließen Sie ein Terminal im Registerformat:</term> 
+             <listitem> 
+                <para>
+                  <orderedlist> 
+                     <listitem> 
+                        <para>
+                          Display the tabbed terminal that you want to close. 
+                        </para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Reiter schließen</guimenuitem></menuchoice>.</para>
+                     </listitem> 
+                  </orderedlist> 
+                </para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-manage-profiles"> 
+        <title>Verwalten von Profilen</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term>So fügen Sie ein neues Profil hinzu:</term> 
+             <listitem> 
+                <para>
+                  <orderedlist> 
+                     <listitem> 
+                        <para>Wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Neues Profil</guimenuitem></menuchoice>, um das Dialogfeld <guilabel>Neues Profil</guilabel> zu öffnen.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Geben Sie den Namen des neuen Profils in das Textfeld <guilabel>Profilname</guilabel> ein.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Wählen Sie mit dem Dropdown-Listenfeld <guilabel>Basierend auf</guilabel> das Profil aus, auf dem das neue Profil beruhen soll.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Klicken Sie auf <guibutton>Anlegen</guibutton> um das Dialogfeld <guilabel>Profil bearbeiten</guilabel> anzuzeigen.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Klicken Sie auf <guibutton>Schließen</guibutton>. <application>GNOME Terminal</application> fügt das Profil zum Untermenü <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Profil wechseln</guisubmenu></menuchoice> hinzu.</para>
+                     </listitem> 
+                  </orderedlist> 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So ändern Sie das Profil eines Terminals im Registerformat:</term> 
+             <listitem> 
+                <para>
+                  <orderedlist> 
+                     <listitem> 
+                        <para>
+                          Click on the tab of the tabbed terminal for which you want to change the profile.  </para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Wählen Sie <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Profil wechseln</guisubmenu><guimenuitem><replaceable>Profilname</replaceable></guimenuitem></menuchoice>.</para>
+                     </listitem> 
+                  </orderedlist> 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So bearbeiten Sie ein Profil:</term> 
+             <listitem> 
+                <para>Profile werden im Dialogfeld <guilabel>Profil bearbeiten</guilabel> bearbeitet. Sie können das Dialogfeld <guilabel>Profil bearbeiten</guilabel> folgendermaßen öffnen:</para>
+                <itemizedlist> 
+                  <listitem> 
+                     <para>Wählen Sie <menuchoice><guimenu>Bearbeiten</guimenu><guisubmenu>Momentan verwendetes Profil</guisubmenu></menuchoice>.</para>
+                  </listitem> 
+                  <listitem> 
+                     <para>Klicken Sie mit der rechten Maustaste im Terminalfenster, und wählen Sie im Kontextmenü den Befehl <guimenuitem>Momentan verwendetes Profil bearbeiten</guimenuitem>.</para>
+                  </listitem> 
+                  <listitem> 
+                     <para>Wählen Sie <menuchoice><guimenu>Bearbeiten</guimenu><guisubmenu>Profile</guisubmenu></menuchoice>, wählen Sie anschließend das zu bearbeitende Profil aus, und klicken Sie auf <guibutton>Bearbeiten</guibutton>. Unter <xref linkend="gnome-terminal-prefs"/> finden Sie Informationen über die Optionen, die Sie bei Profilen bearbeiten können.</para>
+                  </listitem> 
+                </itemizedlist> 
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So löschen Sie ein Profil:</term> 
+             <listitem> 
+                <para>
+                  <orderedlist> 
+                     <listitem> 
+                        <para>Wählen Sie <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Profile</guimenuitem></menuchoice>.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Markieren Sie den Namen des zu löschenden Profils in der Liste <guilabel>Profile</guilabel>, und klicken Sie anschließend auf <guibutton>Löschen</guibutton>. Das Dialogfeld <guilabel>Profil löschen</guilabel> wird angezeigt.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Klicken Sie zur Bestätigung des Löschens auf <guibutton>Löschen</guibutton>.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Klicken Sie zum Schließen des <guilabel>Profile</guilabel>-Dialogfeldes auf <guibutton>Schließen</guibutton>.</para>
+                     </listitem> 
+                  </orderedlist> 
+                </para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-tabs"> 
+        <title>Ändern eines Terminalfensters</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term>So blenden Sie die Menüleiste aus:</term> 
+             <listitem> 
+                <para>Wählen Sie <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Menüleiste anzeigen</guimenuitem></menuchoice>.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So zeigen Sie eine ausgeblendete Menüleiste an:</term> 
+             <listitem> 
+                <para>Klicken Sie mit der rechten Maustaste auf das Terminalfenster, und wählen Sie im Kontextmenü den Befehl <guimenuitem>Menüleiste anzeigen</guimenuitem>.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry><term>To display the <application>GNOME Terminal</application> window in full-screen mode:</term>
+            <listitem>
+              <para>Choose <menuchoice><guimenu>View</guimenu><guimenuitem>Full Screen</guimenuitem></menuchoice>. Full-screen mode displays the text in a window that fills the full screen. The window does not contain a window frame or titlebar. To exit from this mode, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Full Screen</guimenuitem></menuchoice> again.</para>
+            </listitem>     
+          </varlistentry>
+          <varlistentry> 
+             <term>So ändern Sie das Aussehen eines Terminalfensters:</term> 
+             <listitem> 
+                <para>Unter <xref linkend="gnome-terminal-prefs"/> finden Sie Informationen über die Optionen, die Sie im Dialogfeld <guilabel>Profil bearbeiten</guilabel> verwenden können um das Aussehen des Terminalfensters anzupassen. Zum Beispiel können Sie die Hintergrundfarbe oder die Position der Bildlaufleiste ändern</para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-contents"> 
+        <title>Arbeiten mit dem Inhalt von Terminalfenstern</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term>So rollen Sie durch die zuvor eingegebenen Befehle und deren Ausgabe:</term> 
+             <listitem> 
+                <para>Führen Sie einen der folgenden Schritte aus:</para>
+                <itemizedlist> 
+                  <listitem> 
+                     <para>Verwenden Sie die Bildlaufleiste, die in der Regel rechts im Terminalfenster angezeigt wird.</para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        Press the <keycombo><keycap>Shift</keycap><keycap>Page Up</keycap></keycombo>, <keycombo><keycap>Shift</keycap><keycap>Page Down</keycap></keycombo>, <keycombo><keycap>Shift</keycap><keycap>Home</keycap></keycombo>, or <keycombo><keycap>Shift</keycap><keycap>End</keycap></keycombo> keys.  </para>
+                  </listitem> 
+                </itemizedlist> 
+                <para>
+                  The number of lines that you can scroll back to in the terminal window is determined by the <guilabel>Scrollback</guilabel> setting in the <guilabel>Scrolling</guilabel> tabbed section of the <guilabel>Editing Profile</guilabel> dialog.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So markieren und kopieren Sie Text:</term> 
+             <listitem> 
+                <para>Sie haben folgende Möglichkeiten, Text zu markieren:</para>
+                <itemizedlist> 
+                  <listitem> 
+                     <para>Wenn Sie nur jeweils ein Zeichen markieren möchten, klicken Sie auf das erste zu markierende Zeichen, und ziehen Sie die Maus zu dem letzten Zeichen, das markiert werden soll.</para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        To select a word at a time, double-click on the first word that you want to select and drag the mouse to the last word that you want to select. Symbols are selected individually.</para>
+                  </listitem> 
+                  <listitem> 
+                     <para>Wenn Sie jeweils nur eine Zeile markieren möchten, doppelklicken Sie auf die erste zu markierende Zeile, und ziehen Sie die Maus zu der letzten Zeile, die markiert werden soll.</para>
+                  </listitem> 
+                </itemizedlist> 
+                <para>
+                  These actions select all text between the first and last items. For all text selections, <application>GNOME Terminal</application> copies the selected text into the clipboard when you release the mouse button. To explicitly copy the selected text, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice>.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So fügen Sie Text in ein Terminal ein:</term> 
+             <listitem> 
+                <para>
+                  If you previously copied text to the clipboard, you can paste the text into a terminal by performing one of the following actions: </para>
+                <itemizedlist> 
+                  <listitem> 
+                     <para>
+                        To paste text that you copied by selection only, middle-click at the command prompt. If you do not have a middle mouse button, refer to the X Server documentation for information about how to emulate the middle mouse button.  </para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        To paste text that you explicitly copied, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</guimenuitem></menuchoice>. </para>
+                  </listitem> 
+                </itemizedlist> 
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So ziehen Sie eine Datei in ein Terminalfenster:</term> 
+             <listitem> 
+                <para>
+                  You can drag a file name to a terminal from another application such as a file manager. The terminal displays the path and the full name of the file.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term>So greifen Sie auf einen Link zu:</term> 
+             <listitem> 
+                <para>Gehen Sie folgendermaßen vor, um auf einen URL (Uniform Resource Locator) zuzugreifen, der in einem Terminalfenster angezeigt wird:</para>
+                  <orderedlist> 
+                     <listitem> 
+                        <para>
+                          Move the mouse over the URL until the URL is underlined.  </para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Klicken Sie mit der rechten Maustaste auf den URL, um ein Kontextmenü zu öffnen.</para>
+                     </listitem> 
+                     <listitem> 
+                        <para>Wählen Sie <guimenuitem>Link öffnen</guimenuitem>, um eine Link-Anwendung zu starten und die an dem URL befindliche Datei zu öffnen.</para>
+                     </listitem> 
+                  </orderedlist>                
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     
+     <sect2 id="gnome-terminal-shortcuts"> 
+        <title>Viewing the Keyboard Shortcut Settings</title> 
+        <para>
+          To view the keyboard shortcut settings that are defined for <application>GNOME Terminal</application>, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Keyboard Shortcuts</guimenuitem></menuchoice>. The <guilabel>Keyboard Shortcuts</guilabel> dialog contains the following items: </para>
+        <variablelist> 
+          <varlistentry> 
+             <term><guilabel>Disable all menu access keys (such as Alt+f to open File menu)</guilabel></term> 
+             <listitem> 
+                <para>
+                  Select this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term><guilabel>Disable menu shortcut key (F10 by default)</guilabel></term> 
+             <listitem> 
+                <para>
+                  Select this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term><guilabel>Shortcut Keys</guilabel></term> 
+             <listitem> 
+                <para>
+                  The <guilabel>Shortcut Keys</guilabel> section of the dialog lists the shortcut keys that are defined for each menu item.</para>
+                <note><para>Not all keys can be used as shortcut keys, such as <keycap>Tab</keycap>.</para></note>
+             </listitem> 
+          </varlistentry>
+        </variablelist> 
+     </sect2>
+     
+	<sect2 id="gnome-terminal-resize">
+	<title>Text Size</title>
+	<para>You can use the following methods to resize the text in the GNOME Terminal window:</para>
+		<itemizedlist>
+			<listitem><para>Um die Schrift zu vergrößern, wählen Sie <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Heranzoomen</guimenuitem></menuchoice>.</para>
+			</listitem>
+			<listitem><para>Um die Schrift zu verkleinern, wählen Sie <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Wegzoomen</guimenuitem></menuchoice></para>
+			</listitem>
+			<listitem><para>Um die tatsächliche Schriftgröße zu verwenden, wählen Sie <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Normale Größe</guimenuitem></menuchoice>.</para>
+			</listitem>
+		</itemizedlist>
+
+	</sect2>	
+
+     <sect2 id="gnome-terminal-title"> 
+        <title>To Change the Terminal Title</title> 
+        <para>
+          To change the title of the currently displayed terminal, perform the following steps:</para>
+        <orderedlist>
+          <listitem>
+            <para>Choose <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Set Title</guimenuitem></menuchoice>. </para>
+          </listitem>
+          <listitem>
+            <para>Type the new title in the <guilabel>Title</guilabel> text box. <application>GNOME Terminal</application> applies the change immediately. </para>
+          </listitem>
+          <listitem>
+            <para>Click <guibutton>Close</guibutton> to close the <guilabel>Set Title</guilabel> dialog.  </para>
+          </listitem>
+        </orderedlist>
+	</sect2>	
+
+     <sect2 id="gnome-terminal-encoding"> 
+        <title>To Change the Character Encoding</title> 
+        <para>
+          To change the character encoding, choose <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Set Character Encoding</guisubmenu></menuchoice>, then select the appropriate encoding. 
+        </para>
+
+     <sect3 id="gnome-terminal-encoding-add"> 
+        <title>To Change the List of Character Encodings</title> 
+        <para>
+          To change the list of character encodings displayed in the <guisubmenu>Set Character Encoding</guisubmenu> menu, perform the following steps:
+        </para>
+        <orderedlist>
+          <listitem>
+            <para>Choose <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Set Character Encoding</guisubmenu><guimenuitem>Add or Remove</guimenuitem></menuchoice>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
+            </para>
+          </listitem>
+          <listitem>
+            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Click <guibutton>Close</guibutton> to close the <guilabel>Add or Remove Terminal Encodings</guilabel> dialog.  </para>
+          </listitem>
+        </orderedlist>
+	</sect3>	
+
+	</sect2>	
+
+     <sect2 id="gnome-terminal-reset"> 
+        <title>Wiederherstellen des Terminals</title> 
+        <para>
+          This section provides some advice if you have problems with terminals. 
+        </para>
+        <variablelist> 
+          <varlistentry> 
+             <term>So setzen Sie den Terminalstatus zurück:</term> 
+             <listitem> 
+                <para>Wählen Sie <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Zurücksetzen</guimenuitem></menuchoice>.</para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+        <variablelist> 
+          <varlistentry> 
+             <term>So setzen Sie das Terminal zurück und löschen den Bildschirm:</term> 
+             <listitem> 
+                <para>Wählen Sie <menuchoice><guimenu>Terminal</guimenu><guimenuitem>Zurücksetzen und löschen</guimenuitem></menuchoice>.</para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2>   
+
+  </sect1> 
+
+  <sect1 id="gnome-terminal-prefs"> 
+     <title>Einstellungen</title> 
+     <para>Um <application>GNOME Terminal</application> zu konfigurieren, wählen Sie <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Aktuelles Profil</guimenuitem></menuchoice>. Um ein anderes Profil zu konfigurieren, das Sie eingerichtet haben, wählen Sie <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Profile</guimenuitem></menuchoice>, wählen Sie das zu bearbeitende Profil aus, und klicken Sie auf <guibutton>Bearbeiten</guibutton>.</para>
+     <para>  
+        The <guilabel>Editing Profile</guilabel> dialog contains the following tabbed sections that you can use to configure <application>GNOME Terminal</application>: </para>
+     <itemizedlist> 
+		<listitem><para><xref linkend="gnome-terminal-prefs-general"/></para>
+		</listitem>
+		<listitem><para><xref linkend="gnome-terminal-prefs-title"/></para>
+		</listitem>
+		<listitem><para><xref linkend="gnome-terminal-prefs-colors"/></para>
+		</listitem>
+		<listitem><para><xref linkend="gnome-terminal-prefs-effects"/></para>
+		</listitem>
+		<listitem><para><xref linkend="gnome-terminal-prefs-scrolling"/></para>
+		</listitem>
+		<listitem><para><xref linkend="gnome-terminal-prefs-compatibility"/></para>
+		</listitem>
+	 </itemizedlist>
+
+     
+     <sect2 id="gnome-terminal-prefs-general"> 
+        <title>Allgemein</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Profilname</guilabel> </term> 
+             <listitem> 
+                <para>Geben Sie in diesem Textfeld den Namen des aktuellen Profils an.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Use the system terminal font</guilabel> </term> 
+             <listitem> 
+                <para>Wählen Sie diese Option, um für die Anwendung die Standardschriftart zu verwenden, die im Voreinstellungstool <application>Schriftart</application> festgelegt ist.</para>
+             </listitem> 
+          </varlistentry>
+          <varlistentry> 
+             <term> 
+                <guilabel>Schriftart</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Click on this button to select a font type and font size for the terminal. This button is only enabled if the <guilabel>Use the system terminal font</guilabel> option is unselected.  </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Profil-Symbol</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Click on this button to select an icon to represent terminal windows that use the current profile. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Fettgedruckten Text zulassen</guilabel> </term> 
+             <listitem> 
+                <para>Wählen Sie diese Option, damit im Terminal Text fett dargestellt werden kann.</para>
+             </listitem> 
+          </varlistentry>
+          <varlistentry> 
+             <term> 
+                <guilabel>Cursor blinkt</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Select this option to display a cursor that blinks. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Menüleiste standardmäßig in neuen Terminals anzeigen</guilabel>
+                </term> 
+             <listitem> 
+                <para>Wählen Sie diese Option, damit in neuen Terminalfenstern die Menüleiste angezeigt wird.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Glocke</guilabel> </term> 
+             <listitem> 
+                <para>Wählen Sie diese Option, um das akustische Terminalsignal zu deaktivieren.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Select-by-word characters</guilabel> </term> 
+             <listitem> 
+                <para>Geben Sie in diesem Textfeld Zeichen oder Zeichengruppen an, die von <application>GNOME Terminal</application> als Wörter betrachtet werden, wenn Sie Text wortweise markieren. Weitere Informationen zum wortweisen Markieren von Text finden Sie unter <xref linkend="gnome-terminal-contents"/>.</para>
+             </listitem> 
+          </varlistentry> 
+          
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-prefs-title"> 
+        <title>Titel und Befehl</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Titel</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Use this text box to specify the initial title of terminals that use the profile. New terminals that are started from the current terminal have the new initial title. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Dynamisch festgelegter Titel</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Use this drop-down list to specify how to handle dynamically-set titles, that is, terminal titles set by commands that run in the terminal.
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Befehl als Anmelde-Shell ausführen</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Select this option to force the command that currently runs inside the terminal to run as a login shell. If the command is not a shell, the setting has no effect. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Update login records when command is launched</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Select this option to insert a new entry in the login records when a new shell is opened. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Benutzerdefinierten Befehl anstelle von 'Meine Shell' ausführen</guilabel>
+                </term> 
+             <listitem> 
+                <para>
+                  Select this option to run a specified command, other than the normal shell, in the terminal. Specify the custom command in the <guilabel>Custom command</guilabel> text box. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Wenn der Befehl beendet wird</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Use this drop-down list to specify what action to perform when the terminal exits. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-prefs-colors"> 
+        <title>Colours</title> 
+        <variablelist> 
+        <varlistentry> 
+             <term> 
+                <guilabel>Foreground and Background</guilabel>
+                </term> 
+             <listitem> 
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Theme</application> preference tool</ulink>.  
+                </para>
+                <para>
+                  Use the <guilabel>Built-in schemes</guilabel> drop-down list to specify the foreground and background colors for the terminal. <application>GNOME Terminal</application> supports the following foreground and background color combinations: 
+                </para>
+                <itemizedlist> 
+                  <listitem> 
+                     <para>
+                        <guilabel>Schwarz auf hellem Gelb</guilabel> 
+                     </para>
+                  </listitem>
+                  <listitem> 
+                     <para>
+                        <guilabel>Schwarz auf weiß</guilabel> 
+                     </para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        <guilabel>Gray on black</guilabel> 
+                     </para>
+                  </listitem>             
+                  <listitem> 
+                     <para>
+                        <guilabel>Grün auf schwarz</guilabel> 
+                     </para>
+                  </listitem>             
+                  <listitem> 
+                     <para>
+                        <guilabel>Weiß auf schwarz</guilabel> 
+                     </para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        <guilabel>Benutzerdefiniert</guilabel> 
+                     </para>
+                     <para>Mit dieser Option können Sie Farben auswählen, die nicht in dem ausgewählten Farbschema enthalten sind.</para>
+                  </listitem> 
+                </itemizedlist> 
+                <para>
+                  The actual display of the foreground and background colors can vary depending on the color scheme that you choose. For example, if you choose <guilabel>White on black</guilabel> and the <guilabel>Linux console</guilabel> color scheme, the application displays the foreground and background colors as light gray on black. The <guilabel>Built-in schemes</guilabel> drop-down list is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected. 
+                </para>
+                <para>
+                  Click on the <guibutton>Text colour</guibutton> button to display the <guilabel>Choose terminal text colour</guilabel> dialog. Use the color wheel or the spin boxes to customize the color that you want to use as the text color, then click <guibutton>OK</guibutton>. The <guibutton>Text colour</guibutton> button is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected.
+                </para>
+                <para>
+                  Click on the <guibutton>Background colour</guibutton> button to display the <guilabel>Choose terminal background colour</guilabel> dialog. Use the color wheel or the spin boxes to customize the color that you want to use as the background color, then click <guibutton>OK</guibutton>. The <guibutton>Background colour</guibutton> button is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected.
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Palette</guilabel></term> 
+             <listitem> 
+                <para>
+                  The terminal emulation can only use 16 colors at a time to draw text. The color palette specifies these 16 colors. Applications that run in the terminal use an index number to specify a color from this palette.</para>
+               <para>Use the <guilabel>Built-in schemes</guilabel> drop-down list to choose a preset color schemes. The color palette below and the contents of the terminal window both update to show the scheme.</para>
+               <para>Use the <guilabel>Colour palette</guilabel> to customize the 16 default colors in the custom color palette. To customize a color, click on the color to display the <guilabel>Palette entry</guilabel> dialog. Use the color wheel or the spin boxes to customize the color, then click <guibutton>OK</guibutton>. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     <sect2 id="gnome-terminal-prefs-effects"> 
+        <title>Effekte</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Hintergrund</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Select a background for the terminal window. The options are as follows: 
+                </para>
+                <itemizedlist> 
+                  <listitem> 
+                     <para>
+                        <guilabel>None (use solid colour)</guilabel> 
+                     </para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colours</guilabel> tabbed section as the background color for the terminal. 
+                     </para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        <guilabel>Hintergrundbild</guilabel> 
+                     </para>
+                     <para>Wählen Sie diese Option, um eine Bilddatei als Hintergrund für das Terminal zu verwenden. Geben Sie mit dem Dropdown-Kombinationsfeld <guilabel>Bilddatei</guilabel> die Speicherposition und den Namen der Bilddatei an. Sie können auch auf <guibutton>Durchsuchen</guibutton> klicken, um die Bilddatei zu suchen und auszuwählen.</para>
+                     <para>Select the <guilabel>Background image scrolls</guilabel> option to enable the background image to scroll with the text when you scroll through the terminal. If you do not select this option, the background image remains fixed on the terminal background and only the text scrolls. This option is only enabled if you select the <guilabel>Background image</guilabel> option.  </para>
+                  </listitem> 
+                  <listitem> 
+                     <para>
+                        <guilabel>Transparenter Hintergrund</guilabel> 
+                     </para>
+                     <para>Wählen Sie diese Option, um für das Terminal einen transparenten Hintergrund zu verwenden.</para>
+                  </listitem> 
+                </itemizedlist> 
+             </listitem> 
+          </varlistentry>
+          <varlistentry> 
+             <term> 
+                <guilabel>Shade transparent or image background</guilabel>
+                </term> 
+             <listitem> 
+                <para>
+                  Use this slider to shade or dim the background of the terminal. This option is only enabled if you select the <guilabel>Background image</guilabel> or <guilabel>Transparent background</guilabel> options. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+     
+     <sect2 id="gnome-terminal-prefs-scrolling">
+    <title>Bildlauf</title>
+     <variablelist>
+     <varlistentry> 
+             <term> 
+                <guilabel>Bildlaufleiste ist</guilabel> </term> 
+             <listitem> 
+                <para>Legen Sie mit diesem Dropdown-Listenfeld die Position der Bildlaufleiste im Terminalfenster fest.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Zurückrollen ... Zeilen</guilabel> </term> 
+             <listitem> 
+                <para>Geben Sie mit diesem Drehfeld die Anzahl der Zeilen an, um die Sie den Bildschirm mit der Bildlaufleiste zurückrollen können. Wenn Sie zum Beispiel 100 angeben, können Sie die letzten 100 im Terminal angezeigten Zeilen zurückrollen.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Zurückrollen ... Kilobyte</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Use this spin box to specify the number of kilobytes that you can scroll back using the scrollbar. For example, if you specify 94 you can scroll back the last 94 kilobytes displayed in the terminal. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Auf Ausgabe rollen</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Select this option to enable you to scroll the output on the terminal while the terminal continues to display more output from a command. 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Auf Tastenkombination rollen</guilabel> </term> 
+             <listitem> 
+                <para>
+                  Select this option to enable you to press any key on the keyboard to scroll down the terminal window to the command prompt. This action only applies if you scrolled up the terminal window and you want to return to the command prompt. 	 
+                </para>
+             </listitem> 
+          </varlistentry> 
+          </variablelist>
+     </sect2>
+     
+     <sect2 id="gnome-terminal-prefs-compatibility"> 
+        <title>Kompatibilität</title> 
+        <variablelist> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Durch die Rücktaste wird erstellt</guilabel> </term> 
+             <listitem> 
+                <para>Wählen Sie mit dem Dropdown-Listenfeld die Funktion aus, die mit der <keycap>Rücktaste</keycap> ausgeführt werden soll.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guilabel>Durch die Entfernen-Taste wird erstellt</guilabel> </term> 
+             <listitem> 
+                <para>Wählen Sie mit dem Dropdown-Listenfeld die Funktion aus, die mit der Taste <keycap>Entf</keycap> ausgeführt werden soll.</para>
+             </listitem> 
+          </varlistentry> 
+          <varlistentry> 
+             <term> 
+                <guibutton>Kompatibilitätsoptionen auf Standardwerte zurücksetzen</guibutton> </term> 
+             <listitem> 
+                <para>Klicken Sie auf diese Schaltfläche, um die Optionen auf der Registerkarte <guilabel>Kompatibilität</guilabel> auf die Standardeinstellungen zurückzusetzen.</para>
+             </listitem> 
+          </varlistentry> 
+        </variablelist> 
+     </sect2> 
+  </sect1> 
+</article>
