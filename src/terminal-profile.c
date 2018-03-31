@@ -25,19 +25,13 @@
 #include <gtk/gtk.h>
 
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-program.h>
 
-#include "terminal-screen.h"
+#include "terminal-app.h"
+#include "terminal-debug.h"
 #include "terminal-intl.h"
 #include "terminal-profile.h"
-#include "terminal-app.h"
+#include "terminal-screen.h"
 #include "terminal-type-builtins.h"
-
-#ifdef DEBUG_PROFILE
-#define NOTE(x) x
-#else
-#define NOTE(x)
-#endif
 
 /* To add a new key, you need to:
  *
@@ -61,6 +55,7 @@ enum
   PROP_BACKGROUND_TYPE,
   PROP_BACKSPACE_BINDING,
   PROP_CURSOR_BLINK_MODE,
+  PROP_CURSOR_SHAPE,
   PROP_CUSTOM_COMMAND,
   PROP_DEFAULT_SHOW_MENUBAR,
   PROP_DELETE_BINDING,
@@ -69,7 +64,6 @@ enum
   PROP_FOREGROUND_COLOR,
   PROP_LOGIN_SHELL,
   PROP_NAME,
-  PROP_NO_AA_WITHOUT_RENDER,
   PROP_PALETTE,
   PROP_SCROLL_BACKGROUND,
   PROP_SCROLLBACK_LINES,
@@ -96,6 +90,7 @@ enum
 #define KEY_BACKGROUND_TYPE "background_type"
 #define KEY_BACKSPACE_BINDING "backspace_binding"
 #define KEY_CURSOR_BLINK_MODE "cursor_blink_mode"
+#define KEY_CURSOR_SHAPE "cursor_shape"
 #define KEY_CUSTOM_COMMAND "custom_command"
 #define KEY_DEFAULT_SHOW_MENUBAR "default_show_menubar"
 #define KEY_DELETE_BINDING "delete_binding"
@@ -103,7 +98,6 @@ enum
 #define KEY_FONT "font"
 #define KEY_FOREGROUND_COLOR "foreground_color"
 #define KEY_LOGIN_SHELL "login_shell"
-#define KEY_NO_AA_WITHOUT_RENDER "no_aa_without_render" 
 #define KEY_PALETTE "palette"
 #define KEY_SCROLL_BACKGROUND "scroll_background"
 #define KEY_SCROLLBACK_LINES "scrollback_lines"
@@ -130,6 +124,7 @@ enum
 #define DEFAULT_BACKGROUND_TYPE       (TERMINAL_BACKGROUND_SOLID)
 #define DEFAULT_BACKSPACE_BINDING     (VTE_ERASE_ASCII_DELETE)
 #define DEFAULT_CURSOR_BLINK_MODE     (VTE_CURSOR_BLINK_SYSTEM)
+#define DEFAULT_CURSOR_SHAPE          (VTE_CURSOR_SHAPE_BLOCK)
 #define DEFAULT_CUSTOM_COMMAND        ("")
 #define DEFAULT_DEFAULT_SHOW_MENUBAR  (TRUE)
 #define DEFAULT_DELETE_BINDING        (VTE_ERASE_DELETE_SEQUENCE)
@@ -138,7 +133,6 @@ enum
 #define DEFAULT_FOREGROUND_COLOR      ("#000000")
 #define DEFAULT_LOGIN_SHELL           (FALSE)
 #define DEFAULT_NAME                  (NULL)
-#define DEFAULT_NO_AA_WITHOUT_RENDER  (TRUE)
 #define DEFAULT_PALETTE               (terminal_palettes[TERMINAL_PALETTE_TANGO])
 #define DEFAULT_SCROLL_BACKGROUND     (TRUE)
 #define DEFAULT_SCROLLBACK_LINES      (512)
@@ -154,7 +148,7 @@ enum
 #define DEFAULT_USE_SYSTEM_FONT       (TRUE)
 #define DEFAULT_USE_THEME_COLORS      (TRUE)
 #define DEFAULT_VISIBLE_NAME          (N_("Unnamed"))
-#define DEFAULT_WORD_CHARS            ("-A-Za-z0-9,./?%&#:_")
+#define DEFAULT_WORD_CHARS            ("-A-Za-z0-9,./?%&#:_=+@~")
 
 struct _TerminalProfilePrivate
 {
@@ -285,6 +279,10 @@ static void terminal_profile_set_property (GObject *object,
                                            guint prop_id,
                                            const GValue *value,
                                            GParamSpec *pspec);
+static void ensure_pixbuf_property (TerminalProfile *profile,
+                                    guint path_prop_id,
+                                    guint pixbuf_prop_id,
+                                    gboolean *load_failed);
 
 static guint signals[LAST_SIGNAL];
 static GQuark gconf_key_quark;
@@ -329,6 +327,9 @@ get_prop_value_from_prop_name (TerminalProfile *profile,
   pspec = get_pspec_from_name (profile, prop_name);
   if (!pspec)
     return NULL;
+
+  if (G_UNLIKELY (pspec->param_id == PROP_BACKGROUND_IMAGE))
+    ensure_pixbuf_property (profile, PROP_BACKGROUND_IMAGE_FILE, PROP_BACKGROUND_IMAGE, &priv->background_load_failed);
 
   return g_value_array_get_nth (priv->properties, pspec->param_id);
 }
@@ -413,15 +414,15 @@ values_equal (GParamSpec *pspec,
 
 static void
 ensure_pixbuf_property (TerminalProfile *profile,
-                        guint filename_prop_id,
+                        guint path_prop_id,
                         guint pixbuf_prop_id,
                         gboolean *load_failed)
 {
   TerminalProfilePrivate *priv = profile->priv;
-  GValue *filename_value, *pixbuf_value;
+  GValue *path_value, *pixbuf_value;
   GdkPixbuf *pixbuf;
-  const char *filename_utf8;
-  char *filename, *path;
+  const char *path_utf8;
+  char *path;
   GError *error = NULL;
 
   pixbuf_value = g_value_array_get_nth (priv->properties, pixbuf_prop_id);
@@ -433,28 +434,22 @@ ensure_pixbuf_property (TerminalProfile *profile,
   if (*load_failed)
     return;
 
-  filename_value= g_value_array_get_nth (priv->properties, filename_prop_id);
-  filename_utf8 = g_value_get_string (filename_value);
-  if (!filename_utf8)
+  path_value = g_value_array_get_nth (priv->properties, path_prop_id);
+  path_utf8 = g_value_get_string (path_value);
+  if (!path_utf8 || !path_utf8[0])
     goto failed;
 
-  filename = g_filename_from_utf8 (filename_utf8, -1, NULL, NULL, NULL);
-  if (!filename)
-    goto failed;
-
-  path = gnome_program_locate_file (gnome_program_get (),
-                                    /* FIXME should I use APP_PIXMAP? */
-                                    GNOME_FILE_DOMAIN_PIXMAP,
-                                    filename,
-                                    TRUE, NULL);
-  g_free (filename);
+  path = g_filename_from_utf8 (path_utf8, -1, NULL, NULL, NULL);
   if (!path)
     goto failed;
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   if (!pixbuf)
     {
-      NOTE (g_printerr ("Failed to load image \"%s\": %s\n", filename_utf8, error->message);)
+      _terminal_debug_print (TERMINAL_DEBUG_PROFILE,
+                             "Failed to load image \"%s\": %s\n",
+                             path, error->message);
+
       g_error_free (error);
       g_free (path);
       goto failed;
@@ -537,7 +532,10 @@ terminal_profile_gconf_notify_cb (GConfClient *client,
   if (!key || !g_str_has_prefix (key, priv->profile_dir))
     return;
 
-  NOTE (g_print ("GConf notification for key %s\n", key);)
+  _terminal_debug_print (TERMINAL_DEBUG_PROFILE,
+                         "GConf notification for key %s [%s]\n",
+                         key,
+                         gconf_entry_get_is_writable (entry) ? "writable" : "LOCKED");
 
   key += strlen (priv->profile_dir);
   if (!key[0])
@@ -667,8 +665,10 @@ terminal_profile_gconf_notify_cb (GConfClient *client,
 
   if (g_param_value_validate (pspec, &value))
     {
-      NOTE (g_message ("Invalid value in gconf for key %s was changed to comply with pspec %s\n",
-                       gconf_entry_get_key (entry), pspec->name);)
+      _terminal_debug_print (TERMINAL_DEBUG_PROFILE,
+                             "Invalid value in gconf for key %s was changed to comply with pspec %s\n",
+                             gconf_entry_get_key (entry), pspec->name);
+
       force_set = TRUE;
     }
 
@@ -676,13 +676,19 @@ terminal_profile_gconf_notify_cb (GConfClient *client,
    * so we don't go into an infinite loop.
    */
   equal = values_equal (pspec, &value, g_value_array_get_nth (priv->properties, pspec->param_id));
-  NOTE (if (!equal)
-          g_print ("Setting property %s to a different value\n"
-                  "  now: %s\n"
-                  "  new: %s\n",
-                  pspec->name,
-                  g_strdup_value_contents (g_value_array_get_nth (priv->properties, pspec->param_id)),
-                  g_strdup_value_contents (&value));)
+#ifdef GNOME_ENABLE_DEBUG
+  _TERMINAL_DEBUG_IF (TERMINAL_DEBUG_PROFILE)
+    {
+      if (!equal)
+        _terminal_debug_print (TERMINAL_DEBUG_PROFILE,
+                              "Setting property %s to a different value\n"
+                                "  now: %s\n"
+                                "  new: %s\n",
+                                pspec->name,
+                                g_strdup_value_contents (g_value_array_get_nth (priv->properties, pspec->param_id)),
+                                g_strdup_value_contents (&value));
+    }
+#endif
 
   if (!equal || force_set)
     {
@@ -725,7 +731,9 @@ terminal_profile_gconf_changeset_add (TerminalProfile *profile,
   key = gconf_concat_dir_and_key (priv->profile_dir, gconf_key);
   value = g_value_array_get_nth (priv->properties, pspec->param_id);
 
-  NOTE (g_print ("Adding pspec %s with value %s to the gconf changeset\n", pspec->name, g_strdup_value_contents (value));)
+  _terminal_debug_print (TERMINAL_DEBUG_PROFILE,
+                         "Adding pspec %s with value %s to the gconf changeset\n",
+                         pspec->name, g_strdup_value_contents (value));
 
   if (G_IS_PARAM_SPEC_BOOLEAN (pspec))
     gconf_change_set_set_bool (changeset, key, g_value_get_boolean (value));
@@ -916,7 +924,12 @@ terminal_profile_init (TerminalProfile *profile)
   priv->conf = gconf_client_get_default ();
 
   priv->locked = g_new0 (gboolean, LAST_PROP);
-  priv->locked[PROP_NAME] = TRUE;
+
+  /* Lock all props by default. If GConf is working and allows writing
+   * to the resp. keys, we'll unlock in the notification handler.
+   */
+  for (i = 0; i < LAST_PROP; ++i)
+    priv->locked[i] = TRUE;
 
   priv->properties = g_value_array_new (LAST_PROP);
   for (i = 0; i < LAST_PROP; ++i)
@@ -1052,6 +1065,7 @@ terminal_profile_get_property (GObject *object,
       return;
     }
     
+  /* Note: When adding things here, do the same in get_prop_value_from_prop_name! */
   switch (prop_id)
     {
       case PROP_BACKGROUND_IMAGE:
@@ -1149,7 +1163,10 @@ terminal_profile_notify (GObject *object,
   TerminalProfilePrivate *priv = TERMINAL_PROFILE (object)->priv;
   void (* notify) (GObject *, GParamSpec *) = G_OBJECT_CLASS (terminal_profile_parent_class)->notify;
 
-  NOTE (g_print ("Property notification for prop %s\n", pspec->name);)
+  _terminal_debug_print (TERMINAL_DEBUG_PROFILE,
+                         "Property notification for prop %s\n",
+                         pspec->name);
+
   if (notify)
     notify (object, pspec);
 
@@ -1270,7 +1287,6 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (ALLOW_BOLD, DEFAULT_ALLOW_BOLD, KEY_ALLOW_BOLD);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (DEFAULT_SHOW_MENUBAR, DEFAULT_DEFAULT_SHOW_MENUBAR, KEY_DEFAULT_SHOW_MENUBAR);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (LOGIN_SHELL, DEFAULT_LOGIN_SHELL, KEY_LOGIN_SHELL);
-  TERMINAL_PROFILE_PROPERTY_BOOLEAN (NO_AA_WITHOUT_RENDER, DEFAULT_NO_AA_WITHOUT_RENDER, KEY_NO_AA_WITHOUT_RENDER);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_BACKGROUND, DEFAULT_SCROLL_BACKGROUND, KEY_SCROLL_BACKGROUND);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_KEYSTROKE, DEFAULT_SCROLL_ON_KEYSTROKE, KEY_SCROLL_ON_KEYSTROKE);
   TERMINAL_PROFILE_PROPERTY_BOOLEAN (SCROLL_ON_OUTPUT, DEFAULT_SCROLL_ON_OUTPUT, KEY_SCROLL_ON_OUTPUT);
@@ -1291,6 +1307,7 @@ terminal_profile_class_init (TerminalProfileClass *klass)
   TERMINAL_PROFILE_PROPERTY_ENUM (BACKGROUND_TYPE, TERMINAL_TYPE_BACKGROUND_TYPE, DEFAULT_BACKGROUND_TYPE, KEY_BACKGROUND_TYPE);
   TERMINAL_PROFILE_PROPERTY_ENUM (BACKSPACE_BINDING,  vte_terminal_erase_binding_get_type (), DEFAULT_BACKSPACE_BINDING, KEY_BACKSPACE_BINDING);
   TERMINAL_PROFILE_PROPERTY_ENUM (CURSOR_BLINK_MODE, VTE_TYPE_TERMINAL_CURSOR_BLINK_MODE, DEFAULT_CURSOR_BLINK_MODE, KEY_CURSOR_BLINK_MODE);
+  TERMINAL_PROFILE_PROPERTY_ENUM (CURSOR_SHAPE, VTE_TYPE_TERMINAL_CURSOR_SHAPE, DEFAULT_CURSOR_SHAPE, KEY_CURSOR_SHAPE);
   TERMINAL_PROFILE_PROPERTY_ENUM (DELETE_BINDING, vte_terminal_erase_binding_get_type (), DEFAULT_DELETE_BINDING, KEY_DELETE_BINDING);
   TERMINAL_PROFILE_PROPERTY_ENUM (EXIT_ACTION, TERMINAL_TYPE_EXIT_ACTION, DEFAULT_EXIT_ACTION, KEY_EXIT_ACTION);
   TERMINAL_PROFILE_PROPERTY_ENUM (SCROLLBAR_POSITION, TERMINAL_TYPE_SCROLLBAR_POSITION, DEFAULT_SCROLLBAR_POSITION, KEY_SCROLLBAR_POSITION);
@@ -1631,7 +1648,7 @@ terminal_profile_set_palette_builtin (TerminalProfile *profile,
 
 gboolean
 terminal_profile_modify_palette_entry (TerminalProfile *profile,
-                                       int              i,
+                                       guint            i,
                                        const GdkColor  *color)
 {
   TerminalProfilePrivate *priv = profile->priv;
@@ -1640,10 +1657,8 @@ terminal_profile_modify_palette_entry (TerminalProfile *profile,
   GdkColor *old_color;
 
   array = g_value_get_boxed (g_value_array_get_nth (priv->properties, PROP_PALETTE));
-  if (!array)
-    return FALSE;
-
-  if (i < 0 || i >= array->n_values)
+  if (!array ||
+      i >= array->n_values)
     return FALSE;
 
   value = g_value_array_get_nth (array, i);

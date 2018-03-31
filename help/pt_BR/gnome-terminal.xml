@@ -2,10 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.5.90">
+<!ENTITY appversion "2.24.3">
 <!ENTITY manrevision "2.8">
-<!ENTITY date "March 2004">
+<!ENTITY date "March 2009">
 ]>
+<!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   Template version: 2.0 beta
@@ -16,7 +17,10 @@
   <articleinfo> 
      <title>Manual do Terminal do GNOME</title> 
      <abstract role="description">
-       <para>Manual do usuário do aplicativo Terminal do GNOME.</para>
+       <para>
+	 The Terminal gives users the power to communicate with their system using
+text-based commands through a shell such as Bash.
+       </para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +39,15 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2007.</year><holder>Luciana Bastos de Freitas Menezes (lubfm@gnome.org)</holder></copyright><copyright><year>2007.</year><holder>Pedro Vaz de Mello de Medeiros (pedrovmm@gmail.com)</holder></copyright><copyright><year>2008.</year><holder>Leonardo Ferreira Fontenelle (leonardof@gnome.org)</holder></copyright><copyright><year>2008.</year><holder>Andrius da Costa Ribas (andriusmao@gmail.com)</holder></copyright>
+     </copyright>
+     <copyright> 
+        <year>2008</year> 
+        <holder>Christian Persch</holder> 
+     </copyright>
+     <copyright> 
+        <year>2009</year> 
+        <holder>Paul Cutler</holder> 
+     </copyright><copyright><year>2007.</year><holder>Luciana Bastos de Freitas Menezes (lubfm@gnome.org)</holder></copyright><copyright><year>2007.</year><holder>Pedro Vaz de Mello de Medeiros (pedrovmm@gmail.com)</holder></copyright><copyright><year>2008.</year><holder>Leonardo Ferreira Fontenelle (leonardof@gnome.org)</holder></copyright><copyright><year>2008.</year><holder>Andrius da Costa Ribas (andriusmao@gmail.com)</holder></copyright>	 
      <publisher> 
         <publishername>Projeto de Documentação do GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -87,15 +99,18 @@
      <publisher role="maintainer">
        <publishername>Projeto de Documentação do GNOME</publishername>
      </publisher>
+	<releaseinfo revision="2.26" role="review">
+		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+    </releaseinfo>
      <revhistory> 
-        <revision> 
+	<revision> 
           <revnumber>Manual do Terminal do GNOME V2.8</revnumber> 
-          <date>Março de 2004</date> 
+          <date>March 2009</date> 
           <revdescription> 
-             <para role="author">Sun GNOME Documentation Team</para>
+             <para role="author">Paul Cutler</para>
              <para role="publisher">Projeto de Documentação do GNOME</para>
           </revdescription> 
-        </revision> 
+        </revision>
 	<revision> 
           <revnumber>Manual do Terminal do GNOME V2.7</revnumber> 
           <date>Novembro de 2003</date> 
@@ -169,7 +184,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Este manual descreve a versão 2.5.90 do Terminal do GNOME.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>Feedback</title> 
         <para>Para relatar um erro ou fazer alguma sugestão sobre o aplicativo Terminal do GNOME ou seu manual, siga as instruções no link <ulink url="ghelp:user-guide?feedback" type="help">Página de Feedback do GNOME</ulink>.</para>
@@ -181,6 +197,8 @@
   <indexterm> 
      <primary>terminal, aplicativo de</primary> 
   </indexterm> 
+  
+  <!-- ============= Introduction ============================== -->
   <sect1 id="gnome-terminal-introduction"> 
      <title>Introdução</title> 
      <para>O <application>Terminal do GNOME</application> é um aplicativo de emulação de terminal que você pode usar para fazer as seguintes tarefas:</para>
@@ -199,6 +217,9 @@
         </varlistentry> 
      </variablelist> 
   </sect1> 
+
+  <!--=========== Getting Started ============================== -->
+  
   <sect1 id="gnome-terminal-get-started"> 
      <title>Iniciando</title> 
      <para>As seguintes seções descrevem como iniciar o <application>Terminal do GNOME</application>.</para>
@@ -297,6 +318,8 @@
      </sect2> 
 
   </sect1> 
+  
+  <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
      <title>Uso</title> 
@@ -637,6 +660,8 @@
      </sect2>   
 
   </sect1> 
+  
+  <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Preferências</title> 
@@ -701,7 +726,9 @@
              <term> 
                 <guilabel>Som do terminal</guilabel> </term> 
              <listitem> 
-                <para>Selecione esta opção para desabilitar o som do terminal.</para>
+                <para>
+                  Select this option to enable the terminal bell.
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
