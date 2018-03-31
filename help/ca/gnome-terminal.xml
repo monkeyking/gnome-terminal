@@ -541,13 +541,15 @@
           <varlistentry> 
              <term><guilabel>Inhabilita totes les tecles d'accés dels menús (com ara Alt+f per obrir el menú Fitxer)</guilabel></term> 
              <listitem> 
-                <para>Seleccioneu aquesta opció per a inhabilitar les tecles d'accés definides per a utilitzar el teclat enlloc del ratolí per a seleccionar un element del menú. Cada tecla d'accés està identificada per una lletra subratllada en una opció del menú o del diàleg. En alguns casos, heu de prémer la tecla <keycap>Alt</keycap> en combinació amb la tecla d'accés per a realitzar l'acció.</para>
+                <para>
+                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Inhabilita la tecla d'accés al menú (F10 per defecte)</guilabel></term> 
              <listitem> 
-                <para>Seleccioneu aquesta opció per a inhabilitar la tecla de drecera definida per a accedir als menús del <application>terminal del GNOME</application>. Per defecte la tecla de drecera per a accedir als menús és <keycap>F10</keycap>.</para>
+                <para>
+                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -670,9 +672,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Empra el tipus de lletra del terminal del sistema</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Seleccioneu aquesta opció per a utilitzar el tipus de lletra estàndard de l'aplicació, que està especificada en l'eina de preferències <application>Tipus de lletra</application>.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -681,29 +685,15 @@
              <listitem> 
                 <para>Cliqueu en aquest botó per a seleccionat el tipus de lletra i la mida d'aquesta per al terminal. Aquest botó només està habilitat si l'opció <guilabel>Empra el tipus de lletra del terminal del sistema</guilabel> està deshabilitada.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Icona del perfil</guilabel> </term> 
-             <listitem> 
-                <para>Cliqueu en aquest botó per a seleccionar una icona que representi la finestra del terminal que utilitza el perfil actual.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Permet text en negreta</guilabel> </term> 
              <listitem> 
                 <para>Seleccioneu aquesta opció per a habilitar el terminal a mostrar text en negreta.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Parpelleig del cursor</guilabel> </term> 
-             <listitem> 
-                <para>Seleccioneu aquesta opció per a mostrar un cursor que parpellegi.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Mostra la barra del menú per defecte</guilabel>
                 </term> 
@@ -740,7 +730,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Títol establert dinàmicament</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Utilitzeu aquesta llista desplegable per a especificar com gestionar la manera d'establir dinàmicament el títol, és a dir, com establir el títol del terminal en funció de les ordres que s'executin en aquest.</para>
              </listitem> 
@@ -771,7 +761,9 @@
              <term> 
                 <guilabel>Quan l'ordre surt</guilabel> </term> 
              <listitem> 
-                <para>Utilitzeu aquesta llista desplegable per a especificar quina acció realitzar quan el terminal surti.</para>
+                <para>
+                  Use this drop-down list to specify what action to perform when the command exits. 
+                </para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -784,7 +776,9 @@
                 <guilabel>Primer pla i fons</guilabel>
                 </term> 
              <listitem> 
-                <para>Seleccioneu l'opció <guilabel>Empra els colors del tema del sistema</guilabel> per a utilitzar els colors especificats en el tema de l'escriptori del GNOME seleccionat en l'<ulink type="help" url="ghelp:user-guide?prefs-theme">eina de preferències <application>Tema</application></ulink>.</para>
+                <para>
+                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
+                </para>
                 <para>Utilitzeu la llista desplegable <guilabel>Esquemes integrats</guilabel> per a especificar els colors de primer pla i de fons del terminal. El <application>terminal del GNOME</application> admet les combinacions de color de primer pla i de fons següents:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -846,9 +840,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Cap (utilitza un color sòlid)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Seleccioneu aquesta opció per a utilitzar el color de fons que s'ha especificat en la pestanya <guilabel>Colors</guilabel> com a color de fons per al terminal.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -894,14 +890,7 @@
                 <para>Utilitzeu aquest quadre de selecció per a especificar el número de línies que podeu desplaçar-vos cap enrere utilitzant la barra de desplaçament. Per exemple, si especifiqueu 100 llavors podreu desplaçar-vos cap enrere les últimes 100 línies mostrades en el terminal.</para>
              </listitem> 
           </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Desplaçament cap enrere ... kilobytes</guilabel> </term> 
-             <listitem> 
-                <para>Utilitzeu aquest quadre de selecció per a especificar el número de kilobytes que podeu desplaçar-vos cap enrere utilitzant la barra de desplaçament. Per exemple, si especifiqueu 94 llavors podreu desplaçar-vos cap enrere els últims 94 kilobytes mostrats en el terminal.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Desplaçament en sortida</guilabel> </term> 
              <listitem> 
