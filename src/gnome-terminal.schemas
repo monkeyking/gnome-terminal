@@ -188,6 +188,11 @@
          <long>Gnome-terminalui žinomų profilių sąrašas. Sąraše saugomos sekos, atitinkančios /apps/gnome-terminal/profiles žemesniuosius aplankus.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Profilu saraksts</short>
+         <long>Profilu saraksts, kas ir pazīstams gnome terminālim. Saraksts satur simbolu virknes, kas ir nosaukumi apakšmapēm ar nosaukumu līdzīgu kā /apps/gnome-terminal/profiles.</long>
+      </locale>
+
       <locale name="mg">
          <short>Lisitry ny profil</short>
          <long>Lisitry ny profil fantatry ny gnome-terminal. Misy laha-daza manome anarana zana-dahatahiry mifandraika amin&apos;ny /apps/gnome-terminal/profiles io lisitra io.</long>
@@ -513,6 +518,11 @@
          <long>Profilis, naudojamas atveriant naują langą ar kortelę. Vardas turi būti iš profilių sąrašo.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Lietojamais profils, palaižot jaunus termināļus</short>
+         <long>Profils, kuru lietot, kad tiek atvērts jauns logs vai cilne. Tam jāatrodas profile_list.</long>
+      </locale>
+
       <locale name="mg">
          <short>Ny profil ampiasaina amin&apos;ny terminal vaovao</short>
          <long>Ny profil ampiasaina rehefa manokatra fikandrana na vakizoro iray. Tsy maintsy ao anatin&apos;ny profile_list.</long>
@@ -834,6 +844,11 @@
          <long>Ar naudoti Alt-raidė sparčiuosius klavišus tarp meniu. Šie spartieji klavišai gali sutrikdyti dalies programų, paleistų terminale darbą, todėl galima juos atjungti.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Vai izvēlnes joslai ir pieejas taustiņi</short>
+         <long>Vai vajag Alt+burts pieejas taustiņus izvēlnes joslai. Šāda veida taustiņkombinācijas var aizkavēt aplikācijas, kas darbojas iekš termināļa, darbību; tāpēc ir iespēja tos atslēgt.</long>
+      </locale>
+
       <locale name="mg">
          <short>Raha toa ka manana kitendry mpanokatra ny anjan&apos;ny tolotra</short>
          <long>Raha hatao Alt+litera ny kitendry fanokafana ny anjan&apos;ny tolotra. Azo atao ny manatsahatra ireo kitendry ireo satria mety hifanosona amin&apos;ny rindranasa anatin&apos;ilay terminal izy ireo.</long>
@@ -1087,7 +1102,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Utiliser le raccourci standard de GTK pour accéder à la barre de menus.</short>
+         <short>Indique si il faut utiliser le raccourci standard de GTK pour accéder à la barre de menus</short>
          <long>Cette option désactive le raccourci standard d&apos;accès à la barre de menus. Initialement à F10, ce raccourci peut être redéfini dans gtkrc par gtk-menu-bar-accel.</long>
       </locale>
 
@@ -1139,6 +1154,11 @@
       <locale name="lt">
          <short>Ar įjungtas standartinis GTK meniu iškvietimo klavišų susiejimas</short>
          <long>Paprastai Jūs galite pasiekti meniu juostą klavišu F10. Tai gali būti pakeista per gtkrc (gtk-menu-bar-accel = &quot;kažkas&quot;). Šis nustatymas leidžia atjungti įprastą meniu juostos susiejimo klavišą.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai standarta GTK saīsne, kas domāta izvēlnes joslas piekļuvei, ir aktivizēta</short>
+         <long>Noklusētais īsinājumtaustiņš izvēlnes joslas piekļuvei ir F10. Šo īsinājumtaustiņa definīciju var nomainīt ar gtkrc palīdzību ( gtk-menu-bar-accel = &quot;jusu_taustins&quot; ). Šī opcija ļauj standarta izvēlnes joslas īsinājumtaustiņu atslēgt.</long>
       </locale>
 
       <locale name="mg">
@@ -1507,8 +1527,8 @@
 
       <locale name="lv">
          <default>[UTF-8,current,ISO-8859-13,ISO-8859-4]</default>
-         
-         
+         <short>Pieejamie kodējumi</short>
+         <long>Iespējamo kodējumu apakškopa tiek attēlota kodēšanas apakšizvēlnē. Šis ir kodējumu saraksts, kas šeit parādās. Īpašais kodējuma vārds &quot;pašreizējais&quot; nozīmē attēēlot pašreizējās lokalizācijas kodējumu.</long>
       </locale>
 
       <locale name="mg">
@@ -1867,6 +1887,11 @@
          <long>Ar klausti patvirtinimo, kai uždaromas terminalo langas, turintis daugiau negu vieną kortelę.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Vai prasīt apstiprinājumu, kad termināļa logs tiek vērts ciet</short>
+         <long>Vai prasīt apstiprinājumu aizvērt termināļa logu, kurā ir vairāk, nekā viena cilne atvērtas.</long>
+      </locale>
+
       <locale name="mg">
          <short>Raha mila mangataka fanamafisana rehefa manidy fikandran-terminal</short>
          <long>Raha mila mangataka fanamafisana rehefa manidy fikandran-terminal misy vakizoro misokatra maherin&apos;ny iray.</long>
@@ -2194,7 +2219,7 @@
       </locale>
 
       <locale name="id">
-         
+         <default>Default</default>
          <short>Nama profil</short>
          <long>Nama profil.</long>
       </locale>
@@ -2227,6 +2252,12 @@
          <default>Numatytasis</default>
          <short>Skaitomas profilio pavadinimas</short>
          <long>Skaitomas profilio pavadinimas.</long>
+      </locale>
+
+      <locale name="lv">
+         <default>Noklusēts</default>
+         <short>Cilvēkam saprotams profila nosaukums</short>
+         <long>Cilvēkam saprotams profila nosaukums.</long>
       </locale>
 
       <locale name="mg">
@@ -2524,7 +2555,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Activer le clignotement du curseur.</short>
+         <short>Indique si il faut activer le clignotement du curseur</short>
          <long>Si VRAI, activer le clignotement du curseur lorsque le terminal a le focus.</long>
       </locale>
 
@@ -2581,6 +2612,11 @@
       <locale name="lt">
          <short>Ar žymeklis turi mirksėti</short>
          <long>Reikšmė teigiama, jei languose/kortelėse naudojančiuose šį profilį žymeklis turi mirksėti, kai terminalas yra aktyvus.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai kursoram ir jāmirgo</short>
+         <long>Patiess logiem/cilnēm šajā profilā, ja kursoram vajadzētu mirgot, kad terminālis ir fokusā.</long>
       </locale>
 
       <locale name="mg">
@@ -2845,7 +2881,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Afficher la barre de menus dans les nouvelles fenêtres et les nouveaux onglets.</short>
+         <short>Indique si il faut afficher la barre de menus dans les nouvelles fenêtres et les nouveaux onglets.</short>
          <long>Vrai si la barre de menus doit être affichée dans les nouvelles fenêtres.</long>
       </locale>
 
@@ -2897,6 +2933,11 @@
       <locale name="lt">
          <short>Ar rodyti meniu juostą naujuose languose/kortelėse</short>
          <long>Reikšmė teigiama, jei meniu turi būti rodomas naujuose languose bei kortelėse, naudojančiuose šį profilį.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai rādīt izvēlnes joslu jaunos logos/cilnēs</short>
+         <long>Patiess logiem/cilnēm šajā profilā, ja izvēlnes joslai vajadzētu tikt rādītai jaunos logos.</long>
       </locale>
 
       <locale name="mg">
@@ -3223,6 +3264,11 @@
       <locale name="lt">
          <short>Numatytoji terminalo teksto spalva</short>
          <long>Numatytoji terminalo teksto spalva, nurodyta pagal spalvų specifikacijas (gali būti HTML stiliaus šešioliktainiai kodai arba spalvos vardas, pvz. „red“).</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Noklusētā teksta krāsa terminālī</short>
+         <long>Noklusētā termināļa teksta krāsa, kā krāsu specifikācija ( var būt HTML-stila heksadecimāli cipari vai krāsas vārds kā piemēram &quot;sarkans&quot; ).</long>
       </locale>
 
       <locale name="mg">
@@ -3556,6 +3602,11 @@
          <long>Numatytoji terminalo fono spalva, nurodyta pagal spalvų specifikacijas (gali būti HTML stiliaus šešioliktainiai kodai arba spalvos vardas, pvz. „red“).</long>
       </locale>
 
+      <locale name="lv">
+         <short>Noklusētā termināļa fona krāsa</short>
+         <long>Noklusētā termināļa fona krāsa, kā krāsu specifikācija ( var būt HTML-stila heksadecimāli cipari vai krāsas vārds kā piemēram &quot;sarkans&quot; ).</long>
+      </locale>
+
       <locale name="mg">
          <short>Loko tsotran&apos;ny afaran&apos;ny terminal</short>
          <long>Famaritana ny loko tsotran&apos;ny afaran&apos;ny terminal (mety ho hexadecimal tahaka ny amin&apos;ny HTML na anaran-doko toy ny &quot;mena&quot;).</long>
@@ -3883,6 +3934,11 @@
       <locale name="lt">
          <short>Kaip elgtis su kintama antrašte</short>
          <long>Jei programa terminale nustato antraštę (paprastai tai apliekama aplinkos nustatymuose), kintama antraštė gali pašalinti nustatytą lango antraštę, būti įrašyta prieš ją, eiti po jos arba ją pakeisti. Galimos reikšmės yra &quot;replace&quot;, &quot;before&quot;, &quot;after&quot;, ir &quot;ignore&quot;.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Ko darīt ar dinamiskiem virsrakstiem</short>
+         <long>Ja aplikācija terminālī uzstāda virsrakstu ( lielākajā daļā gadījumu cilvēki čaulās ir noteikuši, ka tā var darīt ), jaunais dinamiski veidotais virsraksts var izdzēst, ievietoties pirms, pēc vai aizvietot iepriekšdefinēto virsrakstu. Iespējamās vērtības ir &quot;aizvieot&quot;, &quot;pirms&quot;, &quot;pēc&quot; un &quot;ignorēt&quot;.</long>
       </locale>
 
       <locale name="mg">
@@ -4272,8 +4328,8 @@
 
       <locale name="lv">
 	<default>Terminālis</default>
-         
-         
+         <short>Termināļa virsraksts</short>
+         <long>Termināļa loga vai cilnes virsraksts. Šis virsraksts var tikt aizstāts vai kombinēts ar to virsrakstu, kuru uzstāda aplikācija iekš termināļa, atkarībā no title_mode uzstādījuma.</long>
       </locale>
 
       <locale name="mg">
@@ -4577,7 +4633,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Autoriser le texte en gras</short>
+         <short>Indique si il faut autoriser le texte en gras</short>
          <long>Si VRAI, les applications seront autorisées à utiliser du texte en gras.</long>
       </locale>
 
@@ -4634,6 +4690,11 @@
       <locale name="lt">
          <short>Ar leisti pastorintą tekstą</short>
          <long>Jei teigiama, programos gali terminale išvedinėti pastorintą tekstą.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Atļaut treknu tekstu</short>
+         <long>Ja patiess, aplikācijām atļauts terminālī tekstu pārveidot treknā rakstā.</long>
       </locale>
 
       <locale name="mg">
@@ -4961,6 +5022,11 @@
          <long>Jei teigiama, neskleisti garsų, kai programa bando pasinaudoti sistemine garso signalo seka.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Vai atslēgt termināļa zvanu</short>
+         <long>Ja patiess, neatskaņot troksni, kad aplikācijas sūta atsoļa secību termināļa zvanam.</long>
+      </locale>
+
       <locale name="mg">
          <short>Raha tokony vonoina ny feon&apos;ilay terminal</short>
          <long>Raha marina, dia aza mamoaka feo rehefa mampaneno ny feon&apos;ny terminal amin&apos;ny alalan&apos;ny Echap misesisesy ny rindranasa.</long>
@@ -5281,6 +5347,11 @@
       <locale name="lt">
          <short>Simboliai, kurie yra laikomi „žodžio dalimi“</short>
          <long>Pažymint žodžius, šių simbolių sekos bus laikomos atskiru žodžiu. Diapazoną galima nurodyti kaip  &quot;A-Z&quot;. Minusas, kuris nenurodo diapazono, turi būti pirmas nurodytas simbolis.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Rakstzīmes, kuras tiek uzskatītas par &quot;vārda daļu&quot;</short>
+         <long>Simbolu virknes tiek uzskatītas par vārdiem, ja teksts tiek iezīmēts pa vārdam. Intervāli var tik uzdoti kā &quot;A-Z&quot;. Literālais hyphen (neizsaka intervālu) vajadzētu būt pirmajam padotajam simbolam.</long>
       </locale>
 
       <locale name="mg">
@@ -5606,6 +5677,11 @@
       <locale name="lt">
          <short>Persukimo juostos padėtis</short>
          <long>Kur rodyti terminalo slinkties juostą. Galimos reikšmės „left“, „right“ ir „disabled“.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Ritjoslas novietojums</short>
+         <long>Kur novietot termināļa ritjoslu. Iespējamās vērtības ir &quot;left&quot;, &quot;right&quot; un &quot;disabled&quot;.</long>
       </locale>
 
       <locale name="mg">
@@ -5936,6 +6012,11 @@
          <long>Išsaugomų teksto eilučių kiekis. Galite grįžti terminale per pasirinktą eilučių skaičių. Sistema nesaugos eilučių, kurios viršys nurodytą skaičių. Būkite atsargūs rinkdamiesi šį nustatymą. Jis lemia terminalo naudojamos atminties dydį.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Līniju skaits, ko paturēt ritināšanas atmiņā</short>
+         <long>Ritināšanas rindiņu daudzums, ko paturēt. Jūs varat ritināt atpakaļ tieši šitik daudz reižu; rindas, kas neietilpst rindiņu atpakaļritināšanā, tiek izmestas. Esiet uzmanīgi, izmainot šo uzstādījumu; tas ir galvenais faktors, kas tiks ņemts vērā, kad tiks noteikts, cik daudz atmiņas lieto terminālis.</long>
+      </locale>
+
       <locale name="mg">
          <short>Isan&apos;ny andalan-teny tanana anatin&apos;ny scrollback</short>
          <long>Isan&apos;ny andalan&apos;teny tanana anatin&apos;ny scrollback. Azonao atao ny miverina amin&apos;ny andalana tafiditra anatin&apos;ity laharana ity. Hariana izay andalan-teny tsy tafiditra anatin&apos;ilay scrollback. Mitandrema tsara rehefa mikirakira ity fandrindrana ity. Io no zavatra voalohany entina mamaritra ny habetsaky ny arika ampiasain&apos;ilay terminal.</long>
@@ -6191,7 +6272,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Se rendre en bas du terminal lors de l&apos;appui sur une touche.</short>
+         <short>Indique si il faut se rendre en bas du terminal lors de l&apos;appui sur une touche</short>
          <long>Si VRAI, presser une touche fait défiler le terminal jusqu&apos;en bas.</long>
       </locale>
 
@@ -6248,6 +6329,11 @@
       <locale name="lt">
          <short>Ar pereiti į terminalo apačią, paspaudus klavišą</short>
          <long>Jei teigiama, klavišo paspaudimas nukels į terminalo apačią.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai aizritināt ritjoslu līdz lejai, kad kāds klaviatūras taustiņš tiek piespiests</short>
+         <long>Ja patiess, nospiežot taustiņu, novieto ritjoslu pie apakšas.</long>
       </locale>
 
       <locale name="mg">
@@ -6511,7 +6597,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Se rendre en bas du terminal quand du nouveau texte est affiché.</short>
+         <short>Indique si il faut se rendre en bas du terminal quand du nouveau texte est affiché</short>
          <long>Si VRAI, toute nouvelle sortie affichée fera défiler le terminal jusqu&apos;en bas.</long>
       </locale>
 
@@ -6563,6 +6649,11 @@
       <locale name="lt">
          <short>Ar pereiti į terminalo apačią, jei ten išvedami nauji duomenys</short>
          <long>Jei teigiama, bet kokia nauja išvestis terminale nukels į terminalo apačią.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai aizritināt ritjoslu līdz lejai, kad parādās jauns izvads</short>
+         <long>Ja patiess, katrreiz, kad kaut kas jauns tiks izvadits termināļa logā, ritjosla noritināsies līdz lejai.</long>
       </locale>
 
       <locale name="mg">
@@ -6875,6 +6966,11 @@
          <long>Galimos reikšmės yra „close“ (užveria terminalą) ir „restart“ (pakartoja komandą).</long>
       </locale>
 
+      <locale name="lv">
+         <short>Ko darīt ar termināli, kad bērna komanda beidz darbu</short>
+         <long>Iespējamās vērtibas ir &quot;close&quot; - lai aizvērtu termināli un &quot;restart&quot; - lai restartētu komandu.</long>
+      </locale>
+
       <locale name="mg">
          <short>Ny atao amin&apos;ny terminal rehefa mijanona ilay zana-baiko</short>
          <long>Ireto ireo sanda mety ampiasaina: &quot;close&quot; raha anidy ilay terminal ary &quot;restart&quot; raha hamerina ilay baiko.</long>
@@ -7134,7 +7230,7 @@
 
       <locale name="fr">
          <short>Indique s&apos;il faut lancer la commande dans le terminal comme un shell de connexion</short>
-         <long>Si VRAI, la commande lancée dans le terminal le sera comme un shell de login : argv[0] sera précédé d&apos;un tiret.</long>
+         <long>Si VRAI, la commande lancée dans le terminal le sera comme un shell de login. (argv[0] sera précédé d&apos;un tiret.)</long>
       </locale>
 
       <locale name="gl">
@@ -7185,6 +7281,11 @@
       <locale name="lt">
          <short>Ar paleisti programą terminale naudojant prisijungimo aplinkos parametrus</short>
          <long>Jei teigiama, terminale paleista komanda naudos prisijungimo aplinkos nustatymus (prieš argv[0] bus įrašytas minusas).</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai palaist komandu terminālī kā iežurnalēšanās čaulu</short>
+         <long>Ja patiess, komanda terminālī tiks palaista kā pieteikšanās čaula. ( argv[0] priekšā būs pārnesums. )</long>
       </locale>
 
       <locale name="mg">
@@ -7444,7 +7545,7 @@
 
       <locale name="fr">
          <short>Indique s&apos;il faut mettre à jour les enregistrements de connexions utmp et wtmp lorsqu&apos;une commande de terminal est lancée</short>
-         <long>Si VRAI, le système d&apos;enregistrement de connexions utmp et wtmp sera mis à jour lorsque la commande est lancée dans le terminal. </long>
+         <long>Si VRAI, le système d&apos;enregistrement de connexions utmp et wtmp sera mis à jour lorsque la commande est lancée dans le terminal.</long>
       </locale>
 
       <locale name="gl">
@@ -7490,6 +7591,11 @@
       <locale name="lt">
          <short>Ar atnaujinti prisijungimo įrašus, paleidus komandą terminale</short>
          <long>Jei teigiama, sistemos prisijungimo įrašai utmp ir wtmp bus atnaujinti, kai terminale bus paleista komanda.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai atjaunot iežurnalēšanās ierakstus, kad tiek palaista termināla komanda</short>
+         <long>Ja patiess, sistēmas iežurnalēšanās ieraksti utmp un wtmp tiks atjaunoti kad komanda iekš termināļa tiks palaista.</long>
       </locale>
 
       <locale name="mg">
@@ -7800,6 +7906,11 @@
       <locale name="lt">
          <short>Paleisti kitą komandą vietoj įprastos aplinkos</short>
          <long>Jei teigiama, custom_command nustatymo reikšmė bus panaudota vietoj darbinės aplinkos.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Palaist pielāgotu komandu manas čaulas vietā</short>
+         <long>Ja patiess, paša_veidota_komandas vērtība tiks lietota strādājošas čaulas vietā.</long>
       </locale>
 
       <locale name="mg">
@@ -8125,6 +8236,11 @@
       <locale name="lt">
          <short>Komanda naudojama vietoj standartinės aplinkos</short>
          <long>Jei use_custom_command reikšmė yra teigiama, naudoti šią komandą vietoj įprastos aplinkos.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>pielāgotā komanda, kuru palaist manas čaulas vietā</short>
+         <long>Izpildīt šo komandu čaulas komandas vietā, ja lieto use_custom_command ir patiess.</long>
       </locale>
 
       <locale name="mg">
@@ -8456,6 +8572,11 @@
          <long>Ženklas, naudojamas kortelėms/langams su šiuo profiliu.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Termināļa loga ikona</short>
+         <long>Ikona, kas jālieto šo profilu saturošiem cilnēm/logiem.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kisary ho an&apos;ny fikandran&apos;ny terminal</short>
          <long>Kisary ho an&apos;ny vakizoro/fikandrana ahitana io profil io.</long>
@@ -8781,6 +8902,11 @@
       <locale name="lt">
          <short>Terminalo programų paletė</short>
          <long>Terminalai turi 16-os spalvų paletę, kurią gali naudoti terminale esančios programos. Čia kabliataškiu atskirtų spalvų forma aprašoma ši paletė. Spalvų vardai turi būti šešioliktainiai, pvz., „#FF00FF“</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Terminālo aplikāciju palete</short>
+         <long>Tremināļos ir 16 krāsu palete, kuru termināļa aplikācijas var izmantot. Šī ir tā palete krāsu nosaukumu, kas atdalīti ar kolu, saraksta veidā. Krāsu nosaukumiem vajadzētu būt pierakstītiem heksadecimālā formā, piem., &quot;#FF00FF&quot;</long>
       </locale>
 
       <locale name="mg">
@@ -9120,7 +9246,7 @@
 
       <locale name="lv">
          <short>Fonts</short>
-         
+         <long>X fonta nosaukums. Apskatiet X instrukciju (ievadiet &quot;man X&quot;), lai uzzinātu vairāk daļas par X fontu nosaukumiem.</long>
       </locale>
 
       <locale name="mg">
@@ -9405,7 +9531,7 @@
 
       <locale name="fr">
          <short>Police</short>
-         <long>Un nom de police Pango. Exemples : « Sans 12 » ou « Monospace Bold 14 »</long>
+         <long>Un nom de police Pango. Exemples : « Sans 12 » ou « Monospace Bold 14 ».</long>
       </locale>
 
       <locale name="ga">
@@ -9470,7 +9596,7 @@
 
       <locale name="lv">
          <short>Fonts</short>
-         
+         <long>Pango fonta nosaukums. Piemēri: &quot;Sans 12&quot; vai &quot;Monospace Bold 14&quot;.</long>
       </locale>
 
       <locale name="mg">
@@ -9813,6 +9939,11 @@
          <long>Terminalo fono tipas. &quot;solid&quot; reiškia tolygią spalvą, &quot;image&quot; - paveikslėlį, &quot;transparent&quot; - pusiau skaidrų foną.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Fona veids</short>
+         <long>Termināļa fona veids. Var būt &quot;solid&quot; - lai iegūtu viendabīgu krāsu, &quot;image&quot; - lai iegūtu bildi vai &quot;transparent&quot; - lai iegūtu pseido-caurspīdīgumu.</long>
+      </locale>
+
       <locale name="mg">
          <short>Karazan&apos;afara</short>
          <long>Karazan&apos;ny afaran&apos;ilay terminal. Mety ho &quot;solid&quot; raha loko tokana, &quot;image&quot; raha sary, na &quot;transparent&quot; raha ohatran&apos;ny tatera-pahazavana.</long>
@@ -10140,6 +10271,11 @@
       <locale name="lt">
          <short>Paveikslėlis fonui</short>
          <long>Fono paveikslėlio rinkmena</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Fona attēls</short>
+         <long>Fona attēla datnes nosaukum.</long>
       </locale>
 
       <locale name="mg">
@@ -10473,6 +10609,11 @@
          <long>Jei teigiama, foninis paveikslėlis judės kartu su terminalo tekstu. Neigiama reikšmė užfiksuos paveikslėlį ir terminale judės tik tekstas.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Vai ritiāt fona attēlu</short>
+         <long>Ja patiess, ritināt fona attēlu kopā ar priekšplāna tekstu; ja nepatiess, attēls tiek paturēts fiksētā pozīcijā un ritināts tiek teksts vors tā.</long>
+      </locale>
+
       <locale name="mg">
          <short>Raha tokony hiaka-midina ny sary afara</short>
          <long>Raha marina, dia mampiaka-midina ny sary miaraka amin&apos;ny soratra eo anoloana. Raha diso, dia ny soratra eo ambonin&apos;ilay sary fotsiny no miaka-midina .</long>
@@ -10799,6 +10940,11 @@
       <locale name="lt">
          <short>Kiek patamsinti foninį paveikslėlį</short>
          <long>Reikšmė tarp 0.0 ir 1.0 nurodo, kiek reikia patamsinti foninį paveikslėlį. 0.0 reiškia tamsinimo netaikymą, 1.0 - visišką užtamsinimą. Dabar turima programos specifikacija leidžia tik du galimus tamsinimo atvejus ir reikšmė veikia kaip loginis kintamasis, kuris atjungia (0.0) arba įjungia (1.0) tamsinimą.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Cik daudz tumšāku pataisīt fona attēlu</short>
+         <long>Skaitlis robežās no 0.0 līdz 1.0 norada, cik tumši jāiekrāso fona bilde. 0.0 nozīmē bez iekrāsojuma, 1.0 nozīmē pilnīgi tumši. Patreizējā realizācijā ir tikai divi tumšuma līmeņi. Tātad šis iestatījums ir ar analogu uzvedību loģiskajam mainīgajam, kur 0.0 izslēdz ietumšošanas efektu.</long>
       </locale>
 
       <locale name="mg">
@@ -11128,6 +11274,11 @@
       <locale name="lt">
          <short>Backspace klavišo veiksmas</short>
          <long>Nustato kodą, kurį generuoja BackSpace klavišas. Galimos reikšmės yra „ascii-del“, nustatanti ASCII DEL simbolį, „control-h“, nustatanti Control-H (ASCII BS simbolį), „escape-sequence“, nustatantį escape seką, susietą su backspace arba delete. „ascii-del“ yra standartinis Backspace klavišo nustatymas.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Atpakaļatkāpes taustiņa efekts</short>
+         <long>Uzstāda kādu kodu radīs atpakaļatkāpes taustiņš. Iespējamās vērtības ir &quot;ascii-del&quot; - lai tas būtu ASCII DEL simbols, &quot;control-h&quot; - lai tas būtu Control-H ( jeb ASCII BS simbols), &quot;escape-sequence&quot; - lai tas būtu iziešanas funkcija, parasti piesaistīts atpakaļatkāpei vai izdzēšanai. &quot;ascii-del&quot; tiek uzskatīts par pareizo iestatījumu atpakaļatkāpes taustiņam.</long>
       </locale>
 
       <locale name="mg">
@@ -11464,6 +11615,11 @@
          <long>Nustato kodą, kurį generuoja Delete klavišas. Galimos reikšmės yra „ascii-del“, nustatanti ASCII DEL simbolį, „control-h“, nustatanti Control-H (ASCII BS simbolį), „escape-sequence“, nustatantį escape seką, susietą su backspace arba delete. „escape-sequence“ yra standartinis Delete klavišo nustatymas.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Dzēšanas taustiņa efekts</short>
+         <long>Uzstāda, kādu kodu dzēšanas taustiņš ģenerēs. Atļautās vērtības ir &quot;ascii-del&quot; - ASCII DEL simbola, &quot;control-h&quot; - Control-H ( jeb ASCII BS simbols), &quot;escape-sequence&quot; - iziešanas proc., parasti saistīts ar atpakaļatkāpi vai dzēšanas tausiņu. &quot;escape-sequence&quot; tiek uzskatīta par pareizo uzstādījumu Delete taustiņam.</long>
+      </locale>
+
       <locale name="mg">
          <short>Vokatry ny fanindriana ny kitendry Mamafa</short>
          <long>Mamaritra ny famaha foronin&apos;ny kitendry mamafa. Ireto ireo sanda mety ampiasaina: &quot;ascii-del&quot; ho an&apos;ny marika ASCII DEL, &quot;control-h&quot; ho an&apos;ny Control-H (AKA izany hoe ny marika ASCII BS), &quot;escape-sequence&quot; ho an&apos;ny Echap misesisesy izay mifamatotra amin&apos;ny kitendry miverina na mamafa. Raha ny tokony ho izy, dia &quot;escape-sequence&quot; no sandan&apos;ny kitendry mamafa heverina fa marina.</long>
@@ -11730,7 +11886,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Utiliser les couleurs du thème pour le terminal.</short>
+         <short>Indique si il faut utiliser les couleurs du thème pour le terminal</short>
          <long>Si VRAI, les couleurs du thème utilisées pour les boîtes de texte seront employées pour le terminal (à la place de celles indiquées par l&apos;utilisateur).</long>
       </locale>
 
@@ -11782,6 +11938,11 @@
       <locale name="lt">
          <short>Ar terminalas turi naudoti temos spalvas</short>
          <long>Jei teigiama, terminalo tekstiniai laukai naudos temos spalvų schemą vietoj vartotojo nurodytų spalvų.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai lietot pašreizējās tēmas krāsas termināļa logrīkam</short>
+         <long>Ja patiess, tēmas krāsu shēma, kas tiek lietota teksta ievades laukos, tiks izmantota terminālī lietotāja uzdoto krāsu vietā.</long>
       </locale>
 
       <locale name="mg">
@@ -12015,7 +12176,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Désactiver l&apos;anti-crénelage an l&apos;absence de l&apos;extension X RENDER</short>
+         <short>Indique si il faut désactiver l&apos;anti-crénelage an l&apos;absence de l&apos;extension X RENDER</short>
          <long>Si VRAI, le lissage des polices sera désactivé lors d&apos;un lancement sans l&apos;extension X RENDER. Celle-ci permet de fournir une amélioration considérable des performances dans ce genre de situations.</long>
       </locale>
 
@@ -12032,6 +12193,11 @@
       <locale name="hu">
          <short>Élsimítás tiltása az X RENDER kiterjesztésének hiányában</short>
          <long>Ha be van állítva, akkor az élsimítás ki lesz kapcsolva, ha az X a RENDER kiterjesztés nélkül fut, ami jelentősen növeli a teljesítményt ilyen helyzetben.</long>
+      </locale>
+
+      <locale name="id">
+         <short>Apakah mematikan anti-aliasing tanpa PENGGAMBAR X</short>
+         <long>Jika benar, huruf anti-aliasing akan dimatikan ketika berjalan tanpa kemampuan PENGGAMBAR X, yang akan memberikan peningkatan kerja pada situasi ini.</long>
       </locale>
 
       <locale name="it">
@@ -12052,6 +12218,11 @@
       <locale name="lt">
          <short>Ar išjungti glotninimą be X RENDER plėtinio</short>
          <long>Jei teigiama, šriftų glotninimas bus išjungtas, paleidus be X RENDER plėtinio, šiais atvejais tai pastebimai padidina spartą.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai atslēgt pret-robošanos bez X RENDER paplašinājuma</short>
+         <long>Ja patiess, fontu pretrobošanās pasākumi tiks atslēgti, kad programma darbosies bez X RENDER paplašinājuma, kas dod vērā ņemamu veiktspējas uzlabojumu šādās situācijās.</long>
       </locale>
 
       <locale name="mg">
@@ -12256,7 +12427,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Utiliser la police système.</short>
+         <short>Indique si il faut utiliser la police système</short>
          <long>Si VRAI, le terminal utilisera la police spécifiée par desktop-global dans le cas où elle est à espacement fixe (et la police la plus ressemblante dans le cas contraire).</long>
       </locale>
 
@@ -12313,6 +12484,11 @@
       <locale name="lt">
          <short>Ar naudoti sisteminį šriftą</short>
          <long>Jei teigiama, terminalas naudos aplinkos numatytąjį šriftą, jei jis yra lygiaplotis (arba bus parinktas kitas artimas jam šriftas).</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Vai izmantot sistēmas fontu</short>
+         <long>Ja patiess, terminālis izmantos globālo darbavirsmas fontu, ja tas ir monospace ( vai arī vistuvāko pēc līdzības, kādu tas var atrast).</long>
       </locale>
 
       <locale name="mg">
@@ -12573,6 +12749,11 @@
          <long>Párbeszédablak megjelenítése s/key hívás-válasz lekérdezés érzékelésekor és rákattintáskor. A párbeszédablakba beírt jelszó a terminálra lesz küldve.</long>
       </locale>
 
+      <locale name="id">
+         <short>Tandai S/Key challenges</short>
+         <long>Tampilkan dialog saat permintaan respon s/key challenge diterima dan diklik. Kata sandi yang diketikkan pada dialog akan dikirimkan langsung ke dalam terminal.</long>
+      </locale>
+
       <locale name="it">
          <short>Evidenzia le «S/Key challenge»</short>
          <long>Apre una finestra di dialogo quando una richiesta di risposta a «S/Key challenge» è intercettata e cliccata. Scrivendo la password nella finestra di dialogo questa viene spedita al terminale.</long>
@@ -12591,6 +12772,11 @@
       <locale name="lt">
          <short>Paryškinti S/Key kreipinius</short>
          <long>Iškviesti dialogo langą, kai aptinkamas atsakymo į S/Key kreipinio užklausą įvedimas. Dialoge įvedus slaptažodį šis bus nusiųstas į terminalą.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Izcelt S/taustiņa izaicinājumu</short>
+         <long>Parādīt dialogu, kad īsinājumtaustiņa izaicinājuma atbildes jautājums ir atrasts un uz tā tiek uzklikšķināts. Paroles ievadīšana logā, aizsūtīs to uz termināli.</long>
       </locale>
 
       <locale name="mg">
@@ -12875,6 +13061,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija naujos kortelės atvėrimui</short>
          <long>Klavišų kombinacija, atveriantis naują kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš jaunas cilnes atvēršanai</short>
+         <long>Tastatūras īsinājumtaustiņš jaunas cilnes atvēršanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -13199,6 +13390,11 @@
          <long>Klavišų kombinacija, atveriantis naują langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš jauna loga atvēršanai</short>
+         <long>Tastatūras īsinājumtaustiņš jauna loga atvēršanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanokafana fikandrana vaovao</short>
          <long>Kitendry hitsin-dàlana fanokafana fikandrana vaovao, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -13519,6 +13715,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija naujo profilio sukūrimui</short>
          <long>Klavišų kombinacija, iškviečianti profilio kūrimo langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš jauna profila izveidei</short>
+         <long>Tastatūras īsinājumtaustiņš profila izveides dialoglodziņa atvēršanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs taustiņu saīsne.</long>
       </locale>
 
       <locale name="mg">
@@ -13843,6 +14044,11 @@
          <long>Klavišų kombinacija, užverianti kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš cilnes aizvēršanai</short>
+         <long>Tastatūras īsinājumtaustiņš cilnes aizvēršanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanidiana vakizoro</short>
          <long>Kitendry hitsin-dàlana fanidiana vakizoro, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -14163,6 +14369,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija lango užvėrimui</short>
          <long>Klavišų kombinacija, užverianti langą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš loga aizvēršanai</short>
+         <long>Tastatūras īsinājumtaustiņš loga aizvēršanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -14489,6 +14700,11 @@
          <long>Klavišų kombinacija, nukopijuojantis pažymėtą tekstą į atmintinę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš teksta kopēšanai</short>
+         <long>Tastatūras īsinājumtaustiņš izvēlētā teksta kopēšanai uz starpliktuvi. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fandikana lahabolana</short>
          <long>Kitendry hitsin-dàlana fandikana ny lahabolana voafaritra anatin&apos;ny fanindri-taratasy, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -14813,6 +15029,11 @@
          <long>Klavišų kombinacija, įterpiantis tekstą iš atmintinės. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš teksta izņemšanai no starpglabātuves</short>
+         <long>Tastatūras īsinājumtaustiņš starpliknes satura ielikšanai termināļa logā. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fametahana lahabolana</short>
          <long>Kitendry hitsin-dàlana fametahana izay ao anatin&apos;ny fanindri-taratasy eo amin&apos;ilay terminal, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -15135,6 +15356,11 @@
          <long>Klavišų kombinacija, perjungiantis pilnaekranį režimą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Tastatūras īsinājumtaustiņš pilnekrāna režīma pārslēgšanai</short>
+         <long>Tastatūras īsinājumtaustiņš, kas pārlēdz pilnekrāna režīmu. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fiovana fomba mameno/tsy mameno efijery</short>
          <long>Kitendry hitsin-dàlana fiovana fomba mameno/tsy mameno efijery, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -15453,6 +15679,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija perjungianti meniu rodymą</short>
          <long>Klavišų kombinacija, valdantis meniu juostos rodymą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Tastatūras īsinājumtaustiņš izvēlnes joslas redzamības pārslēgšanai</short>
+         <long>Tastatūras īsinājumtaustiņš izvēlnes joslas redzamības pārslēgšana. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -15776,6 +16007,11 @@
          <long>Klavišų kombinacija, nustatantis terminalo antraštę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš termināļa virsraksta uzstādīšanai</short>
+         <long>Tastatūras īsinājumtaustiņš termināļa virsraksta atstatīšanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana famaritana ny lohatenin&apos;ilay terminal</short>
          <long>Kitendry hitsin-dàlana famaritana ny lohatenin&apos;ilay terminal, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -16097,6 +16333,11 @@
          <long>Klavišų kombinacija, perkraunantis terminalą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš termināļa atjaunošanai</short>
+         <long>Tastatūras īsinājumtaustiņš termināļa atstatīšanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana famerenana ilay terminal</short>
          <long>Kitendry hitsin-dàlana famerenana ilay terminal, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -16416,6 +16657,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija terminalo atstatymui ir išvalymui</short>
          <long>Klavišų kombinacija, perkraunantis ir išvalantis terminalą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Tastatūras īsinājumtaustiņš, lai atstatītu un atbrīvotu termināli</short>
+         <long>Tastatūras īsinājumtaustiņš termināļa atiestatīšanai un atbrīvošanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -16740,6 +16986,11 @@
          <long>Klavišų kombinacija, perjungiantis į ankstesnę kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Tastatūras īsinājumtaustiņš, lai pārslēgtos uz iepriekšējo cilni</short>
+         <long>Tastatūras īsinājumtaustiņš, lai pārslēgtos uz iepriekšējo cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro eo ankavia</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro eo ankavia, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -17062,6 +17313,11 @@
          <long>Klavišų kombinacija, perjungiantis į kitą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Tastatūras īsinājumtaustiņš, lai pārslēgtos uz nākamo cilni</short>
+         <long>Tastatūras īsinājumtaustiņš, lai pārslēgtos uz nākamo cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro eo ankavanana</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro eo ankavanana, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -17319,6 +17575,11 @@
          <long>Gyorsbillentyű a jelenlegi lap balra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
+      <locale name="id">
+         <short>Akselerator untuk pindahkan tab sekarang ke kiri.</short>
+         <long>Tombol singkat untuk mengaktifkan tab saat ini ke Kiri. Ini ditulis dalam bentuk string dengan bentuk yang sama dengan berkas sumber GTK+, jika Anda isi dengan &quot;disabled&quot; maka tombol singkat akan dimatikan.</long>
+      </locale>
+
       <locale name="it">
          <short>Acceleratore per spostare la scheda corrente a sinistra.</short>
          <long>Scorciatoia da tastiera per spostare la scheda corrente a sinistra terminale, espressa nello stesso formato usato dai file di risorse per GTK+. Se l&apos;opzione è impostata alla stringa speciale &quot;disabled&quot;, non c&apos;è alcun collegamento con tasti per questa azione.</long>
@@ -17337,6 +17598,11 @@
       <locale name="lt">
          <short>Spartusis klavišas perkelti esamą kortelę kairėn.</short>
          <long>Spartusis klavišas, kortelės perkėlimui kairėn. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Paātrinājums, kas domāts pašreizējā ciļņa pārvietošanai uz kreiso pusi.</short>
+         <long>Paātrinājuma taustiņš, lai pārvieotu pašreizējo cilni uz kreiso pusi. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs taustiņu saīsne.</long>
       </locale>
 
       <locale name="mg">
@@ -17546,6 +17812,11 @@
          <long>Gyorsbillentyű a jelenlegi lap jobbra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
+      <locale name="id">
+         <short>Akselerator untuk pindahkan tab sekarang ke kanan.</short>
+         <long>Tombol singkat untuk mengaktifkan tab saat ini ke Kanan. Ini ditulis dalam bentuk string dengan bentuk yang sama dengan berkas sumber GTK+, jika Anda isi dengan &quot;disabled&quot; maka tombol singkat akan dimatikan.</long>
+      </locale>
+
       <locale name="it">
          <short>Acceleratore per spostare la scheda a destra.</short>
          <long>Scorciatoia da tastiera per  per spostare la scheda corrente a destra, espressa nello stesso formato usato dai file di risorse per GTK+. Se l&apos;opzione è impostata alla stringa speciale &quot;disabled&quot;, non c&apos;è alcun collegamento con tasti per questa azione.</long>
@@ -17564,6 +17835,11 @@
       <locale name="lt">
          <short>Spartusis klavišas perkelti esamą kortelę dešinėn.</short>
          <long>Spartusis klavišas, kortelės perkėlimui dešinėn. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Paātrinājums, kas domāts pašreizējā ciļņa pārvietošanai uz labo pusi.</short>
+         <long>Paātrinājuma taustiņš, lai pārvietotu pašreizējo cilni uz labo pusi. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs taustiņu saīsne.</long>
       </locale>
 
       <locale name="mg">
@@ -17777,6 +18053,11 @@
          <long>Gyorsbillentyű a jelenlegi lap leválasztásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
       </locale>
 
+      <locale name="id">
+         <short>Akselerator untuk menambah jalan pintas.</short>
+         <long>Tombol singkat untuk mengaktifkan tab saat ini. Ini ditulis dalam bentuk string dengan bentuk yang sama dengan berkas sumber GTK+, jika Anda isi dengan &quot;disabled&quot; maka tombol singkat akan dimatikan.</long>
+      </locale>
+
       <locale name="it">
          <short>Acceleratore per staccare la scheda corrente.</short>
          <long>Scorciatoia da tastiera per staccare la scheda corrente, espressa nello stesso formato usato dai file di risorse per GTK+. Se l&apos;opzione è impostata alla stringa speciale &quot;disabled&quot;, non c&apos;è alcun collegamento con tasti per questa azione.</long>
@@ -17795,6 +18076,11 @@
       <locale name="lt">
          <short>Spartusis klavišas atkabinti esamai kortelei.</short>
          <long>Spartusis klavišas, esamos kortelės atkabinimui. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>paātrinātājs, lai atvienotu pašreizējo cilni.</short>
+         <long>Paātrinājuma taustiņš, lai atvienotu pašreizējo cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs taustiņu saīsne.</long>
       </locale>
 
       <locale name="mg">
@@ -18072,6 +18358,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija persijungimui į 1-ą kortelę</short>
          <long>Klavišų kombinacija, perjungiantis į 1-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 1</short>
+         <long>Tastatūras īsinājumtaustiņš, lai pārslēgtos uz pirmo cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -18396,6 +18687,11 @@
          <long>Klavišų kombinacija, perjungiantis į 2-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 2</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz otro cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 2</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 2, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -18716,6 +19012,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija persijungimui į 3-ią kortelę</short>
          <long>Klavišų kombinacija, perjungiantis į 3-ią kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 3</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz trešo cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -19040,6 +19341,11 @@
          <long>Klavišų kombinacija, perjungiantis į 4-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 4</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz ceturto cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 4</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 4, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -19360,6 +19666,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija persijungimui į 5-ą kortelę</short>
          <long>Klavišų kombinacija, perjungiantis į 5-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 5</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz piekto cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -19684,6 +19995,11 @@
          <long>Klavišų kombinacija, perjungiantis į 6-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 6</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz sesto cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 6</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 6, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -20004,6 +20320,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija persijungimui į 7-ą kortelę</short>
          <long>Klavišų kombinacija, perjungiantis į 7-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 7</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz septīto cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -20328,6 +20649,11 @@
          <long>Klavišų kombinacija, perjungiantis į 8-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 8</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz astoto cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 8</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 8, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -20648,6 +20974,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija persijungimui į 9-ą kortelę</short>
          <long>Klavišų kombinacija, perjungiantis į 9-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 9</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz devīto cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -20972,6 +21303,11 @@
          <long>Klavišų kombinacija, perjungiantis į 10-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 10</short>
+         <long>Tastatūras īsinājumtaustiņš, lai pārslēgtos uz desmito cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 10</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 10, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -21292,6 +21628,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija persijungimui į 11-ą kortelę</short>
          <long>Klavišų kombinacija, perjungiantis į 11-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 11</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz vienpadsmito cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -21616,6 +21957,11 @@
          <long>Klavišų kombinacija, perjungiantis į 12-ą kortelę. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka &quot;disabled&quot;, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš, lai pārslēgtos un cilni 12</short>
+         <long>Tastatūras īsinājumtaustiņš, lai paŗslēgtos uz divpadsmito cilni. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 12</short>
          <long>Kitendry hitsin-dàlana fanasongadinana ny vakizoro 12, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -21936,6 +22282,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija žinyno atvėrimui</short>
          <long>Klavišų kombinacija, paleidžiantis pagalbos sistemą. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Īsinājumtaustiņš palīdzības parādīšanai</short>
+         <long>Tastatūras īsinājumtaustiņš vides palīdzības izsaukšanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
@@ -22260,6 +22611,11 @@
          <long>Klavišų kombinacija, padidinantis šrifto dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš fonta lieluma palielināšanai</short>
+         <long>Tastatūras īsinājumtaustiņšfonta izmēra palielināšanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanabeazana ny endri-tsoratra</short>
          <long>Kitendry hitsin-dàlana fanalehibiazana ny endri-tsoratra, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -22582,6 +22938,11 @@
          <long>Klavišų kombinacija, sumažinantis šriftų dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
       </locale>
 
+      <locale name="lv">
+         <short>Īsinājumtaustiņš fonta lieluma samazināšanai</short>
+         <long>Tastatūras īsinājumtaustiņš fonta izmēra samazināšanai. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
+      </locale>
+
       <locale name="mg">
          <short>Kitendry hitsin-dàlana fanakelezana ny endri-tsoratra</short>
          <long>Kitendry hitsin-dàlana fanakelezana ny endri-tsoratra, izay voalaza amin&apos;ny endri-daha-daza manana lamina mitovy amin&apos;ny ampiasaina amin&apos;ny rakitra ressource GTK+. Raha toa ka ataonao ilay laha-daza manokana &quot;disabled&quot; ilay safidy, dia tsy hisy fitambaran-kitendry ho an&apos;io asa io.</long>
@@ -22902,6 +23263,11 @@
       <locale name="lt">
          <short>Klavišų kombinacija normalaus šrifto dydžio nustatymui</short>
          <long>Klavišų kombinacija, atstatantis numatytajį šriftų dydį. Nurodomas tuo pačiu formatu kaip GTK+ resursų rinkmenose. Jei nustatoma speciali seka „disabled“, su veiksmu nebus susieta jokia klavišų kombinacija.</long>
+      </locale>
+
+      <locale name="lv">
+         <short>Tastatūras īsinājumtaustiņš, lai fontu pārtaisītu normāllielumā</short>
+         <long>Tastatūras īsinājumtaustiņš fonta lieluma atgriešanai normālā lielumā. Izteikts simbolu virknes veidā tajā pašā formātā, kādu lieto GTK+ resursu datnēm. Ja jūst uzstādat opciju uz īpašo simbolu virkni &quot;atslēgts&quot;, tad šai darbībai nebūs tastatūras īsinājumtaustiņa.</long>
       </locale>
 
       <locale name="mg">
