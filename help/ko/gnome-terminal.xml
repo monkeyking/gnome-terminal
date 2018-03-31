@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2002.</year><holder>Sun Microsystems</holder></copyright><copyright><year>2007.</year><holder>류창우 (cwryu@debian.org)</holder></copyright>
+     </copyright><copyright><year>2002.</year><holder>Sun Microsystems</holder></copyright><copyright><year>2007, 2008.</year><holder>류창우 (cwryu@debian.org)</holder></copyright>
      <publisher> 
         <publishername>그놈 문서 프로젝트</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -90,7 +90,7 @@
      <revhistory> 
         <revision> 
           <revnumber>그놈 터미널 설명서 버전 2.8</revnumber> 
-          <date>March 2004</date> 
+          <date>2004년 3월</date> 
           <revdescription> 
              <para role="author">Sun 그놈 문서 팀</para>
              <para role="publisher">그놈 문서 프로젝트</para>
@@ -176,7 +176,7 @@
      </legalnotice> 
   </articleinfo> 
   <indexterm> 
-     <primary>GNOME Terminal</primary> 
+     <primary>그놈 터미널</primary> 
   </indexterm> 
   <indexterm> 
      <primary>터미널 응용 프로그램</primary> 
@@ -321,8 +321,7 @@
           <varlistentry> 
              <term>창에 새 탭 터미널을 추가하려면:</term> 
              <listitem> 
-                <para>
-                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
+                <para><menuchoice><guimenu>파일</guimenu><guisubmenu>탭 열기</guisubmenu><guimenuitem>기본값</guimenuitem></menuchoice>을 선택하거나 서브 메뉴가 없으면 <menuchoice><guimenu>파일</guimenu><guimenuitem>탭 열기</guimenuitem></menuchoice>를 선택하십시오.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -540,17 +539,15 @@
         <para><application>그놈 터미널</application>에 정의된 키보드 바로 가기 설정을 보려면, <menuchoice><guimenu>편집</guimenu><guimenuitem>바로 가기 키</guimenuitem></menuchoice>를 선택하십시오. <guilabel>바로 가기 키</guilabel> 대화 창에는 다음 항목이 들어 있습니다:</para>
         <variablelist> 
           <varlistentry> 
-             <term><guilabel>모든 메뉴 접근 키(<Alt>+f로 파일 메뉴를 여는 것처럼)를 사용하지 않기</Alt></guilabel></term> 
+             <term><guilabel>모든 메뉴 접근 키(Alt+F로 파일 메뉴를 여는 것처럼)를 사용하지 않기</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>이 옵션은 메뉴 항목을 선택할 때 마우스 대신 키보드의 단축키를 사용할 수 없게 만듭니다. 단축키는 메뉴나 대화 창 옵션에 밑줄이 그어져 있는 글자를 말합니다. 어떤 경우에는 <keycap>Alt</keycap>를 같이 눌러야 그 메뉴 동작을 실행할 수 있습니다.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term><guilabel>메뉴 바로 가기 키를 사용하지 않음 (기본값은 F10)</guilabel></term> 
+             <term><guilabel>메뉴 바로 가기 키를 (기본값 F10) 사용하지 않음</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>이 옵션은 <application>그놈 터미널</application>의 메뉴에 접근하는 바로 가기 키를 동작하지 않게 만듭니다. 메뉴에 접근하는 바로 가기 키 기본값은 <keycap>F10</keycap>입니다.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -605,12 +602,10 @@
             <para><menuchoice><guimenu>터미널</guimenu><guisubmenu>문자 인코딩 설정</guisubmenu><guimenuitem>추가/지우기</guimenuitem></menuchoice>를 선택하십시오.</para>
           </listitem>
           <listitem>
-            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
-            </para>
+            <para><guisubmenu>문자 인코딩 설정</guisubmenu> 메뉴에 인코딩을 추가하려면, <guilabel>사용할 수 있는 인코딩</guilabel> 목록에서 그 인코딩을 선택하고 오른쪽 화살표 단추를 누르십시오.</para>
           </listitem>
           <listitem>
-            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
-            </para>
+            <para><guisubmenu>문자 인코딩 설정</guisubmenu> 메뉴에서 인코딩을 지우려면, <guilabel>메뉴에 표시하는 인코딩</guilabel> 목록에서 그 인코딩을 선택하고 왼쪽 화살표 단추를 누르십시오.</para>
           </listitem>
           <listitem>
             <para><guibutton>닫기</guibutton>를 눌러 <guilabel>터미널 인코딩 추가/지우기</guilabel> 대화 창을 닫으십시오.</para>
@@ -675,11 +670,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Use the system fixed width font</guilabel> </term>
+                <guilabel>시스템 고정폭 글꼴 사용</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
-                </para>
+                <para>이 옵션을 선택하면 <application>모양새</application> 설정의 <guilabel>글꼴</guilabel> 탭에서 지정한 고정폭 글꼴을 사용합니다.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -708,7 +701,9 @@
              <term> 
                 <guilabel>터미널 삑소리</guilabel> </term> 
              <listitem> 
-                <para>이 옵션을 선택하면 터미널 삑소리를 사용하지 않습니다.</para>
+                <para>
+                  Select this option to enable the terminal bell.
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -733,7 +728,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>When terminal commands set their own titles</guilabel> </term>
+                <guilabel>터미널 명령이 제목을 바꿀 때</guilabel> </term>
              <listitem> 
                 <para>이 드롭다운 목록을 사용해 동적으로 설정하는 제목을 어떻게 처리할 지 지정합니다. 동적으로 설정하는 제목은 터미널 안에서 실행하는 명령어가 설정하는 터미널 제목을 말합니다.</para>
              </listitem> 
@@ -747,11 +742,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Update login records when command is launched</guilabel> </term> 
+                <guilabel>명령을 실행하면 로그인 기록을 업데이트</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to insert a new entry in the login records when a new shell is opened. 
-                </para>
+                <para>이 옵션을 선택하면 새 쉘을 열 때마다 로그인 기록에 새로운 항목을 넣습니다.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -766,9 +759,7 @@
              <term> 
                 <guilabel>명령이 끝났을 때</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>이 드롭다운 목록에서 명령어가 끝날 때 할 동작을 지정하십시오.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -781,9 +772,7 @@
                 <guilabel>글자색과 배경색</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
-                </para>
+                <para><guilabel>시스템 테마 색 사용</guilabel> 옵션을 선택하면 그놈 데스크탑 테마에서 지정한 색을 사용합니다. 그놈 데스크탑 테마는 <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>모양새</application> 설정 도구</ulink>의 <guilabel>테마</guilabel> 탭에서 설정합니다.</para>
                 <para><guilabel>내장 팔레트</guilabel> 드롭다운 목록에서 터미널의 글자색과 배경색을 지정합니다. <application>그놈 터미널</application>은 다음 글자색과 배경색 조합을 지원합니다:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -845,11 +834,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Solid color</guilabel>
+                        <guilabel>단색</guilabel>
                      </para>
-                     <para>
-                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
-                     </para>
+                     <para>이 옵션을 선택하면 <guilabel>색</guilabel> 탭에서 지정한 배경색을 터미널의 배경색으로 사용됩니다.</para>
                   </listitem> 
                   <listitem> 
                      <para>

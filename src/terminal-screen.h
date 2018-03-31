@@ -74,7 +74,12 @@ struct _TerminalScreenClass
 
 GType terminal_screen_get_type (void) G_GNUC_CONST;
 
-TerminalScreen* terminal_screen_new                    (void);
+TerminalScreen *terminal_screen_new (TerminalProfile *profile,
+                                     char           **override_command,
+                                     const char      *title,
+                                     const char      *working_dir,
+                                     char           **child_env,
+                                     double           zoom);
 
 void terminal_screen_set_profile (TerminalScreen *screen,
                                   TerminalProfile *profile);
@@ -83,6 +88,10 @@ TerminalProfile* terminal_screen_get_profile (TerminalScreen *screen);
 void         terminal_screen_set_override_command (TerminalScreen  *screen,
                                                    char           **argv);
 const char** terminal_screen_get_override_command (TerminalScreen  *screen);
+
+void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
+                                                      char           **argv);
+char **      terminal_screen_get_initial_environment (TerminalScreen  *screen);
 
 void terminal_screen_launch_child (TerminalScreen *screen);
 
@@ -94,13 +103,7 @@ gboolean    terminal_screen_get_icon_title_set (TerminalScreen *screen);
 void terminal_screen_set_user_title (TerminalScreen *screen,
                                      const char *text);
 
-void        terminal_screen_set_dynamic_title      (TerminalScreen *screen,
-                                                    const char     *title,
-						    gboolean	   userset);
-void        terminal_screen_set_dynamic_icon_title (TerminalScreen *screen,
-                                                    const char     *title,
-						    gboolean	   userset);
-void        terminal_screen_set_title              (TerminalScreen *screen,
+void        terminal_screen_set_override_title     (TerminalScreen *screen,
                                                     const char     *title);
 
 const char *terminal_screen_get_dynamic_title      (TerminalScreen *screen);
@@ -123,6 +126,12 @@ void       terminal_screen_get_cell_size (TerminalScreen *screen,
                                           int *height_chars);
 
 void _terminal_screen_update_scrollbar (TerminalScreen *screen);
+
+void terminal_screen_save_config (TerminalScreen *screen,
+                                  GKeyFile *key_file,
+                                  const char *group);
+
+gboolean terminal_screen_has_foreground_process (TerminalScreen *screen);
 
 /* Allow scales a bit smaller and a bit larger than the usual pango ranges */
 #define TERMINAL_SCALE_XXX_SMALL   (PANGO_SCALE_XX_SMALL/1.2)
