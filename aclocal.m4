@@ -19,6 +19,50 @@ You have another version of autoconf.  It may work, but is not guaranteed to.
 If you have problems, you may need to regenerate the build system entirely.
 To do so, use the procedure documented by the package, typically `autoreconf'.])])
 
+dnl AM_GCONF_SOURCE_2
+dnl Defines GCONF_SCHEMA_CONFIG_SOURCE which is where you should install schemas
+dnl  (i.e. pass to gconftool-2
+dnl Defines GCONF_SCHEMA_FILE_DIR which is a filesystem directory where
+dnl  you should install foo.schemas files
+dnl
+
+AC_DEFUN([AM_GCONF_SOURCE_2],
+[
+  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
+    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+  else
+    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
+  fi
+
+  AC_ARG_WITH([gconf-source],
+	      AC_HELP_STRING([--with-gconf-source=sourceaddress],
+			     [Config database for installing schema files.]),
+	      [GCONF_SCHEMA_CONFIG_SOURCE="$withval"],)
+
+  AC_SUBST(GCONF_SCHEMA_CONFIG_SOURCE)
+  AC_MSG_RESULT([Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation])
+
+  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
+    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas'
+  fi
+
+  AC_ARG_WITH([gconf-schema-file-dir],
+	      AC_HELP_STRING([--with-gconf-schema-file-dir=dir],
+			     [Directory for installing schema files.]),
+	      [GCONF_SCHEMA_FILE_DIR="$withval"],)
+
+  AC_SUBST(GCONF_SCHEMA_FILE_DIR)
+  AC_MSG_RESULT([Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files])
+
+  AC_ARG_ENABLE(schemas-install,
+     [  --disable-schemas-install	Disable the schemas installation],
+     [case ${enableval} in
+       yes|no) ;;
+       *) AC_MSG_ERROR(bad value ${enableval} for --enable-schemas-install) ;;
+      esac])
+  AM_CONDITIONAL([GCONF_SCHEMAS_INSTALL], [test "$enable_schemas_install" != no])
+])
+
 # libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 
 # serial 52 Debian 1.5.26-1ubuntu1 AC_PROG_LIBTOOL
@@ -6671,6 +6715,38 @@ AC_SUBST([SED])
 AC_MSG_RESULT([$SED])
 ])
 
+# nls.m4 serial 3 (gettext-0.15)
+dnl Copyright (C) 1995-2003, 2005-2006 Free Software Foundation, Inc.
+dnl This file is free software; the Free Software Foundation
+dnl gives unlimited permission to copy and/or distribute it,
+dnl with or without modifications, as long as this notice is preserved.
+dnl
+dnl This file can can be used in projects which are not available under
+dnl the GNU General Public License or the GNU Library General Public
+dnl License but which still want to provide support for the GNU gettext
+dnl functionality.
+dnl Please note that the actual code of the GNU gettext library is covered
+dnl by the GNU Library General Public License, and the rest of the GNU
+dnl gettext package package is covered by the GNU General Public License.
+dnl They are *not* in the public domain.
+
+dnl Authors:
+dnl   Ulrich Drepper <drepper@cygnus.com>, 1995-2000.
+dnl   Bruno Haible <haible@clisp.cons.org>, 2000-2003.
+
+AC_PREREQ(2.50)
+
+AC_DEFUN([AM_NLS],
+[
+  AC_MSG_CHECKING([whether NLS is requested])
+  dnl Default is enabled NLS
+  AC_ARG_ENABLE(nls,
+    [  --disable-nls           do not use Native Language Support],
+    USE_NLS=$enableval, USE_NLS=yes)
+  AC_MSG_RESULT($USE_NLS)
+  AC_SUBST(USE_NLS)
+])
+
 # pkg.m4 - Macros to locate and utilise pkg-config.            -*- Autoconf -*-
 # 
 # Copyright © 2004 Scott James Remnant <scott@netsplit.com>.
@@ -7705,50 +7781,6 @@ AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
-dnl AM_GCONF_SOURCE_2
-dnl Defines GCONF_SCHEMA_CONFIG_SOURCE which is where you should install schemas
-dnl  (i.e. pass to gconftool-2
-dnl Defines GCONF_SCHEMA_FILE_DIR which is a filesystem directory where
-dnl  you should install foo.schemas files
-dnl
-
-AC_DEFUN([AM_GCONF_SOURCE_2],
-[
-  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
-    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  else
-    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
-  fi
-
-  AC_ARG_WITH([gconf-source],
-	      AC_HELP_STRING([--with-gconf-source=sourceaddress],
-			     [Config database for installing schema files.]),
-	      [GCONF_SCHEMA_CONFIG_SOURCE="$withval"],)
-
-  AC_SUBST(GCONF_SCHEMA_CONFIG_SOURCE)
-  AC_MSG_RESULT([Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation])
-
-  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
-    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas'
-  fi
-
-  AC_ARG_WITH([gconf-schema-file-dir],
-	      AC_HELP_STRING([--with-gconf-schema-file-dir=dir],
-			     [Directory for installing schema files.]),
-	      [GCONF_SCHEMA_FILE_DIR="$withval"],)
-
-  AC_SUBST(GCONF_SCHEMA_FILE_DIR)
-  AC_MSG_RESULT([Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files])
-
-  AC_ARG_ENABLE(schemas-install,
-     [  --disable-schemas-install	Disable the schemas installation],
-     [case ${enableval} in
-       yes|no) ;;
-       *) AC_MSG_ERROR(bad value ${enableval} for --enable-schemas-install) ;;
-      esac])
-  AM_CONDITIONAL([GCONF_SCHEMAS_INSTALL], [test "$enable_schemas_install" != no])
-])
-
 # Copyright (C) 1995-2002 Free Software Foundation, Inc.
 # Copyright (C) 2001-2003,2004 Red Hat, Inc.
 #
@@ -8428,8 +8460,9 @@ GNOME_DOC_DEFINES
 
 dnl IT_PROG_INTLTOOL([MINIMUM-VERSION], [no-xml])
 # serial 40 IT_PROG_INTLTOOL
-AC_DEFUN([IT_PROG_INTLTOOL],
-[AC_PREREQ([2.50])dnl
+AC_DEFUN([IT_PROG_INTLTOOL], [
+AC_PREREQ([2.50])dnl
+AC_REQUIRE([AM_NLS])dnl
 
 case "$am__api_version" in
     1.[01234])
@@ -8502,6 +8535,7 @@ AC_SUBST(INTLTOOL_POLICY_RULE)
 AC_PATH_PROG(XGETTEXT, xgettext)
 AC_PATH_PROG(MSGMERGE, msgmerge)
 AC_PATH_PROG(MSGFMT, msgfmt)
+AC_PATH_PROG(GMSGFMT, gmsgfmt, $MSGFMT)
 if test -z "$XGETTEXT" -o -z "$MSGMERGE" -o -z "$MSGFMT"; then
     AC_MSG_ERROR([GNU gettext tools not found; required for intltool])
 fi
@@ -8581,21 +8615,16 @@ AC_CONFIG_COMMANDS_PRE([
 	'"s|^|	$ac_top_srcdir/|" \
       "$srcdir/$1/POTFILES.in" | sed '$!s/$/ \\/' >"$1/POTFILES"
     ]
-    if test ! -f "$1/Makefile"; then
-      AC_MSG_ERROR([$1/Makefile is not ready.])
-    fi
-    mv "$1/Makefile" "$1/Makefile.tmp"
     [sed '/^POTFILES =/,/[^\\]$/ {
 		/^POTFILES =/!d
 		r $1/POTFILES
 	  }
-	 ' "$1/Makefile.tmp" >"$1/Makefile"]
+	 ' "$1/Makefile.in" >"$1/Makefile"]
     rm -f "$1/Makefile.tmp"
     mv "$1/stamp-it.tmp" "$1/stamp-it"
   ])
 ])dnl
 ])
-
 
 # deprecated macros
 AU_ALIAS([AC_PROG_INTLTOOL], [IT_PROG_INTLTOOL])
