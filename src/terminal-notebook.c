@@ -41,6 +41,7 @@ struct _TerminalNotebookPrivate
   gulong   toplevel_button_release_handler_id;
   gint     x_start, y_start;
   gboolean drag_in_progress;
+  GtkTooltips *title_tips;
 };
 
 static void terminal_notebook_init           (TerminalNotebook *notebook);
@@ -683,6 +684,8 @@ terminal_notebook_init (TerminalNotebook *notebook)
   gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
   gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
 
+  notebook->priv->title_tips = gtk_tooltips_new ();
+
   g_signal_connect (notebook, "button-press-event",
                     (GCallback)button_press_cb, NULL);
   g_signal_connect (notebook, "button-release-event",
@@ -698,18 +701,28 @@ terminal_notebook_finalize (GObject *object)
 }
 
 static void
-sync_label (TerminalScreen *screen, GtkWidget *label)
+sync_label (TerminalScreen *screen, TerminalNotebook *nb)
 {
+  GtkWidget *hbox, *ebox, *label;
   const char *title;
 
-  if (label == NULL) return;
+  hbox = gtk_notebook_get_tab_label (GTK_NOTEBOOK (nb), GTK_WIDGET (screen));
+  ebox = g_list_first (gtk_container_get_children (GTK_CONTAINER (hbox)))->data;
+  label = g_list_first (gtk_container_get_children (GTK_CONTAINER (ebox)))->data;
 
   title = terminal_screen_get_title (screen);
 
-  if (title)
-    {
-      gtk_label_set_text (GTK_LABEL (label), title);
-    }
+  gtk_label_set_text (GTK_LABEL (label), title);
+  gtk_tooltips_set_tip (nb->priv->title_tips, ebox, title, NULL);
+}
+
+static void
+close_button_clicked_cb (GtkWidget *widget, TerminalScreen *screen)
+{
+  GtkWidget *notebook;
+
+  notebook = gtk_widget_get_parent (screen);
+  terminal_notebook_remove_tab (notebook, screen);
 }
 
 void
@@ -718,19 +731,55 @@ terminal_notebook_add_tab (TerminalNotebook *nb,
                            int position,
                            gboolean jump_to)
 {
-  GtkWidget *label;
+  gchar *title;
+  GtkWidget *hbox, *label, *label_ebox, *close_button, *image;
+  GtkRcStyle *rcstyle;
 
   g_return_if_fail (TERMINAL_IS_SCREEN (screen));
 
-  label = gtk_label_new (terminal_screen_get_title (screen));
+  hbox = gtk_hbox_new (FALSE, 4);
+
+  title = terminal_screen_get_title (screen);
+
+  label_ebox = gtk_event_box_new ();
+  gtk_event_box_set_visible_window (GTK_EVENT_BOX (label_ebox), FALSE);
+  gtk_tooltips_set_tip (nb->priv->title_tips, label_ebox, title, NULL);
+
+  label = gtk_label_new (title);
   gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
-  gtk_widget_show (label);
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+
+  gtk_container_add (GTK_CONTAINER (label_ebox), label);
+  gtk_box_pack_start (GTK_BOX (hbox), label_ebox, TRUE, TRUE, 0);
+
+  close_button = gtk_button_new ();
+  gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
+  gtk_button_set_focus_on_click (GTK_BUTTON (close_button), FALSE);
+  gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
+
+  rcstyle = gtk_rc_style_new ();
+  rcstyle->xthickness = rcstyle->ythickness = 0;
+  gtk_widget_modify_style (close_button, rcstyle);
+  gtk_rc_style_unref (rcstyle);
+
+  image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+  gtk_container_add (GTK_CONTAINER (close_button), image);
+  gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
+
+  g_signal_connect (G_OBJECT (close_button), "clicked",
+		    G_CALLBACK (close_button_clicked_cb),
+		    screen);
+    
+  gtk_widget_show (label);
+  gtk_widget_show (label_ebox);
+  gtk_widget_show (image);
+  gtk_widget_show (close_button);
+  gtk_widget_show (hbox);
 
   update_tabs_visibility (nb, TRUE);
 
   gtk_notebook_insert_page (GTK_NOTEBOOK (nb), GTK_WIDGET (screen),
-                            label, position);
+			    hbox, position);
 
   gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (nb),
                                       GTK_WIDGET (screen),
@@ -739,7 +788,7 @@ terminal_notebook_add_tab (TerminalNotebook *nb,
   g_signal_connect (G_OBJECT (screen),
                     "title-changed",
                     G_CALLBACK (sync_label),
-                    label);
+                    nb);
 
   g_signal_emit (G_OBJECT (nb), signals[TAB_ADDED], 0, screen);
 
@@ -771,7 +820,7 @@ terminal_notebook_remove_tab (TerminalNotebook *nb,
   label = gtk_notebook_get_tab_label (GTK_NOTEBOOK (nb), GTK_WIDGET (screen));
 
   g_signal_handlers_disconnect_by_func (screen,
-                                        G_CALLBACK (sync_label), label);
+                                        G_CALLBACK (sync_label), nb);
 
   /**
    * we ref the screen so that it's still alive while the tabs_removed
