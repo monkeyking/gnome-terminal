@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="task" id="pref-title" xml:lang="de">
+
+  <info>
+    <revision version="0.1" date="2013-02-18" status="candidate"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="profile"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Ermöglicht Befehlen, den Titel eines <app>Terminal</app>-Reiters oder -Fensters festzulegen.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jan Arne Petersen</mal:name>
+      <mal:email>jap@gnome.org</mal:email>
+      <mal:years>2007</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mario.blaettermann@gmail.com</mal:email>
+      <mal:years>2008-2010, 2012-2013</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Christian Kirbach</mal:name>
+      <mal:email>christian.kirbach@gmail.com</mal:email>
+      <mal:years>2012, 2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title><app>Terminal</app>-Titel</title>
+
+  <p><app>Terminal</app> ermöglicht Befehlen, den Namen eines <app>Terminal</app>-Reiters oder -Fensters festzulegen. Dieser Titel wird beim Start oder beim Öffnen eines neuen Reiters angezeigt.</p>
+
+  <steps>
+    <item>
+      <p>Wählen Sie <guiseq><gui style="menu">Bearbeiten</gui> <gui style="menuitem">Profileinstellungen</gui> <gui style="tab">Titel und Befehl</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Geben Sie neben <gui>Ursprünglicher Titel</gui> den Titel ein, den <app>Terminal</app> anzeigen soll.</p>
+    </item>
+    <item>
+      <p>Wählen Sie eine der folgenden Möglichkeiten:</p>
+      <terms>
+        <item>
+          <title><gui>Ursprünglichen Titel ersetzen</gui></title>
+          <p>Befehlen, die in <app>Terminal</app> ausgeführt werden, ist es erlaubt, den ursprünglichen Titel zu ersetzen.</p>
+        </item>
+        <item>
+          <title><gui>Ursprünglichen Titel anhängen</gui></title>
+          <p>Der neue Titel besteht aus dem durch den ausgeführten Befehl festgelegten Titel, gefolgt durch den ursprünglichen Titel.</p>
+        </item>
+        <item>
+          <title><gui>Ursprünglichen Titel voranstellen</gui></title>
+          <p>Der neue Titel besteht aus dem ursprünglichen Titel, gefolgt durch den durch den aktuellen Befehl festgelegten Titel.</p>
+        </item>
+        <item>
+          <title><gui>Ursprünglichen Titel behalten</gui></title>
+          <p>Der ursprüngliche, durch den Benutzer festgelegte Titel wird beibehalten.</p>
+        </item>
+      </terms>
+      <p>Ihre Auswahl wird gespeichert und sofort umgesetzt.</p>
+    </item>
+    <item>
+      <p>Um zum <app>Terminal</app> zurückzukehren, klicken Sie auf <gui style="button">Schließen</gui>.</p>
+    </item>
+  </steps>
+
+</page>

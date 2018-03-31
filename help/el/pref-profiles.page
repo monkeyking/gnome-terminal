@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="pref-profiles" xml:lang="el">
+
+  <info>
+    <revision version="0.1" date="2013-03-03" status="candidate"/>
+    <link type="guide" xref="index#preferences"/>
+    <link type="guide" xref="pref"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="author copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Δημιουργία, επεξεργασία και διαγραφή κατατομών.</desc>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Δημήτρης Σπίγγος</mal:name>
+      <mal:email>dmtrs32@gmail.com</mal:email>
+      <mal:years>2013</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Διαχείριση κατατομών</title>
+
+  <comment>
+    <cite href="mailto:kittykat3756@gmail.com">Kat</cite>
+    <p>Repeating that the user can edit the settings in each section is not
+    very nice, we need to find a way around this.</p>
+  </comment>
+
+  <p>Μια κατατομή είναι μια συλλογή ρυθμίσεων του <app>Τερματικού</app>. Το <app>Τερματικό</app> υποστηρίζει πολλαπλές κατατομές. Μπορείτε να ρυθμίσετε τις κατατομές του <app>Τερματικού</app> για την <link xref="pref-custom-command">εκτέλεση μιας προσαρμοσμένης εντολής ή κελύφους</link>, να ορίστε μια κατατομή αποκλειστικά για σύνδεση με απομακρυσμένους υπολογιστές χρησιμοποιώντας SSH ή να ορίστε μια κατατομή που ξεκινά μια συνεδρία <app>οθόνης GNU</app>.</p>
+
+  <p>Οι διαθέσιμες ρυθμίσεις του <app>Τερματικού</app> περιλαμβάνουν:</p>
+
+  <list>
+    <item>
+      <p>Όνομα κατατομής.</p>
+    </item>
+    <item>
+      <p>Χρώματα γραμματοσειράς και παρασκηνίου.</p>
+    </item>
+    <item>
+      <p><gui style="tab">Συμβατότητα</gui> με τα πλήκτρα <key>οπισθοδιαγραφής</key> και <key>διαγραφής</key>.</p>
+    </item>
+    <item>
+      <p><gui style="tab">Κύλιση</gui>.</p>
+    </item>
+  </list>
+
+  <p>Η προεπιλεγμένη κατατομή φορτώνεται όταν ένα νέο τερματικό ανοίγεται εκτός και έχετε επιλέξει μια άλλη κατατομή. Οποιεσδήποτε αλλαγές που κάνετε στις ρυθμίσεις θα αποθηκευτούν στην τρέχουσα χρησιμοποιούμενη κατατομή.</p>
+
+  <section id="set-default" style="task">
+    <title>Ορισμός μιας προεπιλεγμένης κατατομής</title>
+
+    <p>Η προεπιλεγμένη κατατομή είναι μια συλλογή ρυθμίσεων κατατομής που εφαρμόζονται στην έναρξη κάθε καρτέλας <app>Τερματικού</app> ή παραθύρου.</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις</gui> <gui style="tab">Κατατομές</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε την κατατομή που θα οριστεί ως προεπιλεγμένη από την πτυσσόμενη λίστα <gui>Χρησιμοποιούμενη κατατομή κατά την έναρξη νέου τερματικού</gui>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="select-profile" style="task">
+    <title>Επιλογή κατατομής</title>
+
+    <p>Μπορείτε να αλλάξετε την κατατομή στην τρέχουσα καρτέλα ή παράθυρο του <app>Τερματικού</app> επιλέγοντας μια κατατομή από το <guiseq><gui style="menu">Τερματικός</gui> <gui style="menuitem">Αλλαγή κατατομής</gui></guiseq>.</p>
+
+  </section>
+
+  <section id="new-profile" style="task">
+    <title>Δημιουργία νέας κατατομής</title>
+
+    <p>Οποιεσδήποτε αλλαγές σε μια νέα κατατομή αποθηκεύονται αυτόματα. Για να δημιουργήσετε μια νέα κατατομή:</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Νέα κατατομή</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Εισάγετε το όνομα της νέας κατατομής δίπλα στο <gui style="input">Όνομα κατατομής</gui>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε <link xref="app-fonts">γραμματοσειρά</link>, <link xref="app-cursor">σχήμα δρομέα</link> και <link xref="app-terminal-sizes">μέγεθος παραθύρου</link> στην καρτέλα <gui style="tab">Γενικά</gui>.</p>
+      </item>
+      <item>
+        <p>Ορίστε την προτιμώμενη συμπεριφορά για την εντολή <link xref="pref-custom-exit"><cmd>έξοδος</cmd> </link>. Μπορείτε επίσης να ορίσετε ένα <link xref="pref-custom-command">προσαρμοσμένο κέλυφος</link> στην καρτέλα <gui style="tab">Τίτλος και εντολή</gui>.</p>
+      </item>
+      <item>
+        <p>Ορίστε τα προτιμώμενα <link xref="app-colors">θέμα και χρώματα</link> στην καρτέλα <gui style="tab">Χρώματα</gui>.</p>
+      </item>
+      <item>
+        <p>Ορίστε την <link xref="pref-scrolling">προτίμηση κύλισης</link> στην καρτέλα <gui style="tab">Κύλιση</gui>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="create-profile-from-existing" style="task">
+    <title>Δημιουργία μιας νέας κατατομής με βάση μια υπάρχουσα κατατομή</title>
+
+    <p>Μπορείτε να δημιουργήσετε μια νέα κατατομή με βάση τις ρυθμίσεις από μια υπάρχουσα κατατομή:</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε την επιθυμητή κατατομή για επεξεργασία από το <guiseq><gui style="menu">Τερματικός</gui> <gui style="menuitem">Αλλαγή κατατομής</gui> <gui style="menuitem"><var>Profile name</var></gui></guiseq> όπου <var>Profile name</var> είναι το όνομα της κατατομής που θέλετε να επεξεργαστείτε. Εναλλακτικά, μπορείτε να επιλέξετε <guiseq> <gui style="menu">Αρχείο</gui> <gui style="menuitem">Νέα κατατομή</gui></guiseq> για να κλωνοποιήσετε την κατατομή που χρησιμοποιείτε.</p>
+      </item>
+      <item>
+        <p>Ορίστε τις επιθυμητές <link xref="#edit-profile">Προτιμήσεις κατατομής</link>. Αυτές θα αποθηκευτούν αυτόματα. Εάν δεν ενημερώσετε το όνομα της κατατομής, η νέα κατατομή δεν θα αντικαταστήσει την κατατομή στην οποία βασίζεται.</p>
+      </item>
+    </steps>
+
+    <p>Εναλλακτικά, μπορείτε να δημιουργήσετε ένα αντίγραφο της υπάρχουσας κατατομής πρώτα και έπειτα να επεξεργαστείτε την κατατομή:</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις</gui> <gui style="tab">Κατατομές</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε την επιθυμητή κατατομή.</p>
+      </item>
+      <item>
+        <p>Πατήστε <gui style="button">Κλωνοποίηση</gui>.</p>
+      </item>
+      <item>
+        <p>Ορίστε τις <link xref="#edit-profile">επιθυμητές προτιμήσεις κατατομής</link>. Αυτές θα αποθηκευτούν αυτόματα. Εάν δεν ενημερώσετε το όνομα της κατατομής, η νέα κατατομή δεν θα αντικαταστήσει την κατατομή στην οποία βασίζεται.</p>
+      </item>
+    </steps>
+
+    <note>
+      <p>Η δημιουργία μιας νέας κατατομής από μία υπάρχουσα δεν θα επηρεάσει τις ρυθμίσεις σε μια υπάρχουσα κατατομή. Οποιεσδήποτε αλλαγές στις ρυθμίσεις θα αποθηκευτούν στη νέα κατατομή.</p>
+    </note>
+
+  </section>
+
+  <section id="edit-profile" style="task">
+    <title>Επεξεργασία κατατομής</title>
+
+    <p>Μπορείτε να αλλάξετε τις υπάρχουσες κατατομές. Για επεξεργασία μιας κατατομής, επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις κατατομής</gui></guiseq>.</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <link xref="app-fonts">Γραμματοσειρά</link>, <link xref="app-cursor">Σχήματα δρομέα</link> και μέγεθος <link xref="app-terminal-sizes"><app>Τερματικού</app> </link>.</p>
+      </item>
+      <item>
+        <p>Μπορεί επίσης να αλλάξετε τη συμπεριφορά του <app>Τερματικού</app> στο <link xref="pref-custom-exit">έξοδος εντολής</link>, ορίστε ένα <link xref="pref-login-shell">προσαρμοσμένο κέλυφος σύνδεσης</link> ή αλλάξτε τις <link xref="pref-scrolling">προτιμήσεις γραμμής κύλισης</link>.</p>
+      </item>
+      <item>
+        <p>Για αλλαγή του παρασκηνίου και των χρωμάτων κειμένου του <app>τερματικού</app>, δείτε <link xref="app-colors"><app>Τερματικός</app>Συνδυασμοί χρωμάτων</link>.</p>
+      </item>
+      <item>
+        <p>Οι αλλαγές στην κατατομή αποθηκεύονται αμέσως. Για επιστροφή στο <app>Τερματικό</app>, πατήστε <gui style="button">Κλείσιμο</gui>.</p>
+      </item>
+    </steps>
+
+    <note style="important">
+      <p>Για επιβεβαίωση επεξεργασίας της επιθυμητής κατατομής, επιλέξτε την κατατομή από το <guiseq><gui style="menu">Τερματικό</gui> <gui style="menuitem">Αλλαγή κατατομής</gui></guiseq>.</p>
+    </note>
+
+  </section>
+
+  <section id="rename-profile" style="task">
+    <title>Μετονομασία υπάρχουσας κατατομής</title>
+
+    <p>Μπορείτε να μετονομάσετε υπάρχουσες κατατομές, συμπεριλαμβανομένων των προεπιλεγμένων κατατομών:</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις</gui> <gui style="tab">Κατατομές</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε την κατατομή που επιθυμείτε να μετονομάσετε.</p>
+      </item>
+      <item>
+        <p>Πατήστε <gui style="button">Επεξεργασία</gui>. Αυτό θα ανοίξει τον διάλογο προτιμήσεων κατατομής για την επιλεγμένη κατατομή.</p>
+      </item>
+      <item>
+        <p>Στο πλαίσιο κειμένου για το <gui>Όνομα κατατομής</gui>, πληκτρολογήστε το νέο όνομα της κατατομής.</p>
+      </item>
+      <item>
+        <p>Πατήστε στο <gui style="button">Κλείσιμο</gui> για επιστροφή.</p>
+      </item>
+    </steps>
+
+  </section>
+
+  <section id="delete-profile" style="task">
+    <title>Διαγραφή κατατομής</title>
+  
+    <p>Διαγραφή προφίλ:</p>
+
+    <steps>
+      <item>
+        <p>Επιλέξτε <guiseq><gui style="menu">Επεξεργασία</gui> <gui style="menuitem">Προτιμήσεις</gui> <gui style="tab">Κατατομές</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Επιλέξτε την κατατομή που επιθυμείτε να διαγράψετε.</p>
+      </item>
+      <item>
+        <p>Πατήστε στο <gui style="button">Διαγραφή</gui>.</p>
+      </item>
+    </steps>
+
+  </section>
+
+</page>

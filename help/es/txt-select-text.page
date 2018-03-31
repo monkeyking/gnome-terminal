@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="txt-select-text" xml:lang="es">
+
+  <info>
+    <revision version="0.1" date="2013-03-03" status="review"/>
+    <link type="guide" xref="index#textoutput"/>
+    <link type="guide" xref="profile"/>
+    <link type="seelaso" xref="txt-copy-paste"/>
+
+    <credit type="author copyright">
+      <name>Sindhu S</name>
+      <email>sindhus@live.in</email>
+      <years>2013</years>
+    </credit>
+    <credit type="copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <desc>Especifique qué caracteres se deben considerar parte de una palabra.</desc>
+
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Mustieles</mal:name>
+      <mal:email>daniel.mustieles@gmail.com</mal:email>
+      <mal:years>2012, 2013</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jorge González</mal:name>
+      <mal:email>jorgegonz@svn.gnome.org</mal:email>
+      <mal:years>2007-2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Francisco Javier F. Serrador</mal:name>
+      <mal:email>serrador@gnome.org</mal:email>
+      <mal:years>2001-2006</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Selección de texto</title>
+
+  <p>Puede definir el criterio de selección de texto en la <app>Terminal</app>. Puede permitir que la <app>Terminal</app> sólo seleccione palabras consistentes en letras o palabras con combinaciones de letras, números y caracteres especiales. Para especificar un rango de caracteres que se pueden seleccionar:</p>
+
+    <steps>
+      <item>
+        <p>Seleccione <guiseq><gui style="menu">Editar</gui> <gui style="menuitem">Preferencias del perfil</gui> <gui style="tab">General</gui></guiseq>.</p>
+      </item>
+      <item>
+        <p>Especifique los caracteres o rangos que quiere que se consideren parte de las palabras en el campo de entrada <gui>Caracteres para selección por palabra</gui>. De manera predeterminada, la selección del texto incluye todos los caracteres con números y algunos caracteres especiales: <var>-A-Za-z0-9,./?%&amp;#:_=+@~</var></p>
+        <p>Sus preferencias se guardarán automáticamente</p>
+      </item>
+    </steps>
+
+  <p>Una vez que haya establecido su selección, podrá seleccionar texto <app>Terminal</app> de dos maneras diferentes.</p>
+
+  <p>Para seleccionar una palabra en la salida de la <app>Terminal</app>:</p>
+
+  <steps>
+    <item>
+      <p>Pulse dos veces sobre la palabra que quiere.</p>
+    </item>
+  </steps>
+
+  <p>Para seleccionar una línea en la salida de la <app>Terminal</app>:</p>
+
+  <steps>
+    <item>
+      <p>Pulse tres veces en la línea que quiere</p>
+    </item>
+  </steps>
+
+</page>
