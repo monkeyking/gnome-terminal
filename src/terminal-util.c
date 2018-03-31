@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -29,6 +29,7 @@
 #include <errno.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
@@ -167,6 +168,7 @@ terminal_util_show_help (const char *topic,
 }
 
 #define ABOUT_GROUP "About"
+#define ABOUT_URL "https://live.gnome.org/Terminal"
 #define EMAILIFY(string) (g_strdelimit ((string), "%", '@'))
 
 void
@@ -240,6 +242,7 @@ terminal_util_show_about (GtkWindow *transient_parent)
                          "documenters", documenters,
                          "license", licence_text,
                          "wrap-license", TRUE,
+                         "website", ABOUT_URL,
                          "translator-credits", _("translator-credits"),
                          "logo-icon-name", GNOME_TERMINAL_ICON_NAME,
                          NULL);

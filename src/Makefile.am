@@ -46,6 +46,8 @@ gnome_terminal_server_SOURCES = \
 	terminal-info-bar.c \
 	terminal-info-bar.h \
 	terminal-intl.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-mdi-container.c \
 	terminal-mdi-container.h \
 	terminal-notebook.c \
@@ -154,7 +156,8 @@ gnome_terminal_client_SOURCES = \
 	terminal-debug.c \
 	terminal-debug.h \
 	terminal-defines.h \
-	terminal-intl.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-profiles-list.c \
 	terminal-profiles-list.h \
 	terminal-schemas.h \
@@ -198,7 +201,8 @@ gnome_terminal_SOURCES = \
 	terminal-debug.c \
 	terminal-debug.h \
 	terminal-defines.h \
-	terminal-intl.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-options.c \
 	terminal-options.h \
 	terminal-profiles-list.c \
@@ -238,14 +242,24 @@ gnome_terminal_LDADD = \
 # Nautilus extension
 
 libterminal_nautilus_la_SOURCES = \
+	terminal-client-utils.c \
+	terminal-client-utils.h \
+	terminal-defines.h \
+	terminal-i18n.c \
+	terminal-i18n.h \
 	terminal-nautilus.c \
+	$(NULL)
+
+nodist_libterminal_nautilus_la_SOURCES = \
+	terminal-gdbus-generated.c \
+	terminal-gdbus-generated.h \
+	terminal-type-builtins.c \
+	terminal-type-builtins.h \
 	$(NULL)
 
 libterminal_nautilus_la_CPPFLAGS = \
 	-DTERMINAL_COMPILATION \
-	-DTERM_DATADIR="\"$(datadir)\"" \
 	-DTERM_LOCALEDIR="\"$(datadir)/locale\"" \
-	-DTERM_BINDIR="\"$(bindir)\"" \
 	-DGDK_MULTIHEAD_SAFE \
 	$(AM_CPPFLAGS)
 
