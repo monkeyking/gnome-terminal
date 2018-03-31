@@ -298,7 +298,7 @@ text-based commands through a shell such as Bash.
      <sect2 id="gnome-terminal-profiles"> 
         <title>터미널 프로파일</title> 
         <para>새 프로파일을 만들어서, 그 새 프로파일을 터미널에 적용해 글꼴, 색 및 효과, 스크롤 동작, 창 제목, 호환성, 키보드 바로 가기와 같은 특성을 바꿀 수 있습니다. 프로파일에서 <application>그놈 터미널</application>을 시작할 때 자동으로 실행할 명령을 지정할 수도 있습니다.</para>
-          <para>각 터미널 프로파일을 <guilabel>프로파일 편집</guilabel> 대화 상자에서 정의합니다. 이 대화 상자는 <guimenu>편집</guimenu> 메뉴에서 열 수 있습니다. 프로파일을 필요한 만큼 여러 개 정의할 수 있습니다. 터미널을 시작할 때 터미널에서 사용할 프로파일을 선택할 수 있습니다. 또 터미널을 사용하는 도중에 터미널 프로파일을 바꿀 수 있습니다. 명령행에서 터미널을 시작할 때 터미널의 초기 프로파일을 지정하려면 다음 명령을 사용합니다:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile= <replaceable>프로파일이름</replaceable></command> 
         </para>
@@ -431,7 +431,8 @@ text-based commands through a shell such as Bash.
                      <para><menuchoice><guimenu>편집</guimenu><guisubmenu>현재 프로파일</guisubmenu></menuchoice>을 선택하십시오.</para>
                   </listitem> 
                   <listitem> 
-                     <para>터미널 창에 마우스 오른쪽 단추를 누르고, 팝업 메뉴에서 <menuchoice><guimenu>편집</guimenu><guisubmenu>프로파일</guisubmenu></menuchoice>을 선택하십시오.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para><menuchoice><guimenu>편집</guimenu><guisubmenu>프로파일</guisubmenu></menuchoice>을 선택하고, 편집하려는 프로파일을 고르고 <guibutton>편집</guibutton>을 누르십시오. 프로파일을 설정할 수 있는 옵션에 대해 좀 더 알고 싶으시면, <xref linkend="gnome-terminal-prefs"/> 부분을 참고하십시오.</para>

@@ -45,7 +45,7 @@
         <year>2009</year>
         <year>2010</year> 
         <holder>Paul Cutler</holder> 
-     </copyright>	 
+     </copyright><copyright><year>2009</year><holder>YunQiang Su (wzssyqa@gmail.com)</holder></copyright>	 
      <publisher> 
         <publishername>GNOME 文档项目</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -101,11 +101,10 @@
     </releaseinfo>
      <revhistory>
 	<revision> 
-          <revnumber>GNOME Terminal Manual V2.9</revnumber> 
-          <date>January 2010</date> 
+          <revnumber>GNOME 终端手册 2.9 版</revnumber> 
+          <date>2010年1月</date> 
           <revdescription> 
-             <para role="author">Paul Cutler
-		<email>pcutler@gnome.org</email> </para>
+             <para role="author">Paul Cutler <email>pcutler@gnome.org</email></para>
              <para role="publisher">GNOME 文档项目</para>
           </revdescription> 
         </revision> 
@@ -190,8 +189,7 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo> This manual describes version 2.30 of GNOME Terminal.
-        </releaseinfo> 
+     <releaseinfo>本手册描述 2.30 版的 GNOME 终端。</releaseinfo> 
      <legalnotice> 
         <title>反馈</title> 
         <para>要向 GNOME 终端程序或本手册报告 bug 或提出建议，跟随这个链接<ulink url="ghelp:user-guide?feedback" type="help">GNOME 反馈网页</ulink></para>
@@ -212,7 +210,7 @@
         <varlistentry> 
           <term>在 GNOME 环境下进入 UNIX shell</term> 
           <listitem> 
-             <para>Shell 是一个解释并执行在命令提示符处键入的命令的程序。当启动<application>GNOME 终端</application>，本程序启动系统账户指定的默认 Shell。您可以随时切换到另一个shell。</para>
+             <para>Shell 是一个解释并执行在命令提示符处键入的命令的程序。当启动<application>GNOME 终端</application>，本程序启动系统账户指定的默认 Shell。您可以随时切换到另一个 shell。</para>
           </listitem> 
         </varlistentry> 
         <varlistentry> 
@@ -228,10 +226,10 @@
   
   <sect1 id="gnome-terminal-get-started"> 
      <title>入门</title> 
-     <para>下边的章节描述怎样启动 <application>GNOME Terminal</application>。</para>
+     <para>下边的章节描述怎样启动 <application>GNOME 终端</application>。</para>
      <sect2 id="gnome-terminal-to-start"> 
         <title>启动 GNOME 终端</title> 
-        <para>您也起以下列方式启动 <application>GNOME 终端</application>：</para>
+        <para>您可以用以下列方式启动 <application>GNOME 终端</application>：</para>
         <variablelist> 
           <varlistentry> 
              <term><guimenu>应用程序</guimenu> 菜单</term> 
@@ -266,13 +264,13 @@
           </screenshot> 
         </figure> 
         <para>这个终端窗口显示一个命令提示符，在这您可以键入 UNIX 命令。命令提示符可能是  %, #, &gt;, $ 或其它指定字符。游标定位在了命令提示符旁边。当您键入 UNIX 命令并且按下<keycap>Return</keycap>，计算机执行这个命令。默认的，<application>GNOME 终端</application>使用启动为这个程序的用户指定的默认 shell。</para>
-        <para><application>GNOME 终端</application></para>
+        <para><application>GNOME 终端</application> 也设置如下环境变量：</para>
         <variablelist> 
           <varlistentry> 
              <term> 
                 <varname>TERM</varname></term> 
              <listitem> 
-                <para>设置 <literal>xterm</literal> 为默认。</para>
+                <para>默认设置为 <literal>xterm</literal>。</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -286,9 +284,7 @@
              <term> 
                 <varname>WINDOWID</varname></term> 
              <listitem> 
-                <para>
-                  Set to the X11 window identifier by default. 
-                </para>
+                <para>默认设置 X11 窗口识别码</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -297,7 +293,7 @@
      <sect2 id="gnome-terminal-profiles"> 
         <title>终端配置文件</title> 
         <para>您可以创建一个新的配置文件，向终端提交这个新配置文件以修改字符特征(如字体，颜色和效果)、滚动行为、窗口标题和兼容性。您同样也可以在配置文件中指定一个在启动 <application>GNOME 终端</application>时自动运行的命令。</para>
-          <para>您可以在<guilabel>编辑配置文件</guilabel>对话框为每一个终端定义配置文件，其可以从<guimenu>编辑</guimenu>菜单进入。您可以定义需要数量的配置文件。当启动一个终端时，您可以选择想对这个终端使用的配置文件。或者，您也可以在使用终端时更改终端配置文件。要在您从命令行启动这个程序时为终端指定初始配置文件，使用如下命令：</para>
+          <para>您可以在<guilabel>配置文件</guilabel>对话框为每一个终端定义配置文件，其可以从<guimenu>编辑</guimenu>菜单进入。您可以定义需要数量的配置文件。当启动一个终端时，您可以选择想对这个终端使用的配置文件。或者，您也可以在使用终端时更改终端配置文件。要在您从命令行启动这个程序时为终端指定初始配置文件，使用如下命令：</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>配置文件名</replaceable></command> 
         </para>
@@ -305,7 +301,7 @@
         <para>查看 <xref linkend="gnome-terminal-manage-profiles"/> 获取关于怎样定义和使用新终端配置文件的信息。</para>
      </sect2> 
      <sect2 id="gnome-terminal-more-windows"> 
-        <title>Working With Multiple Terminals</title> 
+        <title>使用多个终端</title> 
         <para><application>GNOME 终端</application>提供标签功能，它可以使您在单一窗口中打开多个终端。每个终端打开于一个分离的标签。点击相应的标签来在窗口中显示这个终端。同一个窗口中的每个标签化的终端都是分离的子进程，所以您可以使用每个终端做不同的任务。您也是对同一窗口中的不同标签化的终端提供不同的配置文件。</para>
        <para>终端窗口的标题栏显示当前配置文件的名字或者当前配置文件指定的名字。<xref linkend="gnome-terminal-tabbed"/>显示了一个带有四个标签页的<application>GNOME 终端</application>窗口。此时，四个标签中的每一个都有不同的配置文件。当前活动标签页的配置文件名--Profile 1，在标题栏上显示。</para>
         <figure id="gnome-terminal-tabbed"> 
@@ -430,10 +426,10 @@
                      <para>选择 <menuchoice><guimenu>编辑</guimenu><guisubmenu>当前配置文件</guisubmenu></menuchoice>。</para>
                   </listitem> 
                   <listitem> 
-                     <para>右键点击终端窗口，然后从快捷菜单中选择 <guimenuitem>编辑当前配置文件</guimenuitem>。</para>
+                     <para>右键点击终端窗口，然后从快捷菜单中选择 <menuchoice><guimenuitem>配置文件</guimenuitem><guimenuitem>配置文件首选项</guimenuitem></menuchoice>。</para>
                   </listitem> 
                   <listitem> 
-                     <para>选择<menuchoice><guimenu>编辑</guimenu><guisubmenu>配置文件s</guisubmenu></menuchoice>，选择要编辑的配置文件，然后点击<guibutton>编辑</guibutton>。要获取您可以在配置文件中设置的选项，查看<xref linkend="gnome-terminal-prefs"/>。</para>
+                     <para>选择<menuchoice><guimenu>编辑</guimenu><guisubmenu>配置文件</guisubmenu></menuchoice>，选择要编辑的配置文件，然后点击<guibutton>编辑</guibutton>。要获取您可以在配置文件中设置的选项，查看<xref linkend="gnome-terminal-prefs"/>。</para>
                   </listitem> 
                 </itemizedlist> 
              </listitem> 
@@ -490,7 +486,7 @@
         </variablelist> 
      </sect2> 
      <sect2 id="gnome-terminal-contents"> 
-        <title>Working with the Contents of Terminal Windows</title> 
+        <title>操作终端窗口的内容</title> 
         <variablelist> 
           <varlistentry> 
              <term>要翻阅先前的命令并显示：</term> 
@@ -504,8 +500,7 @@
                      <para>按下 <keycombo><keycap>Shift</keycap><keycap>Page Up</keycap></keycombo>，<keycombo><keycap>Shift</keycap><keycap>Page Down</keycap></keycombo>，<keycombo><keycap>Shift</keycap><keycap>Home</keycap></keycombo>或 <keycombo><keycap>Shift</keycap><keycap>End</keycap></keycombo>组合键。</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>
-                  The number of lines that you can scroll back to in the terminal window is determined by the <guilabel>Scrollback</guilabel> setting in the <guilabel>Scrolling</guilabel> tabbed section of the <guilabel>Editing Profile</guilabel> dialog.  You can also scroll up or down one line at a time by pressing <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo> or <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>. </para>
+                <para>在终端窗口中，您可以回滚的行数是由<guilabel>编辑配置文件</guilabel>对话框的<guilabel>滚动</guilabel>标签中的<guilabel>回滚</guilabel>设置决定的。您也可以通过按 <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>上方向键</keycap></keycombo> 或 <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>下方向键</keycap></keycombo> 一次向上或向下滚动一行。</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -558,7 +553,7 @@
                         <para>在 URL 上右键点击打开一个快捷菜单。</para>
                      </listitem> 
                      <listitem> 
-                        <para>选择 <guimenuitem>Open Link</guimenuitem>启动关联的应用程序并显示 URL 关联的文件。</para>
+                        <para>选择 <guimenuitem>打开链接</guimenuitem>启动关联的应用程序并显示 URL 关联的文件。</para>
                      </listitem> 
                   </orderedlist>                
              </listitem> 
@@ -693,7 +688,7 @@
 
      
      <sect2 id="gnome-terminal-prefs-general"> 
-        <title>概览</title> 
+        <title>常规</title> 
         <variablelist> 
           <varlistentry> 
              <term> 
@@ -804,7 +799,7 @@
                 <guilabel>前景和背景</guilabel>
                 </term> 
              <listitem> 
-                <para>选择<guilabel>Use colours from system theme</guilabel>选项，使用 GNOME 桌面主题指定的颜色，其是在<ulink type="help" url="ghelp:user-guide?prefs-theme"><application>外观</application> 首选项工具</ulink>的<guilabel>主题</guilabel>标签选择的。</para>
+                <para>选择<guilabel>使用系统主题中的颜色</guilabel>选项，使用 GNOME 桌面主题指定的颜色，其是在<ulink type="help" url="ghelp:user-guide?prefs-theme"><application>外观</application>首选项工具</ulink>的<guilabel>主题</guilabel>标签选择的。</para>
                 <para>使用<guilabel>内置方案</guilabel>下拉菜单为终端指定前景色和背景色。<application>GNOME 终端</application>支持如下前景色和背景色组合：</para>
                 <itemizedlist> 
                   <listitem> 
@@ -839,9 +834,7 @@
                      <para>这个选项是您可以选择在已选的配色方案中没有的颜色。</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>
-                  The actual display of the foreground and background colors can vary depending on the color scheme that you choose. For example, if you choose <guilabel>White on black</guilabel> and the <guilabel>Linux console</guilabel> color scheme, the application displays the foreground and background colors as light gray on black. The <guilabel>Built-in schemes</guilabel> drop-down list is only enabled if the <guilabel>Use colours from system theme</guilabel> option is unselected. 
-                </para>
+                <para>实际显示的前景色和背景色可能相当依赖于选择的颜色方案。例如，如果选择 <guilabel>黑底白字</guilabel>和 <guilabel>Linux 控制台</guilabel>颜色方案，程序将显示前景色和背景色为黑底量灰色前景。<guilabel>内置方案</guilabel>下拉菜单只有在 <guilabel>使用系统主题中的颜色</guilabel> 未被选中时才启用。</para>
                 <para>点击<guibutton>文本颜色</guibutton>按钮以显示<guilabel>选择终端文本颜色</guilabel>对话框。使用色轮或自旋框来自定义想要用于文本的颜色，然后点击<guibutton>确定</guibutton>。<guibutton>文本颜色</guibutton>按钮只有在<guilabel>使用系统主题中的颜色</guilabel>选项没有选中时才被启用。</para>
                 <para>点击<guibutton>背景颜色</guibutton>按钮显示<guilabel>选择终端背景颜色</guilabel>对话框。使用色轮或自旋框自定义想用于背景的颜色，然后点击<guibutton>确定</guibutton>。<guibutton>背景颜色</guibutton>按钮只有在<guilabel>使用系统主题颜色</guilabel>选项没有被选中时才启用。</para>
              </listitem> 
@@ -868,9 +861,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>实色</guilabel>
+                        <guilabel>纯色</guilabel>
                      </para>
-                     <para>选择此项使用在<guilabel>Colors</guilabel>标签中指定的背景颜色作为终端的背景颜色。</para>
+                     <para>选择此项使用在<guilabel>颜色</guilabel>标签中指定的背景颜色作为终端的背景颜色。</para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -938,9 +931,9 @@
         <variablelist> 
           <varlistentry> 
              <term> 
-                <guilabel>按 Backspace 产生</guilabel> </term> 
+                <guilabel>按退格键产生</guilabel> </term> 
              <listitem> 
-                <para>使用下拉菜单选择您希望<keycap>Backspace</keycap>键执行的功能。</para>
+                <para>使用下拉菜单选择您希望<keycap>退格键</keycap>键执行的功能。</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[2])
-m4_define([gt_version_minor],[30])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_minor],[33])
+m4_define([gt_version_micro],[90])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -12,7 +12,7 @@ AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([1.9 foreign no-dist-gzip dist-bzip2])
 
-m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([no])])
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 GETTEXT_PACKAGE=gnome-terminal
 AC_SUBST([GETTEXT_PACKAGE])
@@ -39,37 +39,72 @@ GNOME_COMPILE_WARNINGS([maximum])
 
 AM_GLIB_GNU_GETTEXT
 
-GLIB_REQUIRED=2.16.0
-GTK_REQUIRED=2.14.0
-GCONF_REQUIRED=2.14.0
-DBUS_GLIB_REQUIRED=0.6
-VTE_REQUIRED=0.24.0
+GLIB_REQUIRED=2.26.0
+GIO_REQUIRED=2.26.0
+GCONF_REQUIRED=2.31.3
+GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
 
-GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
+AC_MSG_CHECKING([which gtk+ version to compile against])
+AC_ARG_WITH([gtk],
+  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 2.0)])],
+  [case "$with_gtk" in
+     2.0|3.0) ;;
+     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
+   esac],
+  [with_gtk=2.0])
+AC_MSG_RESULT([$with_gtk])
+
+case "$with_gtk" in
+  2.0) GTK_API_VERSION=2.0
+       GTK_REQUIRED=2.18.0
+       VTE_PC_VERSION=
+       VTE_REQUIRED=0.26.0
+       ;;
+  3.0) GTK_API_VERSION=3.0
+       GTK_REQUIRED=3.0.0
+       VTE_PC_VERSION=-2.90
+       VTE_REQUIRED=0.27.3
+       ;;
+esac
+
+AC_MSG_CHECKING([for GDK target])
+case "$with_gtk" in
+  2.0) GDK_TARGET="$($PKG_CONFIG --variable target gdk-$GTK_API_VERSION)" ;;
+  3.0) for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
+         GDK_TARGET="$target"
+         break
+       done
+       ;;
+esac
+AC_MSG_RESULT([$GDK_TARGET])
 
 case "$GDK_TARGET" in
   x11) PLATFORM_DEPS="x11" ;;
-  *) PLATFORM_DEPS="" ;;
+  win32|quartz) PLATFORM_DEPS="" ;;
+  *) AC_MSG_ERROR([unknown gdk target]) ;;
 esac
 
 PKG_CHECK_MODULES([TERM],
-  [vte >= $VTE_REQUIRED
+  [vte$VTE_PC_VERSION >= $VTE_REQUIRED
    glib-2.0 >= $GLIB_REQUIRED
    gthread-2.0
-   gio-2.0
-   gtk+-2.0 >= $GTK_REQUIRED
+   gio-2.0 >= $GIO_REQUIRED
+   gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
-   dbus-glib-1 >= $DBUS_GLIB_REQUIRED
+   gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
    $PLATFORM_DEPS])
 
-# Check the smclient backend
+# ********
+# smclient
+# ********
+
 SMCLIENT_PKGS=
 AC_MSG_CHECKING([which smclient backend to use])
 AC_ARG_WITH([smclient],
   [AS_HELP_STRING([--with-smclient-backend],[which smclient backend to use (xsmp/win32/quartz)])],
   [],
   [case "$GDK_TARGET" in
-    x11) with_smclient=xsmp SMCLIENT_PKGS="sm" ;;
+    x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
     win32|quartz) with_smclient=$GDK_TARGET ;;
     *) with_smclient=no ;;
    esac])
@@ -90,7 +125,10 @@ AM_CONDITIONAL([WITH_SMCLIENT_XSMP],[test "$with_smclient" = "xsmp"])
 AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
 AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 
+# *****
 # GConf
+# *****
+
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
 if test x"$GCONFTOOL" = xno; then
@@ -105,14 +143,21 @@ GLIB_MKENUMS="$($PKG_CONFIG --variable=glib_mkenums glib-2.0)"
 AC_SUBST([GLIB_MKENUMS])
 
 AC_PATH_PROG([GTK_BUILDER_CONVERT],[gtk-builder-convert],[false])
+
 if test "$GTK_BUILDER_CONVERT" = "false"; then
   AC_MSG_ERROR([gtk-builder-convert not found])
 fi
 
-AC_PATH_PROG([DBUS_BINDING_TOOL],[dbus-binding-tool],[false])
-if test "$DBUS_BINDING_TOOL" = "false"; then
-  AC_MSG_ERROR([dbus-binding-tool not found])
-fi
+case "$with_gtk" in
+  2.0) GTK_BUILDER_CONVERT_FLAGS="" ;;
+  3.0) GTK_BUILDER_CONVERT_FLAGS="--target-version=3.0" ;;
+esac
+
+AC_SUBST([GTK_BUILDER_CONVERT_FLAGS])
+
+# *************
+# Documentation
+# *************
 
 GNOME_DOC_INIT
 
@@ -130,7 +175,6 @@ Makefile
 gnome-terminal.desktop.in
 src/Makefile
 src/terminal-version.h
-src/skey/Makefile
 help/Makefile
 help/bg/Makefile
 help/ro/Makefile

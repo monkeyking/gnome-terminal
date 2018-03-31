@@ -293,7 +293,7 @@
      <sect2 id="gnome-terminal-profiles"> 
         <title>Προφίλ Τερματικού</title> 
         <para>Μπορείτε να δημιουργήσετε ένα νέο προφίλ και να το εφαρμόσετε στο τερματικό για να τροποποιήσετε χαρακτηριστικά όπως η γραμματοσειρά, το χρώμα και τα εφέ, η συμπεριφορά κύλισης, ο τίτλος του παραθύρου και η συμβατότητα. Μπορείτε επίσης να ορίσετε στο προφίλ μια εντολή που θα εκτελείται αυτόματα όταν ξεκινάτε το <application>Τερματικό του GNOME</application>.</para>
-          <para>Καθορίζετε τα προφίλ τερματικού από το παράθυρο διαλόγου <guilabel>Προφίλ...</guilabel>, στο οποίο έχετε πρόσβαση από το μενού <guimenu>Επεξεργασία</guimenu>. Μπορείτε να ορίσετε όσα διαφορετικά προφίλ επιθυμείτε. Όταν ξεκινάτε ένα τερματικό, μπορείτε να επιλέξετε το προφίλ που θέλετε να χρησιμοποιήσετε για αυτό το τερματικό. Εναλλακτικά, μπορείτε να αλλάξετε το προφίλ του τερματικού ενώ το χρησιμοποιείτε. Για να ορίσετε το αρχικό προφίλ του τερματικού όταν εκκινείτε την εφαρμογή από τη γραμμή εντολών, χρησιμοποιήστε την ακόλουθη εντολή:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>όνομαπροφίλ</replaceable></command> 
         </para>
@@ -426,7 +426,8 @@
                      <para>Επιλέξτε <menuchoice><guimenu>Επεξεργασία</guimenu><guisubmenu>Προτιμήσεις προφίλ</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Κάντε δεξί κλικ στο παράθυρο του τερματικού, μετά επιλέξτε <guimenuitem>Προφίλ - Προτιμήσεις προφίλ</guimenuitem> από το αναδυόμενο μενού.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para>Επιλέξτε <menuchoice><guimenu>Επεξεργασία</guimenu><guisubmenu>Προφίλ</guisubmenu></menuchoice>, επιλέξτε το προφίλ που θέλετε να επεξεργασθείτε και κάντε κλικ στο <guibutton>Επεξεργασία</guibutton>. Για πληροφορίες σχετικά με τις επιλογές που μπορείτε να ορίσετε για τα προφίλ, δείτε το <xref linkend="gnome-terminal-prefs"/>.</para>

@@ -295,7 +295,7 @@
      <sect2 id="gnome-terminal-profiles"> 
         <title>Profili del terminale</title> 
         <para>È possibile creare un nuovo profilo e applicarlo al terminale per modificare caratteristiche come il tipo di carattere, il colore e gli effetti, le impostazioni di scorrimento, il titolo della finestra e la compatibilità. È inoltre possibile definire nel profilo un comando da eseguire automaticamente all'avvio di <application>Terminale GNOME</application>.</para>
-          <para>È possibile definire ogni profilo di terminale tramite il dialogo <guilabel>Profili...</guilabel> accessibile dal menù <guimenu>Modifica</guimenu>. È possibile definire il numero di profili desiderato. Quando si avvia un terminale, è possibile scegliere il profilo desiderato oppure modificarlo durante l'uso. Per specificare quale profilo iniziale utilizzare quando si avvia l'applicazione dalla riga di comando, usare la sintassi seguente:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>nome_profilo</replaceable></command> 
         </para>
@@ -428,7 +428,8 @@
                      <para>Scegliere <menuchoice><guimenu>Modifica</guimenu><guisubmenu>Profilo corrente</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Fare clic con il pulsante destro nella finestra del terminale e selezionare <guimenuitem>Modifica profilo corrente</guimenuitem> dal menù a comparsa.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para>Scegliere <menuchoice><guimenu>Modifica</guimenu><guisubmenu>Profili...</guisubmenu></menuchoice>, selezionare il profilo da modificare quindi fare clic su <guibutton>Modifica</guibutton>. Per maggiori informazioni sulle opzioni disponibili per i profili, consultare <xref linkend="gnome-terminal-prefs"/>.</para>

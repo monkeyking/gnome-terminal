@@ -4,7 +4,7 @@
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * Gnome-terminal is distributed in the hope that it will be useful,
@@ -20,7 +20,14 @@
 
 #include <string.h>
 
+#include <gtk/gtk.h>
+
+#if GTK_CHECK_VERSION (2, 90, 7)
+#define GDK_KEY(symbol) GDK_KEY_##symbol
+#else
 #include <gdk/gdkkeysyms.h>
+#define GDK_KEY(symbol) GDK_##symbol
+#endif
 
 #include "terminal-accels.h"
 #include "terminal-app.h"
@@ -95,6 +102,20 @@
 #define KEY_ZOOM_OUT            CONF_KEYS_PREFIX "/zoom_out"
 #define KEY_SWITCH_TAB_PREFIX   CONF_KEYS_PREFIX "/switch_to_tab_"
 
+#if 1
+/*
+* We don't want to enable content saving until vte supports it async.
+* So we disable this code for stable versions.
+*/
+#include "terminal-version.h"
+
+#if (TERMINAL_MINOR_VERSION & 1) != 0
+#define ENABLE_SAVE
+#else
+#undef ENABLE_SAVE
+#endif
+#endif
+
 typedef struct
 {
   const char *user_visible_name;
@@ -119,27 +140,27 @@ typedef struct
 static KeyEntry file_entries[] =
 {
   { N_("New Tab"),
-    KEY_NEW_TAB, ACCEL_PATH_NEW_TAB, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_t, NULL, FALSE, TRUE },
+    KEY_NEW_TAB, ACCEL_PATH_NEW_TAB, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (t), NULL, FALSE, TRUE },
   { N_("New Window"),
-    KEY_NEW_WINDOW, ACCEL_PATH_NEW_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_n, NULL, FALSE, TRUE },
+    KEY_NEW_WINDOW, ACCEL_PATH_NEW_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (n), NULL, FALSE, TRUE },
   { N_("New Profile"),
     KEY_NEW_PROFILE, ACCEL_PATH_NEW_PROFILE, 0, 0, NULL, FALSE, TRUE },
-#if 0
+#ifdef ENABLE_SAVE
   { N_("Save Contents"),
     KEY_SAVE_CONTENTS, ACCEL_PATH_SAVE_CONTENTS, 0, 0, NULL, FALSE, TRUE },
 #endif
   { N_("Close Tab"),
-    KEY_CLOSE_TAB, ACCEL_PATH_CLOSE_TAB, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_w, NULL, FALSE, TRUE },
+    KEY_CLOSE_TAB, ACCEL_PATH_CLOSE_TAB, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (w), NULL, FALSE, TRUE },
   { N_("Close Window"),
-    KEY_CLOSE_WINDOW, ACCEL_PATH_CLOSE_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_q, NULL, FALSE, TRUE },
+    KEY_CLOSE_WINDOW, ACCEL_PATH_CLOSE_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (q), NULL, FALSE, TRUE },
 };
 
 static KeyEntry edit_entries[] =
 {
   { N_("Copy"),
-    KEY_COPY, ACCEL_PATH_COPY, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_c, NULL, FALSE, TRUE },
+    KEY_COPY, ACCEL_PATH_COPY, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (c), NULL, FALSE, TRUE },
   { N_("Paste"),
-    KEY_PASTE, ACCEL_PATH_PASTE, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_v, NULL, FALSE, TRUE },
+    KEY_PASTE, ACCEL_PATH_PASTE, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (v), NULL, FALSE, TRUE },
 };
 
 static KeyEntry view_entries[] =
@@ -147,13 +168,13 @@ static KeyEntry view_entries[] =
   { N_("Hide and Show menubar"),
     KEY_TOGGLE_MENUBAR, ACCEL_PATH_TOGGLE_MENUBAR, 0, 0, NULL, FALSE, TRUE },
   { N_("Full Screen"),
-    KEY_FULL_SCREEN, ACCEL_PATH_FULL_SCREEN, 0, GDK_F11, NULL, FALSE, TRUE },
+    KEY_FULL_SCREEN, ACCEL_PATH_FULL_SCREEN, 0, GDK_KEY (F11), NULL, FALSE, TRUE },
   { N_("Zoom In"),
-    KEY_ZOOM_IN, ACCEL_PATH_ZOOM_IN, GDK_CONTROL_MASK, GDK_plus, NULL, FALSE, TRUE },
+    KEY_ZOOM_IN, ACCEL_PATH_ZOOM_IN, GDK_CONTROL_MASK, GDK_KEY (plus), NULL, FALSE, TRUE },
   { N_("Zoom Out"),
-    KEY_ZOOM_OUT, ACCEL_PATH_ZOOM_OUT, GDK_CONTROL_MASK, GDK_minus, NULL, FALSE, TRUE },
+    KEY_ZOOM_OUT, ACCEL_PATH_ZOOM_OUT, GDK_CONTROL_MASK, GDK_KEY (minus), NULL, FALSE, TRUE },
   { N_("Normal Size"),
-    KEY_ZOOM_NORMAL, ACCEL_PATH_ZOOM_NORMAL, GDK_CONTROL_MASK, GDK_0, NULL, FALSE, TRUE }
+    KEY_ZOOM_NORMAL, ACCEL_PATH_ZOOM_NORMAL, GDK_CONTROL_MASK, GDK_KEY (0), NULL, FALSE, TRUE }
 };
 
 static KeyEntry terminal_entries[] =
@@ -169,45 +190,45 @@ static KeyEntry terminal_entries[] =
 static KeyEntry tabs_entries[] =
 {
   { N_("Switch to Previous Tab"),
-    KEY_PREV_TAB, ACCEL_PATH_PREV_TAB, GDK_CONTROL_MASK, GDK_Page_Up, NULL, FALSE, TRUE },
+    KEY_PREV_TAB, ACCEL_PATH_PREV_TAB, GDK_CONTROL_MASK, GDK_KEY (Page_Up), NULL, FALSE, TRUE },
   { N_("Switch to Next Tab"),
-    KEY_NEXT_TAB, ACCEL_PATH_NEXT_TAB, GDK_CONTROL_MASK, GDK_Page_Down, NULL, FALSE, TRUE },
+    KEY_NEXT_TAB, ACCEL_PATH_NEXT_TAB, GDK_CONTROL_MASK, GDK_KEY (Page_Down), NULL, FALSE, TRUE },
   { N_("Move Tab to the Left"),
-    KEY_MOVE_TAB_LEFT, ACCEL_PATH_MOVE_TAB_LEFT, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_Page_Up, NULL, FALSE, TRUE },
+    KEY_MOVE_TAB_LEFT, ACCEL_PATH_MOVE_TAB_LEFT, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (Page_Up), NULL, FALSE, TRUE },
   { N_("Move Tab to the Right"),
-    KEY_MOVE_TAB_RIGHT, ACCEL_PATH_MOVE_TAB_RIGHT, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_Page_Down, NULL, FALSE, TRUE },
+    KEY_MOVE_TAB_RIGHT, ACCEL_PATH_MOVE_TAB_RIGHT, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_KEY (Page_Down), NULL, FALSE, TRUE },
   { N_("Detach Tab"),
     KEY_DETACH_TAB, ACCEL_PATH_DETACH_TAB, 0, 0, NULL, FALSE, TRUE },
   { N_("Switch to Tab 1"),
     KEY_SWITCH_TAB_PREFIX "1",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "1", GDK_MOD1_MASK, GDK_1, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "1", GDK_MOD1_MASK, GDK_KEY (1), NULL, FALSE, TRUE },
   { N_("Switch to Tab 2"),
     KEY_SWITCH_TAB_PREFIX "2",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "2", GDK_MOD1_MASK, GDK_2, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "2", GDK_MOD1_MASK, GDK_KEY (2), NULL, FALSE, TRUE },
   { N_("Switch to Tab 3"),
     KEY_SWITCH_TAB_PREFIX "3",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "3", GDK_MOD1_MASK, GDK_3, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "3", GDK_MOD1_MASK, GDK_KEY (3), NULL, FALSE, TRUE },
   { N_("Switch to Tab 4"),
     KEY_SWITCH_TAB_PREFIX "4",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "4", GDK_MOD1_MASK, GDK_4, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "4", GDK_MOD1_MASK, GDK_KEY (4), NULL, FALSE, TRUE },
   { N_("Switch to Tab 5"),
     KEY_SWITCH_TAB_PREFIX "5",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "5", GDK_MOD1_MASK, GDK_5, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "5", GDK_MOD1_MASK, GDK_KEY (5), NULL, FALSE, TRUE },
   { N_("Switch to Tab 6"),
     KEY_SWITCH_TAB_PREFIX "6",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "6", GDK_MOD1_MASK, GDK_6, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "6", GDK_MOD1_MASK, GDK_KEY (6), NULL, FALSE, TRUE },
   { N_("Switch to Tab 7"),
     KEY_SWITCH_TAB_PREFIX "7",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "7", GDK_MOD1_MASK, GDK_7, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "7", GDK_MOD1_MASK, GDK_KEY (7), NULL, FALSE, TRUE },
   { N_("Switch to Tab 8"),
     KEY_SWITCH_TAB_PREFIX "8",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "8", GDK_MOD1_MASK, GDK_8, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "8", GDK_MOD1_MASK, GDK_KEY (8), NULL, FALSE, TRUE },
   { N_("Switch to Tab 9"),
     KEY_SWITCH_TAB_PREFIX "9",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "9", GDK_MOD1_MASK, GDK_9, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "9", GDK_MOD1_MASK, GDK_KEY (9), NULL, FALSE, TRUE },
   { N_("Switch to Tab 10"),
     KEY_SWITCH_TAB_PREFIX "10",
-    ACCEL_PATH_SWITCH_TAB_PREFIX "10", GDK_MOD1_MASK, GDK_0, NULL, FALSE, TRUE },
+    ACCEL_PATH_SWITCH_TAB_PREFIX "10", GDK_MOD1_MASK, GDK_KEY (0), NULL, FALSE, TRUE },
   { N_("Switch to Tab 11"),
     KEY_SWITCH_TAB_PREFIX "11",
     ACCEL_PATH_SWITCH_TAB_PREFIX "11", 0, 0, NULL, FALSE, TRUE },
@@ -217,7 +238,7 @@ static KeyEntry tabs_entries[] =
 };
 
 static KeyEntry help_entries[] = {
-  { N_("Contents"), KEY_HELP, ACCEL_PATH_HELP, 0, GDK_F1, NULL, FALSE, TRUE }
+  { N_("Contents"), KEY_HELP, ACCEL_PATH_HELP, 0, GDK_KEY (F1), NULL, FALSE, TRUE }
 };
 
 static KeyEntryList all_entries[] =
@@ -275,16 +296,6 @@ binding_name (guint            keyval,
     return gtk_accelerator_name (keyval, mask);
 
   return g_strdup ("disabled");
-}
-
-static char*
-binding_display_name (guint            keyval,
-                      GdkModifierType  mask)
-{
-  if (keyval != 0)
-    return gtk_accelerator_get_label (keyval, mask);
-    
-  return g_strdup (_("Disabled"));
 }
 
 static const char *
@@ -642,56 +653,6 @@ accel_set_func (GtkTreeViewColumn *tree_column,
 		  NULL);
 }
 
-static int
-accel_compare_func (GtkTreeModel *model,
-                    GtkTreeIter  *a,
-                    GtkTreeIter  *b,
-                    gpointer      user_data)
-{
-  KeyEntry *ke_a;
-  KeyEntry *ke_b;
-  char *name_a;
-  char *name_b;
-  int result;
-  
-  gtk_tree_model_get (model, a,
-                      KEYVAL_COLUMN, &ke_a,
-                      -1);
-  if (ke_a == NULL)
-    {
-      gtk_tree_model_get (model, a,
-			  ACTION_COLUMN, &name_a,
-			  -1);
-    }
-  else
-    {
-      name_a = binding_display_name (ke_a->gconf_keyval,
-                                     ke_a->gconf_mask);
-    }
-
-  gtk_tree_model_get (model, b,
-                      KEYVAL_COLUMN, &ke_b,
-                      -1);
-  if (ke_b == NULL)
-    {
-      gtk_tree_model_get (model, b,
-                          ACTION_COLUMN, &name_b,
-                          -1);
-    }
-  else
-    {
-      name_b = binding_display_name (ke_b->gconf_keyval,
-                                     ke_b->gconf_mask);
-    }
-  
-  result = g_utf8_collate (name_a, name_b);
-
-  g_free (name_a);
-  g_free (name_b);
-
-  return result;
-}
-
 static void
 treeview_accel_changed_cb (GtkAccelGroup  *accel_group,
                            guint keyval,
@@ -919,7 +880,6 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
 						     "text", ACTION_COLUMN,
 						     NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
-  gtk_tree_view_column_set_sort_column_id (column, ACTION_COLUMN);
 
   /* Column 2 */
   cell_renderer = gtk_cell_renderer_accel_new ();
@@ -936,7 +896,6 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
   gtk_tree_view_column_set_title (column, _("Shortcut _Key"));
   gtk_tree_view_column_pack_start (column, cell_renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column, cell_renderer, accel_set_func, NULL, NULL);
-  gtk_tree_view_column_set_sort_column_id (column, KEYVAL_COLUMN);  
   gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
   /* Add the data */
@@ -969,12 +928,6 @@ terminal_edit_keys_dialog_show (GtkWindow *transient_parent)
                                              -1);
 	}
     }
-
-  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (tree),
-                                   KEYVAL_COLUMN, accel_compare_func,
-                                   NULL, NULL);
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (tree), ACTION_COLUMN,
-                                        GTK_SORT_ASCENDING);
 
   gtk_tree_view_set_model (GTK_TREE_VIEW (tree_view), GTK_TREE_MODEL (tree));
   g_object_unref (tree);
