@@ -20,6 +20,7 @@
  */
 
 #include "config.h"
+#define _GNU_SOURCE /* for strchrnul */
 
 #include <string.h>
 #include <stdlib.h>
@@ -120,13 +121,18 @@ open_url (GtkWindow *parent,
           GError **error)
 {
   GdkScreen *screen;
+  gs_free char *uri_fixed;
 
   if (parent)
     screen = gtk_widget_get_screen (GTK_WIDGET (parent));
   else
     screen = gdk_screen_get_default ();
 
-  return gtk_show_uri (screen, uri, user_time, error);
+  uri_fixed = terminal_util_uri_fixup (uri, error);
+  if (uri_fixed == NULL)
+    return FALSE;
+
+  return gtk_show_uri (screen, uri_fixed, user_time, error);
 }
 
 void
@@ -154,7 +160,7 @@ terminal_util_show_help (const char *topic,
 #define EMAILIFY(string) (g_strdelimit ((string), "%", '@'))
 
 void
-terminal_util_show_about (GtkWindow *transient_parent)
+terminal_util_show_about (GtkWindow *transient_parent G_GNUC_UNUSED)
 {
   static const char copyright[] =
     "Copyright © 2002–2004 Havoc Pennington\n"
@@ -172,6 +178,7 @@ terminal_util_show_about (GtkWindow *transient_parent)
   GPtrArray *array;
   gs_free char *comment;
   gs_free char *vte_version;
+  GtkWindow *dialog;
 
   bytes = g_resources_lookup_data (TERMINAL_RESOURCES_PATH_PREFIX "/ui/terminal.about",
                                    G_RESOURCE_LOOKUP_FLAGS_NONE,
@@ -226,7 +233,9 @@ terminal_util_show_about (GtkWindow *transient_parent)
                             vte_version,
                             vte_get_features ());
 
-  gtk_show_about_dialog (transient_parent,
+  dialog = g_object_new (GTK_TYPE_ABOUT_DIALOG,
+                         /* Hold the application while the window is shown */
+                         "application", terminal_app_get (),
                          "program-name", _("GNOME Terminal"),
                          "copyright", copyright,
                          "comments", comment,
@@ -240,6 +249,9 @@ terminal_util_show_about (GtkWindow *transient_parent)
                          "translator-credits", _("translator-credits"),
                          "logo-icon-name", GNOME_TERMINAL_ICON_NAME,
                          NULL);
+
+  g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+  gtk_window_present (dialog);
 
   g_strfreev (array_strv);
   g_strfreev (artists);
@@ -1103,4 +1115,173 @@ terminal_util_number_info (const char *str)
   }
 
   return g_strdup_printf(hex ? "0x%2$s = %1$s%3$s" : "%s = 0x%s%s", decstr, hexstr, magnitudestr);
+}
+
+/**
+ * terminal_util_uri_fixup:
+ * @uri: The URI to verify and maybe fixup
+ * @error: a #GError that is returned in case of errors
+ *
+ * Checks if gnome-terminal should attempt to handle the given URI,
+ * and rewrites if necessary.
+ *
+ * Currently URIs of "file://some-other-host/..." are refused because
+ * GIO (e.g. gtk_show_uri()) silently strips off the remote hostname
+ * and opens the local counterpart which is incorrect and misleading.
+ *
+ * Furthermore, once the hostname is verified, it is stripped off to
+ * avoid potential confusion around short hostname vs. fqdn, and to
+ * work around bug 781800 (LibreOffice bug 107461).
+ *
+ * Returns: The possibly rewritten URI if gnome-terminal should attempt
+ *   to handle it, NULL if it should refuse to handle.
+ */
+char *
+terminal_util_uri_fixup (const char *uri,
+                         GError **error)
+{
+  gs_free char *filename;
+  gs_free char *hostname;
+
+  filename = g_filename_from_uri (uri, &hostname, NULL);
+  if (filename != NULL &&
+      hostname != NULL &&
+      hostname[0] != '\0') {
+    /* "file" scheme and nonempty hostname */
+    if (g_ascii_strcasecmp (hostname, "localhost") == 0 ||
+        g_ascii_strcasecmp (hostname, g_get_host_name()) == 0) {
+      /* hostname corresponds to localhost */
+      char *slash1, *slash2, *slash3;
+
+      /* We shouldn't enter this branch in case of URIs like
+       * "file:/etc/passwd", but just in case we do, or encounter
+       * something else unexpected, leave the URI unchanged. */
+      slash1 = strchr(uri, '/');
+      if (slash1 == NULL)
+        return g_strdup (uri);
+
+      slash2 = slash1 + 1;
+      if (*slash2 != '/')
+        return g_strdup (uri);
+
+      slash3 = strchr(slash2 + 1, '/');
+      if (slash3 == NULL)
+        return g_strdup (uri);
+
+      return g_strdup_printf("%.*s%s",
+                             (int) (slash2 + 1 - uri),
+                             uri,
+                             slash3);
+    } else {
+      /* hostname refers to another host (e.g. the OSC 8 escape sequence
+       * was correctly emitted by a utility inside an ssh session) */
+      g_set_error_literal (error,
+                           G_IO_ERROR,
+                           G_IO_ERROR_NOT_SUPPORTED,
+                         _("“file” scheme with remote hostname not supported"));
+      return NULL;
+    }
+  } else {
+    /* "file" scheme without hostname, or some other scheme */
+    return g_strdup (uri);
+  }
+}
+
+/**
+ * terminal_util_hyperlink_uri_label:
+ * @uri: a URI
+ *
+ * Formats @uri to be displayed in a tooltip.
+ * Performs URI-decoding and converts IDN hostname to UTF-8.
+ *
+ * Returns: (transfer full): The human readable URI as plain text
+ */
+char *terminal_util_hyperlink_uri_label (const char *uri)
+{
+  gs_free char *unesc = NULL;
+  gboolean replace_hostname;
+
+  if (uri == NULL)
+    return NULL;
+
+  unesc = g_uri_unescape_string(uri, NULL);
+  if (unesc == NULL)
+    unesc = g_strdup(uri);
+
+  if (g_ascii_strncasecmp(unesc, "ftp://", 6) == 0 ||
+      g_ascii_strncasecmp(unesc, "http://", 7) == 0 ||
+      g_ascii_strncasecmp(unesc, "https://", 8) == 0) {
+    gs_free char *unidn = NULL;
+    char *hostname = strchr(unesc, '/') + 2;
+    char *hostname_end = strchrnul(hostname, '/');
+    char save = *hostname_end;
+    *hostname_end = '\0';
+    unidn = g_hostname_to_unicode(hostname);
+    replace_hostname = unidn != NULL && g_ascii_strcasecmp(unidn, hostname) != 0;
+    *hostname_end = save;
+    if (replace_hostname) {
+      char *new_unesc = g_strdup_printf("%.*s%s%s",
+                                        (int) (hostname - unesc),
+                                        unesc,
+                                        unidn,
+                                        hostname_end);
+      g_free(unesc);
+      unesc = new_unesc;
+    }
+  }
+
+  return terminal_util_utf8_make_valid (unesc, -1);
+}
+
+/**
+ * terminal_util_utf8_make_valid:
+ *
+ * Just as g_utf8_make_valid().
+ *
+ * FIXME: Use g_utf8_make_valid() instead once we require glib >= 2.52.
+ */
+gchar *
+terminal_util_utf8_make_valid (const gchar *str,
+                               gssize       len)
+{
+  /* copied from glib's g_utf8_make_valid() implementation */
+  GString *string;
+  const gchar *remainder, *invalid;
+  gsize remaining_bytes, valid_bytes;
+
+  g_return_val_if_fail (str != NULL, NULL);
+
+  if (len < 0)
+    len = strlen (str);
+
+  string = NULL;
+  remainder = str;
+  remaining_bytes = len;
+
+  while (remaining_bytes != 0)
+    {
+      if (g_utf8_validate (remainder, remaining_bytes, &invalid))
+	break;
+      valid_bytes = invalid - remainder;
+
+      if (string == NULL)
+	string = g_string_sized_new (remaining_bytes);
+
+      g_string_append_len (string, remainder, valid_bytes);
+      /* append U+FFFD REPLACEMENT CHARACTER */
+      g_string_append (string, "\357\277\275");
+
+      remaining_bytes -= valid_bytes + 1;
+      remainder = invalid + 1;
+    }
+
+  if (string == NULL)
+    return g_strndup (str, len);
+
+  g_string_append (string, remainder);
+  g_string_append_c (string, '\0');
+
+  g_assert (g_utf8_validate (string->str, -1, NULL));
+
+  return g_string_free (string, FALSE);
 }
