@@ -30,8 +30,9 @@ typedef enum {
   FLAVOR_AS_IS,
   FLAVOR_DEFAULT_TO_HTTP,
   FLAVOR_VOIP_CALL,
-  FLAVOR_EMAIL
-} TerminalURLFlavour;
+  FLAVOR_EMAIL,
+  FLAVOR_NUMBER,
+} TerminalURLFlavor;
 
 /* Forward decls */
 typedef struct _TerminalScreenPopupInfo TerminalScreenPopupInfo;
@@ -65,7 +66,7 @@ struct _TerminalScreenClass
                                TerminalScreenPopupInfo *info);
   gboolean (* match_clicked)  (TerminalScreen *screen,
                                const char *url,
-                               int flavour,
+                               int flavor,
                                guint state);
   void (* close_screen)       (TerminalScreen *screen);
 };
@@ -75,7 +76,9 @@ GType terminal_screen_get_type (void) G_GNUC_CONST;
 const char *terminal_screen_get_uuid (TerminalScreen *screen);
 
 TerminalScreen *terminal_screen_new (GSettings       *profile,
+                                     const char      *encoding,
                                      char           **override_command,
+                                     const char      *title,
                                      const char      *working_dir,
                                      char           **child_env,
                                      double           zoom);
@@ -137,8 +140,9 @@ struct _TerminalScreenPopupInfo {
   int ref_count;
   GWeakRef window_weak_ref;
   TerminalScreen *screen;
-  char *string;
-  TerminalURLFlavour flavour;
+  char *url;
+  TerminalURLFlavor url_flavor;
+  char *number_info;
   guint button;
   guint state;
   guint32 timestamp;

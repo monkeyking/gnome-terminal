@@ -78,12 +78,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@WITH_NAUTILUS_EXTENSION_TRUE@am__append_1 = org.gnome.Terminal.Nautilus.appdata.xml
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/config.h.in $(srcdir)/gnome-terminal.desktop.in.in \
-	AUTHORS COPYING ChangeLog NEWS config.guess config.sub depcomp \
-	install-sh missing ltmain.sh
+	$(srcdir)/config.h.in \
+	$(srcdir)/org.gnome.Terminal.desktop.in.in AUTHORS COPYING \
+	ChangeLog NEWS config.guess config.sub depcomp install-sh \
+	missing ltmain.sh
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/intltool.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
@@ -96,7 +98,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = gnome-terminal.desktop.in
+CONFIG_CLEAN_FILES = org.gnome.Terminal.desktop.in
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -323,6 +325,8 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE2_CFLAGS = @PCRE2_CFLAGS@
+PCRE2_LIBS = @PCRE2_LIBS@
 PKG_CONFIG = @PKG_CONFIG@
 PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
@@ -418,12 +422,17 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-search-provider
 
 desktopdir = $(datadir)/applications
-desktop_in_files = @PACKAGE@.desktop.in.in
+desktop_in_files = org.gnome.Terminal.desktop.in.in
 nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 DESKTOP_FILE_VALIDATE_FLAGS = 
+appdata_in_files = \
+	org.gnome.Terminal.appdata.xml.in \
+	org.gnome.Terminal.Nautilus.appdata.xml.in \
+	$(NULL)
+
 appdatadir = $(datadir)/appdata
-appdata_in_files = gnome-terminal.appdata.xml.in
-nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+nodist_appdata_DATA = org.gnome.Terminal.appdata.xml $(NULL) \
+	$(am__append_1)
 EXTRA_DIST = \
 	$(appdata_in_files)	\
 	ChangeLog.pre-2-23	\
@@ -506,7 +515,7 @@ $(srcdir)/config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
-gnome-terminal.desktop.in: $(top_builddir)/config.status $(srcdir)/gnome-terminal.desktop.in.in
+org.gnome.Terminal.desktop.in: $(top_builddir)/config.status $(srcdir)/org.gnome.Terminal.desktop.in.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 mostlyclean-libtool:
@@ -986,6 +995,7 @@ desktop-file-validate: $(nodist_desktop_DATA)
 	for f in $^; do \
 		$(DESKTOP_FILE_VALIDATE) $(DESKTOP_FILE_VALIDATE_FLAGS) $$f; \
 	done
+
 @INTLTOOL_XML_RULE@
 
 check-local: desktop-file-validate

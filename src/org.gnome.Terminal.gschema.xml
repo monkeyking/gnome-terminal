@@ -41,6 +41,12 @@
     <!-- <value nick='never' value='2'/> -->
   </enum>
 
+   <enum id='org.gnome.Terminal.ThemeVariant'>
+    <value nick='system' value='0'/>
+    <value nick='light'  value='1'/>
+    <value nick='dark'   value='2'/>
+  </enum>
+
   <enum id='org.gnome.Terminal.ExitAction'>
     <value nick='close' value='0'/>
     <value nick='restart' value='1'/>
@@ -124,12 +130,42 @@
     <key name="bold-color" type="s">
       <default>'#000000'</default>
       <summary>Default color of bold text in the terminal</summary>
-      <description>Default color of bold text in the terminal, as a color specification (can be HTML-style hex digits, or a color name such as "red"). This is ignored if bold_color_same_as_fg is true.</description>
+      <description>Default color of bold text in the terminal, as a color specification (can be HTML-style hex digits, or a color name such as "red"). This is ignored if bold-color-same-as-fg is true.</description>
     </key>
     <key name="bold-color-same-as-fg" type="b">
       <default>true</default>
       <summary>Whether bold text should use the same color as normal text</summary>
       <description>If true, boldface text will be rendered using the same color as normal text.</description>
+    </key>
+    <key name="cursor-colors-set" type="b">
+      <default>false</default>
+      <summary>Whether to use custom cursor colors</summary>
+      <description>If true, use the cursor colors from the profile.</description>
+    </key>
+    <key name="cursor-background-color" type="s">
+      <default>'#000000'</default>
+      <summary>Cursor background color</summary>
+      <description>Custom color of the background of the terminal's cursor, as a color specification (can be HTML-style hex digits, or a color name such as "red"). This is ignored if cursor-colors-set is false.</description>
+    </key>
+    <key name="cursor-foreground-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Cursor foreground colour</summary>
+      <description>Custom color for the foreground of the text character at the terminal's cursor position, as a color specification (can be HTML-style hex digits, or a color name such as "red"). This is ignored if cursor-colors-set is false.</description>
+    </key>
+    <key name="highlight-colors-set" type="b">
+      <default>false</default>
+      <summary>Whether to use custom highlight colors</summary>
+      <description>If true, use the highlight colors from the profile.</description>
+    </key>
+    <key name="highlight-background-color" type="s">
+      <default>'#000000'</default>
+      <summary>Highlight background color</summary>
+      <description>Custom color of the background of the terminal's highlight, as a color specification (can be HTML-style hex digits, or a color name such as "red"). This is ignored if highlight-colors-set is false.</description>
+    </key>
+    <key name="highlight-foreground-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Highlight foreground colour</summary>
+      <description>Custom color for the foreground of the text character at the terminal's highlight position, as a color specification (can be HTML-style hex digits, or a color name such as "red"). This is ignored if highlight-colors-set is false.</description>
     </key>
     <key name="allow-bold" type="b">
       <default>true</default>
@@ -150,13 +186,13 @@
       <description>True if the menubar should be shown in new window</description>
     </key>
     <key name="default-size-columns" type="i">
-      <range min="16" max="256" />
+      <range min="16" max="511" />
       <default>80</default>
       <summary>Default number of columns</summary>
       <description>Number of columns in newly created terminal windows. Has no effect if use_custom_default_size is not enabled.</description>
     </key>
     <key name="default-size-rows" type="i">
-      <range min="4" max="256" />
+      <range min="4" max="511" />
       <default>24</default>
       <summary>Default number of rows</summary>
       <description>Number of rows in newly created terminal windows. Has no effect if use_custom_default_size is not enabled.</description>
@@ -166,7 +202,7 @@
       <summary>When to show the scrollbar</summary>
     </key>
     <key name="scrollback-lines" type="i">
-      <default>8192</default>
+      <default>10000</default>
       <summary>Number of lines to keep in scrollback</summary>
       <description>Number of scrollback lines to keep around. You can scroll back in the terminal by this number of lines; lines that don't fit in the scrollback are discarded. If scrollback_unlimited is true, this value is ignored.</description>
     </key>
@@ -188,7 +224,7 @@
     <key name="exit-action" enum="org.gnome.Terminal.ExitAction">
       <default>'close'</default>
       <summary>What to do with the terminal when the child command exits</summary>
-      <description>Possible values are "close" to close the terminal, and "restart" to restart the command.</description>
+      <description>Possible values are "close" to close the terminal, "restart" to restart the command, and "hold" to keep the terminal open with no command running inside.</description>
     </key>
     <key name="login-shell" type="b">
       <default>false</default>
@@ -371,6 +407,18 @@
       <default>'&lt;Ctrl&gt;&lt;Shift&gt;v'</default>
       <summary>Keyboard shortcut to paste text</summary>
     </key>
+    <key name="select-all" type="s">
+      <default>'disabled'</default>
+      <summary>Keyboard shortcut to select all text</summary>
+    </key>
+    <key name="preferences" type="s">
+      <default>'disabled'</default>
+      <summary>Keyboard shortcut to open the Preferences dialog</summary>
+    </key>
+    <key name="profile-preferences" type="s">
+      <default>'disabled'</default>
+      <summary>Keyboard shortcut to open the current profile's Preferences dialog</summary>
+    </key>
     <key name="full-screen" type="s">
       <default>'F11'</default>
       <summary>Keyboard shortcut to toggle full screen mode</summary>
@@ -378,6 +426,10 @@
     <key name="toggle-menubar" type="s">
       <default>'disabled'</default>
       <summary>Keyboard shortcut to toggle the visibility of the menubar</summary>
+    </key>
+    <key name="read-only" type="s">
+      <default>'disabled'</default>
+      <summary>Keyboard shortcut to toggle the read-only state</summary>
     </key>
     <key name="reset" type="s">
       <default>'disabled'</default>
@@ -661,6 +713,11 @@
     <key name="tab-position" enum="org.gnome.Terminal.TabPosition">
       <default>'top'</default>
       <summary>The position of the tab bar</summary>
+    </key>
+
+    <key name="theme-variant" enum="org.gnome.Terminal.ThemeVariant">
+      <default>'system'</default>
+      <summary>Which theme variant to use</summary>
     </key>
 
    <!-- <child name="profiles" schema="org.gnome.Terminal.ProfilesList" /> -->
