@@ -1,3 +1,62 @@
+2006-09-04  Behdad Esfahbod  <behdad@gnome.org>
+
+	* NEWS: updated.
+
+	* configure.in: released 2.16.0.
+
+2006-09-02  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 354056 – Build broken: missing help/fr/Makefile.am
+
+	* configure.in: Remove help/fr/Makefile and help/sv/Makefile
+	from output files as they are moved to gnome-doc-utils (geer)
+
+	* help/sv/Makefile.am: Remove this as it's not used anymore.
+
+2006-08-31  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 351319 – crash on Terminal
+	Patch from Mariano Suárez-Alvarez
+
+	* src/terminal-window.c (terminal_window_destroy): Don't remove
+	screens, let the container take care of them.
+
+2006-08-28  Behdad Esfahbod  <behdad@gnome.org>
+
+	Part of Bug 352873 – crash in Terminal: Edit current profile aft...
+	Patch from Mariano Suárez-Alvarez
+
+	* src/profile-editor.c (background_image_changed): Return if filename
+	is NULL.
+
+2006-08-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 353020 – Detaching a tab does not preserve the size
+	Patch from Mariano Suárez-Alvarez
+
+	* src/terminal-window.c (new_window): Preserve geometry.
+
+2006-08-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 336943 – Critical warning and crash in gnome-terminal
+	Patch from Mariano Suárez-Alvarez
+
+	* src/terminal-window.c (fill_in_config_picker_submenu),
+	(fill_in_new_term_submenu_real), (fill_in_encoding_menu):
+	Use gtk_menu_item_remove_submenu() instead of passing NULL to
+	gtk_menuitem_set_submenu().
+
+2006-08-15  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Fix intltool req.
+
+2006-08-05  Bastien Nocera  <hadess@hadess.net>
+
+	* src/terminal-window.c: (accel_event_key_match):
+	Only send Previous tab/Next tab key events to the terminal if there's
+	no tab, and not when we reach the boundary with multiple tabs,
+	and ignore NumLock as well (Closes: #138609)
+
 2006-07-31  Behdad Esfahbod  <behdad@gnome.org>
 
 	* NEWS: updated.

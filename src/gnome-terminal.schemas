@@ -203,6 +203,11 @@
          <long>Листа на профили достални на терминалот. Листата содржи стрингови со името на субдиректориумите релативно сместени во: /apps/gnome-terminal/profiles.</long>
       </locale>
 
+      <locale name="ml">
+         <short>പ്രൊഫൈലുകളുടെ പട്ടിക</short>
+         <long>gnome-terminal-നുളള പ്രൊഫൈലുകളുടെ പട്ടിക. സബ്ഡയറക്ടറികള്‍ക്ക് പേരിടുന്ന സ്ട്രിങുകളുടെ പട്ടികയും /apps/gnome-terminal/profiles-ഉം ആയി ബന്ധമുണ്ട്. </long>
+      </locale>
+
       <locale name="mn">
          <short>Профилын жагсаалт</short>
          
@@ -270,7 +275,7 @@
 
       <locale name="sl">
          <short>Seznam profilov</short>
-         <long>Seznam profilov, ki so znani gnome-terminalu. Seznam vsebuje nize, ki poimenuje podimenike relativne na /apps/gnome-terminal/profiles.</long>
+         <long>Seznam profilov, ki so znani gnome-terminalu. Seznam vsebuje nize, ki poimenuje podmape, relativne na /apps/gnome-terminal/profiles.</long>
       </locale>
 
       <locale name="sq">
@@ -331,6 +336,11 @@
       <locale name="zh_CN">
          <short>配置文件列表</short>
          <long>列出了 gnome-terminal 已知的配置文件。列表包含的子目录是相对于 /apps/gnome-terminal/profiles 的。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>設定組合清單</short>
+         <long>一系列 gnome-terminal 可接受的設定組合。該清單會列出 /apps/gnome-terminal/profiles 下的副目錄。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -533,6 +543,11 @@
          <long>Прифил кој се користи кога се отвара нов прозорец или јазиче. Мора да е во листата на профили.</long>
       </locale>
 
+      <locale name="ml">
+         <short>പുതിയ ടെര്‍മിനലുകള്‍ക്കായുളള പ്രൊഫൈല്‍</short>
+         <long>ഒരു പുതിയ റ്റാബ് അല്ലേല്‍ ജാലകം തുറക്കുന്നതിനായി ഉപയോഗിക്കേണ്ട പ്രൊഫൈല്‍. profile_list-ല്‍ ഉണ്ടാവണം</long>
+      </locale>
+
       <locale name="mn">
          <short>Шинэ терминалд _хэрэглэх профил:</short>
          
@@ -600,7 +615,7 @@
 
       <locale name="sl">
          <short>Profil, ki naj se uporabi za nove terminale:</short>
-         <long>Profil, ki bo uporabljen ob odpiranju novega okna ali uhlja. Mora biti v naveden v profile_list.</long>
+         <long>Profil, ki bo uporabljen ob odpiranju novega okna ali zavihka. Mora biti v naveden v profile_list.</long>
       </locale>
 
       <locale name="sq">
@@ -661,6 +676,11 @@
       <locale name="zh_CN">
          <short>新终端要使用的配置文件</short>
          <long>打开新窗口或标签时要使用的配置文件。必须位于配置文件列表中。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>當開啟新的終端機時使用的設定組合</short>
+         <long>開啟新的視窗或分頁時使用哪個設定組合。必須在 profile_list 之內。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -919,6 +939,11 @@
          <long>Či majú byť v menu akcelerátory Alt+písmeno. Je možné, že by boli v konflikte s klávesami v programe, ktorý beží v termináli. Preto je možné ich vypnúť.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Ali ima menijska vrstica bližnjice tipk</short>
+         <long>Ali naj bo menijska vrstica dosegljiva preko bližnjic tipk Alt+črka. To lahko povzroči nezdružljivost z nekaterimi programi, ki tečejo znotraj terminala, zato lahko te bližnjice izklopite.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përcakton se kur paneli i instrumentëve ka pulsantë hyrje</short>
          <long>Kur duhet vënë në dispozicion Alt+shkronja për panelin e menusë. Ka mundësi të ndikojë ndonjë program që është duke u zbatuar në terminal, prandaj jepet gjithmonë mundësia e ç&apos;aktivimit të tyre.</long>
@@ -972,6 +997,11 @@
       <locale name="zh_CN">
          <short>菜单栏是否有访问键</short>
          <long>菜单栏是否使用 Alt+字母的快捷键。终端运行的很多程序都可能与此快捷键产生冲突，所以可以关闭此特性。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>選單列有沒有捷徑鏈</short>
+         <long>是否使用 Alt + 字母來使用選單列中的項目。終端機執行程式時，某些程式可能需要使用這些按鍵組合，因此允許終端機不截取這類按鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -1227,8 +1257,8 @@
       </locale>
 
       <locale name="sl">
-         <short>Ali je običajna tipka za dostop do menujske vrstice vključena</short>
-         <long>Običajno lahko dosežete menujsko vrstico z tipko F10. To se lahko spremeni skozi gtkrc (gtk-menu-bar-accel = &quot;karkoli&quot;). Ta možnost omogoča, da je običajni pospeševalnik za menujsko vrstico izključen.</long>
+         <short>Ali je običajna tipka za dostop do menijske vrstice vključena</short>
+         <long>Običajno lahko dosežete menijsko vrstico s tipko F10. To se lahko spremeni skozi gtkrc (gtk-menu-bar-accel = &quot;karkoli&quot;). Ta možnost omogoča, da je običajna bližnjica menijsko vrstice izključena.</long>
       </locale>
 
       <locale name="sq">
@@ -1286,9 +1316,14 @@
          <long>通常您可以用 F10 访问菜单栏。这也可以通过 gtkrc 自定义(gtk-menu-bar-accel = &quot;whatever&quot;)。此选项允许禁用标准的菜单栏加速键。</long>
       </locale>
 
-      <locale name="zh_TW">
+      <locale name="zh_HK">
          <short>選單列可否通過標準的 GTK 捷徑鍵來使用</short>
          <long>在正常情況下按 F10 可使用選單列。該設定也可以通過 gtkrc 更改 (gtk-menu-bar-accel = &quot;whatever&quot;)。本選項可以令正常的選單列捷徑鍵失效。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>選單列可否通過標準的 GTK 捷徑鍵來使用</short>
+         <long>在正常情況下按 F10 可使用選單列。該設定也可以通過 gtkrc 變更 (gtk-menu-bar-accel = &quot;whatever&quot;)。本選項可以令正常的選單列捷徑鍵失效。</long>
       </locale>
     </schema>
 
@@ -1545,7 +1580,7 @@
 
       <locale name="ml">
          <default>[UTF-8,current]</default>
-         
+         <short>ലഭ്യമായ എന്‍കോഡിങുകളുടെ പട്ടിക</short>
          
       </locale>
 
@@ -1635,8 +1670,8 @@
 
       <locale name="sl">
          <default>[UTF-8,current,ISO-8859-2]</default>
-         <short>Seznam _znakovnih naborov, ki so na voljo:</short>
-         <long>Podizbor možnih naborov znakov, ki je prikazan v podmenuju &quot;Nabori znakov&quot;.Posebno ime nabora &quot;current&quot; povzroči prikaz nabora, ki ga določa trenutni Locale.</long>
+         <short>Seznam kodiranj znakov, ki so na voljo:</short>
+         <long>Podizbor možnih kodiranj znakov, ki je prikazan v podmeniju &quot;Kodiranje znakov&quot;.Posebno ime nabora &quot;current&quot; povzroči prikaz kodiranja, ki ga določa trenutni Locale.</long>
       </locale>
 
       <locale name="sq">
@@ -1709,6 +1744,12 @@
          <default>[UTF-8,GB18030,GBK,GB2312,current]</default>
          <short>可用编码的列表</short>
          <long>出现在编码菜单中的可选编码子集。这里就是出现在那里的编码清单。特殊的编码名称“当前”意味着显示当前语系的编码。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <default>[UTF-8,current,BIG5,BIG5-HKSCS]</default>
+         <short>可供使用的編碼的清單</short>
+         <long>編碼選單中會出現一部分可使用的編碼，即是這裏列出的編碼。“current”是特殊的編碼名稱，表示使用目前的地區設定的文字編碼。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -1962,6 +2003,11 @@
          <long>Či si pýtať potvrdenie pri zatváraní okna terminálu, ktoré má viac ako jednu otvorenú kartu.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Ali naj se ob zapiranju oken terminala zahteva potrditev</short>
+         <long>Ali želite vprašanje za potrditev pri zapiranju okna terminala, ki ima odprt več kot en zavihek.</long>
+      </locale>
+
       <locale name="sq">
          <short>Nëse duhet kërkuar konfermimi kur mbyllet dritarja e terminalit</short>
          <long>Nëse duhet kërkuar konfermimi kur mbyllet një dritare terminali në të cilën është hapur më shumë se një skedë.</long>
@@ -2015,6 +2061,11 @@
       <locale name="zh_CN">
          <short>是否在关闭终端窗口时请求确认</short>
          <long>是否在关闭打开了多个标签的终端窗口时请求确认。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>關閉終端機視窗時是否詢問以作確定</short>
+         <long>當終端機視窗已開啟了多個分頁時，關閉時是否詢問以作確定。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -2272,6 +2323,12 @@
          <long>Име на профилот</long>
       </locale>
 
+      <locale name="ml">
+         <default>ഡീഫോള്‍ട്ട്</default>
+         <short>മനുഷ്യര്‍ക്ക് വായിക്കാന്‍ പറ്റുന്ന രീതിയില്‍ പ്രൊഫൈലിന്‍റെ പേര്</short>
+         <long>മനുഷ്യര്‍ക്ക് വായിക്കാന്‍ പറ്റുന്ന രീതിയില്‍ പ്രൊഫൈലിന്‍റെ പേര്.</long>
+      </locale>
+
       <locale name="mn">
          
          <short>Профилын хүнд уншигдахуйц нэр</short>
@@ -2306,6 +2363,12 @@
          
          <short>Forståeleg namn på profilen</short>
          <long>Forståeleg namn på profilen.</long>
+      </locale>
+
+      <locale name="or">
+         <default>ପୂର୍ବ ନିର୍ଦ୍ଧାରିତ</default>
+         
+         
       </locale>
 
       <locale name="pa">
@@ -2351,8 +2414,8 @@
       </locale>
 
       <locale name="sl">
-         
-         
+         <default>Privzeto</default>
+         <short>Človeško berljivo ime profila</short>
          <long>Človeško berljivo ime profila.</long>
       </locale>
 
@@ -2428,8 +2491,14 @@
          <long>配置文件的友好名称。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <default>預設</default>
+         <short>容易辨認的設定組合名稱</short>
+         <long>容易辨認的設定組合名稱。</long>
+      </locale>
+
       <locale name="zh_TW">
-         
+         <default>預設</default>
          <short>容易辨認的設定組合名稱</short>
          <long>容易辨認的設定組合名稱。</long>
       </locale>
@@ -2696,7 +2765,7 @@
 
       <locale name="sl">
          <short>Ali naj kazalec utripa</short>
-         <long>Resnično, če naj za okna in uhlje tega profila kazalec utripa, kadar ima terminal fokus.</long>
+         <long>Resnično, če naj za okna in zavihke tega profila kazalec utripa, kadar ima terminal fokus.</long>
       </locale>
 
       <locale name="sq">
@@ -2757,6 +2826,11 @@
       <locale name="zh_CN">
          <short>是否闪烁光标</short>
          <long>True 代表当使用此配置文件的窗口/标签内的终端拥有焦点时就闪烁光标，</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>游標可否閃爍</short>
+         <long>在使用這個設定組合的視窗/分頁之中，當輸入焦點在終端機時，如果游標應該閃爍，則選用本選項。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -3011,8 +3085,8 @@
       </locale>
 
       <locale name="sl">
-         <short>Ali naj se v nobih okni/uhljih kaže menujska vrstica</short>
-         <long>Resnično, če naj bo za okna in uhlje tega profila v novih oknih prikazana menujska vrstica.</long>
+         <short>Ali naj se v novih okni/zavihkih prikaže menijska vrstica</short>
+         <long>Resnično, če naj bo za okna in zavihke tega profila v novih oknih prikazana menijska vrstica.</long>
       </locale>
 
       <locale name="sq">
@@ -3073,6 +3147,11 @@
       <locale name="zh_CN">
          <short>是否在新窗口/标签显示菜单栏</short>
          <long>True 代表要在使用此配置文件的新窗口中显示菜单栏。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>新的視窗/分頁中是否顯示選單列</short>
+         <long>如果新的視窗應該顯示選單列，則選用本選項。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -3281,6 +3360,11 @@
          <long>Стандардна боја за текст на терминалот ( може да е HTML хексадекадно или име на боја) </long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനലിന്‍റെ വാചകങ്ങളുടെ ഡീഫോള്‍ട്ട് നിറം</short>
+         <long>ടെര്‍മിനലിന്‍റെ വാചകങ്ങളുടെ ഡീഫോള്‍ട്ട് നിറം.(HTML-രീതിയിലുളള ഹെക്സാ ഡിജിറ്റുകള്‍, അല്ലെങ്കില്‍ &quot;ചുവപ്പ്&quot; പോലെയുളള നിറങ്ങള്‍).</long>
+      </locale>
+
       <locale name="mn">
          <short>Терминалын бичгийн стандарт өнгө</short>
          <long>Терминалын дэвсгэрийн стандарт өнгө, өнгө тодорхойлогчоор (HTML -д хэрэглэдэг 16-тийн тоон эсвэл &quot;red&quot; гэх мэт өнгөний нэр байж болно).</long>
@@ -3409,6 +3493,11 @@
       <locale name="zh_CN">
          <short>终端文字的默认颜色</short>
          <long>终端文字的默认颜色，必须是颜色指定(可以是 HTML 风格的十六进制数码，也可以是像“red”这样的颜色名称)。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>終端機的預設文字顏色</short>
+         <long>終端機的預設文字顏色 (可以是 HTML 格式的十六進位數字，或是像“red”之類的名稱)</long>
       </locale>
 
       <locale name="zh_TW">
@@ -3617,6 +3706,11 @@
          <long>Стандардна боја за позадина на терминалот ( може да е HTML хексадекадно или име на боја) </long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനലിന്‍റെ പശ്ചാത്തലത്തിലുളള ഡീഫോള്‍ട്ട് നിറം</short>
+         <long>ടെര്‍മിനലിന്‍റെ പശ്ചാത്തലത്തിലുളള ഡീഫോള്‍ട്ട് നിറം(HTML-രീതിയിലുളള ഹെക്സാ ഡിജിറ്റുകള്‍, അല്ലെങ്കില്‍ &quot;ചുവപ്പ്&quot; പോലെയുളള നിറങ്ങള്‍).</long>
+      </locale>
+
       <locale name="mn">
          <short>Терминалын дэвсгэрийн стандарт өнгө</short>
          <long>Терминалын дэвсгэрийн стандарт өнгө, өнгө тодорхойлогчоор (HTML -д хэрэглэдэг 16-тийн тоон эсвэл &quot;red&quot; гэх мэт өнгөний нэр байж болно).</long>
@@ -3745,6 +3839,11 @@
       <locale name="zh_CN">
          <short>终端背景的默认颜色</short>
          <long>终端背景的默认颜色，必须是颜色指定(可以是 HTML 风格的十六进制数码，也可以是像“red”这样的颜色名称)。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>終端機的預設背景顏色</short>
+         <long>終端機的預設背景顏色（可以是 HTML 格式的十六進位數字，或是像“red”之類的名稱）</long>
       </locale>
 
       <locale name="zh_TW">
@@ -4076,6 +4175,11 @@
          <long>如果终端中的程序设置了标题(最典型的就是用户自己的 shell 可能执行这一操作)，动态设置的标题可以删除配置好的标题，或者在原有标题前/后插入。可供选择的值有“替换”、“之前”、“之后”和“忽略”。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>如何處理動態的終端機標題</short>
+         <long>如果終端機中執行的程式設定了終端機視窗的標題（一般上指令解譯器都會這樣做），這個標題可以取代你自行設定的視窗標題，附加在前面或後面，或者完全無效。可接受的值為“replace”（取代）、“before”（在前面）、“after”（在後面）和“ignore”（忽略）。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>如何處理動態的終端機標題</short>
          <long>如果終端機中執行的程式設定了終端機視窗的標題（一般上指令解譯器都會這樣做），這個標題可以取代您自行設定的視窗標題，附加在前面或後面，或者完全無效。可接受的值為“replace”（取代）、“before”（在前面）、“after”（在後面）和“ignore”（忽略）。</long>
@@ -4345,14 +4449,20 @@
       </locale>
 
       <locale name="ml">
-	<default>ടെ‍ര്മിനല്</default>
-         
+	<default>ടെര്‍മിനല്‍</default>
+         <short>ടെര്‍മിനലിന്‍റെ തലക്കെട്ട്</short>
          
       </locale>
 
       <locale name="mn">
 	<default>Терминал</default>
          <short>Терминалын гарчиг</short>
+         
+      </locale>
+
+      <locale name="mr">
+	<default>टर्मिनल</default>
+         
          
       </locale>
 
@@ -4384,6 +4494,12 @@
 	<default>Terminal</default>
          <short>Tittel på terminalen</short>
          <long>Tittel å visa i terminalvindauget eller arkfana. Denne tittelen kan bytast ut med eller kombinerast med ein tittel som vert stilt av programmet inni terminalen, alt etter verdien av «title_mode».</long>
+      </locale>
+
+      <locale name="or">
+	<default>ଟର୍ମିନାଲ</default>
+         
+         
       </locale>
 
       <locale name="pa">
@@ -4431,7 +4547,7 @@
       <locale name="sl">
 	<default>Terminal</default>
          <short>Naziv terminala</short>
-         <long>Naziv, ki naj bo prikazan v uhlju ali oknu terminala. Ta naziv lahko spremeni program pognan znotraj terminala. Kako to stori določa ključ title_mode.</long>
+         <long>Naziv, ki naj bo prikazan v zavihku ali oknu terminala. Ta naziv lahko spremeni program pognan znotraj terminala. Kako to stori določa ključ title_mode.</long>
       </locale>
 
       <locale name="sq">
@@ -4504,6 +4620,12 @@
 	<default>终端</default>
          <short>终端标题</short>
          <long>终端窗口或标签显示用的标题。根据 title_mode 设置的不同，此标题可替换为终端内程序所指定的标题，或与之组合。</long>
+      </locale>
+
+      <locale name="zh_HK">
+	<default>終端機</default>
+         <short>終端機標題</short>
+         <long>這個是在終端機視窗或分頁中顯示的標題。由執行中程式所設定的視窗標題可以取代這個標題或者和它合併，取決於 title_mode 設定。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -4707,6 +4829,11 @@
          <long>Ако е true овозможува апликациите во терминалот да имаат задебелен текст.</long>
       </locale>
 
+      <locale name="ml">
+         
+         <long>ശരി എന്നാണെങ്കില്‍, ടെര്‍മിനലിലുളള പ്രയോഗങ്ങളെ വാക്യങ്ങള്‍ ബോള്‍ഡ്ഫെയ്സ് ആക്കാന്‍ അനുവദിക്കുക.</long>
+      </locale>
+
       <locale name="mn">
          <short>Бүдүүн текст зөвшөөрөх эсэх</short>
          <long>Үнэн бол терминал доторхи програмуудын бичиг бүдүүн болохыг зөвшөөрнө.</long>
@@ -4835,6 +4962,11 @@
       <locale name="zh_CN">
          <short>是否允许粗体字</short>
          <long>如果为 true，就允许终端中的程序将文字以粗体显示。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>可否使用粗體文字</short>
+         <long>如設定為‘true’，則允許其它程式在終端機中顯示粗體字型</long>
       </locale>
 
       <locale name="zh_TW">
@@ -5037,6 +5169,11 @@
          <long>Ако е true овозможува апликациите во терминалот да не праќаат сигнам за ѕвончето од терминалот.</long>
       </locale>
 
+      <locale name="ml">
+         
+         <long>ശരി എന്നാണെങ്കില്‍, ടെര്‍മിനല്‍ മണിയ്കായി പ്രയോഗങ്ങള്‍ escape sequence അയയ്ക്കുന്പോള്‍, ശബ്ദം ഉണ്ടാക്കാതിരിക്കുക.</long>
+      </locale>
+
       <locale name="ms">
          <short>Samada menyenyapkan locang terminal</short>
          
@@ -5162,9 +5299,14 @@
          <long>如果为 true，在应用程序发送终端响铃的转码序列时就闷声不响。</long>
       </locale>
 
-      <locale name="zh_TW">
+      <locale name="zh_HK">
          <short>終端機鈴聲是否不發出聲音</short>
          <long>如設定為‘true’，當程式產生終端機鈴聲字符時不要發出聲響。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>終端機鈴聲是否不發出聲音</short>
+         <long>如設定為‘true’，當程式產生終端機鈴聲字元時不要發出聲響。</long>
       </locale>
     </schema>
 
@@ -5310,7 +5452,7 @@
       </locale>
 
       <locale name="hi">
-         <short>अक्षर जो &quot;शब्द के भाग&quot; समझे जाएँ</short>
+         <short>संप्रतीक जो &quot;शब्द के भाग&quot; समझे जाएँ</short>
          <long>जब पाठ को शब्द से चुना जाता है, इस संप्रतीक की श्रृंखला को एक शब्द माना जा सकता है. परिसर को  &quot;A-Z&quot; के रूप में दिया जाता है. शाब्दिक हाइफन (not expressing a range) दिया गया पहला संप्रतीक होना चाहिये.</long>
       </locale>
 
@@ -5494,9 +5636,14 @@
          <long>逐词选中文字时，这些字符的序列将被认为是一个单词。范围可以给为“A-Z”。连字符(不表示范围)必须是给出的第一个字符。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>這些字符會看成是字詞的一部分</short>
+         <long>當以字詞方式選取文字時，這些字符會被看成是構成字詞的一部分。字符範圍可以用類似“A-Z”的方式表示。減號本身，當不表示範圍的時候，必須是本設定中的第一個字符。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>這些字元會看成是字詞的一部分</short>
-         <long>當以字詞方式選取文字時，這些字符會被看成是構成字詞的一部分。字符範圍可以表示成像“A-Z”那樣。減號本身，當不表示範圍的時候，必須是本設定中的第一個字符。</long>
+         <long>當以字詞方式選取文字時，這些字元會被看成是構成字詞的一部分。字元範圍可以用類似“A-Z”的方式表示。減號本身，當不表示範圍的時候，必須是本設定中的第一個字元。</long>
       </locale>
     </schema>
 
@@ -5694,6 +5841,11 @@
          <long>Каде да се постави лизгачот на терминалот. Можности се лево десно и оневозможено.</long>
       </locale>
 
+      <locale name="ml">
+         <short>സ്ക്രോള്‍ ബാറിന്‍റെ സ്ഥാനം</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Гүйлгэгч самбарын байрлал</short>
          
@@ -5822,6 +5974,11 @@
       <locale name="zh_CN">
          <short>滚动条的位置</short>
          <long>将终端滚动条放在哪里。可供选择的值是“左”、“右”和“禁用”。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>捲動列位置</short>
+         <long>在甚麼位置顯示終端機捲動列。可接受的值為“left”、“right”及“disabled”。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -6152,6 +6309,11 @@
          <long>保留回滚的行数。您可以往回滚动终端这么多行；不适合回滚的行将被丢弃。请小心使用此设置；因为它直接涉及到终端要使用多大的内存。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>終端機保留的行數</short>
+         <long>終端機捲動時所保留的行數。你可以回捲指定的行數；其它的輸出資料將會被捨棄。請小心選擇這個設定；它大致上決定了終端機會使用多少記憶體。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>終端機保留的行數</short>
          <long>終端機捲動時所保留的行數。您可以回捲指定的行數；其它的輸出資料將會被捨棄。請小心選擇這個設定；它大致上決定了終端機會使用多少記憶體。</long>
@@ -6254,6 +6416,11 @@
       <locale name="es">
          <short>Indica si se debe desplazar hasta el final cuando se presione una tecla</short>
          <long>Si es «true» (verdadero), pulsar una tecla hace saltar la barra de desplazamiento hasta el final.</long>
+      </locale>
+
+      <locale name="et">
+         <short>Kas klahvivajutuse puhul tuleb kerida alla või mitte</short>
+         <long>Kui tõene, siis klahvivajutusel hüpatakse kerimisriba allaossa.</long>
       </locale>
 
       <locale name="eu">
@@ -6476,6 +6643,11 @@
          <long>如果为 true，按键就把滚动条滚动到底部。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>按下任何鍵後，是否將終端機內容捲至底部</short>
+         <long>如設定為‘true’，按任何一個鍵都會自動將終端機內容捲動至底部</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>按下任何鍵後，是否將終端機內容捲至底部</short>
          <long>如設定為‘true’，按任何一個鍵都會自動將終端機內容捲動至底部</long>
@@ -6522,8 +6694,8 @@
       </locale>
 
       <locale name="bn_IN">
-         <short>নতুন ফলাফল উত্‍‌পন্ন হলে নীচের প্রান্ত অবধি স্ক্রোল করা হবে কি না</short>
-         <long>মান সত্য (true) হলে, নতুন আউটপুট উত্‍‌পন্ন হলে নীচের প্রান্ত অবধি টার্মিনাল স্ক্রোল করা হবে।</long>
+         <short>নতুন ফলাফল উৎ‌পন্ন হলে নীচের প্রান্ত অবধি স্ক্রোল করা হবে কি না</short>
+         <long>মান সত্য (true) হলে, নতুন আউটপুট উৎ‌পন্ন হলে নীচের প্রান্ত অবধি টার্মিনাল স্ক্রোল করা হবে।</long>
       </locale>
 
       <locale name="bs">
@@ -6579,6 +6751,11 @@
       <locale name="es">
          <short>Indica si se debe desplazar hasta el final cuando hay una salida nueva</short>
          <long>Si es «true» (verdadero), define si una nueva salida en la terminal producirá un desplazamiento hasta el final.</long>
+      </locale>
+
+      <locale name="et">
+         <short>Kas uue väljundi puhul tuleb kerida alla või mitte</short>
+         
       </locale>
 
       <locale name="eu">
@@ -6791,6 +6968,11 @@
          <long>如果为 true，在终端有新输出时滚动条就会滚动到底部。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>有新的輸出內容時，是否將終端機內容捲至底部</short>
+         <long>如設定為‘true’，當終端機有任何新的內容輸出時都會將內容捲動至底部。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>有新的輸出內容時，是否將終端機內容捲至底部</short>
          <long>如設定為‘true’，當終端機有任何新的內容輸出時都會將內容捲動至底部。</long>
@@ -6981,6 +7163,11 @@
          <long>Можни вредности се close за да се затвори терминалот, и restart за рестартирање на командата.</long>
       </locale>
 
+      <locale name="ml">
+         
+         <long>ടെര്‍മിനല്‍ അടയ്കുന്നതിന് &quot;അടയ്ക്കുക&quot; എന്നതും,നിര്‍ദ്ദേശം വീണ്ടും ആരംഭിക്കുന്നതിന് &quot;റീസ്റ്റാര്‍ട്ട് ചെയ്യുക&quot;-ഉം ആണ് സാധ്യമുളള മൂല്ല്യങ്ങള്‍.</long>
+      </locale>
+
       <locale name="ms">
          <short>Apa dilakukan dengan terminal bila arahan anak keluar</short>
          <long>Nilai yang boleh adalah &quot;close&quot; untuk menutup terminal, dan &quot;restart&quot; untuk ulanghidup arahan.</long>
@@ -7104,6 +7291,13 @@
       <locale name="zh_CN">
          <short>如何对待子命令退出时</short>
          <long>可供选择的值中，“关闭”可关闭终端，“重新启动”可重新启动命令。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>當指令結束時如何處理終端機進程</short>
+         <long>可接受的值為：
+“close”關閉終端機
+“restart”重新執行指令</long>
       </locale>
 
       <locale name="zh_TW">
@@ -7423,6 +7617,11 @@
          <long>如果为 true，终端中的命令将会以登录 shell 被调用。(argv[0] 将在前面有一个连字符。)</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>在終端機中啟動指令時是否讀入所有登入時的組態檔案</short>
+         <long>如設定為‘true’，在終端機中執行指令時會先載入登入所需的設定檔。(即是說 argv[0] 前會加上減號。)</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>在終端機中啟動指令時是否讀入所有登入時的組態檔案</short>
          <long>如設定為‘true’，在終端機中執行指令時會先載入登入所需的設定檔。(即是說 argv[0] 前會加上減號。)</long>
@@ -7526,6 +7725,11 @@
       <locale name="es">
          <short>Indica si se debe actualizar los registros de inicio de sesión al lanzar el comando de terminal</short>
          <long>Si es «true» (verdadero), el los registros de entrada del sistema utmp y wtmp se actualizarán cuando se lance el comando de dentro del terminal.</long>
+      </locale>
+
+      <locale name="et">
+         
+         <long>Kui tõene, siis käsu käivitamisel terminal uuendatakse süsteemi sisselogimiskirjeid utmp ja wtmp.</long>
       </locale>
 
       <locale name="eu">
@@ -7668,6 +7872,11 @@
          <long>Ak je true, systémové záznamy o prihlásení budú aktualizované pri spustení príkazu v termináli.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Ali naj se ob zaganjanju ukaza terminala posodobijo zapisi prijave</short>
+         <long>Če je resnično, bosta prijavna zapisa utmp in wtmp posodobljena, ko se bo zagnal ukaz znotraj terminala.</long>
+      </locale>
+
       <locale name="sq">
          <short>Nëse duhen rifreskuar regjistrimet e hyrjeve kur lëshohet një komandë në terminal</short>
          <long>Nëse e vërtetë, regjistrimet e hyrjeve në sistem do të rifreskohen kur të jepet komanda në brendësi të terminalit.</long>
@@ -7694,8 +7903,8 @@
       </locale>
 
       <locale name="th">
-         <short>อัพเดตระเบียนล็อกอินเมื่อเรียกใช้คำสั่งเทอร์มินัลหรือไม่</short>
-         <long>ถ้าเลือก จะอัพเดตระเบียนล็อกอิน utmp และ wtmp ของระบบ เมื่อเรียกใช้คำสั่งภายในเทอร์มินัล</long>
+         <short>ปรับข้อมูลระเบียนล็อกอินเมื่อเรียกใช้คำสั่งเทอร์มินัลหรือไม่</short>
+         <long>ถ้าเลือก จะปรับข้อมูลระเบียนล็อกอิน utmp และ wtmp ของระบบ เมื่อเรียกใช้คำสั่งภายในเทอร์มินัล</long>
       </locale>
 
       <locale name="tr">
@@ -7721,6 +7930,11 @@
       <locale name="zh_CN">
          <short>是否在调用终端命令时更新登录日志</short>
          <long>如果为 true，将会在终端内的命令调用时更新登录记录 utmp/wtmp。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>執行終端機指令時是否更新登入記錄</short>
+         <long>如設定為‘true’，當在終端機中的指令執行後會更新 utmp 及 wtmp。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -8053,6 +8267,11 @@
          <long>如果为 true，将会使用用户自定义的设置来取代 shell。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>啟動時是否執行自選的程式而不是 shell</short>
+         <long>如設定為‘true’，啟動終端機時會執行 custom_command 設定所指定的指令，而不會執行 shell。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>啟動時是否執行自選的程式而不是 shell</short>
          <long>如設定為‘true’，啟動終端機時會執行 custom_command 設定所指定的指令，而不會執行 shell。</long>
@@ -8253,6 +8472,11 @@
          <long>Изврши ја оваа команда во школката, ако use_custom_command е точно</long>
       </locale>
 
+      <locale name="ml">
+         <short>ഷെല്ലിന് പകരം ഇഷ്ടമുളള നിര്‍ദ്ദേശം ഉപയോഗിക്കുക</short>
+         <long>use_custom_command ശരിയാണ് എങ്കില്‍, ഷെല്ലിന് പകരം ഈ നിര്‍ദ്ദേശം പ്രവര്‍ത്തിപ്പിക്കുക.</long>
+      </locale>
+
       <locale name="mn">
          <short>Хэрэглэгчийн тодорхойлсон тушаалыг тушаалын мөрийн оронд хэрэглэх</short>
          
@@ -8383,8 +8607,13 @@
          <long>在 shell 的位置运行此命令，如果 use_custom_command 为 true。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>啟動時不執行命令解譯器，而是執行的自訂指令</short>
+         <long>如果使用了 use_custom_command 選項，則會執行這個指令來代替命令解譯器。</long>
+      </locale>
+
       <locale name="zh_TW">
-         <short>啟動時不執行 shell，而是執行的自訂指令</short>
+         <short>啟動時不執行命令解譯器，而是執行的自訂指令</short>
          <long>如果使用了 use_custom_command 選項，則會執行這個指令來代替命令殼。</long>
       </locale>
     </schema>
@@ -8587,6 +8816,11 @@
          <long>Икона за јазичињата/прозорците од овој профил.</long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനല്‍ ജാലകത്തിനുളള ഐക്കണ്‍</short>
+         <long>ഈ പ്രൊഫൈല്‍ അടങ്ങുന്ന റ്റാബ്/ജാലകത്തിന് ഉപയോഗിക്കുന്ന ഐക്കണ്‍.</long>
+      </locale>
+
       <locale name="mn">
          <short>Терминал цонхны эмблем</short>
          <long>Энэ профилын ТАВ/Цонхонд хэрэглэх эмблем.</long>
@@ -8654,7 +8888,7 @@
 
       <locale name="sl">
          <short>Ikona terminalskega okna</short>
-         <long>Ikona, ki naj se uporabi za uhlje/okna, ki vsebujejo ta profil.</long>
+         <long>Ikona, ki naj se uporabi za zavihke/okna, ki vsebujejo ta profil.</long>
       </locale>
 
       <locale name="sq">
@@ -8715,6 +8949,11 @@
       <locale name="zh_CN">
          <short>终端窗口的图标</short>
          <long>包含此配置文件的标签/窗口所用的图标。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>終端機視窗所用的圖示</short>
+         <long>使用這個設定組合的分頁/視窗圖示。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -8919,6 +9158,11 @@
          <long>Терминалите имаат палета со 16 бои што апликациите внатре во терминалот можат да ја користат. Ова е палетата во формата со имиња на бои ограничени со запирка. Бојата треба да биде во хексадецимален формат. Пример&quot;#FF00FF&quot;</long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനല്‍ ആപ്ളിക്കെഷനുളള താലം</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Терминал програмын нийлүүр</short>
          
@@ -9047,6 +9291,11 @@
       <locale name="zh_CN">
          <short>终端程序调色板</short>
          <long>终端使用 16 色的调色板，以供终端中的程序使用。这就是该调色板，格式为冒号分隔的颜色名称。颜色名必须是十六进制格式，即“#FF00FF”</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>終端機的色盤</short>
+         <long>終端機可以使用一個 16 色的色盤，即是本設定中指定的色盤，格式是將一系列的顏色以冒號分隔起來。個別顏色是以 16 進制格式表示，例如“#FF00FF”</long>
       </locale>
 
       <locale name="zh_TW">
@@ -9260,8 +9509,8 @@
       </locale>
 
       <locale name="ml">
-         <short>അക്ഷരരൂപം</short>
-         
+         <short>ലിപി</short>
+         <long>ഒരു X ലിപിയുടെ പേര്. X ലിപികളുടെ പേരുകളെപ്പറ്റി കൂടുതല്‍ വിവരങ്ങള്‍ക്കായി X മാന്‍ പേജ് കാണുക (&quot;man X&quot; എന്ന് ടൈപ്പ് ചെയ്യുക).</long>
       </locale>
 
       <locale name="mn">
@@ -9292,6 +9541,11 @@
       <locale name="nn">
          <short>Skrifttype</short>
          <long>Eit X-skrifttypenamn. Sjå manualsida til X (skriv «man X» på kommandolinja) for fleire detaljar om X-skrifttypenamn.</long>
+      </locale>
+
+      <locale name="or">
+         <short>ଅକ୍ଷରରୂପ</short>
+         
       </locale>
 
       <locale name="pa">
@@ -9397,6 +9651,11 @@
       <locale name="zh_CN">
          <short>字体</short>
          <long>X 字体名。参看 X man page(输入“man X”)以获得关于 X 字体名格式的更多信息。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>字型</short>
+         <long>X 字型名稱。請參考“X”man page (輸入“man X”) 中有關 X 字型名稱格式的說明</long>
       </locale>
 
       <locale name="zh_TW">
@@ -9610,8 +9869,8 @@
       </locale>
 
       <locale name="ml">
-         <short>അക്ഷരരൂപം</short>
-         
+         <short>ലിപി</short>
+         <long>ഒരു Pango ലിപിയുടെ പേര്. &quot;Sans 12&quot; അല്ലെങ്കില്‍ &quot;Monospace Bold 14&quot;ആണ് ഉദാഹരണങ്ങള്‍.</long>
       </locale>
 
       <locale name="mn">
@@ -9642,6 +9901,11 @@
       <locale name="nn">
          <short>Skrifttype</short>
          <long>Eit Pango-skrifttypenamn. Døme: «Sans 12» eller «Monospace Bold 14».</long>
+      </locale>
+
+      <locale name="or">
+         <short>ଅକ୍ଷରରୂପ</short>
+         
       </locale>
 
       <locale name="pa">
@@ -9686,7 +9950,7 @@
 
       <locale name="sl">
          <short>Pisava</short>
-         
+         <long>Ime pisave Pango. Primera sta &quot;Sans 12&quot; ali &quot;Monospace Bold 14&quot;</long>
       </locale>
 
       <locale name="sq">
@@ -9747,6 +10011,11 @@
       <locale name="zh_CN">
          <short>字体</short>
          <long>Pango 字体名称。例如“Sans 12”或“Monospace Bold 14”。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>字型</short>
+         <long>Pango 字型名稱，例如：“Sans 12”、“Monospace Bold 14”</long>
       </locale>
 
       <locale name="zh_TW">
@@ -9954,6 +10223,11 @@
          <long>Тип на позадина за терминалот. Може да биде &quot;полно&quot; за полна боја, &quot;слика&quot; за слика или &quot;Проѕирно&quot; за псеудо-проѕирно.</long>
       </locale>
 
+      <locale name="ml">
+         <short>ഏത് തരം പശ്ചാത്തലം</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Дэвсгэрийн төрөл</short>
          
@@ -9982,6 +10256,11 @@
       <locale name="nn">
          <short>Bakgrunnstype</short>
          <long>Typen bakgrunn i terminalen. Kan vera «solid» for einsfarga bakgrunn, «image» for å ha eit bilete i bakgrunnen, og «transparent» for å ha ein pseudo-gjennomsiktig bakgrunn.</long>
+      </locale>
+
+      <locale name="or">
+         <short>ପୃଷ୍ଠଭୂମି ପ୍ରକାର</short>
+         
       </locale>
 
       <locale name="pa">
@@ -10082,6 +10361,11 @@
       <locale name="zh_CN">
          <short>背景类型</short>
          <long>终端背景的类型。可以是“纯色”代表单一颜色，“图像”代表图像，以及“透明”代表假透明。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>背景類型</short>
+         <long>終端機背景的類型。可以是“solid”表示淨色，“image”表示圖片，或“transparent”表示虛擬透明。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -10288,6 +10572,11 @@
          <long>Датотека за слика од позадината</long>
       </locale>
 
+      <locale name="ml">
+         <short>പശ്ചാത്തലത്തിലുളള ഇമേജ്</short>
+         <long>ഒരു പശ്ചാത്തല ഇമേജിന്‍റെ ഫയലിന്‍റെ പേര്</long>
+      </locale>
+
       <locale name="mn">
          <short>Дэвсгэр зураг</short>
          <long>Дэвсгэр зурагийн файлын нэр.</long>
@@ -10316,6 +10605,11 @@
       <locale name="nn">
          <short>Bakgrunnsbilete</short>
          <long>Fil med bakgrunnsbilete.</long>
+      </locale>
+
+      <locale name="or">
+         <short>ପୃଷ୍ଠଭୂମି ଚିତ୍ର</short>
+         
       </locale>
 
       <locale name="pa">
@@ -10421,6 +10715,11 @@
       <locale name="zh_CN">
          <short>背景图像</short>
          <long>背景图像的文件名。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>背景圖案</short>
+         <long>背景圖案的檔案名稱。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -10690,7 +10989,7 @@
       </locale>
 
       <locale name="sl">
-         
+         <short>Ali naj slika v ozadju drsi</short>
          <long>Če je resnično, slika v ozadju drsi skupaj z osprednjim besedilom; če je neresnično, je slika negibna in besedilo drsi nad njo.</long>
       </locale>
 
@@ -10754,6 +11053,11 @@
          <long>如果为 true，就和前景文字一起滚动背景图像；如果为 false，就将图像保留在固定位置，而只滚动其上的文字。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>背景圖案可否捲動</short>
+         <long>如設定為‘true’，捲動文字內容時會令背景圖案同時捲動；否則只會捲動文字，圖案則保留在固定位置。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>背景圖案可否捲動</short>
          <long>如設定為‘true’，捲動文字內容時會令背景圖案同時捲動；否則只會捲動文字，圖案則保留在固定位置。</long>
@@ -10804,7 +11108,7 @@
 
       <locale name="bn_IN">
          <short>পটভূমির চিত্র চিহ্নিত মাত্রা অনুযায়ী নিষ্প্রভ করা হবে</short>
-         <long>পটভূমির চিত্র ছায়াচ্ছন্ন করার মাত্রা হিসাবে 0.0 ও 1.0&apos;র মধ্যবর্তী একটি মান। মান 0.0 হলে ছায়াচ্ছন্ন করা হবে না, 1.0 মান নির্ধারিত হলে চিত্র সম্পূর্ণরূপে ছায়াচ্ছন্ন হবে। বর্তমানে এই বৈশিষ্ট্যের শুধুমাত্র দুটি স্তর উপলব্ধ রয়েছে, যার ফলে এই বৈশিষ্ট্যের জন্য বুলিয়ান&apos;র অনুরূপ মান ধার্য হয়। অর্থাত্‌ 0.0 মান প্রয়োগ করে এই বৈশিষ্ট্য নিষ্ক্রিয় করা যাবে।</long>
+         <long>পটভূমির চিত্র ছায়াচ্ছন্ন করার মাত্রা হিসাবে 0.0 ও 1.0&apos;র মধ্যবর্তী একটি মান। মান 0.0 হলে ছায়াচ্ছন্ন করা হবে না, 1.0 মান নির্ধারিত হলে চিত্র সম্পূর্ণরূপে ছায়াচ্ছন্ন হবে। বর্তমানে এই বৈশিষ্ট্যের শুধুমাত্র দুটি স্তর উপলব্ধ রয়েছে, যার ফলে এই বৈশিষ্ট্যের জন্য বুলিয়ান&apos;র অনুরূপ মান ধার্য হয়। অর্থাৎ 0.0 মান প্রয়োগ করে এই বৈশিষ্ট্য নিষ্ক্রিয় করা যাবে।</long>
       </locale>
 
       <locale name="bs">
@@ -10957,6 +11261,11 @@
          <long>Вредност помеѓу 0.0 и 1.0 која означува колку да се затемни позадината. 0.0 означува без потемнување, 1.0 означува целосно затемнување. Во сегашната имплементација, има само две нивоа на затемнување, па затоа овие подесувања делуваат како лочигка променлива, затоа 1.0 го активира затемнувањето, а 0.0 го деактивира овој ефект.</long>
       </locale>
 
+      <locale name="ml">
+         <short>പശ്ചാത്തല ഇമേജ് എത്രമാത്രം കട്ടിയാക്കണം</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Дэвсгэр зурагийг хэр харлуулах эсэх</short>
          
@@ -11023,7 +11332,7 @@
       </locale>
 
       <locale name="sl">
-         
+         <short>Kako močno naj se potemni barva ozadja.</short>
          <long>Vrednost med 0.0 in 1.0, ki navaja koliko naj se potemni slika ozadja. 0.0 pomeni brez potemnitve, 1.0 pa popolno temo. V trenutni izvedbi sta možni le dve stopnji potemnitve, zato se nastavitev obnaša kot boolean, kjer 0.0 pomeni brez potemnitve.</long>
       </locale>
 
@@ -11087,9 +11396,14 @@
          <long>介于 0.0 和 1.0 之间的值，表明背景图像的灰暗程度。0.0 表示不作处理，1.0 表明全黑。在目前的实现方案中，只有两种级别的灰暗程度，所以这里的设置和布尔值类似，即 0.0 禁用灰暗效果。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>桌布的透明度</short>
+         <long>這個是 0.0 至 1.0 之間的數值，表示終端機背景的透明程度。0.0 表示完全透明 (和桌布融合)，1.0 表示完全不透明，使用終端機的背景顏色。</long>
+      </locale>
+
       <locale name="zh_TW">
-         <short>將背景圖案變黑的程度</short>
-         <long>這個是 0.0 至 1.0 之間的數值，表示背景圖片變黑的程度。0.0 表示不會變黑，1.0 表示完全變黑。目前這個數值只有兩種可能，因此它的實際作用等於布林值，0.0 表示不使用變黑的效果。</long>
+         <short>桌布的透明度</short>
+         <long>這個是 0.0 至 1.0 之間的數值，表示終端機背景的透明程度。0.0 表示完全透明 (和桌布融合)，1.0 表示完全不透明，使用終端機的背景顏色。</long>
       </locale>
     </schema>
 
@@ -11138,7 +11452,7 @@
 
       <locale name="bn_IN">
          <short>ব্যাক-স্পেস কি&apos;র প্রতিক্রিয়া</short>
-         <long>ব্যাকস্পেস-কি&apos;র দ্বারা উত্‌পন্ন কোড নির্ধারণ করে। সম্ভাব্য মান হল ASCII DEL অক্ষরের ক্ষেত্রে &quot;ascii-del&quot;, Control-H&apos;র (অর্থাত্‍‌ ASCII BS অক্ষর) ক্ষেত্রে &quot;control-h&quot; ও ব্যাকস্পেস অথবা ডিলিট-কি&apos;র সাথে যুক্ত এস্কেপ সিকোয়েন্সের জন্য &quot;escape-sequence&quot;।  ব্যাকস্পেস-কি&apos;র সঠিক বৈশিষ্ট্য হিসাবে &quot;ascii-del&quot; ধার্য করা হয়।</long>
+         <long>ব্যাকস্পেস-কি&apos;র দ্বারা উৎপন্ন কোড নির্ধারণ করে। সম্ভাব্য মান হল ASCII DEL অক্ষরের ক্ষেত্রে &quot;ascii-del&quot;, Control-H&apos;র (অর্থাৎ‌ ASCII BS অক্ষর) ক্ষেত্রে &quot;control-h&quot; ও ব্যাকস্পেস অথবা ডিলিট-কি&apos;র সাথে যুক্ত এস্কেপ সিকোয়েন্সের জন্য &quot;escape-sequence&quot;।  ব্যাকস্পেস-কি&apos;র সঠিক বৈশিষ্ট্য হিসাবে &quot;ascii-del&quot; ধার্য করা হয়।</long>
       </locale>
 
       <locale name="bs">
@@ -11291,6 +11605,11 @@
          <long>Го подесува кодот кој го генерира backspace копчето. Можни вредности се  &quot;ascii-del&quot; за ASCII DEL карактерот, &quot;control-h&quot; за Control-H (како ASCII BS карактерот), &quot;escape-sequence&quot; за escape секвенца типично се ограничувана backspace или delete. &quot;ascii-del&quot; се подразбира за стандардна вредност за Backspace копчето.</long>
       </locale>
 
+      <locale name="ml">
+         <short>Backspace കീയുടെ പ്രഭാവം</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Backspace товчилуурын нөлөө</short>
          
@@ -11357,7 +11676,7 @@
       </locale>
 
       <locale name="sl">
-         
+         <short>Učinek tipke Backspace.</short>
          <long>Nastavi kodo, ki jo povzroči tipka povratnica. Možne vrednosti so &quot;ascii-del&quot; za znak ASCII DEL, &quot;control-h&quot; za Control-H (oziroma znak ASCII BS), &quot;escape-sequence&quot; za ubežno sekvenco, ki običajno pomeni povratnico ali izbris.Navadno je pravilna izbira &quot;ascii-del&quot;.</long>
       </locale>
 
@@ -11421,12 +11740,21 @@
          <long>设置退格键生成的代码。可供选择的值有，“ascii-del”代表 ASCII DEL 字符，“control-h”代表 Ctrl+H(即 ASCII BS 字符)，“escape-sequence”代表 backspace 或 delete 代表的转码序列。“ascii-del”通常是退格键正确的设置。</long>
       </locale>
 
-      <locale name="zh_TW">
+      <locale name="zh_HK">
          <short>後退鍵的實際效果</short>
          <long>Backspace 鍵會產生哪個字符。可接受的值為：
+“ascii-del”產生 ASCII 的 DEL 字符
+“control-h”產生 ASCII 的 BS 字符
+“escape-sequence”產生代表 backspace 或 delete 的「跳出字符序列」
+正常來說，Backspace 鍵應該使用“ascii-del”。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>後退鍵的實際效果</short>
+         <long>Backspace 鍵會產生哪個字元。可接受的值為：
 “ascii-del”產生 ASCII 的 DEL 字元
 “control-h”產生 ASCII 的 BS 字元
-“escape-sequence”產生代表 backspace 或 delete 的「溢出字元序列」
+“escape-sequence”產生代表 backspace 或 delete 的「跳出字元序列」
 正常來說，Backspace 鍵應該使用“ascii-del”。</long>
       </locale>
     </schema>
@@ -11477,7 +11805,7 @@
 
       <locale name="bn_IN">
          <short>ডিলিট-কি&apos;র প্রতিক্রিয়া</short>
-         <long>ডিলিট-কি&apos;র দ্বারা উত্‌পন্ন কোড নির্ধারণ করে। সম্ভাব্য মান হল ASCII DEL অক্ষরের ক্ষেত্রে &quot;ascii-del&quot;, Control-H&apos;র (অর্থাত্‍‌ ASCII BS অক্ষর) ক্ষেত্রে &quot;control-h&quot; ও ব্যাকস্পেস অথবা ডিলিট-কি&apos;র সাথে যুক্ত এস্কেপ সিকোয়েন্সের জন্য &quot;escape-sequence&quot;।  ব্যাকস্পেস-কি&apos;র সঠিক বৈশিষ্ট্য হিসাবে &quot;ascii-del&quot; ধার্য করা হয়।</long>
+         <long>ডিলিট-কি&apos;র দ্বারা উৎপন্ন কোড নির্ধারণ করে। সম্ভাব্য মান হল ASCII DEL অক্ষরের ক্ষেত্রে &quot;ascii-del&quot;, Control-H&apos;র (অর্থাৎ‌ ASCII BS অক্ষর) ক্ষেত্রে &quot;control-h&quot; ও ব্যাকস্পেস অথবা ডিলিট-কি&apos;র সাথে যুক্ত এস্কেপ সিকোয়েন্সের জন্য &quot;escape-sequence&quot;।  ব্যাকস্পেস-কি&apos;র সঠিক বৈশিষ্ট্য হিসাবে &quot;ascii-del&quot; ধার্য করা হয়।</long>
       </locale>
 
       <locale name="bs">
@@ -11630,6 +11958,11 @@
          <long>Подесува кој код ќе генерира delete копчето. Можни вредности се  &quot;ascii-del&quot; за ASCII DEL карактерот, &quot;control-h&quot; за Control-H (како ASCII BS карактерот), &quot;escape-sequence&quot; за escape секвенца типично се ограничувана backspace или delete. &quot;escape-sequence&quot; се подразбира за стандардна вредност за Delete копчето.</long>
       </locale>
 
+      <locale name="ml">
+         <short>Delete കീയുടെ പ്രഭാവം</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Delete товчилуурын нөлөө</short>
          
@@ -11696,7 +12029,7 @@
       </locale>
 
       <locale name="sl">
-         
+         <short>Učinek tipke Delete.</short>
          <long>Nastavi kodo, ki jo povzroči tipka delete (zbriši). Možne vrednosti so &quot;ascii-del&quot; za znak ASCII DEL, &quot;control-h&quot; za Control-H (oziroma znak ASCII BS), &quot;escape-sequence&quot; za ubežno sekvenco, ki običajno pomeni povratnico ali izbris.Navadno je pravilna izbira &quot;escape-sequence&quot;.</long>
       </locale>
 
@@ -11760,12 +12093,21 @@
          <long>设置 Delete 键生成的代码。可供选择的值有，“ascii-del”代表 ASCII DEL 字符，“control-h”代表 Ctrl+H(即 ASCII BS 字符)，“escape-sequence”代表 backspace 或 delete 代表的转码序列。“ascii-del”通常是 Delete 键正确的设置。</long>
       </locale>
 
-      <locale name="zh_TW">
+      <locale name="zh_HK">
          <short>刪除鍵的實際效果</short>
          <long>Delete 鍵會產生哪個字符。可接受的值為：
+“ascii-del”產生 ASCII 的 DEL 字符
+“control-h”產生 ASCII 的 BS 字符
+“escape-sequence”產生代表 backspace 或 delete 的「跳出字符序列」
+正常來說，Delete 鍵應該使用“escape-sequence”。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>刪除鍵的實際效果</short>
+         <long>Delete 鍵會產生哪個字元。可接受的值為：
 “ascii-del”產生 ASCII 的 DEL 字元
 “control-h”產生 ASCII 的 BS 字元
-“escape-sequence”產生代表 backspace 或 delete 的「溢出字元序列」
+“escape-sequence”產生代表 backspace 或 delete 的「跳出字元序列」
 正常來說，Delete 鍵應該使用“escape-sequence”。</long>
       </locale>
     </schema>
@@ -12080,6 +12422,11 @@
          <long>如果为 true，终端就会使用文本输入框的主题颜色配对，而不是用户给出的颜色。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>在終端機元件是否使用佈景主題提供的色彩</short>
+         <long>如設定為‘true’，終端機會使用佈景主題提供的色彩，而不是使用者自選的色彩。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>在終端機元件是否使用佈景主題提供的色彩</short>
          <long>如設定為‘true’，終端機會使用佈景主題提供的色彩，而不是使用者自選的色彩。</long>
@@ -12190,6 +12537,11 @@
          <long>જો સાચું હોય, તો X સર્વરો માટે ફોન્ટ એન્ટી એલિઆઝીંગ નિષ્ક્રિય થઈ જશે RENDER એક્સટેન્સન વિના, કે જે આવી પરિસ્થિતિઓમાં સમજી શકાય તેવા પ્રભાવ સુધારાઓ આપે છે.</long>
       </locale>
 
+      <locale name="hi">
+         <short>क्या X RENDER विस्तार के बिना एंटी एलियासिंग निष्क्रिय किया जा सकता है</short>
+         <long>अगर सही है, फंट एलियासिंग को निष्क्रिय होगा जब X RENDER विस्तार के बिना, जो इन स्थिति में अच्छा प्रदर्शन करता है.</long>
+      </locale>
+
       <locale name="hu">
          <short>Élsimítás tiltása az X RENDER kiterjesztésének hiányában</short>
          <long>Ha be van állítva, akkor az élsimítás ki lesz kapcsolva, ha az X a RENDER kiterjesztés nélkül fut, ami jelentősen növeli a teljesítményt ilyen helyzetben.</long>
@@ -12270,6 +12622,11 @@
          <long>Если включено, сглаживание шрифтов не будет использовано если запущено без расширения X RENDER, которое дает значнительное улучшение произволительности в это ситуации</long>
       </locale>
 
+      <locale name="sl">
+         <short>Ali naj bo glajenje pisav onemogočeno pri uporabi brez razširitve X RENDER</short>
+         <long>Če resnično, bo ob poganjanju brez razširitve X RENDER glajenje pisav onemogočeno, kar bo omogočilo večjo odzivnost sistema.</long>
+      </locale>
+
       <locale name="sq">
          <short>Nëse duhet çaktivuar anti-aliasing pa shtesa X RENDER</short>
          <long>Nëse e vërtetë, anti-aliasing i shkronjave do të çaktivohet kur punohet pa shtesat X RENDER, gjë që përmirëson në menyrë të ndjeshme performace në këto situata.</long>
@@ -12308,6 +12665,16 @@
       <locale name="zh_CN">
          <short>在没有 X RENDER 扩展的情况下是否要禁用反锯齿</short>
          <long>如果为 true，在没有 X RENDERE 扩展的情况下运行时将会禁用字体反锯齿，以便显著改进性能。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>在沒有 X RENDER 伸延時應否停用平滑字功能</short>
+         <long>如設定為‘true’，在沒有 X RENDER 伸延時執行會停用平滑字功能。在這情況下可顯著地提升效率。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>在沒有 X RENDER 伸延時應否停用平滑字功能</short>
+         <long>如設定為‘true’，在沒有 X RENDER 伸延時執行會停用平滑字功能。在這情況下可顯著地提升效率。</long>
       </locale>
     </schema>
 
@@ -12409,6 +12776,11 @@
       <locale name="es">
          <short>Indica si se debe usar la tipografía del sistema</short>
          <long>Si es «true» (verdadero), la terminal usará la tipografía global del escritorio si ésta es de ancho fijo (de otro modo será la tipografía más similar posible a ésta).</long>
+      </locale>
+
+      <locale name="et">
+         <short>Kas kasutada süsteemset kirjatüüpi või mitte</short>
+         
       </locale>
 
       <locale name="eu">
@@ -12631,6 +13003,11 @@
          <long>如果为 true，终端就将使用与桌面相同的标准字体，假如该字体为等宽字体的话(否则就是用最为接近的字体)。</long>
       </locale>
 
+      <locale name="zh_HK">
+         <short>是否使用系統提供的字型設定</short>
+         <long>如設定為‘true’，終端機會採用桌面整體指定的字型 (如果它是固定闊度字型；否則會使用最接近的字型)。</long>
+      </locale>
+
       <locale name="zh_TW">
          <short>是否使用系統提供的字型設定</short>
          <long>如設定為‘true’，終端機會採用桌面整體指定的字型 (如果它是固定寬度字型；否則會使用最接近的字型)。</long>
@@ -12744,6 +13121,11 @@
          <long>જ્યારે s/કી શરત પ્રત્યુત્તર મળે અને તેના પર ક્લિક થાય ત્યારે સંવાદ પોપઅપ કરો. સંવાદમાં પાસવર્ડ લખવાનું તેને ટર્મિનલમાં મોકલશે.</long>
       </locale>
 
+      <locale name="hi">
+         <short>S/कुंजी चुनौती उभारें</short>
+         <long>एक संवाद पॉपअप करें जब एक S/key चुनौती अनुक्रिया प्रश्न जांचा जाता है और क्लिक किया जाता है. संवाद पेटी में शब्दकूट टाइप करना इसे टर्मिनल में भेजेगा.</long>
+      </locale>
+
       <locale name="hu">
          <short>S/Key hívások kiemelése</short>
          <long>Párbeszédablak megjelenítése s/key hívás-válasz lekérdezés érzékelésekor és rákattintáskor. A párbeszédablakba beírt jelszó a terminálra lesz küldve.</long>
@@ -12829,6 +13211,11 @@
          <long>Zobraziť dialóg pri kliknutí na dotaz odpovede výzvy S/Key. Zadaním hesla do dialógu ho pošlete na terminál.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Označi spremembe S/Key</short>
+         <long>Prikaži pogovorno okno ob zaznavi poizvedbe in kliku izzvanega odziva S/Key. Vnos gesla v pogovorno okno ga bo poslalo v terminal.</long>
+      </locale>
+
       <locale name="sq">
          <short>Vër në dukje S/Key</short>
          <long>Hap një dialog kur është ybuluar dhe klikuar tek një kërkesë përgjigje sfidës S/Key. Duke shkruar fjalëkalimin në dialog do ta dërgojë në terminal.</long>
@@ -12872,6 +13259,11 @@
       <locale name="zh_CN">
          <short>高亮 S/Key 挑战</short>
          <long>检测到 S/Key 挑战响应查询且单击时弹出一个对话框。在对话框中输入的密码将发送到终端。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>突顯 s/key challenge(暗號)</short>
+         <long>當偵測到終端機出現 s/key challenge(暗號) 而且用戶點選這個暗號後，顯示對話方塊。輸入到此對話方塊中的密碼會被送出至終端機。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -13078,6 +13470,11 @@
          <long>Копче за забрзување за отворање ново јазиче. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>പുതിയ റ്റാബ് തുറക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Шинэ ТАВ нээх товчилуурын хослол</short>
          <long>Шинэ дэд цонх (тав) нээх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -13143,6 +13540,11 @@
          <long>Akcelerátor pre otvorenie novej karty. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za odpiranje novega zavihka</short>
+         <long>Bližnjica za odpiranje novega zavihka, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të hapur një skedë të re</short>
          <long>Pulsant përshpejtues për të hapur një skedë të re. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -13201,6 +13603,11 @@
       <locale name="zh_CN">
          <short>打开新标签的快捷键</short>
          <long>打开新标签的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來新增分頁的捷徑鍵</short>
+         <long>開啟新終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -13405,6 +13812,11 @@
          <long>Копче за забрзување за отворање на нов прозорец. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>പുതിയ ജാലകം തുറക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Шинэ цонх товчилуурын хослол</short>
          <long>Шинэ цонх нээх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -13470,6 +13882,11 @@
          <long>Akcelerátor pre otvorenie nového okna. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za odpiranje novega okna</short>
+         <long>Bližnjica za odpiranje novega okna, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të hapur një dritare të re</short>
          <long>Pulsant përshpejtues për të hapur një dritare të re. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -13528,6 +13945,11 @@
       <locale name="zh_CN">
          <short>打开新窗口的快捷键</short>
          <long>打开新窗口的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來新增視窗的捷徑鍵</short>
+         <long>開啟新終端機視窗的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -13732,6 +14154,11 @@
          <long>Копче за забрзување за приказ на дијалогот за креирање на профил. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>പുതിയ പ്രൊഫൈല്‍ ഉണ്ടാക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Шинэ профил үүсгэх товчилуурын хослол</short>
          <long>Профил үүсгэх диалогийг нааш авчирах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -13797,6 +14224,11 @@
          <long>Akcelerátor pre zobrazenie dialógu pre vytvorenie profilu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za ustvarjanje novega profila</short>
+         <long>Bližnjica za prikaz pogovornega okna za ustvarjanje profilov, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për krijimin e një profili të ri</short>
          <long>Pulsant përshpejtues për të hapur dialogun për krijimin e profilit. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -13855,6 +14287,11 @@
       <locale name="zh_CN">
          <short>创建新配置文件的快捷键</short>
          <long>启动配置文件创建对话框的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來產生新的設定組合的捷徑鍵</short>
+         <long>顯示產生設定組合對話方塊的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -14059,6 +14496,11 @@
          <long>Копче за забрзување за затворање на јазиче. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് അടയ്ക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Дэд цонх хаах товчилуурын хослол</short>
          <long>Дэд цонх (тав) хаах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -14124,6 +14566,11 @@
          <long>Akcelerátor pre zatvorenie karty. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za zapiranja zavihka</short>
+         <long>Bližnjica za zapiranje zavihka, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të mbyllur një skedë</short>
          <long>Pulsant përshpejtues për të mbyllur një skedë. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -14182,6 +14629,11 @@
       <locale name="zh_CN">
          <short>关闭标签的快捷键</short>
          <long>关闭标签的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來關閉分頁的捷徑鍵</short>
+         <long>關閉終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -14386,6 +14838,11 @@
          <long>Копче за забрзување за затворање на прозорецот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ജാലകം അടയ്ക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Цонх хаах товчилуурын хослол</short>
          <long>Цонх хаах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -14451,6 +14908,11 @@
          <long>Akcelerátor pre zatvorenie okna. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za zapiranja okna</short>
+         <long>Bližnjica za zapiranje okna, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të mbyllur një dritare</short>
          <long>Pulsant përshpejtues për të mbyllur një dritare. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -14509,6 +14971,11 @@
       <locale name="zh_CN">
          <short>关闭窗口的快捷键</short>
          <long>关闭窗口的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來關閉視窗的捷徑鍵</short>
+         <long>關閉終端機視窗的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -14715,6 +15182,11 @@
          <long>Копче за забрзување за копирање на избраниот текст во клипборд. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>വാക്യം പകര്‍ത്തുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Бичиг хуулах товчилуурын хослол</short>
          <long>Тэмдэглэсэн бичгийг клипборд руу хуулах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -14780,6 +15252,11 @@
          <long>Akcelerátor pre kopírovanie vybraného textu do schránky. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za kopiranje besedila</short>
+         <long>Bližnjica za kopiranje izbranega besedila na odložišče, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të kopjuar tekstin</short>
          <long>Pulsant përshpejtues për të kopjuar tekstin e zgjedhur tek blloku i shënimeve. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -14838,6 +15315,11 @@
       <locale name="zh_CN">
          <short>复制文字的快捷键</short>
          <long>将选中文字复制到剪贴板的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來複製文字的捷徑鍵</short>
+         <long>將已選文字複製至剪貼簿的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -15044,6 +15526,11 @@
          <long>Копче за забрзување за вметнување на селектираното од клипборд. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>വാക്യങ്ങള്‍ പകര്‍ത്തുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Бичиг буулгах товчилуурын хослол</short>
          <long>Клипбордын агуулгыг терминал руу буулгах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -15109,6 +15596,11 @@
          <long>Akcelerátor pre vloženie textu zo schránky. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za prilepljenje besedila</short>
+         <long>Bližnjica za prilepljenje vsebine odložišča v terminal, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të ngjitur tekstin e kopjuar</short>
          <long>Pulsant përshpejtues për të kopjuar të zgjedhurin nga blloku i shënimeve. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -15167,6 +15659,11 @@
       <locale name="zh_CN">
          <short>粘贴文字的快捷键</short>
          <long>从剪贴板粘贴文字的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來貼上剪貼簿內容的捷徑鍵</short>
+         <long>貼上剪貼簿中內容的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -15371,6 +15868,11 @@
          <long>Копче за забрзување за префрлување режим на цел екран. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>സ്ക്രീന്‍ മുഴുവന്‍ വലിപ്പത്തിലാക്കുകയും തിരിച്ച് പഴയ രീതിയില്‍ ആക്കുകയും ചെയ്യുവാന്‍ സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>സ്ക്രീന്‍ മുഴുവന്‍ വലിപ്പത്തിലാക്കുകയും തിരിച്ച് പഴയ രീതിയില്‍ ആക്കുകയും ചെയ്യുവാന്‍ സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Дэлгэцэнд дүүргэх/болих товчилуурын хослол</short>
          <long>Дэлгэц дүүргэх/болих товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -15436,6 +15938,11 @@
          <long>Akcelerátor pre prepnutie do celoobrazovkového režimu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na celozaslonski način</short>
+         <long>Bližnjica za preklop na celozaslonski način, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të hequr paraqitjen me ekran të plotë</short>
          <long>Pulsant përshpejtues për të hequr modalitetin me ekran të plotë. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -15494,6 +16001,11 @@
       <locale name="zh_CN">
          <short>切换全屏模式的快捷键</short>
          <long>切换全屏模式的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換是否進入全螢幕模式的捷徑鍵</short>
+         <long>切換全螢幕模式的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -15696,6 +16208,11 @@
          <long>Копче за забрзување за промена на видливоста на менито. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>മെനുബാറിന്‍റെ കാണുന്ന അവസ്ഥ മാറ്റുന്നതിന് സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>മെനുബാറിന്‍റെ കാണുന്ന അവസ്ഥ മാറ്റുന്നതിന് സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Цэс самбар харуулах/далдлах товчилуурын хослол</short>
          <long>Цэс самбар харуулах/далдлах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -15761,6 +16278,11 @@
          <long>Akcelerátor pre prepnutie zobrazenia menu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop vidnosti menijske vrstice</short>
+         <long>Bližnjica za preklop vidnosti menijske vrstice, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues pët të hequr dukshmërinë e menusë</short>
          <long>Pulsant përshpejtues për të hequr dukshmërinë e panelit të instrumentëve. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -15819,6 +16341,11 @@
       <locale name="zh_CN">
          <short>切换菜单栏是否可见的快捷键</short>
          <long>切换菜单栏是否可见的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換是否顯示選單列的捷徑鍵</short>
+         <long>切換是否顯示選單列的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -16022,6 +16549,11 @@
          <long>Копче за забрзување за подесување на насловот на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനല്‍ തലക്കെട്ട് ക്രമീകരിക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>ടെര്‍മിനലിന്‍റെ തലകെട്ട് ക്രമീകരിക്കുന്നതിന് സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Терминалд гарчиг өгөх товчилуурын хослол</short>
          <long>Терминалын гарчиг өгөх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -16087,6 +16619,11 @@
          <long>Akcelerátor pre nastavenie titulku terminálu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za nastavitev naslova terminala</short>
+         <long>Bližnjica za nastavitev naslova terminala, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të vendosur titullin e terminalit</short>
          <long>Pulsant përshpejtues për të zgjedhur titullin e terminalit. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -16145,6 +16682,11 @@
       <locale name="zh_CN">
          <short>设置终端标题的快捷键</short>
          <long>设定终端标题的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來設定終端機標題的捷徑鍵</short>
+         <long>指定終端機標題的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -16348,6 +16890,11 @@
          <long>Копче за забрзување за ресетирање на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനല്‍ റീസറ്റ് ചെയ്യുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>ടെര്‍മിനല്‍ വെടിപ്പാക്കുന്നതിനു സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Терминал шинээр эхлүүлэх товчилуурын хослол</short>
          <long>Терминалыг дахин эхлүүлэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -16413,6 +16960,11 @@
          <long>Akcelerátor pre reštart terminálu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za ponastavitev terminala</short>
+         <long>Bližnjica za ponastavitev terminala, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të rifilluar terminalin</short>
          <long>Pulsant përshpejtues për të filluar nga fillimi terminalin. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -16471,6 +17023,11 @@
       <locale name="zh_CN">
          <short>重置终端的快捷键</short>
          <long>重置终端的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來重設終端機畫面的捷徑鍵</short>
+         <long>重設終端機的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -16674,6 +17231,11 @@
          <long>Копче за забрзување за ресетирање и чистење на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ടെര്‍മിനല്‍ റീസറ്റ് ചെയ്ത് വെടിപ്പാക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>ടെര്‍മിനല്‍ റീസറ്റ് ചെയ്ത് വെടിപ്പാക്കുന്നതിനു സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Терминалыг цэвэрлэж дахин эхлүүлэх товчилуурын хослол</short>
          <long>Терминал цэвэрлээд дахин эхлүүлэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -16739,6 +17301,11 @@
          <long>Akcelerátor pre vyčistenie a reštart terminálu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za ponastavitev in očiščenje terminala</short>
+         <long>Bližnjica za preklop na ponastavitev in očiščenje terminala, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të pastruar dhe rifilluar terminalin</short>
          <long>Pulsant përshpejtues për të filluar nga fillimi dhe pastruar terminalin. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -16797,6 +17364,11 @@
       <locale name="zh_CN">
          <short>重置并清除终端的快捷键</short>
          <long>重置并清除终端的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來重設及清除終端機畫面的捷徑鍵。</short>
+         <long>清除及重設終端機的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -17001,6 +17573,11 @@
          <long>Копче за забрзување за префрлување на претходното јазиче. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>മുന്പുളള റ്റാബിലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>മുന്പുളള റ്റാബിലേക്ക് മാറുന്നതിന് സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Өмнөх Тав руу сэлгэх товчилуурын хослол</short>
          <long>Өмнөх тав руу сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -17066,6 +17643,11 @@
          <long>Akcelerátor pre prepnutie na predchádzajúcu kartu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na prejšnji zavihek</short>
+         <long>Bližnjica za preklop na prejšjni zavihek, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda e mëparshme</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda paraardhëse. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -17124,6 +17706,11 @@
       <locale name="zh_CN">
          <short>切换到上一标签的快捷键</short>
          <long>切换到上一标签的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至上一個分頁的捷徑鍵</short>
+         <long>切換至上一個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -17328,6 +17915,11 @@
          <long>Копче за забрзување за префрлување следното јазиче. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>അടുത്ത റ്റാബിലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>അടുത്ത റ്റാബിലേക്ക് മാറുന്നതിന് സഹായിക്കുന്ന കീബോര്‍ഡ് കുറുക്കു വഴി.GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Дараагийн Тав руу сэлгэх товчилуурын хослол</short>
          <long>Дараагийн тав руу сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -17393,6 +17985,11 @@
          <long>Akcelerátor pre prepnutie na nasledujúcu kartu. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na naslednji zavihek</short>
+         <long>Bližnjica za preklop na naslednji zavihek, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda në vazhdim</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda pasardhëse. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -17451,6 +18048,11 @@
       <locale name="zh_CN">
          <short>切换到下一标签的快捷键</short>
          <long>切换到下一标签的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至下一個分頁的捷徑鍵</short>
+         <long>切換至下一個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -17570,6 +18172,11 @@
          <long>વર્તમાન ટેબને ડાબે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો, તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
       </locale>
 
+      <locale name="hi">
+         <short>बांयीं ओर मौजूदा टैब चलाने के लिये त्वरक चलाये</short>
+         <long>बांयीं ओर मौजूदा टैब चलाने के लिये त्वरक चलाये. जीटीके+ संसाधन फ़ाइलों में उपयोग में लिए जाने वाले स्ट्रिंग के रूप में अभिव्यक्त किए जाते हैं. यदि आप विकल्प को विशिष्ट स्ट्रिंग &quot;अक्षम&quot; पर नियत करते हैं तो फिर इस क्रिया हेतु कोई भी कुंजीपटल शॉर्टकट नहीं होगा.</long>
+      </locale>
+
       <locale name="hu">
          <short>Gyorsbillentyű a jelenlegi lap balra mozgatásához.</short>
          <long>Gyorsbillentyű a jelenlegi lap balra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
@@ -17615,6 +18222,11 @@
          <long>Копче за забрзување за подесување на насловот на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;исклучено&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>നിലവിലുളള റ്റാബ് ഇടത്തേക്ക് നീക്കുന്നതിനുളള ആക്സലറേറ്റര്‍.</short>
+         
+      </locale>
+
       <locale name="nb">
          <short>Hurtigtast som flytter aktiv fane til venstre.</short>
          <long>Tastatursnarvei for å flytte aktiv fane til venstre. Uttrykkes som en streng av samme format som brukes i ressursfiler for GTK+. Hvis du setter verdien til den spesielle strengen «disabled» vil tastatursnarvei for denne handlingen deaktiveres.</long>
@@ -17648,6 +18260,11 @@
       <locale name="ru">
          <short>Комбинация клавиш для перемещения текущей вкладки влево.</short>
          <long>Комбинация клавиш для перемещения текущей вкладки влево. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
+      </locale>
+
+      <locale name="sl">
+         <short>Bližnjica za premik trenutnega zavihka levo.</short>
+         <long>Bližnjica za premik trenutnega zavihka v levo, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
       </locale>
 
       <locale name="sq">
@@ -17693,6 +18310,16 @@
       <locale name="zh_CN">
          <short>将当前标签左移的加速键。</short>
          <long>将当前标签左移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>分頁向左移動的捷徑鍵。</short>
+         <long>分頁向左移動的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>分頁向左移動的捷徑鍵。</short>
+         <long>分頁向左移動的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
     </schema>
     
@@ -17807,6 +18434,11 @@
          <long>વર્તમાન ટેબને જમણે મૂકવા માટેની પ્રવેગ કી. GTK+ સ્ત્રોત ફાઇલો માટે વપરાયેલ સમાન બંધારણના શબ્દમાળા તરીકે રજૂ કર્યુ હતું. જો તમે વિશિષ્ટ શબ્દમાળા &quot;નિષ્ક્રિય&quot; માટે વિકલ્પ સુયોજિત કરશો, તો આ ક્રિયા માટે કીજોડાણ થઇ શકશે નહિં.</long>
       </locale>
 
+      <locale name="hi">
+         <short>दायीं ओर मौजूदा टैब चलाने के लिये त्वरक चलाये</short>
+         <long>दायीं ओर मौजूदा टैब चलाने के लिये त्वरक चलायें. जीटीके+ संसाधन फ़ाइल में उपयोग में लिए जाने वाले स्ट्रिंग के रूप में अभिव्यक्त किए जाते हैं. यदि आप विकल्प को विशिष्ट स्ट्रिंग &quot;निष्क्रिय&quot; पर नियत करते हैं तो फिर इस क्रिया हेतु कोई भी कुंजीपटल शॉर्टकट नहीं होगा.</long>
+      </locale>
+
       <locale name="hu">
          <short>Gyorsbillentyű a jelenlegi lap jobbra mozgatásához.</short>
          <long>Gyorsbillentyű a jelenlegi lap jobbra mozgatásához. Karakterláncként kifejezve, a GTK+ forrásfájlokban használttal azonos formában. Ha ezt az opciót &quot;disabled&quot;-re állítja, ehhez az akcióhoz nem lesz gyorsbillentyű.</long>
@@ -17852,6 +18484,11 @@
          <long>Копче за забрзување за подесување на насловот на терминалот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;исклучено&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>നിലവിലുളള റ്റാബ് വലത്തേക്ക് നീക്കുന്നതിനുളള ആക്സലറേറ്റര്‍.</short>
+         
+      </locale>
+
       <locale name="nb">
          <short>Hurtigtast som flytter aktiv fane til høyre.</short>
          <long>Tastatursnarvei for å flytte aktiv fane til høyre. Uttrykkes som en streng av samme format som brukes i ressursfiler for GTK+. Hvis du setter verdien til den spesielle strengen «disabled» vil tastatursnarvei for denne handlingen deaktiveres.</long>
@@ -17885,6 +18522,11 @@
       <locale name="ru">
          <short>Комбинация клавиш для перемещения текущей вкладки вправо.</short>
          <long>Комбинация клавиш для перемещения текущей вкладки вправо. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
+      </locale>
+
+      <locale name="sl">
+         <short>Bližnjica za premik trenutnega zavihka desno.</short>
+         <long>Bližnjica za premik trenutnega zavihka v desno, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
       </locale>
 
       <locale name="sq">
@@ -17930,6 +18572,16 @@
       <locale name="zh_CN">
          <short>将当前标签右移的加速键。</short>
          <long>将当前标签右移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>分頁向左移動的捷徑鍵。</short>
+         <long>分頁向右移動的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>分頁向左移動的捷徑鍵。</short>
+         <long>分頁向右移動的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
     </schema>
 
@@ -18045,7 +18697,7 @@
 
       <locale name="hi">
          <short>त्वरक को मौजूदा टैब से अलग करने के लिये</short>
-         
+         <long>मौजूदा टैब से अलग करने के लिये त्वरक. जीटीके+ संसाधन फ़ाइलों में उपयोग में लिए जाने वाले स्ट्रिंग के रूप में अभिव्यक्त किए जाते हैं. यदि आप विकल्प को विशिष्ट स्ट्रिंग &quot;निष्क्रिय&quot; पर नियत करते हैं तो फिर इस क्रिया हेतु कोई भी कुंजीपटल शॉर्टकट नहीं होगा.</long>
       </locale>
 
       <locale name="hu">
@@ -18093,6 +18745,11 @@
          <long>Копче за забрзување за префрлување следното јазиче. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;исклучено&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>നിലവിലുളള റ്റാബ് വേര്‍പ്പെടുത്തുന്നതിനുളള ആക്സലറേറ്റര്‍</short>
+         
+      </locale>
+
       <locale name="nb">
          <short>Hurtigtast som løsriver aktiv fane.</short>
          <long>Tastatursnarvei for å løsrive denne fanen. Uttrykkes som en streng av samme format som brukes i ressursfiler for GTK+. Hvis du setter verdien til den spesielle strengen «disabled» vil tastatursnarvei for denne handlingen deaktiveres.</long>
@@ -18131,6 +18788,11 @@
       <locale name="sk">
          <short>Akcelerátora na odpojenie aktuálnej karty.</short>
          <long>Akcelerátor pre odpojenie aktuálnej karty. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
+      </locale>
+
+      <locale name="sl">
+         <short>Bližnjica za odcepitev trenutnega zavihka.</short>
+         <long>Bližnjica za odcepitev trenutnega zavihka, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
       </locale>
 
       <locale name="sq">
@@ -18176,6 +18838,16 @@
       <locale name="zh_CN">
          <short>漂移当前标签的加速键。</short>
          <long>漂移当前标签的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>分頁脫離為獨立視窗的捷徑鍵。</short>
+         <long>切換至下一個分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
+      </locale>
+
+      <locale name="zh_TW">
+         <short>分頁脫離為獨立視窗的捷徑鍵。</short>
+         <long>切換至下一個分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
     </schema>
 
@@ -18375,6 +19047,11 @@
          <long>Копче за забрзување за префрлување на јазичето 1. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 1-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 1-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 1 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 1 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -18440,6 +19117,11 @@
          <long>Akcelerátor pre prepnutie na kartu 1. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 1</short>
+         <long>Bližnjica za preklop na zavihek 1, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 1</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 1. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -18498,6 +19180,11 @@
       <locale name="zh_CN">
          <short>切换到标签 1 的快捷键</short>
          <long>切换到标签 1 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 1 個分頁的捷徑鍵</short>
+         <long>切換至第 1 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -18702,6 +19389,11 @@
          <long>Копче за забрзување за префрлување на јазичето 2. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 2-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 2-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 2 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 2 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -18767,6 +19459,11 @@
          <long>Akcelerátor pre prepnutie na kartu 2. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 2</short>
+         <long>Bližnjica za preklop na zavihek 2, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 2</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 2. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -18825,6 +19522,11 @@
       <locale name="zh_CN">
          <short>切换到标签 2 的快捷键</short>
          <long>切换到标签 2 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 2 個分頁的捷徑鍵</short>
+         <long>切換至第 2 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -19029,6 +19731,11 @@
          <long>Копче за забрзување за префрлување на јазичето 3. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 3-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 3-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 3 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 3 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -19094,6 +19801,11 @@
          <long>Akcelerátor pre prepnutie na kartu 3. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 3</short>
+         <long>Bližnjica za preklop na zavihek 3, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 3</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 3. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -19152,6 +19864,11 @@
       <locale name="zh_CN">
          <short>切换到标签 3 的快捷键</short>
          <long>切换到标签 3 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 3 個分頁的捷徑鍵</short>
+         <long>切換至第 3 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -19356,6 +20073,11 @@
          <long>Копче за забрзување за префрлување на јазичето 4. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 4-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 4-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 4 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 4 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -19421,6 +20143,11 @@
          <long>Akcelerátor pre prepnutie na kartu 4. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 4</short>
+         <long>Bližnjica za preklop na zavihek 4, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 4</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 4. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -19479,6 +20206,11 @@
       <locale name="zh_CN">
          <short>切换到标签 4 的快捷键</short>
          <long>切换到标签 4 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 4 個分頁的捷徑鍵</short>
+         <long>切換至第 4 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -19683,6 +20415,11 @@
          <long>Копче за забрзување за префрлување на јазичето 5. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 5-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 5-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 5 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 5 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -19748,6 +20485,11 @@
          <long>Akcelerátor pre prepnutie na kartu 5. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 5</short>
+         <long>Bližnjica za preklop na zavihek 5, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 5</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 5. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -19806,6 +20548,11 @@
       <locale name="zh_CN">
          <short>切换到标签 5 的快捷键</short>
          <long>切换到标签 5 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 5 個分頁的捷徑鍵</short>
+         <long>切換至第 5 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -20010,6 +20757,11 @@
          <long>Копче за забрзување за префрлување на јазичето 6. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 6-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 6-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 6 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 6 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -20075,6 +20827,11 @@
          <long>Akcelerátor pre prepnutie na kartu 6. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 6</short>
+         <long>Bližnjica za preklop na zavihek 6, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 6</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 6. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -20133,6 +20890,11 @@
       <locale name="zh_CN">
          <short>切换到标签 6 的快捷键</short>
          <long>切换到标签 6 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 6 個分頁的捷徑鍵</short>
+         <long>切換至第 6 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -20337,6 +21099,11 @@
          <long>Копче за забрзување за префрлување на јазичето 7. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 7-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 7-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 7 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 7 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -20402,6 +21169,11 @@
          <long>Akcelerátor pre prepnutie na kartu 7. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 7</short>
+         <long>Bližnjica za preklop na zavihek 7, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 7</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 7. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -20460,6 +21232,11 @@
       <locale name="zh_CN">
          <short>切换到标签 7 的快捷键</short>
          <long>切换到标签 7 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 7 個分頁的捷徑鍵</short>
+         <long>切換至第 7 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -20664,6 +21441,11 @@
          <long>Копче за забрзување за префрлување на јазичето 8. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 8-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 8-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 8 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 8 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -20729,6 +21511,11 @@
          <long>Akcelerátor pre prepnutie na kartu 8. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 8</short>
+         <long>Bližnjica za preklop na zavihek 8, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 8</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 8. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -20787,6 +21574,11 @@
       <locale name="zh_CN">
          <short>切换到标签 8 的快捷键</short>
          <long>切换到标签 8 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 8 個分頁的捷徑鍵</short>
+         <long>切換至第 8 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -20991,6 +21783,11 @@
          <long>Копче за забрзување за префрлување на јазичето 9. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 9-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 9-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 9 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 9 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -21056,6 +21853,11 @@
          <long>Akcelerátor pre prepnutie na kartu 9. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 9</short>
+         <long>Bližnjica za preklop na zavihek 9, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 9</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 9. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -21114,6 +21916,11 @@
       <locale name="zh_CN">
          <short>切换到标签 9 的快捷键</short>
          <long>切换到标签 9 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 9 個分頁的捷徑鍵</short>
+         <long>切換至第 9 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -21318,6 +22125,11 @@
          <long>Копче за забрзување за префрлување на јазичето 10. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 10-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 10-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 10 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 10 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -21383,6 +22195,11 @@
          <long>Akcelerátor pre prepnutie na kartu 10. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 10</short>
+         <long>Bližnjica za preklop na zavihek 10, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 10</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 10. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -21441,6 +22258,11 @@
       <locale name="zh_CN">
          <short>切换到标签 10 的快捷键</short>
          <long>切换到标签 10 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 10 個分頁的捷徑鍵</short>
+         <long>切換至第 10 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -21645,6 +22467,11 @@
          <long>Копче за забрзување за префрлување на јазичето 11. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 11-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 11-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 11 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 11 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -21710,6 +22537,11 @@
          <long>Akcelerátor pre prepnutie na kartu 11. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 11</short>
+         <long>Bližnjica za preklop na zavihek 11, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 11</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 11. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -21768,6 +22600,11 @@
       <locale name="zh_CN">
          <short>切换到标签 11 的快捷键</short>
          <long>切换到标签 11 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 11 個分頁的捷徑鍵</short>
+         <long>切換至第 11 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -21972,6 +22809,11 @@
          <long>Копче за забрзување за префрлување на јазичето 12. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>റ്റാബ് 12-ലേക്ക് പോകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         <long>റ്റാബ് 12-ലേക്ക് മാറുന്നതിനായുളള കീബോര്‍ഡ് കുറുക്കു വഴി. GTK+ റിസോഴ്സ് ഫയലുകളില്‍ ഉപയോഗിച്ചിരിക്കുന്ന അതേ രീതിയില്‍ സ്ട്രിങായി ആവിഷ്കരിച്ചിരിക്കുന്നു. പ്രത്യേക സ്ട്രിങ് ആയ &quot;പ്രവര്‍ത്തന രഹിതമാക്കുക&quot; സെറ്റ് ചെയ്താല്‍, ഈ പ്രവര്‍ത്തനത്തിന് പിന്നീട് കുറുക്കു വഴി ഉണ്ടായിരിക്കുന്നതല്ല.</long>
+      </locale>
+
       <locale name="mn">
          <short>Тав 12 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 12 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -22037,6 +22879,11 @@
          <long>Akcelerátor pre prepnutie na kartu 12. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za preklop na zavihek 12</short>
+         <long>Bližnjica za preklop na zavihek 12, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kaluar tek skeda 12</short>
          <long>Pulsant përshpejtues për të kaluar tek skeda 12. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -22095,6 +22942,11 @@
       <locale name="zh_CN">
          <short>切换到标签 12 的快捷键</short>
          <long>切换到标签 12 的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來切換至第 12 個分頁的捷徑鍵</short>
+         <long>切換至第 12 個終端機分頁的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -22299,6 +23151,11 @@
          <long>Копче за забрзување за вклучување на помош. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>സഹായം ലഭ്യമാകുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Тусламж үзүүлэх товчилуурын хослол</short>
          <long>Тусламж үзүүлэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -22364,6 +23221,11 @@
          <long>Akcelerátor pre spustenie Pomocníka. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za zagon pomoči</short>
+         <long>Bližnjica za zagon pomoči, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të hapur ndihmën</short>
          <long>Pulsant përshpejtues për të hapur ndihmën. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -22422,6 +23284,11 @@
       <locale name="zh_CN">
          <short>调用帮助的快捷键</short>
          <long>调用帮助的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來顯示說明文件的捷徑鍵</short>
+         <long>顯示說明文件的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -22626,6 +23493,11 @@
          <long>Копче за забрзување за зголемување на фонтот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ലിപി വലുതാക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Бичиг томруулах товчилуурын хослол</short>
          <long>Бичгийн хэвийг томсгох товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -22691,6 +23563,11 @@
          <long>Akcelerátor pre zväčšenie písma. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za povečanje pisave</short>
+         <long>Bližnjica za povečevanje pisave, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të zmadhuar gërmat</short>
          <long>Pulsant përshpejtues për t&apos;i bërë gërmat më të mëdha. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -22749,6 +23626,11 @@
       <locale name="zh_CN">
          <short>大字体的快捷键</short>
          <long>设为大字体的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來令字型變大的捷徑鍵</short>
+         <long>令字型變大的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -22953,6 +23835,11 @@
          <long>Копче за забрзување за намалување на фонтот. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ലിപി ചെറുതാക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Бичиг жижигсгэх товчилуурын хослол</short>
          <long>Бичгийн хэвийг жижигсгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -23018,6 +23905,11 @@
          <long>Akcelerátor pre zmenšenie písma. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za zmanjšanje pisave</short>
+         <long>Bližnjica za zmanjševanje pisave, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Kombinim përshpejtues për të zvogëluar gërmat</short>
          <long>Pulsant përshpejtues për t&apos;i bërë gërmat më të vogla. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -23076,6 +23968,11 @@
       <locale name="zh_CN">
          <short>小字体的快捷键</short>
          <long>设为小字体的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來令字型變小的捷徑鍵</short>
+         <long>令字型變小的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
@@ -23280,6 +24177,11 @@
          <long>Копче за забрзување за местење на фонтот на стандардна големина. Изразено како стринг со ист формат како што се во GTK+ ресурсните датотеки. Ако ја подесите оваа опцијата на специјалниот стринг &quot;disabled&quot; тогаш нема да има копче-кратенка за оваа акција</long>
       </locale>
 
+      <locale name="ml">
+         <short>ലിപി സാധാരണ വലിപ്പം ആക്കുന്നതിനുളള കീബോര്‍ഡ് കുറുക്കു വഴി</short>
+         
+      </locale>
+
       <locale name="mn">
          <short>Бичгийг энгийн хэжээнд оруулах товчилуурын хослол</short>
          <long>Бичгийн хэвийг энгийн хэмжээнд аваачих товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
@@ -23345,6 +24247,11 @@
          <long>Akcelerátor pre použitie normálnej veľkosti písma. Zadaný ako reťazec v rovnakom formáte, ktorý používajú súbory zdrojov GTK+. Ak nastavíte špeciálnu hodnotu &quot;disabled&quot;, klávesová skratka pre túto akciu nebude existovať.</long>
       </locale>
 
+      <locale name="sl">
+         <short>Bližnjica za nastavitev običajne velikosti pisave</short>
+         <long>Bližnjica za nastavitev običajne velikosti pisave, izražena kot niz v enaki obliki kot je uporabljen v datotekah virov GTK+. Če nastavite možnost na poseben niz &quot;disabled&quot;, za to dejanje ne bo bližnjice tipk.</long>
+      </locale>
+
       <locale name="sq">
          <short>Përshpejtues për të kthyer gërmat në madhësi normale</short>
          <long>Pulsant përshpejtues për t&apos;i kthyer madhësinë normale gërmave. Shprehet si stringë me format të njëjtë të përdorur për files e GTK+. Nëse opcioni vendoset tek stringa speciale &quot;disabled&quot;, nuk do të ketë asnjë pulsant për këtë veprim.</long>
@@ -23403,6 +24310,11 @@
       <locale name="zh_CN">
          <short>普通字体的快捷键</short>
          <long>设为普通字体的快捷键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
+      </locale>
+
+      <locale name="zh_HK">
+         <short>用來令字型回復原來大小的捷徑鍵</short>
+         <long>令字型大小回復正常的捷徑鍵。它的字串表示方式和其它 GTK+ 設定檔所用的一樣。如果它的設定值是特殊字串“disabled”，則表示該操作程序不會有捷徑鍵。</long>
       </locale>
 
       <locale name="zh_TW">
