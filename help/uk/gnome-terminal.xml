@@ -2,10 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.5.90">
+<!ENTITY appversion "2.24.3">
 <!ENTITY manrevision "2.8">
-<!ENTITY date "March 2004">
+<!ENTITY date "March 2009">
 ]>
+<!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   Template version: 2.0 beta
@@ -16,7 +17,10 @@
   <articleinfo> 
      <title>Довідка з GNOME Terminal</title> 
      <abstract role="description">
-       <para>Довідка з програми GNOME Terminal</para>
+       <para>
+	 The Terminal gives users the power to communicate with their system using
+text-based commands through a shell such as Bash.
+       </para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +39,15 @@
      <copyright> 
         <year>2000</year> 
         <holder>Олександр Кирилов</holder> 
-     </copyright><copyright><year>2003,2005.</year><holder>Максим Дзюманенко (mvd@mylinux.com.ua)</holder></copyright>
+     </copyright>
+     <copyright> 
+        <year>2008</year> 
+        <holder>Christian Persch</holder> 
+     </copyright>
+     <copyright> 
+        <year>2009</year> 
+        <holder>Paul Cutler</holder> 
+     </copyright><copyright><year>2003,2005.</year><holder>Максим Дзюманенко (mvd@mylinux.com.ua)</holder></copyright>	 
      <publisher> 
         <publishername>Проект документування GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -87,15 +99,18 @@
      <publisher role="maintainer">
        <publishername>Проект документування GNOME</publishername>
      </publisher>
+	<releaseinfo revision="2.26" role="review">
+		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+    </releaseinfo>
      <revhistory> 
-        <revision> 
+	<revision> 
           <revnumber>Довідка з програми GNOME Terminal версії 2.8</revnumber> 
-          <date>Травень 2004</date> 
+          <date>March 2009</date> 
           <revdescription> 
-             <para role="author">Sun команда документування GNOME</para>
+             <para role="author">Paul Cutler</para>
              <para role="publisher">Проект документування GNOME</para>
           </revdescription> 
-        </revision> 
+        </revision>
 	<revision> 
           <revnumber>Довідка з GNOME Terminal версії 2.7</revnumber> 
           <date>Листопад 2003</date> 
@@ -169,7 +184,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Цей посібник описує програму GNOME Terminal версії 2.5.90.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>Зворотній зв'язок</title> 
         <para>Щоб сповістити про помилку або внести пропозицію відносно аплету GNOME Terminal або цієї довідки, дотримуйтесь інструкцій на сторінці <ulink url="ghelp:user-guide?feedback" type="help">Сторінка зворотного зв'язку GNOME</ulink>.</para>
@@ -181,6 +197,8 @@
   <indexterm> 
      <primary>програма терміналу</primary> 
   </indexterm> 
+  
+  <!-- ============= Introduction ============================== -->
   <sect1 id="gnome-terminal-introduction"> 
      <title>Вступ</title> 
      <para><application>GNOME Terminal</application> - програма емуляції термінала, яку можна використовувати для виконання наступних дій:</para>
@@ -199,6 +217,9 @@
         </varlistentry> 
      </variablelist> 
   </sect1> 
+
+  <!--=========== Getting Started ============================== -->
+  
   <sect1 id="gnome-terminal-get-started"> 
      <title>Початок роботи</title> 
      <para>Наступні розділи описують запуск <application>GNOME Terminal</application>.</para>
@@ -297,6 +318,8 @@
      </sect2> 
 
   </sect1> 
+  
+  <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
      <title>Використання</title> 
@@ -642,6 +665,8 @@
      </sect2>   
 
   </sect1> 
+  
+  <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Параметри</title> 

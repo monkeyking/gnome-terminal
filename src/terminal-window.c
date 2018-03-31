@@ -416,8 +416,16 @@ profile_visible_name_notify_cb (TerminalProfile *profile,
 
       free_me = display_name;
       if (num < 10)
+        /* Translators: This is the label of a menu item to choose a profile.
+         * _%d is used as the accelerator (with d between 1 and 9), and
+         * the %s is the name of the terminal profile.
+         */
         display_name = g_strdup_printf (_("_%d. %s"), num, display_name);
       else if (num < 36)
+        /* Translators: This is the label of a menu item to choose a profile.
+         * _%c is used as the accelerator (it will be a character between A and Z),
+         * and the %s is the name of the terminal profile.
+         */
         display_name = g_strdup_printf (_("_%c. %s"), ('A' + num - 10), display_name);
       else
         free_me = NULL;
@@ -1197,14 +1205,15 @@ popup_clipboard_targets_received_cb (GtkClipboard *clipboard,
   GtkWidget *popup_menu, *im_menu, *im_menu_item;
   GtkAction *action;
   gboolean can_paste, can_paste_uris, show_link, show_email_link, show_call_link, show_input_method_menu;
-  
-  remove_popup_info (window);
 
   if (!GTK_WIDGET_REALIZED (info->screen))
     {
       terminal_screen_popup_info_unref (info);
       return;
     }
+
+  /* Now we know that the screen is realized, we know that the window is still alive */
+  remove_popup_info (window);
 
   priv->popup_info = info; /* adopt the ref added when requesting the clipboard */
 
@@ -1892,6 +1901,7 @@ terminal_window_dispose (GObject *object)
 {
   TerminalWindow *window = TERMINAL_WINDOW (object);
   TerminalWindowPrivate *priv = window->priv;
+  TerminalApp *app;
   GdkScreen *screen;
 
   remove_popup_info (window);
@@ -1909,8 +1919,12 @@ terminal_window_dispose (GObject *object)
   if (priv->new_terminal_action_group != NULL)
     disconnect_profiles_from_actions_in_group (priv->new_terminal_action_group);
 
-  g_signal_handlers_disconnect_by_func (terminal_app_get (),
+  app = terminal_app_get ();
+  g_signal_handlers_disconnect_by_func (app,
                                         G_CALLBACK (terminal_window_profile_list_changed_cb),
+                                        window);
+  g_signal_handlers_disconnect_by_func (app,
+                                        G_CALLBACK (terminal_window_encoding_list_changed_cb),
                                         window);
 
   screen = gtk_widget_get_screen (GTK_WIDGET (object));
@@ -3550,10 +3564,11 @@ terminal_window_save_state (TerminalWindow *window,
       TerminalScreen *screen;
       char *tab_group;
 
+      screen = terminal_screen_container_get_screen (GTK_WIDGET (lt->data));
+
       tab_group = g_strdup_printf ("Terminal%p", screen);
       g_ptr_array_add (tab_names_array, tab_group);
 
-      screen = terminal_screen_container_get_screen (GTK_WIDGET (lt->data));
       terminal_screen_save_config (screen, key_file, tab_group);
 
       if (screen == active_screen)

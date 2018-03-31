@@ -2,10 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.5.90">
+<!ENTITY appversion "2.24.3">
 <!ENTITY manrevision "2.8">
-<!ENTITY date "March 2004">
+<!ENTITY date "March 2009">
 ]>
+<!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   Template version: 2.0 beta
@@ -16,7 +17,10 @@
   <articleinfo> 
      <title>Handbok för GNOME-terminal</title> 
      <abstract role="description">
-       <para>Användarhandbok för programmet GNOME-terminal.</para>
+       <para>
+	 The Terminal gives users the power to communicate with their system using
+text-based commands through a shell such as Bash.
+       </para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -35,7 +39,15 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006, 2007, 2008, 2009</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
+     </copyright>
+     <copyright> 
+        <year>2008</year> 
+        <holder>Christian Persch</holder> 
+     </copyright>
+     <copyright> 
+        <year>2009</year> 
+        <holder>Paul Cutler</holder> 
+     </copyright><copyright><year>2006, 2007, 2008, 2009</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>	 
      <publisher> 
         <publishername>Dokumentationsprojekt för GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -87,15 +99,18 @@
      <publisher role="maintainer">
        <publishername>Dokumentationsprojekt för GNOME</publishername>
      </publisher>
+	<releaseinfo revision="2.26" role="review">
+		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+    </releaseinfo>
      <revhistory> 
-        <revision> 
+	<revision> 
           <revnumber>Handbok för GNOME-terminal v2.8</revnumber> 
-          <date>Mars 2004</date> 
+          <date>March 2009</date> 
           <revdescription> 
-             <para role="author">Suns GNOME-dokumentationsteam</para>
+             <para role="author">Paul Cutler</para>
              <para role="publisher">Dokumentationsprojekt för GNOME</para>
           </revdescription> 
-        </revision> 
+        </revision>
 	<revision> 
           <revnumber>Handbok för GNOME-terminal v2.7</revnumber> 
           <date>November 2003</date> 
@@ -169,7 +184,8 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Denna handbok beskriver version 2.5.90 av GNOME-terminal.</releaseinfo> 
+     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+        </releaseinfo> 
      <legalnotice> 
         <title>Återkoppling</title> 
         <para>För att rapportera ett fel eller komma med ett förslag angående programmet <application>GNOME-terminal</application> eller denna handbok, följ instruktionerna på <ulink url="ghelp:user-guide?feedback" type="help">GNOME:s återkopplingssida</ulink>.</para>
@@ -181,6 +197,8 @@
   <indexterm> 
      <primary>terminalprogram</primary> 
   </indexterm> 
+  
+  <!-- ============= Introduction ============================== -->
   <sect1 id="gnome-terminal-introduction"> 
      <title>Introduktion</title> 
      <para><application>GNOME-terminal</application> är ett terminalemuleringsprogram som du kan använda för att genomföra följande uppgifter:</para>
@@ -199,6 +217,9 @@
         </varlistentry> 
      </variablelist> 
   </sect1> 
+
+  <!--=========== Getting Started ============================== -->
+  
   <sect1 id="gnome-terminal-get-started"> 
      <title>Komma igång</title> 
      <para>Följande avsnitt beskriver hur man startar <application>GNOME-terminal</application>.</para>
@@ -297,6 +318,8 @@
      </sect2> 
 
   </sect1> 
+  
+  <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
      <title>Användning</title> 
@@ -637,6 +660,8 @@
      </sect2>   
 
   </sect1> 
+  
+  <!--=========== Preferences ============================== -->  
 
   <sect1 id="gnome-terminal-prefs"> 
      <title>Inställningar</title> 

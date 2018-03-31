@@ -21,13 +21,15 @@
 
 #include <config.h>
 
+#include <errno.h>
 #include <locale.h>
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>
 
-#include <stdlib.h>
-#include <time.h>
 #include <gdk/gdkx.h>
 
 #ifdef WITH_SMCLIENT
@@ -241,7 +243,7 @@ main (int argc, char **argv)
   int i;
   char **argv_copy;
   int argc_copy;
-  const char *startup_id, *display_name, *home_dir;
+  const char *startup_id, *display_name;
   GdkDisplay *display;
   TerminalOptions *options;
   DBusGConnection *connection;
@@ -473,15 +475,14 @@ factory_disabled:
   terminal_app_initialize (options->use_factory);
   g_signal_connect (terminal_app_get (), "quit", G_CALLBACK (gtk_main_quit), NULL);
 
-  terminal_app_handle_options (terminal_app_get (), options, NULL);
+  terminal_app_handle_options (terminal_app_get (), options, TRUE /* allow resume */, NULL);
   terminal_options_free (options);
 
-  /* Now change directory to $HOME so we don't prevent unmounting, e.g. if the
+  /* Now change directory to / so we don't prevent unmounting, e.g. if the
    * factory is started by nautilus-open-terminal. See bug #565328.
    */
-  home_dir = g_get_home_dir ();
-  if (home_dir)
-    g_chdir (home_dir);
+  if (chdir ("/") < 0)
+    g_warning ("Failed to chdir to /: %s", g_strerror (errno));
 
   gtk_main ();
 
@@ -498,7 +499,7 @@ factory_disabled:
 static gboolean
 handle_new_terminal_event (TerminalOptions *options)
 {
-  terminal_app_handle_options (terminal_app_get (), options, NULL);
+  terminal_app_handle_options (terminal_app_get (), options, FALSE /* no resume */, NULL);
 
   return FALSE;
 }

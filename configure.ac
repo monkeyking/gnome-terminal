@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[2])
 m4_define([gt_version_minor],[26])
-m4_define([gt_version_micro],[0])
+m4_define([gt_version_micro],[1])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -36,11 +36,11 @@ GNOME_MAINTAINER_MODE_DEFINES
 AM_GLIB_GNU_GETTEXT
 
 GLIB_REQUIRED=2.16.0
-GTK_REQUIRED=2.13.6
+GTK_REQUIRED=2.14.0
 GCONF_REQUIRED=2.14.0
 STARTUP_NOTIFICATION_REQUIRED=0.8
 DBUS_GLIB_REQUIRED=0.6
-VTE_REQUIRED=0.19.1
+VTE_REQUIRED=0.20.0
 
 PKG_CHECK_MODULES([TERM],
   [vte >= $VTE_REQUIRED

@@ -1,10 +1,14 @@
 
 /* Generated data (by glib-mkenums) */
 
+#include <config.h>
+
 #include "terminal-type-builtins.h"
-#include "terminal-profile.h"
-#
+
 /* enumerations from "../../src/terminal-profile.h" */
+
+#include "../../src/terminal-profile.h"
+#
 GType
 terminal_title_mode_get_type (void)
 {
