@@ -321,7 +321,8 @@
           <varlistentry> 
              <term>Додавання нової вкладки з терміналом у вікно:</term> 
              <listitem> 
-                <para>Виберіть <menuchoice><guimenu>Файл</guimenu><guisubmenu>Відкрити вкладку</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice>.</para>
+                <para>
+                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +603,12 @@
             <para>Виберіть <menuchoice><guimenu>Термінал</guimenu><guisubmenu>Встановити кодування символів</guisubmenu><guimenuitem>Додати чи видалити</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>Щоб додати кодування до меню <guisubmenu>Встановити кодування символів</guisubmenu>, виберіть кодування у списку <guilabel>Доступні кодування</guilabel> та натисніть <guibutton>Додати</guibutton>.</para>
+            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
+            </para>
           </listitem>
           <listitem>
-            <para>Щоб видалити кодування з меню <guisubmenu>Встановити кодування символів</guisubmenu>, виділіть кодування у списку <guilabel>Кодування у меню</guilabel>, потім натисніть <guibutton>Видалити</guibutton>.</para>
+            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
+            </para>
           </listitem>
           <listitem>
             <para>Щоб закрити діалогове вікно <guilabel>Додавання або видалення кодувань терміналу</guilabel> натисніть кнопку <guibutton>Закрити</guibutton>.</para>
@@ -754,9 +757,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Оновлювати журнали utmp/wtmp при запуску команди</guilabel> </term> 
+                <guilabel>Update login records when command is launched</guilabel> </term> 
              <listitem> 
-                <para>Відмітьте цей параметр, щоб при відкриванні нової оболонки вставляти новий елемент у журналах utmp та wtmp.</para>
+                <para>
+                  Select this option to insert a new entry in the login records when a new shell is opened. 
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

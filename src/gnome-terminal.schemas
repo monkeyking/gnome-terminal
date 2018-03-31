@@ -143,9 +143,14 @@
          <long>Liste des profils accessibles. Cette liste doit contenir des noms de sous-répertoires de /apps/gnome-terminal/profiles.</long>
       </locale>
 
+      <locale name="ga">
+         <short>Liosta próifílí</short>
+         
+      </locale>
+
       <locale name="gl">
          <short>Lista dos perfís</short>
-         <long>Lista dos perfís coñecidos polo Gnome-terminal. Esta lista contén </long>
+         <long>Lista dos perfís coñecidos polo Gnome-terminal. Esta lista contén cadeas referidas a subdirectorios relativos a /apps/gnome-terminal/profiles.</long>
       </locale>
 
       <locale name="gu">
@@ -226,6 +231,11 @@
       <locale name="mn">
          <short>Профилын жагсаалт</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>प्रोफाइलची सूची</short>
+         <long>gnome-terminal ला माहित असलेले प्रोफाइलची यादी. यादीत /apps/gnome-terminal/profiles या संदर्भरहीत अक्षरमाळाची यादी आहे.</long>
       </locale>
 
       <locale name="ms">
@@ -505,7 +515,7 @@
 
       <locale name="gl">
          <short>Perfil usado para os terminais novos</short>
-         <long>Perfil usado ao abrir unha nova ventá ou separador. Debe estar en </long>
+         <long>Perfil usado ao abrir unha nova ventá ou separador. Debe estar en profile_list.</long>
       </locale>
 
       <locale name="gu">
@@ -586,6 +596,11 @@
       <locale name="mn">
          <short>Шинэ терминалд _хэрэглэх профил:</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>नविन टर्मिनल वापरण्याकरीता प्रोफाइल</short>
+         <long>नविन चौकट किंवा टॅब उघडतेवेळी वापरतायेण्याजोगी प्रोफाइल. प्रोफाइल_यादी मध्ये समाविष्ट असायला हवे.</long>
       </locale>
 
       <locale name="ms">
@@ -861,7 +876,7 @@
 
       <locale name="gl">
          <short>Indica se a barra de menú ten teclas de acceso</short>
-         <long>Indica se as teclas de acceso ao menú Alt+letra están dispoñibles. </long>
+         <long>Indica se as teclas de acceso ao menú Alt+letra están dispoñibles. Estas teclas poden interferir con algunhas aplicacións executadas no terminal, así que existe a posibilidade de desactivalas.</long>
       </locale>
 
       <locale name="gu">
@@ -927,6 +942,11 @@
       <locale name="mk">
          <short>Дали менито има копчиња за пристап</short>
          <long>Дали да се користи Alt+буква за кратенки за менито. Може да се поврзат со некои апликации што работат во терминал така што е можно тие да се исклучат.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>मेनूपट्टीवर प्रवेश कळ आहेत का</short>
+         <long>मेनुपट्टीकरीता Alt+अक्षर प्रेवश कळ ठेवायचे का. ती टर्मिनलच्या आत काहीक कार्यरत अनुप्रयोगांशी अवैधरित्या संपर्क करू शकतील त्यामुळे त्यांस बंद करा.</long>
       </locale>
 
       <locale name="ms">
@@ -1197,8 +1217,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Indica se están activados os atallos estándar do GTK para a barra de </short>
-         <long>Normalmente pode acceder á barra de menú con F10. Isto tamén se pode </long>
+         <short>Indica se están activados os atallos estándar do GTK para a barra de menú</short>
+         <long>Normalmente pode acceder á barra de menú con F10. Isto tamén se pode personalizar co gtkrc (gtk-menu-bar-accel = &quot;calqueracousa&quot;). Esta opción permite desactivar o atallo de teclado estándar para acceder á barra de menú.</long>
       </locale>
 
       <locale name="gu">
@@ -1266,6 +1286,11 @@
          <long>До менито стандардно се пристапува со F10. Ова може да биде подесено прекуgtkrc (gtk-menu-bar-accel = &quot;whatever&quot;). Оваа опција овозможува приказ на стандардно копче за забрзување.</long>
       </locale>
 
+      <locale name="mr">
+         <short>मेनुपट्टी प्रवेश करीता GTK शॉर्टकट कार्यान्वीत आहे का</short>
+         <long>सहसा तुम्ही F10 सह मेनुपट्टीस प्रवेश करू शकता. याचे इच्छिक बदल gtkrc द्वारा देखिल होऊ शकते (gtk-menu-bar-accel = &quot;काहीही&quot;). हा पर्याय मानक मेनुपट्टी प्रवेगक अकार्यान्वीत होण्यास मदत करते.</long>
+      </locale>
+
       <locale name="ms">
          <short>Samada pintasan piawai GTK bagi bar menu akses dihidupkan</short>
          
@@ -1298,7 +1323,7 @@
 
       <locale name="pt">
          <short>Se o atalho por omissão GTK de acesso à barra de menu está activo</short>
-         <long>Normalmente pode aceder à barra de menu com F10. Isto pode também ser costumizado via gtkrc (gtk-menu-bar-accel = &quot;whatever&quot;). Esta opção permite que o atalho por omissão de barra de menu seja desactivado.</long>
+         <long>Normalmente pode aceder à barra de menu com F10. Isto pode também ser personalizado via gtkrc (gtk-menu-bar-accel = &quot;whatever&quot;). Esta opção permite que o atalho por omissão de barra de menu seja desactivado.</long>
       </locale>
 
       <locale name="pt_BR">
@@ -1544,7 +1569,7 @@
       <locale name="eu">
          <default>[UTF-8,current,ISO-8859-15]</default>
          <short>Kodeketa erabilgarrien zerrenda</short>
-         <long>Kodeketa posibleen azpimultzo bat Kodeketa azpimenuan ematen da. Hor azalduko diren kodeketen zerrenda da hau. &quot;unekoa&quot; izeneko kodeketa bereziak, hautatuta dagoen hizkuntza-ezarpena bistaratzeko esan nahi du.</long>
+         <long>Kodeketa posibleen azpimultzo bat Kodeketa azpimenuan ematen da. Hor azalduko diren kodeketen zerrenda da hau. &quot;unekoa&quot; izeneko kodeketa bereziak, hautatuta dagoen hizkuntza-ezarpena bistaratzea esan nahi du.</long>
       </locale>
 
       <locale name="fa">
@@ -1566,7 +1591,7 @@
       </locale>
 
       <locale name="ga">
-         <default>[UTF-8,current,ISO-8859-15]</default>
+         <default>[UTF-8,current]</default>
          
          
       </locale>
@@ -1574,7 +1599,7 @@
       <locale name="gl">
          <default>[current,UTF-8,ISO-8859-15]</default>
          <short>Lista das codificacións dispoñibles</short>
-         <long>No submenú de Codificación móstrase un subconxunto das posibles </long>
+         <long>No submenú de Codificación móstrase un subconxunto das posibles codificacións. Esta é a lista das codificacións que aparecen alí. O nome especial de configuración &quot;current&quot; significa que hai que mostrar a codificación da configuración rexional actual.</long>
       </locale>
 
       <locale name="gu">
@@ -1671,6 +1696,12 @@
          <default>[UTF-8,current,WINDOWS-1251,KOI8R]</default>
          <short>Боломжит тэмдэгт кодчилолууд:</short>
          
+      </locale>
+
+      <locale name="mr">
+         <default>[UTF-8,सध्याचा]</default>
+         <short>उपलब्ध ऐनकोडींगची सूची</short>
+         <long>ऐनकोडींग उपमेनुमध्ये शक्य ऐनकोडींगचे उपसंच आढऴतात. ही तेथे दर्शविण्याकरीताची ऐनकोडींग यादी आहे. खास ऐनकोडींग नाव &quot;current&quot; म्हणजे सद्याचे लोकेलकरीता ऐनकोडींग दर्शविणे.</long>
       </locale>
 
       <locale name="ms">
@@ -1963,8 +1994,8 @@
       </locale>
 
       <locale name="eu">
-         <short>Terminal baten lehioa ixtean baieztapena eskatu behar duen ala ez.</short>
-         <long>Hainbat fitxa dituen terminal baten lehioa ixtean baieztapena eskatu behar duen ala ez.</long>
+         <short>Terminal baten lehioa ixtean baieztapena eskatu behar den ala ez.</short>
+         <long>Hainbat fitxa dituen terminal baten lehioa ixtean baieztapena eskatu behar den ala ez.</long>
       </locale>
 
       <locale name="fa">
@@ -1984,7 +2015,7 @@
 
       <locale name="gl">
          <short>Indica se se pide unha confirmación ao pechar as ventás do terminal</short>
-         <long>Indica se se pide unha confirmación ao pechar unha ventá do terminal </long>
+         <long>Indica se se pide unha confirmación ao pechar unha ventá do terminal que ten máis dun separador aberto.</long>
       </locale>
 
       <locale name="gu">
@@ -2050,6 +2081,11 @@
       <locale name="mk">
          <short>Дали да бара потврда за затворање на терминалниот прозорец</short>
          <long>Дали да бара потврда кога затвора терминален прозорец со повеќе од едно отворено јазиче.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल चौकटी नक्की बंद करतेवेळी विचारायचे का</short>
+         <long>टर्मिनल चौकटीत एकापेक्षा जास्त टॅब उघडे असल्यास त्यांस बंदकरण्याकरीता विचारायचे का.</long>
       </locale>
 
       <locale name="ms">
@@ -2349,7 +2385,7 @@
       </locale>
 
       <locale name="ga">
-         
+         <default>Réamhshocrú</default>
          <short>Ainm an próifíl an bhfuil duine in an léimh</short>
          <long>Ainm an próifíl an bhfuil duine in an léimh</long>
       </locale>
@@ -2460,6 +2496,12 @@
          
          <short>Профилын хүнд уншигдахуйц нэр</short>
          <long>Профилын хүнд уншигдахуйц нэр.</long>
+      </locale>
+
+      <locale name="mr">
+         <default>मुलभूत</default>
+         <short>प्रोफाइलचे मानव-वाचतायेण्याजोगी नाव</short>
+         <long>प्रोफाइलचे मानव-वाचतायेण्याजोगी नाव.</long>
       </locale>
 
       <locale name="ms">
@@ -2758,7 +2800,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Kurtsorea keinuka erakutsi behar den</short>
+         <short>Kurtsorea keinuka erakutsi behar den ala ez</short>
          <long>Egiazkoa, kurtsoreak keinuka agertu behar badu terminalak fokua duenean profil hau duten leihoetan/fitxetan.</long>
       </locale>
 
@@ -2779,7 +2821,7 @@
 
       <locale name="gl">
          <short>Indica se o cursor debe pestanexar</short>
-         <long>É verdadeiro se o cursor debe pestanexar cando o terminal ten o foco </long>
+         <long>É verdadeiro se o cursor debe pestanexar cando o terminal ten o foco nas ventás ou nos separadores con este perfil.</long>
       </locale>
 
       <locale name="gu">
@@ -2850,6 +2892,11 @@
       <locale name="mn">
          <short>Түүчээ анивчих эсэх</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>कर्सरने लुकलुकने करावी का</short>
+         <long>ही प्रोफाइल असलेल्या चौकटीत/टॅब अंतर्गत टर्मिनल मध्ये लक्ष केंद्रीत असल्यास, कर्सर लुकलुक करणे खरे असायला हवे.</long>
       </locale>
 
       <locale name="ms">
@@ -3104,7 +3151,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Leiho/fitxa berrietan menu-barra erakutsi behar den</short>
+         <short>Leiho/fitxa berrietan menu-barra erakutsi behar den ala ez</short>
          <long>Egiazkoa leiho berrietan menu-barrak agertu behar badu profil hau duten leihoetan/fitxetan.</long>
       </locale>
 
@@ -3124,8 +3171,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Indica se se mostra a barra de menú nas novas ventás ou nos </short>
-         <long>É verdadeiro se a barra de menú debe mostrarse nas ventás novas, nas </long>
+         <short>Indica se se mostra a barra de menú nas novas ventás ou nos separadores</short>
+         <long>É verdadeiro se a barra de menú debe mostrarse nas ventás novas, nas ventás ou nos separadores con este perfil.</long>
       </locale>
 
       <locale name="gu">
@@ -3196,6 +3243,11 @@
       <locale name="mk">
          <short>Дали да се прикажува менито во новите прозорци/јазичиња</short>
          <long>True за да се прикаже главното мени, за прозорци/јазичиња во овој профил.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>नविन चौकटी/टॅब मध्ये मेनुपट्टी दर्शवायची का</short>
+         <long>ही प्रोफाइल असलेल्या चौकटीत/टॅब अंतर्गत मेनुपट्टी नविन चौकटीत दर्शवीत असल्यास, खरे असायला हवे.</long>
       </locale>
 
       <locale name="ms">
@@ -3470,13 +3522,13 @@
       </locale>
 
       <locale name="ga">
-         <short>An dáth loiceadh atá ag téasc sa terminéal</short>
+         <short>Dath réamhshocraithe téacs sa teirminéal</short>
          
       </locale>
 
       <locale name="gl">
          <short>Cor predeterminada do texto no terminal</short>
-         <long>Cor predeterminada do texto no terminal como unha especificación de </long>
+         <long>Cor predeterminada do texto no terminal como unha especificación de cor (poden ser díxitos hexadecimais no estilo HTML ou un nome de cor en inglés como &quot;red&quot;).</long>
       </locale>
 
       <locale name="gu">
@@ -3557,6 +3609,11 @@
       <locale name="mn">
          <short>Терминалын бичгийн стандарт өнгө</short>
          <long>Терминалын дэвсгэрийн стандарт өнгө, өнгө тодорхойлогчоор (HTML -д хэрэглэдэг 16-тийн тоон эсвэл &quot;red&quot; гэх мэт өнгөний нэр байж болно).</long>
+      </locale>
+
+      <locale name="mr">
+         <short>पाठ्यचे टर्मिनलमधील मुलभूत रंग</short>
+         <long>पाठ्यचे टर्मिनलमधील मुलभूत रंग, रंग वर्णन (HTML-रुपी हेक्स अंक, किंवा &quot;लाल&quot; रंगासारखे रंगाचे नाव असू शकते).</long>
       </locale>
 
       <locale name="ms">
@@ -3841,13 +3898,13 @@
       </locale>
 
       <locale name="ga">
-         <short>An dáth loiceadh atá ag cúlra an terminéal</short>
+         <short>Dath réamhshocraithe chúlra an teirminéil</short>
          
       </locale>
 
       <locale name="gl">
          <short>Cor predeterminada do fondo do terminal</short>
-         <long>Cor predeterminada do fondo do terminal como unha especificación de </long>
+         <long>Cor predeterminada do fondo do terminal como unha especificación de cor (poden ser díxitos hexadecimais no estilo HTML ou un nome de cor en inglés como &quot;red&quot;).</long>
       </locale>
 
       <locale name="gu">
@@ -3928,6 +3985,11 @@
       <locale name="mn">
          <short>Терминалын дэвсгэрийн стандарт өнгө</short>
          <long>Терминалын дэвсгэрийн стандарт өнгө, өнгө тодорхойлогчоор (HTML -д хэрэглэдэг 16-тийн тоон эсвэл &quot;red&quot; гэх мэт өнгөний нэр байж болно).</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल पार्श्वभूमीचा मुलभूत रंग</short>
+         <long>टर्मिनल पार्श्वभूमीचा मुलभूत रंग, रंग वर्णन (HTML-रुपी हेक्स अंक, किंवा &quot;लाल&quot; रंगासारखे रंगाचे नाव असू शकते).</long>
       </locale>
 
       <locale name="ms">
@@ -4211,7 +4273,7 @@
 
       <locale name="gl">
          <short>Que facer co título dinámico</short>
-         <long>Se a aplicación no terminal define o título (é típico que se </long>
+         <long>Se a aplicación no terminal define o título (é típico que se configure o intérprete de comandos para que o faga), o título definido dinamicamente pode borrar o título configurado, pode ir antes del, despois ou substituílo. Os valores posibles son (&quot;replace&quot;), (&quot;before&quot;), (&quot;after&quot;) e (&quot;ignore&quot;).</long>
       </locale>
 
       <locale name="gu">
@@ -4282,6 +4344,11 @@
       <locale name="mk">
          <short>Што да се прави со динамички наслови</short>
          <long>Ако апликацијата во терминалот го постави насловот (најчесто луѓето користат свои подесувања за школката), динамично поставениот наслов може да го избрише конфигурираниот наслов, да се испише пред или по стариот наслов или да го замени стариот наслов. Можни вредности се: замени, пред, по и игнорирај.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>गतिक शिर्षकाचे काय करायचे</short>
+         <long>जर टर्मिनलमधील अनुप्रयोग शिर्षक निश्चित करत असल्यास (शक्यतः वापरकर्ते शेलला त्याकरीता संयोजीत करतात), गतिकरीत्या-निश्चित शिर्षक संयोजीत शिर्षक पुसून टाकू शकतो, त्याच्या पुढे, पाठीमागे जाऊ शकतो, किंवा त्याला बदलवू शकतो. शक्य मुल्य खालील प्रकारे आहेत  &quot;replace&quot;, &quot;before&quot;, &quot;after&quot;, व &quot;ignore&quot;.</long>
       </locale>
 
       <locale name="ms">
@@ -4587,15 +4654,15 @@
       </locale>
 
       <locale name="ga">
-	<default>Terminéal</default>
-         <short>Teideal le haighaidh an terminéal</short>
+	<default>Teirminéal</default>
+         <short>Teideal le teirminéal</short>
          
       </locale>
 
       <locale name="gl">
 	<default>Terminal</default>
          <short>Título do terminal</short>
-         <long>Título mostrado para a ventá ou o separador do terminal. Este título </long>
+         <long>Título mostrado para a ventá ou o separador do terminal. Este título pódese substituír ou combinar co título definido pola aplicación dentro do terminal, dependendo da configuración de title_mode.</long>
       </locale>
 
       <locale name="gu">
@@ -4708,8 +4775,8 @@
 
       <locale name="mr">
 	<default>टर्मिनल</default>
-         
-         
+         <short>शिर्षक करीता टर्मिनल</short>
+         <long>टर्मिनल चौकट किंवा टॅब दर्शविण्याकरीता शिर्षक. हे शिर्षक title_mode संरचना आधारीत, बदलवता येते किंवा टर्मिनलच्या आत अनुप्रयोगातर्फे निश्चित शिर्षकाशी जोडता येते.</long>
       </locale>
 
       <locale name="ms">
@@ -4744,7 +4811,7 @@
 
       <locale name="oc">
 	<default>Terminal</default>
-         <short>Titol del terminal</short>
+         <short>Títol del terminal</short>
          
       </locale>
 
@@ -5029,7 +5096,7 @@
 
       <locale name="gl">
          <short>Indica se se permite texto en negra</short>
-         <long>Se é verdadeiro, permite que as aplicacións no terminal mostren o </long>
+         <long>Se é verdadeiro, permite que as aplicacións no terminal mostren o texto en negra.</long>
       </locale>
 
       <locale name="gu">
@@ -5110,6 +5177,11 @@
       <locale name="mn">
          <short>Бүдүүн текст зөвшөөрөх эсэх</short>
          <long>Үнэн бол терминал доторхи програмуудын бичиг бүдүүн болохыг зөвшөөрнө.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>ठळक पाठ्य वापरायचे आहे का</short>
+         <long>खरे असल्यास, टर्मिनलमधील अनुप्रयोगांकरीता पाठ्य ठळकरूपी वापरण्यास परवानगी द्या.</long>
       </locale>
 
       <locale name="ms">
@@ -5363,7 +5435,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Terminal-soinua isilarazi behar den</short>
+         <short>Terminal-soinua isilarazi behar den ala ez</short>
          <long>Hautatzen bada, ez da zaratarik entzungo aplikazioek ihes-sekuentzia bidaltzen dutenean terminal-soinuarentzat.</long>
       </locale>
 
@@ -5384,7 +5456,7 @@
 
       <locale name="gl">
          <short>Indica se se silencia a campá do terminal</short>
-         <long>Se é verdadeiro, non emite ningún ruído cando as aplicacións envíen </long>
+         <long>Se é verdadeiro, non emite ningún ruído cando as aplicacións envíen a secuencia de escape para a campá do terminal.</long>
       </locale>
 
       <locale name="gu">
@@ -5460,6 +5532,11 @@
       <locale name="ml">
          
          <long>ശരി എന്നാണെങ്കില്‍, ടെര്‍മിനല്‍ മണിയ്കായി പ്രയോഗങ്ങള്‍ escape sequence അയയ്ക്കുന്പോള്‍, ശബ്ദം ഉണ്ടാക്കാതിരിക്കുക.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल घंटा बंद करायचे का</short>
+         <long>खरे असल्यास, टर्मिनल घंटा करीता अनुप्रयोगांतर्फे निसटती श्रृंखला पाठवितेवेळी आवाज करू नका.</long>
       </locale>
 
       <locale name="ms">
@@ -5736,7 +5813,7 @@
 
       <locale name="gl">
          <short>Caracteres considerados &quot;parte dunha palabra&quot;</short>
-         <long>Cando se selecciona un texto por palabras, as secuencias destes </long>
+         <long>Cando se selecciona un texto por palabras, as secuencias destes caracteres considéranse palabras únicas. Os intervalos pódense indicar como &quot;A-Z&quot;. O guión literal (que non expresa un intervalo) debe ser o primeiro carácter indicado.</long>
       </locale>
 
       <locale name="gu">
@@ -5812,6 +5889,11 @@
       <locale name="mn">
          <short>&quot;үгийн хэсэг&quot; болох тэмдэгтүүд</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>अक्षर जी &quot;शब्दचा भाग&quot; म्हणून ओळखली जातात</short>
+         <long>शब्दनुरूप पाठ्य निवडतेवेळी, या अक्षरांची श्रृंखला शब्द म्हणून ओळखली जाते. क्षेत्र &quot;A-Z&quot; असू शकते. लीटरल हायफन (क्षेत्र म्हणून नाही) पहिले अक्षर असायला हवे.</long>
       </locale>
 
       <locale name="ms">
@@ -6065,7 +6147,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Korritze-barraren kokalekua</short>
+         <short>Korritze-barraren posizioa</short>
          <long>Terminalaren korritze-barra non kokatu. Aukerak: &quot;left&quot; (ezkerrean), &quot;right&quot; (eskuinean), eta &quot;disabled&quot; (desgaituta).</long>
       </locale>
 
@@ -6086,7 +6168,7 @@
 
       <locale name="gl">
          <short>Posición da barra de desprazamento</short>
-         <long>Onde colocar a barra de desprazamento do terminal. As posibilidades </long>
+         <long>Onde colocar a barra de desprazamento do terminal. As posibilidades son &quot;left&quot; (esquerda), &quot;right&quot; (dereita) e &quot;disabled&quot; (desactivada).</long>
       </locale>
 
       <locale name="gu">
@@ -6167,6 +6249,11 @@
       <locale name="mn">
          <short>Гүйлгэгч самбарын байрлал</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>हलकावपट्टीची जागा</short>
+         <long>टर्मिनल सरकावपट्टी स्थायीत करायची. शक्यतो &quot;left&quot;, &quot;right&quot;, व &quot;disabled&quot; असे मुल्य शक्य आहे.</long>
       </locale>
 
       <locale name="ms">
@@ -6449,7 +6536,7 @@
 
       <locale name="gl">
          <short>Número de liñas que se manteñen no desprazamento</short>
-         <long>O número de liñas de desprazamento que se manteñen na memoria. Pode </long>
+         <long>O número de liñas de desprazamento que se manteñen na memoria. Pode ir para atrás no terminal ese número de liñas; as que non caiban no desprazamento rexéitanse. Teña coidado con esta definición porque é o factor principal que determina canta memoria utilizará o terminal.</long>
       </locale>
 
       <locale name="gu">
@@ -6520,6 +6607,11 @@
       <locale name="mn">
          <short>Гүйлгэгч доторхи мөрийн тоо</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>हलवितेवेळी रेषांची संख्या लक्षात ठेवा</short>
+         <long>सरकाव ओळींची संख्य निश्चित करा. या ओळींपासून तुम्ही टर्मिनल मध्ये जाऊ शकता; ओळी जे सरकाव पट्टीत बसत नाही वगळल्या जाते. या संरचनेपासून सावध रहा; टर्मिनल किती स्मृती वापरते त्याचे हे प्रमुख प्रमाण आहे.</long>
       </locale>
 
       <locale name="ms">
@@ -6767,7 +6859,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Tekla bat sakatutakoan beheraino korritu behar den</short>
+         <short>Tekla bat sakatutakoan beheraino korritu behar den ala ez</short>
          <long>Hautatzen bada, tekla bat sakatzean korritze-barra beheraino joango da.</long>
       </locale>
 
@@ -6788,7 +6880,7 @@
 
       <locale name="gl">
          <short>Indica se se despraza ao final ao premer unha tecla</short>
-         <long>Se é verdadeiro, ao premer unha tecla a barra de desprazamento vai </long>
+         <long>Se é verdadeiro, ao premer unha tecla a barra de desprazamento vai até o final.</long>
       </locale>
 
       <locale name="gu">
@@ -6866,6 +6958,11 @@
          <long>Хэрэв үнэн бол ямар нэг товч дарахад гүйлгүүр ёроол руу үсрэнэ.</long>
       </locale>
 
+      <locale name="mr">
+         <short>कळ दाबल्यास खाली सरकवायचे का</short>
+         <long>खरे असल्यास, कळ दाबाताच सरकावपट्टी तळ बाजूस सरकते.</long>
+      </locale>
+
       <locale name="ms">
          <short>Samada skrol ke bawah bila kekunci ditekan</short>
          
@@ -6902,8 +6999,8 @@
       </locale>
 
       <locale name="pt">
-         <short>Se rolar ou não para o fundo ao primir uma tecla</short>
-         <long>Se verdadeiro, primir uma tecla coloca a barra de rolamento no fundo.</long>
+         <short>Se rolar ou não para o fundo ao premir uma tecla</short>
+         <long>Se verdadeiro, premir uma tecla coloca a barra de rolamento no fundo.</long>
       </locale>
 
       <locale name="pt_BR">
@@ -7117,7 +7214,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Irteera berri bat dagoenean beheraino korritu behar den</short>
+         <short>Irteera berri bat dagoenean beheraino korritu behar den ala ez</short>
          <long>Hautatzen bada, irteera berri bat dagoenean terminala beheraino korrituko da.</long>
       </locale>
 
@@ -7138,7 +7235,7 @@
 
       <locale name="gl">
          <short>Indica se se despraza ao final cando hai unha saída nova</short>
-         <long>Se é verdadeiro, a barra de desprazamento irá ao final cando haxa </long>
+         <long>Se é verdadeiro, a barra de desprazamento irá ao final cando haxa unha nova saída no terminal.</long>
       </locale>
 
       <locale name="gu">
@@ -7209,6 +7306,11 @@
       <locale name="mn">
          
          <long>Хэрэв үнэн бол, шинэ гаралт гарах бүр терминал доош гүйнэ.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>नविन प्रदान अढाळल्यास खाली सरकावयचे का</short>
+         <long>खरे असल्यास, जेव्हा केव्ही नविन प्रदान आढळल्यास टर्मिनल तळ बाजूस सरकेल.</long>
       </locale>
 
       <locale name="ms">
@@ -7478,7 +7580,7 @@
 
       <locale name="gl">
          <short>Que facer co terminal cando o comando fillo finaliza</short>
-         <long>Os valores posibles son &quot;close&quot; para pechar o terminal e &quot;</long>
+         <long>Os valores posibles son &quot;close&quot; para pechar o terminal e &quot;restart&quot; para reiniciar o comando.</long>
       </locale>
 
       <locale name="gu">
@@ -7551,6 +7653,11 @@
          <long>ടെര്‍മിനല്‍ അടയ്കുന്നതിന് &quot;അടയ്ക്കുക&quot; എന്നതും,നിര്‍ദ്ദേശം വീണ്ടും ആരംഭിക്കുന്നതിന് &quot;റീസ്റ്റാര്‍ട്ട് ചെയ്യുക&quot;-ഉം ആണ് സാധ്യമുളള മൂല്ല്യങ്ങള്‍.</long>
       </locale>
 
+      <locale name="mr">
+         <short>उप आदेशातून बाहेर पडल्यावर टर्मिनलचे काय करायचे</short>
+         <long>टर्मिनल बंद करण्याकरीता &quot;close&quot;, व पुन्हा सुरू करण्याकरीता &quot;restart&quot; असे शक्यतः मुल्य आहे.</long>
+      </locale>
+
       <locale name="ms">
          <short>Apa dilakukan dengan terminal bila arahan anak keluar</short>
          <long>Nilai yang boleh adalah &quot;close&quot; untuk menutup terminal, dan &quot;restart&quot; untuk ulanghidup arahan.</long>
@@ -7612,7 +7719,7 @@
       </locale>
 
       <locale name="sl">
-         <short>Kaj narediti, ko ukaz otroka terminala konča z delom</short>
+         <short>Kaj narediti, ko ukaz podrejenega predmeta terminala konča z delom</short>
          <long>Možne vrednosti so &quot;close&quot; za zaprtje terminala in &quot;restart&quot; za vnovičen zagon ukaza.</long>
       </locale>
 
@@ -7806,7 +7913,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Terminaleko komandoa saioa hasteko shell gisa abiarazi behar den</short>
+         <short>Terminaleko komandoa saioa hasteko shell gisa abiarazi behar den ala ez</short>
          <long>Hautatzen bada, terminaleko komandoa saioa hasteko shell gisa abiaraziko da. (Marratxo bat izango du argv[0] katearen aurretik).</long>
       </locale>
 
@@ -7826,8 +7933,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Indica se se lanza o comando no terminal como un intérprete de </short>
-         <long>Se é verdadeiro, o comando dentro do terminal lanzarase como un </long>
+         <short>Indica se se lanza o comando no terminal como un intérprete de comandos de inicio de sesión</short>
+         <long>Se é verdadeiro, o comando dentro do terminal lanzarase como un intérprete de comandos de inicio de sesión (argv[0] terá un guión diante del.)</long>
       </locale>
 
       <locale name="gu">
@@ -7898,6 +8005,11 @@
       <locale name="mk">
          <short>Дали да се стартува командата во терминалот како школка со најавување</short>
          <long>Ако е точно, командата во терминалот ќе биде стартувана како школка со најавување (avg[0] ќе има тире пред него)</long>
+      </locale>
+
+      <locale name="mr">
+         <short>लॉगइल शेलस्वरूपी टर्मिनलच्या आत आदेश प्रक्षेपीत करायचे का</short>
+         <long>खरे असल्यास, टर्मिनलच्या अंतर्गत आदेश प्रवेशीय शेलस्वरूपी प्रक्षेपीत केल्या जाईल. (argv[0] च्या समोर हायफन असणार.)</long>
       </locale>
 
       <locale name="ms">
@@ -8151,8 +8263,8 @@
       </locale>
 
       <locale name="eu">
-         <short>Terminaleko komandoa abiaraztean saio-hasierako erregistroak eguneratu behar dituen ala ez.</short>
-         <long>Hautatzen bada, sistemako saio-hasierako utmp eta wtmp erregistroak  eguneratu egingo da terminalean komando bat abiarazten denean.</long>
+         <short>Terminaleko komandoa abiaraztean saio-hasierako erregistroak eguneratu behar diren ala ez.</short>
+         <long>Hautatzen bada, sistemako saio-hasierako utmp eta wtmp erregistroak eguneratu egingo dira terminalean komando bat abiarazten denean.</long>
       </locale>
 
       <locale name="fa">
@@ -8171,8 +8283,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Indica se se actualizan os rexistros de inicio de sesión ao lanzar </short>
-         <long>Se é verdadeiro, os ficheiros de rexistro do inicio de sesión utmp e </long>
+         <short>Indica se se actualizan os rexistros de inicio de sesión ao lanzar un comando do terminal</short>
+         <long>Se é verdadeiro, os ficheiros de rexistro do inicio de sesión utmp e wtmp actualizaranse ao lanzar o comando dentro do terminal.</long>
       </locale>
 
       <locale name="gu">
@@ -8238,6 +8350,11 @@
       <locale name="mk">
          <short>Дали да се ажурира utmp/wtmp кога се подигнува команда во терминалот</short>
          <long>Ако е вистина, utmp/wtmp ќе биде обновен кога командата е извршена во терминалот.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल आदेश प्रक्षेपीत करतेवेळी लॉगइन नोंद अद्ययावत करायचे का</short>
+         <long>खरे असल्यास, प्रणाली प्रवेश utmp ची नोंद करते व wtmp चे अद्ययावतन टर्मिनलच्या अंतर्गत आदेश प्रक्षेपीत केल्यावर होते.</long>
       </locale>
 
       <locale name="ms">
@@ -8486,7 +8603,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Shell-aren ordez komando pertsonalizatu bat exekutatu behar den</short>
+         <short>Shell-aren ordez komando pertsonalizatu bat exekutatu behar den ala ez</short>
          <long>Hautatzen bada, custom_command ezarpenaren balioa erabiliko da, shell bat exekutatu beharrean.</long>
       </locale>
 
@@ -8506,8 +8623,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Indica se se executa un comando personalizado en vez do intérprete </short>
-         <long>Se é verdadeiro, usarase o valor da definición custom_command en vez </long>
+         <short>Indica se se executa un comando personalizado en vez do intérprete de comandos</short>
+         <long>Se é verdadeiro, usarase o valor da definición custom_command en vez de executar un intérprete de comandos.</long>
       </locale>
 
       <locale name="gu">
@@ -8583,6 +8700,11 @@
       <locale name="mn">
          <short>Хэрэглэгчийн тодорхойлсон тушаалыг тушаалын мөрийн оронд эхлүүлэх</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>शेल ऐवजी इच्छिक आदेश चालवायचे का</short>
+         <long>खरे असल्यास, शेल चालविण्याकरीता इच्छिक_आदेश रचनेचे मुल्य वापरले जाईल.</long>
       </locale>
 
       <locale name="ms">
@@ -8856,8 +8978,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Comando personalizado que hai que usar en vez do intérprete de </short>
-         <long>Executar este comando en vez do intérprete de comandos se </long>
+         <short>Comando personalizado que hai que usar en vez do intérprete de comandos</short>
+         <long>Executar este comando en vez do intérprete de comandos se use_custom_command é verdadeiro.</long>
       </locale>
 
       <locale name="gu">
@@ -8940,6 +9062,11 @@
          
       </locale>
 
+      <locale name="mr">
+         <short>शेलच्या ऐवजी इच्छिक आदेश वापरा</short>
+         <long>use_custom_command खरे असल्यास ,शेल ऐवजी हा आदेश चालवा.</long>
+      </locale>
+
       <locale name="ms">
          <short>Arahan tersendiri selain daripada shell</short>
          <long>Laksana arahan ini pada tempat shell, jika use_custom_command adalah benar.</long>
@@ -8982,7 +9109,7 @@
 
       <locale name="pt_BR">
          <short>Comando personalizado para usar em vez da shell</short>
-         <long>Executar este comando em vez da shell se use_custom_commando for verdadeiro.</long>
+         <long>Executar este comando em vez do shell se use_custom_commando for verdadeiro.</long>
       </locale>
 
       <locale name="ro">
@@ -9210,13 +9337,13 @@
       </locale>
 
       <locale name="ga">
-         <short>Dealbh le haighaidh an fhuinneog Terminéal</short>
-         <long>Dealbh le haighaidh úsaid le haighaidh na cluaisíní/fhuinneoga sa prófíl seo.</long>
+         <short>Deilbhín le fuinneog theirminéil</short>
+         
       </locale>
 
       <locale name="gl">
          <short>Icona para a ventá do terminal</short>
-         <long>Icona que hai que usar nos separadores/ventás que conteñen este </long>
+         <long>Icona que hai que usar nos separadores/ventás que conteñen este perfil.</long>
       </locale>
 
       <locale name="gu">
@@ -9297,6 +9424,11 @@
       <locale name="mn">
          <short>Терминал цонхны эмблем</short>
          <long>Энэ профилын ТАВ/Цонхонд хэрэглэх эмблем.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>चिन्ह करीता टर्मिनल चौकट</short>
+         <long>या प्रोफाइलमध्ये समाविष्टीत टॅब/चौकटी करीता वापरण्यात येणारी चिन्ह.</long>
       </locale>
 
       <locale name="ms">
@@ -9583,7 +9715,7 @@
 
       <locale name="gl">
          <short>Paleta para as aplicacións do terminal</short>
-         <long>Os terminais teñen unha paleta de 16 cores que poden usar as </long>
+         <long>Os terminais teñen unha paleta de 16 cores que poden usar as aplicacións que se executen dentro del. Esta é esa paleta, na forma dunha lista de cores separadas por dous puntos. Os nomes de cores deben ter formato hexadecimal, por exemplo: &quot;#FF00FF&quot;</long>
       </locale>
 
       <locale name="gu">
@@ -9664,6 +9796,11 @@
       <locale name="mn">
          <short>Терминал програмын нийлүүр</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल अनुप्रयोगांसाठी पॅलेट</short>
+         <long>टर्मिनलच्या आत अनुप्रयोग वापरकरण्याकरीता टर्मिनलकडे 16-रंगी पेलेट उपलब्ध आहे. हे ते पेलेट आहे, जे कोलन-विभाजीत रंग यादीत नामांकीत आहे. रंगाचे नाव हेक्स रीती असायला हवे उ.दा. &quot;#FF00FF&quot;</long>
       </locale>
 
       <locale name="ms">
@@ -9953,7 +10090,7 @@
 
       <locale name="gl">
          <short>Tipo de letra</short>
-         <long>Un nome do tipo de letra de X. Vexa a páxina man de X (escriba &quot;man </long>
+         <long>Un nome do tipo de letra de X. Vexa a páxina man de X (escriba &quot;man X&quot;) para máis detalles sobre o formato dos nomes do tipo de letra de X.</long>
       </locale>
 
       <locale name="gu">
@@ -10034,6 +10171,11 @@
       <locale name="mn">
          <short>Бичиг</short>
          <long>X бичгийн хэвийн нэр. X бичгийн хэвийн нэрсийн хэлбэржүүлэлтийн тухай нарийвчилан мэдэхийг хүсвэл, X гарын авлага хуудсыг үзнэ үү (&quot;man X&quot; гээд энтэр товч дар) .</long>
+      </locale>
+
+      <locale name="mr">
+         <short>फॉन्ट</short>
+         <long>X फान्ट नाव. X फान्टच्या नावस्वरूपनाविषयी अधिक माहितीकरीता X पुस्तिका पान पहा (प्रकार &quot;पुस्तिका X&quot;).</long>
       </locale>
 
       <locale name="ms">
@@ -10338,7 +10480,7 @@
 
       <locale name="gl">
          <short>Tipo de letra</short>
-         <long>Un nome do tipo de letra de Pango. Por exemplo: &quot;Sans 12&quot; ou &quot;</long>
+         <long>Un nome do tipo de letra de Pango. Por exemplo: &quot;Sans 12&quot; ou &quot;Monospace Bold 14&quot;.</long>
       </locale>
 
       <locale name="gu">
@@ -10419,6 +10561,11 @@
       <locale name="mn">
          <short>Бичиг</short>
          <long>Панго бичгийн хэвийн нэр. Жишээлбэл: &quot;Sans 12&quot; эсвэл &quot;Monospace Bold 14&quot;.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>फॉन्ट</short>
+         <long>पँगो फान्ट नाव. उदाहरर्णाथ &quot;सॅनस् 12&quot; किंवा &quot;मोनोस्पेस् ठळक 14&quot;.</long>
       </locale>
 
       <locale name="ms">
@@ -10712,13 +10859,13 @@
       </locale>
 
       <locale name="ga">
-         <short>Saghas Cúlra</short>
+         <short>Cineál cúlra</short>
          
       </locale>
 
       <locale name="gl">
          <short>Tipo de fondo</short>
-         <long>Tipo de fondo do terminal. Pode ser &quot;solid&quot; para unha cor sólida, </long>
+         <long>Tipo de fondo do terminal. Pode ser &quot;solid&quot; para unha cor sólida, &quot;image&quot; para unha imaxe ou &quot;transparent&quot; para unha pseudotransparencia.</long>
       </locale>
 
       <locale name="gu">
@@ -10799,6 +10946,11 @@
       <locale name="mn">
          <short>Дэвсгэрийн төрөл</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>पार्श्वभूमी प्रकार</short>
+         <long>टर्मिनल पार्श्वभूमीचे प्रकार. गडद रंगाकरीता &quot;solid&quot; , प्रतिमेकरीता &quot;image&quot; , किंवा भ्रम-पारदर्शीकरीता &quot;transparent&quot; असू शकते.</long>
       </locale>
 
       <locale name="ms">
@@ -11086,8 +11238,8 @@
       </locale>
 
       <locale name="ga">
-         <short>Íomha le haighaidh an Cúlra</short>
-         <long>Ainm an comhad atá ag íomha an cúlra</long>
+         <short>Íomhá chúlra</short>
+         <long>Ainm chomhad íomhá chúlra.</long>
       </locale>
 
       <locale name="gl">
@@ -11175,6 +11327,11 @@
          <long>Дэвсгэр зурагийн файлын нэр.</long>
       </locale>
 
+      <locale name="mr">
+         <short>पार्श्वभूमी प्रतिमा</short>
+         <long>पार्श्वभूमी प्रतिमेचे फाइलनाव.</long>
+      </locale>
+
       <locale name="ms">
          <short>Imej latar_belakang</short>
          <long>Namafail bagi Imej latar_belakang.</long>
@@ -11202,7 +11359,7 @@
 
       <locale name="oc">
          <short>Imatge de fons</short>
-         <long>Nom de fichièr del imatge de fons.</long>
+         <long>Nom de fichièr de l&apos;imatge de fons.</long>
       </locale>
 
       <locale name="or">
@@ -11447,7 +11604,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Atzeko planoko irudia korritu behar den.</short>
+         <short>Atzeko planoko irudia korritu behar den ala ez</short>
          <long>Hautatzen bada, atzeko planoko irudia aurreko planoko testuarekin batera korrituko da; bestela, irudia ez da mugituko eta testua bakarrik korrituko da.</long>
       </locale>
 
@@ -11468,7 +11625,7 @@
 
       <locale name="gl">
          <short>Indica se se despraza a imaxe de fondo</short>
-         <long>Se é verdadeiro, a imaxe de fondo desprázase co texto en primeiro </long>
+         <long>Se é verdadeiro, a imaxe de fondo desprázase co texto en primeiro plano; se é falso, mantense a imaxe nunha posición fixa e o texto desprázase sobre ela.</long>
       </locale>
 
       <locale name="gu">
@@ -11544,6 +11701,11 @@
       <locale name="mn">
          <short>Дэвсгэр зурагийг гүйлгэх эсэх</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>पार्श्वभूमी प्रतिमा सरकवायची का</short>
+         <long>खरे असल्यास, पार्श्वभूमीतील प्रतिमा अग्रभूमीतील पाठ्यशी सरकवा; खोटे असल्यास, प्रतिमा ठरलेल्या स्थितीत ठेवा व पाठ्य वरच्या बाजूस सरकवा.</long>
       </locale>
 
       <locale name="ms">
@@ -11801,7 +11963,7 @@
 
       <locale name="eu">
          <short>Zenbat ilundu atzeko planoko irudia.</short>
-         <long>Atzeko planoko irudia zenbat ilunsu behar den zehazteko, 0.0 eta 1.0 arteko balio bat adierazi behar da. 0.0 balioak ez iluntzeko esan nahi du eta 1.0 balioak erabat iluntzeko. Oraingoz, bi maila besterik ez daude aukeran, eta, beraz, ezarpen boolearra da (0.0k itzaleztatzea desgaitzen du).</long>
+         <long>Atzeko planoko irudia zenbat ilundu behar den zehazteko, 0.0 eta 1.0 arteko balio bat adierazi behar da. 0.0 balioak ez iluntzeko esan nahi du eta 1.0 balioak erabat iluntzeko. Oraingoz, bi maila besterik ez daude aukeran, eta, beraz, ezarpen boolearra da (0.0k itzaleztatzea desgaitzen du).</long>
       </locale>
 
       <locale name="fa">
@@ -11821,7 +11983,7 @@
 
       <locale name="gl">
          <short>Canto hai que escurecer a imaxe de fondo</short>
-         <long>Un valor entre 0.0 e 1.0 que indica canto hai que escurecer a imaxe </long>
+         <long>Un valor entre 0.0 e 1.0 que indica canto hai que escurecer a imaxe de fondo. 0.0 é para non escurecer nada e 1.0 é para escurecer por completo. Na implementación actual, hai só dous niveis posibles de escuridade, así que o parámetro funciona como un booleano, onde 0.0 desactiva o efecto de escurecemento.</long>
       </locale>
 
       <locale name="gu">
@@ -11904,6 +12066,11 @@
          
       </locale>
 
+      <locale name="mr">
+         <short>पार्श्वभूमी प्रतिमा किती काळसर करायची</short>
+         <long>0.0 व 1.0 च्या अंतर्गत मुल्य पार्श्वभूमीतील प्रतिमा किती काळसर करायची ते दर्शवितो. 0.0 म्हणजे काळसर नाही, 1.0 म्हणजे पूर्ण काळे. सद्याच्या कार्यात, काळसरपणेच्या फक्त दोन स्थिती शक्य आहे, त्यामुळे संयोजन बुलीयनुरूप वागते, जेथे 0.0 काळसर प्रभाव अकार्यान्वीत करतो.</long>
+      </locale>
+
       <locale name="ms">
          <short>Berapa gelap imej latarbelakang</short>
          
@@ -11946,7 +12113,7 @@
 
       <locale name="pt_BR">
          <short>Quanto escurecer a imagem de fundo</short>
-         <long>Um valor entre 0.0 e 1.0 indica o quanto escurecer a imagem de fundo. 0.0 significa não escurecer, 1.0 significa totalmente escuro. Na implementação atual só existem dois níveis de escurecimento possíveis, então esta opção se comporta como uma chave, onde 0.0 desativa o escurecimento.</long>
+         <long>Um valor entre 0.0 e 1.0 indica o quanto escurecer a imagem de fundo. 0.0 significa não escurecer, 1.0 significa totalmente escuro. Na implementação atual só existem dois níveis de escurecimento possíveis, então esta opção se comporta como uma chave, onde 0.0 desabilita o escurecimento.</long>
       </locale>
 
       <locale name="ro">
@@ -12165,7 +12332,7 @@
 
       <locale name="eu">
          <short>Atzera-teklaren ekintza</short>
-         <long>Atzera-teklak sortuko duen kodea ezartzen du. Hauek dira balio posibleak: &quot;ascii-del&quot; (ASCII DEL karakterea), &quot;control-h&quot; (Ktrl+H, AKA ASCII BS karakterea), &quot;escape-sequence&quot; (normalean atzera-teklari edo ezabatzekoari lotutako ihes-sekuentzia). Atzera-teklarentzat &quot;ascii-del&quot; ezarpen egokitzat jotzen da normalean.</long>
+         <long>&apos;Atzera-tekla&apos;k sortuko duen kodea ezartzen du. Hauek dira balio posibleak: &quot;ascii-del&quot; (ASCII DEL karakterea), &quot;control-h&quot; (Ktrl+H, AKA ASCII BS karakterea), &quot;escape-sequence&quot; (normalean atzera-teklari edo ezabatzekoari lotutako ihes-sekuentzia). Atzera-teklarentzat &quot;ascii-del&quot; ezarpen egokitzat jotzen da normalean.</long>
       </locale>
 
       <locale name="fa">
@@ -12185,7 +12352,7 @@
 
       <locale name="gl">
          <short>Efecto da tecla de retroceso</short>
-         <long>Define o código que xera a tecla de retroceso. Os valores posibles </long>
+         <long>Define o código que xera a tecla de retroceso. Os valores posibles son &quot;ascii-del&quot; para o carácter DEL de ASCII, &quot;control-h&quot; para Control-H (tamén coñecido como o carácter BS de ASCII), &quot;escape-sequence&quot; para a secuencia de escape vinculada habitualmente a borrar ou suprimir. O valor &quot;ascii-del&quot; é normalmente considerado como a configuración correcta para a tecla de retroceso.</long>
       </locale>
 
       <locale name="gu">
@@ -12266,6 +12433,11 @@
       <locale name="mn">
          <short>Backspace товчилуурын нөлөө</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>बॅकस्पेस कळचा प्रभाव</short>
+         <long>बॅकस्पेस कळ दाबल्यावर कोड निश्चित होतो. शक्य असणारी मुल्य खालील प्रकारे आहे &quot;ascii-del&quot; ASCII DEL अक्षराकरीता, &quot;control-h&quot; Control-H (त्याला ASCII BS अक्षरही म्हटले जाते) करीता, &quot;escape-sequence&quot; निसटती श्रृंखला खासरूपी बॅकस्पेस किंवा डीलीट कळशी बंधीत असलेल्यांकरीता. &quot;escape-sequence&quot; शक्यतः बॅकस्पेस कळकरीता योग्य संरचना मानली जाते.</long>
       </locale>
 
       <locale name="ms">
@@ -12538,7 +12710,7 @@
 
       <locale name="eu">
          <short>&quot;Ezabatu&quot; teklaren ekintza</short>
-         <long>Ezabatu teklak sortuko duen kodea ezartzen du. Hauek dira balio posibleak: &quot;ascii-del&quot; (ASCII DEL karakterea), &quot;control-h&quot; (Ktrl+H, AKA ASCII BS karakterea), &quot;escape-sequence&quot; (normalean atzera-teklari edo ezabatzekoari lotutako ihes-sekuentzia). Ezabatu teklarentzat &quot;escape-sequence&quot; ezarpen egokitzat jotzen da normalean.</long>
+         <long>&apos;Ezabatu&apos; teklak sortuko duen kodea ezartzen du. Hauek dira balio posibleak: &quot;ascii-del&quot; (ASCII DEL karakterea), &quot;control-h&quot; (Ktrl+H, AKA ASCII BS karakterea), &quot;escape-sequence&quot; (normalean atzera-teklari edo ezabatzekoari lotutako ihes-sekuentzia). Ezabatu teklarentzat &quot;escape-sequence&quot; ezarpen egokitzat jotzen da normalean.</long>
       </locale>
 
       <locale name="fa">
@@ -12558,7 +12730,7 @@
 
       <locale name="gl">
          <short>Efecto da tecla suprimir</short>
-         <long>Define o código que xera a tecla suprimir. Os valores posibles son &quot;</long>
+         <long>Define o código que xera a tecla suprimir. Os valores posibles son &quot;ascii-del&quot; para o carácter DEL de ASCII, &quot;control-h&quot; para Control-H (tamén coñecido como o carácter BS de ASCII), &quot;escape-sequence&quot; para a secuencia de escape vinculada habitualmente a borrar ou suprimir. O valor &quot;escape-sequence&quot; é normalmente considerado como a configuración correcta para a tecla suprimir.</long>
       </locale>
 
       <locale name="gu">
@@ -12639,6 +12811,11 @@
       <locale name="mn">
          <short>Delete товчилуурын нөлөө</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>डीलीट कळचा प्रभाव</short>
+         <long>डीलीट कळ दाबल्यावर कोड निश्चित होतो. शक्य असणारी मुल्य खालील प्रकारे आहे &quot;ascii-del&quot; ASCII DEL अक्षराकरीता, &quot;control-h&quot; Control-H करीता (त्याला ASCII BS अक्षरही म्हटले जाते), &quot;escape-sequence&quot; निसटती श्रृंखला खासरूपी बॅकस्पेस किंवा डीलीट कळशी बंधीत असलेल्यांकरीता. &quot;escape-sequence&quot; शक्यतः डीलीट कळकरीता योग्य संरचना मानली जाते.</long>
       </locale>
 
       <locale name="ms">
@@ -12906,7 +13083,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Terminalean gaiaren koloreak erabili behar diren</short>
+         <short>Terminalean gaiaren koloreak erabili behar diren ala ez</short>
          <long>Hautatzen bada, testua sartzeko koadroetako gaiaren kolore-eskema bera erabiliko da terminalean, erabiltzaileak zehaztutako koloreak erabili beharrean.</long>
       </locale>
 
@@ -12927,7 +13104,7 @@
 
       <locale name="gl">
          <short>Indica se se usan as cores do tema no widget do terminal</short>
-         <long>Se é verdadeiro, o esquema de cores do tema usado para as caixas de </long>
+         <long>Se é verdadeiro, o esquema de cores do tema usado para as caixas de texto será empregado para o terminal, en vez das cores proporcionadas polo usuario.</long>
       </locale>
 
       <locale name="gu">
@@ -12998,6 +13175,11 @@
       <locale name="mk">
          <short>Дали да се користи бојата од темата за формата на терминалот</short>
          <long>Ако е точно, шемата за боја користена за внесување текст во полињата ќе биде користена во терминалот, наместо да се користат боите подесени од корисникот.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल कार्यक्रमाकरीता सुत्रयोजनेपासून रंग वापरायचे का</short>
+         <long>खरे असल्यास, वापरकर्त्या तर्फे पुरविलेल्या रंग ऐवजी, पाठ्य प्रविष्ट चौकोणाकरीता वापरलेले सुत्रयोजना रंग टर्मिनल तर्फे वापरल्या जाईल.</long>
       </locale>
 
       <locale name="ms">
@@ -13241,7 +13423,7 @@
       </locale>
 
       <locale name="eu">
-         <short>X RENDER luzapenik gabe antialiasing-a desgaitu ala ez.</short>
+         <short>X RENDER luzapenik gabe antialiasing-a desgaitu ala ez</short>
          <long>Egia bada, letra-tipoen antialiasing-a desgaitu egingo da X RENDER luzapenik gabe exekutatzen denean, honelako kasuetan errendimendua hobetzen du nabarmenki.</long>
       </locale>
 
@@ -13256,8 +13438,8 @@
       </locale>
 
       <locale name="gl">
-         <short>Indica se se debe desactivar o suavizado do tipo de letra sen a </short>
-         <long>Se é verdadeiro, o suavizado do tipo de letra desactivarase cando se </long>
+         <short>Indica se se debe desactivar o suavizado do tipo de letra sen a extensión X RENDER</short>
+         <long>Se é verdadeiro, o suavizado do tipo de letra desactivarase cando se execute sen a extensión X RENDER, a cal proporciona unha mellora considerable de rendemento nestes casos.</long>
       </locale>
 
       <locale name="gu">
@@ -13320,6 +13502,11 @@
          <long>Ако е точно анти-алијасингот ќе биде исклучен кога работите без проширувањето X RENDER, кое што нуди подобрувања во перформансите во вакви ситуации.</long>
       </locale>
 
+      <locale name="mr">
+         <short>X RENDER विस्तार ऐवजी अँटी-अलायसिंग अकार्यान्वीत करायचे का</short>
+         <long>खरे असल्यास, X RENDER विस्तार विना फॉन्ट अँटी-अलायसींग अकार्यान्वीत केले जाईल, यामुळे वरील परिस्थितीत कार्यक्षमतेमध्ये वाढ सहत प्राप्त होते.</long>
+      </locale>
+
       <locale name="nb">
          <short>Om skrifttypeutjevning skal slås av når RENDER-utvidelsen for X ikke er tilgjengelig</short>
          <long>Hvis denne settes til «true» vil fontutjevning slås av når RENDER-utvidelsen ikke er tilgjengelig. Dette gir en stor ytelsesforbedring i disse situasjonene.</long>
@@ -13351,7 +13538,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Desativar ou não suavização de fontes se não houver a extensão RENDER do X</short>
+         <short>Desabilitar ou não suavização de fontes se não houver a extensão RENDER do X</short>
          <long>Se verdadeiro, suavização de fontes será desabilitado quando executado sem a extensão RENDER do X, o que resulta em um aumento considerável de desempenho nessas situações.</long>
       </locale>
 
@@ -13542,7 +13729,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Sistemako letra-tipoa erabili behar den</short>
+         <short>Sistemako letra-tipoa erabili behar den ala ez</short>
          <long>Hautatzen bada, terminalak mahaigaineko letra-tipo orokorra erabiliko du, tarte bakarrekoa bada (eta hurbileneko letra-tipoa bestela).</long>
       </locale>
 
@@ -13563,7 +13750,7 @@
 
       <locale name="gl">
          <short>Indica se se usa o tipo de letra do sistema</short>
-         <long>Se é verdadeiro, o terminal usará o tipo de letra estándar do </long>
+         <long>Se é verdadeiro, o terminal usará o tipo de letra estándar do escritorio se é monoespazado (en caso contrario, usará un tipo de letra o máis semellante posible).</long>
       </locale>
 
       <locale name="gu">
@@ -13639,6 +13826,11 @@
       <locale name="mn">
          <short>Системийн бичгийн хэв хэрэглэх эсэх</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>प्रणालीचा फॉन्ट वापरावा का</short>
+         <long>खरे असल्यास, जर फॉन्ट मोनोस्पेस असेल (व त्याच्या सारखाच जुळता फॉन्ट आढळल्यावर) तर टर्मिनल डेस्कटॉप-जागतिक मानक फॉन्टचा वापर करेल.</long>
       </locale>
 
       <locale name="ms">
@@ -13906,7 +14098,7 @@
 
       <locale name="gl">
          <short>Realzar desafíos S/Key</short>
-         <long>Mostrar un diálogo cando se detecte e seleccione unha consulta de </long>
+         <long>Mostrar un diálogo cando se detecte e seleccione unha consulta de resposta a desafío S/Key. Ao escribir un contrasinal no diálogo, este enviarase ao terminal.</long>
       </locale>
 
       <locale name="gu">
@@ -13967,6 +14159,11 @@
       <locale name="mk">
          <short>Осветлувај ги S/копче предизвиците</short>
          <long>Прикажи дијалог кога S/копче одговор на прашалник е детектиран и притиснат. Внесување на лозинка во дијалогот ќе го прати во терминал.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>S/कळ आव्हान कडे विशेष लक्ष द्या</short>
+         <long>S/कळ आव्हान प्रतिसाद समस्या आढळल्यास संवाद पॉपअप करा व त्यावर क्लिक करा. संवादमध्ये गुप्तशब्द प्रविष्ट केल्यास टर्मिनलकडे पाठविले जाईल.</long>
       </locale>
 
       <locale name="nb">
@@ -14220,7 +14417,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para abrir un separador novo</short>
-         <long>Atallo de teclado para abrir un separador novo. Exprésase como unha </long>
+         <long>Atallo de teclado para abrir un separador novo. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -14301,6 +14498,11 @@
       <locale name="mn">
          <short>Шинэ ТАВ нээх товчилуурын хослол</short>
          <long>Шинэ дэд цонх (тав) нээх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>नविन टॅब उघडण्याकरीता कळफलक शॉर्टकट</short>
+         <long>नविन टॅब उघडण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -14582,7 +14784,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para abrir unha ventá nova</short>
-         <long>Atallo de teclado para abrir unha ventá nova. Exprésase como unha </long>
+         <long>Atallo de teclado para abrir unha ventá nova. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -14663,6 +14865,11 @@
       <locale name="mn">
          <short>Шинэ цонх товчилуурын хослол</short>
          <long>Шинэ цонх нээх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>नविन चौकट उघडण्याकरीता कळफलक शॉर्टकट</short>
+         <long>नविन चौकट उघडण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -14944,7 +15151,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para crear un perfil novo</short>
-         <long>Atallo de teclado para abrir o diálogo de creación do perfil. </long>
+         <long>Atallo de teclado para abrir o diálogo de creación do perfil. Exprésase como unha cadea de texto co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -15025,6 +15232,11 @@
       <locale name="mn">
          <short>Шинэ профил үүсгэх товчилуурын хослол</short>
          <long>Профил үүсгэх диалогийг нааш авчирах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>नविन प्रोफाइल बनविण्याकरीता कळफलक शॉर्टकट</short>
+         <long>प्रोफाइल निर्माण करतेवेळी संवाद दर्शविण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -15306,7 +15518,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para pechar un separador</short>
-         <long>Atallo de teclado para pechar un separador. Exprésase como unha </long>
+         <long>Atallo de teclado para pechar un separador. Exprésase como unha cadea de texto co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -15387,6 +15599,11 @@
       <locale name="mn">
          <short>Дэд цонх хаах товчилуурын хослол</short>
          <long>Дэд цонх (тав) хаах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब बंद करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब बंद करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -15668,7 +15885,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para pechar unha ventá</short>
-         <long>Atallo de teclado para pechar unha ventá. Exprésase como unha cadea </long>
+         <long>Atallo de teclado para pechar unha ventá. Exprésase como unha cadea de texto co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -15749,6 +15966,11 @@
       <locale name="mn">
          <short>Цонх хаах товчилуурын хослол</short>
          <long>Цонх хаах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>चौकट बंद करण्याकरीता कळफलक जळचा मार्ग</short>
+         <long>चौकट बंद करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -16032,7 +16254,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para copiar texto</short>
-         <long>Atallo de teclado para copiar o texto seleccionado no portapapeis. </long>
+         <long>Atallo de teclado para copiar o texto seleccionado no portapapeis. Exprésase como unha cadea de texto co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -16113,6 +16335,11 @@
       <locale name="mn">
          <short>Бичиг хуулах товчилуурын хослол</short>
          <long>Тэмдэглэсэн бичгийг клипборд руу хуулах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>पाठ्य प्रतिकृत करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>निवडलेले पाठ्य क्लिपबोर्डमध्ये प्रतिकृत करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -16375,7 +16602,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Tewstua itsasteko laster-teklak.</short>
+         <short>Testua itsasteko laster-teklak.</short>
          <long>Arbeleko testua itsasteko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
@@ -16396,7 +16623,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para pegar texto</short>
-         <long>Atallo de teclado para pegar o contido do portapapeis no terminal. </long>
+         <long>Atallo de teclado para pegar o contido do portapapeis no terminal. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -16477,6 +16704,11 @@
       <locale name="mn">
          <short>Бичиг буулгах товчилуурын хослол</short>
          <long>Клипбордын агуулгыг терминал руу буулгах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>पाठ्य चिकटविण्याकरीता कळफलक शॉर्टकट</short>
+         <long>क्लिपबोर्डमधिल विषयसूची टर्मिनलमध्ये चिकटविण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -16758,7 +16990,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para alternar o modo de pantalla completa</short>
-         <long>Atallo de teclado para alternar ao modo de pantalla completa. </long>
+         <long>Atallo de teclado para alternar ao modo de pantalla completa. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -16839,6 +17071,11 @@
       <locale name="mn">
          <short>Дэлгэцэнд дүүргэх/болих товчилуурын хослол</short>
          <long>Дэлгэц дүүргэх/болих товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>पूर्ण पडदा पध्दती उलटे करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>पूर्ण पडदा पध्दती उलटे करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -17113,7 +17350,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para alternar a visibilidade da barra de menú</short>
-         <long>Atallo de teclado para alternar a visibilidade da barra de menú. </long>
+         <long>Atallo de teclado para alternar a visibilidade da barra de menú. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -17194,6 +17431,11 @@
       <locale name="mn">
          <short>Цэс самбар харуулах/далдлах товчилуурын хослол</short>
          <long>Цэс самбар харуулах/далдлах товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>मेनूपट्टीचे दृश्य उलटे करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>मेनूपट्टीची दृश्यता बदलवाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -17469,7 +17711,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para definir o título do terminal</short>
-         <long>Atallo de teclado para definir o título do terminal. Exprésase como </long>
+         <long>Atallo de teclado para definir o título do terminal. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -17550,6 +17792,11 @@
       <locale name="mn">
          <short>Терминалд гарчиг өгөх товчилуурын хослол</short>
          <long>Терминалын гарчиг өгөх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल शिर्षक निश्चित करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टर्मिनल शिर्षक निश्चित करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -17830,7 +18077,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para restaurar o terminal</short>
-         <long>Atallo de teclado para restaurar o terminal. Exprésase como unha </long>
+         <long>Atallo de teclado para restaurar o terminal. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -17911,6 +18158,11 @@
       <locale name="mn">
          <short>Терминал шинээр эхлүүлэх товчилуурын хослол</short>
          <long>Терминалыг дахин эхлүүлэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल पुनःस्थापित करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टर्मिनल पुनःस्थापीत करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -18191,7 +18443,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para restaurar e limpar o terminal</short>
-         <long>Atallo de teclado para restaurar e limpar o terminal. Exprésase como </long>
+         <long>Atallo de teclado para restaurar e limpar o terminal. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -18272,6 +18524,11 @@
       <locale name="mn">
          <short>Терминалыг цэвэрлэж дахин эхлүүлэх товчилуурын хослол</short>
          <long>Терминал цэвэрлээд дахин эхлүүлэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टर्मिनल पुनःस्थापित व पुसून टाकण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टर्मिनल पुनःस्थापीत व पुसून टाकण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -18553,7 +18810,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador anterior</short>
-         <long>Atallo de teclado para cambiar ao separador anterior. Exprésase como </long>
+         <long>Atallo de teclado para cambiar ao separador anterior. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -18634,6 +18891,11 @@
       <locale name="mn">
          <short>Өмнөх Тав руу сэлгэх товчилуурын хослол</short>
          <long>Өмнөх тав руу сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>पूर्वीचा टॅब वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>पूर्वीच्या टॅबवर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -18915,7 +19177,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao seguinte separador</short>
-         <long>Atallo de teclado para cambiar ao seguinte separador. Exprésase como </long>
+         <long>Atallo de teclado para cambiar ao seguinte separador. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -18996,6 +19258,11 @@
       <locale name="mn">
          <short>Дараагийн Тав руу сэлгэх товчилуурын хослол</short>
          <long>Дараагийн тав руу сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>पुढच्या टॅब वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>पुढच्या टॅबवर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -19262,7 +19529,7 @@
 
       <locale name="gl">
          <short>Tecla rápida para mover o separador actual á esquerda.</short>
-         <long>Tecla rápida para mover á esquerda o separador actual. Exprésase </long>
+         <long>Tecla rápida para mover á esquerda o separador actual. Exprésase como unha cadea co mesmo formato usado nos ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, non haberá ningunha combinación de teclas para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -19333,6 +19600,11 @@
       <locale name="ml">
          <short>നിലവിലുളള റ്റാബ് ഇടത്തേക്ക് നീക്കുന്നതിനുളള ആക്സലറേറ്റര്‍.</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>सद्याच्याचे टॅब डावीकडे हलविण्याकरीता प्रवेगक.</short>
+         <long>डावीकडे सद्याचे टॅब हलविण्याकरीता प्रवेगक कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळबांधनी आढळणार नाही.</long>
       </locale>
 
       <locale name="nb">
@@ -19569,7 +19841,7 @@
 
       <locale name="gl">
          <short>Tecla rápida para mover o separador actual á dereita.</short>
-         <long>Tecla rápida para mover á dereita o separador actual. Exprésase como </long>
+         <long>Tecla rápida para mover á dereita o separador actual. Exprésase como unha cadea co mesmo formato usado nos ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, non haberá ningunha combinación de teclas para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -19640,6 +19912,11 @@
       <locale name="ml">
          <short>നിലവിലുളള റ്റാബ് വലത്തേക്ക് നീക്കുന്നതിനുളള ആക്സലറേറ്റര്‍.</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>सद्याच्याचे टॅब उजवीकडे हलविण्याकरीता प्रवेगक.</short>
+         <long>उजवीकडे सद्याचे टॅब हलविण्याकरीता प्रवेगक कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळबांधनी आढळणार नाही.</long>
       </locale>
 
       <locale name="nb">
@@ -19859,7 +20136,7 @@
       </locale>
 
       <locale name="eu">
-         <short>Bizkortzialea uneko fitxa desuztartzeko.</short>
+         <short>Bizkortzailea uneko fitxa desuztartzeko.</short>
          <long>Uneko fitxa desuztartzeko laster-teklak. Kate gisa adierazita GTK+ baliabide-fitxategietan erabiltzen den formatu berean. Aukera honetan &quot;disabled&quot; kate berezia jartzen bada, ez da laster-teklarik egongo ekintza honentzat.</long>
       </locale>
 
@@ -19875,7 +20152,7 @@
 
       <locale name="gl">
          <short>Tecla rápida para desprender o separador actual.</short>
-         <long>Tecla rápida para desprender o separador actual. Expresado como unha </long>
+         <long>Tecla rápida para desprender o separador actual. Expresado como unha cadea co mesmo formato usado nos ficheiros de recursos de GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, non haberá ningunha combinación de teclas para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -19946,6 +20223,11 @@
       <locale name="ml">
          <short>നിലവിലുളള റ്റാബ് വേര്‍പ്പെടുത്തുന്നതിനുളള ആക്സലറേറ്റര്‍</short>
          
+      </locale>
+
+      <locale name="mr">
+         <short>सद्याच्याचे टॅब अलगकरण्याकरीता प्रवेगक.</short>
+         <long>सद्याचे टॅब मोडण्याकरीता प्रवेगक कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळबांधनी आढळणार नाही.</long>
       </locale>
 
       <locale name="nb">
@@ -20202,7 +20484,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 1</short>
-         <long>Atallo de teclado para cambiar ao separador 1. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 1. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -20283,6 +20565,11 @@
       <locale name="mn">
          <short>Тав 1 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 1 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 1 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 1 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -20564,7 +20851,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 2</short>
-         <long>Atallo de teclado para cambiar ao separador 2. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 2. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -20645,6 +20932,11 @@
       <locale name="mn">
          <short>Тав 2 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 2 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 2 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 2 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -20926,7 +21218,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 3</short>
-         <long>Atallo de teclado para cambiar ao separador 3. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 3. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -21007,6 +21299,11 @@
       <locale name="mn">
          <short>Тав 3 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 3 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 3 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 3 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -21288,7 +21585,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 4</short>
-         <long>Atallo de teclado para cambiar ao separador 4. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 4. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -21369,6 +21666,11 @@
       <locale name="mn">
          <short>Тав 4 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 4 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 4 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 4 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -21650,7 +21952,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 5</short>
-         <long>Atallo de teclado para cambiar ao separador 5. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 5. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -21731,6 +22033,11 @@
       <locale name="mn">
          <short>Тав 5 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 5 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 5 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 5 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -22012,7 +22319,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 6</short>
-         <long>Atallo de teclado para cambiar ao separador 6. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 6. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -22093,6 +22400,11 @@
       <locale name="mn">
          <short>Тав 6 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 6 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 6 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 6 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -22374,7 +22686,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 7</short>
-         <long>Atallo de teclado para cambiar ao separador 7. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 7. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -22455,6 +22767,11 @@
       <locale name="mn">
          <short>Тав 7 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 7 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 7 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 7 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -22736,7 +23053,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 8</short>
-         <long>Atallo de teclado para cambiar ao separador 8. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 8. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -22817,6 +23134,11 @@
       <locale name="mn">
          <short>Тав 8 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 8 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 8 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 8 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -23098,7 +23420,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 9</short>
-         <long>Atallo de teclado para cambiar ao separador 9. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 9. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -23179,6 +23501,11 @@
       <locale name="mn">
          <short>Тав 9 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 9 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 9 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 9 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -23460,7 +23787,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 10</short>
-         <long>Atallo de teclado para cambiar ao separador 10. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 10. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -23541,6 +23868,11 @@
       <locale name="mn">
          <short>Тав 10 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 10 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 10 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 10 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -23822,7 +24154,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 11</short>
-         <long>Atallo de teclado para cambiar ao separador 11. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 11. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -23903,6 +24235,11 @@
       <locale name="mn">
          <short>Тав 11 рүү сэлгэх товчилуурын хослол</short>
          <long>Тав 11 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 11 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 11 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -24184,7 +24521,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para cambiar ao separador 12</short>
-         <long>Atallo de teclado para cambiar ao separador 12. Exprésase como unha </long>
+         <long>Atallo de teclado para cambiar ao separador 12. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -24265,6 +24602,11 @@
       <locale name="mn">
          <short>Тав 12 руу сэлгэх товчилуурын хослол</short>
          <long>Тав 12 рүү сэлгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр&quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>टॅब 12 वर जाण्याकरीता कळफलक शॉर्टकट</short>
+         <long>टॅब 12 वर जाण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -24546,7 +24888,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para executar a axuda</short>
-         <long>Atallo de teclado para executar a axuda. Exprésase como unha cadea </long>
+         <long>Atallo de teclado para executar a axuda. Exprésase como unha cadea de texto co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -24627,6 +24969,11 @@
       <locale name="mn">
          <short>Тусламж үзүүлэх товчилуурын хослол</short>
          <long>Тусламж үзүүлэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>मदत प्रक्षेपित करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>मदत प्रक्षेपीत करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -24908,7 +25255,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para facer a o tipo de letra máis grande</short>
-         <long>Atallo de teclado para facer máis grande o tipo de letra. Exprésase </long>
+         <long>Atallo de teclado para facer máis grande o tipo de letra. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -24989,6 +25336,11 @@
       <locale name="mn">
          <short>Бичиг томруулах товчилуурын хослол</short>
          <long>Бичгийн хэвийг томсгох товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>फॉन्ट मोठे करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>फॉन्ट मोठे करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -25270,7 +25622,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para facer o tipo de letra máis pequeno</short>
-         <long>Atallo de teclado para reducir o tamaño do tipo de letra. Exprésase </long>
+         <long>Atallo de teclado para reducir o tamaño do tipo de letra. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -25351,6 +25703,11 @@
       <locale name="mn">
          <short>Бичиг жижигсгэх товчилуурын хослол</short>
          <long>Бичгийн хэвийг жижигсгэх товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>फॉन्ट लहान करण्याकरीता कळफलक जवळचा</short>
+         <long>फान्ट लहान करण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">
@@ -25632,7 +25989,7 @@
 
       <locale name="gl">
          <short>Atallo de teclado para pór o tipo de letra no tamaño normal</short>
-         <long>Atallo de teclado para establecer o tamaño normal do tipo de letra. </long>
+         <long>Atallo de teclado para establecer o tamaño normal do tipo de letra. Exprésase como unha cadea co mesmo formato que os ficheiros de recursos do GTK+. Se define a opción coa cadea especial &quot;disabled&quot;, entón non haberá ningún atallo de teclado para esta acción.</long>
       </locale>
 
       <locale name="gu">
@@ -25713,6 +26070,11 @@
       <locale name="mn">
          <short>Бичгийг энгийн хэжээнд оруулах товчилуурын хослол</short>
          <long>Бичгийн хэвийг энгийн хэмжээнд аваачих товчилуурын хослол. GTK+ нөөц файлуудад мөн ижил тэмдэгт мөрөөр илэрхийлэгдэнэ. Хэрвээ та сонголтыг тусгай тэмдэгт мөр &quot;идэвхгүйжүүлэх&quot;-р авсан бол энэ үйлдэлд товчилуурын хослол байхгүй.</long>
+      </locale>
+
+      <locale name="mr">
+         <short>फॉन्ट सामान्य-आकारात करण्याकरीता कळफलक शॉर्टकट</short>
+         <long>फॉन्ट सामान्य आकाराचे बनविण्याकरीता कळफलक शॉर्टकट कळ. GTK+ स्त्रोत फाइलकरीता वापरलेल्या रितीसमानच अक्षरमाळा दर्शविले गेले. विशिष्ट अक्षरमाळाकरीता पर्याय &quot;disabled&quot; असे निश्चित केल्यास, या कृतीकरीता कुठलेही कळफलक शार्टकट आढळणार नाही.</long>
       </locale>
 
       <locale name="ms">

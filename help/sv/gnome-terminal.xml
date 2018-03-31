@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
+     </copyright><copyright><year>2006, 2007</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
      <publisher> 
         <publishername>Dokumentationsprojekt för GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -321,7 +321,7 @@
           <varlistentry> 
              <term>För att lägga till en flikad terminal till ett fönster:</term> 
              <listitem> 
-                <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guisubmenu>Öppna flik</guisubmenu><guimenuitem>Standard</guimenuitem></menuchoice>.</para>
+                <para>Välj <menuchoice><guimenu>Arkiv</guimenu><guisubmenu>Öppna flik</guisubmenu><guimenuitem>Standard</guimenuitem></menuchoice> eller bara <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Öppna flik</guimenuitem></menuchoice> om det inte finns någon undermeny.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +602,10 @@
             <para>Välj <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Ställ in teckenkodning</guisubmenu><guimenuitem>Lägg till eller ta bort</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>För att lägga till en kodning till menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>, välj kodningen i listrutan <guilabel>Tillgängliga kodningar</guilabel>, klicka sedan på <guibutton>Lägg till</guibutton>.</para>
+            <para>För att lägga till en kodning till menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>, välj kodningen i listrutan <guilabel>Tillgängliga kodningar</guilabel>, klicka sedan på högerpilknappen.</para>
           </listitem>
           <listitem>
-            <para>För att ta bort en kodning från menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>, välj kodningen i listrutan <guilabel>Kodningar som visas i menyn</guilabel>, klicka sedan på <guibutton>Ta bort</guibutton>.</para>
+            <para>För att ta bort en kodning från menyn <guisubmenu>Ställ in teckenkodning</guisubmenu>, välj kodningen i listrutan <guilabel>Kodningar som visas i menyn</guilabel>, klicka sedan på vänsterpilknappen.</para>
           </listitem>
           <listitem>
             <para>Klicka på <guibutton>Stäng</guibutton> för att stänga dialogrutan <guilabel>Lägg till eller ta bort terminalkodningar</guilabel>.</para>
@@ -754,9 +754,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Uppdatera inloggningsposter då kommandot startas</guilabel> </term> 
+                <guilabel>Uppdatera inloggningsposter när kommandot startas</guilabel> </term> 
              <listitem> 
-                <para>Välj det här alternativet för att infoga en ny post i utmp och wtmp när ett nytt skal öppnas.</para>
+                <para>Välj det här alternativet för att infoga en ny post i inloggningsloggarna när ett nytt skal öppnas.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

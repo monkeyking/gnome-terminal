@@ -321,7 +321,8 @@
           <varlistentry> 
              <term>Per a afegir una pestanya de terminal nova a una finestra:</term> 
              <listitem> 
-                <para>Trieu <menuchoice><guimenu>Fitxer</guimenu><guisubmenu>Obre una pestanya</guisubmenu><guimenuitem>Predeterminat</guimenuitem></menuchoice>.</para>
+                <para>
+                  Choose <menuchoice><guimenu>File</guimenu><guisubmenu>Open Tab</guisubmenu><guimenuitem>Default</guimenuitem></menuchoice> or just <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tab</guimenuitem></menuchoice> if there is no submenu.  </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +603,12 @@
             <para>Trieu <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Estableix la codificació dels caràcters</guisubmenu><guimenuitem>Afegeix o elimina</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>Per a afegir una codificació al menú <guisubmenu>Estableix la codificació dels caràcters</guisubmenu>, seleccioneu la codificació en el quadre de llista <guilabel>Codificacions disponibles</guilabel> i cliqueu <guibutton>Afegeix</guibutton>.</para>
+            <para>To add an encoding to the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Available encodings</guilabel> list box, then click the right arrow button.
+            </para>
           </listitem>
           <listitem>
-            <para>Per a suprimir una codificació del menú <guisubmenu>Estableix la codificació dels caràcters</guisubmenu>, seleccioneu la codificació en el quadre de llista <guilabel>Codificacions disponibles</guilabel> i cliqueu <guibutton>Suprimeix</guibutton>.</para>
+            <para>To remove an encoding from the <guisubmenu>Set Character Encoding</guisubmenu> menu, select the encoding in the <guilabel>Encodings shown in menu</guilabel> list box, then click the left arrow button.
+            </para>
           </listitem>
           <listitem>
             <para>Cliqueu <guibutton>Tanca</guibutton> per a tancar el diàleg <guilabel>Afegeix o suprimeix codificacions del terminal</guilabel>.</para>
@@ -754,9 +757,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Actualitza els registres utmp/wtmp quan s'executi l'ordre</guilabel> </term> 
+                <guilabel>Update login records when command is launched</guilabel> </term> 
              <listitem> 
-                <para>Seleccioneu aquesta opció per a inserir una entrada nova als registres utmp i wtmp quan un intèrpret d'ordres nou s'obri.</para>
+                <para>
+                  Select this option to insert a new entry in the login records when a new shell is opened. 
+                </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

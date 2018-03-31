@@ -116,6 +116,8 @@ _DOC_REAL_LINGUAS = $(if $(filter environment,$(origin LINGUAS)),		\
 	$(filter $(LINGUAS),$(DOC_LINGUAS)),					\
 	$(DOC_LINGUAS))
 
+_DOC_ABS_SRCDIR = @abs_srcdir@
+
 
 ################################################################################
 ## Variables for Bootstrapping
@@ -128,9 +130,12 @@ _chunks  ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook
 _credits ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/credits.xsl
 _ids ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/ids.xsl
 
+if ENABLE_SK
+_ENABLE_SK = true
 _skpkgdatadir ?= `scrollkeeper-config --pkgdatadir`
 _sklocalstatedir ?= `scrollkeeper-config --pkglocalstatedir`
 _skcontentslist ?= $(_skpkgdatadir)/Templates/C/scrollkeeper_cl.xml
+endif
 
 
 ################################################################################
@@ -145,13 +150,14 @@ db2omf_args =									\
 	--stringparam db2omf.lang $(notdir $(patsubst %/$(notdir $(2)),%,$(2)))	\
 	--stringparam db2omf.omf_dir "$(OMF_DIR)"				\
 	--stringparam db2omf.help_dir "$(HELP_DIR)"				\
-	--stringparam db2omf.omf_in "`pwd`/$(_DOC_OMF_IN)"			\
-	--stringparam db2omf.scrollkeeper_cl "$(_skcontentslist)"		\
+	--stringparam db2omf.omf_in "$(_DOC_OMF_IN)"				\
+	$(if $(_ENABLE_SK),							\
+	  --stringparam db2omf.scrollkeeper_cl "$(_skcontentslist)")		\
 	$(_db2omf) $(2)
 
 ## @ _DOC_OMF_IN
 ## The OMF input file
-_DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(srcdir)/$(DOC_MODULE).omf.in))
+_DOC_OMF_IN = $(if $(DOC_MODULE),$(wildcard $(_DOC_ABS_SRCDIR)/$(DOC_MODULE).omf.in))
 
 ## @ _DOC_OMF_DB
 ## The OMF files for DocBook output
@@ -160,7 +166,7 @@ _DOC_OMF_DB = $(if $(_DOC_OMF_IN),						\
 
 $(_DOC_OMF_DB) : $(_DOC_OMF_IN)
 $(_DOC_OMF_DB) : $(DOC_MODULE)-%.omf : %/$(DOC_MODULE).xml
-	@test -f "$(_skcontentslist)" || {					\
+	@test "x$(_ENABLE_SK)" != "xtrue" -o -f "$(_skcontentslist)" || {	\
 	  echo "The file '$(_skcontentslist)' does not exist." >&2;		\
 	  echo "Please check your ScrollKeeper installation." >&2;		\
 	  exit 1; }
@@ -173,10 +179,12 @@ _DOC_OMF_HTML = $(if $(_DOC_OMF_IN),						\
 
 $(_DOC_OMF_HTML) : $(_DOC_OMF_IN)
 $(_DOC_OMF_HTML) : $(DOC_MODULE)-html-%.omf : %/$(DOC_MODULE).xml
-	@test -f "$(_skcontentslist)" || {					\
+if ENABLE_SK
+	@test "x$(_ENABLE_SK)" != "xtrue" -o -f "$(_skcontentslist)" || {	\
 	  echo "The file '$(_skcontentslist)' does not exist" >&2;		\
 	  echo "Please check your ScrollKeeper installation." >&2;		\
 	  exit 1; }
+endif
 	xsltproc -o $@ $(call db2omf_args,$@,$<,'xhtml') || { rm -f "$@"; exit 1; }
 
 ## @ _DOC_OMF_ALL
@@ -287,11 +295,7 @@ $(_DOC_POFILES):
 	fi;
 	@docs=; \
 	list='$(_DOC_C_DOCS_NOENT)'; for doc in $$list; do \
-	  if test -f $$doc; then \
-	    docs="$$docs ../$$doc"; \
-	  else \
-	    docs="$$docs ../$(srcdir)/$$doc"; \
-	  fi; \
+	  docs="$$docs $(_DOC_ABS_SRCDIR)/$$doc"; \
 	done; \
 	if ! test -f $@; then \
 	  echo "(cd $(dir $@) && \
@@ -312,8 +316,7 @@ $(_DOC_POFILES):
 $(_DOC_LC_DOCS) : $(_DOC_POFILES)
 $(_DOC_LC_DOCS) : $(_DOC_C_DOCS)
 	if ! test -d $(dir $@); then mkdir $(dir $@); fi
-	case "$(srcdir)" in /*) sd="$(srcdir)";; *) sd="../$(srcdir)";;	esac; \
-	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$$sd/"; fi; \
+	if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$(_DOC_ABS_SRCDIR)/"; fi; \
 	(cd $(dir $@) && \
 	  $(_xml2po) -e -p \
 	    "$${d}$(dir $@)$(patsubst %/$(notdir $@),%,$@).po" \
@@ -344,12 +347,6 @@ $(_DOC_HTML_TOPS): $(_DOC_C_DOCS) $(_DOC_LC_DOCS)
 
 
 ################################################################################
-
-if ENABLE_SK
-_ENABLE_SK = true
-else
-_ENABLE_SK = false
-endif
 
 all:							\
 	$(_DOC_C_DOCS)		$(_DOC_LC_DOCS)		\
@@ -419,6 +416,11 @@ dist-doc-docs: $(_DOC_C_DOCS) $(_DOC_LC_DOCS) $(_DOC_POFILES)
 	@list='$(_DOC_C_DOCS) $(_DOC_LC_DOCS) $(_DOC_POFILES)'; \
 	for doc in $$list; do \
 	  if test -f "$$doc"; then d=; else d="$(srcdir)/"; fi; \
+	    docdir=`echo $$doc | sed -e 's/^\(.*\/\).*/\1/' -e '/\//!s/.*//'`; \
+	    if ! test -d "$(distdir)/$$docdir"; then \
+	      echo "$(mkinstalldirs) $(distdir)/$$docdir"; \
+	      $(mkinstalldirs) "$(distdir)/$$docdir"; \
+	    fi; \
 	  echo "$(INSTALL_DATA) $$d$$doc $(distdir)/$$doc"; \
 	  $(INSTALL_DATA) "$$d$$doc" "$(distdir)/$$doc"; \
 	done
@@ -489,6 +491,12 @@ install-doc-docs:
 	done
 	@list='$(_DOC_C_DOCS) $(_DOC_LC_DOCS)'; for doc in $$list; do \
 	  if test -f "$$doc"; then d=; else d="$(srcdir)/"; fi; \
+	  docdir="$$lc/"`echo $$doc | sed -e 's/^\(.*\/\).*/\1/' -e '/\//!s/.*//'`; \
+	  docdir="$(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$docdir"; \
+	  if ! test -d "$$docdir"; then \
+	    echo "$(mkinstalldirs) $$docdir"; \
+	    $(mkinstalldirs) "$$docdir"; \
+	  fi; \
 	  echo "$(INSTALL_DATA) $$d$$doc $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$doc"; \
 	  $(INSTALL_DATA) $$d$$doc $(DESTDIR)$(HELP_DIR)/$(DOC_MODULE)/$$doc; \
 	done
@@ -557,7 +565,7 @@ uninstall-doc-figs:
 
 uninstall-doc-omf:
 	@list='$(_DOC_OMF_ALL)'; for omf in $$list; do \
-	  if test "x$(_ENABLE_SK)" == "xtrue"; then \
+	  if test "x$(_ENABLE_SK)" = "xtrue"; then \
 	    echo "scrollkeeper-uninstall -p $(_sklocalstatedir) $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
 	    scrollkeeper-uninstall -p "$(_sklocalstatedir)" "$(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
 	  fi; \

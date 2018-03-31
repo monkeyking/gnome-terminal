@@ -1,3 +1,226 @@
+2008-01-15  Christian Persch  <chpe@gnome.org>
+
+	=== Release 2.21.5 ===
+
+	* NEWS:
+	* configure.in:
+
+2008-01-15  Christian Persch  <chpe@gnome.org>
+
+	* src/profile-editor.c: (terminal_profile_edit):
+	* src/terminal-window.c: (terminal_window_init): Remove last uses of
+	old tooltips API.
+
+2008-01-15  Christian Persch  <chpe@gnome.org>
+
+	* src/terminal-window.c: (terminal_window_class_init),
+	(sync_tab_label), (tab_label_style_set_cb), (contruct_tab_label):
+	Update to gtk 2.12 tooltips API, and fix cropping of close buttons with
+	gnome-icon-theme svn.
+
+2008-01-05  Badral Sanlig <badral@openmn.org>
+
+	* po/mn.po: Updated Mongolian translation.
+
+2008-01-05  Christian Persch  <chpe@gnome.org>
+
+	* src/terminal.c: (main), (get_goption_context): The GnomeProgram
+	adopts the GOptionContext, don't free it twice.
+
+2008-01-02  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 336155 – [patch] port gnome-terminal to goption
+	Based on patch from Christian Kirbach
+
+	* src/terminal.c: Migrate from popt to GOption, and clean up.
+	* configure.in: Rquire glib-2 >= 2.12.0, libgnome-2 >= 2.14.0
+
+2007-12-28  Behdad Esfahbod  <behdad@gnome.org>
+
+	* MAINTAINERS: Removed Guilherme, added chpe.
+
+2007-12-20  Christian Persch  <chpe@gnome.org>
+
+	* src/skey/md5.c: (MD5Keycrunch), (MD5SKey):
+	* src/skey/sha1.c: (SHA1Keycrunch), (SHA1SKey): Adapt to new API
+	for g_checksum_get_digest.
+
+2007-12-17  Behdad Esfahbod  <behdad@gnome.org>
+
+	* NEWS:
+	* configure.in: Released 2.21.4
+
+2007-12-08  Christian Persch  <chpe@gnome.org>
+
+	* configure.in:
+	* src/skey/md5.c: (MD5Keycrunch), (MD5SKey):
+	* src/skey/md5.h:
+	* src/skey/sha1.c: (SHA1Keycrunch), (SHA1SKey):
+	* src/skey/sha1.h:
+	* src/skey/skey.c:
+	* src/skey/skeyutil.c: Use GChecksum instead of our own MD5 and SHA1
+	implementations. Bug #501667.
+
+2007-12-05  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 501635 – crash in Terminal: running gnome-session-sa...
+
+	* src/terminal.c (terminal_app_get_clone_command): NULL-terminate the
+	array.
+
+2007-12-04  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 501665 – Remove simple-x-font-selector
+
+	* src/Makefile.am:
+	* src/profile-editor.c (profile_changed), (terminal_profile_edit),
+	(profile_editor_update_sensitivity), (profile_editor_update_font):
+	* src/simple-x-font-selector.c:
+	* src/simple-x-font-selector.h:
+	* src/terminal-profile.c (terminal_profile_init),
+	(terminal_profile_finalize), (terminal_profile_update),
+	(profile_change_notify), (terminal_profile_create):
+	* src/terminal-profile.h:
+	* src/terminal-screen.c (terminal_screen_set_font),
+	(terminal_screen_update_scrollbar):
+	* src/terminal-widget-vte.c:
+	Remove simple-x-font-selector:
+		Makefile.am              |    2 
+		profile-editor.c         |  155 ----
+		simple-x-font-selector.c | 1730
+		-----------------------------------------------
+		simple-x-font-selector.h |  180 ----
+		terminal-profile.c       |   61 -
+		terminal-profile.h       |    4 
+		terminal-screen.c        |  314 --------
+		terminal-widget-vte.c    |    6 
+		8 files changed, 41 insertions(+), 2411 deletions(-)
+
+2007-12-04  Behdad Esfahbod  <behdad@gnome.org>
+
+	* src/encoding.c (terminal_encoding_free),
+	(terminal_encoding_copy), (terminal_encoding_init):
+	* src/profile-editor.c (color_scheme_changed),
+	(palette_scheme_changed),
+	(profile_editor_update_color_scheme_menu),
+	(profile_editor_update_palette), (profile_editor_update_x_font),
+	(profile_editor_update_background_type):
+	* src/skey/btoe.c (btoe), (extract):
+	* src/skey/skey.c (skey_test):
+	* src/skey/skeyutil.c:
+	* src/terminal-accels.c:
+	* src/terminal-profile.c:
+	* src/terminal-screen.c (terminal_screen_set_font):
+	* src/terminal-window.c (terminal_window_realized_callback):
+	* src/terminal.c (slowly_and_stupidly_obtain_timestamp), (main),
+	(terminal_app_new_terminal):
+	Fix bunch of compiler warnings.
+
+2007-12-04  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 144000 – encodings other than the current encoding are not listed
+	in gnome-terminal on Solaris.
+
+	* src/encoding.c: Fix typo in the name of three encoding.
+
+2007-12-04  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 144000 – encodings other than the current encoding are not listed
+	in gnome-terminal on Solaris.
+
+	* src/encoding.c (terminal_encoding_init): Fix encoding sanity check.
+
+2007-12-03  Behdad Esfahbod  <behdad@gnome.org>
+
+	* NEWS:
+	* configure.in: Released 2.21.3 (synch with GNOME release number)
+
+2007-12-01  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 499877 – Update terminal_app_get_clone_command() to use g_array
+	Patch from Dubon
+
+	* src/terminal.c (terminal_app_get_clone_command): Use GPtrArray to
+	simplify code.
+
+2007-11-27  Christian Persch  <chpe@gnome.org>
+
+	* src/terminal.c: Revert accidental whitespace changes from commit
+	2289.
+
+2007-11-27  Christian Persch  <chpe@gnome.org>
+
+	R src/terminal-notebook.c:
+	R src/terminal-notebook.h: And remove the obsolete files.
+
+2007-11-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 499588 – remove menu icons handling code
+	Patch from Christian Persch
+
+	* src/terminal-window.c (append_menuitem_common),
+	(append_menuitem), (append_stock_menuitem), (terminal_window_init):
+	Gtk is taking care of the menus-have-icons setting itself. Remove this
+	totally crufty code to check the gconf setting and remove/re-add the
+	menu icons!
+
+2007-11-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 353775 – Use GtkNotebook instead of TerminalNotebook
+	Patch from Christian Persch and Mariano Suárez-Alvarez
+
+	* src/Makefile.am:
+	* src/terminal-screen.c:
+	* src/terminal-window.h:
+	* src/terminal.c:
+	* src/terminal.h:
+	Do that.
+
+2007-11-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 441618 – Message-ID/news-Link crashes gnome-terminal
+
+	* src/terminal-widget-vte.c (terminal_widget_check_match),
+	(terminal_widget_skey_check_match): Return flavor as flavor,
+	not tag as flavor.
+
+2007-11-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	* NEWS:
+	* configure.in: Released 2.18.3
+
+2007-11-12  Chris Wilson  <chris@chris-wilson.co.uk>
+
+	Bug 494828 – crash in Terminal: Using elinks in a termin...
+
+	* src/terminal.c (terminal_util_show_error_dialog):
+	    We were passing an unescaped tainted string as the format to
+	    printf via gtk_message_dialog_new()...
+
+2007-11-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 499797 – crash in Terminal: Creating a new profile b...
+
+	* src/terminal-profile.c (terminal_profile_update):
+	Return on NULL parameter.
+
+	* src/terminal-profile.c (alphabetic_cmp): Compare
+	profile names if visual names are equal.
+	
+	* src/terminal-profile.h:
+	* src/terminal-profile.c (terminal_profile_create):
+	Return actual name used.
+
+	* src/terminal.c (new_profile_response_callback):
+	Use actual name returned by terminal_profile_create() to avoid
+	crashing if profile with dup name is created.
+
+2007-11-09  Takao Fujiwara  <takao.fujiwara@sun.com>
+
+	Bug 471700 – gnome-terminal has an unlocalized license text.
+
+	* src/terminal-window.c: Add N_ macro in license.
+
 2007-09-17  Behdad Esfahbod  <behdad@gnome.org>
 
 	* NEWS:

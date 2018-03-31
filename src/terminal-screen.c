@@ -136,47 +136,9 @@ static void monospace_font_change_notify (GConfClient *client,
 					  GConfEntry  *entry,
 					  gpointer     user_data);
 
-static gboolean xfont_is_monospace                   (const char *fontname);
-static char*    make_xfont_monospace                 (const char *fontname);
-static char*    make_xfont_char_cell                 (const char *fontname);
-static char*    make_xfont_have_size_from_other_font (const char *fontname,
-                                                     const char *other_font);
+static guint signals[LAST_SIGNAL];
 
-static GdkFont* load_fonset_without_error (const gchar *fontset_name);
-
-static GObjectClass *parent_class = NULL;
-static guint signals[LAST_SIGNAL] = { 0 };
-
-GType
-terminal_screen_get_type (void)
-{
-  static GType object_type = 0;
-
-  g_type_init ();
-  
-  if (!object_type)
-    {
-      static const GTypeInfo object_info =
-      {
-        sizeof (TerminalScreenClass),
-        (GBaseInitFunc) NULL,
-        (GBaseFinalizeFunc) NULL,
-        (GClassInitFunc) terminal_screen_class_init,
-        NULL,           /* class_finalize */
-        NULL,           /* class_data */
-        sizeof (TerminalScreen),
-        0,              /* n_preallocs */
-        (GInstanceInitFunc) terminal_screen_init,
-      };
-
-      object_type = g_type_register_static (GTK_TYPE_BIN,
-                                            "TerminalScreen",
-                                            &object_info, 0);
-    }
-  
-  return object_type;
-}
-
+G_DEFINE_TYPE (TerminalScreen, terminal_screen, GTK_TYPE_BIN)
 
 static void
 style_set_callback (GtkWidget *widget,
@@ -185,6 +147,29 @@ style_set_callback (GtkWidget *widget,
 {
   if (GTK_WIDGET_REALIZED (widget))
     terminal_screen_change_font (TERMINAL_SCREEN (data));
+}
+
+static void
+parent_set_callback (TerminalScreen *screen,
+                     GtkWidget      *old_parent)
+{
+  if (GTK_WIDGET (screen)->parent == NULL)
+    {
+      screen->priv->window = NULL;
+    }
+  else
+    {
+      GtkWidget *window;
+
+      g_return_if_fail (GTK_IS_NOTEBOOK (GTK_WIDGET (screen)->parent));
+
+      window = gtk_widget_get_toplevel (GTK_WIDGET (screen)->parent);
+
+      g_return_if_fail (window != NULL);
+      g_return_if_fail (TERMINAL_IS_WINDOW (window));
+
+      screen->priv->window = TERMINAL_WINDOW (gtk_widget_get_toplevel (window));
+    }
 }
 
 static void
@@ -257,9 +242,17 @@ terminal_screen_size_allocate (GtkWidget *widget,
 }
 
 static void
+terminal_screen_grab_focus (GtkWidget *widget)
+{
+  TerminalScreen *screen = TERMINAL_SCREEN (widget);
+
+  gtk_widget_grab_focus (screen->priv->term);
+}
+
+static void
 terminal_screen_init (TerminalScreen *screen)
 {
-  screen->priv = g_new0 (TerminalScreenPrivate, 1);
+  screen->priv = G_TYPE_INSTANCE_GET_PRIVATE (screen, TERMINAL_TYPE_SCREEN, TerminalScreenPrivate);
 
   screen->priv->working_dir = g_get_current_dir ();
   if (screen->priv->working_dir == NULL) /* shouldn't ever happen */
@@ -360,6 +353,10 @@ terminal_screen_init (TerminalScreen *screen)
   gtk_container_add (GTK_CONTAINER (screen), GTK_WIDGET (screen->priv->hbox));
 
   gtk_widget_show_all (screen->priv->hbox);
+
+  g_signal_connect (G_OBJECT (screen), "parent-set",
+                    G_CALLBACK (parent_set_callback), 
+                    NULL);
 }
 
 static void
@@ -368,14 +365,13 @@ terminal_screen_class_init (TerminalScreenClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-  parent_class = g_type_class_peek_parent (klass);
-  
   object_class->finalize = terminal_screen_finalize;
 
   widget_class->unrealize = terminal_screen_unrealize;
   widget_class->size_allocate = terminal_screen_size_allocate;
   widget_class->size_request = terminal_screen_size_request;
   widget_class->map = terminal_screen_map;
+  widget_class->grab_focus = terminal_screen_grab_focus;
   
   signals[PROFILE_SET] =
     g_signal_new ("profile_set",
@@ -420,7 +416,9 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                   G_STRUCT_OFFSET (TerminalScreenClass, encoding_changed),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);  
+                  G_TYPE_NONE, 0);
+
+  g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
 }
 
 static void
@@ -436,10 +434,7 @@ terminal_screen_unrealize (GtkWidget *widget)
       screen->priv->popup_menu = NULL;
     }
 
-  if (GTK_WIDGET_CLASS (parent_class)->unrealize)
-    {
-      (* GTK_WIDGET_CLASS (parent_class)->unrealize) (widget);
-    }
+  GTK_WIDGET_CLASS (terminal_screen_parent_class)->unrealize (widget);
 }
 
 static void
@@ -476,10 +471,8 @@ terminal_screen_finalize (GObject *object)
   g_free (screen->priv->matched_string);
   g_strfreev (screen->priv->override_command);
   g_free (screen->priv->working_dir);
-  
-  g_free (screen->priv);
-  
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+
+  G_OBJECT_CLASS (terminal_screen_parent_class)->finalize (object);
 }
 
 TerminalScreen*
@@ -498,7 +491,7 @@ terminal_screen_map (GtkWidget *widget)
   child = GTK_BIN (widget)->child;
   g_assert (child != NULL);
 
-  GTK_WIDGET_CLASS (parent_class)->map (widget);
+  GTK_WIDGET_CLASS (terminal_screen_parent_class)->map (widget);
 }
 
 TerminalWindow*
@@ -791,7 +784,7 @@ monospace_font_change_notify (GConfClient *client,
     terminal_screen_change_font (screen);
 }
 
-PangoFontDescription *
+static PangoFontDescription *
 get_system_monospace_font (void)
 {
   GConfClient *conf;
@@ -818,107 +811,24 @@ terminal_screen_set_font (TerminalScreen *screen)
 {
   TerminalProfile *profile;
   GtkWidget *term;
+  PangoFontDescription *desc;
   
   term = screen->priv->term;
   profile = screen->priv->profile;
   
-  if (terminal_widget_supports_pango_fonts ())
-    {
-      PangoFontDescription *desc;
-
-      if (terminal_profile_get_use_system_font (profile))
-        desc = get_system_monospace_font ();
-      else
-        desc = pango_font_description_copy (terminal_profile_get_font (profile));
-
-      pango_font_description_set_size (desc,
-                                       screen->priv->font_scale *
-                                       pango_font_description_get_size (desc));
-
-      terminal_widget_set_pango_font (term, desc,
-				      terminal_profile_get_no_aa_without_render (profile));
-
-      pango_font_description_free (desc);
-    }
+  if (terminal_profile_get_use_system_font (profile))
+    desc = get_system_monospace_font ();
   else
-    {
-      /* font_scale is not supported in X fonts mode */
-      
-      GdkFont *font;
+    desc = pango_font_description_copy (terminal_profile_get_font (profile));
 
-      font = NULL;
-      
-       if (terminal_profile_get_use_system_font (screen->priv->profile))
-         {
-	    PangoFontDescription *desc;
-            GdkFont *from_desc;
+  pango_font_description_set_size (desc,
+				   screen->priv->font_scale *
+				   pango_font_description_get_size (desc));
 
-	    desc = get_system_monospace_font ();
-            from_desc = gdk_font_from_description (desc);
-            
-            if (from_desc != NULL)
-              {
-                char *font_name;
-                
-                font_name = g_strdup (gdk_x11_font_get_name (from_desc));
+  terminal_widget_set_pango_font (term, desc,
+				  terminal_profile_get_no_aa_without_render (profile));
 
-                g_assert (font_name);
-                
-                if (!xfont_is_monospace (font_name));
-                {
-                  /* Can't use the system font as-is */
-                  char *fallback;
-
-                  fallback = make_xfont_monospace (font_name);
-
-                  g_assert (fallback);
-                  
-                  font = load_fonset_without_error (fallback);
-
-                  if (font == NULL)
-                    {
-                      g_free (fallback);
-                      fallback = make_xfont_char_cell (font_name);
-                      font = load_fonset_without_error (fallback);
-                    }
-                
-                  if (font == NULL)
-                    {
-                      g_free (fallback);
-                      fallback =
-                        make_xfont_have_size_from_other_font (terminal_profile_get_x_font (profile),
-                                                              font_name);
-                      font = load_fonset_without_error (fallback);
-                    }
-                
-                  g_free (fallback);
-                }
-                
-                g_free (font_name);
-                gdk_font_unref (from_desc);
-              }
-
-	    pango_font_description_free (desc);
-         }
-       
-       if (font == NULL)
-         {
-           font = gdk_fontset_load (terminal_profile_get_x_font (profile));
-           if (font == NULL)
-             {
-               g_printerr (_("Could not load font \"%s\"\n"),
-                           terminal_profile_get_x_font (profile));
-             }
-         }
-
-       if (font)
-         {
-           terminal_widget_set_normal_gdk_font (term, font);
-           terminal_widget_set_bold_gdk_font (term, font);
-           gdk_font_unref (font);
-         }
-    }
-  
+  pango_font_description_free (desc);
 }
 
 static void
@@ -2297,15 +2207,19 @@ enum
   TARGET_BGIMAGE,
   TARGET_RESET_BG,
   TARGET_TEXT_PLAIN,
-  TARGET_MOZ_URL
+  TARGET_MOZ_URL,
+  TARGET_TAB
 };
 
-static void  
-drag_data_received  (GtkWidget *widget, GdkDragContext *context, 
-		     gint x, gint y,
-		     GtkSelectionData *selection_data, guint info,
-		     guint time,
-                     gpointer data)
+static void        
+drag_data_received (TerminalScreen   *widget,
+                    GdkDragContext   *context,
+                    gint              x,
+                    gint              y,
+                    GtkSelectionData *selection_data,
+                    guint             info,
+                    guint             time,
+                    gpointer          data)
 {
   TerminalScreen *screen;
 
@@ -2580,6 +2494,7 @@ drag_data_received  (GtkWidget *widget, GdkDragContext *context,
         g_free (uri_list);
       }
       break;
+
     case TARGET_RESET_BG:
       {
         TerminalProfile *profile;
@@ -2593,6 +2508,37 @@ drag_data_received  (GtkWidget *widget, GdkDragContext *context,
           }
       }
       break;
+
+    case TARGET_TAB:
+      {
+        TerminalScreen *moving_screen;
+        TerminalWindow *source_window;
+        TerminalWindow *dest_window;
+        GtkWidget *source_notebook;
+        GtkWidget *dest_notebook;
+        gint page_num;
+
+        moving_screen = *(TerminalScreen**) selection_data->data;
+
+        g_return_if_fail (TERMINAL_IS_SCREEN (moving_screen));
+
+        source_window = terminal_screen_get_window (moving_screen);
+        source_notebook = terminal_window_get_notebook (source_window);
+        dest_window = terminal_screen_get_window (screen);
+        dest_notebook = terminal_window_get_notebook (dest_window);
+        page_num = gtk_notebook_page_num (GTK_NOTEBOOK (dest_notebook), 
+                                          GTK_WIDGET (screen));
+
+        g_object_ref (G_OBJECT (moving_screen));
+        terminal_window_add_screen (dest_window, moving_screen, page_num);
+        g_object_unref (G_OBJECT (moving_screen));
+
+        gtk_drag_finish (context, TRUE, TRUE, time);
+      }
+      break;
+
+    default:
+      g_assert_not_reached ();
     }
 }
 
@@ -2600,6 +2546,7 @@ static void
 terminal_screen_setup_dnd (TerminalScreen *screen)
 {
   static GtkTargetEntry target_table[] = {
+    { "GTK_NOTEBOOK_TAB", GTK_TARGET_SAME_APP, TARGET_TAB },
     { "application/x-color", 0, TARGET_COLOR },
     { "property/bgimage",    0, TARGET_BGIMAGE },
     { "x-special/gnome-reset-background", 0, TARGET_RESET_BG },
@@ -2670,207 +2617,4 @@ terminal_screen_update_scrollbar (TerminalScreen *screen)
     }
 
   g_object_unref (G_OBJECT (screen->priv->scrollbar));
-}
-
-/* Indices of some xlfd string entries.  The first entry is 1 */
-#define XLFD_WEIGHT_INDEX			3
-#define XLFD_SLANT_INDEX			4	
-#define XLFD_SIZE_IN_PIXELS_INDEX		7	
-#define XLFD_SIZE_IN_POINTS_INDEX		8	
-#define XLFD_HORIZONTAL_RESOLUTION_INDEX	9	
-#define XLFD_VERTICAL_RESOLUTION_INDEX		10	
-#define XLFD_SPACING_INDEX		        11
-
-#define XLFD_N_FIELDS 14
-
-static char*
-xlfd_get_nth_field (const char *xlfd,
-                    int         n)
-{
-  char **split;
-  char *ret;
-  int i;
-  
-  /* Remember fontsets with the appended ",-*-" and stuff
-   * like that...
-   */
-  
-  split = g_strsplit (xlfd, "-", XLFD_N_FIELDS);
-
-  i = 0;
-  while (i < n)
-    {
-      if (split[i] == NULL)
-        return NULL;
-
-      ++i;
-    }
-  
-  ret = g_strdup (split[n]);
-  
-  g_strfreev (split);
-
-  return ret;
-}
-
-static char*
-xlfd_replace_nth_field (const char *xlfd,
-                        int         n,
-                        const char *new_value)
-{
-  char **split;
-  char *ret;
-  int i;
-  
-  /* Remember fontsets with the appended ",-*-" and stuff
-   * like that...
-   */
-  
-  split = g_strsplit (xlfd, "-", XLFD_N_FIELDS);
-
-  i = 0;
-  while (i < n)
-    {
-      if (split[i] == NULL)
-        return NULL;
-
-      ++i;
-    }
-
-  g_free (split[n]);
-  split[n] = g_strdup (new_value);
-  
-  ret = g_strjoinv ("-", split);
-  
-  g_strfreev (split);
-
-  return ret;
-}
-
-static gboolean
-xfont_is_monospace (const char *fontname)
-{
-  char *spacing;
-  gboolean ret;
-  
-  spacing = xlfd_get_nth_field (fontname, XLFD_SPACING_INDEX);
-
-  if (spacing == NULL)
-    return FALSE;
-
-  ret = (*spacing == 'm' || *spacing == 'c');
-
-  g_free (spacing);
-
-  return ret;
-}
-
-static char*
-make_xfont_monospace (const char *fontname)
-{
-  char *ret;
-  
-  ret = xlfd_replace_nth_field (fontname, XLFD_SPACING_INDEX, "m");
-  if (ret == NULL)
-    ret = g_strdup (fontname);
-
-  return ret;
-}
-
-static char*
-make_xfont_char_cell (const char *fontname)
-{
-  char *ret;
-  
-  ret = xlfd_replace_nth_field (fontname, XLFD_SPACING_INDEX, "c");
-  if (ret == NULL)
-    ret = g_strdup (fontname);
-
-  return ret;
-}
-
-static char*
-make_xfont_have_size_from_other_font (const char *fontname,
-                                      const char *other_font)
-{
-  char *size_pixels;
-  char *size_points;
-  char *ret;
-
-  ret = NULL;
-  size_pixels = xlfd_get_nth_field (other_font, XLFD_SIZE_IN_PIXELS_INDEX);
-  size_points = xlfd_get_nth_field (other_font, XLFD_SIZE_IN_POINTS_INDEX);
-
-  if (size_pixels && size_points)
-    {
-      ret = xlfd_replace_nth_field (fontname, XLFD_SIZE_IN_PIXELS_INDEX,
-                                    size_pixels);
-      if (ret)
-        {
-          char *tmp;
-
-          tmp = xlfd_replace_nth_field (ret, XLFD_SIZE_IN_POINTS_INDEX,
-                                        size_points);
-
-          if (tmp)
-            {
-              g_free (ret);
-              ret = tmp;
-            }
-        }
-    }
-
-  g_free (size_pixels);
-  g_free (size_points);
-
-  return ret;
-}
-
-static GdkFont*
-load_fonset_without_error (const gchar *fontset_name)
-{
-  XFontSet fontset;
-  int  missing_charset_count;
-  char **missing_charset_list;
-  char *def_string;
-  GdkFont *ret;
-  
-  fontset = XCreateFontSet (GDK_DISPLAY (), fontset_name,
-			    &missing_charset_list, &missing_charset_count,
-			    &def_string);
-
-  if (missing_charset_count)
-    {
-      /* The whole point of this function is not to print the below stuff,
-       * it's just here because I might change the function to optionally
-       * return these things in a GError
-       */
-      
-      int i;
-      GString *str;
-
-      str = g_string_new (NULL);
-      g_string_append_printf (str,
-                              "The font \"%s\" does not support all the required character sets for the current locale \"%s\"\n",
-                              fontset_name, setlocale (LC_ALL, NULL));
-      for (i=0;i<missing_charset_count;i++)
-	g_string_append_printf (str,
-                                "  (Missing character set \"%s\")\n",
-                                missing_charset_list[i]);
-      XFreeStringList (missing_charset_list);
-      
-      /* g_printerr ("%s", str->str); */
-
-      g_string_free (str, TRUE);
-    }
-
-  if (fontset == NULL)
-    return NULL;
-  
-  /* This should succeed, and be fast since we still have "fontset" open */     
-  ret = gdk_fontset_load (fontset_name);
-
-  XFreeFontSet (GDK_DISPLAY (), fontset);
-  
-  return ret;
 }

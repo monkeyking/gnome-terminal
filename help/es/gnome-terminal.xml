@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2001 - 2006 Pablo Gonzalo del Campo, 2000</year><holder>Francisco Javier F. Serrador (serrador@gnome.org)</holder></copyright>
+     </copyright><copyright><year>2007</year><holder>Jorge González (jorgegonz@svn.gnome.org)</holder></copyright><copyright><year>2001-2006</year><holder>Francisco Javier F. Serrador (serrador@gnome.org)</holder></copyright><copyright><year>2000</year><holder>Pablo Gonzalo del Campo</holder></copyright>
      <publisher> 
         <publishername>Proyecto de documentación de GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -321,7 +321,7 @@
           <varlistentry> 
              <term>Para añadir un terminal con solapas a una ventana:</term> 
              <listitem> 
-                <para>Elija <menuchoice><guimenu>Archivo</guimenu><guisubmenu>Abrir solapa</guisubmenu><guimenuitem>Predeterminado</guimenuitem></menuchoice>.</para>
+                <para>Elija <menuchoice><guimenu>Archivo</guimenu><guisubmenu>Abrir solapa</guisubmenu><guimenuitem>Predeterminada</guimenuitem></menuchoice> o simplemente <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Abrir solapa</guimenuitem></menuchoice> si no hay un submenú.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -602,10 +602,10 @@
             <para>Elija <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Establecer codificación de caracteres</guisubmenu><guimenuitem>Añadir o quitar</guimenuitem></menuchoice>.</para>
           </listitem>
           <listitem>
-            <para>Para añadir una codificación al menú <guisubmenu>Establecer la codificación de caracteres</guisubmenu>, seleccione la codificación en la lista <guilabel>Codificaciones disponibles</guilabel> y, después pulse en el botón <guibutton>Añadir</guibutton>.</para>
+            <para>Para añadir una codificación al menú <guisubmenu>Establecer la codificación de caracteres</guisubmenu>, seleccione la codificación en la lista <guilabel>Codificaciones disponibles</guilabel>, después pulse el botón flecha derecha.</para>
           </listitem>
           <listitem>
-            <para>Para quitar una codificación del menú <guisubmenu>Establecer codificación de caracteres</guisubmenu>, seleccione la codificación en la lista <guilabel>Codificaciones mostradas en el menú</guilabel>, después pulse el botón <guibutton>Quitar</guibutton>.</para>
+            <para>Para quitar una codificación del menú <guisubmenu>Establecer codificación de caracteres</guisubmenu>, seleccione la codificación en la lista <guilabel>Codificaciones mostradas en el menú</guilabel>, después pulse el botón flecha izquierda.</para>
           </listitem>
           <listitem>
             <para>Pulse <guibutton>Cerrar</guibutton> para cerrar el diálogo <guilabel>Añadir o quitar codificaciones de terminal</guilabel>.</para>
@@ -749,14 +749,14 @@
              <term> 
                 <guilabel>Ejecutar comando como un shell de login</guilabel> </term> 
              <listitem> 
-                <para>Seleccione esta opción para permitir que el comando que se está ejecutando dentro del terminal pueda ejecutarse como un shell de login. Si el comando no es shell, la configuración no surtirá efecto.</para>
+                <para>Seleccione esta opción para forzar al comando que actualmente se está ejecutando dentro del terminal pueda ejecutarse como un shell de login. Si el comando no es shell, la configuración no tendrá efecto.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Actualizar registros utmp/wtmp cuando se ejecuta un comando</guilabel> </term> 
+                <guilabel>Actualizar registros de inicio cuando se ejecuta un comando</guilabel> </term> 
              <listitem> 
-                <para>Seleccione esta opción para insertar una nueva entrada en los registros utmp y wtmp cuando se abre un nuevo shell.</para>
+                <para>Seleccione esta opción para insertar una nueva entrada en los registros de inicio cuando se abre un nuevo shell.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
