@@ -1,3 +1,405 @@
+commit 5d8544063ef3c37c9580f4fa2144e7549e699d77
+Author: Carles Ferrando <carles.ferrando@gmail.com>
+Date:   Fri May 9 00:23:47 2014 +0200
+
+    [l10n] Updated Catalan (Valencian) translation
+
+ po/ca@valencia.po | 2694 ++++++++++++-----------------------------------------
+ 1 file changed, 571 insertions(+), 2123 deletions(-)
+
+commit ef1c6252650cbfa17731795949a693b98b726c41
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Tue May 6 11:30:28 2014 +0200
+
+    window: Fix parent class in template definition
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=729597
+
+ src/terminal-window.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f89df52be0e9ec38e00edf6c2394ca1bb3f08778
+Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date:   Sun May 4 20:43:13 2014 +0200
+
+    Updated Belarusian translation.
+    
+    (cherry picked from commit 72fda661d5d09fe4b2d7f5e5596e904394443955)
+
+ po/be.po | 142 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 80 insertions(+), 62 deletions(-)
+
+commit abdebd3fd459038a98e2f5a4aad0d296e391363b
+Author: Gustau Perez <gustau.perez@gmail.com>
+Date:   Tue Apr 8 09:42:34 2014 +0000
+
+    Fix su/sudo detection.
+    
+    Commit 1244dbb6f0381ced states that gnome-terminal doesn't work under sudo. To
+    detect this that checks whether the uid or gid have changed or that the
+    e[uid|gid] are 0.
+    
+    If the user already belongs to the group wheel or was root without doing any su or sudo
+    gnome-terminal will exit.
+    
+    What we need to check is whether e[uid|gid] have changed (because the user was
+    root already or because the user belongs to the wheel/root group) and
+    check if the e[uid|gid] are 0. In that case the gnome-terminal is run under
+    su/sudo and gnome-terminal should bail out.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=727799
+    (cherry picked from commit 612345d2e47585f691006fa488125b2dc687117a)
+
+ src/server.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit f24116e323f3b272f6ad9257880a42f709a1fa03
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Apr 26 17:59:27 2014 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7a2b5b7b9cad64630f494bfde8f7e9a02b64b4e5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Apr 26 17:54:48 2014 +0200
+
+    Version 3.12.1
+
+ NEWS         | 7 +++++++
+ configure.ac | 2 +-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+commit c28390e4b84bd80b5ad27b44533d51b66128686a
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Fri Apr 25 17:17:13 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 652 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 335 insertions(+), 317 deletions(-)
+
+commit a1e227cb327a403201852d5409b74e78d491b43e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Apr 25 10:00:14 2014 +0200
+
+    accels: Sync app and menu accelerators
+    
+    When porting to using gtkapplication accelerators, there was a regression
+    in that the in-menu accelerators were not changed/disabled accordingly, which
+    meant that they were still being activated even when the global accelerator
+    was disabled.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=728121
+    (cherry picked from commit 6e0bcf62bdb8b1c5e3f1fe2b7d339b674138f8c6)
+
+ src/terminal-accels.c | 51 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ src/terminal-app.c    |  7 +++++++
+ 2 files changed, 56 insertions(+), 2 deletions(-)
+
+commit 420bcbb9ce69e7bc9695f45c92c4f107abb03fa0
+Author: Dirgita <dirgitadevina@gmail.com>
+Date:   Wed Apr 23 09:31:07 2014 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+commit adcca6a07a4ad6e53d45044a5f0ce489a8fc2a87
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Wed Apr 23 09:50:31 2014 +0200
+
+    Revert "widget: Add Solarized text/background colors"
+    
+    This reverts commit 8bd35254ff2145e82ea42ab5664b7f71874c7119.
+    
+    Reason: Breaks string freeze.
+
+ src/profile-editor.c | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+commit 79c25b1d0e01b71d5940bc5401c5e0b66f4317f9
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Tue Apr 22 14:45:44 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 36 +++++++++++++++++++-----------------
+ 1 file changed, 19 insertions(+), 17 deletions(-)
+
+commit 879eeb3c21e2889ac8fa1e68f5fe4067b1a92263
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Apr 22 11:35:17 2014 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 28 +++++++++++++++++++---------
+ 1 file changed, 19 insertions(+), 9 deletions(-)
+
+commit fed6dd5e81ee2463f68a7d656c218715c3464a56
+Author: Dimitris Spingos <dmtrs32@gmail.com>
+Date:   Mon Apr 21 19:49:18 2014 +0300
+
+    Updated Greek translation of help
+
+ help/el/el.po | 780 +++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 471 insertions(+), 309 deletions(-)
+
+commit 9bdeff2574779bc3dab74e443f97a8eeb4b885cf
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   Sun Apr 20 17:50:26 2014 +0000
+
+    Updated Greek translation
+
+ po/el.po | 67 ++++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 40 insertions(+), 27 deletions(-)
+
+commit 8bd35254ff2145e82ea42ab5664b7f71874c7119
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Sat Apr 19 21:45:14 2014 +0200
+
+    widget: Add Solarized text/background colors
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=655030
+
+ src/profile-editor.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit 6ae32d8df9c57181246349a4c8f5dfa3e70db112
+Author: Wolfgang Stöggl <c72578@yahoo.de>
+Date:   Sat Apr 19 07:22:36 2014 +0000
+
+    Updated German translation
+
+ po/de.po | 30 +++++++-----------------------
+ 1 file changed, 7 insertions(+), 23 deletions(-)
+
+commit 9b87e0d2a261d7f67e3ccfacb02215e11e323edc
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Fri Apr 18 18:29:47 2014 +0000
+
+    Updated German translation
+
+ help/de/de.po | 118 +++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 64 insertions(+), 54 deletions(-)
+
+commit 52e6cfce93ed364be1403b49bb04e929121c567c
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Apr 15 14:24:58 2014 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po | 208 +++++++++++++++++++++++++---------------------------------
+ 1 file changed, 88 insertions(+), 120 deletions(-)
+
+commit 2c26ecf4ece02fefdd1e771717ed91685fdb3cd4
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Mon Apr 14 15:27:36 2014 +0200
+
+    window: Workaround mismatch in GAction and GtkAction accelerators
+    
+    ... by removing the ones in GtkActionEntry's. As a consequence of this
+    the accelerators will not show up in the menu, but on the positive side
+    changing a shortcut will actually make the old one go away.
+    
+    This should all be nice and dandy when use GMenu in the future.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=728121
+
+ src/terminal-window.c | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+commit f6d512165e088312f8bd4b37919424abe9180bff
+Author: Ikuya Awashiro <ikuya@fruitsbasket.info>
+Date:   Mon Apr 14 22:38:25 2014 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 91 ++++++++++++++++++++--------------------------------------------
+ 1 file changed, 28 insertions(+), 63 deletions(-)
+
+commit 283aef676f0377a38809532354463282de90dae1
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Sat Apr 12 10:19:00 2014 +0100
+
+    Stub terminal title help, see bug 720693
+
+ help/C/{pref-title.page => pref-title.page.stub} | 0
+ help/Makefile.am                                 | 1 -
+ 2 files changed, 1 deletion(-)
+
+commit 9b94eb654753eb6aac7d1f9468fcd966b32d6349
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Wed Apr 9 12:30:16 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 60 ++++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 38 insertions(+), 22 deletions(-)
+
+commit 8543e05341b8d8fa0e8a725a81e4009800705d79
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Wed Apr 9 08:28:03 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit dbcde841970d5318e501b47bc65f6a035cf6f62d
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Wed Apr 9 00:37:05 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+commit 6beb899a3850433a7afc1eaca9f5fc6d1af8727d
+Author: Peter Mráz <etkinator@gmail.com>
+Date:   Sat Apr 5 23:41:08 2014 +0200
+
+    Updated slovak translation
+
+ po/sk.po | 753 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 419 insertions(+), 334 deletions(-)
+
+commit cb1b228939bd3c887da88a71a3c48295286f73ff
+Author: Balázs Úr <urbalazs@src.gnome.org>
+Date:   Tue Apr 1 16:12:12 2014 +0200
+
+    Added localized picture
+
+ help/hu/figures/gnome-terminal.png | Bin 0 -> 13714 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 69f8a43b8fb7238b566d42fa12e4515ae228c823
+Author: Balázs Úr <urbalazs@src.gnome.org>
+Date:   Tue Apr 1 16:11:34 2014 +0200
+
+    Updated Hungarian translation
+
+ help/hu/hu.po | 136 +++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 67 insertions(+), 69 deletions(-)
+
+commit 8275ff8443a0dbca2c4755cf75d6098e09b37119
+Author: Pau Iranzo <paugnu@gmail.com>
+Date:   Tue Apr 1 00:11:05 2014 +0200
+
+    [l10n] Update Catalan translation
+
+ po/ca.po | 2716 +++++++++++++-------------------------------------------------
+ 1 file changed, 573 insertions(+), 2143 deletions(-)
+
+commit d558058bdf84735b5f0c05e75f93fd5a90125840
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Mon Mar 31 21:27:19 2014 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
+
+commit d3cc78231d48e32e56a7a2ddee44ca6fe22425c8
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Mon Mar 31 16:32:21 2014 +0000
+
+    Updated French translation
+
+ help/fr/fr.po | 86 ++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 46 insertions(+), 40 deletions(-)
+
+commit 35a76181dd0255a696fb4e2b22c62f14a1e5c8f4
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Wed Mar 26 20:12:27 2014 +0700
+
+    Updated Thai translation
+
+ po/th.po | 66 +++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 36 insertions(+), 30 deletions(-)
+
+commit 604e265765c2eb9f7791f0acb0bc04d3c3bc1bc4
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Mar 25 11:11:49 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 68 +++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 34 insertions(+), 34 deletions(-)
+
+commit bc21b016315503c537e2ff0b355b2a4845c2afe6
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Mar 25 10:57:38 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 80 +++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 39 insertions(+), 41 deletions(-)
+
+commit d4bf723b22dde9802a71793f43765694e8aa62b6
+Author: Claudio Arseni <claudio.arseni@ubuntu.com>
+Date:   Mon Mar 24 21:45:19 2014 +0100
+
+    [l10n] Updated Italian translation.
+
+ po/it.po | 716 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 399 insertions(+), 317 deletions(-)
+
+commit eb4a8e3d0b8c061b74494135c8e219fa9f084b6f
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Mon Mar 24 20:17:09 2014 +0000
+
+    PATH variables is out of scope in help, bug 698739
+
+ help/C/gs-execute-commands.page | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit 0845448fe52288898405a864361ad25fc2ef09bb
+Author: Sindhu S <sindhus@live.in>
+Date:   Fri Aug 30 02:18:04 2013 +0530
+
+    help: delete PATH help page stub, bug 698739
+    
+    Deleted prob-add-to-path.page.stub as discussed on bug page
+    is not required as instructions on how to add a location to
+    PATH is outside the scope of Terminal user help.
+
+ help/C/prob-add-to-path.page.stub | 71 ---------------------------------------
+ 1 file changed, 71 deletions(-)
+
+commit 57dd051cd54646e64cd0089c4eb6d301ecd937a3
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Mon Mar 24 18:42:46 2014 +0000
+
+    Use en dash in user docs date range, bug 726939
+
+ help/C/gs-tabs.page | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c79f71feaf525f5e7236934a94268f836e1af862
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:16:22 2014 +0100
+
+    appmenu: Fix action parameter
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=726942
+    (cherry picked from commit d58bc01a2e891e31e11f03eb0d6ae9b5ff260b2b)
+
+ src/terminal-appmenu.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7669c6766bb5be7e7f027af78265cc1a0446fba3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:15:12 2014 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit fde13860e3ebbeb25571eca9988693fff516f4c6
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon Mar 24 15:11:50 2014 +0100
