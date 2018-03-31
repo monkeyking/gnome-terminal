@@ -1,29 +1,28 @@
 /*
  * Copyright © 2001 Havoc Pennington
- * Copyright © 2008 Christian Persch
+ * Copyright © 2008, 2010 Christian Persch
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef TERMINAL_SCREEN_H
 #define TERMINAL_SCREEN_H
 
-#include <vte/vte.h>
+#include <glib-object.h>
+#include <gio/gio.h>
 
-#include "terminal-profile.h"
+#include <vte/vte.h>
 
 G_BEGIN_DECLS
 
@@ -61,7 +60,7 @@ struct _TerminalScreenClass
   VteTerminalClass parent_class;
 
   void (* profile_set)        (TerminalScreen *screen,
-                               TerminalProfile *old_profile);
+                               GSettings *old_profile);
   void (* show_popup_menu)    (TerminalScreen *screen,
                                TerminalScreenPopupInfo *info);
   gboolean (* match_clicked)  (TerminalScreen *screen,
@@ -73,41 +72,46 @@ struct _TerminalScreenClass
 
 GType terminal_screen_get_type (void) G_GNUC_CONST;
 
-TerminalScreen *terminal_screen_new (TerminalProfile *profile,
+const char *terminal_screen_get_uuid (TerminalScreen *screen);
+
+TerminalScreen *terminal_screen_new (GSettings       *profile,
                                      char           **override_command,
                                      const char      *title,
                                      const char      *working_dir,
                                      char           **child_env,
                                      double           zoom);
 
-void terminal_screen_set_profile (TerminalScreen *screen,
-                                  TerminalProfile *profile);
-TerminalProfile* terminal_screen_get_profile (TerminalScreen *screen);
+gboolean terminal_screen_exec (TerminalScreen *screen,
+                               char          **argv,
+                               char          **envv,
+                               gboolean        shell,
+                               const char     *cwd,
+                               GUnixFDList    *fd_list,
+                               GVariant       *fd_array,
+                               GError        **error);
 
-void         terminal_screen_set_override_command (TerminalScreen  *screen,
-                                                   char           **argv);
-const char** terminal_screen_get_override_command (TerminalScreen  *screen);
+void _terminal_screen_launch_child_on_idle (TerminalScreen *screen);
+
+void terminal_screen_set_profile (TerminalScreen *screen,
+                                  GSettings      *profile);
+GSettings* terminal_screen_get_profile (TerminalScreen *screen);
+GSettings* terminal_screen_ref_profile (TerminalScreen *screen);
 
 void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
                                                       char           **argv);
 char **      terminal_screen_get_initial_environment (TerminalScreen  *screen);
 
-const char* terminal_screen_get_raw_title      (TerminalScreen *screen);
+const char *terminal_screen_get_user_title     (TerminalScreen *screen);
 const char* terminal_screen_get_title          (TerminalScreen *screen);
 const char* terminal_screen_get_icon_title     (TerminalScreen *screen);
 gboolean    terminal_screen_get_icon_title_set (TerminalScreen *screen);
+char *      terminal_screen_get_description    (TerminalScreen *screen);
 
 void terminal_screen_set_user_title (TerminalScreen *screen,
                                      const char *text);
 
-void        terminal_screen_set_override_title     (TerminalScreen *screen,
-                                                    const char     *title);
-
-const char *terminal_screen_get_dynamic_title      (TerminalScreen *screen);
-const char *terminal_screen_get_dynamic_icon_title (TerminalScreen *screen);
 
 char *terminal_screen_get_current_dir (TerminalScreen *screen);
-char *terminal_screen_get_current_dir_with_fallback (TerminalScreen *screen);
 
 void        terminal_screen_set_font (TerminalScreen *screen);
 void        terminal_screen_set_font_scale    (TerminalScreen *screen,
@@ -127,7 +131,11 @@ void terminal_screen_save_config (TerminalScreen *screen,
                                   GKeyFile *key_file,
                                   const char *group);
 
-gboolean terminal_screen_has_foreground_process (TerminalScreen *screen);
+void terminal_screen_update_style (TerminalScreen *screen);
+
+gboolean terminal_screen_has_foreground_process (TerminalScreen *screen,
+                                                 char           **process_name,
+                                                 char           **cmdline);
 
 /* Allow scales a bit smaller and a bit larger than the usual pango ranges */
 #define TERMINAL_SCALE_XXX_SMALL   (PANGO_SCALE_XX_SMALL/1.2)
@@ -141,7 +149,7 @@ gboolean terminal_screen_has_foreground_process (TerminalScreen *screen);
 
 struct _TerminalScreenPopupInfo {
   int ref_count;
-  TerminalWindow *window;
+  GWeakRef window_weak_ref;
   TerminalScreen *screen;
   char *string;
   TerminalURLFlavour flavour;
@@ -153,6 +161,8 @@ struct _TerminalScreenPopupInfo {
 TerminalScreenPopupInfo *terminal_screen_popup_info_ref (TerminalScreenPopupInfo *info);
 
 void terminal_screen_popup_info_unref (TerminalScreenPopupInfo *info);
+
+TerminalWindow *terminal_screen_popup_info_ref_window (TerminalScreenPopupInfo *info);
 
 G_END_DECLS
 

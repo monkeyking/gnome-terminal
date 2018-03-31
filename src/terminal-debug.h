@@ -1,19 +1,18 @@
 /*
  * Copyright (C) 2002 Red Hat, Inc.
  *
- * This is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Library General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /* The interfaces in this file are subject to change at any time. */
@@ -26,13 +25,16 @@
 G_BEGIN_DECLS
 
 typedef enum {
-  TERMINAL_DEBUG_ACCELS     = 1 << 0,
-  TERMINAL_DEBUG_ENCODINGS  = 1 << 1,
-  TERMINAL_DEBUG_FACTORY    = 1 << 2,
-  TERMINAL_DEBUG_GEOMETRY   = 1 << 3,
-  TERMINAL_DEBUG_MDI        = 1 << 4,
-  TERMINAL_DEBUG_PROCESSES  = 1 << 5,
-  TERMINAL_DEBUG_PROFILE    = 1 << 6
+  TERMINAL_DEBUG_ACCELS        = 1 << 0,
+  TERMINAL_DEBUG_ENCODINGS     = 1 << 1,
+  TERMINAL_DEBUG_SERVER        = 1 << 2,
+  TERMINAL_DEBUG_GEOMETRY      = 1 << 3,
+  TERMINAL_DEBUG_MDI           = 1 << 4,
+  TERMINAL_DEBUG_PROCESSES     = 1 << 5,
+  TERMINAL_DEBUG_PROFILE       = 1 << 6,
+  TERMINAL_DEBUG_SETTINGS_LIST = 1 << 7,
+  TERMINAL_DEBUG_APPMENU       = 1 << 8,
+  TERMINAL_DEBUG_SEARCH        = 1 << 9
 } TerminalDebugFlags;
 
 void _terminal_debug_init(void);

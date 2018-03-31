@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-16 18:03+0000\n"
-"PO-Revision-Date: 2010-09-22 14:25+0600\n"
-"Last-Translator: Sahran <sahran.ug@gmail.com>\n"
+"POT-Creation-Date: 2013-03-03 20:22+0000\n"
+"PO-Revision-Date: 2013-03-07 20:34+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Uighur\n"
 
-#: ../gnome-terminal.desktop.in.in.h:1 ../src/gnome-terminal.schemas.in.h:35
-#: ../src/terminal-accels.c:249 ../src/terminal.c:555
-#: ../src/terminal-profile.c:162 ../src/terminal-window.c:2010
+#: ../gnome-terminal.desktop.in.in.h:1 ../src/server.c:102
+#: ../src/terminal-accels.c:246 ../src/terminal.c:250
+#: ../src/terminal-window.c:1831
 msgid "Terminal"
 msgstr "تېرمىنال"
 
@@ -27,214 +27,257 @@ msgstr "تېرمىنال"
 msgid "Use the command line"
 msgstr "بۇيرۇق قۇرىنى ئىشلەت"
 
-#: ../src/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "ئەڭگىمە باشقۇرغۇچقا باغلىنىشنى چەكلە"
+#: ../gnome-terminal.desktop.in.in.h:3
+msgid "shell;prompt;command;commandline;"
+msgstr "shell;prompt;command;commandline;shell;كۆرسەتمە;بۇيرۇق;بۇيرۇق قۇرى;"
 
-#: ../src/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "سەپلىمە ساقلانغان ھۆججەتنى بەلگىلە"
+#: ../src/client.c:88
+msgid "COMMAND"
+msgstr "بۇيرۇق"
 
-#: ../src/eggsmclient.c:229 ../src/terminal-options.c:957
-#: ../src/terminal-options.c:966
-msgid "FILE"
-msgstr "FILE"
+#: ../src/client.c:93
+#, c-format
+msgid ""
+"Commands:\n"
+"  help    Shows this information\n"
+"  run     Create a new terminal running the specified command\n"
+"  shell   Create a new terminal running the user shell\n"
+"\n"
+"Use \"%s COMMAND --help\" to get help on each command.\n"
+msgstr "بۇيرۇقلار:\n"
+"  help    مەزكۇر ئۇچۇرنى كۆرسىتىدۇ\n"
+"  run     كۆرسىتىلگەن بۇيرۇقنى يېڭى تېرمىنال كۆزنىكىدە ئىجرا قىلىدۇ\n"
+"  shell   ئىشلەتكۈچى shell نى يېڭى تېرمىنال كۆزنىكىدە ئىجرا قىلىدۇ\n"
+"\n"
+"بۇنداق \"%s COMMAND --help\" كىرگۈزسىڭىز ھەر بىر بۇيرۇقنىڭ ياردەم ئۇچۇرىغا ئېرىشەلەيسىز.\n"
 
-#: ../src/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "ئەڭگىمە باشقۇرغۇ ID سېنى بەلگىلە"
+#: ../src/client.c:200 ../src/terminal-options.c:681
+#, c-format
+msgid "\"%s\" is not a valid zoom factor"
+msgstr "«%s» ئىناۋەتلىك كېڭەيت تارايت factor ئەمەس"
 
-#: ../src/eggsmclient.c:232
-msgid "ID"
-msgstr "ID"
+#: ../src/client.c:331
+msgid "Be quiet"
+msgstr "خەپشۈك"
 
-#: ../src/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى:"
+#: ../src/client.c:342 ../src/terminal-options.c:1095
+msgid "Maximize the window"
+msgstr "كۆزنەكنى ئەڭ چوڭ قىلىش"
 
-#: ../src/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى كۆرسەت"
+#: ../src/client.c:344 ../src/terminal-options.c:1104
+msgid "Full-screen the window"
+msgstr "كۆزنەكنى پۈتۈن ئېكرانغا تولدۇر"
 
-#: ../src/encodings-dialog.glade.h:1
-msgid "Add or Remove Terminal Encodings"
-msgstr "تېرمىنال كودلاش قوش ياكى چىقىرىۋەت"
+#: ../src/client.c:346 ../src/terminal-options.c:1113
+msgid ""
+"Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y)"
+msgstr "كۆزنەك چوڭلۇقىنى بەلگىلەش؛ مەسىلەن:80x24، ياكى 80x24+200+200 (COLSxROWS+X+Y)"
 
-#: ../src/encodings-dialog.glade.h:2
-msgid "A_vailable encodings:"
-msgstr "ئىشلىتىلىشچان كودلاش(_V):"
+#: ../src/client.c:347 ../src/terminal-options.c:1114
+msgid "GEOMETRY"
+msgstr "GEOMETRY"
 
-#: ../src/encodings-dialog.glade.h:3
-msgid "E_ncodings shown in menu:"
-msgstr "تىزىملىكتە كودلاشنى كۆرسەت(_N):"
+#: ../src/client.c:349 ../src/terminal-options.c:1122
+msgid "Set the window role"
+msgstr "كۆزنەك رولى تەڭشىكى"
 
-#: ../src/find-dialog.glade.h:1
+#: ../src/client.c:349 ../src/terminal-options.c:1123
+msgid "ROLE"
+msgstr "رول"
+
+#: ../src/client.c:355 ../src/terminal-options.c:1153
+msgid "Use the given profile instead of the default profile"
+msgstr "كۆڭۈلدىكى سەپلىمە ھۆججەتنى ئەمەس، تەمىنلەنگەن سەپلىمە ھۆججەتنى ئىشلەت"
+
+#: ../src/client.c:356
+msgid "UUID"
+msgstr "UUID"
+
+#: ../src/client.c:358 ../src/terminal-options.c:1162
+msgid "Set the terminal title"
+msgstr "تېرمىنال ماۋزۇسىنى بەلگىلەيدۇ"
+
+#: ../src/client.c:358 ../src/terminal-options.c:1163
+msgid "TITLE"
+msgstr "تېما"
+
+#: ../src/client.c:360 ../src/terminal-options.c:1171
+msgid "Set the working directory"
+msgstr "خىزمەت مۇندەرىجە تەڭشىكى"
+
+#: ../src/client.c:360 ../src/terminal-options.c:1172
+msgid "DIRNAME"
+msgstr "مۇندەرىجە ئاتى"
+
+#: ../src/client.c:362 ../src/terminal-options.c:1180
+msgid "Set the terminal's zoom factor (1.0 = normal size)"
+msgstr "تېرمىنال چوڭايت كىچىكلەت factor تەڭشىكى (1.0=ئەسلى چوڭلۇقى)"
+
+#: ../src/client.c:363 ../src/terminal-options.c:1181
+msgid "ZOOM"
+msgstr "كېڭەيت تارايت"
+
+#: ../src/client.c:369
+msgid "Forward stdin"
+msgstr "ئۆلچەملىك كىرگۈزگۈچكە يوللاش"
+
+#: ../src/client.c:371
+msgid "Forward stdout"
+msgstr "ئۆلچەملىك چىقىرىشقا يوللاش"
+
+#: ../src/client.c:373
+msgid "Forward stderr"
+msgstr "ئۆلچەملىك خاتالىققا يوللاش"
+
+#: ../src/client.c:375
+msgid "Forward file descriptor"
+msgstr "ھۆججەت چۈشەندۈرگۈچكە يوللاش"
+
+#: ../src/client.c:375
+msgid "FD"
+msgstr "FD"
+
+#: ../src/client.c:381
+msgid "Wait until the child exits"
+msgstr "بالا ئاخىرلاشقۇچە كۈتسۇن"
+
+#: ../src/client.c:391
+msgid "GNOME Terminal Client"
+msgstr "گىنوم تېرمىنال خېرىدارى"
+
+#: ../src/client.c:395
+msgid "Global options:"
+msgstr "ئومۇمىي تاللانمىلار:"
+
+#: ../src/client.c:396
+msgid "Show global options"
+msgstr "ئومۇمىي تاللانمىلارنى كۆرسىتىدۇ"
+
+#: ../src/client.c:404
+msgid "Server options:"
+msgstr "مۇلازىمەت تاللانمىلىرى:"
+
+#: ../src/client.c:405
+msgid "Show server options"
+msgstr "مۇلازىمەت تاللانمىلىرىنى كۆرسىتىدۇ"
+
+#: ../src/client.c:413
+msgid "Window options:"
+msgstr "كۆزنەك تاللانمىلىرى:"
+
+#: ../src/client.c:414
+msgid "Show window options"
+msgstr "كۆزنەك تاللانمىلىرى كۆرسىتىدۇ"
+
+#: ../src/client.c:422
+msgid "Terminal options:"
+msgstr "تېرمىنال تاللانمىلىرى:"
+
+#: ../src/client.c:423 ../src/terminal-options.c:1460
+msgid "Show terminal options"
+msgstr "تېرمىنال تاللانمىلىرى كۆرسىتىدۇ"
+
+#: ../src/client.c:431
+msgid "Exec options:"
+msgstr "ئىجرا قىلىش تاللانمىلىرى:"
+
+#: ../src/client.c:432
+msgid "Show exec options"
+msgstr "ئىجرا قىلىش تاللانمىلىرىنى كۆرسىتىدۇ"
+
+#: ../src/client.c:440
+msgid "Processing options:"
+msgstr "بىر تەرەپ قىلىش تاللانمىلىرى:"
+
+#: ../src/client.c:441
+msgid "Show processing options"
+msgstr "بىر تەرەپ قىلىش تاللانمىلىرىنى كۆرسىتىدۇ"
+
+#: ../src/find-dialog.ui.h:1
 msgid "Find"
 msgstr "ئىزدە"
 
-#: ../src/find-dialog.glade.h:2
+#: ../src/find-dialog.ui.h:2
 msgid "_Search for:"
 msgstr "ئىزدە(_S):"
 
-#: ../src/find-dialog.glade.h:3
+#: ../src/find-dialog.ui.h:3
 msgid "_Match case"
 msgstr "چوڭ كىچىك ھەرپنى پەرقلەندۈر(_M)"
 
-#: ../src/find-dialog.glade.h:4
+#: ../src/find-dialog.ui.h:4
 msgid "Match _entire word only"
 msgstr "پۈتۈن سۆزگە ماسلاش(_E)"
 
-#: ../src/find-dialog.glade.h:5
+#: ../src/find-dialog.ui.h:5
 msgid "Match as _regular expression"
 msgstr "مۇنتىزىم ئىپادىگە ماسلاش(&R)(_R)"
 
-#: ../src/find-dialog.glade.h:6
+#: ../src/find-dialog.ui.h:6
 msgid "Search _backwards"
-msgstr "ئارقىغا ئىزدە(_B)"
+msgstr "ئارقىغا قاراپ ئىزدىسۇن(_B)"
 
-#: ../src/find-dialog.glade.h:7
+#: ../src/find-dialog.ui.h:7
 msgid "_Wrap around"
 msgstr "ئايلاندۇرۇپ قەۋەتلە(_W)"
 
-#: ../src/gnome-terminal.schemas.in.h:1
-msgid "List of profiles"
-msgstr "سەپلىمە ھۆججەت تىزىملىكى"
+#: ../src/migration.c:359 ../src/terminal-prefs.c:100
+msgid "Unnamed"
+msgstr "ئاتسىز"
 
-#: ../src/gnome-terminal.schemas.in.h:2
-msgid ""
-"List of profiles known to gnome-terminal. The list contains strings naming "
-"subdirectories relative to /apps/gnome-terminal/profiles."
-msgstr "gnome-terminal غا مەلۇملۇق سەپلىمە ھۆججەت تىزىملىكى. تىزىملىك ئۆز ئىچىگە ئالغان تارماق مۇندەرىجە /apps/gnome-terminal/profiles غا نىسبەتەن ئاتالغان"
-
-#: ../src/gnome-terminal.schemas.in.h:3
-msgid "Profile to use for new terminals"
-msgstr "يېڭى تېرمىنال ئىشلىتىدىغان سەپلىمە ھۆججەت"
-
-#: ../src/gnome-terminal.schemas.in.h:4
-msgid ""
-"Profile to be used when opening a new window or tab. Must be in profile_list."
-msgstr "يېڭى كۆزنەك ياكى بەتكۈچ ئاچقاندا ئىشلىتىدىغان سەپلىمە ھۆججەت. چوقۇم سەپلىمە ھۆججەت تىزىملىكىدە بولۇشى لازىم."
-
-#: ../src/gnome-terminal.schemas.in.h:5
-msgid "Whether the menubar has access keys"
-msgstr "تىزىملىك بالداقنىڭ زىيارەت كۇنۇپكىسى بارمۇ يوق"
-
-#: ../src/gnome-terminal.schemas.in.h:6
-msgid ""
-"Whether to have Alt+letter access keys for the menubar. They may interfere "
-"with some applications run inside the terminal so it's possible to turn them "
-"off."
-msgstr "تىزىملىك بالداق Alt+ھەرپ تېزلەتمە ئىشلىتەمدۇ يوق. تېرمىنالدا ئىجرا قىلىنىدىغان نۇرغۇن پروگراممىلارنىڭ ھەممىسىنىڭ تېز كۇنۇپكىلىرى توقۇنۇشۇپ قېلىشى مۇمكىن، شۇڭلاشقا بۇ ئالاھىدىلىك تاقىۋېتىلسە بولىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:7
-msgid "Whether the standard GTK shortcut for menubar access is enabled"
-msgstr "GTK ئۆلچەملىك تېز كۇنۇپكىنى قوزغىتىپ تىزىملىك بالداقنى زىيارەت قىلامدۇ يوق"
-
-#: ../src/gnome-terminal.schemas.in.h:8
-msgid ""
-"Normally you can access the menubar with F10. This can also be customized "
-"via gtkrc (gtk-menu-bar-accel = \"whatever\"). This option allows the "
-"standard menubar accelerator to be disabled."
-msgstr "ئادەتتە F10 نى ئىشلىتىپ تىزىملىك بالداقنى زىيارەت قىلالايسىز. بۇنى gtkrc ئارقىلىق (gtk-menu-bar-accel = \"whatever\") ئىختىيارى تەڭشىيەلەيسىز. بۇ تاللانما ئۆلچەملىك تىزىملىك بالداقنىڭ تېزلىتىش كۇنۇپكىسىنى چەكلەشكە يول قويىدۇ."
-
-#. Translators: Please note that this has to be a list of
-#. valid encodings (which are to be taken from the list in src/encoding.c).
-#. It has to include UTF-8 and the word 'current', which is not to be
-#. translated. This is provided for customization of the default encoding
-#. menu; see bug 144810 for an use case. In most cases, this should be
-#. left alone.
-#: ../src/gnome-terminal.schemas.in.h:15
-msgid "[UTF-8,current]"
-msgstr "[UTF-8،نۆۋەتتىكى]"
-
-#: ../src/gnome-terminal.schemas.in.h:16
-msgid "List of available encodings"
-msgstr "ئىشلەتكىلى بولىدىغان كودلاش تىزىملىكى"
-
-#: ../src/gnome-terminal.schemas.in.h:17
-msgid ""
-"A subset of possible encodings are presented in the Encoding submenu. This "
-"is a list of encodings to appear there. The special encoding name \"current"
-"\" means to display the encoding of the current locale."
-msgstr "كودلاش تارماق تىزىملىكىدە كۆرۈنىدىغان تاللاشچان كودلاش تارماق توپلىمى. بۇ يەردىكىسى مۇشۇ يەردە كۆرۈنىدىغان كودلاش تىزىملىكى. ئالاھىدە كودلاش ئاتى «نۆۋەتتىكى» ھازىر كۆرسىتىۋاتقان تىلنىڭ كودلىنىشىنى كۆرسىتىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:18
-msgid "Whether to ask for confirmation when closing terminal windows"
-msgstr "تېرمىنال كۆزنەكنى ياپقاندا جەزملەشنى سورامدۇ يوق"
-
-#: ../src/gnome-terminal.schemas.in.h:19
-msgid ""
-"Whether to ask for confirmation when closing a terminal window which has "
-"more than one open tab."
-msgstr "كۆپ بەتكۈچ ئاچقاندا تېرمىنال كۆزنەكنى ياپقاندا جەزملەشنى سورامدۇ يوق."
-
-#: ../src/gnome-terminal.schemas.in.h:20
-msgid "Default"
-msgstr "كۆڭۈلدىكى"
-
-#: ../src/gnome-terminal.schemas.in.h:21
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:1
 msgid "Human-readable name of the profile"
 msgstr "سەپلىمە ھۆججەتنىڭ ئوقۇشچان ئاتى"
 
-#: ../src/gnome-terminal.schemas.in.h:22
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:2
 msgid "Human-readable name of the profile."
 msgstr "سەپلىمە ھۆججەتنىڭ ئوقۇشچان ئاتى."
 
-#: ../src/gnome-terminal.schemas.in.h:23
-msgid "Whether to show menubar in new windows/tabs"
-msgstr "يېڭى كۆزنەك/بەتكۈچتە تىزىملىك بالداق كۆرسىتەمدۇ يوق"
-
-#: ../src/gnome-terminal.schemas.in.h:24
-msgid ""
-"True if the menubar should be shown in new windows, for windows/tabs with "
-"this profile."
-msgstr "True (راست) بولسا بۇ سەپلىمە ھۆججەتنى ئىشلەتكەن يېڭى كۆزنەكتە تىزىملىك بالداق كۆرۈنىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:25
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:3
 msgid "Default color of text in the terminal"
 msgstr "تېرمىنالدىكى خەتنىڭ كۆڭۈلدىكى رەڭگى"
 
-#: ../src/gnome-terminal.schemas.in.h:26
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:4
 msgid ""
 "Default color of text in the terminal, as a color specification (can be HTML-"
 "style hex digits, or a color name such as \"red\")."
 msgstr "تېرمىنالدىكى خەتنىڭ كۆڭۈلدىكى رەڭگى، رەڭ تۈسى (HTML ئۇسلۇبىدىكى 16 سىستېمىدىكى سان، ياكى رەڭ ئاتى، مەسىلەن \"red\")."
 
-#: ../src/gnome-terminal.schemas.in.h:27
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:5
 msgid "Default color of terminal background"
 msgstr "تېرمىنال تەگلىكىنىڭ كۆڭۈلدىكى رەڭگى"
 
-#: ../src/gnome-terminal.schemas.in.h:28
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:6
 msgid ""
 "Default color of terminal background, as a color specification (can be HTML-"
 "style hex digits, or a color name such as \"red\")."
 msgstr "تېرمىنال تەگلىكىنىڭ كۆڭۈلدىكى رەڭگى، رەڭ تۈسى (HTML ئۇسلۇبىدىكى 16 سىستېمىدىكى سان، ياكى رەڭ ئاتى، مەسىلەن \"red\")."
 
-#: ../src/gnome-terminal.schemas.in.h:29
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:7
 msgid "Default color of bold text in the terminal"
 msgstr "تېرمىنالدىكى توم خەتنىڭ كۆڭۈلدىكى رەڭگى"
 
-#: ../src/gnome-terminal.schemas.in.h:30
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:8
 msgid ""
 "Default color of bold text in the terminal, as a color specification (can be "
 "HTML-style hex digits, or a color name such as \"red\"). This is ignored if "
 "bold_color_same_as_fg is true."
 msgstr "تېرمىنالدىكى توم خەتنىڭ كۆڭۈلدىكى رەڭگى، رەڭ تۈسى (HTML ئۇسلۇبىدىكى 16 سىستېمىدىكى سان، ياكى رەڭ ئاتى، مەسىلەن \"red\"). ئەگەر bold_color_same_as_fg نىڭ قىممىتى true بولسا بۇ تاللانمىغا پەرۋا قىلىنمايدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:31
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:9
 msgid "Whether bold text should use the same color as normal text"
 msgstr "توم تېكىستكە ئادەتتىكى تېكىستكە ئوخشاش رەڭ ئىشلىتەمدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:32
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:10
 msgid ""
 "If true, boldface text will be rendered using the same color as normal text."
 msgstr "ئەگەر راست (true) بولسا توم خەت ئادەتتىكى خەتتەك ئوخشاش رەڭدە كۆرۈنىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:33
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:11
 msgid "What to do with dynamic title"
 msgstr "ھەرىكەتچان ماۋزۇغا قانداق قىلىدۇ؟"
 
-#: ../src/gnome-terminal.schemas.in.h:34
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:12
 msgid ""
 "If the application in the terminal sets the title (most typically people "
 "have their shell set up to do this), the dynamically-set title can erase the "
@@ -242,1334 +285,977 @@ msgid ""
 "values are \"replace\", \"before\", \"after\", and \"ignore\"."
 msgstr "ئەگەر تېرمىنالدىكى پروگرامما ماۋزۇ (ئەڭ تىپىك بولغىنى ئىشلەتكۈچى ئۆزىنىڭ چاپان (shell) ئى بۇ مەشغۇلاتنى ئىجرا قىلىشى مۇمكىن) تەڭشىگەن بولسا ھەرىكەتچان تەڭشەلگەن ماۋزۇ سەپلەپ قويغان ماۋزۇنى ئۆچۈرۈشى مۇمكىن ياكى ئەسلى ماۋزۇنىڭ ئالدىغا ياكى ئارقىغا قىستۇرۇشى مۇمكىن. تاللىغىلى بولىدىغان قىممەتتىن «ئالماشتۇر»، «ئىلگىرى»، «كېيىن» ۋە «پەرۋا قىلما» بار."
 
-#: ../src/gnome-terminal.schemas.in.h:36
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:13
 msgid "Title for terminal"
 msgstr "تېرمىنال ماۋزۇسى"
 
-#: ../src/gnome-terminal.schemas.in.h:37
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:14
 msgid ""
 "Title to display for the terminal window or tab. This title may be replaced "
 "by or combined with the title set by the application inside the terminal, "
 "depending on the title_mode setting."
 msgstr "تېرمىنال كۆزنەك ياكى بەتكۈچتە كۆرسىتىدىغان ماۋزۇ. title_mode تەڭشىكىنى ئوخشىماسلىقىغا ئاساسەن، بۇ ماۋزۇنى تېرمىنالدىكى پروگرامما بەلگىلىگەن ماۋزۇ ياكى ئۇنىڭ بىرىكمىسىگە ئالماشتۇرغىلى بولىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:38
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:15
 msgid "Whether to allow bold text"
 msgstr "توم خەتكە يول قويامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:39
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:16
 msgid "If true, allow applications in the terminal to make text boldface."
 msgstr "ئەگەر راست (true) بولسا تېرمىنالدىكى پروگرامما تېكىستنى توم كۆرسىتىشكە يول قويىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:40
-msgid "Whether to silence terminal bell"
-msgstr "تېرمىنال ئاۋازىنى چەكلەمدۇ يوق"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:17
+msgid "Whether to ring the terminal bell"
+msgstr "تېرمىنال زىلىنى چالامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:41
-msgid ""
-"If true, don't make a noise when applications send the escape sequence for "
-"the terminal bell."
-msgstr "ئەگەر راست (true) بولسا پروگرامما تېرمىنال سىگنالىنىڭ كود ئايلاندۇرۇش قاتارى يوللىغاندا ئاۋاز چىقمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:42
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:18
 msgid "Characters that are considered \"part of a word\""
 msgstr "«سۆزنىڭ بىر قىسمى» دەپ قارىلىدىغان ھەرپلەر"
 
-#: ../src/gnome-terminal.schemas.in.h:43
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:19
 msgid ""
 "When selecting text by word, sequences of these characters are considered "
 "single words. Ranges can be given as \"A-Z\". Literal hyphen (not expressing "
 "a range) should be the first character given."
 msgstr "تېكىستنى سۆزمۇ-سۆز تاللىغاندا، بۇ ھەرپلەرنىڭ تەرتىپى بىر سۆز دەپ قارىلىدۇ. دائىرىسى \"A-Z\" دەپ بېرىلسە بولىدۇ. سىزىقچە(دائىرىنى بىلدۈرمەيدۇ) چوقۇم بېرىلگەن بىرىنچى ھەرپ بولۇشى لازىم."
 
-#: ../src/gnome-terminal.schemas.in.h:44
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:20
+msgid "Whether to show menubar in new windows/tabs"
+msgstr "يېڭى كۆزنەك/بەتكۈچتە تىزىملىك بالداق كۆرسىتەمدۇ يوق"
+
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:21
+msgid "True if the menubar should be shown in new window"
+msgstr "ئەگەر True بولسا تىزىملىك بالدىقى يېڭى كۆزنەكتە كۆرۈنىدۇ"
+
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:22
 msgid "Whether to use custom terminal size for new windows"
 msgstr "يېڭى كۆزنەك ئىختىيارى تېرمىنال چوڭلۇقى ئىشلىتەلەمدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:45
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:23
 msgid ""
 "If true, newly created terminal windows will have custom size specified by "
 "default_size_columns and default_size_rows."
 msgstr "ئەگەر راست (true) بولسا يېڭىدىن قۇرغان تېرمىنال كۆزنەك default_size_columns ۋە default_size_rows دا بەلگىلەنگەن ئىختىيارى چوڭلۇقنى ئىشلىتىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:46
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:24
 msgid "Default number of columns"
 msgstr "كۆڭۈلدىكى ئىستون سانى"
 
-#: ../src/gnome-terminal.schemas.in.h:47
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:25
 msgid ""
 "Number of columns in newly created terminal windows. Has no effect if "
 "use_custom_default_size is not enabled."
 msgstr "يېڭى قۇرغان كۆزنەكنىڭ ئىستون سانى. ئەگەر use_custom_default_size تاللانما قوزغىتىلمىغان بولسا بۇ تاللانمىنىڭ ئۈنۈمى يوق."
 
-#: ../src/gnome-terminal.schemas.in.h:48
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:26
 msgid "Default number of rows"
 msgstr "كۆڭۈلدىكى قۇر سانى"
 
-#: ../src/gnome-terminal.schemas.in.h:49
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:27
 msgid ""
 "Number of rows in newly created terminal windows. Has no effect if "
 "use_custom_default_size is not enabled."
 msgstr "يېڭى قۇرغان كۆزنەكنىڭ قۇر سانى. ئەگەر use_custom_default_size تاللانما قوزغىتىلمىغان بولسا بۇ تاللانمىنىڭ ئۈنۈمى يوق."
 
-#: ../src/gnome-terminal.schemas.in.h:50
-msgid "Position of the scrollbar"
-msgstr "دومىلىما سۈرگۈچنىڭ ئورنى"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:28
+msgid "When to show the scrollbar"
+msgstr "سىيرىغۇچ بالداقنى قاچان كۆرسىتىدۇ"
 
-#: ../src/gnome-terminal.schemas.in.h:51
-msgid ""
-"Where to put the terminal scrollbar. Possibilities are \"left\", \"right\", "
-"and \"hidden\"."
-msgstr "تېرمىنال سۈرگۈچنى نەگە قويىدۇ. تاللاشقا بولىدىغان قىممىتى \"left\" (سول)، \"right\"(ئوڭ) ۋە \"hidden\"(يوشۇرۇن)"
-
-#: ../src/gnome-terminal.schemas.in.h:52
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:29
 msgid "Number of lines to keep in scrollback"
 msgstr "دومىلايدىغان قۇر سانى"
 
-#: ../src/gnome-terminal.schemas.in.h:53
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:30
 msgid ""
 "Number of scrollback lines to keep around. You can scroll back in the "
 "terminal by this number of lines; lines that don't fit in the scrollback are "
 "discarded. If scrollback_unlimited is true, this value is ignored."
 msgstr "ساقلاپ قالىدىغان دومىلىتىش قۇر سانى. سىز تېرمىنال كۆزنىكىدە ئارقىغا مۇشۇنچىلىك قۇر دومىلىتالايسىز؛ دومىلىتىش قۇر سانىنىڭ سىرتىدىكى قۇر تاشلىۋېتىلىدۇ. ئەگەر scrollback_unlimited راست (true) بولسا بۇ قىممەتكە پەرۋا قىلمايدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:54
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:31
 msgid "Whether an unlimited number of lines should be kept in scrollback"
 msgstr "چەكسىز قۇرنىڭ دومىلىما مەزمۇنىنى ساقلاپ قالامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:55
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:32
 msgid ""
 "If true, scrollback lines will never be discarded. The scrollback history is "
 "stored on disk temporarily, so this may cause the system to run out of disk "
 "space if there is a lot of output to the terminal."
 msgstr "ئەگەر راست (true) بولسا دومىلىتىدىغان قۇر تاشلىۋېتىلمەيدۇ. دومىلىتىش خاتىرىسى دىسكىغا ۋاقىتلىق ساقلىنىدۇ، شۇڭلاشقا تېرمىنال چىقىرىدىغان مەزمۇن بەك كۆپ بولسا، بۇ تاللانما دىسكا بوشلۇقىنىڭ سەرپ بولۇپ تۈگىشىنى كەلتۈرۈپ چىقىرىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:56
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:33
 msgid "Whether to scroll to the bottom when a key is pressed"
 msgstr "كۇنۇپكا بېسىلغاندا ئاستىغا دومىلىتامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:57
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:34
 msgid "If true, pressing a key jumps the scrollbar to the bottom."
 msgstr "ئەگەر راست (true) بولسا توپچا سۈرگۈچنى ئاستىغا دومىلىتىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:58
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:35
 msgid "Whether to scroll to the bottom when there's new output"
 msgstr "يېڭى چىقىرىش بولسا ئاستىغا دومىلىتامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:59
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:36
 msgid ""
 "If true, whenever there's new output the terminal will scroll to the bottom."
 msgstr "ئەگەر راست (true) بولسا تېرمىنالدا يېڭى چىقىرىش بولسا دومىلىما سۈرگۈچ ئاستىغا دومىلايدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:60
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:37
 msgid "What to do with the terminal when the child command exits"
 msgstr "تارماق بۇيرۇق چېكىنگەندە قانداق قىلىدۇ"
 
-#: ../src/gnome-terminal.schemas.in.h:61
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:38
 msgid ""
 "Possible values are \"close\" to close the terminal, and \"restart\" to "
 "restart the command."
 msgstr "تاللاشقا بولىدىغان قىممەتتىن «ياپ» تېرمىنالنى ياپىدۇ، «قايتا قوزغات» بۇيرۇقنى قايتا قوزغىتىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:62
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:39
 msgid "Whether to launch the command in the terminal as a login shell"
 msgstr "تىزىمغا كىرگەن shell تېرمىنالدا بۇيرۇق چاقىرالامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:63
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:40
 msgid ""
 "If true, the command inside the terminal will be launched as a login shell. "
 "(argv[0] will have a hyphen in front of it.)"
 msgstr "ئەگەر راست (true) بولسا تېرمىنالدىكى بۇيرۇق تىزىمغا كىرگەن shell تەرىپىدىن چاقىرىلىدۇ. (argv[0] نىڭ ئالدىدا سىزىقچە بولىدۇ)"
 
-#: ../src/gnome-terminal.schemas.in.h:64
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:41
 msgid "Whether to update login records when launching terminal command"
 msgstr "تېرمىنال بۇيرۇقىنى ئىجرا قىلغاندا تىزىمغا كىرگەن خاتىرىنى يېڭىلامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:65
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:42
 msgid ""
 "If true, the system login records utmp and wtmp will be updated when the "
 "command inside the terminal is launched."
 msgstr "ئەگەر راست (true) بولسا تېرمىنالدىكى بۇيرۇق چاقىرغاندا تىزىمغا كىرىش خاتىرىسى utmp ۋە wtmp نى يېڭىلايدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:66
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:43
 msgid "Whether to run a custom command instead of the shell"
 msgstr "shell بولماستىن ئىختىيارى بۇيرۇقنى ئىجرا قىلامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:67
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:44
 msgid ""
 "If true, the value of the custom_command setting will be used in place of "
 "running a shell."
 msgstr "ئەگەر راست (true) بولسا ئىشلەتكۈچى ئىختىيارى تەڭشىكىنى shell نىڭ ئورنىغا دەسسىتىدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:68
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:45
 msgid "Whether to blink the cursor"
-msgstr "نۇر بەلگىنى لىپىلدىتامدۇ يوق"
+msgstr "نۇربەلگىنى لىپىلدىتامدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:69
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:46
 msgid ""
 "The possible values are \"system\" to use the global cursor blinking "
 "settings, or \"on\" or \"off\" to set the mode explicitly."
-msgstr "تاللاشقا بولىدىغان قىممەتتىن \"system\"(سىستېما) ئومۇمىي دائىرىلىك نۇر بەلگە چاقنات تەڭشىكى ئىشلىتىدۇ، \"on\" (ئاچ) ياكى \"off\"(ياپ) تەڭشەك ھالىتىنى ئېنىقلايدۇ."
+msgstr "تاللاشقا بولىدىغان قىممەتتىن \"system\"(سىستېما) ئومۇمىي دائىرىلىك نۇربەلگە چاقنات تەڭشىكى ئىشلىتىدۇ، \"on\" (ئاچ) ياكى \"off\"(ياپ) تەڭشەك ھالىتىنى ئېنىقلايدۇ."
 
-#: ../src/gnome-terminal.schemas.in.h:70
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:47
 msgid "The cursor appearance"
-msgstr "نۇر بەلگە قىياپىتى"
+msgstr "نۇربەلگە قىياپىتى"
 
-#: ../src/gnome-terminal.schemas.in.h:71
-msgid ""
-"The possible values are \"block\" to use a block cursor, \"ibeam\" to use a "
-"vertical line cursor, or \"underline\" to use an underline cursor."
-msgstr "تاللاشقا بولىدىغان قىممەتتىن \"block\" (توس) بۆلەك شەكىللىك نۇر بەلگە ئىشلىتىدۇ، \"ibeam\"(I شەكىللىك) بوي سىنبەلگە ئىشلىتىدۇ، ياكى \"underline\" (ئاستى سىزىق) ئاستى سىزىق نۇر بەلگە ئىشلىتىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:72
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:48
 msgid "Custom command to use instead of the shell"
 msgstr "shell نىڭ ئورنىدىكى ئىختىيارى بۇيرۇق"
 
-#: ../src/gnome-terminal.schemas.in.h:73
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:49
 msgid "Run this command in place of the shell, if use_custom_command is true."
 msgstr "shell بار ئورۇندا بۇ بۇيرۇقنى ئىجرا قىلىدۇ، ئەگەر use_custom_command راست (true) بولسا."
 
-#: ../src/gnome-terminal.schemas.in.h:74
-msgid "Icon for terminal window"
-msgstr "تېرمىنال كۆزنەكنىڭ سىنبەلگىسى"
-
-#: ../src/gnome-terminal.schemas.in.h:75
-msgid "Icon to use for tabs/windows containing this profile."
-msgstr "بۇ سەپلىمە ھۆججەتتىكى بەتكۈچ/كۆزنەكلەر ئىشلىتىدىغان سىنبەلگە"
-
-#: ../src/gnome-terminal.schemas.in.h:76
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:50
 msgid "Palette for terminal applications"
 msgstr "تېرمىنال پروگراممىنىڭ رەڭ تاختىسى"
 
-#: ../src/gnome-terminal.schemas.in.h:77
-msgid ""
-"Terminals have a 16-color palette that applications inside the terminal can "
-"use. This is that palette, in the form of a colon-separated list of color "
-"names. Color names should be in hex format e.g. \"#FF00FF\""
-msgstr "تېرمىنال 16 خىل رەڭلىك رەڭ تاختىسى ئىشلىتىپ، تېرمىنالدىكى پروگراممىلارنىڭ ئىشلىتىشىگە تەمىنلەيدۇ. بۇ شۇ رەڭ تاختىسى، فورماتى چېكىتلىك پەش بىلەن ئايرىلغان رەڭ ئاتى. رەڭ ئاتى چوقۇم 16 سىستېمىدىكى فورماتتا بولۇشى لازىم يەنى، \"#FF00FF\""
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:51
+msgid "A Pango font name and size"
+msgstr "پانگو(Pango) خەت نۇسخىسىنىڭ ئاتى ۋە چوڭلۇقى"
 
-#: ../src/gnome-terminal.schemas.in.h:78
-msgid "Font"
-msgstr "خەت نۇسخا"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:52
+msgid "The code sequence the Backspace key generates"
+msgstr "كۇنۇپكا Backspace ھاسىل قىلغان كود تەرتىپى"
 
-#: ../src/gnome-terminal.schemas.in.h:79
-msgid "An Pango font name. Examples are \"Sans 12\" or \"Monospace Bold 14\"."
-msgstr "Pango خەت نۇسخا ئاتى. مەسىلەن \"Sans 12\" ياكى \"Monospace Bold 14\"."
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:53
+msgid "The code sequence the Delete key generates"
+msgstr "كۇنۇپكا Delete ھاسىل قىلغان كود تەرتىپى"
 
-#: ../src/gnome-terminal.schemas.in.h:80
-msgid "Background type"
-msgstr "تەگلىك تىپى"
-
-#: ../src/gnome-terminal.schemas.in.h:81
-msgid ""
-"Type of terminal background. May be \"solid\" for a solid color, \"image\" "
-"for an image, or \"transparent\" for either real transparency if a "
-"compositing window manager is running, or pseudo-transparency otherwise."
-msgstr "تېرمىنال تەگلىكىنىڭ تىپى. \"solid\"(ساپ رەڭ) بولسا بىر خىل رەڭنى بىلدۈرىدۇ، \"image\"(سۈرەت) بولسا سۈرەتنى بىلدۈرىدۇ، \"transparent\"(سۈزۈك) بولسا ھەقىقىي سۈزۈكنى بىلدۈرىدۇ(ئەگەر بىرىكمە كۆزنەك باشقۇرغۇچتىن بىرى ئىجرا قىلىنىۋاتقان بولسا) بولمىسا ساختا سۈزۈكنى بىلدۈرىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:82
-msgid "Background image"
-msgstr "تەگلىك سۈرەت"
-
-#: ../src/gnome-terminal.schemas.in.h:83
-msgid "Filename of a background image."
-msgstr "تەگلىك سۈرەتنىڭ ھۆججەت ئاتى."
-
-#: ../src/gnome-terminal.schemas.in.h:84
-msgid "Whether to scroll background image"
-msgstr "تەگلىك سۈرەتنى دومىلىتامدۇ يوق"
-
-#: ../src/gnome-terminal.schemas.in.h:85
-msgid ""
-"If true, scroll the background image with the foreground text; if false, "
-"keep the image in a fixed position and scroll the text above it."
-msgstr "ئەگەر راست (true) بولسا تەگلىك سۈرەتنى ئالدىدىكى تېكىستكە ئوخشاش دومىلىتىدۇ؛ ئەگەر يالغان (false) بولسا سۈرەتنى مۇقىم ئورۇندا تۇرغۇزۇپ، تېكىستنىلا دومىلىتىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:86
-msgid "How much to darken the background image"
-msgstr "تەگلىك سۈرەتنىڭ غۇۋالىق دەرىجىسى"
-
-#: ../src/gnome-terminal.schemas.in.h:87
-msgid ""
-"A value between 0.0 and 1.0 indicating how much to darken the background "
-"image. 0.0 means no darkness, 1.0 means fully dark. In the current "
-"implementation, there are only two levels of darkness possible, so the "
-"setting behaves as a boolean, where 0.0 disables the darkening effect."
-msgstr "0.0 بىلەن 1.0 ئارىلىقىدىكى قىممەت تەگلىك سۈرەتنىڭ غۇۋالىق دەرىجىسىنى ئىپادىلەيدۇ. 0.0 بىر تەرەپ قىلماسلىقنى، 1.0 قاپقارا ئىكەنلىكىنى بىلدۈرىدۇ. نۆۋەتتىكى ئەمەلگە ئاشۇرۇلغان لايىھىدە پەقەت ئىككى خىل دەرىجىدىكى غۇۋالىق دەرىجىسى بار، شۇڭلاشقا بۇ جايدىكى تەڭشەك ۋە بۇلىن قىممىتى ئوخشاش، يەنى 0.0 غۇۋالىق ئۈنۈمنى چەكلەيدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:88
-msgid "Effect of the Backspace key"
-msgstr "Backspace كۇنۇپكا ئۈنۈمى"
-
-#: ../src/gnome-terminal.schemas.in.h:89
-msgid ""
-"Sets what code the backspace key generates. Possible values are \"ascii-del"
-"\" for the ASCII DEL character, \"control-h\" for Control-H (AKA the ASCII "
-"BS character), \"escape-sequence\" for the escape sequence typically bound "
-"to backspace or delete. \"ascii-del\" is normally considered the correct "
-"setting for the Backspace key."
-msgstr "backspace كۇنۇپكىسى ھاسىل قىلىدىغان كودنى تەڭشەيدۇ. تاللاشقا بولىدىغان قىممىتى \"ascii-del\" بولسا ASCII DEL ھەرپى،   \"control-h\" بولسا Control-H (ASCII BS ھەرپى)، \"escape-sequence\" بولسا backspace ياكى delete كود ئالماشتۇرۇش تەرتىپى، \"ascii-del\" بولسا Backspace نىڭ توغرا تەڭشىكىنى بىلدۈرىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:90
-msgid "Effect of the Delete key"
-msgstr "Delete كۇنۇپكا ئۈنۈمى"
-
-#: ../src/gnome-terminal.schemas.in.h:91
-msgid ""
-"Sets what code the delete key generates. Possible values are \"ascii-del\" "
-"for the ASCII DEL character, \"control-h\" for Control-H (AKA the ASCII BS "
-"character), \"escape-sequence\" for the escape sequence typically bound to "
-"backspace or delete. \"escape-sequence\" is normally considered the correct "
-"setting for the Delete key."
-msgstr "elete كۇنۇپكىسى ھاسىل قىلىدىغان كودنى تەڭشەيدۇ. تاللاشقا بولىدىغان قىممىتى \"ascii-del\" بولسا ASCII DEL ھەرپى،   \"control-h\" بولسا Control-H (ASCII BS ھەرپى)، \"escape-sequence\" بولسا backspace ياكى delete كود ئالماشتۇرۇش تەرتىپى، \"ascii-del\" بولسا Backspace نىڭ توغرا تەڭشىكىنى بىلدۈرىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:92
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:54
 msgid "Whether to use the colors from the theme for the terminal widget"
 msgstr "تېرمىنالدىكى بۆلەك باش تېمىدىكى رەڭنى ئىشلىتەمدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:93
-msgid ""
-"If true, the theme color scheme used for text entry boxes will be used for "
-"the terminal, instead of colors provided by the user."
-msgstr "ئەگەر راست (true) بولسا تېرمىنال تېكىست رامكىسىنىڭ تېما رەڭگىنى ئىشلىتىدۇ، ئىشلەتكۈچى تەمىنلىگەن رەڭنى ئىشلەتمەيدۇ."
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:55
+msgid "Whether to use the system monospace font"
+msgstr "سىستېما monospace(تەڭ كەڭلىكتىكى) خەت نۇسخىسىنى ئىشلىتەمدۇ يوق"
 
-#: ../src/gnome-terminal.schemas.in.h:94
-msgid "Whether to use the system font"
-msgstr "سىستېما خەت نۇسخىسىنى ئىشلىتەمدۇ يوق"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:56
+msgid "Which encoding to use"
+msgstr "ئىشلىتىدىغان كودلاش ئۇسۇلى"
 
-#: ../src/gnome-terminal.schemas.in.h:95
-msgid ""
-"If true, the terminal will use the desktop-global standard font if it's "
-"monospace (and the most similar font it can come up with otherwise)."
-msgstr "ئەگەر راست (true) بولسا تېرمىنال ئۈستەلئۈستى بىلەن ئوخشاش خەت نۇسخا ئىشلىتىدۇ، ئەگەر شۇ خەت نۇسخىسى تەڭ كەڭلىكتىكى خەت نۇسخىسى بولسا (ئۇنداق بولمىسا ئۇنىڭغا ئەڭ يېقىن كېلىدىغان خەت نۇسخىسىنى ئىشلىتىدۇ)"
-
-#: ../src/gnome-terminal.schemas.in.h:96
-#| msgid "[UTF-8,current]"
-msgid "current"
-msgstr "نۆۋەتتىكى"
-
-#: ../src/gnome-terminal.schemas.in.h:97
-#| msgid "Default size:"
-msgid "Default encoding"
-msgstr "كۆڭۈلدىكى كودلاش"
-
-#: ../src/gnome-terminal.schemas.in.h:98
-msgid ""
-"Default encoding. Can be either \"current\" to use the current locale's "
-"encoding, or else any of the known encodings."
-msgstr "كۆڭۈلدىكى كودلاشقا «نۆۋەتتىكى» تاللانسا، يەرلىكلەشتۈرۈشنىڭ(locale) كودلاش ئۇسۇلى ئىشلىتىلىدۇ، بولمىسا بار بىرەر كودلاشنى ئىشلىتىدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:99
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:57
 msgid "Keyboard shortcut to open a new tab"
 msgstr "يېڭى بەتكۈچ ئاچىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:100
-msgid ""
-"Keyboard shortcut key for opening a new tab. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "يېڭى بەتكۈچ ئاچىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:101
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:58
 msgid "Keyboard shortcut to open a new window"
 msgstr "يېڭى كۆزنەك ئاچىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:102
-msgid ""
-"Keyboard shortcut key for opening a new window. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "يېڭى كۆزنەك ئاچىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:103
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:59
 msgid "Keyboard shortcut to create a new profile"
 msgstr "يېڭى سەپلىمە ھۆججەت قۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:104
-msgid ""
-"Keyboard shortcut key for bringing up the dialog for profile creation. "
-"Expressed as a string in the same format used for GTK+ resource files. If "
-"you set the option to the special string \"disabled\", then there will be no "
-"keyboard shortcut for this action."
-msgstr "سەپلىمە ھۆججەتنى قوزغىتىپ سۆزلەشكۈ تېزلەتمىسىنى قۇرىدۇ. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:105
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:60
 msgid "Keyboard shortcut to save the current tab contents to file"
 msgstr "نۆۋەتتىكى بەتكۈچ مەزمۇنىنى ھۆججەتكە ساقلايدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:106
-msgid ""
-"Keyboard shortcut key to save the current tab contents to a file. Expressed "
-"as a string in the same format used for GTK+ resource files. If you set the "
-"option to the special string \"disabled\", then there will be no keyboard "
-"shortcut for this action."
-msgstr "نۆۋەتتىكى بەتكۈچ مەزمۇنىنى ھۆججەتكە ساقلايدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:107
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:61
 msgid "Keyboard shortcut to close a tab"
 msgstr "بەتكۈچنى ياپىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:108
-msgid ""
-"Keyboard shortcut key for closing a tab. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ ياپىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:109
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:62
 msgid "Keyboard shortcut to close a window"
 msgstr "كۆزنەك ياپىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:110
-msgid ""
-"Keyboard shortcut key for closing a window. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "كۆزنەك ياپىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:111
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:63
 msgid "Keyboard shortcut to copy text"
 msgstr "تېكىست كۆچۈرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:112
-msgid ""
-"Keyboard shortcut key for copying selected text to the clipboard. Expressed "
-"as a string in the same format used for GTK+ resource files. If you set the "
-"option to the special string \"disabled\", then there will be no keyboard "
-"shortcut for this action."
-msgstr "تاللانغان تېكىستنى چاپلاش تاختىسىغا كۆچۈرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېز كۇنۇپكىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:113
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:64
 msgid "Keyboard shortcut to paste text"
 msgstr "تېكىست چاپلايدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:114
-msgid ""
-"Keyboard shortcut key for pasting the contents of the clipboard into the "
-"terminal. Expressed as a string in the same format used for GTK+ resource "
-"files. If you set the option to the special string \"disabled\", then there "
-"will be no keyboard shortcut for this action."
-msgstr "چاپلاش تاختىسىدىن مەزمۇننى تېرمىنالغا كۆچۈرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:115
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:65
 msgid "Keyboard shortcut to toggle full screen mode"
 msgstr "پۈتۈن ئېكران ھالىتىگە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:116
-msgid ""
-"Keyboard shortcut key for toggling full screen mode. Expressed as a string "
-"in the same format used for GTK+ resource files. If you set the option to "
-"the special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "پۈتۈن ئېكران ھالەتكە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:117
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:66
 msgid "Keyboard shortcut to toggle the visibility of the menubar"
 msgstr "تىزىملىك بالداقنى كۆرگىلى بولۇش بولماسلىقنى ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:118
-msgid ""
-"Keyboard shortcut key to toggle the visibility of the menubar. Expressed as "
-"a string in the same format used for GTK+ resource files. If you set the "
-"option to the special string \"disabled\", then there will be no keyboard "
-"shortcut for this action."
-msgstr "تىزىملىك بالداقنى كۆرسىتىش كۆرسەتمەسلىكنى ئالماشتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:119
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:67
 msgid "Keyboard shortcut to set the terminal title"
 msgstr "تېرمىنال ماۋزۇ تەڭشەك تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:120
-msgid ""
-"Keyboard shortcut key to set the terminal title. Expressed as a string in "
-"the same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "تېرمىنال ماۋزۇسىنى بەلگىلەيدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:121
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:68
 msgid "Keyboard shortcut to reset the terminal"
 msgstr "تېرمىنالنى ئەسلىگە قايتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:122
-msgid ""
-"Keyboard shortcut key to reset the terminal. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "تېرمىنالنى ئەسلىگە قايتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:123
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:69
 msgid "Keyboard shortcut to reset and clear the terminal"
 msgstr "تېرمىنالنى ئەسلىگە قايتۇرۇپ تازىلايدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:124
-msgid ""
-"Keyboard shortcut key to reset and clear the terminal. Expressed as a string "
-"in the same format used for GTK+ resource files. If you set the option to "
-"the special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "تېرمىنالنى تازىلاپ ئەسلىگە قايتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:125
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:70
 msgid "Keyboard shortcut to switch to the previous tab"
 msgstr "ئالدىنقى بەتكۈچكە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:126
-msgid ""
-"Keyboard shortcut key to switch to the previous tab. Expressed as a string "
-"in the same format used for GTK+ resource files. If you set the option to "
-"the special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "ئالدىنقى بەتكۈچكە ئالماشتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:127
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:71
 msgid "Keyboard shortcut to switch to the next tab"
 msgstr "كېيىنكى بەتكۈچكە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:128
-msgid ""
-"Keyboard shortcut key to switch to the next tab. Expressed as a string in "
-"the same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "كېيىنكى بەتكۈچكە ئالماشتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:72
+msgid "Keyboard shortcut to move the current tab to the left"
+msgstr "نۆۋەتتىكى بەتكۈچنى سولغا يۆتكەيدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:129
-msgid "Accelerator to move the current tab to the left."
-msgstr "نۆۋەتتىكى بەتكۈچنى سولغا يۆتكەيدىغان تېزلەتمە."
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:73
+msgid "Keyboard shortcut to move the current tab to the right"
+msgstr "نۆۋەتتىكى بەتكۈچنى ئونغا يۆتكەيدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:130
-msgid ""
-"Accelerator key to move the current tab to the left. Expressed as a string "
-"in the same format used for GTK+ resource files. If you set the option to "
-"the special string \"disabled\", then there will be no keybinding for this "
-"action."
-msgstr "نۆۋەتتىكى بەتكۈچنى سولغا يۆتكەيدىغان تېزلىتىش كۇنۇپكىسى. GTK+ مەنبە ھۆججىتى ئىشلەتكەن فورمات چىقارغان ھەرپ تىزمىسى. ئەگەر تاللانمىنىڭ ئالاھىدە ھەرپ تىزمىسى «چەكلەنگەن» بولسا ئۇنداقتا بۇ مەشغۇلاتنىڭ تېز كۇنۇپكىسى يوق."
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:74
+msgid "Keyboard shortcut to detach current tab"
+msgstr "نۆۋەتتىكى بەتكۈچنى ئايرىيدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:131
-msgid "Accelerator to move the current tab to the right."
-msgstr "نۆۋەتتىكى بەتكۈچنى ئوڭغا يۆتكەيدىغان تېزلەتمە."
-
-#: ../src/gnome-terminal.schemas.in.h:132
-msgid ""
-"Accelerator key to move the current tab to the right. Expressed as a string "
-"in the same format used for GTK+ resource files. If you set the option to "
-"the special string \"disabled\", then there will be no keybinding for this "
-"action."
-msgstr "نۆۋەتتىكى بەتكۈچنى ئوڭغا يۆتكەيدىغان تېزلىتىش كۇنۇپكىسى. GTK+ مەنبە ھۆججىتى ئىشلەتكەن فورمات چىقارغان ھەرپ تىزمىسى. ئەگەر تاللانمىنىڭ ئالاھىدە ھەرپ تىزمىسى «چەكلەنگەن» بولسا ئۇنداقتا بۇ مەشغۇلاتنىڭ تېز كۇنۇپكىسى يوق."
-
-#: ../src/gnome-terminal.schemas.in.h:133
-msgid "Accelerator to detach current tab."
-msgstr "نۆۋەتتىكى بەتكۈچنى ئايرىيدىغان تېزلەتمە."
-
-#: ../src/gnome-terminal.schemas.in.h:134
-msgid ""
-"Accelerator key to detach current tab. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keybinding for this action."
-msgstr "نۆۋەتتىكى بەتكۈچنىڭ تېزلىتىش كۇنۇپكىسىنى ئايرىيدۇ. GTK+ مەنبە ھۆججىتى ئىشلەتكەن فورمات چىقارغان ھەرپ تىزمىسى. ئەگەر تاللانمىنىڭ ئالاھىدە ھەرپ تىزمىسى «چەكلەنگەن» بولسا ئۇنداقتا بۇ مەشغۇلاتنىڭ تېز كۇنۇپكىسى يوق."
-
-#: ../src/gnome-terminal.schemas.in.h:135
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:75
 msgid "Keyboard shortcut to switch to tab 1"
 msgstr "بەتكۈچ 1 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:136
-msgid ""
-"Keyboard shortcut key for switch to tab 1. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 1 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:137
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:76
 msgid "Keyboard shortcut to switch to tab 2"
 msgstr "بەتكۈچ 2 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:138
-msgid ""
-"Keyboard shortcut key for switch to tab 2. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 2 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:139
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:77
 msgid "Keyboard shortcut to switch to tab 3"
 msgstr "بەتكۈچ 3 كە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:140
-msgid ""
-"Keyboard shortcut key for switch to tab 3. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 3 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:141
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:78
 msgid "Keyboard shortcut to switch to tab 4"
 msgstr "بەتكۈچ 4 كە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:142
-msgid ""
-"Keyboard shortcut key for switch to tab 4. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 4 كە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:143
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:79
 msgid "Keyboard shortcut to switch to tab 5"
 msgstr "بەتكۈچ 5 كە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:144
-msgid ""
-"Keyboard shortcut key for switch to tab 5. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 5 كە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:145
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:80
 msgid "Keyboard shortcut to switch to tab 6"
 msgstr "بەتكۈچ 6 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:146
-msgid ""
-"Keyboard shortcut key for switch to tab 6. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 6 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:147
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:81
 msgid "Keyboard shortcut to switch to tab 7"
 msgstr "بەتكۈچ 7 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:148
-msgid ""
-"Keyboard shortcut key for switch to tab 7. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 7 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:149
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:82
 msgid "Keyboard shortcut to switch to tab 8"
 msgstr "بەتكۈچ 8 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:150
-msgid ""
-"Keyboard shortcut key for switch to tab 8. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 8 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:151
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:83
 msgid "Keyboard shortcut to switch to tab 9"
 msgstr "بەتكۈچ 9 غا ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:152
-msgid ""
-"Keyboard shortcut key for switch to tab 9. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "بەتكۈچ 9 غا ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:153
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:84
 msgid "Keyboard shortcut to switch to tab 10"
 msgstr "بەتكۈچ 10 غا ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:154
-msgid ""
-"Keyboard shortcut key for switch to tab 10. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "بەتكۈچ 10 غا ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:155
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:85
 msgid "Keyboard shortcut to switch to tab 11"
 msgstr "بەتكۈچ 11 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:156
-msgid ""
-"Keyboard shortcut key for switch to tab 11. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "بەتكۈچ 11 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:157
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:86
 msgid "Keyboard shortcut to switch to tab 12"
 msgstr "بەتكۈچ 12 گە ئالماشتۇرىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:158
-msgid ""
-"Keyboard shortcut key for switch to tab 12. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "بەتكۈچ 12 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:159
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:87
 msgid "Keyboard shortcut to launch help"
 msgstr "ياردەمنى قوزغىتىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:160
-msgid ""
-"Keyboard shortcut key for launching help. Expressed as a string in the same "
-"format used for GTK+ resource files. If you set the option to the special "
-"string \"disabled\", then there will be no keyboard shortcut for this action."
-msgstr "ياردەمنى ئىجرا قىلىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:161
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:88
 msgid "Keyboard shortcut to make font larger"
 msgstr "خەت نۇسخىنى چوڭايتىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:162
-msgid ""
-"Keyboard shortcut key for making font larger. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "خەتنى چوڭايتىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:163
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:89
 msgid "Keyboard shortcut to make font smaller"
 msgstr "خەت نۇسخىنى كىچىكلىتىدىغان تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:164
-msgid ""
-"Keyboard shortcut key for making font smaller. Expressed as a string in the "
-"same format used for GTK+ resource files. If you set the option to the "
-"special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "خەتنى كىچىكلىتىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
-
-#: ../src/gnome-terminal.schemas.in.h:165
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:90
 msgid "Keyboard shortcut to make font normal-size"
 msgstr "ئادەتتىكى خەت نۇسخا تېزلەتمە"
 
-#: ../src/gnome-terminal.schemas.in.h:166
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:91
+msgid "Whether the menubar has access keys"
+msgstr "تىزىملىك بالداقنىڭ زىيارەت كۇنۇپكىسى بارمۇ يوق"
+
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:92
 msgid ""
-"Keyboard shortcut key for making font the normal size. Expressed as a string "
-"in the same format used for GTK+ resource files. If you set the option to "
-"the special string \"disabled\", then there will be no keyboard shortcut for "
-"this action."
-msgstr "خەتنى ئادەتتىكى چوڭلۇققا تەڭشەيدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+"Whether to have Alt+letter access keys for the menubar. They may interfere "
+"with some applications run inside the terminal so it's possible to turn them "
+"off."
+msgstr "تىزىملىك بالداق Alt+ھەرپ تېزلەتمە ئىشلىتەمدۇ يوق. تېرمىنالدا ئىجرا قىلىنىدىغان نۇرغۇن پروگراممىلارنىڭ ھەممىسىنىڭ تېز كۇنۇپكىلىرى توقۇنۇشۇپ قېلىشى مۇمكىن، شۇڭلاشقا بۇ ئالاھىدىلىك تاقىۋېتىلسە بولىدۇ."
 
-#: ../src/keybinding-editor.glade.h:1
-msgid "Keyboard Shortcuts"
-msgstr "تېزلەتمە"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:93
+msgid "Whether the standard GTK shortcut for menubar access is enabled"
+msgstr "GTK ئۆلچەملىك تېز كۇنۇپكىنى قوزغىتىپ تىزىملىك بالداقنى زىيارەت قىلامدۇ يوق"
 
-#: ../src/keybinding-editor.glade.h:2
-msgid "_Enable menu access keys (such as Alt+F to open the File menu)"
-msgstr "تىزىملىك زىيارەت كۇنۇپكا قوزغات (Alt+F دا ھۆججەت تىزىملىك ئاچقاندەك)(_E)"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:94
+msgid ""
+"Normally you can access the menubar with F10. This can also be customized "
+"via gtkrc (gtk-menu-bar-accel = \"whatever\"). This option allows the "
+"standard menubar accelerator to be disabled."
+msgstr "ئادەتتە F10 نى ئىشلىتىپ تىزىملىك بالداقنى زىيارەت قىلالايسىز. بۇنى gtkrc ئارقىلىق (gtk-menu-bar-accel = \"whatever\") ئىختىيارى تەڭشىيەلەيسىز. بۇ تاللانما ئۆلچەملىك تىزىملىك بالداقنىڭ تېزلىتىش كۇنۇپكىسىنى چەكلەشكە يول قويىدۇ."
 
-#: ../src/keybinding-editor.glade.h:3
-msgid "Enable the _menu shortcut key (F10 by default)"
-msgstr "تىزىملىك تېزلەتمىسىنى قوزغات (كۆڭۈلدىكىF10) (_M)"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:95
+msgid "List of available encodings"
+msgstr "ئىشلەتكىلى بولىدىغان كودلاش تىزىملىكى"
 
-#: ../src/keybinding-editor.glade.h:4
-msgid "_Shortcut keys:"
-msgstr "تېزلەتمە كۇنۇپكىلار(_S)"
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:96
+msgid ""
+"A subset of possible encodings are presented in the Encoding submenu. This "
+"is a list of encodings to appear there. The special encoding name \"current"
+"\" means to display the encoding of the current locale."
+msgstr "كودلاش تارماق تىزىملىكىدە كۆرۈنىدىغان تاللاشچان كودلاش تارماق توپلىمى. بۇ يەردىكىسى مۇشۇ يەردە كۆرۈنىدىغان كودلاش تىزىملىكى. ئالاھىدە كودلاش ئاتى «نۆۋەتتىكى» ھازىر كۆرسىتىۋاتقان تىلنىڭ كودلىنىشىنى كۆرسىتىدۇ."
 
-#: ../src/profile-editor.c:42
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:97
+msgid "Whether to ask for confirmation before closing a terminal"
+msgstr "تېرمىنالنى يېپىشتىن ئاۋۋال سورامدۇ-يوق"
+
+#: ../src/org.gnome.Terminal.gschema.xml.in.h:98
+msgid "Whether to show the menubar in new windows"
+msgstr "يېڭى كۆزنەكتە تىزىملىك بالداقنى كۆرسىتەمدۇ-يوق"
+
+#: ../src/preferences.ui.h:1
+msgid "Preferences"
+msgstr "مايىللىق"
+
+#: ../src/preferences.ui.h:2
+msgid "Show _menubar by default in new terminals"
+msgstr "كۆڭۈلدىكى ئەھۋالدا يېڭى تېرمىنالدا تىزىملىك بالداقنى كۆرسەت(_M)"
+
+#: ../src/preferences.ui.h:3
+msgid "_Enable mnemonics (such as Alt+F to open the File menu)"
+msgstr "mnemonics (ھۆججەتنى ئېچىش ئۈچۈن Alt+F نى ئىشلەتكەندەك) نى ئىناۋەتلىك قىل(_E)"
+
+#: ../src/preferences.ui.h:4
+msgid "Enable the _menu accelerator key (F10 by default)"
+msgstr "تىزىملىك تېزلەتمىسىنى قوزغات (كۆڭۈلدىكىسى كۆڭۈلدىكىF10) (_M)"
+
+#: ../src/preferences.ui.h:5 ../src/profile-preferences.ui.h:61
+msgid "General"
+msgstr "ئادەتتىكى"
+
+#: ../src/preferences.ui.h:6
+msgid "Shortcuts"
+msgstr "تېزلەتمىلەر"
+
+#: ../src/preferences.ui.h:7
+msgid "_Profile used when launching a new terminal:"
+msgstr "يېڭى تېرمىنال قوزغاتقاندا ئىشلىتىدىغان سەپلىمە ھۆججەت(_P):"
+
+#: ../src/preferences.ui.h:8
+msgid "Profiles"
+msgstr "Profiles"
+
+#: ../src/preferences.ui.h:9
+msgid "E_ncodings shown in menu:"
+msgstr "تىزىملىكتە كودلاشنى كۆرسەت(_N):"
+
+#: ../src/preferences.ui.h:10
+msgid "Encodings"
+msgstr "كودلاش"
+
+#: ../src/profile-editor.c:47
 msgid "Black on light yellow"
 msgstr "سېرىق تەگلىك قارا خەت"
 
-#: ../src/profile-editor.c:44
+#: ../src/profile-editor.c:51
 msgid "Black on white"
 msgstr "ئاق تەگلىك قارا خەت"
 
-#: ../src/profile-editor.c:46
+#: ../src/profile-editor.c:55
 msgid "Gray on black"
 msgstr "قارا تەگلىك كۈلرەڭ خەت"
 
-#: ../src/profile-editor.c:48
+#: ../src/profile-editor.c:59
 msgid "Green on black"
 msgstr "قارا تەگلىك يېشىل خەت"
 
-#: ../src/profile-editor.c:50
+#: ../src/profile-editor.c:63
 msgid "White on black"
 msgstr "قارا تەگلىك ئاق خەت"
 
-#: ../src/profile-editor.c:476
+#: ../src/profile-editor.c:411
 #, c-format
 msgid "Error parsing command: %s"
 msgstr "بۇيرۇق يېشىشتە خاتالىق كۆرۈلدى: %s"
 
-#: ../src/profile-editor.c:494
+#. This is the name of a colour scheme
+#: ../src/profile-editor.c:445 ../src/profile-preferences.ui.h:30
+msgid "Custom"
+msgstr "ئىختىيارى"
+
+#: ../src/profile-editor.c:560
 #, c-format
 msgid "Editing Profile “%s”"
 msgstr "«%s» سەپلىمە ھۆججەت تەھرىر"
 
-#. Translators: This is the name of a colour scheme
-#: ../src/profile-editor.c:525 ../src/extra-strings.c:73
-msgid "Custom"
-msgstr "ئىختىيارى"
-
-#: ../src/profile-editor.c:654
-msgid "Images"
-msgstr "سۈرەتلەر"
-
-#: ../src/profile-editor.c:826
+#: ../src/profile-editor.c:743
 #, c-format
 msgid "Choose Palette Color %d"
 msgstr "رەڭ تاختا %d رەڭگى تاللا"
 
-#: ../src/profile-editor.c:830
+#: ../src/profile-editor.c:747
 #, c-format
 msgid "Palette entry %d"
 msgstr "رەڭ تاختا تۈرى %d"
 
-#: ../src/profile-manager.glade.h:1
-msgid "Profiles"
-msgstr "Profiles"
+#. Cursor shape
+#: ../src/profile-preferences.ui.h:2
+msgid "Block"
+msgstr "بۆلەك"
 
-#: ../src/profile-manager.glade.h:2
-msgid "_Profile used when launching a new terminal:"
-msgstr "يېڭى تېرمىنال قوزغاتقاندا ئىشلىتىدىغان سەپلىمە ھۆججەت(_P):"
+#. Cursor shape
+#: ../src/profile-preferences.ui.h:4
+msgid "I-Beam"
+msgstr "I-لىم"
 
-#: ../src/profile-new-dialog.glade.h:1 ../src/terminal-accels.c:146
-msgid "New Profile"
-msgstr "يېڭى سەپلىمە ھۆججەت"
+#. Cursor shape
+#: ../src/profile-preferences.ui.h:6
+msgid "Underline"
+msgstr "ئاستى سىزىق"
 
-#: ../src/profile-new-dialog.glade.h:2
-msgid "C_reate"
-msgstr "قۇر(_R)"
+#. When terminal commands set their own titles
+#: ../src/profile-preferences.ui.h:8
+msgid "Replace initial title"
+msgstr "دەسلەپكى ماۋزۇنى ئالماشتۇر"
 
-#: ../src/profile-new-dialog.glade.h:3
-msgid "Profile _name:"
-msgstr "سەپلىمە ھۆججەت ئاتى(_N):"
+#. When terminal commands set their own titles
+#: ../src/profile-preferences.ui.h:10
+msgid "Append initial title"
+msgstr "دەسلەپكى ماۋزۇنىڭ ئالدىغا قوش"
 
-#: ../src/profile-new-dialog.glade.h:4
-msgid "_Base on:"
-msgstr "ئاساسىدا(_B):"
+#. When terminal commands set their own titles
+#: ../src/profile-preferences.ui.h:12
+msgid "Prepend initial title"
+msgstr "دەسلەپكى ماۋزۇنىڭ كەينىگە قوش"
 
-#: ../src/profile-preferences.glade.h:1
+#. When terminal commands set their own titles
+#: ../src/profile-preferences.ui.h:14
+msgid "Keep initial title"
+msgstr "دەسلەپكى ماۋزۇنى ساقلاپ قال"
+
+#. When command exits
+#: ../src/profile-preferences.ui.h:16
+msgid "Exit the terminal"
+msgstr "تېرمىنالدىن چېكىن"
+
+#. When command exits
+#: ../src/profile-preferences.ui.h:18
+msgid "Restart the command"
+msgstr "بۇيرۇقنى قايتا قوزغات"
+
+#. When command exits
+#: ../src/profile-preferences.ui.h:20
+msgid "Hold the terminal open"
+msgstr "تېرمىنالنى ئوچۇق قالدۇر"
+
+#. This is the name of a colour scheme
+#: ../src/profile-preferences.ui.h:22
+msgid "Tango"
+msgstr "Tango"
+
+#. This is the name of a colour scheme
+#: ../src/profile-preferences.ui.h:24
+msgid "Linux console"
+msgstr "لىنۇكىس تىزگىن سۇپىسى"
+
+#. This is the name of a colour scheme
+#: ../src/profile-preferences.ui.h:26
+msgid "XTerm"
+msgstr "XTerm"
+
+#. This is the name of a colour scheme
+#: ../src/profile-preferences.ui.h:28
+msgid "Rxvt"
+msgstr "Rxvt"
+
+#. Scrollbar is
+#: ../src/profile-preferences.ui.h:32
+msgid "Always visible"
+msgstr "ھەمىشە كۆرۈنسۇن"
+
+#. Scrollbar is
+#: ../src/profile-preferences.ui.h:34
+msgid "Visible only when necessary"
+msgstr "زۆرۈر بولغاندىلا كۆرۈنسۇن"
+
+#. Scrollbar is
+#: ../src/profile-preferences.ui.h:36
+msgid "Hidden"
+msgstr "يوشۇرۇن"
+
+#. This refers to the Delete keybinding option
+#: ../src/profile-preferences.ui.h:38
+msgid "Automatic"
+msgstr "ئاپتوماتىك"
+
+#. This refers to the Delete keybinding option
+#: ../src/profile-preferences.ui.h:40
+msgid "Control-H"
+msgstr "Control-H"
+
+#. This refers to the Delete keybinding option
+#: ../src/profile-preferences.ui.h:42
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#. This refers to the Delete keybinding option
+#: ../src/profile-preferences.ui.h:44
+msgid "Escape sequence"
+msgstr "Esc تەرتىپى"
+
+#. This refers to the Delete keybinding option
+#: ../src/profile-preferences.ui.h:46
+msgid "TTY Erase"
+msgstr "TTY ئۆچۈر"
+
+#: ../src/profile-preferences.ui.h:47
 msgid "Profile Editor"
 msgstr "سەپلىمە ھۆججەت تەھرىرلىگۈچ"
 
-#: ../src/profile-preferences.glade.h:2
+#: ../src/profile-preferences.ui.h:48
 msgid "_Profile name:"
 msgstr "سەپلىمە ھۆججەت ئاتى(_P):"
 
-#: ../src/profile-preferences.glade.h:3
+#: ../src/profile-preferences.ui.h:49
+msgid "Profile ID:"
+msgstr "Profile ID:"
+
+#: ../src/profile-preferences.ui.h:50
 msgid "_Use the system fixed width font"
 msgstr "سىستېمىنىڭ تەڭ كەڭلىكتىكى خەت نۇسخىسىنى ئىشلەت(_U)"
 
-#: ../src/profile-preferences.glade.h:4
+#: ../src/profile-preferences.ui.h:51
 msgid "_Font:"
 msgstr "فونت(_F):"
 
-#: ../src/profile-preferences.glade.h:5
+#: ../src/profile-preferences.ui.h:52
 msgid "Choose A Terminal Font"
 msgstr "تېرمىنال خەت نۇسخا تاللاڭ"
 
-#: ../src/profile-preferences.glade.h:6
+#: ../src/profile-preferences.ui.h:53
 msgid "_Allow bold text"
 msgstr "توم خەتكە يول قوي(_A)"
 
-#: ../src/profile-preferences.glade.h:7
-msgid "Show _menubar by default in new terminals"
-msgstr "كۆڭۈلدىكى ئەھۋالدا يېڭى تېرمىنالدا تىزىملىك بالداقنى كۆرسەت(_M)"
-
-#: ../src/profile-preferences.glade.h:8
+#: ../src/profile-preferences.ui.h:54
 msgid "Terminal _bell"
 msgstr "تېرمىنال قوڭغۇراق(_B)"
 
-#: ../src/profile-preferences.glade.h:9
+#: ../src/profile-preferences.ui.h:55
 msgid "Cursor _shape:"
 msgstr "نۇربەلگە شەكلى(_S):"
 
-#: ../src/profile-preferences.glade.h:10
-msgid ""
-"Block\n"
-"I-Beam\n"
-"Underline"
-msgstr "بۆلەك\n"
-"I-لىم\n"
-"ئاستى سىزىق"
-
-#: ../src/profile-preferences.glade.h:13
+#: ../src/profile-preferences.ui.h:56
 msgid "Select-by-_word characters:"
 msgstr "سۆز ئىپادىلەيدىغان ھەرپ تاللا(_W):"
 
-#: ../src/profile-preferences.glade.h:14
+#: ../src/profile-preferences.ui.h:57
 msgid "Use custom default terminal si_ze"
 msgstr "ئىختىيارى كۆڭۈلدىكى تېرمىنال چوڭلۇقىنى ئىشلەت(_Z)"
 
-#: ../src/profile-preferences.glade.h:15
+#: ../src/profile-preferences.ui.h:58
 msgid "Default size:"
 msgstr "كۆڭۈلدىكى چوڭلۇقى:"
 
-#: ../src/profile-preferences.glade.h:16
+#: ../src/profile-preferences.ui.h:59
 msgid "columns"
 msgstr "ئىستونلار"
 
-#: ../src/profile-preferences.glade.h:17
+#: ../src/profile-preferences.ui.h:60
 msgid "rows"
 msgstr "قۇرلار"
 
-#: ../src/profile-preferences.glade.h:18
-msgid "General"
-msgstr "ئادەتتىكى"
+#: ../src/profile-preferences.ui.h:62
+msgid "Title"
+msgstr "ماۋزۇ"
 
-#: ../src/profile-preferences.glade.h:19
-msgid "<b>Title</b>"
-msgstr "<b>ماۋزۇ</b>"
-
-#: ../src/profile-preferences.glade.h:20
+#: ../src/profile-preferences.ui.h:63
 msgid "Initial _title:"
 msgstr "دەسلەپكى ماۋزۇ(_T):"
 
-#: ../src/profile-preferences.glade.h:21
+#: ../src/profile-preferences.ui.h:64
 msgid "When terminal commands set their o_wn titles:"
 msgstr "تېرمىنال بۇيرۇقى ئۆزىنىڭ ماۋزۇسىنى تەڭشىگەندە(_W):"
 
-#: ../src/profile-preferences.glade.h:22
-msgid ""
-"Replace initial title\n"
-"Append initial title\n"
-"Prepend initial title\n"
-"Keep initial title"
-msgstr "دەسلەپكى ماۋزۇنى ئالماشتۇر\n"
-"دەسلەپكى ماۋزۇنىڭ كەينىدە\n"
-"دەسلەپكى ماۋزۇنىڭ ئالدىدا\n"
-"دەسلەپكى ماۋزۇنى قالدۇر"
+#: ../src/profile-preferences.ui.h:65
+msgid "Command"
+msgstr "بۇيرۇق"
 
-#: ../src/profile-preferences.glade.h:26
-msgid "<b>Command</b>"
-msgstr "<b>بۇيرۇق</b>"
-
-#: ../src/profile-preferences.glade.h:27
+#: ../src/profile-preferences.ui.h:66
 msgid "_Run command as a login shell"
 msgstr "shell غا تىزىمغا كىرگەن يوسۇندا بۇيرۇق ئىجرا قىل(_R)"
 
-#: ../src/profile-preferences.glade.h:28
+#: ../src/profile-preferences.ui.h:67
 msgid "_Update login records when command is launched"
 msgstr "بۇيرۇقنى ئىجرا قىلغاندا تىزىمغا كىرگەن خاتىرىنى يېڭىلا(_U)"
 
-#: ../src/profile-preferences.glade.h:29
+#: ../src/profile-preferences.ui.h:68
 msgid "Ru_n a custom command instead of my shell"
 msgstr "shell نى ئەمەس ئىختىيارى بۇيرۇقنى ئىجرا قىل(_N)"
 
-#: ../src/profile-preferences.glade.h:30
+#: ../src/profile-preferences.ui.h:69
 msgid "Custom co_mmand:"
 msgstr "ئىختىيارى بۇيرۇق(_M):"
 
-#: ../src/profile-preferences.glade.h:31
+#: ../src/profile-preferences.ui.h:70
 msgid "When command _exits:"
 msgstr "بۇيرۇق چېكىنگەندە(_E):"
 
-#: ../src/profile-preferences.glade.h:32
-msgid ""
-"Exit the terminal\n"
-"Restart the command\n"
-"Hold the terminal open"
-msgstr "تېرمىنالدىن چېكىن\n"
-"بۇيرۇقنى قايتا قوزغات\n"
-"تېرمىنالنى ئوچۇق قالدۇر"
-
-#: ../src/profile-preferences.glade.h:35
+#: ../src/profile-preferences.ui.h:71
 msgid "Title and Command"
 msgstr "ماۋزۇ ۋە بۇيرۇق"
 
-#: ../src/profile-preferences.glade.h:36
-msgid "<b>Foreground, Background, Bold and Underline</b>"
-msgstr "<b>ئالدى مەنزىرە، تەگلىك، توم ۋە ئاستى سىزىق</b>"
+#: ../src/profile-preferences.ui.h:72
+#| msgid "Choose Terminal Background Color"
+msgid "Text and Background Color"
+msgstr "تېكىست ۋە تەگلىك رەڭگى"
 
-#: ../src/profile-preferences.glade.h:37
+#: ../src/profile-preferences.ui.h:73
 msgid "_Use colors from system theme"
 msgstr "سىستېما باش تېما رەڭگىنى ئىشلەت(_U)"
 
-#: ../src/profile-preferences.glade.h:38
+#: ../src/profile-preferences.ui.h:74
 msgid "Built-in sche_mes:"
 msgstr "ئىچكى لايىھە(_M):"
 
-#: ../src/profile-preferences.glade.h:39
+#: ../src/profile-preferences.ui.h:75
 msgid "_Text color:"
 msgstr "تېكىست رەڭگى(_T)"
 
-#: ../src/profile-preferences.glade.h:40
+#: ../src/profile-preferences.ui.h:76
 msgid "_Background color:"
 msgstr "تەگلىك رەڭگى(_B):"
 
-#: ../src/profile-preferences.glade.h:41
+#: ../src/profile-preferences.ui.h:77
 msgid "Choose Terminal Background Color"
 msgstr "تېرمىنال تەگلىك رەڭگى تاللاڭ"
 
-#: ../src/profile-preferences.glade.h:42
+#: ../src/profile-preferences.ui.h:78
 msgid "Choose Terminal Text Color"
 msgstr "تېرمىنال تېكىست رەڭگى تاللاڭ"
 
-#: ../src/profile-preferences.glade.h:43
+#: ../src/profile-preferences.ui.h:79
 msgid "_Underline color:"
 msgstr "ئاستى سىزىق رەڭگى(_U):"
 
-#: ../src/profile-preferences.glade.h:44
+#: ../src/profile-preferences.ui.h:80
 msgid "_Same as text color"
 msgstr "تېكىست رەڭگى بىلەن ئوخشاش(_S)"
 
-#: ../src/profile-preferences.glade.h:45
+#: ../src/profile-preferences.ui.h:81
 msgid "Bol_d color:"
 msgstr "توم رەڭ(_D):"
 
-#: ../src/profile-preferences.glade.h:46
-msgid "<b>Palette</b>"
-msgstr "<b>رەڭ تاختىسى</b>"
+#: ../src/profile-preferences.ui.h:82
+msgid "Palette"
+msgstr "رەڭ تاختىسى"
 
-#: ../src/profile-preferences.glade.h:47
+#: ../src/profile-preferences.ui.h:83
 msgid "Built-in _schemes:"
 msgstr "ئىچكى لايىھە(_S):"
 
-#: ../src/profile-preferences.glade.h:48
-msgid ""
-"<small><i><b>Note:</b> Terminal applications have these colors available to "
-"them.</i></small>"
-msgstr "<small><i><b>دىققەت:</b> تېرمىنال پروگراممىلار تۆۋەندىكى رەڭنى ئىشلىتەلەيدۇ.</i></small>"
+#: ../src/profile-preferences.ui.h:84
+msgid "<b>Note:</b> Terminal applications have these colors available to them."
+msgstr "<b>دىققەت:</b> تېرمىنال پروگراممىسىنىڭ مۇشۇنداق رەڭلىرى بار."
 
-#: ../src/profile-preferences.glade.h:49
+#: ../src/profile-preferences.ui.h:85
 msgid "Color p_alette:"
 msgstr "رەڭ تاختىسى(_A):"
 
-#: ../src/profile-preferences.glade.h:50
-msgid ""
-"Tango\n"
-"Linux console\n"
-"XTerm\n"
-"Rxvt\n"
-"Custom"
-msgstr "Tango\n"
-"لىنۇكىس تىزگىن سۇپا\n"
-"XTerm\n"
-"Rxvt\n"
-"ئىختىيارى"
-
-#: ../src/profile-preferences.glade.h:55
+#: ../src/profile-preferences.ui.h:86
 msgid "Colors"
 msgstr "رەڭلەر"
 
-#: ../src/profile-preferences.glade.h:56
-msgid "_Solid color"
-msgstr "ساپ رەڭ(_S)"
-
-#: ../src/profile-preferences.glade.h:57
-msgid "_Background image"
-msgstr "تەگلىك سۈرەت(_B)"
-
-#: ../src/profile-preferences.glade.h:58
-msgid "Image _file:"
-msgstr "سۈرەت ھۆججەت(_F):"
-
-#: ../src/profile-preferences.glade.h:59
-msgid "Select Background Image"
-msgstr "تەگلىك سۈرەت تاللاڭ"
-
-#: ../src/profile-preferences.glade.h:60
-msgid "Background image _scrolls"
-msgstr "تەگلىك سۈرەت دومىلات(_S)"
-
-#: ../src/profile-preferences.glade.h:61
-msgid "_Transparent background"
-msgstr "سۈزۈك تەگلىك(_T)"
-
-#: ../src/profile-preferences.glade.h:62
-msgid "S_hade transparent or image background:"
-msgstr "سۈزۈكلۈك ياكى سۈرەت تەگلىكنى قېنىقلاشتۇر(_H)"
-
-#: ../src/profile-preferences.glade.h:63
-msgid "<small><i>None</i></small>"
-msgstr "<small><i>يوق</i></small>"
-
-#: ../src/profile-preferences.glade.h:64
-msgid "<small><i>Maximum</i></small>"
-msgstr "<small><i>ئەڭ چوڭ</i></small>"
-
-#: ../src/profile-preferences.glade.h:65
-msgid "Background"
-msgstr "تەگلىك"
-
-#: ../src/profile-preferences.glade.h:66
+#: ../src/profile-preferences.ui.h:87
 msgid "_Scrollbar is:"
 msgstr "سۈرگۈچ بالداق(_S):"
 
-#: ../src/profile-preferences.glade.h:67
+#: ../src/profile-preferences.ui.h:88
 msgid "Scroll_back:"
 msgstr "ئارقىغا دومىلات(_B):"
 
-#: ../src/profile-preferences.glade.h:68
+#: ../src/profile-preferences.ui.h:89
 msgid "Scroll on _keystroke"
 msgstr "كۇنۇپكا باسقاندا دومىلات(_K)"
 
-#: ../src/profile-preferences.glade.h:69
+#: ../src/profile-preferences.ui.h:90
 msgid "Scroll on _output"
 msgstr "چىقارغاندا دومىلات(_O)"
 
-#: ../src/profile-preferences.glade.h:70
+#: ../src/profile-preferences.ui.h:91
 msgid "_Unlimited"
 msgstr "چەكلىمىسىز(_U)"
 
-#: ../src/profile-preferences.glade.h:71
-msgid ""
-"On the left side\n"
-"On the right side\n"
-"Disabled"
-msgstr "سول تەرەپتە\n"
-"ئوڭ تەرەپتە\n"
-"چەكلەنگەن"
-
-#: ../src/profile-preferences.glade.h:74
+#: ../src/profile-preferences.ui.h:92
 msgid "lines"
 msgstr "سىزىقلار"
 
-#: ../src/profile-preferences.glade.h:75
+#: ../src/profile-preferences.ui.h:93
 msgid "Scrolling"
 msgstr "سىيرىش"
 
-#: ../src/profile-preferences.glade.h:76
+#: ../src/profile-preferences.ui.h:94
 msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
+"<b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr "<small><i><b>دىققەت:</b> بۇ تاللانمىلار بەزى پروگراممىلارنىڭ خاتا قىلمىشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن. پەقەت بەزى پروگرامما ۋە مەشغۇلات سىستېمىسىدا تەڭشەشكە يول قويۇپ ئوخشاش بولمىغان تېرمىنال قىلمىشىغا ئېرىشىلىدۇ.</i></small>"
+"applications and operating systems that expect different terminal behavior."
+msgstr "مەزكۇر تاللانما بىر قىسىم پروگراممىلارغا تەسىر يەتكۈزۈشى مۇمكىن. بۇ تاللانمىلار باشقا تېرمىنال ياكى باشقا مەشغۇلاتلار سىستېمىلاردا نورمال ئىشلەشنى كۆزدە تۇتۇپ بېكىتىلگەن."
 
-#: ../src/profile-preferences.glade.h:77
+#: ../src/profile-preferences.ui.h:95
 msgid "_Delete key generates:"
-msgstr "Delete كۇنۇپكا باسقاندا(_D):"
+msgstr "Delete كۇنۇپكا ھاسىل قىلغان كود(_D):"
 
-#: ../src/profile-preferences.glade.h:78
+#: ../src/profile-preferences.ui.h:96
 msgid "_Backspace key generates:"
-msgstr "Backspace كۇنۇپكا باسقاندا(_B):"
+msgstr "Backspace كۇنۇپكا ھاسىل قىلغان كود(_B):"
 
-#: ../src/profile-preferences.glade.h:79
-msgid ""
-"Automatic\n"
-"Control-H\n"
-"ASCII DEL\n"
-"Escape sequence\n"
-"TTY Erase"
-msgstr "ئۆزلۈكىدىن\n"
-"Control-H\n"
-"ASCII DEL\n"
-"كود ئالماشتۇرۇش تەرتىپى\n"
-"TTY Erase"
-
-#: ../src/profile-preferences.glade.h:84
+#: ../src/profile-preferences.ui.h:97
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "ماسلىشىشچان تاللانمىنى كۆڭۈلدىكىگە قايتۇر(_R)"
 
-#: ../src/profile-preferences.glade.h:85
+#: ../src/profile-preferences.ui.h:98
 msgid "Compatibility"
 msgstr "ماسلىشىشچان"
 
-#: ../src/terminal-accels.c:142
+#: ../src/terminal-accels.c:139
 msgid "New Tab"
 msgstr "يېڭى بەتكۈچ"
 
-#: ../src/terminal-accels.c:144
+#: ../src/terminal-accels.c:141
 msgid "New Window"
 msgstr "يېڭى كۆزنەك"
 
-#: ../src/terminal-accels.c:149
-msgid "Save Contents"
-msgstr "مەزمۇن ساقلا"
+#: ../src/terminal-accels.c:143
+msgid "New Profile"
+msgstr "يېڭى سەپلىمە ھۆججەت"
 
-#: ../src/terminal-accels.c:152
+#: ../src/terminal-accels.c:146
+msgid "Save Contents"
+msgstr "مەزمۇنلارنى ساقلا"
+
+#: ../src/terminal-accels.c:149
 msgid "Close Tab"
 msgstr "بەتكۈچ ياپ"
 
-#: ../src/terminal-accels.c:154
+#: ../src/terminal-accels.c:151
 msgid "Close Window"
 msgstr "كۆزنەك ياپ"
 
-#: ../src/terminal-accels.c:160
+#: ../src/terminal-accels.c:157
 msgid "Copy"
 msgstr "كۆچۈر"
 
-#: ../src/terminal-accels.c:162
+#: ../src/terminal-accels.c:159
 msgid "Paste"
 msgstr "چاپلا"
 
-#: ../src/terminal-accels.c:168
+#: ../src/terminal-accels.c:165
 msgid "Hide and Show menubar"
 msgstr "تىزىملىك بالداقنى كۆرسەت/يوشۇر"
 
-#: ../src/terminal-accels.c:170
+#: ../src/terminal-accels.c:167
 msgid "Full Screen"
 msgstr "پۈتۈن ئېكران"
 
-#: ../src/terminal-accels.c:172
+#: ../src/terminal-accels.c:169
 msgid "Zoom In"
 msgstr "چوڭايت"
 
-#: ../src/terminal-accels.c:174
+#: ../src/terminal-accels.c:171
 msgid "Zoom Out"
 msgstr "كىچىكلىتىش"
 
-#: ../src/terminal-accels.c:176
+#: ../src/terminal-accels.c:173
 msgid "Normal Size"
 msgstr "ئەسلى چوڭلۇقى"
 
-#: ../src/terminal-accels.c:182 ../src/terminal-window.c:3843
+#: ../src/terminal-accels.c:179 ../src/terminal-window.c:3406
 msgid "Set Title"
 msgstr "ماۋزۇ بەلگىلەش"
 
-#: ../src/terminal-accels.c:184
+#: ../src/terminal-accels.c:181
 msgid "Reset"
 msgstr "ئەسلىگە قايتۇرۇش"
 
-#: ../src/terminal-accels.c:186
+#: ../src/terminal-accels.c:183
 msgid "Reset and Clear"
 msgstr "ئەسلىگە قايتۇرۇپ تازىلا"
 
-#: ../src/terminal-accels.c:192
+#: ../src/terminal-accels.c:189
 msgid "Switch to Previous Tab"
 msgstr "ئالدىنقى بەتكۈچكە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:194
+#: ../src/terminal-accels.c:191
 msgid "Switch to Next Tab"
 msgstr "كېيىنكى بەتكۈچكە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:196
+#: ../src/terminal-accels.c:193
 msgid "Move Tab to the Left"
 msgstr "بەتكۈچنى سولغا يۆتكە"
 
-#: ../src/terminal-accels.c:198
+#: ../src/terminal-accels.c:195
 msgid "Move Tab to the Right"
 msgstr "بەتكۈچنى ئوڭغا يۆتكە"
 
-#: ../src/terminal-accels.c:200
+#: ../src/terminal-accels.c:197
 msgid "Detach Tab"
 msgstr "بەتكۈچنى لەيلەت"
 
-#: ../src/terminal-accels.c:202
+#: ../src/terminal-accels.c:199
 msgid "Switch to Tab 1"
 msgstr "بەتكۈچ 1 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:205
+#: ../src/terminal-accels.c:202
 msgid "Switch to Tab 2"
 msgstr "بەتكۈچ 2 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:208
+#: ../src/terminal-accels.c:205
 msgid "Switch to Tab 3"
 msgstr "بەتكۈچ 3 كە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:211
+#: ../src/terminal-accels.c:208
 msgid "Switch to Tab 4"
 msgstr "بەتكۈچ 4 كە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:214
+#: ../src/terminal-accels.c:211
 msgid "Switch to Tab 5"
 msgstr "بەتكۈچ 5 كە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:217
+#: ../src/terminal-accels.c:214
 msgid "Switch to Tab 6"
 msgstr "بەتكۈچ 6 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:220
+#: ../src/terminal-accels.c:217
 msgid "Switch to Tab 7"
 msgstr "بەتكۈچ 7 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:223
+#: ../src/terminal-accels.c:220
 msgid "Switch to Tab 8"
 msgstr "بەتكۈچ 8 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:226
+#: ../src/terminal-accels.c:223
 msgid "Switch to Tab 9"
 msgstr "بەتكۈچ 9 غا ئالماشتۇر"
 
-#: ../src/terminal-accels.c:229
+#: ../src/terminal-accels.c:226
 msgid "Switch to Tab 10"
 msgstr "بەتكۈچ 10 غا ئالماشتۇر"
 
-#: ../src/terminal-accels.c:232
+#: ../src/terminal-accels.c:229
 msgid "Switch to Tab 11"
 msgstr "بەتكۈچ 11 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:235
+#: ../src/terminal-accels.c:232
 msgid "Switch to Tab 12"
 msgstr "بەتكۈچ 12 گە ئالماشتۇر"
 
-#: ../src/terminal-accels.c:241
+#: ../src/terminal-accels.c:238
 msgid "Contents"
-msgstr "مەزمۇن"
+msgstr "مەزمۇنلار"
 
-#: ../src/terminal-accels.c:246
+#: ../src/terminal-accels.c:243
 msgid "File"
 msgstr "ھۆججەت"
 
-#: ../src/terminal-accels.c:247
+#: ../src/terminal-accels.c:244
 msgid "Edit"
 msgstr "تەھرىرلەش"
 
-#: ../src/terminal-accels.c:248
+#: ../src/terminal-accels.c:245
 msgid "View"
 msgstr "كۆرۈنۈش"
 
-#: ../src/terminal-accels.c:250
+#: ../src/terminal-accels.c:247
 msgid "Tabs"
 msgstr "بەتكۈچلەر"
 
-#: ../src/terminal-accels.c:251
+#: ../src/terminal-accels.c:248
 msgid "Help"
 msgstr "ياردەم"
 
-#: ../src/terminal-accels.c:720
+#: ../src/terminal-accels.c:619
 #, c-format
 msgid "The shortcut key “%s” is already bound to the “%s” action"
 msgstr "«%s» تېزلەتمە ئاللىبۇرۇن «%s» مەشغۇلاتقا باغلانغان"
 
-#: ../src/terminal-accels.c:878
+#: ../src/terminal-accels.c:732
 msgid "_Action"
 msgstr "مەشغۇلات(_A)"
 
-#: ../src/terminal-accels.c:896
+#: ../src/terminal-accels.c:750
 msgid "Shortcut _Key"
 msgstr "تېزلەتمە(_K):"
 
-#: ../src/terminal-app.c:490
-msgid "Click button to choose profile"
-msgstr "بۇ توپچا چېكىلسە سەپلىمە ھۆججەت تاللىنىدۇ"
-
-#: ../src/terminal-app.c:575
-msgid "Profile list"
-msgstr "سەپلىمە ھۆججەت تىزىملىكى"
-
-#: ../src/terminal-app.c:636
-#, c-format
-msgid "Delete profile “%s”?"
-msgstr "سەپلىمە ھۆججەت «%s» نى ئۆچۈرەمسىز؟"
-
-#: ../src/terminal-app.c:652
-msgid "Delete Profile"
-msgstr "سەپلىمە ھۆججەت ئۆچۈر"
-
-#: ../src/terminal-app.c:1097
-#, c-format
-msgid ""
-"You already have a profile called “%s”. Do you want to create another "
-"profile with the same name?"
-msgstr "«%s» ئاتلىق سەپلىمە ھۆججىتىڭىز بار. ئوخشاش ئاتتىكى باشقا سەپلىمە ھۆججەتتىن بىرنى قۇرامسىز؟"
-
-#: ../src/terminal-app.c:1199
-msgid "Choose base profile"
-msgstr "ئاساسىي سەپلىمە ھۆججەت تاللاڭ"
-
-#: ../src/terminal-app.c:1813
-#, c-format
-msgid "No such profile \"%s\", using default profile\n"
-msgstr "«%s» سەپلىمە ھۆججەت مەۋجۇت ئەمەس، كۆڭۈلدىكى سەپلىمە ھۆججەت ئىشلىتىلىدۇ\n"
-
-#: ../src/terminal-app.c:1837
-#, c-format
-msgid "Invalid geometry string \"%s\"\n"
-msgstr "ئىناۋەتسىز گېئومېتىرىيىلىك ھەرپ تىزمىسى «%s»\n"
-
-#: ../src/terminal-app.c:2020
+#: ../src/terminal-app.c:577
 msgid "User Defined"
 msgstr "ئىشلەتكۈچى بەلگىلىگەن"
 
-#: ../src/terminal.c:550
+#: ../src/terminal-appmenu.ui.h:1
+msgid "_Preferences"
+msgstr "مايىللىق(_P)"
+
+#: ../src/terminal-appmenu.ui.h:2 ../src/terminal-window.c:1633
+msgid "_Help"
+msgstr "ياردەم(_H)"
+
+#: ../src/terminal-appmenu.ui.h:3 ../src/terminal-window.c:1749
+msgid "_About"
+msgstr "ھەققىدە(_A)"
+
+#: ../src/terminal.c:243
 #, c-format
 msgid "Failed to parse arguments: %s\n"
 msgstr "ئەركىن ئۆزگەرگۈچىنى يېشەلمىدى: %s\n"
@@ -1715,284 +1401,300 @@ msgstr "ۋىيېتنامچە"
 msgid "Thai"
 msgstr "تايلاندچە"
 
-#: ../src/terminal-encoding.c:503 ../src/terminal-encoding.c:528
-msgid "_Description"
-msgstr "چۈشەندۈرۈش(_D)"
-
-#: ../src/terminal-encoding.c:512 ../src/terminal-encoding.c:537
-msgid "_Encoding"
-msgstr "كودلاش(_E)"
-
-#: ../src/terminal-encoding.c:595
+#: ../src/terminal-encoding.c:272
 msgid "Current Locale"
 msgstr "نۆۋەتتىكى يەرلىك تىل"
 
-#: ../src/terminal-options.c:175
-#, c-format
+#: ../src/terminal-nautilus.c:463
+msgid "Open in _Remote Terminal"
+msgstr "يىراقتىكى تېرمىنالدا ئاچ(_R)"
+
+#: ../src/terminal-nautilus.c:465
+msgid "Open in _Local Terminal"
+msgstr "يەرلىك تېرمىنالدا ئاچ(_R)"
+
+#: ../src/terminal-nautilus.c:469 ../src/terminal-nautilus.c:480
+msgid "Open the currently selected folder in a terminal"
+msgstr "نۆۋەتتە تاللانغان قىسقۇچنى تېرمىنالدا ئاچىدۇ"
+
+#: ../src/terminal-nautilus.c:471 ../src/terminal-nautilus.c:482
+#: ../src/terminal-nautilus.c:492
+msgid "Open the currently open folder in a terminal"
+msgstr "نۆۋەتتە ئېچىلغان قىسقۇچنى تېرمىنالدا ئاچىدۇ"
+
+#: ../src/terminal-nautilus.c:477 ../src/terminal-nautilus.c:491
+msgid "Open in T_erminal"
+msgstr "تېرمىنالدا ئاچ(_E)"
+
+#: ../src/terminal-nautilus.c:488
+msgid "Open T_erminal"
+msgstr "تېرمىنالنى ئاچ(_E)"
+
+#: ../src/terminal-nautilus.c:489
+msgid "Open a terminal"
+msgstr "تېرمىنالنى ئاچىدۇ"
+
+#: ../src/terminal-nautilus.c:507 ../src/terminal-nautilus.c:520
+msgid "Open in _Midnight Commander"
+msgstr "_Midnight Commander دا ئاچ(_M)"
+
+#: ../src/terminal-nautilus.c:509
 msgid ""
-"Option \"%s\" is no longer supported in this version of gnome-terminal; you "
-"might want to create a profile with the desired setting, and use the new '--"
-"profile' option\n"
-msgstr "مەزكۇر نەشرىدىكى gnome-terminal تاللانما «%s»نى قوللىمايدۇ؛ سىز ئارزۇ قىلغان سەپلىمە ھۆججەتنى قۇرۇپ، ئاندىن يېڭى '--profile' تاللانمىنى ئىشلىتىڭ.\n"
+"Open the currently selected folder in the terminal file manager Midnight "
+"Commander"
+msgstr "نۆۋەتتە تاللانغان قىسقۇچنى تېرمىنالدىكى ھۆججەت باشقۇرغۇ Midnight Commander دا ئاچىدۇ"
 
-#: ../src/terminal-options.c:188 ../src/terminal-window.c:4074
+#: ../src/terminal-nautilus.c:511 ../src/terminal-nautilus.c:521
+msgid ""
+"Open the currently open folder in the terminal file manager Midnight "
+"Commander"
+msgstr "نۆۋەتتە ئېچىلغان قىسقۇچنى تېرمىنالدىكى ھۆججەت باشقۇرغۇ Midnight Commander دا ئاچىدۇ"
+
+#: ../src/terminal-nautilus.c:517
+msgid "Open _Midnight Commander"
+msgstr "_Midnight Commander نى ئاچ"
+
+#: ../src/terminal-nautilus.c:518
+msgid "Open the terminal file manager Midnight Commander"
+msgstr "تېرمىنالدىكى ھۆججەت باشقۇرغۇ Midnight Commander نى ئاچىدۇ"
+
+#: ../src/terminal-options.c:224
+#, c-format
+msgid "Option \"%s\" is no longer supported in this version of gnome-terminal."
+msgstr "تاللانما «%s» نى بۇ نەشردىكى gnome-terminal دا ئىشلەتكىلى بولمايدۇ"
+
+#: ../src/terminal-options.c:235 ../src/terminal-util.c:234
 msgid "GNOME Terminal"
-msgstr "GNOME تېرمىنال"
+msgstr "گىنوم تېرمىنال"
 
-#: ../src/terminal-options.c:208
+#: ../src/terminal-options.c:275
 #, c-format
 msgid "Argument to \"%s\" is not a valid command: %s"
 msgstr "«%s» ئەركىن ئۆزگەرگۈچى ئىناۋەتسىز بۇيرۇق: %s"
 
-#: ../src/terminal-options.c:343
+#: ../src/terminal-options.c:424
 msgid "Two roles given for one window"
 msgstr "بىر كۆزنەككە ئىككى خىل رول بېرىلگەن"
 
-#: ../src/terminal-options.c:364 ../src/terminal-options.c:397
+#: ../src/terminal-options.c:445 ../src/terminal-options.c:478
 #, c-format
 msgid "\"%s\" option given twice for the same window\n"
 msgstr "ئوخشاش بىر كۆزنەككە «%s» تاللانما ئىككى قېتىم بېرىلگەن\n"
 
-#: ../src/terminal-options.c:596
-#, c-format
-msgid "\"%s\" is not a valid zoom factor"
-msgstr "«%s» ئىناۋەتلىك كېڭەيت تارايت factor ئەمەس"
-
-#: ../src/terminal-options.c:603
+#: ../src/terminal-options.c:688
 #, c-format
 msgid "Zoom factor \"%g\" is too small, using %g\n"
 msgstr "\"%g\" كېڭەيت تارايت factor بەك كىچىك، %g ئىشلىتىلىدۇ\n"
 
-#: ../src/terminal-options.c:611
+#: ../src/terminal-options.c:696
 #, c-format
 msgid "Zoom factor \"%g\" is too large, using %g\n"
 msgstr "\"%g\" كېڭەيت تارايت factor بەك چوڭ، %g ئىشلىتىلىدۇ\n"
 
-#: ../src/terminal-options.c:646
+#: ../src/terminal-options.c:734
 #, c-format
 msgid ""
 "Option \"%s\" requires specifying the command to run on the rest of the "
 "command line"
 msgstr "«%s» تاللانما قېلىپ قالغان بۇيرۇق قۇرىدا ئىجرا قىلىنىدىغان بۇيرۇقنى بەلگىلەيدۇ"
 
-#: ../src/terminal-options.c:807
+#: ../src/terminal-options.c:870
 msgid "Not a valid terminal config file."
 msgstr "ئىناۋەتلىك تېرمىنال سەپلىمە ھۆججىتى ئەمەس."
 
-#: ../src/terminal-options.c:820
+#: ../src/terminal-options.c:883
 msgid "Incompatible terminal config file version."
 msgstr "تېرمىنال سەپلىمە ھۆججىتىنىڭ نەشرى ماسلاشمىدى."
 
-#: ../src/terminal-options.c:947
+#: ../src/terminal-options.c:1024
 msgid ""
 "Do not register with the activation nameserver, do not re-use an active "
 "terminal"
 msgstr "ئات مۇلازىمېتىر خەتلەشنى ئاكتىپلاش ھاجەتسىز، ئاكتىپ تېرمىنالنى قايتا ئىشلەتمەڭ"
 
-#: ../src/terminal-options.c:956
+#: ../src/terminal-options.c:1033
 msgid "Load a terminal configuration file"
 msgstr "تېرمىنال سەپلىمە ھۆججىتىدىن بىرنى يۈكلە"
 
-#: ../src/terminal-options.c:965
-msgid "Save the terminal configuration to a file"
-msgstr "تېرمىنال سەپلىمە ھۆججىتىنى ھۆججەتكە ساقلا"
+#: ../src/terminal-options.c:1034
+msgid "FILE"
+msgstr "FILE"
 
-#: ../src/terminal-options.c:979
+#: ../src/terminal-options.c:1055
 msgid "Open a new window containing a tab with the default profile"
 msgstr "كېيىنكى بەتكۈچتە كۆڭۈلدىكى سەپلىمىنى ئۆز ئىچىگە ئالغان يېڭى كۆزنەكتىن بىرنى ئاچ"
 
-#: ../src/terminal-options.c:988
+#: ../src/terminal-options.c:1064
 msgid "Open a new tab in the last-opened window with the default profile"
 msgstr "ئاخىرقى بەتكۈچتە كۆڭۈلدىكى سەپلىمىنى ئۆز ئىچىگە ئالغان يېڭى كۆزنەكتىن بىرنى ئاچ"
 
-#: ../src/terminal-options.c:1001
+#: ../src/terminal-options.c:1077
 msgid "Turn on the menubar"
 msgstr "تىزىملىك بالداقنى ئاچ"
 
-#: ../src/terminal-options.c:1010
+#: ../src/terminal-options.c:1086
 msgid "Turn off the menubar"
 msgstr "تىزىملىك بالداقنى ياپ"
 
-#: ../src/terminal-options.c:1019
-msgid "Maximise the window"
-msgstr "كۆزنەكنى چوڭايت"
-
-#: ../src/terminal-options.c:1028
-msgid "Full-screen the window"
-msgstr "كۆزنەكنى پۈتۈن ئېكرانغا تولدۇر"
-
-#: ../src/terminal-options.c:1037
-#| msgid ""
-#| "Set the window size; for example: 80x24, or 80x24+200+200 (ROWSxCOLS+X+Y)"
-msgid ""
-"Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y)"
-msgstr "كۆزنەك چوڭلۇقىنى بەلگىلەش؛ مەسىلەن:80x24، ياكى 80x24+200+200 (COLSxROWS+X+Y)"
-
-#: ../src/terminal-options.c:1038
-msgid "GEOMETRY"
-msgstr "GEOMETRY"
-
-#: ../src/terminal-options.c:1046
-msgid "Set the window role"
-msgstr "كۆزنەك رولى تەڭشىكى"
-
-#: ../src/terminal-options.c:1047
-msgid "ROLE"
-msgstr "رول"
-
-#: ../src/terminal-options.c:1055
+#: ../src/terminal-options.c:1131
 msgid "Set the last specified tab as the active one in its window"
 msgstr "ئاخىرقى بەلگىلەنگەن بەتكۈچنى تۇرۇشلۇق كۆزنەكنىڭ نۆۋەتتىكى بەتكۈچىگە تەڭشە"
 
-#: ../src/terminal-options.c:1068
+#: ../src/terminal-options.c:1144
 msgid "Execute the argument to this option inside the terminal"
 msgstr "تېرمىنالدا بۇ تاللانمىنىڭ ئەركىن ئۆزگەرگۈچىسىنى ئىجرا قىل"
 
-#: ../src/terminal-options.c:1077
-msgid "Use the given profile instead of the default profile"
-msgstr "كۆڭۈلدىكى سەپلىمە ھۆججەتنى ئەمەس، تەمىنلەنگەن سەپلىمە ھۆججەتنى ئىشلەت"
-
-#: ../src/terminal-options.c:1078
+#: ../src/terminal-options.c:1154
 msgid "PROFILE-NAME"
 msgstr "سەپلىمە ھۆججەت ئاتى"
 
-#: ../src/terminal-options.c:1086
-msgid "Set the terminal title"
-msgstr "تېرمىنال ماۋزۇسىنى بەلگىلەيدۇ"
-
-#: ../src/terminal-options.c:1087
-msgid "TITLE"
-msgstr "تېما"
-
-#: ../src/terminal-options.c:1095
-msgid "Set the working directory"
-msgstr "خىزمەت مۇندەرىجە تەڭشىكى"
-
-#: ../src/terminal-options.c:1096
-msgid "DIRNAME"
-msgstr "مۇندەرىجە ئاتى"
-
-#: ../src/terminal-options.c:1104
-msgid "Set the terminal's zoom factor (1.0 = normal size)"
-msgstr "تېرمىنال چوڭايت كىچىكلەت factor تەڭشىكى (1.0=ئەسلى چوڭلۇقى)"
-
-#: ../src/terminal-options.c:1105
-msgid "ZOOM"
-msgstr "كېڭەيت تارايت"
-
-#: ../src/terminal-options.c:1355 ../src/terminal-options.c:1358
+#: ../src/terminal-options.c:1442 ../src/terminal-options.c:1448
 msgid "GNOME Terminal Emulator"
-msgstr "GNOME تېرمىنال تەقلىدلەشتۈرگۈچ"
+msgstr "گىنوم تېرمىنال تەقلىدلەشتۈرگۈچ"
 
-#: ../src/terminal-options.c:1359
+#: ../src/terminal-options.c:1449
 msgid "Show GNOME Terminal options"
-msgstr "GNOME تېرمىنال تاللانمىسىنى كۆرسەت"
+msgstr "گىنوم تېرمىنال تاللانمىسىنى كۆرسەت"
 
-#: ../src/terminal-options.c:1369
+#: ../src/terminal-options.c:1459
 msgid ""
 "Options to open new windows or terminal tabs; more than one of these may be "
 "specified:"
 msgstr "يېڭى كۆزنەك ياكى تېرمىنال بەتكۈچ ئېچىش تاللانمىسى؛ بىردىن كۆپ بەلگىلەشكە بولىدۇ:"
 
-#: ../src/terminal-options.c:1370
-msgid "Show terminal options"
-msgstr "تېرمىنال تاللانمىسىنى كۆرسەت"
-
-#: ../src/terminal-options.c:1378
+#: ../src/terminal-options.c:1468
 msgid ""
 "Window options; if used before the first --window or --tab argument, sets "
 "the default for all windows:"
 msgstr "كۆزنەك تاللانما؛ ئەگەر بىرىنچى --window (كۆزنەك) ياكى --tab(بەتكۈچ) ئەركىن ئۆزگەرگۈچىنىڭ ئالدىدا ئىشلىتىلسە، ھەممە كۆزنەكنىڭ كۆڭۈلدىكى سەپلىمىسى بەلگىلىنىدۇ:"
 
-#: ../src/terminal-options.c:1379
+#: ../src/terminal-options.c:1469
 msgid "Show per-window options"
 msgstr "ھەر بىر كۆزنەك تاللانمىسىنى كۆرسەت"
 
-#: ../src/terminal-options.c:1387
+#: ../src/terminal-options.c:1477
 msgid ""
 "Terminal options; if used before the first --window or --tab argument, sets "
 "the default for all terminals:"
 msgstr "تېرمىنال تاللانما؛ ئەگەر بىرىنچى --window (كۆزنەك) ياكى --tab(بەتكۈچ) ئەركىن ئۆزگەرگۈچىنىڭ ئالدىدا ئىشلىتىلسە، ھەممە تېرمىنالنىڭ كۆڭۈلدىكى سەپلىمىسى بەلگىلىنىدۇ:"
 
-#: ../src/terminal-options.c:1388
+#: ../src/terminal-options.c:1478
 msgid "Show per-terminal options"
 msgstr "ھەر بىر تېرمىنال تاللانمىسىنى كۆرسەت"
 
-#: ../src/terminal-profile.c:168
-msgid "Unnamed"
-msgstr "ئاتسىز"
+#: ../src/terminal-prefs.c:227
+msgid "Click button to choose profile"
+msgstr "بۇ توپچا چېكىلسە سەپلىمە ھۆججەت تاللىنىدۇ"
 
-#: ../src/terminal-screen.c:1500
+#: ../src/terminal-prefs.c:341
+msgid "Profile list"
+msgstr "سەپلىمە ھۆججەت تىزىملىكى"
+
+#: ../src/terminal-prefs.c:396
+#, c-format
+msgid "Delete profile “%s”?"
+msgstr "سەپلىمە ھۆججەت «%s» نى ئۆچۈرەمسىز؟"
+
+#: ../src/terminal-prefs.c:412
+msgid "Delete Profile"
+msgstr "سەپلىمە ھۆججەت ئۆچۈر"
+
+#: ../src/terminal-prefs.c:711
+msgid "Show"
+msgstr "كۆرسەت"
+
+#: ../src/terminal-prefs.c:722
+msgid "_Encoding"
+msgstr "كودلاش(_E)"
+
+#: ../src/terminal-screen.c:1164
+msgid "No command supplied nor shell requested"
+msgstr "بۇيرۇق كۆرسىتىلمىگەن ياكى shell تەلەپ قىلمىغان"
+
+#: ../src/terminal-screen.c:1417 ../src/terminal-window.c:1673
 msgid "_Profile Preferences"
 msgstr "سەپلىمە ھۆججەت مايىللىق(_P):"
 
-#: ../src/terminal-screen.c:1501 ../src/terminal-screen.c:1884
+#: ../src/terminal-screen.c:1418 ../src/terminal-screen.c:1779
 msgid "_Relaunch"
 msgstr "قايتا ئىجرا قىل(_R)"
 
-#: ../src/terminal-screen.c:1504
+#: ../src/terminal-screen.c:1421
 msgid "There was an error creating the child process for this terminal"
 msgstr "بۇ تېرمىنالنىڭ بالا ئىجرانى قۇرۇشتا خاتالىق كۆرۈلدى"
 
-#: ../src/terminal-screen.c:1888
+#: ../src/terminal-screen.c:1783
 #, c-format
 msgid "The child process exited normally with status %d."
 msgstr "تارماق ئىجرا %d ھالەتتە ئادەتتىكىدەك چېكىندى."
 
-#: ../src/terminal-screen.c:1891
+#: ../src/terminal-screen.c:1786
 #, c-format
-msgid "The child process was terminated by signal %d."
-msgstr "تارماق ئىجرانى %d سىگنالى ئاخىرلاشتۇردى."
+msgid "The child process was aborted by signal %d."
+msgstr "تارماق ئىجرانى %d سىگنالى بىنورمال ئاخىرلاشتۇردى."
 
-#: ../src/terminal-screen.c:1894
-msgid "The child process was terminated."
-msgstr "تارماق ئىجرا ئاخىرلاشتى."
+#: ../src/terminal-screen.c:1789
+msgid "The child process was aborted."
+msgstr "تارماق ئىجرا بىنورمال ئاخىرلاشتۇردى."
 
-#: ../src/terminal-tab-label.c:131
+#: ../src/terminal-tab-label.c:194
 msgid "Close tab"
 msgstr "بەتكۈچ ياپ"
 
-#: ../src/terminal-tabs-menu.c:198
+#: ../src/terminal-tabs-menu.c:195
 msgid "Switch to this tab"
 msgstr "بۇ بەتكۈچكە ئالماشتۇر"
 
-#: ../src/terminal-util.c:186
+#: ../src/terminal-util.c:162
 msgid "There was an error displaying help"
 msgstr "ياردەم كۆرسىتىشتە خاتالىق كۆرۈلدى"
 
-#: ../src/terminal-util.c:257
+#: ../src/terminal-util.c:217
+msgid "Contributors:"
+msgstr "تۆھپىكارلار:"
+
+#: ../src/terminal-util.c:236
+msgid "A terminal emulator for the GNOME desktop"
+msgstr "گىنوم ئۈستەلئۈستى تېرمىنال تەقلىدلەشتۈرگۈچ"
+
+#: ../src/terminal-util.c:243
+msgid "translator-credits"
+msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
+"Sahran<sahran@live.com>\n"
+"Muhemmed Erdem <misran_erdem@hotmail.com>"
+
+#: ../src/terminal-util.c:316
 #, c-format
 msgid "Could not open the address “%s”"
 msgstr "«%s» مەنزىلنى ئاچالمىدى"
 
-#: ../src/terminal-util.c:364
+#: ../src/terminal-util.c:391
 msgid ""
-"GNOME Terminal is free software; you can redistribute it and/or modify it "
+"GNOME Terminal is free software: you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 3 of the License, or (at your option) "
+"Software Foundation, either version 3 of the License, or (at your option) "
 "any later version."
-msgstr "GNOME Terminal ئەركىن يۇمشاق دېتال؛ سىز ئەركىن يۇمشاق دېتال ۋەخپىسى تارقاتقان GNU ئادەتتىكى ئاممىۋى ئىجازەتنامە بويىچە ئۇنى قايتا تارقىتىپ ياكى ئۆزگەرتەلەيسىز؛ سىز شۇ ئىجازەت كېلىشىمىنىڭ ئۈچىنچى نەشرى ياكى يۇقىرى نەشرىنى ئىشلىتىڭ."
+msgstr "گىنوم تېرمىنال ئەركىن يۇمشاق دېتال؛ سىز ئەركىن يۇمشاق دېتال ۋەخپىسى تارقاتقان GNU ئادەتتىكى ئاممىۋى ئىجازەتنامە بويىچە ئۇنى قايتا تارقىتىپ ياكى ئۆزگەرتەلەيسىز؛ سىز شۇ ئىجازەت كېلىشىمىنىڭ ئۈچىنچى نەشرى ياكى يۇقىرى نەشرىنى ئىشلىتىڭ."
 
-#: ../src/terminal-util.c:368
+#: ../src/terminal-util.c:395
 msgid ""
 "GNOME Terminal is distributed in the hope that it will be useful, but "
 "WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
 "or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details."
-msgstr "GNOME Terminal  نى تارقىتىشتىكى مەقسەت سىزگە قۇلايلىق ئېلىپ كېلىش، ئەمما سودا ياكى باشقا ئالاھىدە قوللىنىشقا نىسبەتەن ھېچقانداق كاپالەت يوق. ھەمدە مۇئەييەن ئىشلىتىشتە سىز ئارزۇ قىلغان نەتىجىگە ئېرىشىشتە كاپالەتكە ئىگە ئەمەس. GNU ئادەتتىكى ئاممىۋى ئىجازەت كېلىشىمىنى كۆرۈپ تېخىمۇ كۆپ تەپسىلاتقا ئېرىشىڭ."
+msgstr "گىنوم تېرمىنالنى تارقىتىشتىكى مەقسەت سىزگە قۇلايلىق ئېلىپ كېلىش، ئەمما سودا ياكى باشقا ئالاھىدە قوللىنىشقا نىسبەتەن ھېچقانداق كاپالەت يوق. ھەمدە مۇئەييەن ئىشلىتىشتە سىز ئارزۇ قىلغان نەتىجىگە ئېرىشىشتە كاپالەتكە ئىگە ئەمەس. GNU ئادەتتىكى ئاممىۋى ئىجازەت كېلىشىمىنى كۆرۈپ تېخىمۇ كۆپ تەپسىلاتقا ئېرىشىڭ."
 
-#: ../src/terminal-util.c:372
+#: ../src/terminal-util.c:399
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
-"GNOME Terminal; if not, write to the Free Software Foundation, Inc., 51 "
-"Franklin St, Fifth Floor, Boston, MA  02110-1301 USA"
-msgstr "سىز GNOME Terminal نى تاپشۇرۇۋېلىش بىلەن بىللە GNU ئادەتتىكى ئاممىۋى ئىجازەت كېلىشىمىنىڭ كۆچۈرۈلمىسىدىن بىر نۇسخا تاپشۇرۇۋالىسىز؛ ئەگەر تاپشۇرۇۋالمىغان بولسىڭىز ئەركىن يۇمشاق دېتال ۋەخپىسىگە خەت يېزىڭ. مەنزىل:  51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA"
+"GNOME Terminal.  If not, see <http://www.gnu.org/licenses/>."
+msgstr "سىز خالىغان يۇمشاق دېتال ئارقىلىق بىر نۇسخا GNU ئۇنىۋېرسال ئاممىۋى ئىجازەت كېلىشىمىنىڭ كۆپەيتىلگەن نۇسخىسىغا ئېرىشەلەيسىز. ئەگەر بولمىسا <http://www.gnu.org/licenses/> نى زىيارەت قىلىڭ."
 
 #. Translators: This is the label of a menu item to choose a profile.
 #. * _%d is used as the accelerator (with d between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:482
+#: ../src/terminal-window.c:436
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
@@ -2001,399 +1703,962 @@ msgstr "_%d. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:488
+#: ../src/terminal-window.c:442
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1796
+#: ../src/terminal-window.c:1625
 msgid "_File"
 msgstr "ھۆججەت(_F)"
 
 #. File menu
-#: ../src/terminal-window.c:1797 ../src/terminal-window.c:1809
-#: ../src/terminal-window.c:1956
+#: ../src/terminal-window.c:1626 ../src/terminal-window.c:1638
+#: ../src/terminal-window.c:1782
 msgid "Open _Terminal"
 msgstr "تېرمىنال ئاچ(_T)"
 
-#: ../src/terminal-window.c:1798 ../src/terminal-window.c:1812
-#: ../src/terminal-window.c:1959
+#: ../src/terminal-window.c:1627 ../src/terminal-window.c:1641
+#: ../src/terminal-window.c:1785
 msgid "Open Ta_b"
 msgstr "بەتكۈچ ئاچ(_B)"
 
-#: ../src/terminal-window.c:1799
+#: ../src/terminal-window.c:1628
 msgid "_Edit"
 msgstr "تەھرىر(_E)"
 
-#: ../src/terminal-window.c:1800
+#: ../src/terminal-window.c:1629
 msgid "_View"
 msgstr "كۆرۈنۈش(_V)"
 
-#: ../src/terminal-window.c:1801
+#: ../src/terminal-window.c:1630
 msgid "_Search"
 msgstr "ئىزدە(_S)"
 
-#: ../src/terminal-window.c:1802
+#: ../src/terminal-window.c:1631
 msgid "_Terminal"
 msgstr "تېرمىنال(_T)"
 
-#: ../src/terminal-window.c:1803
+#: ../src/terminal-window.c:1632
 msgid "Ta_bs"
 msgstr "بەتكۈچلەر(_B)"
 
-#: ../src/terminal-window.c:1804
-msgid "_Help"
-msgstr "ياردەم(_H)"
+#: ../src/terminal-window.c:1644
+#| msgid "New Profile"
+msgid "New _Profile"
+msgstr "يېڭى سەپلەك(_P)"
 
-#: ../src/terminal-window.c:1815
-msgid "New _Profile…"
-msgstr "يېڭى سەپلىمە ھۆججەت(_P)…"
-
-#: ../src/terminal-window.c:1818
+#: ../src/terminal-window.c:1647
 msgid "_Save Contents"
-msgstr "مەزمۇن ساقلا(_S)"
+msgstr "مەزمۇنلارنى ساقلا(_S)"
 
-#: ../src/terminal-window.c:1821 ../src/terminal-window.c:1965
+#: ../src/terminal-window.c:1650
 msgid "C_lose Tab"
 msgstr "بەتكۈچ ياپ(_L)"
 
-#: ../src/terminal-window.c:1824
+#: ../src/terminal-window.c:1653
 msgid "_Close Window"
 msgstr "كۆزنەك ياپ(_C)"
 
-#: ../src/terminal-window.c:1835 ../src/terminal-window.c:1953
+#: ../src/terminal-window.c:1664 ../src/terminal-window.c:1779
 msgid "Paste _Filenames"
 msgstr "ھۆججەت ئاتىنى چاپلا(_F)"
 
-#: ../src/terminal-window.c:1841
-msgid "P_rofiles…"
-msgstr "سەپلىمە ھۆججەت(_R)…"
-
-#: ../src/terminal-window.c:1844
-msgid "_Keyboard Shortcuts…"
-msgstr "كۇنۇپكا تېزلەتمىلىرى(_K)"
-
-#: ../src/terminal-window.c:1847
-msgid "Pr_ofile Preferences"
-msgstr "سەپلىمە ھۆججەت مايىللىقى(_O)"
+#: ../src/terminal-window.c:1670
+msgid "Pre_ferences"
+msgstr "مايىللىقلار(_F)"
 
 #. Search menu
-#: ../src/terminal-window.c:1863
-msgid "_Find..."
+#: ../src/terminal-window.c:1689
+msgid "_Find…"
 msgstr "ئىزدە(_F)…"
 
-#: ../src/terminal-window.c:1866
+#: ../src/terminal-window.c:1692
 msgid "Find Ne_xt"
 msgstr "كېيىنكىنى ئىزدە(_X)"
 
-#: ../src/terminal-window.c:1869
+#: ../src/terminal-window.c:1695
 msgid "Find Pre_vious"
 msgstr "ئالدىنقىنى ئىزدە(_V)"
 
-#: ../src/terminal-window.c:1872
+#: ../src/terminal-window.c:1698
 msgid "_Clear Highlight"
 msgstr "يورۇتۇشنى تازىلا(_C)"
 
-#: ../src/terminal-window.c:1876
+#: ../src/terminal-window.c:1702
 msgid "Go to _Line..."
 msgstr "قۇرغا يۆتكەل(_L)…"
 
-#: ../src/terminal-window.c:1879
+#: ../src/terminal-window.c:1705
 msgid "_Incremental Search..."
 msgstr "ئاشۇرۇلما ئىزدەش(_I)…"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1885
+#: ../src/terminal-window.c:1711
 msgid "Change _Profile"
 msgstr "سەپلىمە ھۆججەت ئۆزگەرت(_P)"
 
-#: ../src/terminal-window.c:1886
+#: ../src/terminal-window.c:1712
 msgid "_Set Title…"
 msgstr "ماۋزۇ بەلگىلىمەك(_S)…"
 
-#: ../src/terminal-window.c:1889
+#: ../src/terminal-window.c:1715
 msgid "Set _Character Encoding"
 msgstr "ھەرپ بەلگە كودلىنىش تەڭشىكى(_C)"
 
-#: ../src/terminal-window.c:1890
+#: ../src/terminal-window.c:1716
 msgid "_Reset"
 msgstr "ئەسلىگە قايتۇر(_R)"
 
-#: ../src/terminal-window.c:1893
+#: ../src/terminal-window.c:1719
 msgid "Reset and C_lear"
 msgstr "ئەسلىگە قايتۇرۇپ ئېكران تازىلا(_L)"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1898
+#: ../src/terminal-window.c:1724
 msgid "_Add or Remove…"
 msgstr "قوش ياكى چىقىرىۋەت(_A)…"
 
 #. Tabs menu
-#: ../src/terminal-window.c:1903
+#: ../src/terminal-window.c:1729
 msgid "_Previous Tab"
 msgstr "ئالدىنقى بەتكۈچ(_P)"
 
-#: ../src/terminal-window.c:1906
+#: ../src/terminal-window.c:1732
 msgid "_Next Tab"
 msgstr "كېيىنكى بەتكۈچ(_N)"
 
-#: ../src/terminal-window.c:1909
+#: ../src/terminal-window.c:1735
 msgid "Move Tab _Left"
 msgstr "بەتكۈچنى سولغا يۆتكە(_L)"
 
-#: ../src/terminal-window.c:1912
+#: ../src/terminal-window.c:1738
 msgid "Move Tab _Right"
 msgstr "بەتكۈچنى ئوڭغا يۆتكە(_R)"
 
-#: ../src/terminal-window.c:1915
+#: ../src/terminal-window.c:1741
 msgid "_Detach tab"
 msgstr "بەتكۈچ ئايرىش(_D)"
 
 #. Help menu
-#: ../src/terminal-window.c:1920
+#: ../src/terminal-window.c:1746
 msgid "_Contents"
 msgstr "مەزمۇنلار(_C)"
 
-#: ../src/terminal-window.c:1923
-msgid "_About"
-msgstr "ھەققىدە(_A)"
-
 #. Popup menu
-#: ../src/terminal-window.c:1928
+#: ../src/terminal-window.c:1754
 msgid "_Send Mail To…"
 msgstr "ئېلخەت يوللا(_S)…"
 
-#: ../src/terminal-window.c:1931
+#: ../src/terminal-window.c:1757
 msgid "_Copy E-mail Address"
 msgstr "ئېلخەت ئادرېس كۆچۈر(_C)"
 
-#: ../src/terminal-window.c:1934
+#: ../src/terminal-window.c:1760
 msgid "C_all To…"
 msgstr "چاقىر(_A)…"
 
-#: ../src/terminal-window.c:1937
+#: ../src/terminal-window.c:1763
 msgid "_Copy Call Address"
 msgstr "چاقىرغان ئادرېسنى كۆچۈر(_C)"
 
-#: ../src/terminal-window.c:1940
+#: ../src/terminal-window.c:1766
 msgid "_Open Link"
 msgstr "ئۇلانما ئاچ(_O)"
 
-#: ../src/terminal-window.c:1943
+#: ../src/terminal-window.c:1769
 msgid "_Copy Link Address"
 msgstr "ئۇلانما ئاتىنى كۆچۈر(_C)"
 
-#: ../src/terminal-window.c:1946
+#: ../src/terminal-window.c:1772
 msgid "P_rofiles"
 msgstr "سەپلىمە ھۆججەت(_R)"
 
-#: ../src/terminal-window.c:1962 ../src/terminal-window.c:3307
-msgid "C_lose Window"
-msgstr "كۆزنەك ياپ(_L)"
-
-#: ../src/terminal-window.c:1968
+#: ../src/terminal-window.c:1788
 msgid "L_eave Full Screen"
 msgstr "پۈتۈن ئېكراندىن چېكىن(_E)"
 
-#: ../src/terminal-window.c:1971
+#: ../src/terminal-window.c:1791
 msgid "_Input Methods"
 msgstr "كىرگۈزگۈچ(_I)"
 
 #. View Menu
-#: ../src/terminal-window.c:1977
+#: ../src/terminal-window.c:1797
 msgid "Show _Menubar"
 msgstr "تىزىملىك بالداقنى كۆرسەت(&M)(_M)"
 
-#: ../src/terminal-window.c:1981
+#: ../src/terminal-window.c:1801
 msgid "_Full Screen"
 msgstr "پۈتۈن ئېكران(_F)"
 
-#: ../src/terminal-window.c:3294
+#: ../src/terminal-window.c:2866
 msgid "Close this window?"
 msgstr "بۇ كۆزنەكنى ياپ؟"
 
-#: ../src/terminal-window.c:3294
+#: ../src/terminal-window.c:2866
 msgid "Close this terminal?"
 msgstr "بۇ تېرمىنالنى ياپ؟"
 
-#: ../src/terminal-window.c:3298
+#: ../src/terminal-window.c:2870
 msgid ""
 "There are still processes running in some terminals in this window. Closing "
 "the window will kill all of them."
 msgstr "بۇ كۆزنەكتىكى بەزى تېرمىناللاردا ئىجرا قىلىنىۋاتقان جەريان بار. بۇ كۆزنەك يېپىلسا ئۇلار توختىتىلىدۇ."
 
-#: ../src/terminal-window.c:3302
+#: ../src/terminal-window.c:2874
 msgid ""
 "There is still a process running in this terminal. Closing the terminal will "
 "kill it."
 msgstr "بۇ تېرمىنالدا يەنە بىر ئىجرا ئىجرا قىلىنىۋاتىدۇ. تېرمىنال يېپىلسا ئۇنى توختىتىلىدۇ."
 
-#: ../src/terminal-window.c:3307
+#: ../src/terminal-window.c:2879
+msgid "C_lose Window"
+msgstr "كۆزنەك ياپ(_L)"
+
+#: ../src/terminal-window.c:2879
 msgid "C_lose Terminal"
 msgstr "تېرمىنال ياپ(_L)"
 
-#: ../src/terminal-window.c:3380
+#: ../src/terminal-window.c:2952
 msgid "Could not save contents"
 msgstr "مەزمۇننى ساقلىيالمايدۇ"
 
-#: ../src/terminal-window.c:3404
-msgid "Save as..."
-msgstr "باشقا ئاتتا ساقلا…"
+#: ../src/terminal-window.c:2976
+msgid "Save as…"
+msgstr "باشقا ئاتتا ساقلاش…"
 
-#: ../src/terminal-window.c:3866
+#: ../src/terminal-window.c:3423
 msgid "_Title:"
 msgstr "ماۋزۇ (_T):"
 
-#: ../src/terminal-window.c:4057
-msgid "Contributors:"
-msgstr "تۆھپىكارلار:"
+#~ msgid "Foreground, Background, Bold and Underline"
+#~ msgstr "ئالدى، ئارقا، توم ۋە ئاستى سىزىق"
 
-#: ../src/terminal-window.c:4076
-msgid "A terminal emulator for the GNOME desktop"
-msgstr "GNOME ئۈستەلئۈستى تېرمىنال تەقلىدلەشتۈرگۈچ"
+#~ msgid "New _Profile…"
+#~ msgstr "يېڭى سەپلىمە ھۆججەت(_P)…"
 
-#: ../src/terminal-window.c:4083
-msgid "translator-credits"
-msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
-"Sahran<sahran@live.com>\n"
-"Muhemmed Erdem <misran_erdem@hotmail.com>\n"
-"\n"
-"Launchpad Contributions:\n"
-"  Abdumomin.Kadir https://launchpad.net/~abdumomin-kadir\n"
-"  Gheyret T.Kenji https://launchpad.net/~gheyret\n"
-"  Gheyret T.Kenji https://launchpad.net/~gheyretkenji\n"
-"  Sahran https://launchpad.net/~sahran"
+#~ msgid "Keybindings"
+#~ msgstr "كۇنۇپكا باغلاش"
 
-#.
-#. * Copyright © 2009 Christian Persch
-#. *
-#. * Gnome-terminal is free software; you can redistribute it and/or modify
-#. * it under the terms of the GNU General Public License as published by
-#. * the Free Software Foundation; either version 3 of the License, or
-#. * (at your option) any later version.
-#. *
-#. * Gnome-terminal is distributed in the hope that it will be useful,
-#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
-#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#. * GNU General Public License for more details.
-#. *
-#. * You should have received a copy of the GNU General Public License
-#. * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#.
-#. This file contains extra strings that need to be translated, but
-#. * can't be extracted by intltool since the ui files aren't in git, and
-#. * the glade files don't contain them in the right form. See bug #553357.
-#.
-#. Translators: This refers to the Delete keybinding option
-#: ../src/extra-strings.c:24
-msgid "Automatic"
-msgstr "ئاپتوماتىك"
+#~ msgid "Pre_ferences…"
+#~ msgstr "مايىللىقلار(_F)…"
 
-#. Translators: This refers to the Delete keybinding option
-#: ../src/extra-strings.c:26
-msgid "Control-H"
-msgstr "Control-H"
+#~ msgid "_Profile Preferences…"
+#~ msgstr "سەپلىمە ھۆججەت مايىللىقلىرى(_P)…"
 
-#. Translators: This refers to the Delete keybinding option
-#: ../src/extra-strings.c:28
-msgid "ASCII DEL"
-msgstr "ASCII DEL"
+#~ msgid "_Find..."
+#~ msgstr "ئىزدە(_F)…"
 
-#. Translators: This refers to the Delete keybinding option
-#: ../src/extra-strings.c:30
-msgid "Escape sequence"
-msgstr "Esc تەرتىپى"
+#~ msgid "Keyboard Shortcuts"
+#~ msgstr "تېزلەتمە"
 
-#. Translators: This refers to the Delete keybinding option
-#: ../src/extra-strings.c:32
-msgid "TTY Erase"
-msgstr "TTY ئۆچۈر"
+#~ msgid "_Description"
+#~ msgstr "چۈشەندۈرۈش(_D)"
 
-#. Translators: Cursor shape: ...
-#: ../src/extra-strings.c:35
-msgid "Block"
-msgstr "بۆلەك"
+#~ msgid "P_rofiles…"
+#~ msgstr "سەپلىمە ھۆججەت(_R)…"
 
-#. Translators: Cursor shape: ...
-#: ../src/extra-strings.c:37
-msgid "I-Beam"
-msgstr "I-لىم"
+#~ msgid "_Keyboard Shortcuts…"
+#~ msgstr "كۇنۇپكا تېزلەتمىلىرى(_K)"
 
-#. Translators: Cursor shape: ...
-#: ../src/extra-strings.c:39
-msgid "Underline"
-msgstr "ئاستى سىزىق"
+#~ msgid "Disable connection to session manager"
+#~ msgstr "ئەڭگىمە باشقۇرغۇچقا باغلىنىشنى چەكلە"
 
-#. Translators: When command exits: ...
-#: ../src/extra-strings.c:42
-msgid "Exit the terminal"
-msgstr "تېرمىنالدىن چېكىن"
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "سەپلىمە ساقلانغان ھۆججەتنى بەلگىلە"
 
-#. Translators: When command exits: ...
-#: ../src/extra-strings.c:44
-msgid "Restart the command"
-msgstr "بۇيرۇقنى قايتا قوزغات"
+#~ msgid "Specify session management ID"
+#~ msgstr "ئەڭگىمە باشقۇرغۇ ID سېنى بەلگىلە"
 
-#. Translators: When command exits: ...
-#: ../src/extra-strings.c:46
-msgid "Hold the terminal open"
-msgstr "تېرمىنالنى ئوچۇق قالدۇر"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. Translators: Scrollbar is: ...
-#: ../src/extra-strings.c:49
-msgid "On the left side"
-msgstr "سول تەرەپتە"
+#~ msgid "Show session management options"
+#~ msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى كۆرسەت"
 
-#. Translators: Scrollbar is: ...
-#: ../src/extra-strings.c:51
-msgid "On the right side"
-msgstr "ئوڭ تەرەپتە"
+#~ msgid "A_vailable encodings:"
+#~ msgstr "ئىشلىتىلىشچان كودلاش(_V):"
 
-#. Translators: Scrollbar is: ...
-#: ../src/extra-strings.c:53
-msgid "Disabled"
-msgstr "ئىناۋەتسىز قىلىنغان"
+#~ msgid "Add or Remove Terminal Encodings"
+#~ msgstr "تېرمىنال كودلاش قوش ياكى چىقىرىۋەت"
 
-#. Translators: When terminal commands set their own titles: ...
-#: ../src/extra-strings.c:56
-msgid "Replace initial title"
-msgstr "دەسلەپكى ماۋزۇنى ئالماشتۇر"
+#~ msgid ""
+#~ "A value between 0.0 and 1.0 indicating how much to darken the background "
+#~ "image. 0.0 means no darkness, 1.0 means fully dark. In the current "
+#~ "implementation, there are only two levels of darkness possible, so the "
+#~ "setting behaves as a boolean, where 0.0 disables the darkening effect."
+#~ msgstr ""
+#~ "0.0 بىلەن 1.0 ئارىلىقىدىكى قىممەت تەگلىك سۈرەتنىڭ غۇۋالىق دەرىجىسىنى "
+#~ "ئىپادىلەيدۇ. 0.0 بىر تەرەپ قىلماسلىقنى، 1.0 قاپقارا ئىكەنلىكىنى "
+#~ "بىلدۈرىدۇ. نۆۋەتتىكى ئەمەلگە ئاشۇرۇلغان لايىھىدە پەقەت ئىككى خىل "
+#~ "دەرىجىدىكى غۇۋالىق دەرىجىسى بار، شۇڭلاشقا بۇ جايدىكى تەڭشەك ۋە بۇلىن "
+#~ "قىممىتى ئوخشاش، يەنى 0.0 غۇۋالىق ئۈنۈمنى چەكلەيدۇ."
 
-#. Translators: When terminal commands set their own titles: ...
-#: ../src/extra-strings.c:58
-msgid "Append initial title"
-msgstr "دەسلەپكى ماۋزۇنىڭ ئالدىغا قوش"
+#~ msgid ""
+#~ "Accelerator key to detach current tab. Expressed as a string in the same "
+#~ "format used for GTK+ resource files. If you set the option to the special "
+#~ "string \"disabled\", then there will be no keybinding for this action."
+#~ msgstr ""
+#~ "نۆۋەتتىكى بەتكۈچنىڭ تېزلىتىش كۇنۇپكىسىنى ئايرىيدۇ. GTK+ مەنبە ھۆججىتى "
+#~ "ئىشلەتكەن فورمات چىقارغان ھەرپ تىزمىسى. ئەگەر تاللانمىنىڭ ئالاھىدە ھەرپ "
+#~ "تىزمىسى «چەكلەنگەن» بولسا ئۇنداقتا بۇ مەشغۇلاتنىڭ تېز كۇنۇپكىسى يوق."
 
-#. Translators: When terminal commands set their own titles: ...
-#: ../src/extra-strings.c:60
-msgid "Prepend initial title"
-msgstr "دەسلەپكى ماۋزۇنىڭ كەينىگە قوش"
+#~ msgid ""
+#~ "Accelerator key to move the current tab to the left. Expressed as a "
+#~ "string in the same format used for GTK+ resource files. If you set the "
+#~ "option to the special string \"disabled\", then there will be no "
+#~ "keybinding for this action."
+#~ msgstr ""
+#~ "نۆۋەتتىكى بەتكۈچنى سولغا يۆتكەيدىغان تېزلىتىش كۇنۇپكىسى. GTK+ مەنبە "
+#~ "ھۆججىتى ئىشلەتكەن فورمات چىقارغان ھەرپ تىزمىسى. ئەگەر تاللانمىنىڭ "
+#~ "ئالاھىدە ھەرپ تىزمىسى «چەكلەنگەن» بولسا ئۇنداقتا بۇ مەشغۇلاتنىڭ تېز "
+#~ "كۇنۇپكىسى يوق."
 
-#. Translators: When terminal commands set their own titles: ...
-#: ../src/extra-strings.c:62
-msgid "Keep initial title"
-msgstr "دەسلەپكى ماۋزۇنى ساقلاپ قال"
+#~ msgid ""
+#~ "Accelerator key to move the current tab to the right. Expressed as a "
+#~ "string in the same format used for GTK+ resource files. If you set the "
+#~ "option to the special string \"disabled\", then there will be no "
+#~ "keybinding for this action."
+#~ msgstr ""
+#~ "نۆۋەتتىكى بەتكۈچنى ئوڭغا يۆتكەيدىغان تېزلىتىش كۇنۇپكىسى. GTK+ مەنبە "
+#~ "ھۆججىتى ئىشلەتكەن فورمات چىقارغان ھەرپ تىزمىسى. ئەگەر تاللانمىنىڭ "
+#~ "ئالاھىدە ھەرپ تىزمىسى «چەكلەنگەن» بولسا ئۇنداقتا بۇ مەشغۇلاتنىڭ تېز "
+#~ "كۇنۇپكىسى يوق."
 
-#. Translators: This is the name of a colour scheme
-#: ../src/extra-strings.c:65
-msgid "Tango"
-msgstr "Tango"
+#~ msgid "Accelerator to detach current tab."
+#~ msgstr "نۆۋەتتىكى بەتكۈچنى ئايرىيدىغان تېزلەتمە."
 
-#. Translators: This is the name of a colour scheme
-#: ../src/extra-strings.c:67
-msgid "Linux console"
-msgstr "لىنۇكىس تىزگىن سۇپىسى"
+#~ msgid "Accelerator to move the current tab to the left."
+#~ msgstr "نۆۋەتتىكى بەتكۈچنى سولغا يۆتكەيدىغان تېزلەتمە."
 
-#. Translators: This is the name of a colour scheme
-#: ../src/extra-strings.c:69
-msgid "XTerm"
-msgstr "XTerm"
+#~ msgid ""
+#~ "An Pango font name. Examples are \"Sans 12\" or \"Monospace Bold 14\"."
+#~ msgstr ""
+#~ "Pango خەت نۇسخا ئاتى. مەسىلەن \"Sans 12\" ياكى \"Monospace Bold 14\"."
 
-#. Translators: This is the name of a colour scheme
-#: ../src/extra-strings.c:71
-msgid "Rxvt"
-msgstr "Rxvt"
+#~ msgid "Background image"
+#~ msgstr "تەگلىك سۈرەت"
+
+#~ msgid "Background type"
+#~ msgstr "تەگلىك تىپى"
+
+#~ msgid "Default"
+#~ msgstr "كۆڭۈلدىكى"
+
+#~ msgid "Effect of the Backspace key"
+#~ msgstr "Backspace كۇنۇپكا ئۈنۈمى"
+
+#~ msgid "Effect of the Delete key"
+#~ msgstr "Delete كۇنۇپكا ئۈنۈمى"
+
+#~ msgid "Filename of a background image."
+#~ msgstr "تەگلىك سۈرەتنىڭ ھۆججەت ئاتى."
+
+#~ msgid "Font"
+#~ msgstr "خەت نۇسخا"
+
+#~ msgid "How much to darken the background image"
+#~ msgstr "تەگلىك سۈرەتنىڭ غۇۋالىق دەرىجىسى"
+
+#~ msgid "Icon for terminal window"
+#~ msgstr "تېرمىنال كۆزنەكنىڭ سىنبەلگىسى"
+
+#~ msgid "Icon to use for tabs/windows containing this profile."
+#~ msgstr "بۇ سەپلىمە ھۆججەتتىكى بەتكۈچ/كۆزنەكلەر ئىشلىتىدىغان سىنبەلگە"
+
+#~ msgid ""
+#~ "If true, don't make a noise when applications send the escape sequence "
+#~ "for the terminal bell."
+#~ msgstr ""
+#~ "ئەگەر راست (true) بولسا پروگرامما تېرمىنال سىگنالىنىڭ كود ئايلاندۇرۇش "
+#~ "قاتارى يوللىغاندا ئاۋاز چىقمايدۇ."
+
+#~ msgid ""
+#~ "If true, scroll the background image with the foreground text; if false, "
+#~ "keep the image in a fixed position and scroll the text above it."
+#~ msgstr ""
+#~ "ئەگەر راست (true) بولسا تەگلىك سۈرەتنى ئالدىدىكى تېكىستكە ئوخشاش "
+#~ "دومىلىتىدۇ؛ ئەگەر يالغان (false) بولسا سۈرەتنى مۇقىم ئورۇندا تۇرغۇزۇپ، "
+#~ "تېكىستنىلا دومىلىتىدۇ."
+
+#~ msgid ""
+#~ "If true, the terminal will use the desktop-global standard font if it's "
+#~ "monospace (and the most similar font it can come up with otherwise)."
+#~ msgstr ""
+#~ "ئەگەر راست (true) بولسا تېرمىنال ئۈستەلئۈستى بىلەن ئوخشاش خەت نۇسخا "
+#~ "ئىشلىتىدۇ، ئەگەر شۇ خەت نۇسخىسى تەڭ كەڭلىكتىكى خەت نۇسخىسى بولسا (ئۇنداق "
+#~ "بولمىسا ئۇنىڭغا ئەڭ يېقىن كېلىدىغان خەت نۇسخىسىنى ئىشلىتىدۇ)"
+
+#~ msgid ""
+#~ "If true, the theme color scheme used for text entry boxes will be used "
+#~ "for the terminal, instead of colors provided by the user."
+#~ msgstr ""
+#~ "ئەگەر راست (true) بولسا تېرمىنال تېكىست رامكىسىنىڭ تېما رەڭگىنى "
+#~ "ئىشلىتىدۇ، ئىشلەتكۈچى تەمىنلىگەن رەڭنى ئىشلەتمەيدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for bringing up the dialog for profile creation. "
+#~ "Expressed as a string in the same format used for GTK+ resource files. If "
+#~ "you set the option to the special string \"disabled\", then there will be "
+#~ "no keyboard shortcut for this action."
+#~ msgstr ""
+#~ "سەپلىمە ھۆججەتنى قوزغىتىپ سۆزلەشكۈ تېزلەتمىسىنى قۇرىدۇ. GTK+ مەنبە ھۆججەت "
+#~ "ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە "
+#~ "ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for closing a tab. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ ياپىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا "
+#~ "بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled"
+#~ "\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for closing a window. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "كۆزنەك ياپىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا "
+#~ "بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled"
+#~ "\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for copying selected text to the clipboard. "
+#~ "Expressed as a string in the same format used for GTK+ resource files. If "
+#~ "you set the option to the special string \"disabled\", then there will be "
+#~ "no keyboard shortcut for this action."
+#~ msgstr ""
+#~ "تاللانغان تېكىستنى چاپلاش تاختىسىغا كۆچۈرىدىغان تېزلەتمە. GTK+ مەنبە "
+#~ "ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى "
+#~ "ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېز كۇنۇپكىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for launching help. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "ياردەمنى ئىجرا قىلىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for making font larger. Expressed as a string in "
+#~ "the same format used for GTK+ resource files. If you set the option to "
+#~ "the special string \"disabled\", then there will be no keyboard shortcut "
+#~ "for this action."
+#~ msgstr ""
+#~ "خەتنى چوڭايتىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا "
+#~ "بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled"
+#~ "\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for making font smaller. Expressed as a string in "
+#~ "the same format used for GTK+ resource files. If you set the option to "
+#~ "the special string \"disabled\", then there will be no keyboard shortcut "
+#~ "for this action."
+#~ msgstr ""
+#~ "خەتنى كىچىكلىتىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا "
+#~ "بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled"
+#~ "\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for making font the normal size. Expressed as a "
+#~ "string in the same format used for GTK+ resource files. If you set the "
+#~ "option to the special string \"disabled\", then there will be no keyboard "
+#~ "shortcut for this action."
+#~ msgstr ""
+#~ "خەتنى ئادەتتىكى چوڭلۇققا تەڭشەيدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت "
+#~ "ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە "
+#~ "ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for opening a new tab. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "يېڭى بەتكۈچ ئاچىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا "
+#~ "بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled"
+#~ "\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for opening a new window. Expressed as a string in "
+#~ "the same format used for GTK+ resource files. If you set the option to "
+#~ "the special string \"disabled\", then there will be no keyboard shortcut "
+#~ "for this action."
+#~ msgstr ""
+#~ "يېڭى كۆزنەك ئاچىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا "
+#~ "بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled"
+#~ "\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for pasting the contents of the clipboard into the "
+#~ "terminal. Expressed as a string in the same format used for GTK+ resource "
+#~ "files. If you set the option to the special string \"disabled\", then "
+#~ "there will be no keyboard shortcut for this action."
+#~ msgstr ""
+#~ "چاپلاش تاختىسىدىن مەزمۇننى تېرمىنالغا كۆچۈرىدىغان تېزلەتمە. GTK+ مەنبە "
+#~ "ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى "
+#~ "ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 1. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 1 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 10. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 10 غا ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 11. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 11 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 12. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 12 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 2. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 2 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 3. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 3 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 4. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 4 كە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 5. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 5 كە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 6. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 6 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 7. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 7 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 8. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 8 گە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for switch to tab 9. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "بەتكۈچ 9 غا ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key for toggling full screen mode. Expressed as a "
+#~ "string in the same format used for GTK+ resource files. If you set the "
+#~ "option to the special string \"disabled\", then there will be no keyboard "
+#~ "shortcut for this action."
+#~ msgstr ""
+#~ "پۈتۈن ئېكران ھالەتكە ئالمىشىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت "
+#~ "ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە "
+#~ "ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to reset and clear the terminal. Expressed as a "
+#~ "string in the same format used for GTK+ resource files. If you set the "
+#~ "option to the special string \"disabled\", then there will be no keyboard "
+#~ "shortcut for this action."
+#~ msgstr ""
+#~ "تېرمىنالنى تازىلاپ ئەسلىگە قايتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت "
+#~ "ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە "
+#~ "ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to reset the terminal. Expressed as a string in the "
+#~ "same format used for GTK+ resource files. If you set the option to the "
+#~ "special string \"disabled\", then there will be no keyboard shortcut for "
+#~ "this action."
+#~ msgstr ""
+#~ "تېرمىنالنى ئەسلىگە قايتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to save the current tab contents to a file. "
+#~ "Expressed as a string in the same format used for GTK+ resource files. If "
+#~ "you set the option to the special string \"disabled\", then there will be "
+#~ "no keyboard shortcut for this action."
+#~ msgstr ""
+#~ "نۆۋەتتىكى بەتكۈچ مەزمۇنىنى ھۆججەتكە ساقلايدىغان تېزلەتمە. GTK+ مەنبە "
+#~ "ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى "
+#~ "ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to set the terminal title. Expressed as a string in "
+#~ "the same format used for GTK+ resource files. If you set the option to "
+#~ "the special string \"disabled\", then there will be no keyboard shortcut "
+#~ "for this action."
+#~ msgstr ""
+#~ "تېرمىنال ماۋزۇسىنى بەلگىلەيدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to switch to the next tab. Expressed as a string in "
+#~ "the same format used for GTK+ resource files. If you set the option to "
+#~ "the special string \"disabled\", then there will be no keyboard shortcut "
+#~ "for this action."
+#~ msgstr ""
+#~ "كېيىنكى بەتكۈچكە ئالماشتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت ئىشلىتىدىغان "
+#~ "فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە ھەرپ تىزمىسى "
+#~ "\"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to switch to the previous tab. Expressed as a "
+#~ "string in the same format used for GTK+ resource files. If you set the "
+#~ "option to the special string \"disabled\", then there will be no keyboard "
+#~ "shortcut for this action."
+#~ msgstr ""
+#~ "ئالدىنقى بەتكۈچكە ئالماشتۇرىدىغان تېزلەتمە. GTK+ مەنبە ھۆججەت "
+#~ "ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر تاللانمىنى ئالاھىدە "
+#~ "ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا مەشغۇلاتنىڭ "
+#~ "تېزلەتمىسى بولمايدۇ."
+
+#~ msgid ""
+#~ "Keyboard shortcut key to toggle the visibility of the menubar. Expressed "
+#~ "as a string in the same format used for GTK+ resource files. If you set "
+#~ "the option to the special string \"disabled\", then there will be no "
+#~ "keyboard shortcut for this action."
+#~ msgstr ""
+#~ "تىزىملىك بالداقنى كۆرسىتىش كۆرسەتمەسلىكنى ئالماشتۇرىدىغان تېزلەتمە. GTK+ "
+#~ "مەنبە ھۆججەت ئىشلىتىدىغان فورماتتا بېرىلگەن ھەرپ تىزمىسى. ئەگەر "
+#~ "تاللانمىنى ئالاھىدە ھەرپ تىزمىسى \"disabled\" قىلىپ تاللىسىڭىز، ئۇنداقتا "
+#~ "مەشغۇلاتنىڭ تېزلەتمىسى بولمايدۇ."
+
+#~ msgid "List of profiles"
+#~ msgstr "سەپلىمە ھۆججەت تىزىملىكى"
+
+#~ msgid ""
+#~ "List of profiles known to gnome-terminal. The list contains strings "
+#~ "naming subdirectories relative to /apps/gnome-terminal/profiles."
+#~ msgstr ""
+#~ "gnome-terminal غا مەلۇملۇق سەپلىمە ھۆججەت تىزىملىكى. تىزىملىك ئۆز ئىچىگە "
+#~ "ئالغان تارماق مۇندەرىجە /apps/gnome-terminal/profiles غا نىسبەتەن ئاتالغان"
+
+#~ msgid ""
+#~ "Profile to be used when opening a new window or tab. Must be in "
+#~ "profile_list."
+#~ msgstr ""
+#~ "يېڭى كۆزنەك ياكى بەتكۈچ ئاچقاندا ئىشلىتىدىغان سەپلىمە ھۆججەت. چوقۇم "
+#~ "سەپلىمە ھۆججەت تىزىملىكىدە بولۇشى لازىم."
+
+#~ msgid "Profile to use for new terminals"
+#~ msgstr "يېڭى تېرمىنال ئىشلىتىدىغان سەپلىمە ھۆججەت"
+
+#~ msgid ""
+#~ "Sets what code the backspace key generates. Possible values are \"ascii-"
+#~ "del\" for the ASCII DEL character, \"control-h\" for Control-H (AKA the "
+#~ "ASCII BS character), \"escape-sequence\" for the escape sequence "
+#~ "typically bound to backspace or delete. \"ascii-del\" is normally "
+#~ "considered the correct setting for the Backspace key."
+#~ msgstr ""
+#~ "backspace كۇنۇپكىسى ھاسىل قىلىدىغان كودنى تەڭشەيدۇ. تاللاشقا بولىدىغان "
+#~ "قىممىتى \"ascii-del\" بولسا ASCII DEL ھەرپى،   \"control-h\" بولسا "
+#~ "Control-H (ASCII BS ھەرپى)، \"escape-sequence\" بولسا backspace ياكى "
+#~ "delete كود ئالماشتۇرۇش تەرتىپى، \"ascii-del\" بولسا Backspace نىڭ توغرا "
+#~ "تەڭشىكىنى بىلدۈرىدۇ."
+
+#~ msgid ""
+#~ "Sets what code the delete key generates. Possible values are \"ascii-del"
+#~ "\" for the ASCII DEL character, \"control-h\" for Control-H (AKA the "
+#~ "ASCII BS character), \"escape-sequence\" for the escape sequence "
+#~ "typically bound to backspace or delete. \"escape-sequence\" is normally "
+#~ "considered the correct setting for the Delete key."
+#~ msgstr ""
+#~ "elete كۇنۇپكىسى ھاسىل قىلىدىغان كودنى تەڭشەيدۇ. تاللاشقا بولىدىغان "
+#~ "قىممىتى \"ascii-del\" بولسا ASCII DEL ھەرپى،   \"control-h\" بولسا "
+#~ "Control-H (ASCII BS ھەرپى)، \"escape-sequence\" بولسا backspace ياكى "
+#~ "delete كود ئالماشتۇرۇش تەرتىپى، \"ascii-del\" بولسا Backspace نىڭ توغرا "
+#~ "تەڭشىكىنى بىلدۈرىدۇ."
+
+#~ msgid ""
+#~ "Terminals have a 16-color palette that applications inside the terminal "
+#~ "can use. This is that palette, in the form of a colon-separated list of "
+#~ "color names. Color names should be in hex format e.g. \"#FF00FF\""
+#~ msgstr ""
+#~ "تېرمىنال 16 خىل رەڭلىك رەڭ تاختىسى ئىشلىتىپ، تېرمىنالدىكى پروگراممىلارنىڭ "
+#~ "ئىشلىتىشىگە تەمىنلەيدۇ. بۇ شۇ رەڭ تاختىسى، فورماتى چېكىتلىك پەش بىلەن "
+#~ "ئايرىلغان رەڭ ئاتى. رەڭ ئاتى چوقۇم 16 سىستېمىدىكى فورماتتا بولۇشى لازىم "
+#~ "يەنى، \"#FF00FF\""
+
+#~ msgid ""
+#~ "The possible values are \"block\" to use a block cursor, \"ibeam\" to use "
+#~ "a vertical line cursor, or \"underline\" to use an underline cursor."
+#~ msgstr ""
+#~ "تاللاشقا بولىدىغان قىممەتتىن \"block\" (توس) بۆلەك شەكىللىك نۇر بەلگە "
+#~ "ئىشلىتىدۇ، \"ibeam\"(I شەكىللىك) بوي سىنبەلگە ئىشلىتىدۇ، ياكى \"underline"
+#~ "\" (ئاستى سىزىق) ئاستى سىزىق نۇر بەلگە ئىشلىتىدۇ."
+
+#~ msgid ""
+#~ "Type of terminal background. May be \"solid\" for a solid color, \"image"
+#~ "\" for an image, or \"transparent\" for either real transparency if a "
+#~ "compositing window manager is running, or pseudo-transparency otherwise."
+#~ msgstr ""
+#~ "تېرمىنال تەگلىكىنىڭ تىپى. \"solid\"(ساپ رەڭ) بولسا بىر خىل رەڭنى "
+#~ "بىلدۈرىدۇ، \"image\"(سۈرەت) بولسا سۈرەتنى بىلدۈرىدۇ، \"transparent"
+#~ "\"(سۈزۈك) بولسا ھەقىقىي سۈزۈكنى بىلدۈرىدۇ(ئەگەر بىرىكمە كۆزنەك "
+#~ "باشقۇرغۇچتىن بىرى ئىجرا قىلىنىۋاتقان بولسا) بولمىسا ساختا سۈزۈكنى "
+#~ "بىلدۈرىدۇ."
+
+#~ msgid ""
+#~ "Where to put the terminal scrollbar. Possibilities are \"left\", \"right"
+#~ "\", and \"hidden\"."
+#~ msgstr ""
+#~ "تېرمىنال سۈرگۈچنى نەگە قويىدۇ. تاللاشقا بولىدىغان قىممىتى \"left\" (سول)، "
+#~ "\"right\"(ئوڭ) ۋە \"hidden\"(يوشۇرۇن)"
+
+#~ msgid ""
+#~ "Whether to ask for confirmation when closing a terminal window which has "
+#~ "more than one open tab."
+#~ msgstr ""
+#~ "كۆپ بەتكۈچ ئاچقاندا تېرمىنال كۆزنەكنى ياپقاندا جەزملەشنى سورامدۇ يوق."
+
+#~ msgid "Whether to scroll background image"
+#~ msgstr "تەگلىك سۈرەتنى دومىلىتامدۇ يوق"
+
+#~ msgid "[UTF-8,current]"
+#~ msgstr "[UTF-8،نۆۋەتتىكى]"
+
+#~ msgid "Images"
+#~ msgstr "سۈرەتلەر"
+
+#~ msgid "C_reate"
+#~ msgstr "قۇر(_R)"
+
+#~ msgid "Profile _name:"
+#~ msgstr "سەپلىمە ھۆججەت ئاتى(_N):"
+
+#~ msgid "_Base on:"
+#~ msgstr "ئاساسىدا(_B):"
+
+#~ msgid "<b>Title</b>"
+#~ msgstr "<b>ماۋزۇ</b>"
+
+#~ msgid "<small><i>Maximum</i></small>"
+#~ msgstr "<small><i>ئەڭ چوڭ</i></small>"
+
+#~ msgid "<small><i>None</i></small>"
+#~ msgstr "<small><i>يوق</i></small>"
+
+#~ msgid ""
+#~ "Automatic\n"
+#~ "Control-H\n"
+#~ "ASCII DEL\n"
+#~ "Escape sequence\n"
+#~ "TTY Erase"
+#~ msgstr ""
+#~ "ئۆزلۈكىدىن\n"
+#~ "Control-H\n"
+#~ "ASCII DEL\n"
+#~ "كود ئالماشتۇرۇش تەرتىپى\n"
+#~ "TTY Erase"
+
+#~ msgid "Background"
+#~ msgstr "تەگلىك"
+
+#~ msgid "Background image _scrolls"
+#~ msgstr "تەگلىك سۈرەت دومىلات(_S)"
+
+#~ msgid ""
+#~ "Block\n"
+#~ "I-Beam\n"
+#~ "Underline"
+#~ msgstr ""
+#~ "بۆلەك\n"
+#~ "I-لىم\n"
+#~ "ئاستى سىزىق"
+
+#~ msgid ""
+#~ "Exit the terminal\n"
+#~ "Restart the command\n"
+#~ "Hold the terminal open"
+#~ msgstr ""
+#~ "تېرمىنالدىن چېكىن\n"
+#~ "بۇيرۇقنى قايتا قوزغات\n"
+#~ "تېرمىنالنى ئوچۇق قالدۇر"
+
+#~ msgid "Image _file:"
+#~ msgstr "سۈرەت ھۆججەت(_F):"
+
+#~ msgid ""
+#~ "On the left side\n"
+#~ "On the right side\n"
+#~ "Disabled"
+#~ msgstr ""
+#~ "سول تەرەپتە\n"
+#~ "ئوڭ تەرەپتە\n"
+#~ "چەكلەنگەن"
+
+#~ msgid ""
+#~ "Replace initial title\n"
+#~ "Append initial title\n"
+#~ "Prepend initial title\n"
+#~ "Keep initial title"
+#~ msgstr ""
+#~ "دەسلەپكى ماۋزۇنى ئالماشتۇر\n"
+#~ "دەسلەپكى ماۋزۇنىڭ كەينىدە\n"
+#~ "دەسلەپكى ماۋزۇنىڭ ئالدىدا\n"
+#~ "دەسلەپكى ماۋزۇنى قالدۇر"
+
+#~ msgid "S_hade transparent or image background:"
+#~ msgstr "سۈزۈكلۈك ياكى سۈرەت تەگلىكنى قېنىقلاشتۇر(_H)"
+
+#~ msgid "Select Background Image"
+#~ msgstr "تەگلىك سۈرەت تاللاڭ"
+
+#~ msgid ""
+#~ "Tango\n"
+#~ "Linux console\n"
+#~ "XTerm\n"
+#~ "Rxvt\n"
+#~ "Custom"
+#~ msgstr ""
+#~ "Tango\n"
+#~ "Linux تىزگىن سۇپا\n"
+#~ "XTerm\n"
+#~ "Rxvt\n"
+#~ "ئىختىيارى"
+
+#~ msgid "_Background image"
+#~ msgstr "تەگلىك سۈرەت(_B)"
+
+#~ msgid "_Solid color"
+#~ msgstr "ساپ رەڭ(_S)"
+
+#~ msgid "_Transparent background"
+#~ msgstr "سۈزۈك تەگلىك(_T)"
+
+#~ msgid ""
+#~ "You already have a profile called “%s”. Do you want to create another "
+#~ "profile with the same name?"
+#~ msgstr ""
+#~ "“%s” ئاتلىق سەپلىمە ھۆججىتىڭىز بار. ئوخشاش ئاتتىكى باشقا سەپلىمە "
+#~ "ھۆججەتتىن بىرنى قۇرامسىز؟"
+
+#~ msgid "Choose base profile"
+#~ msgstr "ئاساسىي سەپلىمە ھۆججەت تاللاڭ"
+
+#~ msgid "No such profile \"%s\", using default profile\n"
+#~ msgstr ""
+#~ "\"%s\" سەپلىمە ھۆججەت مەۋجۇت ئەمەس، كۆڭۈلدىكى سەپلىمە ھۆججەت ئىشلىتىلىدۇ\n"
+
+#~ msgid "Invalid geometry string \"%s\"\n"
+#~ msgstr "ئىناۋەتسىز گېئومېتىرىيىلىك ھەرپ تىزمىسى \"%s\"\n"
+
+#~ msgid ""
+#~ "Option \"%s\" is no longer supported in this version of gnome-terminal; "
+#~ "you might want to create a profile with the desired setting, and use the "
+#~ "new '--profile' option\n"
+#~ msgstr ""
+#~ "مەزكۇر نەشرىدىكى gnome-terminal تاللانما \"%s\"نى قوللىمايدۇ؛ سىز ئارزۇ "
+#~ "قىلغان سەپلىمە ھۆججەتنى قۇرۇپ، ئاندىن يېڭى '--profile' تاللانمىنى "
+#~ "ئىشلىتىڭ.\n"
+
+#~ msgid "Save the terminal configuration to a file"
+#~ msgstr "تېرمىنال سەپلىمە ھۆججىتىنى ھۆججەتكە ساقلا"
+
+#~ msgid "Pr_ofile Preferences"
+#~ msgstr "سەپلىمە ھۆججەت مايىللىقى(_O)"
+
+#~ msgid "On the left side"
+#~ msgstr "سول تەرەپتە"
+
+#~ msgid "On the right side"
+#~ msgstr "ئوڭ تەرەپتە"
+
+#~ msgid "Disabled"
+#~ msgstr "چەكلەنگەن"
 
 #~ msgid "Highlight S/Key challenges"
 #~ msgstr "S/Key يورۇت"

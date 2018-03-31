@@ -1,10 +1,8 @@
 <ui>
   <menubar>
     <menu action="File">
-      <menuitem action="FileNewWindow" />
-      <menu action="FileNewWindowProfiles" />
-      <menuitem action="FileNewTab" />
-      <menu action="FileNewTabProfiles" />
+      <menuitem action="FileNewTerminal" />
+      <menu action="FileNewTerminalProfiles" />
       <separator />
       <menuitem action="FileNewProfile" />
       <menuitem action="FileSaveContents" />
@@ -19,8 +17,7 @@
       <separator />
       <menuitem action="EditSelectAll" />
       <separator />
-      <menuitem action="EditProfiles" />
-      <menuitem action="EditKeybindings" />
+      <menuitem action="EditPreferences" />
       <menuitem action="EditCurrentProfile" />
     </menu>
     <menu action="View">
@@ -86,10 +83,6 @@
     <menuitem action="PopupCopyLinkAddress" />
     <separator />
     <menuitem action="PopupNewTerminal" />
-    <menuitem action="PopupNewTab" />
-    <separator />
-    <menuitem action="PopupCloseTab" />
-    <menuitem action="PopupCloseWindow" />
     <separator />
     <menuitem action="PopupCopy" />
     <menuitem action="PopupPaste" />
@@ -102,8 +95,6 @@
     </menu>
     <menuitem action="ViewMenubar" />
     <menuitem action="PopupLeaveFullscreen" />
-    <separator />
-    <menuitem action="PopupInputMethods" />
   </popup>
   <popup name="NotebookPopup" action="NotebookPopup">
     <menuitem action="TabsMoveLeft"/>

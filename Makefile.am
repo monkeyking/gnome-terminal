@@ -2,25 +2,51 @@ SUBDIRS = src po help
 
 NULL =
 
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+
 DISTCHECK_CONFIGURE_FLAGS = \
+	--enable-debug \
 	--disable-scrollkeeper \
 	--disable-schemas-install \
 	--disable-silent-rules \
-	--with-gtk=3.0
+	--disable-search-provider
+	--without-nautilus-extension \
+	$(NULL)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = @PACKAGE@.desktop.in.in
-desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+DESKTOP_FILE_VALIDATE_FLAGS =
+desktop-file-validate: $(nodist_desktop_DATA)
+	for f in $^; do \
+		$(DESKTOP_FILE_VALIDATE) $(DESKTOP_FILE_VALIDATE_FLAGS) $$f; \
+	done
+
+appdatadir = $(datadir)/appdata
+appdata_in_files = gnome-terminal.appdata.xml.in
+nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+@INTLTOOL_XML_RULE@
+
+APPDATA_VALIDATE_FLAGS = --nonet
+appdata-validate: $(nodist_appdata_DATA)
+	for f in $^; do \
+		$(APPDATA_VALIDATE) $(APPDATA_VALIDATE_FLAGS) $$f; \
+	done
+
+check-local: desktop-file-validate
+
 EXTRA_DIST = 			\
+	$(appdata_in_files)	\
 	ChangeLog.pre-2-23	\
 	ChangeLog.README	\
 	HACKING			\
 	$(NULL)
 
 CLEANFILES = \
-	$(desktop_DATA)	\
+	$(nodist_appdata_DATA) \
+	$(nodist_desktop_DATA) \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
@@ -39,11 +65,6 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/mkinstalldirs \
 	`find "$(srcdir)" -type f -name Makefile.in -print` \
 	$(NULL)
-
-# hack from sound-juicer to get around scrollkeeper's leaving a big
-# mess behind.
-distuninstallcheck_listfiles = 	\
-        find -regex '.*/var/scrollkeeper/.*' -prune -or -type f -print
 
 # Build ChangeLog from GIT  history
 ChangeLog:

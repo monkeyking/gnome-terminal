@@ -5,12 +5,12 @@
  * Copyright © 2003 Mariano Suarez-Alvarez
  * Copyright © 2008 Christian Persch
  *
- * Gnome-terminal is free software; you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Gnome-terminal is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -26,25 +26,75 @@
 #include <stdlib.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #include "terminal-options.h"
 #include "terminal-screen.h"
 #include "terminal-app.h"
-#include "terminal-intl.h"
 #include "terminal-util.h"
+#include "terminal-version.h"
 
 static GOptionContext *get_goption_context (TerminalOptions *options);
 
+static TerminalSettingsList *
+terminal_options_ensure_profiles_list (TerminalOptions *options)
+{
+  if (options->profiles_list == NULL)
+    options->profiles_list = terminal_profiles_list_new ();
+
+  return options->profiles_list;
+}
+
+static char *
+terminal_util_key_file_get_string_unescape (GKeyFile *key_file,
+                                            const char *group,
+                                            const char *key,
+                                            GError **error)
+{
+  char *escaped, *unescaped;
+
+  escaped = g_key_file_get_string (key_file, group, key, error);
+  if (!escaped)
+    return NULL;
+
+  unescaped = g_strcompress (escaped);
+  g_free (escaped);
+
+  return unescaped;
+}
+
+static char **
+terminal_util_key_file_get_argv (GKeyFile *key_file,
+                                 const char *group,
+                                 const char *key,
+                                 int *argc,
+                                 GError **error)
+{
+  char **argv;
+  char *flat;
+  gboolean retval;
+
+  flat = terminal_util_key_file_get_string_unescape (key_file, group, key, error);
+  if (!flat)
+    return NULL;
+
+  retval = g_shell_parse_argv (flat, argc, &argv, error);
+  g_free (flat);
+
+  if (retval)
+    return argv;
+
+  return NULL;
+}
+
 static InitialTab*
-initial_tab_new (const char *profile,
-                 gboolean    is_id)
+initial_tab_new (char *profile /* adopts */)
 {
   InitialTab *it;
 
   it = g_slice_new (InitialTab);
 
-  it->profile = g_strdup (profile);
-  it->profile_is_id = is_id;
+  it->profile = profile;
   it->exec_argv = NULL;
   it->title = NULL;
   it->working_dir = NULL;
@@ -119,7 +169,7 @@ ensure_top_window (TerminalOptions *options)
   if (options->initial_windows == NULL)
     {
       iw = initial_window_new (0);
-      iw->tabs = g_list_append (NULL, initial_tab_new (NULL, FALSE));
+      iw->tabs = g_list_append (NULL, initial_tab_new (NULL));
       apply_defaults (options, iw);
 
       options->initial_windows = g_list_append (options->initial_windows, iw);
@@ -151,13 +201,12 @@ ensure_top_tab (TerminalOptions *options)
 
 static InitialWindow*
 add_new_window (TerminalOptions *options,
-                const char           *profile,
-                gboolean              is_id)
+                char            *profile /* adopts */)
 {
   InitialWindow *iw;
 
   iw = initial_window_new (0);
-  iw->tabs = g_list_prepend (NULL, initial_tab_new (profile, is_id));
+  iw->tabs = g_list_prepend (NULL, initial_tab_new (profile));
   apply_defaults (options, iw);
 
   options->initial_windows = g_list_append (options->initial_windows, iw);
@@ -172,10 +221,22 @@ unsupported_option_callback (const gchar *option_name,
                              gpointer     data,
                              GError     **error)
 {
-  g_printerr (_("Option \"%s\" is no longer supported in this version of gnome-terminal;"
-               " you might want to create a profile with the desired setting, and use"
-               " the new '--profile' option\n"), option_name);
+  g_printerr (_("Option \"%s\" is no longer supported in this version of gnome-terminal."),
+              option_name);
+  g_printerr ("\n");
   return TRUE; /* we do not want to bail out here but continue */
+}
+
+static gboolean
+unsupported_option_fatal_callback (const gchar *option_name,
+                                   const gchar *value,
+                                   gpointer     data,
+                                   GError     **error)
+{
+  g_set_error (error, G_OPTION_ERROR, G_OPTION_ERROR_UNKNOWN_OPTION,
+               _("Option \"%s\" is no longer supported in this version of gnome-terminal."),
+               option_name);
+  return FALSE;
 }
 
 
@@ -188,6 +249,26 @@ option_version_cb (const gchar *option_name,
   g_print ("%s %s\n", _("GNOME Terminal"), VERSION);
 
   exit (EXIT_SUCCESS);
+}
+
+static gboolean
+option_app_id_callback (const gchar *option_name,
+                          const gchar *value,
+                          gpointer     data,
+                          GError     **error)
+{
+  TerminalOptions *options = data;
+
+  if (!g_application_id_is_valid (value)) {
+    g_set_error (error, G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,
+                 "\"%s\" is not a valid application ID", value);
+    return FALSE;
+  }
+
+  g_free (options->server_app_id);
+  options->server_app_id = g_strdup (value);
+
+  return TRUE;
 }
 
 static gboolean
@@ -235,20 +316,24 @@ option_profile_cb (const gchar *option_name,
                    GError     **error)
 {
   TerminalOptions *options = data;
+  char *profile;
+
+  profile = terminal_profiles_list_dup_uuid_or_name (terminal_options_ensure_profiles_list (options),
+                                                     value, error);
+  if (profile == NULL)
+    return FALSE;
 
   if (options->initial_windows)
     {
       InitialTab *it = ensure_top_tab (options);
 
       g_free (it->profile);
-      it->profile = g_strdup (value);
-      it->profile_is_id = FALSE;
+      it->profile = profile;
     }
   else
     {
       g_free (options->default_profile);
-      options->default_profile = g_strdup (value);
-      options->default_profile_is_id = FALSE;
+      options->default_profile = profile;
     }
 
   return TRUE;
@@ -261,20 +346,24 @@ option_profile_id_cb (const gchar *option_name,
                       GError     **error)
 {
   TerminalOptions *options = data;
+  char *profile;
+
+  profile = terminal_profiles_list_dup_uuid (terminal_options_ensure_profiles_list (options),
+                                             value, error);
+  if (profile == NULL)
+    return FALSE;
 
   if (options->initial_windows)
     {
       InitialTab *it = ensure_top_tab (options);
 
       g_free (it->profile);
-      it->profile = g_strdup (value);
-      it->profile_is_id = TRUE;
+      it->profile = profile;
     }
   else
     {
       g_free (options->default_profile);
-      options->default_profile = g_strdup (value);
-      options->default_profile_is_id = TRUE;
+      options->default_profile = profile;
     }
 
   return TRUE;
@@ -288,11 +377,14 @@ option_window_callback (const gchar *option_name,
                         GError     **error)
 {
   TerminalOptions *options = data;
-  gboolean is_profile_id;
+  char *profile;
 
-  is_profile_id = g_str_has_suffix (option_name, "-with-profile-internal-id");
+  profile = terminal_profiles_list_dup_uuid_or_name (terminal_options_ensure_profiles_list (options),
+                                                     value, error);
+  if (profile == NULL)
+    return FALSE;
 
-  add_new_window (options, value, is_profile_id);
+  add_new_window (options, profile /* adopts */);
 
   return TRUE;
 }
@@ -304,19 +396,22 @@ option_tab_callback (const gchar *option_name,
                      GError     **error)
 {
   TerminalOptions *options = data;
-  gboolean is_profile_id;
+  char *profile;
 
-  is_profile_id = g_str_has_suffix (option_name, "-with-profile-internal-id");
+  profile = terminal_profiles_list_dup_uuid_or_name (terminal_options_ensure_profiles_list (options),
+                                                     value, error);
+  if (profile == NULL)
+    return FALSE;
 
   if (options->initial_windows)
     {
       InitialWindow *iw;
 
       iw = g_list_last (options->initial_windows)->data;
-      iw->tabs = g_list_append (iw->tabs, initial_tab_new (value, is_profile_id));
+      iw->tabs = g_list_append (iw->tabs, initial_tab_new (profile /* adopts */));
     }
   else
-    add_new_window (options, value, is_profile_id);
+    add_new_window (options, profile /* adopts */);
 
   return TRUE;
 }
@@ -474,38 +569,30 @@ option_geometry_callback (const gchar *option_name,
 }
 
 static gboolean
-option_disable_factory_callback (const gchar *option_name,
-                                 const gchar *value,
-                                 gpointer     data,
-                                 GError     **error)
+option_load_config_cb (const gchar *option_name,
+                       const gchar *value,
+                       gpointer     data,
+                       GError     **error)
 {
   TerminalOptions *options = data;
+  GFile *file;
+  char *config_file;
+  GKeyFile *key_file;
+  gboolean result;
 
-  options->use_factory = FALSE;
+  file = g_file_new_for_commandline_arg (value);
+  config_file = g_file_get_path (file);
+  g_object_unref (file);
 
-  return TRUE;
-}
+  key_file = g_key_file_new ();
+  result = g_key_file_load_from_file (key_file, config_file, 0, error) &&
+           terminal_options_merge_config (options, key_file,
+                                          strcmp (option_name, "load-config") == 0 ? SOURCE_DEFAULT : SOURCE_SESSION,
+                                          error);
+  g_key_file_free (key_file);
+  g_free (config_file);
 
-static gboolean
-option_load_save_config_cb (const gchar *option_name,
-                            const gchar *value,
-                            gpointer     data,
-                            GError     **error)
-{
-  TerminalOptions *options = data;
-
-  if (options->config_file)
-    {
-      g_set_error_literal (error, TERMINAL_OPTION_ERROR, TERMINAL_OPTION_ERROR_EXCLUSIVE_OPTIONS,
-                           "Options \"--load-config\" and \"--save-config\" are mutually exclusive");
-      return FALSE;
-    }
-
-  options->config_file = terminal_util_resolve_relative_path (options->default_working_dir, value);
-  options->load_config = strcmp (option_name, "--load-config") == 0;
-  options->save_config = strcmp (option_name, "--save-config") == 0;
-
-  return TRUE;
+  return result;
 }
 
 static gboolean
@@ -621,7 +708,10 @@ option_zoom_callback (const gchar *option_name,
       it->zoom_set = TRUE;
     }
   else
-    options->zoom = zoom;
+    {
+      options->zoom = zoom;
+      options->zoom_set = TRUE;
+    }
 
   return TRUE;
 }
@@ -661,17 +751,11 @@ digest_options_callback (GOptionContext *context,
 /**
  * terminal_options_parse:
  * @working_directory: the default working directory
- * @display_name: the default X display name
  * @startup_id: the startup notification ID
- * @env: the environment as variable=value pairs
- * @remote_arguments: whether the caller is the factory process or not
- * @ignore_unknown_options: whether to ignore unknown options when parsing
- *   the arguments
  * @argcp: (inout) address of the argument count. Changed if any arguments were handled
  * @argvp: (inout) address of the argument vector. Any parameters understood by
  *   the terminal #GOptionContext are removed
  * @error: a #GError to fill in
- * @...: a %NULL terminated list of extra #GOptionGroup<!-- -->s
  *
  * Parses the argument vector *@argvp.
  *
@@ -680,42 +764,34 @@ digest_options_callback (GOptionContext *context,
  */
 TerminalOptions *
 terminal_options_parse (const char *working_directory,
-                        const char *display_name,
                         const char *startup_id,
-                        char **env,
-                        gboolean remote_arguments,
-                        gboolean ignore_unknown_options,
                         int *argcp,
                         char ***argvp,
-                        GError **error,
-                        ...)
+                        GError **error)
 {
   TerminalOptions *options;
   GOptionContext *context;
-  GOptionGroup *extra_group;
-  va_list va_args;
   gboolean retval;
   int i;
   char **argv = *argvp;
 
   options = g_slice_new0 (TerminalOptions);
 
-  options->remote_arguments = remote_arguments;
+  options->remote_arguments = FALSE;
   options->default_window_menubar_forced = FALSE;
   options->default_window_menubar_state = TRUE;
   options->default_fullscreen = FALSE;
   options->default_maximize = FALSE;
   options->execute = FALSE;
-  options->use_factory = TRUE;
 
-  options->env = g_strdupv (env);
   options->startup_id = g_strdup (startup_id && startup_id[0] ? startup_id : NULL);
-  options->display_name = g_strdup (display_name);
+  options->display_name = NULL;
   options->initial_windows = NULL;
   options->default_role = NULL;
   options->default_geometry = NULL;
   options->default_title = NULL;
   options->zoom = 1.0;
+  options->zoom_set = FALSE;
 
   options->screen_number = -1;
   options->default_working_dir = g_strdup (working_directory);
@@ -754,18 +830,6 @@ terminal_options_parse (const char *working_directory,
     }
 
   context = get_goption_context (options);
-
-  g_option_context_set_ignore_unknown_options (context, ignore_unknown_options);
-
-  va_start (va_args, error);
-  extra_group = va_arg (va_args, GOptionGroup*);
-  while (extra_group != NULL)
-    {
-      g_option_context_add_group (context, extra_group);
-      extra_group = va_arg (va_args, GOptionGroup*);
-    }
-  va_end (va_args);
-
   retval = g_option_context_parse (context, argcp, argvp, error);
   g_option_context_free (context);
 
@@ -857,8 +921,7 @@ terminal_options_merge_config (TerminalOptions *options,
           char *profile;
 
           profile = g_key_file_get_string (key_file, tab_group, TERMINAL_CONFIG_TERMINAL_PROP_PROFILE_ID, NULL);
-          it = initial_tab_new (profile, TRUE);
-          g_free (profile);
+          it = initial_tab_new (profile /* adopts */);
 
           iw->tabs = g_list_append (iw->tabs, it);
 
@@ -919,7 +982,6 @@ terminal_options_free (TerminalOptions *options)
   g_list_foreach (options->initial_windows, (GFunc) initial_window_free, NULL);
   g_list_free (options->initial_windows);
 
-  g_strfreev (options->env);
   g_free (options->default_role);
   g_free (options->default_geometry);
   g_free (options->default_working_dir);
@@ -930,6 +992,12 @@ terminal_options_free (TerminalOptions *options)
 
   g_free (options->display_name);
   g_free (options->startup_id);
+  g_free (options->server_app_id);
+
+  g_free (options->sm_client_id);
+  g_free (options->sm_config_prefix);
+
+  g_clear_object (&options->profiles_list);
 
   g_slice_free (TerminalOptions, options);
 }
@@ -939,11 +1007,20 @@ get_goption_context (TerminalOptions *options)
 {
   const GOptionEntry global_unique_goptions[] = {
     {
+      "app-id",
+      0,
+      G_OPTION_FLAG_HIDDEN,
+      G_OPTION_ARG_CALLBACK,
+      option_app_id_callback,
+      "Server application ID",
+      "ID"
+    },
+    {
       "disable-factory",
       0,
-      G_OPTION_FLAG_NO_ARG,
+      G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN,
       G_OPTION_ARG_CALLBACK,
-      option_disable_factory_callback,
+      unsupported_option_fatal_callback,
       N_("Do not register with the activation nameserver, do not re-use an active terminal"),
       NULL
     },
@@ -952,18 +1029,17 @@ get_goption_context (TerminalOptions *options)
       0,
       G_OPTION_FLAG_FILENAME,
       G_OPTION_ARG_CALLBACK,
-      option_load_save_config_cb,
+      option_load_config_cb,
       N_("Load a terminal configuration file"),
       N_("FILE")
     },
     {
       "save-config",
       0,
-      G_OPTION_FLAG_FILENAME,
+      G_OPTION_FLAG_FILENAME | G_OPTION_FLAG_HIDDEN,
       G_OPTION_ARG_CALLBACK,
-      option_load_save_config_cb,
-      N_("Save the terminal configuration to a file"),
-      N_("FILE")
+      unsupported_option_callback,
+      NULL, NULL
     },
     { "version", 0, G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_CALLBACK, option_version_cb, NULL, NULL },
     { NULL, 0, 0, 0, NULL, NULL, NULL }
@@ -1016,7 +1092,7 @@ get_goption_context (TerminalOptions *options)
       G_OPTION_FLAG_NO_ARG,
       G_OPTION_ARG_CALLBACK,
       option_maximize_callback,
-      N_("Maximise the window"),
+      N_("Maximize the window"),
       NULL
     },
     {
@@ -1159,9 +1235,9 @@ get_goption_context (TerminalOptions *options)
     {
       "use-factory",
       0,
-      G_OPTION_FLAG_HIDDEN,
-      G_OPTION_ARG_NONE,
-      &options->use_factory,
+      G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN,
+      G_OPTION_ARG_CALLBACK,
+      unsupported_option_callback,
       NULL, NULL
     },
     {
@@ -1173,178 +1249,16 @@ get_goption_context (TerminalOptions *options)
       NULL,
       NULL
     },
-    /*
-     * Crappy old compat args
-     */
-    {
-      "tclass",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "font",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "nologin",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "login",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "foreground",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "background",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "solid",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "bgscroll",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "bgnoscroll",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "shaded",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "noshaded",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "transparent",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "utmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "noutmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "wtmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "nowtmp",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "lastlog",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "nolastlog",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "icon",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },  
-    {
-      "termname",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
-    {
-      "start-factory-server",
-      0,
-      G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_NO_ARG,
-      G_OPTION_ARG_CALLBACK,
-      unsupported_option_callback,
-      NULL, NULL
-    },
     { NULL, 0, 0, 0, NULL, NULL, NULL }
+  };
+
+  const GOptionEntry smclient_goptions[] = {
+    { "sm-client-disable",    0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE,     &options->sm_client_disable,    NULL, NULL },
+    { "sm-client-state-file", 0, G_OPTION_FLAG_HIDDEN | G_OPTION_FLAG_FILENAME, G_OPTION_ARG_CALLBACK, option_load_config_cb, NULL, NULL },
+    { "sm-client-id",         0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING,   &options->sm_client_id,         NULL, NULL },
+    { "sm-disable",           0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE,     &options->sm_client_disable,    NULL, NULL },
+    { "sm-config-prefix",     0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING,   &options->sm_config_prefix,     NULL, NULL },
+    { NULL }
   };
 
   GOptionContext *context;
@@ -1353,6 +1267,9 @@ get_goption_context (TerminalOptions *options)
   context = g_option_context_new (NULL);
   g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
   g_option_context_set_description (context, N_("GNOME Terminal Emulator"));
+  g_option_context_set_ignore_unknown_options (context, FALSE);
+
+  g_option_context_add_group (context, gtk_get_option_group (TRUE));
 
   group = g_option_group_new ("gnome-terminal",
                               N_("GNOME Terminal Emulator"),
@@ -1382,7 +1299,7 @@ get_goption_context (TerminalOptions *options)
   g_option_group_set_translation_domain (group, GETTEXT_PACKAGE);
   g_option_group_add_entries (group, window_goptions);
   g_option_context_add_group (context, group);
-  
+
   group = g_option_group_new ("terminal-options",
                               N_("Terminal options; if used before the first --window or --tab argument, sets the default for all terminals:"),
                               N_("Show per-terminal options"),
@@ -1391,6 +1308,10 @@ get_goption_context (TerminalOptions *options)
   g_option_group_set_translation_domain (group, GETTEXT_PACKAGE);
   g_option_group_add_entries (group, terminal_goptions);
   g_option_context_add_group (context, group);
-  
+
+  group = g_option_group_new ("sm-client", "", "", options, NULL);
+  g_option_group_add_entries (group, smclient_goptions);
+  g_option_context_add_group (context, group);
+
   return context;
 }

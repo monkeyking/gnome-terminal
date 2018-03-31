@@ -1,20 +1,18 @@
 /*
  * Copyright © 2001 Havoc Pennington
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef TERMINAL_WINDOW_H
@@ -38,22 +36,19 @@ typedef struct _TerminalWindowPrivate TerminalWindowPrivate;
 
 struct _TerminalWindow
 {
-  GtkWindow parent_instance;
+  GtkApplicationWindow parent_instance;
 
   TerminalWindowPrivate *priv;
 };
 
 struct _TerminalWindowClass
 {
-  GtkWindowClass parent_class;
-
+  GtkApplicationWindowClass parent_class;
 };
 
 GType terminal_window_get_type (void) G_GNUC_CONST;
 
-TerminalWindow* terminal_window_new (void);
-
-void terminal_window_set_is_restored (TerminalWindow *window);
+TerminalWindow* terminal_window_new (GApplication *app);
 
 GtkUIManager *terminal_window_get_ui_manager (TerminalWindow *window);
 
@@ -87,20 +82,14 @@ gboolean terminal_window_parse_geometry (TerminalWindow *window,
 					 const char     *geometry);
 
 void terminal_window_update_geometry  (TerminalWindow *window);
-void terminal_window_set_size         (TerminalWindow *window,
-                                       TerminalScreen *screen);
-void terminal_window_set_size_force_grid (TerminalWindow *window,
-                                          TerminalScreen *screen,
-                                          int             force_grid_width,
-                                          int             force_grid_height);
 
-GtkWidget* terminal_window_get_notebook (TerminalWindow *window);
+GtkWidget* terminal_window_get_mdi_container (TerminalWindow *window);
 
-gboolean terminal_window_uses_argb_visual (TerminalWindow *window);
+void terminal_window_request_close (TerminalWindow *window);
 
-void terminal_window_save_state (TerminalWindow *window,
-                                 GKeyFile *key_file,
-                                 const char *group);
+GtkActionGroup *terminal_window_get_main_action_group (TerminalWindow *window);
+
+const char *terminal_window_get_uuid (TerminalWindow *window);
 
 G_END_DECLS
 

@@ -2,9 +2,9 @@
  * Copyright © 2005 Paolo Maggi
  * Copyright © 2010 Red Hat (Red Hat author: Behdad Esfahbod)
  *
- * This program is free software; you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -13,9 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -24,6 +22,7 @@
 
 #include "terminal-search-dialog.h"
 #include "terminal-util.h"
+#include "terminal-libgsystem.h"
 
 #define HISTORY_MIN_ITEM_LEN 3
 #define HISTORY_LENGTH 10
@@ -83,20 +82,17 @@ terminal_search_dialog_new (GtkWindow   *parent)
 
   priv = g_new0 (TerminalSearchDialogPrivate, 1);
 
-  if (!terminal_util_load_builder_file ("find-dialog.ui",
-					"find-dialog", &dialog,
-					"search-label", &priv->search_label,
-					"search-entry", &priv->search_entry,
-					"match-case-checkbutton", &priv->match_case_checkbutton,
-					"entire-word-checkbutton", &priv->entire_word_checkbutton,
-					"regex-checkbutton", &priv->regex_checkbutton,
-					"search-backwards-checkbutton", &priv->backwards_checkbutton,
-					"wrap-around-checkbutton", &priv->wrap_around_checkbutton,
-					NULL))
-  {
-    g_free (priv);
-    return NULL;
-  }
+  terminal_util_load_builder_resource ("/org/gnome/terminal/ui/find-dialog.ui",
+                                       NULL,
+                                       "find-dialog", &dialog,
+                                       "search-label", &priv->search_label,
+                                       "search-entry", &priv->search_entry,
+                                       "match-case-checkbutton", &priv->match_case_checkbutton,
+                                       "entire-word-checkbutton", &priv->entire_word_checkbutton,
+                                       "regex-checkbutton", &priv->regex_checkbutton,
+                                       "search-backwards-checkbutton", &priv->backwards_checkbutton,
+                                       "wrap-around-checkbutton", &priv->wrap_around_checkbutton,
+                                       NULL);
 
   g_object_set_qdata_full (G_OBJECT (dialog), get_quark (), priv,
 			   (GDestroyNotify) terminal_search_dialog_private_destroy);
@@ -108,11 +104,7 @@ terminal_search_dialog_new (GtkWindow   *parent)
   priv->store = store = gtk_list_store_new (1, G_TYPE_STRING);
   g_object_set (G_OBJECT (priv->search_entry),
 		"model", store,
-#if GTK_CHECK_VERSION (2, 91, 0)
 		"entry-text-column", 0,
-#else
-		"text-column", 0,
-#endif
 		NULL);
 
   priv->completion = completion = gtk_entry_completion_new ();
@@ -204,17 +196,14 @@ remove_item (GtkListStore *store,
     return FALSE;
 
   do {
-    gchar *item_text;
+    gs_free gchar *item_text;
 
     gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, 0, &item_text, -1);
 
     if (item_text != NULL && strcmp (item_text, text) == 0) {
       gtk_list_store_remove (store, &iter);
-      g_free (item_text);
       return TRUE;
     }
-
-    g_free (item_text);
   } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter));
 
   return FALSE;
