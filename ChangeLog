@@ -1,3 +1,139 @@
+commit 527c872bf8a781d201f98292dd47da6f8f6d6d1d
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Wed Jan 13 20:31:17 2010 -0500
+
+    Version 2.29.6
+
+ NEWS         |    4 ++++
+ configure.ac |    2 +-
+ 2 files changed, 5 insertions(+), 1 deletions(-)
+
+commit 8b1a8640231945b50c691b34ebb82b9026dde0cd
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Wed Jan 13 20:22:11 2010 -0500
+
+    Bug 24457 - allow saving terminal content
+    
+    Implemented now.
+
+ configure.ac                  |    2 +-
+ src/gnome-terminal.schemas.in |   17 +++++++
+ src/terminal-accels.c         |    4 ++
+ src/terminal-window.c         |   93 ++++++++++++++++++++++++++++++++++++++++-
+ src/terminal.xml              |    1 +
+ 5 files changed, 115 insertions(+), 2 deletions(-)
+
+commit 00f6d8e9bf59e854c289601898990e079a1536f0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jan 13 18:50:28 2010 +0100
+
+    Version 2.29.5
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 22784ee64a0bd3eef12f20873bead0133e9377aa
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jan 13 18:49:36 2010 +0100
+
+    Use gtk_widget_is_toplevel() instead of GTK_WIDGET_TOPLEVEL
+    
+    Bug #606298.
+
+ src/terminal-screen.c |   11 ++++++++++-
+ src/terminal-window.c |   13 ++++++++++++-
+ 2 files changed, 22 insertions(+), 2 deletions(-)
+
+commit 0d1762f2b957505c2832eefc7dfc379f43f00a56
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Sat Jan 9 17:52:19 2010 +0100
+
+    Updated Swedish translation
+
+ po/sv.po |  583 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 328 insertions(+), 255 deletions(-)
+
+commit 999c7c3f942b5875db5c35ccfbccb2025a0a01bb
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Fri Jan 8 20:53:54 2010 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po |  565 ++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 297 insertions(+), 268 deletions(-)
+
+commit 01a3a35ef2fbde6cb12faee6d2906a6b676ee292
+Author: Paul Cutler <pcutler@gnome.org>
+Date:   Thu Jan 7 11:54:31 2010 -0600
+
+    Add ctrl-shift-up/down documentation (bgo 602004)
+
+ help/C/gnome-terminal.xml |   24 ++++++++++++++++--------
+ 1 files changed, 16 insertions(+), 8 deletions(-)
+
+commit 5e827ecd6a5bc566fffcf7e57d2145623609e738
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   Thu Jan 7 13:56:48 2010 +0530
+
+    Updated Oriya Translation
+
+ po/or.po |  922 +++++++++++++++++++++++++++++++++++++++++++-------------------
+ 1 files changed, 640 insertions(+), 282 deletions(-)
+
+commit 694ec1004bbaa3481f36603fec60e39af5cb846b
+Author: Maxim V. Dziumanenko <dziumanenko@gmail.com>
+Date:   Tue Jan 5 14:31:04 2010 +0200
+
+    Update Ukrainian translation
+
+ po/uk.po |  624 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 351 insertions(+), 273 deletions(-)
+
+commit 7c256cfe732a877c85619204aa4eec71a013b82e
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Sat Jan 2 22:39:31 2010 +0200
+
+    Updating Estonian translation
+
+ po/et.po |   75 +++++++++++++++++++++++++++++++++++++++++++++++++------------
+ 1 files changed, 60 insertions(+), 15 deletions(-)
+
+commit 2c53e02096a4f28a7493f7bd95b6884ffac556bd
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sat Jan 2 09:32:11 2010 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po |  159 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 79 insertions(+), 80 deletions(-)
+
+commit 0553ec07026bba6e716424e2d48d0485fd98a5eb
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Fri Jan 1 11:12:47 2010 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 4823 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 2449 insertions(+), 2374 deletions(-)
+
+commit bbc8a9dd5af9d070f4ca268df75395c9de340a45
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Wed Dec 23 08:49:06 2009 +0100
+
+    Updated Spanish translation
+
+ po/es.po |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 345289426d6a2f866477a4310fcde033151bd68a
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Tue Dec 22 10:38:55 2009 -0500
+
+    Bump version
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
 commit 6af82cae704d50a76bc5d4b7b2f10e8ee1779d54
 Author: Matthias Clasen <mclasen@redhat.com>
 Date:   Tue Dec 22 10:33:40 2009 -0500
