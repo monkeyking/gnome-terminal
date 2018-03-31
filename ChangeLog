@@ -1,3 +1,141 @@
+commit f56823b0419b5ee2bf23b3d7b91f02c99ab1d0e3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 23 19:56:00 2014 +0200
+
+    Version 3.12.3
+
+ NEWS         | 11 +++++++++++
+ configure.ac |  2 +-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+commit 44059da4e216250b75fa90f6d0e65fd4aa4eab14
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Sun Jun 22 14:40:04 2014 +0200
+
+    app: Fix the close button after drag-n-drop
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=731998
+    (cherry picked from commit c4b333658f275b908eb85ce2d6d5a30de221a30c)
+
+ src/terminal-notebook.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
+commit 2e5eeb62e7e71902916c65f612da93e2bf3f3088
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Jun 22 14:38:40 2014 +0200
+
+    server: Use specific exit codes for specific error
+    
+    This will make it easier to identify which error occurred when all the client gets
+    is the exit code in the error message:
+    
+    Error constructing proxy for org.gnome.Terminal:/org/gnome/Terminal/Factory0: Error calling StartServiceByName for org.gnome.Terminal: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.gnome.Terminal exited with status 1
+    
+    (cherry picked from commit 4f746f763142f222f03ff575c336b4196e2a5ad4)
+
+ src/server.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+commit 887a6013468959f966e60bfc6303ef858194b232
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Fri Jun 20 16:57:44 2014 +0200
+
+    app: Make dropped tab active
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730936
+    (cherry picked from commit abb2018a702adfc57831aea9ebb5c513b9c8bbbd)
+
+ src/terminal-window.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1fda7a5659fb77a635d093546174e9c703ee2ac3
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Thu May 29 12:42:01 2014 +0200
+
+    app: Fix window size when a second tab is added by drag-n-drop
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730850
+    (cherry picked from commit d3e593e4974303618305da4e0d20f0d5c10f83b0)
+
+ src/terminal-window.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 1d71f91712cf338a8c1fbef9593bb147f47dd01e
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Mon Jun 2 23:49:21 2014 +0200
+
+    build: Resolve git merge conflict
+
+ src/terminal-app.c | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit f8713e156f9398fca1aecf9c00c20c0dcc69ac70
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Fri May 30 15:11:45 2014 +0200
+
+    app: Don't change the title on tab labels that no longer exist (take 2)
+    
+    This fixes a potential crash when a tab is moved to another window,
+    and later the title of that terminal changes.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730389
+    (cherry picked from commit f65261a0b5d03658be3acb439976fd8af6fa28ea)
+
+ src/terminal-tab-label.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+commit 9cfd123e8d2f9575299285afd95a5fa2eea51d1e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu May 29 14:12:34 2014 +0200
+
+    Revert "app: Don't change the title on tab labels that no longer exist"
+    
+    This reverts commit e2824de3fc3696dd14752501f15c484a3b398ff8.
+
+ src/terminal-tab-label.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit 438e70b61e0d01a3952b960392b9f567e2de6c9b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue May 20 16:04:15 2014 +0200
+
+    app: Only allow valid charsets
+    
+    Charsets must be [-_A-Za-z0-9] only.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730390
+    (cherry picked from commit b0bdd4740f82daa6c2bb020738a857b8e8d2a6dd)
+    
+    Conflicts:
+    	src/terminal-app.c
+
+ src/terminal-app.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
+
+commit e2824de3fc3696dd14752501f15c484a3b398ff8
+Author: Egmont Koblinger <egmont@gmail.com>
+Date:   Wed May 28 12:16:41 2014 +0200
+
+    app: Don't change the title on tab labels that no longer exist
+    
+    This fixes a potential crash when a tab is moved to another window,
+    and later the title of that terminal changes.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730389
+    (cherry picked from commit 6c1ece7dab2a11b7e0c6561f89cf83510abb51bf)
+
+ src/terminal-tab-label.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 427d805b869b6e449d19c1a7b069e09055c885b0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon May 12 20:49:43 2014 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 5d8544063ef3c37c9580f4fa2144e7549e699d77
 Author: Carles Ferrando <carles.ferrando@gmail.com>
 Date:   Fri May 9 00:23:47 2014 +0200
