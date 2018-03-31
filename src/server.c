@@ -23,9 +23,11 @@
 
 #include <errno.h>
 #include <locale.h>
+#include <pthread.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/resource.h>
 #include <sys/types.h>
 
 #include <glib.h>
@@ -38,6 +40,7 @@
 #include "terminal-gdbus.h"
 #include "terminal-i18n.h"
 #include "terminal-defines.h"
+#include "terminal-libgsystem.h"
 
 static char *app_id = NULL;
 
@@ -64,6 +67,37 @@ static const GOptionEntry options[] = {
   { NULL }
 };
 
+/* We use up to 8 FDs per terminal, so let's bump the limit way up.
+ * However we need to restore the original limit for the child processes.
+ */
+
+static struct rlimit sv_rlimit_nofile;
+
+static void
+atfork_child_restore_rlimit_nofile (void)
+{
+  if (setrlimit (RLIMIT_NOFILE, &sv_rlimit_nofile) < 0)
+    _exit (127);
+}
+
+static gboolean
+increase_rlimit_nofile (void)
+{
+  struct rlimit l;
+
+  if (getrlimit (RLIMIT_NOFILE, &sv_rlimit_nofile) < 0)
+    return FALSE;
+
+  if (pthread_atfork (NULL, NULL, atfork_child_restore_rlimit_nofile) != 0)
+    return FALSE;
+
+  l.rlim_cur = l.rlim_max = sv_rlimit_nofile.rlim_max;
+  if (setrlimit (RLIMIT_NOFILE, &l) < 0)
+    return FALSE;
+
+  return TRUE;
+}
+
 enum {
   _EXIT_FAILURE_WRONG_ID = 7,
   _EXIT_FAILURE_NO_UTF8 = 8,
@@ -72,8 +106,7 @@ enum {
 int
 main (int argc, char **argv)
 {
-  GApplication *app;
-  int exit_code = EXIT_FAILURE;
+  gs_unref_object GApplication *app = NULL;
   const char *home_dir, *charset;
   GError *error = NULL;
 
@@ -93,6 +126,9 @@ main (int argc, char **argv)
     g_printerr ("Non UTF-8 locale (%s) is not supported!\n", charset);
     return _EXIT_FAILURE_NO_UTF8;
   }
+
+  /* Sanitise environment */
+  g_unsetenv ("DBUS_STARTER_BUS_TYPE");
 
 #ifndef ENABLE_DISTRO_PACKAGING
 #ifdef HAVE_UBUNTU
@@ -126,25 +162,13 @@ main (int argc, char **argv)
     exit (EXIT_FAILURE);
   }
 
+  if (!increase_rlimit_nofile ()) {
+    g_printerr ("Failed to increase RLIMIT_NOFILE: %m\n");
+  }
+
+  /* Now we can create the app */
   app = terminal_app_new (app_id);
   g_free (app_id);
 
-  if (!g_application_register (app, NULL, &error)) {
-    g_printerr ("Failed to register application: %s\n", error->message);
-    g_error_free (error);
-    goto out;
-  }
-
-  if (g_application_get_is_remote (app)) {
-    /* How the fuck did this happen? */
-    g_printerr ("Cannot be remote instance!\n");
-    goto out;
-  }
-
-  exit_code = g_application_run (app, 0, NULL);
-
-out:
-  g_object_unref (app);
-
-  return exit_code;
+  return g_application_run (app, 0, NULL);
 }

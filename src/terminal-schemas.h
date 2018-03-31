@@ -62,10 +62,10 @@ G_BEGIN_DECLS
 #define TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY            "use-system-font"
 #define TERMINAL_PROFILE_USE_THEME_COLORS_KEY           "use-theme-colors"
 #define TERMINAL_PROFILE_VISIBLE_NAME_KEY               "visible-name"
+#define TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY       "word-char-exceptions"
 
 #define TERMINAL_SETTING_CONFIRM_CLOSE_KEY              "confirm-close"
 #define TERMINAL_SETTING_DEFAULT_SHOW_MENUBAR_KEY       "default-show-menubar"
-#define TERMINAL_SETTING_DARK_THEME_KEY                 "dark-theme"
 #define TERMINAL_SETTING_ENABLE_MENU_BAR_ACCEL_KEY      "menu-accelerator-enabled"
 #define TERMINAL_SETTING_ENABLE_MNEMONICS_KEY           "mnemonics-enabled"
 #define TERMINAL_SETTING_ENABLE_SHORTCUTS_KEY           "shortcuts-enabled"
@@ -73,6 +73,7 @@ G_BEGIN_DECLS
 #define TERMINAL_SETTING_NEW_TERMINAL_MODE_KEY          "new-terminal-mode"
 #define TERMINAL_SETTING_SCHEMA_VERSION                 "schema-version"
 #define TERMINAL_SETTING_SHELL_INTEGRATION_KEY          "shell-integration-enabled"
+#define TERMINAL_SETTING_TAB_POSITION_KEY               "tab-position"
 
 #define TERMINAL_SETTINGS_LIST_LIST_KEY                 "list"
 #define TERMINAL_SETTINGS_LIST_DEFAULT_KEY              "default"

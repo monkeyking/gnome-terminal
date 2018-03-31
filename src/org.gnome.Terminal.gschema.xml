@@ -46,6 +46,14 @@
     <value nick='wide'   value='2'/>
   </enum>
 
+  <!-- From gtk+ -->
+  <enum id="org.gnome.Terminal.TabPosition">
+    <!-- <value nick="left"   value="0" /> -->
+    <!-- <value nick="right"  value="1" /> -->
+    <value nick="top"    value="2" />
+    <value nick="bottom" value="3" />
+  </enum>
+
   <!-- These really belong into some vte-built enums file, but
         using enums from other modules still has some
         problems. Just include a copy here for now.
@@ -92,6 +100,7 @@
 
   <schema id="org.gnome.Terminal.Legacy.Profile">
     <key name="visible-name" type="s">
+      <!-- Translators: Keep single quote please! -->
       <default l10n="messages" context="visible-name">'Unnamed'</default>
       <summary>Human-readable name of the profile</summary>
       <description>Human-readable name of the profile.</description>
@@ -125,17 +134,23 @@
       <default>true</default>
       <summary>Whether to ring the terminal bell</summary>
     </key>
+    <key name="word-char-exceptions" type="ms">
+      <default>nothing</default>
+      <summary>List of ASCII punctuation characters that are not to be treated as part of a word when doing word-wise selection</summary>
+    </key>
     <key name="default-show-menubar" type="b">
       <default>true</default>
       <summary>Whether to show menubar in new windows/tabs</summary>
       <description>True if the menubar should be shown in new window</description>
     </key>
     <key name="default-size-columns" type="i">
+      <range min="16" max="256" />
       <default>80</default>
       <summary>Default number of columns</summary>
       <description>Number of columns in newly created terminal windows. Has no effect if use_custom_default_size is not enabled.</description>
     </key>
     <key name="default-size-rows" type="i">
+      <range min="4" max="256" />
       <default>24</default>
       <summary>Default number of rows</summary>
       <description>Number of rows in newly created terminal windows. Has no effect if use_custom_default_size is not enabled.</description>
@@ -632,14 +647,14 @@
       <summary>Whether to show the menubar in new windows</summary>
     </key>
 
-    <key name="dark-theme" type="b">
-      <default>false</default>
-      <summary>Whether to use a dark theme variant</summary>
-    </key>
-
     <key name="new-terminal-mode" enum="org.gnome.Terminal.NewTerminalMode">
       <default>'window'</default>
       <summary>Whether to open new terminals as windows or tabs</summary>
+    </key>
+
+    <key name="tab-position" enum="org.gnome.Terminal.TabPosition">
+      <default>'top'</default>
+      <summary>The position of the tab bar</summary>
     </key>
 
    <!-- <child name="profiles" schema="org.gnome.Terminal.ProfilesList" /> -->
