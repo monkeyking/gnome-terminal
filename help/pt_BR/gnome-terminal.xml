@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.24.3">
-<!ENTITY manrevision "2.8">
-<!ENTITY date "March 2009">
+<!ENTITY appversion "2.30">
+<!ENTITY manrevision "2.9">
+<!ENTITY date "January 2010">
 ]>
 <!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
@@ -17,10 +17,7 @@
   <articleinfo> 
      <title>Manual do Terminal do GNOME</title> 
      <abstract role="description">
-       <para>
-	 The Terminal gives users the power to communicate with their system using
-text-based commands through a shell such as Bash.
-       </para>
+       <para>O Terminal dá aos usuários o poder de comunicarem-se com seu sistema usando comandos baseados em texto através de um shell como o Bash.</para>
      </abstract>
      <copyright> 
         <year>2002</year> 
@@ -45,9 +42,9 @@ text-based commands through a shell such as Bash.
         <holder>Christian Persch</holder> 
      </copyright>
      <copyright> 
-        <year>2009</year> 
+        <year>2010</year> 
         <holder>Paul Cutler</holder> 
-     </copyright><copyright><year>2007.</year><holder>Luciana Bastos de Freitas Menezes (lubfm@gnome.org)</holder></copyright><copyright><year>2007.</year><holder>Pedro Vaz de Mello de Medeiros (pedrovmm@gmail.com)</holder></copyright><copyright><year>2008.</year><holder>Leonardo Ferreira Fontenelle (leonardof@gnome.org)</holder></copyright><copyright><year>2008.</year><holder>Andrius da Costa Ribas (andriusmao@gmail.com)</holder></copyright>	 
+     </copyright><copyright><year>2007.</year><holder>Luciana Bastos de Freitas Menezes (lubfm@gnome.org)</holder></copyright><copyright><year>2007.</year><holder>Pedro Vaz de Mello de Medeiros (pedrovmm@gmail.com)</holder></copyright><copyright><year>2008.</year><holder>Leonardo Ferreira Fontenelle (leonardof@gnome.org)</holder></copyright><copyright><year>2008.</year><holder>Andrius da Costa Ribas (andriusmao@gmail.com)</holder></copyright><copyright><year>2009.</year><holder>Enrico Nicoletto (liverig@gmail.com)</holder></copyright>	 
      <publisher> 
         <publishername>Projeto de Documentação do GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -99,13 +96,21 @@ text-based commands through a shell such as Bash.
      <publisher role="maintainer">
        <publishername>Projeto de Documentação do GNOME</publishername>
      </publisher>
-	<releaseinfo revision="2.26" role="review">
-		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+	<releaseinfo revision="2.30" role="review">
     </releaseinfo>
-     <revhistory> 
+     <revhistory>
+	<revision> 
+          <revnumber>GNOME Terminal Manual V2.9</revnumber> 
+          <date>January 2010</date> 
+          <revdescription> 
+             <para role="author">Paul Cutler
+		<email>pcutler@gnome.org</email> </para>
+             <para role="publisher">Projeto de Documentação do GNOME</para>
+          </revdescription> 
+        </revision> 
 	<revision> 
           <revnumber>Manual do Terminal do GNOME V2.8</revnumber> 
-          <date>March 2009</date> 
+          <date>Março de 2009</date> 
           <revdescription> 
              <para role="author">Paul Cutler</para>
              <para role="publisher">Projeto de Documentação do GNOME</para>
@@ -176,7 +181,7 @@ text-based commands through a shell such as Bash.
           </revdescription> 
         </revision> 
         <revision> 
-          <revnumber>Guia do Usuário do Terminal do GNOME</revnumber> 
+          <revnumber>Guia do usuário do Terminal do GNOME</revnumber> 
           <date>Maio de 2000</date> 
           <revdescription> 
              <para role="author">Miguel de Icaza, Michael Zucchi, Alexander Kirollov <email>docs@gnome.org</email></para>
@@ -184,7 +189,7 @@ text-based commands through a shell such as Bash.
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo> This manual describes version 2.24.3 of GNOME Terminal.
+     <releaseinfo> This manual describes version 2.30 of GNOME Terminal.
         </releaseinfo> 
      <legalnotice> 
         <title>Feedback</title> 
@@ -195,7 +200,7 @@ text-based commands through a shell such as Bash.
      <primary>Terminal do GNOME</primary> 
   </indexterm> 
   <indexterm> 
-     <primary>terminal, aplicativo de</primary> 
+     <primary>aplicativo de terminal</primary> 
   </indexterm> 
   
   <!-- ============= Introduction ============================== -->
@@ -221,14 +226,14 @@ text-based commands through a shell such as Bash.
   <!--=========== Getting Started ============================== -->
   
   <sect1 id="gnome-terminal-get-started"> 
-     <title>Iniciando</title> 
+     <title>Primeiros passos</title> 
      <para>As seguintes seções descrevem como iniciar o <application>Terminal do GNOME</application>.</para>
      <sect2 id="gnome-terminal-to-start"> 
         <title>Iniciando o Terminal do GNOME</title> 
         <para>Você pode iniciar o <application>Terminal do GNOME</application> das seguintes formas:</para>
         <variablelist> 
           <varlistentry> 
-             <term>Menu de <guimenu>Aplicações</guimenu></term> 
+             <term>Menu de <guimenu>Aplicativos</guimenu></term> 
              <listitem>
                 <para>Escolha <menuchoice><guimenu>Accessórios</guimenu><guimenuitem>Terminal</guimenuitem></menuchoice>.</para>
              </listitem>
@@ -259,7 +264,7 @@ text-based commands through a shell such as Bash.
              </mediaobject> 
           </screenshot> 
         </figure> 
-        <para>A janela do terminal mostra o prompt de comando onde você digita comandos de UNIX. O prompt de comando pode ser %, #, &gt;, $, ou qualquer outro caractere especial. O cursor é posicionado no prompt de comando. Quando você digitar um comando de UNIX e pressionar <keycap>Enter</keycap>, o computador executará o comando. Por padrão, o <application>Terminal do GNOME</application> usa o shell padrão especificado para o usuário que inicia o aplicativo.</para>
+        <para>A janela do terminal exibe um prompt de comando onde você pode digitar comandos de UNIX. O prompt de comando pode ser um %, #, &gt;, $, ou qualquer outro caractere especial. O cursor é posicionado no prompt de comando. Quando você digita um comando de UNIX e pressiona <keycap>Enter</keycap>, o computador executará o comando. Por padrão, o <application>Terminal do GNOME</application> usa o shell padrão especificado para o usuário que inicia o aplicativo.</para>
         <para>O <application>Terminal do GNOME</application> também define as seguintes variáveis de ambiente:</para>
         <variablelist> 
           <varlistentry> 
@@ -288,8 +293,8 @@ text-based commands through a shell such as Bash.
 
      <sect2 id="gnome-terminal-profiles"> 
         <title>Perfis do terminal</title> 
-        <para>Você pode criar um novo perfil, e aplicar o novo perfil ao terminal para modificar características como fonte, cor e efeitos, comportamento da rolagem, título da janela, e compatibilidade. Você também pode especificar um comando que executa automaticamente quando você iniciar o <application>Terminal do GNOME</application> no perfil.</para>
-          <para>Você define cada perfil de terminal no diálogo <guilabel>Editar Perfis</guilabel>, que você acessa através do menu <guimenu>Editar</guimenu>. Você pode definir quantos perfis diferentes quiser. Quando iniciar o terminal, você pode escolher o perfil que você quer usar. Alternativamente, você pode alterar o perfil do terminal enquanto usar o terminal. Para especificar um perfil inicial para o terminal quando você inicia o aplicativo pela linha de comando, use o seguinte comando:</para>
+        <para>Você pode criar um novo perfil e aplicar o novo perfil ao terminal para modificar características como fonte, cor e efeitos, comportamento da rolagem, título da janela, e compatibilidade. Você também pode especificar um comando de execução automática quando você iniciar o <application>Terminal do GNOME</application> no perfil.</para>
+          <para>Você define cada perfil de terminal no diálogo <guilabel>Editar perfis</guilabel>, que você acessa através do menu <guimenu>Editar</guimenu>. Você pode definir quantos perfis diferentes quiser. Quando você inicia um terminal, você pode escolher o perfil que deseja utilizar. Por outro lado, você pode alterar o perfil do terminal enquanto você utiliza-o. Para especificar um perfil inicial para um terminal quando você inicia o aplicativo a partir de uma linha de comando, utilize o seguinte comando:</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>nome do perfil</replaceable></command> 
         </para>
@@ -322,7 +327,7 @@ text-based commands through a shell such as Bash.
   <!--=========== Usage ============================== -->  
 
   <sect1 id="gnome-terminal-usage"> 
-     <title>Uso</title> 
+     <title>Utilização</title> 
 
      <sect2 id="gnome-terminal-windows"> 
         <title>Abrindo e fechando terminais</title> 
@@ -496,7 +501,8 @@ text-based commands through a shell such as Bash.
                      <para>Pressione as teclas: <keycombo><keycap>Shift</keycap><keycap>Page Up</keycap></keycombo>, <keycombo><keycap>Shift</keycap><keycap>Page Down</keycap></keycombo>, <keycombo><keycap>Shift</keycap><keycap>Home</keycap></keycombo>, ou <keycombo><keycap>Shift</keycap><keycap>End</keycap></keycombo>.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>O número de linhas que você pode rolar para trás na janela do terminal é determinado pela configuração de <guilabel>Rolar para trás</guilabel> na seção da aba <guilabel>Rolagem</guilabel> no diálogo <guilabel>Editar perfil</guilabel>.</para>
+                <para>
+                  The number of lines that you can scroll back to in the terminal window is determined by the <guilabel>Scrollback</guilabel> setting in the <guilabel>Scrolling</guilabel> tabbed section of the <guilabel>Editing Profile</guilabel> dialog.  You can also scroll up or down one line at a time by pressing <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo> or <keycombo><keycap>Control</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>. </para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -726,9 +732,7 @@ text-based commands through a shell such as Bash.
              <term> 
                 <guilabel>Som do terminal</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable the terminal bell.
-                </para>
+                <para>Selecione esta opção para habilitar o som do terminal.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -841,7 +845,7 @@ text-based commands through a shell such as Bash.
              <term> 
                 <guilabel>Paleta</guilabel></term> 
              <listitem> 
-                <para>A emulação de terminal só pode usar 16 cores ao mesmo tempo para desenhar texto. A paleta de cores especifica essas 16 cores. Aplicações executadas em terminal usam um número indexado para especificar a cor dessa palheta.</para>
+                <para>A emulação de terminal só pode usar 16 cores ao mesmo tempo para desenhar texto. A paleta de cores especifica essas 16 cores. Aplicativos executados em terminal usam um número indexado para especificar a cor dessa palheta.</para>
                <para>Use a lista suspensa <guilabel>Esquemas embutidos</guilabel> para escolher um esquema de cores embutido. A paleta de cores abaixo e o conteúdo da janela de terminal se atualizam para mostrar o esquema.</para>
                <para>Use a <guilabel>Paleta de cores</guilabel> para personalizar as 16 cores padrão na paleta de personalização. Para personalizar uma cor, clique na cor para mostrar o diálogo <guilabel>Entrada da Paleta</guilabel>. Use a roda de cores ou as caixas de incremento/decremento para personalizar a cor, e então clique em <guibutton>OK</guibutton>.</para>
              </listitem> 
@@ -895,7 +899,7 @@ text-based commands through a shell such as Bash.
      <variablelist>
      <varlistentry> 
              <term> 
-                <guilabel>Barra de rolagem está</guilabel> </term> 
+                <guilabel>Barra de rolagem</guilabel> </term> 
              <listitem> 
                 <para>Use esta lista suspensa para especificar a posição da barra de rolagem na janela do terminal.</para>
              </listitem> 
@@ -911,14 +915,14 @@ text-based commands through a shell such as Bash.
              <term> 
                 <guilabel>Rolar com nova saída</guilabel> </term> 
              <listitem> 
-                <para>Selecione esta opção para permitir a você rolar a saída no terminal enquanto o terminal continua a enviar mais texto de saída de um comando.</para>
+                <para>Selecione esta opção para permitir-lhe rolar a saída no terminal enquanto o terminal continua a exibir mais saídas de um comando.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <guilabel>Rolar ao pressionar tecla</guilabel> </term> 
              <listitem> 
-                <para>Selecione esta opção para permitir a você pressionar qualquer tecla na teclado para rolar para baixo a janela do terminal para um comando de prompt. Esta ação somente se aplica se você rolou para cima a janela do terminal e quer voltar ao prompt de comando.</para>
+                <para>Selecione esta opção para permitir-lhe pressionar qualquer tecla no teclado para rolar para baixo a janela do terminal para o prompt de comando. Esta ação somente aplica-se caso você tenha rolado para cima a janela do terminal e queira voltar ao prompt de comando.</para>
              </listitem> 
           </varlistentry> 
           </variablelist>
@@ -929,23 +933,23 @@ text-based commands through a shell such as Bash.
         <variablelist> 
           <varlistentry> 
              <term> 
-                <guilabel>Tecla Backspace gera</guilabel> </term> 
+                <guilabel>A tecla Backspace gera</guilabel> </term> 
              <listitem> 
-                <para>Use a lista para selecionar a função que você quer que a tecla <keycap>Backspace</keycap> faça.</para>
+                <para>Use a lista para selecionar a função que você quer que a tecla <keycap>Backspace</keycap> realize.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Tecla Delete gera</guilabel> </term> 
+                <guilabel>A tecla Delete gera</guilabel> </term> 
              <listitem> 
-                <para>Use a lista suspensa para selecionar a função que você quer que a tecla <keycap>Delete</keycap> tenha.</para>
+                <para>Use a lista suspensa para selecionar a função que você quer que a tecla <keycap>Delete</keycap> realize.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term> 
                 <guibutton>Restaurar padrões para as opções de compatibilidade</guibutton> </term> 
              <listitem> 
-                <para>Clique neste botão para restaurar as opções de seção da aba <guilabel>Compatibilidade</guilabel> para o padrão.</para>
+                <para>Clique neste botão para restaurar as opções de seção da aba <guilabel>Compatibilidade</guilabel> para as configurações padrão.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 

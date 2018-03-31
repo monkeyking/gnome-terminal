@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY app "GNOME Terminal">
-<!ENTITY appversion "2.24.3">
-<!ENTITY manrevision "2.8">
-<!ENTITY date "March 2009">
+<!ENTITY appversion "2.30">
+<!ENTITY manrevision "2.9">
+<!ENTITY date "January 2010">
 ]>
 <!-- =============Document Header ============================= -->
 <!-- (Do not remove this comment block.)
@@ -42,9 +42,9 @@
         <holder>Christian Persch</holder> 
      </copyright>
      <copyright> 
-        <year>2009</year> 
+        <year>2010</year> 
         <holder>Paul Cutler</holder> 
-     </copyright><copyright><year>2007-2009</year><holder>Jorge González (jorgegonz@svn.gnome.org)</holder></copyright><copyright><year>2001-2006</year><holder>Francisco Javier F. Serrador (serrador@gnome.org)</holder></copyright><copyright><year>2000</year><holder>Pablo Gonzalo del Campo</holder></copyright>	 
+     </copyright><copyright><year>2007-2010</year><holder>Jorge González (jorgegonz@svn.gnome.org)</holder></copyright><copyright><year>2001-2006</year><holder>Francisco Javier F. Serrador (serrador@gnome.org)</holder></copyright><copyright><year>2000</year><holder>Pablo Gonzalo del Campo</holder></copyright>	 
      <publisher> 
         <publishername>Proyecto de documentación de GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -96,10 +96,17 @@
      <publisher role="maintainer">
        <publishername>Proyecto de documentación de GNOME</publishername>
      </publisher>
-	<releaseinfo revision="2.26" role="review">
-		<ulink type="planning" url="http://mail.gnome.org/archives/gnome-doc-list/2009-March/msg00048.html"/>
+	<releaseinfo revision="2.30" role="review">
     </releaseinfo>
-     <revhistory> 
+     <revhistory>
+	<revision> 
+          <revnumber>Manual del Terminal de GNOME V2.9</revnumber> 
+          <date>Enero de 2010</date> 
+          <revdescription> 
+             <para role="author">Paul Cutler <email>pcutler@gnome.org</email></para>
+             <para role="publisher">Proyecto de documentación de GNOME</para>
+          </revdescription> 
+        </revision> 
 	<revision> 
           <revnumber>Manual del Terminal de GNOME V2.8</revnumber> 
           <date>Marzo de 2009</date> 
@@ -181,7 +188,7 @@
           </revdescription> 
         </revision> 
      </revhistory> 
-     <releaseinfo>Este manual describe la versión 2.24.3 de Terminal de GNOME.</releaseinfo> 
+     <releaseinfo>Este manual describe la versión 2.30 de Terminal de GNOME.</releaseinfo> 
      <legalnotice> 
         <title>Comentarios</title> 
         <para>Para informar de un defecto o hacer alguna sugerencia sobre la aplicación Terminal de GNOME o el presente manual, siga las instrucciones que aparecen en la <ulink url="ghelp:user-guide?feedback" type="help">Página de comentarios de GNOME</ulink>.</para>
@@ -492,7 +499,7 @@
                      <para>Pulse las teclas <keycombo><keycap>Mayús</keycap><keycap>RePág</keycap></keycombo>, <keycombo><keycap>Mayús</keycap><keycap>AvPág</keycap></keycombo>, <keycombo><keycap>Mayús</keycap><keycap>Inicio</keycap></keycombo>, o <keycombo><keycap>Mayús</keycap><keycap>Fin</keycap></keycombo>.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>El número de líneas que puede desplazar hacia atrás en la ventana del terminal se lo determina el ajuste <guilabel>Desplazamiento hacia atrás</guilabel>, en la solapa <guilabel>Desplazamiento</guilabel> del cuadro de diálogo <guilabel>Edición de perfiles</guilabel>.</para>
+                <para>El número de líneas que puede desplazar hacia atrás en la ventana del terminal se lo determina el ajuste <guilabel>Desplazamiento hacia atrás</guilabel>, en la solapa <guilabel>Desplazamiento</guilabel> del cuadro de diálogo <guilabel>Edición de perfiles</guilabel>. También puede desplazarse arriba o abajo una línea pulsando <guilabel/>Control<guilabel/>Mayús<guilabel/>Arriba<keycombo><keycap> o </keycap><keycap>Control</keycap><keycap>Mayús</keycap></keycombo>Abajo<keycombo><keycap>.</keycap></keycombo></para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 

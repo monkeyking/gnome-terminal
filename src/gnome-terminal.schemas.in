@@ -159,7 +159,7 @@
          <long>
            Default color of text in the terminal, as a color
            specification (can be HTML-style hex digits, or
-           a color name such as "red"). 
+           a color name such as "red").
          </long>
       </locale>
     </schema>
@@ -176,6 +176,38 @@
            Default color of terminal background, as a color
            specification (can be HTML-style hex digits, or
            a color name such as "red").
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/bold_color</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/bold_color</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <default>#000000</default>
+      <locale name="C">
+         <short>Default color of bold text in the terminal</short>
+         <long>
+           Default color of bold text in the terminal, as a color
+           specification (can be HTML-style hex digits, or
+           a color name such as "red").
+	   This is ignored if bold_color_same_as_fg is true.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/bold_color_same_as_fg</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/bold_color_same_as_fg</applyto>
+      <owner>gnome-terminal</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+         <short>Whether bold text should use the same color as normal text</short>
+         <long>
+          If true, boldface text will be rendered using the same color as
+	  normal text.
          </long>
       </locale>
     </schema>
@@ -264,6 +296,34 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/default_size_columns</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/default_size_columns</applyto>
+      <owner>gnome-terminal</owner>
+      <type>int</type>
+      <default>80</default>
+      <locale name="C">
+         <short>Default number of columns</short>
+         <long>
+	   Number of columns in newly created terminal windows.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/default_size_rows</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/default_size_rows</applyto>
+      <owner>gnome-terminal</owner>
+      <type>int</type>
+      <default>24</default>
+      <locale name="C">
+         <short>Default number of rows</short>
+         <long>
+	   Number of rows in newly created terminal windows.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gnome-terminal/profiles/Default/scrollbar_position</key>
       <applyto>/apps/gnome-terminal/profiles/Default/scrollbar_position</applyto>
       <owner>gnome-terminal</owner>
@@ -287,11 +347,27 @@
       <locale name="C">
          <short>Number of lines to keep in scrollback</short>
          <long>
-           Number of scrollback lines to keep around. You can 
-           scroll back in the terminal by this number of lines; 
+           Number of scrollback lines to keep around. You can
+           scroll back in the terminal by this number of lines;
            lines that don't fit in the scrollback are discarded.
-           Be careful with this setting; it's the primary factor 
-           in determining how much memory the terminal will use.      
+	   If scrollback_unlimited is true, this value is ignored.
+         </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/profiles/Default/scrollback_unlimited</key>
+      <applyto>/apps/gnome-terminal/profiles/Default/scrollback_unlimited</applyto>
+      <owner>gnome-terminal</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+         <short>Whether an unlimited number of lines should be kept in scrollback</short>
+         <long>
+	   If true, scrollback lines will never be discarded.  The scrollback
+	   history is stored on disk temporarily, so this may cause the system
+	   to run out of disk space if there is a lot of output to the
+	   terminal.
          </long>
       </locale>
     </schema>
@@ -678,6 +754,23 @@
 	  string "disabled", then there will be no keyboard shortcut for this
 	  action. 
          </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-terminal/keybindings/save_contents</key>
+      <applyto>/apps/gnome-terminal/keybindings/save_contents</applyto>
+      <owner>gnome-terminal</owner>
+      <type>string</type>
+      <default>disabled</default>
+      <locale name="C">
+          <short>Keyboard shortcut to save the current tab contents to file</short>
+          <long>
+          Keyboard shortcut key to save the current tab contents to a file. Expressed as a string
+          in the same format used for GTK+ resource files.
+          If you set the option to the special string "disabled", then there
+          will be no keyboard shortcut for this action.
+          </long>
       </locale>
     </schema>
 
