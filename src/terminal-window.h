@@ -1,25 +1,28 @@
+/* widget for a toplevel terminal window, possibly containing multiple terminals */
+
 /*
- * Copyright © 2001 Havoc Pennington
+ * Copyright (C) 2001 Havoc Pennington
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
 
 #ifndef TERMINAL_WINDOW_H
 #define TERMINAL_WINDOW_H
 
-#include <gtk/gtk.h>
-
+#include <gtk/gtkwindow.h>
 #include "terminal-screen.h"
 
 G_BEGIN_DECLS
@@ -36,33 +39,26 @@ typedef struct _TerminalWindowPrivate TerminalWindowPrivate;
 
 struct _TerminalWindow
 {
-  GtkApplicationWindow parent_instance;
+  GtkWindow parent_instance;
 
   TerminalWindowPrivate *priv;
 };
 
 struct _TerminalWindowClass
 {
-  GtkApplicationWindowClass parent_class;
+  GtkWindowClass parent_class;
+
 };
 
 GType terminal_window_get_type (void) G_GNUC_CONST;
 
-TerminalWindow* terminal_window_new (GApplication *app);
-
-GtkUIManager *terminal_window_get_ui_manager (TerminalWindow *window);
+TerminalWindow* terminal_window_new (GConfClient *conf);
 
 void terminal_window_add_screen (TerminalWindow *window,
-                                 TerminalScreen *screen,
-                                 int position);
+                                 TerminalScreen *screen);
 
 void terminal_window_remove_screen (TerminalWindow *window,
                                     TerminalScreen *screen);
-
-void terminal_window_move_screen (TerminalWindow *source_window,
-                                  TerminalWindow *dest_window,
-                                  TerminalScreen *screen,
-                                  int dest_position);
 
 /* Menubar visibility is part of session state, except that
  * if it isn't restored from session, the window gets the setting
@@ -70,25 +66,37 @@ void terminal_window_move_screen (TerminalWindow *source_window,
  */
 void terminal_window_set_menubar_visible     (TerminalWindow *window,
                                               gboolean        setting);
+gboolean terminal_window_get_menubar_visible (TerminalWindow *window);
 
-void terminal_window_update_size (TerminalWindow *window);
-
-void            terminal_window_switch_screen (TerminalWindow *window,
-                                               TerminalScreen *screen);
+void            terminal_window_set_active (TerminalWindow *window,
+                                            TerminalScreen *screen);
 TerminalScreen* terminal_window_get_active (TerminalWindow *window);
 
-GList* terminal_window_list_screen_containers (TerminalWindow *window);
+/* In order of their tabs in the notebook */
+GList* terminal_window_list_screens (TerminalWindow *window);
+int    terminal_window_get_screen_count (TerminalWindow *window);
 
-gboolean terminal_window_parse_geometry (TerminalWindow *window,
-					 const char     *geometry);
-
+void terminal_window_update_scrollbar (TerminalWindow *window,
+                                       TerminalScreen *screen);
+void terminal_window_update_icon      (TerminalWindow *window);
 void terminal_window_update_geometry  (TerminalWindow *window);
+void terminal_window_set_size         (TerminalWindow *window,
+                                       TerminalScreen *screen,
+                                       gboolean        even_if_mapped);
+void terminal_window_set_size_force_grid (TerminalWindow *window,
+                                          TerminalScreen *screen,
+                                          gboolean        even_if_mapped,
+                                          int             force_grid_width,
+                                          int             force_grid_height);
 
-GtkWidget* terminal_window_get_mdi_container (TerminalWindow *window);
+void     terminal_window_set_fullscreen (TerminalWindow *window,
+                                         gboolean        setting);
+gboolean terminal_window_get_fullscreen (TerminalWindow *window);
 
-void terminal_window_request_close (TerminalWindow *window);
+void terminal_window_reread_profile_list (TerminalWindow *window);
 
-const char *terminal_window_get_uuid (TerminalWindow *window);
+void terminal_window_set_startup_id (TerminalWindow *window,
+                                     const char     *startup_id);
 
 G_END_DECLS
 

@@ -1,2307 +1,2879 @@
-# Bulgarian translation of gnome-terminal po-file.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
-# Copyright (C) 2009, 2010, 2015, 2016, 2017 Free Software Foundation, Inc.
+# Bulgarian translation for gnome-terminal
+# Copyright (C) 2002 Free Software Foundation, Inc.
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
-# Alexander Shopov <ash@kambanaria.org>, 2003, 2007, 2008, 2009, 2015, 2016, 2017.
+# Alexander Shopov <al_shopov@yahoo.com>, 2003.
 # Rostislav Raykov <zbrox@i-space.org>, 2004.
-# Vladimir Petkov <kaladan@gmail.com>, 2004, 2006
-# Iassen Pramatarov <turin@fsa-bg.org>, 2005.
-# Yavor Doganov <yavor@gnu.org>, 2008.
-#
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-terminal master\n"
+"Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 09:55+0300\n"
-"PO-Revision-Date: 2017-08-31 09:35+0200\n"
-"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
-"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
-"Language: bg\n"
+"POT-Creation-Date: 2004-06-29 19:42-0300\n"
+"PO-Revision-Date: 2004-06-08 13:45+0300\n"
+"Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
+"Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../org.gnome.Terminal.appdata.xml.in.h:1
-#: ../org.gnome.Terminal.desktop.in.in.h:1 ../src/server.c:161
-#: ../src/terminal-accels.c:237 ../src/terminal.c:384
-#: ../src/terminal-tab-label.c:81 ../src/terminal-tabs-menu.c:180
-#: ../src/terminal-window.c:2734 ../src/terminal-window.c:3093
+#: gnome-terminal.desktop.in.in.h:1
+msgid "Command line"
+msgstr "Команден ред"
+
+#: gnome-terminal.desktop.in.in.h:2 src/gnome-terminal.schemas.in.h:109
+#: src/terminal-accels.c:172 src/terminal-profile.c:276
+#: src/terminal-window.c:761 src/terminal.c:1172 src/terminal.c:1518
 msgid "Terminal"
 msgstr "Терминал"
 
-#: ../org.gnome.Terminal.appdata.xml.in.h:2
-#: ../org.gnome.Terminal.desktop.in.in.h:2
-msgid "Use the command line"
-msgstr "Използване на команден ред"
+#: src/eggcellrendererkeys.c:160 src/eggcellrendererkeys.c:161
+msgid "Accelerator key"
+msgstr "Ускорител"
 
-#: ../org.gnome.Terminal.appdata.xml.in.h:3
+#: src/eggcellrendererkeys.c:170 src/eggcellrendererkeys.c:171
+msgid "Accelerator modifiers"
+msgstr "Модификатори на ускорителя"
+
+#: src/eggcellrendererkeys.c:180
+msgid "Accelerator Mode"
+msgstr "Режим на ускорителя"
+
+#: src/eggcellrendererkeys.c:181
+msgid "The type of accelerator."
+msgstr "Видът на ускорителя."
+
+#: src/eggcellrendererkeys.c:219 src/gnome-terminal.glade2.h:32
+#: src/terminal-accels.c:717
+msgid "Disabled"
+msgstr "изключен"
+
+#: src/eggcellrendererkeys.c:330 src/eggcellrendererkeys.c:564
+msgid "Type a new accelerator, or press Backspace to clear"
+msgstr "Въведете нов ускорител, или натиснете \"Backspace\" за изчистване"
+
+#: src/eggcellrendererkeys.c:567
+msgid "Type a new accelerator"
+msgstr "Въведете нов ускорител"
+
+#: src/encoding.c:55
+msgid "Current Locale"
+msgstr "Текущ локал"
+
+#: src/encoding.c:58 src/encoding.c:84 src/encoding.c:127 src/encoding.c:175
+#: src/encoding.c:199
+msgid "Western"
+msgstr "Западно"
+
+#: src/encoding.c:60 src/encoding.c:129 src/encoding.c:155 src/encoding.c:195
+msgid "Central European"
+msgstr "Централноевропейско"
+
+#: src/encoding.c:62
+msgid "South European"
+msgstr "Южноевропейско"
+
+#: src/encoding.c:64 src/encoding.c:80 src/encoding.c:209
+msgid "Baltic"
+msgstr "Балтийско"
+
+#: src/encoding.c:66 src/encoding.c:131 src/encoding.c:144 src/encoding.c:148
+#: src/encoding.c:159 src/encoding.c:197
+msgid "Cyrillic"
+msgstr "Кирилско"
+
+#: src/encoding.c:68 src/encoding.c:137 src/encoding.c:153 src/encoding.c:207
+msgid "Arabic"
+msgstr "Арабско"
+
+#: src/encoding.c:70 src/encoding.c:165 src/encoding.c:201
+msgid "Greek"
+msgstr "Гръцко"
+
+#: src/encoding.c:72
+msgid "Hebrew Visual"
+msgstr "Еврейско, визуално "
+
+#: src/encoding.c:74 src/encoding.c:135 src/encoding.c:171 src/encoding.c:205
+msgid "Hebrew"
+msgstr "Еврейско"
+
+#: src/encoding.c:76 src/encoding.c:133 src/encoding.c:179 src/encoding.c:203
+msgid "Turkish"
+msgstr "Турско"
+
+#: src/encoding.c:78
+msgid "Nordic"
+msgstr "Скандинавско"
+
+#: src/encoding.c:82
+msgid "Celtic"
+msgstr "Келтско"
+
+#: src/encoding.c:86 src/encoding.c:177
+msgid "Romanian"
+msgstr "Румънско"
+
+#: src/encoding.c:89 src/encoding.c:91 src/encoding.c:93 src/encoding.c:95
+#: src/encoding.c:97
+msgid "Unicode"
+msgstr "Уникод"
+
+#: src/encoding.c:100
+msgid "Armenian"
+msgstr "Арменско"
+
+#: src/encoding.c:102 src/encoding.c:104 src/encoding.c:113
+msgid "Chinese Traditional"
+msgstr "Китайско, традиционно"
+
+#: src/encoding.c:106
+msgid "Cyrillic/Russian"
+msgstr "Кирилско, руско"
+
+#: src/encoding.c:109 src/encoding.c:140 src/encoding.c:184
+msgid "Japanese"
+msgstr "Японско"
+
+#: src/encoding.c:111 src/encoding.c:142 src/encoding.c:146 src/encoding.c:190
+msgid "Korean"
+msgstr "Корейско"
+
+#: src/encoding.c:116 src/encoding.c:118 src/encoding.c:120 src/encoding.c:124
+msgid "Chinese Simplified"
+msgstr "Китайско, опрострено"
+
+#: src/encoding.c:122
+msgid "Georgian"
+msgstr "Грузинско"
+
+#: src/encoding.c:150 src/encoding.c:181
+msgid "Cyrillic/Ukrainian"
+msgstr "Кирилско, украинско"
+
+#: src/encoding.c:157
+msgid "Croatian"
+msgstr "Хърватско"
+
+#: src/encoding.c:161
+msgid "Hindi"
+msgstr "Хинди"
+
+#: src/encoding.c:163
+msgid "Persian"
+msgstr "Персийски"
+
+#: src/encoding.c:167
+msgid "Gujarati"
+msgstr "Гуджарати"
+
+#: src/encoding.c:169
+msgid "Gurmukhi"
+msgstr "Гумурки"
+
+#: src/encoding.c:173
+msgid "Icelandic"
+msgstr "Исландско"
+
+#: src/encoding.c:186 src/encoding.c:192 src/encoding.c:211
+msgid "Vietnamese"
+msgstr "Виетнамско"
+
+#: src/encoding.c:188
+msgid "Thai"
+msgstr "Тайско"
+
+#: src/encoding.c:377
+msgid "User Defined"
+msgstr "Потребителско"
+
+#: src/encoding.c:735 src/encoding.c:799
+msgid "_Description"
+msgstr "_Описание"
+
+#: src/encoding.c:744 src/encoding.c:808
+msgid "_Encoding"
+msgstr "_Кодиране"
+
+#: src/encoding.c:977
+#, c-format
 msgid ""
-"GNOME Terminal is a terminal emulator application for accessing a UNIX shell "
-"environment which can be used to run programs available on your system."
+"There was an error subscribing to notification of terminal encoding list "
+"changes. (%s)\n"
 msgstr ""
-"Терминалът на GNOME е емулатор на традиционен терминал и дава достъп до "
-"обвивките на UNIX, от които могат да се стартират програмите на вашия "
-"компютър."
+"Имаше грешка при абониране за известяване на промяна в списъка с кодирания "
+"на терминала. (%s)\n"
 
-#: ../org.gnome.Terminal.appdata.xml.in.h:4
+#: src/gnome-terminal.glade2.h:1
+msgid "*"
+msgstr "*"
+
+#: src/gnome-terminal.glade2.h:2
+msgid "<b>Background</b>"
+msgstr "<b>Фон</b>"
+
+#: src/gnome-terminal.glade2.h:3
+msgid "<b>Command</b>"
+msgstr "<b>Команда</b>"
+
+#: src/gnome-terminal.glade2.h:4
+msgid "<b>Compatibility</b>"
+msgstr "<b>Съвместимост</b>"
+
+#: src/gnome-terminal.glade2.h:5
+msgid "<b>Foreground and Background</b>"
+msgstr "<b>Преден план и фон</b>"
+
+#: src/gnome-terminal.glade2.h:6
+msgid "<b>General</b>"
+msgstr "<b>Основни</b>"
+
+#: src/gnome-terminal.glade2.h:7
+msgid "<b>Palette</b>"
+msgstr "<b>Палитра</b>"
+
+#: src/gnome-terminal.glade2.h:8
+msgid "<b>Scrolling</b>"
+msgstr "<b>Плъзгане</b>"
+
+#: src/gnome-terminal.glade2.h:9
+msgid "<b>Title</b>"
+msgstr "<b>Заглавие</b>"
+
+#: src/gnome-terminal.glade2.h:10
+msgid "<big>S/Key Challenge Response</big>"
+msgstr "<big>Отговор към Действие при натискане на Shift</big>"
+
+#: src/gnome-terminal.glade2.h:11
+msgid "<small><i>Maximum</i></small>"
+msgstr "<small><i>пълно</i></small>"
+
+#: src/gnome-terminal.glade2.h:12
+msgid "<small><i>None</i></small>"
+msgstr "<small><i>никакво</i></small>"
+
+#: src/gnome-terminal.glade2.h:13
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#: src/gnome-terminal.glade2.h:14
+msgid "A_vailable encodings:"
+msgstr "_Налични кодирания:"
+
+#: src/gnome-terminal.glade2.h:15
+msgid "Add or Remove Terminal Encodings"
+msgstr "Добавя или премахва терминални кодирания"
+
+#: src/gnome-terminal.glade2.h:16
+msgid "Background image _scrolls"
+msgstr "Картинката на фона _се плъзга"
+
+#: src/gnome-terminal.glade2.h:17
+msgid "Built-_in schemes:"
+msgstr "Вградени _схеми:"
+
+#: src/gnome-terminal.glade2.h:18
+msgid "Built-in _schemes:"
+msgstr "Вградени _схеми:"
+
+#: src/gnome-terminal.glade2.h:19
+msgid "Built-in foreground and background color schemes:"
+msgstr "Вградени цветови схеми за фон и текст:"
+
+#: src/gnome-terminal.glade2.h:20
+msgid "Built-in palette schemes:"
+msgstr "Вградени схеми:"
+
+#: src/gnome-terminal.glade2.h:21
+msgid "Choose terminal background color"
+msgstr "Избери цвета на фона на терминала"
+
+#: src/gnome-terminal.glade2.h:22
+msgid "Choose terminal text color"
+msgstr "Избери цвета на текста на терминала"
+
+#: src/gnome-terminal.glade2.h:23
+msgid "Color Selector"
+msgstr "Избор на цвят"
+
+#: src/gnome-terminal.glade2.h:24
+msgid "Color _palette:"
+msgstr "Цветова _палитра:"
+
+#: src/gnome-terminal.glade2.h:25
+msgid "Colors"
+msgstr "Цветове"
+
+#: src/gnome-terminal.glade2.h:26
+msgid "Compatibility"
+msgstr "Съвместимост"
+
+#: src/gnome-terminal.glade2.h:27
+msgid "Control-H"
+msgstr "Control-H"
+
+#: src/gnome-terminal.glade2.h:28
+msgid "Cursor blin_ks"
+msgstr "Курсорът _мига"
+
+#: src/gnome-terminal.glade2.h:29
+msgid "Custom co_mmand:"
+msgstr "Потребителска к_оманда:"
+
+#: src/gnome-terminal.glade2.h:30
+#, fuzzy
+msgid "Disable all me_nu access keys (such as Alt+f to open File menu)"
+msgstr ""
+"Забрани всички клавишни _комбинации за меню (като Alt+f за отваряне на меню "
+"Файл)"
+
+#: src/gnome-terminal.glade2.h:31
+#, fuzzy
+msgid "Disable m_enu shortcut key (F10 by default)"
+msgstr "Забрани клавиша за достъп до менюто (F10 по подразбиране)"
+
+#: src/gnome-terminal.glade2.h:33
+msgid "E_ncodings shown in menu:"
+msgstr "К_одирания показани в менюто:"
+
+#: src/gnome-terminal.glade2.h:34
+msgid "Effects"
+msgstr "Ефекти"
+
+#: src/gnome-terminal.glade2.h:35
+msgid "Escape sequence"
+msgstr "екранираща последователност"
+
+#: src/gnome-terminal.glade2.h:36
+msgid "Exit the terminal"
+msgstr "излиза от терминала"
+
+#: src/gnome-terminal.glade2.h:37
+msgid "General"
+msgstr "Основни"
+
+#: src/gnome-terminal.glade2.h:38
+msgid "Goes after initial title"
+msgstr "отива след началното заглавие"
+
+#: src/gnome-terminal.glade2.h:39
+msgid "Goes before initial title"
+msgstr "отива пред началното заглавие"
+
+#: src/gnome-terminal.glade2.h:40
+#, fuzzy
+msgid "Hold the terminal open"
+msgstr "излиза от терминала"
+
+#: src/gnome-terminal.glade2.h:41
+msgid "Initial _title:"
+msgstr "Начално _заглавие:"
+
+#: src/gnome-terminal.glade2.h:42
+msgid "Isn't displayed"
+msgstr "не се показва"
+
+#: src/gnome-terminal.glade2.h:43
+msgid "Keyboard Shortcuts"
+msgstr "Клавиатурни препратки"
+
+#: src/gnome-terminal.glade2.h:44 src/terminal-accels.c:79
+msgid "New Profile"
+msgstr "Нов профил"
+
+#: src/gnome-terminal.glade2.h:45
+msgid "On the left side"
+msgstr "отляво"
+
+#: src/gnome-terminal.glade2.h:46
+msgid "On the right side"
+msgstr "отдясно"
+
+#: src/gnome-terminal.glade2.h:47
+msgid "Open a dialog to specify the color"
+msgstr "Отваря диалог за определяне на цвета"
+
+#: src/gnome-terminal.glade2.h:48
+msgid "Palette entry 1"
+msgstr "Палитра - цвят 1"
+
+#: src/gnome-terminal.glade2.h:49
+msgid "Palette entry 10"
+msgstr "Палитра - цвят 10"
+
+#: src/gnome-terminal.glade2.h:50
+msgid "Palette entry 11"
+msgstr "Палитра - цвят 11"
+
+#: src/gnome-terminal.glade2.h:51
+msgid "Palette entry 12"
+msgstr "Палитра - цвят 12"
+
+#: src/gnome-terminal.glade2.h:52
+msgid "Palette entry 13"
+msgstr "Палитра - цвят 13"
+
+#: src/gnome-terminal.glade2.h:53
+msgid "Palette entry 14"
+msgstr "Палитра - цвят 14"
+
+#: src/gnome-terminal.glade2.h:54
+msgid "Palette entry 15"
+msgstr "Палитра - цвят 15"
+
+#: src/gnome-terminal.glade2.h:55
+msgid "Palette entry 16"
+msgstr "Палитра - цвят 16"
+
+#: src/gnome-terminal.glade2.h:56
+msgid "Palette entry 2"
+msgstr "Палитра - цвят 2"
+
+#: src/gnome-terminal.glade2.h:57
+msgid "Palette entry 3"
+msgstr "Палитра - цвят 3"
+
+#: src/gnome-terminal.glade2.h:58
+msgid "Palette entry 4"
+msgstr "Палитра - цвят 4"
+
+#: src/gnome-terminal.glade2.h:59
+msgid "Palette entry 5"
+msgstr "Палитра - цвят 5"
+
+#: src/gnome-terminal.glade2.h:60
+msgid "Palette entry 6"
+msgstr "Палитра - цвят 6"
+
+#: src/gnome-terminal.glade2.h:61
+msgid "Palette entry 7"
+msgstr "Палитра - цвят 7"
+
+#: src/gnome-terminal.glade2.h:62
+msgid "Palette entry 8"
+msgstr "Палитра - цвят 8"
+
+#: src/gnome-terminal.glade2.h:63
+msgid "Palette entry 9"
+msgstr "Палитра - цвят 9"
+
+#: src/gnome-terminal.glade2.h:64
+msgid "Password:"
+msgstr "Парола:"
+
+#: src/gnome-terminal.glade2.h:65
+msgid "Profile Editor"
+msgstr "Редактор на профили"
+
+#: src/gnome-terminal.glade2.h:66
+msgid "Profile _icon:"
+msgstr "_Икона на профил:"
+
+#: src/gnome-terminal.glade2.h:67
+msgid "Profile _name:"
+msgstr "_Име на профил:"
+
+#: src/gnome-terminal.glade2.h:68
+msgid "Replaces initial title"
+msgstr "заменя първоначалното заглавие"
+
+#: src/gnome-terminal.glade2.h:69
+msgid "Restart the command"
+msgstr "рестартира командата"
+
+#: src/gnome-terminal.glade2.h:70
+#, fuzzy
+msgid "Ru_n a custom command instead of my shell"
+msgstr "_Изпълни друга команда вместо моята обвивка"
+
+#: src/gnome-terminal.glade2.h:71
+msgid "Sc_roll on output"
+msgstr "_Плъзгане при извеждане"
+
+#: src/gnome-terminal.glade2.h:72
+msgid "Scr_ollback:"
+msgstr "_Обратно плъзгане:"
+
+#: src/gnome-terminal.glade2.h:73
+#, fuzzy
+msgid "Scroll on _keystroke"
+msgstr "П_лъзгане при натискане на клавиш"
+
+#: src/gnome-terminal.glade2.h:74
+msgid "Scrolling"
+msgstr "Плъзгане"
+
+#: src/gnome-terminal.glade2.h:75
+msgid "Select-by-_word characters:"
+msgstr "Символи считани за _букви:"
+
+#: src/gnome-terminal.glade2.h:76
+msgid "Show _menubar by default in new terminals"
+msgstr "Показвай _лента с менюта в новите терминали"
+
+#: src/gnome-terminal.glade2.h:77
+msgid "Terminal _bell"
+msgstr "Терминален _звънец"
+
+#: src/gnome-terminal.glade2.h:78
+msgid "Terminal applications have these colors available to them."
+msgstr "Терминалните приложения разполагат с тези цветове."
+
+#: src/gnome-terminal.glade2.h:79
 msgid ""
-"It supports several profiles, multiple tabs and implements several keyboard "
-"shortcuts."
-msgstr ""
-"Програмата поддържа профили, множество подпрозорци и клавишни комбинации."
+"The command running inside the terminal may dynamically set a new title."
+msgstr "Командата в терминала може динамично да установи ново заглавие."
 
-#: ../org.gnome.Terminal.Nautilus.metainfo.xml.in.h:1
-msgid "Terminal plugin for Files"
-msgstr "Приставка за „Файлове“"
-
-#: ../org.gnome.Terminal.Nautilus.metainfo.xml.in.h:2
-msgid "Open a terminal from Files"
-msgstr "Отваряне на терминал от „Файлове“"
-
-#: ../org.gnome.Terminal.Nautilus.metainfo.xml.in.h:3
+#: src/gnome-terminal.glade2.h:80
+#, fuzzy
 msgid ""
-"Open Terminal is a plugin for the Files application that adds a menu item to "
-"the context menu to open a terminal in the currently browsed directory."
+"These options may cause some applications to behave incorrectly.\n"
+"They are only here to allow you to work around certain applications\n"
+"and operating systems that expect different terminal behavior."
 msgstr ""
-"Това е приставка за програмата „Файлове“, която добавя команда за отваряне "
-"на терминала в текущата папка."
+"Тези настройки могат да доведат до некоректна работа на някои приложения.\n"
+"Те са тук, само за да Ви позволят да работите с някои приложения и \n"
+"операционни системи, които очакват различно поведение на терминала."
 
-#: ../org.gnome.Terminal.desktop.in.in.h:3
-msgid "shell;prompt;command;commandline;cmd;"
-msgstr ""
-"обвивка;терминал;команда;команден;ред;интерпретатор;eмулатор;конзола;баш;шел;"
-"дос;shell;prompt;command;commandline;cmd;"
+#: src/gnome-terminal.glade2.h:83
+msgid "Title and Command"
+msgstr "Заглавие и команда"
 
-#: ../src/gterminal.vala:29
-msgid "Suppress output"
-msgstr "Без извеждане на данни"
+#: src/gnome-terminal.glade2.h:84
+msgid "Use colors from s_ystem theme"
+msgstr "Из_ползвай цветовете от системната тема"
 
-#: ../src/gterminal.vala:31
-msgid "Verbose output"
-msgstr "Извеждане на подробни данни"
+#: src/gnome-terminal.glade2.h:85
+msgid "When command _exits:"
+msgstr "При _излизане от команда:"
 
-#: ../src/gterminal.vala:43
-msgid "Output options:"
-msgstr "Опции за извеждането:"
+#: src/gnome-terminal.glade2.h:86
+msgid "_Allow bold text"
+msgstr "_Позволи получер текст"
 
-#: ../src/gterminal.vala:44
-msgid "Show output options"
-msgstr "Извеждане на опциите за извеждането:"
+#: src/gnome-terminal.glade2.h:87
+msgid "_Background color:"
+msgstr "_Цвят на фон:"
 
-#: ../src/gterminal.vala:85
-#, c-format
-msgid "“%s” is not a valid application ID"
-msgstr "„%s“ е неправилен идентификатор на програма"
+#: src/gnome-terminal.glade2.h:88
+msgid "_Background image"
+msgstr "_Картинка на фон"
 
-#: ../src/gterminal.vala:102
-msgid "Server application ID"
-msgstr "Идентификатор на сървърна програма"
+#: src/gnome-terminal.glade2.h:89
+msgid "_Backspace key generates:"
+msgstr "Клавишът \"_Backspace\" генерира:"
 
-#: ../src/gterminal.vala:102
-msgid "ID"
-msgstr "ИДЕНТИФИКАТОР"
+#: src/gnome-terminal.glade2.h:90
+msgid "_Base on:"
+msgstr "_Базирай на:"
 
-#: ../src/gterminal.vala:104
-msgid "Show completions"
-msgstr "Извеждане на опциите за дописване"
+#: src/gnome-terminal.glade2.h:91
+msgid "_Create"
+msgstr "С_ъздава"
 
-#: ../src/gterminal.vala:111
-msgid "Global options:"
-msgstr "Глобални опции:"
+#: src/gnome-terminal.glade2.h:92
+msgid "_Delete key generates:"
+msgstr "Клавишът \"_Delete\" генерира:"
 
-#: ../src/gterminal.vala:112
-msgid "Show global options"
-msgstr "Извеждане на глобалните опции"
+#: src/gnome-terminal.glade2.h:93
+msgid "_Dynamically-set title:"
+msgstr "_Динамично установеното заглавие:"
 
-#: ../src/gterminal.vala:135 ../src/gterminal.vala:156
-msgid "FD passing of stdin is not supported"
-msgstr "Предаването на стандартния вход чрез файлов дескриптор не се поддържа"
+#: src/gnome-terminal.glade2.h:94
+msgid "_Image file:"
+msgstr "_Графичен файл:"
 
-#: ../src/gterminal.vala:136 ../src/gterminal.vala:157
-msgid "FD passing of stdout is not supported"
-msgstr "Предаването на стандартния изход чрез файлов дескриптор не се поддържа"
+#: src/gnome-terminal.glade2.h:95
+msgid "_None (use solid color)"
+msgstr "_Цвят (използва плътен цвят)"
 
-#: ../src/gterminal.vala:137 ../src/gterminal.vala:158
-msgid "FD passing of stderr is not supported"
-msgstr ""
-"Предаването на стандартната грешка чрез файлов дескриптор не се поддържа"
+#: src/gnome-terminal.glade2.h:96
+msgid "_Profile name:"
+msgstr "_Име на профил:"
 
-#: ../src/gterminal.vala:149
-#, c-format
-msgid "Invalid argument “%s” to --fd option"
-msgstr "Неправилен аргумент „%s“ за опцията „--fd“"
+#: src/gnome-terminal.glade2.h:97
+msgid "_Reset compatibility options to defaults"
+msgstr "_Изчисти настройките за съвместимост"
 
-#: ../src/gterminal.vala:162
-#, c-format
-msgid "Cannot pass FD %d twice"
-msgstr "Файловият дескриптор %d не може да се подаде повече от един път"
+#: src/gnome-terminal.glade2.h:98
+msgid "_Run command as a login shell"
+msgstr "_Изпълни командата като обвивка при влизане в системата"
 
-#: ../src/gterminal.vala:185
-msgid "Forward stdin"
-msgstr "Пренасочване на стандартния вход"
+#: src/gnome-terminal.glade2.h:99
+msgid "_Scrollbar is:"
+msgstr "_Плъзгачът е:"
 
-#: ../src/gterminal.vala:187
-msgid "Forward stdout"
-msgstr "Пренасочване на стандартния изход"
+#: src/gnome-terminal.glade2.h:100
+msgid "_Shade transparent or image background:"
+msgstr "_Засенчване на прозрачността или картинката на фона:"
 
-#: ../src/gterminal.vala:189
-msgid "Forward stderr"
-msgstr "Пренасочване на стандартната грешка"
+#: src/gnome-terminal.glade2.h:101
+msgid "_Shortcut Keys:"
+msgstr "Бързи бутони:"
 
-#: ../src/gterminal.vala:191
-msgid "Forward file descriptor"
-msgstr "Пренасочване на файлов дескриптор"
+#: src/gnome-terminal.glade2.h:102
+msgid "_Text color:"
+msgstr "_Цвят на текст:"
 
-#: ../src/gterminal.vala:191
-msgid "FD"
-msgstr "Файлов дескриптор"
+#: src/gnome-terminal.glade2.h:103
+msgid "_Transparent background"
+msgstr "_Прозрачен фон"
 
-#: ../src/gterminal.vala:198
-msgid "Exec options:"
-msgstr "Опции за изпълнение"
+#: src/gnome-terminal.glade2.h:104
+#, fuzzy
+msgid "_Update login records when command is launched"
+msgstr "_Обновявай utmp/wtmp записите, когато стартира команда"
 
-#: ../src/gterminal.vala:199
-msgid "Show exec options"
-msgstr "Извеждане на опциите за изпълнение"
+#: src/gnome-terminal.glade2.h:105
+msgid "_Use the system terminal font"
+msgstr "Използва системен терминален шрифт"
 
-#: ../src/gterminal.vala:218
-msgid "Maximise the window"
-msgstr "Максимизиране на прозореца"
+#: src/gnome-terminal.glade2.h:106
+msgid "_kilobytes"
+msgstr "_килобайта"
 
-#: ../src/gterminal.vala:220 ../src/terminal-options.c:1162
-msgid "Full-screen the window"
-msgstr "Прозорецът да заема целия екран"
+#: src/gnome-terminal.glade2.h:107
+msgid "_lines"
+msgstr "_реда"
 
-#: ../src/gterminal.vala:222 ../src/terminal-options.c:1171
+#: src/gnome-terminal.glade2.h:108
+msgid "kilobytes"
+msgstr "килобайта"
+
+#: src/gnome-terminal.schemas.in.h:1
 msgid ""
-"Set the window size; for example: 80x24, or 80x24+200+200 (COLSxROWS+X+Y)"
+"A subset of possible encodings are presented in the Encoding submenu. This "
+"is a list of encodings to appear there. The special encoding name \"current"
+"\" means to display the encoding of the current locale."
 msgstr ""
-"Задаване на размера на прозореца. Напр. 80x24, или 80x24+200+200 "
-"(РЕДОВЕxКОЛОНИ+X+Y)"
 
-#: ../src/gterminal.vala:223 ../src/terminal-options.c:1172
-msgid "GEOMETRY"
-msgstr "ГЕОМЕТРИЯ"
-
-#: ../src/gterminal.vala:225 ../src/terminal-options.c:1180
-msgid "Set the window role"
-msgstr "Задаване на ролята на прозореца"
-
-#: ../src/gterminal.vala:225 ../src/terminal-options.c:1181
-msgid "ROLE"
-msgstr "РОЛЯ"
-
-#: ../src/gterminal.vala:232
-msgid "Window options:"
-msgstr "Опции за прозорците"
-
-#: ../src/gterminal.vala:233
-msgid "Show window options"
-msgstr "Извеждане на опциите за прозорците"
-
-#: ../src/gterminal.vala:251
-#, c-format
-msgid "May only use option %s once"
-msgstr "Можете да използвате опцията „%s“ максимум веднъж"
-
-#: ../src/gterminal.vala:264 ../src/terminal-options.c:731
-#, c-format
-msgid "“%s” is not a valid zoom factor"
-msgstr "„%s“ е грешен коефициент на увеличение"
-
-#: ../src/gterminal.vala:268
-#, c-format
-msgid "Zoom value “%s” is outside allowed range"
-msgstr "Коефициентът на увеличение „%s“ е извън позволения диапазон"
-
-#: ../src/gterminal.vala:277 ../src/terminal-options.c:1211
-msgid "Use the given profile instead of the default profile"
-msgstr "Използване на дадения профил вместо стандартния"
-
-#: ../src/gterminal.vala:278
-msgid "UUID"
-msgstr "Универсално уникален идентификатор"
-
-#: ../src/gterminal.vala:280 ../src/terminal-options.c:1229
-msgid "Set the working directory"
-msgstr "Задаване на работната папка на терминала"
-
-#: ../src/gterminal.vala:280 ../src/terminal-options.c:1230
-msgid "DIRNAME"
-msgstr "ПАПКА"
-
-#: ../src/gterminal.vala:282 ../src/terminal-options.c:1238
-msgid "Set the terminal’s zoom factor (1.0 = normal size)"
-msgstr "Коефициент на мащабиране на терминала (1.0 — нормален размер)"
-
-#: ../src/gterminal.vala:283 ../src/terminal-options.c:1239
-msgid "ZOOM"
-msgstr "УВЕЛИЧЕНИЕ"
-
-#: ../src/gterminal.vala:290
-msgid "Terminal options:"
-msgstr "Опции на терминала:"
-
-#: ../src/gterminal.vala:291 ../src/terminal-options.c:1346
-msgid "Show terminal options"
-msgstr "Извеждане на опциите на терминала"
-
-#: ../src/gterminal.vala:304
-msgid "Wait until the child exits"
-msgstr "Изчакване докато дъщерния процес завърши"
-
-#: ../src/gterminal.vala:311
-msgid "Processing options:"
-msgstr "Опции за обработката:"
-
-#: ../src/gterminal.vala:312
-msgid "Show processing options"
-msgstr "Извеждане на опциите за обработката:"
-
-#: ../src/gterminal.vala:479 ../src/gterminal.vala:576
-#: ../src/gterminal.vala:599 ../src/gterminal.vala:658
-#: ../src/gterminal.vala:685 ../src/gterminal.vala:707
-msgid "Missing argument"
-msgstr "Липсва аргумент"
-
-#: ../src/gterminal.vala:499
-#, c-format
-msgid "Unknown command “%s”"
-msgstr "Непозната команда „%s“"
-
-#: ../src/gterminal.vala:526
-#, c-format
-msgid "“%s” needs the command to run as arguments after “--”"
-msgstr "„%s“ изисква аргумент след „--“, който да е команда за изпълнение"
-
-#: ../src/gterminal.vala:529
-msgid "Extraneous arguments after “--”"
-msgstr "Излишни аргументи след „--“"
-
-#: ../src/gterminal.vala:744
-msgid "GTerminal"
-msgstr "GTerminal"
-
-#: ../src/gterminal.vala:760
-#, c-format
-msgid "Error processing arguments: %s\n"
-msgstr "Грешка при анализа на аргументите: %s\n"
-
-#: ../src/migration.c:403
-msgid "Default"
-msgstr "Стандартен цвят"
-
-#: ../src/migration.c:403 ../src/terminal-prefs.c:99
-msgid "Unnamed"
-msgstr "Без име"
-
-#. Translators: Keep single quote please!
-#: ../src/org.gnome.Terminal.gschema.xml.h:2
-msgctxt "visible-name"
-msgid "'Unnamed'"
-msgstr "'Без име'"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:3
-msgid "Human-readable name of the profile"
-msgstr "Разбираемо за човек име на профила"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:4
-msgid "Human-readable name of the profile."
-msgstr "Разбираемо за човек име на профила."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:5
-msgid "Default color of text in the terminal"
-msgstr "Стандартен цвят за текста в терминала"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:6
+#: src/gnome-terminal.schemas.in.h:2
 msgid ""
-"Default color of text in the terminal, as a color specification (can be HTML-"
-"style hex digits, or a color name such as “red”)."
+"A value between 0.0 and 1.0 indicating how much to darken the background "
+"image. 0.0 means no darkness, 1.0 means fully dark. In the current "
+"implementation, there are only two levels of darkness possible, so the "
+"setting behaves as a boolean, where 0.0 disables the darkening effect."
 msgstr ""
-"Стандартен цвят на текста в терминала (може да е цвят за HTML, "
-"шестнадесетично представен или име на цвета, например „red“)."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:7
+#: src/gnome-terminal.schemas.in.h:3
+msgid "An Pango font name. Examples are \"Sans 12\" or \"Monospace Bold 14\"."
+msgstr "Име на Pango шрифт. Примери: Sans 12 или Monospace Bold 14."
+
+#: src/gnome-terminal.schemas.in.h:4
+msgid ""
+"An X font name. See the X man page (type \"man X\") for more details on the "
+"format of X font names."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:5
+msgid "Background image"
+msgstr "Изображение за фон"
+
+#: src/gnome-terminal.schemas.in.h:6
+msgid "Background type"
+msgstr "Вид на фона"
+
+#: src/gnome-terminal.schemas.in.h:7
+msgid "Characters that are considered \"part of a word\""
+msgstr "Символи, които се считат за \"част от дума\""
+
+#: src/gnome-terminal.schemas.in.h:8
+msgid "Custom command to use instead of the shell"
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:9
 msgid "Default color of terminal background"
-msgstr "Стандартен цвят за фона на терминала"
+msgstr "Цвят по подразбиране за терминалния фон"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:8
+#: src/gnome-terminal.schemas.in.h:10
 msgid ""
 "Default color of terminal background, as a color specification (can be HTML-"
-"style hex digits, or a color name such as “red”)."
+"style hex digits, or a color name such as \"red\")."
 msgstr ""
-"Стандартен цвят на фона на терминала (може да е цвят за HTML, "
-"шестнадесетично представен или име на цвета, например „red“)."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:9
-msgid "Default color of bold text in the terminal"
-msgstr "Стандартен цвят за получерния текст в терминала"
+#: src/gnome-terminal.schemas.in.h:11
+msgid "Default color of text in the terminal"
+msgstr "Цвят по подразбиране за текст в конзолата"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:10
+#: src/gnome-terminal.schemas.in.h:12
 msgid ""
-"Default color of bold text in the terminal, as a color specification (can be "
-"HTML-style hex digits, or a color name such as “red”). This is ignored if "
-"bold-color-same-as-fg is true."
+"Default color of text in the terminal, as a color specification (can be HTML-"
+"style hex digits, or a color name such as \"red\")."
 msgstr ""
-"Стандартен цвят на получерния текст в терминала (може да е цвят за HTML, "
-"шестнадесетично представен или име на цвета, например „red“). Стойността не "
-"се ползва, ако ключът „bold-color-same-as-fg“ е истина."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:11
-msgid "Whether bold text should use the same color as normal text"
-msgstr "Дали получерният текст да е с цвета на нормалния"
+#: src/gnome-terminal.schemas.in.h:13
+msgid "Effect of the Backspace key"
+msgstr "Ефект при натискане на клавиша Backspace"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:12
+#: src/gnome-terminal.schemas.in.h:14
+msgid "Effect of the Delete key"
+msgstr "Ефект·при·натискане·на·клавиша Delete"
+
+#: src/gnome-terminal.schemas.in.h:15
+#, fuzzy
+msgid "Filename of a background image."
+msgstr "_Картинка на фон"
+
+#: src/gnome-terminal.schemas.in.h:16
+msgid "Font"
+msgstr "Шрифт"
+
+#: src/gnome-terminal.schemas.in.h:17
+#, fuzzy
+msgid "How much to darken the background image"
+msgstr "_Картинка на фон"
+
+#: src/gnome-terminal.schemas.in.h:18
+msgid "Human-readable name of the profile"
+msgstr "Човешки читаемо има на профила"
+
+#: src/gnome-terminal.schemas.in.h:19
+msgid "Human-readable name of the profile."
+msgstr "Човешки читаемо име на профила."
+
+#: src/gnome-terminal.schemas.in.h:20
+msgid "Icon for terminal window"
+msgstr "Икона за конзолния прозорец"
+
+#: src/gnome-terminal.schemas.in.h:21
+msgid "Icon to use for tabs/windows containing this profile."
+msgstr "Икона за използване с табове/прозорци съдържащи този профил."
+
+#: src/gnome-terminal.schemas.in.h:22
 msgid ""
-"If true, boldface text will be rendered using the same color as normal text."
-msgstr "Ако е истина, получерният текст ще се извежда с цвета на нормалния."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:13
-msgid "Whether to use custom cursor colors"
-msgstr "Дали да се ползват потребителски цветове на курсора"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:14
-msgid "If true, use the cursor colors from the profile."
-msgstr "Ако е истина, ще се ползват цветовете на курсора от палитрата."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:15
-msgid "Cursor background color"
-msgstr "Цвят на фона на курсора"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:16
-msgid ""
-"Custom color of the background of the terminal’s cursor, as a color "
-"specification (can be HTML-style hex digits, or a color name such as “red”). "
-"This is ignored if cursor-colors-set is false."
+"If the application in the terminal sets the title (most typically people "
+"have their shell set up to do this), the dynamically-set title can erase the "
+"configured title, go before it, go after it, or replace it. The possible "
+"values are \"replace\", \"before\", \"after\", and \"ignore\"."
 msgstr ""
-"Потребителски цвят на фона на курсора в терминала (може да е цвят за HTML, "
-"шестнадесетично представен или име на цвета, например „red“). Стойността не "
-"се ползва, ако ключът „cursor-colors-set“ е лъжа."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:17
-msgid "Cursor foreground colour"
-msgstr "Цвят на курсора"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:18
-msgid ""
-"Custom color for the foreground of the text character at the terminal’s "
-"cursor position, as a color specification (can be HTML-style hex digits, or "
-"a color name such as “red”). This is ignored if cursor-colors-set is false."
-msgstr ""
-"Потребителски цвят на текста в терминала (може да е цвят за HTML, "
-"шестнадесетично представен или име на цвета, например „red“). Стойността не "
-"се ползва, ако ключът „cursor-colors-set“ е лъжа."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:19
-msgid "Whether to use custom highlight colors"
-msgstr "Дали да се ползват потребителски цветове за осветяването"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:20
-msgid "If true, use the highlight colors from the profile."
-msgstr "Ако е истина, се ползват цветовете за осветяване от профила."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:21
-msgid "Highlight background color"
-msgstr "Цвят на фона на осветеното"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:22
-msgid ""
-"Custom color of the background of the terminal’s highlight, as a color "
-"specification (can be HTML-style hex digits, or a color name such as “red”). "
-"This is ignored if highlight-colors-set is false."
-msgstr ""
-"Потребителски цвят на фона на осветения текст в терминала (може да е цвят за "
-"HTML, шестнадесетично представен или име на цвета, например „red“). "
-"Стойността не се ползва, ако ключът „highlight-colors-set“ е лъжа."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:23
-msgid "Highlight foreground colour"
-msgstr "Цвят на осветеното"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:24
-msgid ""
-"Custom color for the foreground of the text character at the terminal’s "
-"highlight position, as a color specification (can be HTML-style hex digits, "
-"or a color name such as “red”). This is ignored if highlight-colors-set is "
-"false."
-msgstr ""
-"Потребителски цвят на осветеното в терминала (може да е цвят за HTML, "
-"шестнадесетично представен или име на цвета, например „red“). Стойността не "
-"се ползва, ако ключът „highlight-colors-set“ е лъжа."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:25
-msgid "Whether to allow bold text"
-msgstr "Позволяване на получер текст"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:26
+#: src/gnome-terminal.schemas.in.h:23
 msgid "If true, allow applications in the terminal to make text boldface."
 msgstr ""
-"Ако е истина, приложенията в терминала могат да използват получер текст."
+"Ако е включено, позволява на програми в тази конзола да правят текста "
+"удебелен."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:27
-msgid "Whether to ring the terminal bell"
-msgstr "Дали терминалният звънец да се изпълнява "
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:28
+#: src/gnome-terminal.schemas.in.h:24
 msgid ""
-"List of ASCII punctuation characters that are not to be treated as part of a "
-"word when doing word-wise selection"
+"If true, don't make a noise when applications send the escape sequence for "
+"the terminal bell."
 msgstr ""
-"Списък с пунктуационни знаци от ASCII, които да не се считат за части от "
-"думи при избора по думи"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:29
-msgid "Whether to show menubar in new windows/tabs"
-msgstr "Дали да се показва менюто в новите прозорци/подпрозорци"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:30
-msgid "True if the menubar should be shown in new window"
-msgstr "Ако е истина, менюто е видимо в новите прозорци/подпрозорци"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:31
-msgid "Default number of columns"
-msgstr "Стандартен брой колони"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:32
-msgid ""
-"Number of columns in newly created terminal windows. Has no effect if "
-"use_custom_default_size is not enabled."
-msgstr ""
-"Брой колони в новоотворените прозорци. Има значение, само ако ключът "
-"„use_custom_default_size“ е истина."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:33
-msgid "Default number of rows"
-msgstr "Стандартен брой редове"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:34
-msgid ""
-"Number of rows in newly created terminal windows. Has no effect if "
-"use_custom_default_size is not enabled."
-msgstr ""
-"Брой редове в новоотворените прозорци. Има значение, само ако ключът "
-"„use_custom_default_size“ е истина."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:35
-msgid "When to show the scrollbar"
-msgstr "Кога плъзгачът да се показва"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:36
-msgid "Number of lines to keep in scrollback"
-msgstr "Брой редове за придвижване назад"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:37
-msgid ""
-"Number of scrollback lines to keep around. You can scroll back in the "
-"terminal by this number of lines; lines that don’t fit in the scrollback are "
-"discarded. If scrollback_unlimited is true, this value is ignored."
-msgstr ""
-"Броят на редовете, които да се пазят в паметта за придвижване назад. Можете "
-"да се връщате обратно с този брой редове. При надвишаването на броя най-"
-"старите редове се изтриват от паметта. Тази стойност не се ползва, ако "
-"ключът „scrollback_unlimited“ е истина."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:38
-msgid "Whether an unlimited number of lines should be kept in scrollback"
-msgstr "Дали да се пазят неограничен брой редове за придвижване назад"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:39
-msgid ""
-"If true, scrollback lines will never be discarded. The scrollback history is "
-"stored on disk temporarily, so this may cause the system to run out of disk "
-"space if there is a lot of output to the terminal."
-msgstr ""
-"Ако е истина, броят редове за придвижване назад е неограничен. Историята се "
-"запазва във временен файл, което може да доведе до свършване на дисковото "
-"пространство при извеждането на много информация в терминала."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:40
-msgid "Whether to scroll to the bottom when a key is pressed"
-msgstr "Дали да се отива най-долу при натискане на клавиш"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:41
+#: src/gnome-terminal.schemas.in.h:25
 msgid "If true, pressing a key jumps the scrollbar to the bottom."
-msgstr "Ако е истина, натискането на клавиш придвижва до най-долу."
+msgstr ""
+"Ако е включено, натискането на клавиш праща лентата за скролиране най-долу."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:42
-msgid "Whether to scroll to the bottom when there’s new output"
-msgstr "Дали да се отива най-долу, когато се изпишат нови данни"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:43
+#: src/gnome-terminal.schemas.in.h:26
 msgid ""
-"If true, whenever there’s new output the terminal will scroll to the bottom."
+"If true, scroll the background image with the foreground text; if false, "
+"keep the image in a fixed position and scroll the text above it."
 msgstr ""
-"Ако е истина, при изписване на текст екранът ще се придвижи до най-долу."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:44
-msgid "What to do with the terminal when the child command exits"
-msgstr "Поведение на терминала при приключване на изпълняваната команда"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:45
+#: src/gnome-terminal.schemas.in.h:27
 msgid ""
-"Possible values are “close” to close the terminal, “restart” to restart the "
-"command, and “hold” to keep the terminal open with no command running inside."
+"If true, the command inside the terminal will be launched as a login shell. "
+"(argv[0] will have a hyphen in front of it.)"
 msgstr ""
-"Възможните стойности са „close“ за затваряне на терминала, „restart“ за "
-"повторно изпълнение на командата и „hold“ за оставяне на терминала отворен, "
-"без да се изпълнява каквато и да е команда.."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:46
-msgid "Whether to launch the command in the terminal as a login shell"
-msgstr ""
-"Дали командата в терминала да се изпълни в обвивка с влизане в системата"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:47
+#: src/gnome-terminal.schemas.in.h:28
 msgid ""
-"If true, the command inside the terminal will be launched as a login shell "
-"(argv[0] will have a hyphen in front of it)."
+"If true, the system login records utmp and wtmp will be updated when the "
+"command inside the terminal is launched."
 msgstr ""
-"Ако е истина, командата в терминала ще се изпълни като обвивка с влизане в "
-"системата (пред argv[0] ще има тире)."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:48
-msgid "Whether to run a custom command instead of the shell"
-msgstr "Дали да се изпълнява потребителска команда вместо обвивката"
+#: src/gnome-terminal.schemas.in.h:29
+msgid ""
+"If true, the terminal will use the desktop-global standard font if it's "
+"monospace (and the most similar font it can come up with otherwise)."
+msgstr ""
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:49
+#: src/gnome-terminal.schemas.in.h:30
+msgid ""
+"If true, the theme color scheme used for text entry boxes will be used for "
+"the terminal, instead of colors provided by the user."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:31
 msgid ""
 "If true, the value of the custom_command setting will be used in place of "
 "running a shell."
 msgstr ""
-"Ако е истина, вместо стандартната обвивка ще се изпълни стойността на ключа "
-"„custom_command“."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:50
-msgid "Whether to blink the cursor"
-msgstr "Дали да курсорът да мига"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:51
+#: src/gnome-terminal.schemas.in.h:32
 msgid ""
-"The possible values are “system” to use the global cursor blinking settings, "
-"or “on” or “off” to set the mode explicitly."
+"If true, whenever there's new output the terminal will scroll to the bottom."
 msgstr ""
-"Възможните стойности са „system“ — настройките на средата за премигването на "
-"курсора, „on“ (с мигане) и „off“ (без мигане) за изрично указване на режима."
+"Ако е включено, когато има въвеждане терминала ще се скролира до най-долу."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:52
-msgid "The cursor appearance"
-msgstr "Изглед на курсора"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:53
-msgid "Custom command to use instead of the shell"
-msgstr ""
-"Потребителска команда, която да се използва вместо стандартната обвивка"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:54
-msgid "Run this command in place of the shell, if use_custom_command is true."
-msgstr ""
-"Изпълняване на тази команда вместо обвивка, ако е зададено "
-"use_custom_command."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:55
-msgid "Palette for terminal applications"
-msgstr "Палитра за програмите в терминала"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:56
-msgid "A Pango font name and size"
-msgstr "Име и размер на шрифт за Pango"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:57
-msgid "The code sequence the Backspace key generates"
-msgstr "Последователност от кодове, генерирани от клавиша „Backspace“"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:58
-msgid "The code sequence the Delete key generates"
-msgstr "Последователност от кодове, генерирани от клавиша „Delete“"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:59
-msgid "Whether to use the colors from the theme for the terminal widget"
-msgstr ""
-"Дали да се използват цветовете от темата за графичния обект за терминала"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:60
-msgid "Whether to use the system monospace font"
-msgstr "Дали да се използва системният равноширок шрифт"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:61
-msgid "Whether to rewrap the terminal contents on window resize"
-msgstr ""
-"Дали при преоразмеряването на прозореца съдържанието на терминала да се "
-"преподрежда"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:62
-msgid "Which encoding to use"
-msgstr "Кодиране, което да се използва"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:63
+#: src/gnome-terminal.schemas.in.h:33
 msgid ""
-"Whether ambiguous-width characters are narrow or wide when using UTF-8 "
-"encoding"
+"Keyboard shortcut key for bringing up the dialog for profile creation. "
+"Expressed as a string in the same format used for GTK+ resource files. If "
+"you set the option to the special string \"disabled\", then there will be no "
+"keyboard shortcut for this action."
 msgstr ""
-"Дали знаците с неясна широчина да се третират като тесни или широки при "
-"кодиране UTF-8"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:64
-msgid "Keyboard shortcut to open a new tab"
-msgstr "Клавишна комбинация за отваряне на нов подпрозорец"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:65
-msgid "Keyboard shortcut to open a new window"
-msgstr "Клавишна комбинация за отваряне на нов прозорец"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:66
-msgid "Keyboard shortcut to create a new profile"
-msgstr "Клавишна комбинация за създаване на нов профил"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:67
-msgid "Keyboard shortcut to save the current tab contents to file"
+#: src/gnome-terminal.schemas.in.h:34
+msgid ""
+"Keyboard shortcut key for closing a tab. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
 msgstr ""
-"Клавишна комбинация за запазването на съдържанието на подпрозореца във файл"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:68
+#: src/gnome-terminal.schemas.in.h:35
+msgid ""
+"Keyboard shortcut key for closing a window. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:36
+msgid ""
+"Keyboard shortcut key for copying selected text to the clipboard. Expressed "
+"as a string in the same format used for GTK+ resource files. If you set the "
+"option to the special string \"disabled\", then there will be no keyboard "
+"shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:37
+msgid ""
+"Keyboard shortcut key for launching help. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:38
+msgid ""
+"Keyboard shortcut key for making font larger. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:39
+msgid ""
+"Keyboard shortcut key for making font smaller. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:40
+msgid ""
+"Keyboard shortcut key for making font the normal size. Expressed as a string "
+"in the same format used for GTK+ resource files. If you set the option to "
+"the special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:41
+msgid ""
+"Keyboard shortcut key for opening a new tab. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:42
+msgid ""
+"Keyboard shortcut key for opening a new window. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:43
+msgid ""
+"Keyboard shortcut key for pasting the contents of the clipboard into the "
+"terminal. Expressed as a string in the same format used for GTK+ resource "
+"files. If you set the option to the special string \"disabled\", then there "
+"will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:44
+msgid ""
+"Keyboard shortcut key for switch to tab 1. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:45
+msgid ""
+"Keyboard shortcut key for switch to tab 10. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:46
+msgid ""
+"Keyboard shortcut key for switch to tab 11. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:47
+msgid ""
+"Keyboard shortcut key for switch to tab 12. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:48
+msgid ""
+"Keyboard shortcut key for switch to tab 2. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:49
+msgid ""
+"Keyboard shortcut key for switch to tab 3. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:50
+msgid ""
+"Keyboard shortcut key for switch to tab 4. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:51
+msgid ""
+"Keyboard shortcut key for switch to tab 5. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:52
+msgid ""
+"Keyboard shortcut key for switch to tab 6. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:53
+msgid ""
+"Keyboard shortcut key for switch to tab 7. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:54
+msgid ""
+"Keyboard shortcut key for switch to tab 8. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:55
+msgid ""
+"Keyboard shortcut key for switch to tab 9. Expressed as a string in the same "
+"format used for GTK+ resource files. If you set the option to the special "
+"string \"disabled\", then there will be no keyboard shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:56
+msgid ""
+"Keyboard shortcut key for toggling full screen mode. Expressed as a string "
+"in the same format used for GTK+ resource files. If you set the option to "
+"the special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:57
+msgid ""
+"Keyboard shortcut key to reset and clear the terminal. Expressed as a string "
+"in the same format used for GTK+ resource files. If you set the option to "
+"the special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:58
+msgid ""
+"Keyboard shortcut key to reset the terminal. Expressed as a string in the "
+"same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:59
+msgid ""
+"Keyboard shortcut key to set the terminal title. Expressed as a string in "
+"the same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:60
+msgid ""
+"Keyboard shortcut key to switch to the next tab. Expressed as a string in "
+"the same format used for GTK+ resource files. If you set the option to the "
+"special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:61
+msgid ""
+"Keyboard shortcut key to switch to the previous tab. Expressed as a string "
+"in the same format used for GTK+ resource files. If you set the option to "
+"the special string \"disabled\", then there will be no keyboard shortcut for "
+"this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:62
+msgid ""
+"Keyboard shortcut key to toggle the visibility of the menubar. Expressed as "
+"a string in the same format used for GTK+ resource files. If you set the "
+"option to the special string \"disabled\", then there will be no keyboard "
+"shortcut for this action."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:63
+#, fuzzy
 msgid "Keyboard shortcut to close a tab"
-msgstr "Клавишна комбинация за затваряне на подпрозорец"
+msgstr "Редактор на клавишни комбинации"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:69
+#: src/gnome-terminal.schemas.in.h:64
+#, fuzzy
 msgid "Keyboard shortcut to close a window"
-msgstr "Клавишна комбинация за затваряне на прозорец"
+msgstr "Режим на ускорителя"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:70
+#: src/gnome-terminal.schemas.in.h:65
+#, fuzzy
 msgid "Keyboard shortcut to copy text"
-msgstr "Клавишна комбинация за копиране на текст"
+msgstr "Редактор на клавишни комбинации"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:71
-msgid "Keyboard shortcut to copy text as HTML"
-msgstr "Клавишна комбинация за копиране на текст като HTML"
+#: src/gnome-terminal.schemas.in.h:66
+#, fuzzy
+msgid "Keyboard shortcut to create a new profile"
+msgstr "Редактор на клавишни комбинации"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:72
-msgid "Keyboard shortcut to paste text"
-msgstr "Клавишна комбинация за поставяне на текст"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:73
-msgid "Keyboard shortcut to select all text"
-msgstr "Клавишна комбинация за избиране на всичко"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:74
-msgid "Keyboard shortcut to open the Preferences dialog"
-msgstr "Клавишна комбинация за отваряне на диалоговия прозорец за настройките"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:75
-msgid "Keyboard shortcut to open the current profile’s Preferences dialog"
-msgstr ""
-"Клавишна комбинация за отваряне на диалоговия прозорец за настройките на "
-"текущия профил"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:76
-msgid "Keyboard shortcut to toggle full screen mode"
-msgstr "Клавишна комбинация за превключване на режим „На цял екран“"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:77
-msgid "Keyboard shortcut to toggle the visibility of the menubar"
-msgstr "Клавишна комбинация за превключване видимостта на менюто"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:78
-msgid "Keyboard shortcut to toggle the read-only state"
-msgstr "Клавишна комбинация за превключване на режима само за четене"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:79
-msgid "Keyboard shortcut to reset the terminal"
-msgstr "Клавишна комбинация за презареждане на терминала"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:80
-msgid "Keyboard shortcut to reset and clear the terminal"
-msgstr "Клавишна комбинация за изчистване на терминала"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:81
-msgid "Keyboard shortcut to open the search dialog"
-msgstr "Клавишна комбинация за отваряне на диалоговия прозорец за търсене"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:82
-msgid "Keyboard shortcut to find the next occurrence of the search term"
-msgstr "Клавишна комбинация за следващата поява на търсените знаци"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:83
-msgid "Keyboard shortcut to find the previous occurrence of the search term"
-msgstr "Клавишна комбинация за предишната поява на търсените знаци"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:84
-msgid "Keyboard shortcut to clear the find highlighting"
-msgstr "Клавишна комбинация за изчистване на осветяването при търсене"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:85
-msgid "Keyboard shortcut to switch to the previous tab"
-msgstr "Клавишна комбинация за преход към предишния подпрозорец"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:86
-msgid "Keyboard shortcut to switch to the next tab"
-msgstr "Клавишна комбинация за преход към следващия подпрозорец"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:87
-msgid "Keyboard shortcut to move the current tab to the left"
-msgstr "Клавишна комбинация за преместването на текущия подпрозорец наляво"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:88
-msgid "Keyboard shortcut to move the current tab to the right"
-msgstr "Клавишна комбинация за преместването на текущия подпрозорец надясно"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:89
-msgid "Keyboard shortcut to detach current tab"
-msgstr ""
-"Клавишна комбинация за отделянето на текущия подпрозорец в нов подпрозорец"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:90
-msgid "Keyboard shortcut to switch to the numbered tab"
-msgstr "Клавишна комбинация за преход към подрозорец с номер"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:91
+#: src/gnome-terminal.schemas.in.h:67
+#, fuzzy
 msgid "Keyboard shortcut to launch help"
-msgstr "Клавишна комбинация за зареждане на помощта"
+msgstr "Редактор на клавишни комбинации"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:92
+#: src/gnome-terminal.schemas.in.h:68
+#, fuzzy
 msgid "Keyboard shortcut to make font larger"
-msgstr "Клавишна комбинация за увеличаване на шрифта"
+msgstr "Модификатори на ускорителя"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:93
-msgid "Keyboard shortcut to make font smaller"
-msgstr "Клавишна комбинация за намаляване на шрифта"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:94
+#: src/gnome-terminal.schemas.in.h:69
 msgid "Keyboard shortcut to make font normal-size"
-msgstr "Клавишна комбинация за нормален размер на шрифта"
+msgstr "Клавиатурна препратка за нормален размер на шрифта"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:95
-msgid "Whether the menubar has access keys"
-msgstr "Дали за менюто да има клавиши за достъп"
+#: src/gnome-terminal.schemas.in.h:70
+#, fuzzy
+msgid "Keyboard shortcut to make font smaller"
+msgstr "Редактор на клавишни комбинации"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:96
+#: src/gnome-terminal.schemas.in.h:71
+#, fuzzy
+msgid "Keyboard shortcut to open a new tab"
+msgstr "Режим на ускорителя"
+
+#: src/gnome-terminal.schemas.in.h:72
+#, fuzzy
+msgid "Keyboard shortcut to open a new window"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:73
+#, fuzzy
+msgid "Keyboard shortcut to paste text"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:74
+msgid "Keyboard shortcut to reset and clear the terminal"
+msgstr "Клавиатурна·препратка·за·изчистване и занулиране на терминала"
+
+#: src/gnome-terminal.schemas.in.h:75
+#, fuzzy
+msgid "Keyboard shortcut to reset the terminal"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:76
+#, fuzzy
+msgid "Keyboard shortcut to set the terminal title"
+msgstr "Задава названието на терминала"
+
+#: src/gnome-terminal.schemas.in.h:77
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 1"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:78
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 10"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:79
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 11"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:80
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 12"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:81
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 2"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:82
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 3"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:83
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 4"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:84
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 5"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:85
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 6"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:86
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 7"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:87
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 8"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:88
+#, fuzzy
+msgid "Keyboard shortcut to switch to tab 9"
+msgstr "Редактор на клавишни комбинации"
+
+#: src/gnome-terminal.schemas.in.h:89
+msgid "Keyboard shortcut to switch to the next tab"
+msgstr "Клавиатурна·препратка·за·следващ таб"
+
+#: src/gnome-terminal.schemas.in.h:90
+msgid "Keyboard shortcut to switch to the previous tab"
+msgstr "Клавиатурна препратка за предишен·таб"
+
+#: src/gnome-terminal.schemas.in.h:91
+msgid "Keyboard shortcut to toggle full screen mode"
+msgstr "Клавиатурна препратка за вкл./изкл. на режим пълен екран"
+
+#: src/gnome-terminal.schemas.in.h:92
+msgid "Keyboard shortcut to toggle the visibility of the menubar"
+msgstr "Клавиатурна препратка за вкл./изкл. на лентата с менюта"
+
+#: src/gnome-terminal.schemas.in.h:93
+#, fuzzy
+msgid "List of available encodings"
+msgstr "_Налични кодирания:"
+
+#: src/gnome-terminal.schemas.in.h:94
+msgid "List of profiles"
+msgstr "Списък с профили"
+
+#: src/gnome-terminal.schemas.in.h:95
 msgid ""
-"Whether to have Alt+letter access keys for the menubar. They may interfere "
-"with some applications run inside the terminal so it’s possible to turn them "
-"off."
+"List of profiles known to gnome-terminal. The list contains strings naming "
+"subdirectories relative to /apps/gnome-terminal/profiles."
 msgstr ""
-"Дали да се разрешават клавишните комбинации за менюто „Alt+буква“. Те може "
-"да пречат на някои програми, работещи в терминала, затова има възможност да "
-"бъдат изключвани."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:97
-msgid "Whether shortcuts are enabled"
-msgstr "Дали клавишните комбинации са разрешени"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:98
-msgid ""
-"Whether shortcuts are enabled. They may interfere with some applications run "
-"inside the terminal so it’s possible to turn them off."
-msgstr ""
-"Дали да се разрешават клавишните комбинации. Те може да пречат на някои "
-"програми, работещи в терминала, затова има възможност да бъдат изключвани."
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:99
-msgid "Whether the standard GTK shortcut for menubar access is enabled"
-msgstr "Дали стандартните клавишни комбинации на GTK за менюта са разрешени"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:100
+#: src/gnome-terminal.schemas.in.h:96
 msgid ""
 "Normally you can access the menubar with F10. This can also be customized "
 "via gtkrc (gtk-menu-bar-accel = \"whatever\"). This option allows the "
 "standard menubar accelerator to be disabled."
 msgstr ""
-"Можете да достигате до лентата с инструменти чрез „F10“. Това може да се "
-"променя чрез файла gtkrc (gtk-menu-bar-accel = КАКВОТО_ТРЯБВА). Тази "
-"настройка изключва клавишната комбинация за достъп до лентата с инструменти."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:101
-msgid "Whether the shell integration is enabled"
-msgstr "Дали да се включи интеграцията с обвивката"
+#: src/gnome-terminal.schemas.in.h:97
+msgid "Number of lines to keep in scrollback"
+msgstr "Брой на редове да се пазят нагоре"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:102
-msgid "List of available encodings"
-msgstr "Списък на наличните кодирания"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:103
+#: src/gnome-terminal.schemas.in.h:98
 msgid ""
-"A subset of possible encodings are presented in the Encoding submenu. This "
-"is a list of encodings to appear there."
+"Number of scrollback lines to keep around. You can scroll back in the "
+"terminal by this number of lines; lines that don't fit in the scrollback are "
+"discarded. Be careful with this setting; it's the primary factor in "
+"determining how much memory the terminal will use."
 msgstr ""
-"Подмножество от възможните кодови таблици има в подменюто „Кодиране“. Това е "
-"списък с кодиранията, които да се появяват там."
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:104
-msgid "Whether to ask for confirmation before closing a terminal"
-msgstr "Дали да се пита при затваряне на прозорците на терминала"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:105
-msgid "Whether to show the menubar in new windows"
-msgstr "Дали да се показва менюто в новите прозорци"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:106
-msgid "Whether to open new terminals as windows or tabs"
+#: src/gnome-terminal.schemas.in.h:99
+msgid "Palette for terminal applications"
 msgstr ""
-"Дали новите терминали да се отварят като нови прозорци или нови подпрозорци"
 
-#: ../src/org.gnome.Terminal.gschema.xml.h:107
-msgid "When to show the tabs bar"
-msgstr "Кога да се показва лентата за подпрозорците"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:108
-msgid "The position of the tab bar"
-msgstr "Позиция на лентата за подпрозорците"
-
-#: ../src/org.gnome.Terminal.gschema.xml.h:109
-msgid "Which theme variant to use"
-msgstr "Кой вариант на темата да се ползва"
-
-#. Open new terminal in new window
-#: ../src/preferences.ui.h:2
-msgid "Window"
-msgstr "Прозорци"
-
-#. Open new terminal in new tab
-#: ../src/preferences.ui.h:4
-msgid "Tab"
-msgstr "Подпрозорци"
-
-#: ../src/preferences.ui.h:5
-msgctxt "theme variant"
-msgid "Default"
-msgstr "Стандартна"
-
-#: ../src/preferences.ui.h:6
-msgctxt "theme variant"
-msgid "Light"
-msgstr "Светла"
-
-#: ../src/preferences.ui.h:7
-msgctxt "theme variant"
-msgid "Dark"
-msgstr "Тъмна"
-
-#: ../src/preferences.ui.h:8 ../src/terminal-accels.c:173
-msgid "Preferences"
-msgstr "Настройки"
-
-#: ../src/preferences.ui.h:9
-msgid "Show _menubar by default in new terminals"
-msgstr "Показване на менюто в _новите терминали"
-
-#: ../src/preferences.ui.h:10
-msgid "_Enable mnemonics (such as Alt+F to open the File menu)"
+#: src/gnome-terminal.schemas.in.h:100
+msgid ""
+"Popup a dialog when an s/key challenge response query is detected and "
+"clicked on. Typing a password into the dialog will send it to the terminal."
 msgstr ""
-"_Включване на клавишните комбинации на менюто (като „Alt+f“ за менюто Файл)"
 
-#: ../src/preferences.ui.h:11
-msgid "Enable the _menu accelerator key (F10 by default)"
-msgstr "_Клавиш за достъп до менюто (стандартно „F10“)"
+#: src/gnome-terminal.schemas.in.h:101
+msgid "Position of the scrollbar"
+msgstr "Позицията на лентата за скролиране"
 
-#: ../src/preferences.ui.h:12
-msgid "Theme _variant:"
-msgstr "_Вариант на темата"
+#: src/gnome-terminal.schemas.in.h:102
+msgid ""
+"Possible values are \"close\" to close the terminal, and \"restart\" to "
+"restart the command."
+msgstr ""
 
-#: ../src/preferences.ui.h:13
-msgid "Open _new terminals in:"
-msgstr "_Отваряне на новите терминали като:"
+#: src/gnome-terminal.schemas.in.h:103
+msgid ""
+"Profile to be used when opening a new window or tab. Must be in profile_list."
+msgstr ""
+"Профил, който да се използва, когато се отваря нов прозорец или таб. Трябва "
+"да е в списъка с профилите."
 
-#: ../src/preferences.ui.h:14 ../src/profile-preferences.ui.h:61
-msgid "General"
-msgstr "Общи"
+#: src/gnome-terminal.schemas.in.h:104
+#, fuzzy
+msgid "Profile to use for new terminals"
+msgstr "Профил _използван при стартиране на нов терминал:"
 
-#: ../src/preferences.ui.h:15
-msgid "_Enable shortcuts"
-msgstr "Включване на _клавишните комбинации"
+#: src/gnome-terminal.schemas.in.h:105
+msgid "Run this command in place of the shell, if use_custom_command is true."
+msgstr ""
 
-#: ../src/preferences.ui.h:16
-msgid "Shortcuts"
-msgstr "Клавишни комбинации"
+#: src/gnome-terminal.schemas.in.h:106
+msgid ""
+"Sets what code the backspace key generates. Possible values are \"ascii-del"
+"\" for the ASCII DEL character, \"control-h\" for Control-H (AKA the ASCII "
+"BS character), \"escape-sequence\" for the escape sequence typically bound "
+"to backspace or delete. \"ascii-del\" is normally considered the correct "
+"setting for the Backspace key."
+msgstr ""
 
-#: ../src/preferences.ui.h:17
-msgid "_Clone"
-msgstr "_Копиране на профила"
+#: src/gnome-terminal.schemas.in.h:107
+msgid ""
+"Sets what code the delete key generates. Possible values are \"ascii-del\" "
+"for the ASCII DEL character, \"control-h\" for Control-H (AKA the ASCII BS "
+"character), \"escape-sequence\" for the escape sequence typically bound to "
+"backspace or delete. \"escape-sequence\" is normally considered the correct "
+"setting for the Delete key."
+msgstr ""
 
-#: ../src/preferences.ui.h:18
-msgid "_Profile used when launching a new terminal:"
-msgstr "Профил _използван при отваряне на нов терминал:"
+#: src/gnome-terminal.schemas.in.h:108
+msgid "Support skey dingus clicking"
+msgstr ""
 
-#: ../src/preferences.ui.h:19
-msgid "Profiles"
-msgstr "Профили"
+#: src/gnome-terminal.schemas.in.h:110
+msgid ""
+"Terminals have a 16-color palette that applications inside the terminal can "
+"use. This is that palette, in the form of a colon-separated list of color "
+"names. Color names should be in hex format e.g. \"#FF00FF\""
+msgstr ""
 
-#: ../src/preferences.ui.h:20
-msgid "E_ncodings shown in menu:"
-msgstr "К_одирания в менюто:"
+#: src/gnome-terminal.schemas.in.h:111
+msgid "Title for terminal"
+msgstr "Заглавие за терминала"
 
-#: ../src/preferences.ui.h:21
-msgid "Encodings"
-msgstr "Кодирания"
+#: src/gnome-terminal.schemas.in.h:112
+msgid ""
+"Title to display for the terminal window or tab. This title may be replaced "
+"by or combined with the title set by the application inside the terminal, "
+"depending on the title_mode setting."
+msgstr ""
 
-#: ../src/profile-editor.c:49
+#: src/gnome-terminal.schemas.in.h:113
+msgid ""
+"True if the cursor should blink when the terminal has focus, for windows/"
+"tabs with this profile."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:114
+msgid ""
+"True if the menubar should be shown in new windows, for windows/tabs with "
+"this profile."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:115
+msgid ""
+"Type of terminal background. May be \"solid\" for a solid color, \"image\" "
+"for an image, or \"transparent\" for pseudo-transparency."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:116
+msgid "What to do with dynamic title"
+msgstr "Какво да се прави с динамично заглавие"
+
+#: src/gnome-terminal.schemas.in.h:117
+msgid "What to do with the terminal when the child command exits"
+msgstr "Какво да се прави с терминал, когато подчинената команда излезне"
+
+#: src/gnome-terminal.schemas.in.h:118
+msgid ""
+"When selecting text by word, sequences of these characters are considered "
+"single words. Ranges can be given as \"A-Z\". Literal hyphen (not expressing "
+"a range) should be the first character given."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:119
+msgid ""
+"Where to put the terminal scrollbar. Possibilities are \"left\", \"right\", "
+"and \"disabled\"."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:120
+msgid "Whether the menubar has access keys"
+msgstr "Дали лентата с менюто да има бързи бутони"
+
+#: src/gnome-terminal.schemas.in.h:121
+msgid "Whether the standard GTK shortcut for menubar access is enabled"
+msgstr "Дали стандартни GTK препратки за лентата с менюта са разрешени"
+
+#: src/gnome-terminal.schemas.in.h:122
+#, fuzzy
+msgid "Whether to allow bold text"
+msgstr "_Позволи получер текст"
+
+#: src/gnome-terminal.schemas.in.h:123
+msgid ""
+"Whether to ask for confirmation when closing a terminal window which has "
+"more than one open tab."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:124
+#, fuzzy
+msgid "Whether to ask for confirmation when closing terminal windows"
+msgstr "Дали да се обновява utmp/wtmp, когато се пуска терминална команда"
+
+#: src/gnome-terminal.schemas.in.h:125
+msgid "Whether to blink the cursor"
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:126
+msgid ""
+"Whether to have Alt+letter access keys for the menubar. They may interfere "
+"with some applications run inside the terminal so it's possible to turn them "
+"off."
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:127
+msgid "Whether to launch the command in the terminal as a login shell"
+msgstr ""
+
+#: src/gnome-terminal.schemas.in.h:128
+#, fuzzy
+msgid "Whether to run a custom command instead of the shell"
+msgstr "_Изпълни друга команда вместо моята обвивка"
+
+#: src/gnome-terminal.schemas.in.h:129
+#, fuzzy
+msgid "Whether to scroll background image"
+msgstr "_Картинка на фон"
+
+#: src/gnome-terminal.schemas.in.h:130
+msgid "Whether to scroll to the bottom when a key is pressed"
+msgstr "Дали да се отива най-долу при натискане на клавиш"
+
+#: src/gnome-terminal.schemas.in.h:131
+msgid "Whether to scroll to the bottom when there's new output"
+msgstr "Дали да се отива най-долу, когато се изпишат нови данни"
+
+#: src/gnome-terminal.schemas.in.h:132
+msgid "Whether to show menubar in new windows/tabs"
+msgstr "Дали да се показва ленатата с менюта в нови прозорци/табове"
+
+#: src/gnome-terminal.schemas.in.h:133
+#, fuzzy
+msgid "Whether to silence terminal bell"
+msgstr "Без _звук на терминал"
+
+#: src/gnome-terminal.schemas.in.h:134
+#, fuzzy
+msgid "Whether to update login records when launching terminal command"
+msgstr "Дали да се обновява utmp/wtmp, когато се пуска терминална команда"
+
+#: src/gnome-terminal.schemas.in.h:135
+msgid "Whether to use the colors from the theme for the terminal widget"
+msgstr "Дали да се използват цветовете от темата за терминалния уиджет"
+
+#: src/gnome-terminal.schemas.in.h:136
+msgid "Whether to use the system font"
+msgstr "Дали да се използва системния шрифт"
+
+#. Translators: please note this is has to be a list of valid encodings (which are to
+#. be taken from the list in src/encoding.c) It has to include UTF-8 and the word 'current', which
+#. is not to be translated. This is provided for costumization of the default encoding menu; see
+#. bug 144810 for an use case. In most cases, this should be left alone.
+#: src/gnome-terminal.schemas.in.h:141
+msgid "[UTF-8,current]"
+msgstr ""
+
+#: src/profile-editor.c:47
 msgid "Black on light yellow"
-msgstr "Черно на светложълто"
+msgstr "черно на светло жълто"
 
-#: ../src/profile-editor.c:53
+#: src/profile-editor.c:49
 msgid "Black on white"
-msgstr "Черно на бяло"
+msgstr "черно на бяло"
 
-#: ../src/profile-editor.c:57
+#: src/profile-editor.c:51
 msgid "Gray on black"
-msgstr "Сиво на черно"
+msgstr "сиво на черно"
 
-#: ../src/profile-editor.c:61
+#: src/profile-editor.c:53
 msgid "Green on black"
-msgstr "Зелено на черно"
+msgstr "зелено на черно"
 
-#: ../src/profile-editor.c:65
+#: src/profile-editor.c:55
 msgid "White on black"
-msgstr "Бяло на черно"
+msgstr "бяло на черно"
 
-#. Translators: "Solarized" is the name of a colour scheme, "light" can be translated
-#: ../src/profile-editor.c:70
-msgid "Solarized light"
-msgstr "Solarized — светла"
-
-#. Translators: "Solarized" is the name of a colour scheme, "dark" can be translated
-#: ../src/profile-editor.c:75
-msgid "Solarized dark"
-msgstr "Solarized — тъмна"
-
-#: ../src/profile-editor.c:437
-#, c-format
-msgid "Error parsing command: %s"
-msgstr "Грешка при анализа на команда: %s"
-
-#. This is the name of a colour scheme
-#: ../src/profile-editor.c:478 ../src/profile-preferences.ui.h:36
-msgid "Custom"
-msgstr "Потребителска"
-
-#: ../src/profile-editor.c:637
-#, c-format
-msgid "Editing Profile “%s”"
-msgstr "Редактиране на профила „%s“"
-
-#: ../src/profile-editor.c:895
-#, c-format
-msgid "Choose Palette Color %u"
-msgstr "Избор на цвят от палитра № %u"
-
-#: ../src/profile-editor.c:899
-#, c-format
-msgid "Palette entry %u"
-msgstr "Палитра — цвят № %u"
-
-#. ambiguous-width characers are
-#: ../src/profile-preferences.ui.h:2
-msgid "Narrow"
-msgstr "Тесни"
-
-#. ambiguous-width characers are
-#: ../src/profile-preferences.ui.h:4
-msgid "Wide"
-msgstr "Широки"
-
-#. Cursor shape
-#: ../src/profile-preferences.ui.h:6
-msgid "Block"
-msgstr "Правоъгълник"
-
-#. Cursor shape
-#: ../src/profile-preferences.ui.h:8
-msgid "I-Beam"
-msgstr "Вертикална черта"
-
-#. Cursor shape
-#: ../src/profile-preferences.ui.h:10
-msgid "Underline"
-msgstr "Подчертаване"
-
-#. When terminal commands set their own titles
-#: ../src/profile-preferences.ui.h:12
-msgid "Replace initial title"
-msgstr "Замяна на първоначалното заглавие"
-
-#. When terminal commands set their own titles
-#: ../src/profile-preferences.ui.h:14
-msgid "Append initial title"
-msgstr "Добавяне пред първоначалното заглавие"
-
-#. When terminal commands set their own titles
-#: ../src/profile-preferences.ui.h:16
-msgid "Prepend initial title"
-msgstr "Добавяне зад първоначалното заглавие"
-
-#. When terminal commands set their own titles
-#: ../src/profile-preferences.ui.h:18
-msgid "Keep initial title"
-msgstr "Запазване на първоначалното заглавие"
-
-#. When command exits
-#: ../src/profile-preferences.ui.h:20
-msgid "Exit the terminal"
-msgstr "Изход от терминала"
-
-#. When command exits
-#: ../src/profile-preferences.ui.h:22
-msgid "Restart the command"
-msgstr "Рестартиране на командата"
-
-#. When command exits
-#: ../src/profile-preferences.ui.h:24
-msgid "Hold the terminal open"
-msgstr "Терминалът да остане отворен"
-
-#. This is the name of a colour scheme
-#: ../src/profile-preferences.ui.h:26
-msgid "Tango"
-msgstr "Tango"
-
-#. This is the name of a colour scheme
-#: ../src/profile-preferences.ui.h:28
+#: src/profile-editor.c:68
 msgid "Linux console"
-msgstr "Конзола на Линукс"
+msgstr "Линукс конзола"
 
-#. This is the name of a colour scheme
-#: ../src/profile-preferences.ui.h:30
+#: src/profile-editor.c:69
 msgid "XTerm"
 msgstr "XTerm"
 
-#. This is the name of a colour scheme
-#: ../src/profile-preferences.ui.h:32
+#: src/profile-editor.c:70
 msgid "Rxvt"
 msgstr "Rxvt"
 
-#. This is the name of a colour scheme
-#: ../src/profile-preferences.ui.h:34
-msgid "Solarized"
-msgstr "Solarized"
+#: src/profile-editor.c:791 src/profile-editor.c:821
+msgid "Custom"
+msgstr "потребителска"
 
-#. This refers to the Delete keybinding option
-#: ../src/profile-preferences.ui.h:38
-msgid "Automatic"
-msgstr "Автоматично"
+#: src/profile-editor.c:1179
+msgid "Choose a terminal font"
+msgstr "Избери терминален шрифт"
 
-#. This refers to the Delete keybinding option
-#: ../src/profile-preferences.ui.h:40
-msgid "Control-H"
-msgstr "Ctrl-H"
+#: src/profile-editor.c:1190 src/simple-x-font-selector.c:327
+msgid "_Font:"
+msgstr "_Шрифт:"
 
-#. This refers to the Delete keybinding option
-#: ../src/profile-preferences.ui.h:42
-msgid "ASCII DEL"
-msgstr "ASCII DEL"
+#: src/profile-editor.c:1468
+#, c-format
+msgid "Editing Profile \"%s\""
+msgstr "Редактиране на профил \"%s\""
 
-#. This refers to the Delete keybinding option
-#: ../src/profile-preferences.ui.h:44
-msgid "Escape sequence"
-msgstr "Екранираща последователност"
+#: src/simple-x-font-selector.c:332
+msgid "Si_ze:"
+msgstr "_Размер:"
 
-#. This refers to the Delete keybinding option
-#: ../src/profile-preferences.ui.h:46
-msgid "TTY Erase"
-msgstr "TTY Erase"
+#: src/simple-x-font-selector.c:334
+msgid "_Use bold version of font"
+msgstr "_Използвай получерната версия на шрифта"
 
-#: ../src/profile-preferences.ui.h:47
-msgid "Profile Editor"
-msgstr "Редактор на профили"
+#: src/simple-x-font-selector.c:341
+msgid "Click to choose font type"
+msgstr "Щракнете, за да изберете типа на шрифта"
 
-#: ../src/profile-preferences.ui.h:48
-msgid "_Profile name:"
-msgstr "_Име на профила:"
+#: src/simple-x-font-selector.c:345
+msgid "Click to choose font size"
+msgstr "Щракнете, за да изберете размера на шрифта"
 
-#: ../src/profile-preferences.ui.h:49
-msgid "Profile ID:"
-msgstr "Идентификатор на профил:"
+#: src/simple-x-font-selector.c:656
+msgid "roman"
+msgstr "прав"
 
-#: ../src/profile-preferences.ui.h:50
-msgid "Initial terminal si_ze:"
-msgstr "_Начален размер на терминала:"
+#: src/simple-x-font-selector.c:657
+msgid "italic"
+msgstr "курсивен"
 
-#: ../src/profile-preferences.ui.h:51
-msgid "columns"
-msgstr "колони"
+#: src/simple-x-font-selector.c:658
+msgid "oblique"
+msgstr "наклонен"
 
-#: ../src/profile-preferences.ui.h:52
-msgid "rows"
-msgstr "редове"
+#: src/simple-x-font-selector.c:659
+msgid "reverse italic"
+msgstr "обратно курсивен"
 
-#: ../src/profile-preferences.ui.h:53
-msgid "Cursor _shape:"
-msgstr "_Форма на курсора:"
+#: src/simple-x-font-selector.c:660
+msgid "reverse oblique"
+msgstr "обратно наклонен"
 
-#: ../src/profile-preferences.ui.h:54
-msgid "Terminal _bell"
-msgstr "З_вук на терминала"
+#: src/simple-x-font-selector.c:661
+msgid "other"
+msgstr "друг"
 
-#: ../src/profile-preferences.ui.h:55
-msgid "Text Appearance"
-msgstr "Изглед на текста"
+#: src/simple-x-font-selector.c:668
+msgid "proportional"
+msgstr "пропорционален"
 
-#: ../src/profile-preferences.ui.h:56
-msgid "_Allow bold text"
-msgstr "Позволяване на полу_чер текст"
+#: src/simple-x-font-selector.c:669
+msgid "monospaced"
+msgstr "фиксиран"
 
-#: ../src/profile-preferences.ui.h:57
-msgid "_Rewrap on resize"
-msgstr "_Преподреждане при преоразмеряване"
+#: src/simple-x-font-selector.c:670
+msgid "char cell"
+msgstr "терминален"
 
-#: ../src/profile-preferences.ui.h:58
-msgid "_Custom font:"
-msgstr "_Потребителски шрифт:"
+#: src/simple-x-font-selector.c:1265
+msgid "MAX_FONTS exceeded. Some fonts may be missing."
+msgstr "MAX_FONTS е превишена. Някои шрифтове може да липсват"
 
-#: ../src/profile-preferences.ui.h:59
-msgid "Choose A Terminal Font"
-msgstr "Избор на шрифт за терминала"
-
-#: ../src/profile-preferences.ui.h:60
-msgid "Rese_t"
-msgstr "_Възстановяване"
-
-#: ../src/profile-preferences.ui.h:62
-msgid "_Run command as a login shell"
-msgstr "_Изпълнение на команда като обвивка при влизане"
-
-#: ../src/profile-preferences.ui.h:63
-msgid "Ru_n a custom command instead of my shell"
-msgstr "Изпълнение на команда _вместо стандартната обвивка"
-
-#: ../src/profile-preferences.ui.h:64
-msgid "Custom co_mmand:"
-msgstr "Потребителска _команда:"
-
-#: ../src/profile-preferences.ui.h:65
-msgid "When command _exits:"
-msgstr "_При приключване на командата:"
-
-#: ../src/profile-preferences.ui.h:66
-msgid "Command"
-msgstr "Команда"
-
-#: ../src/profile-preferences.ui.h:67
-msgid "Text and Background Color"
-msgstr "Избор на цвета на текста и фона"
-
-#: ../src/profile-preferences.ui.h:68
-msgid "_Use colors from system theme"
-msgstr "_Използване на цветовете от системната тема"
-
-#: ../src/profile-preferences.ui.h:69
-msgid "Built-in sche_mes:"
-msgstr "_Вградени схеми:"
-
-#: ../src/profile-preferences.ui.h:70
-msgid "Text"
-msgstr "Текст"
-
-#: ../src/profile-preferences.ui.h:71
-msgid "Background"
-msgstr "Цвят на фона"
-
-#: ../src/profile-preferences.ui.h:72
-msgid "_Default color:"
-msgstr "_Стандартен цвят:"
-
-#: ../src/profile-preferences.ui.h:73
-msgid "Choose Terminal Text Color"
-msgstr "Избор на цвета на текста на терминала"
-
-#: ../src/profile-preferences.ui.h:74
-msgid "Choose Terminal Background Color"
-msgstr "Избор на цвета на фона на терминала"
-
-#: ../src/profile-preferences.ui.h:75
-msgid "Choose Terminal Bold Text Color"
-msgstr "Избор на цвета на получерния текст на терминала"
-
-#: ../src/profile-preferences.ui.h:76
-msgid "Choose Terminal Underlined Text Color"
-msgstr "Избор на цвета на подчертания текст на терминала"
-
-#: ../src/profile-preferences.ui.h:77
-msgid "Cu_rsor color:"
-msgstr "Цвят на _курсора:"
-
-#: ../src/profile-preferences.ui.h:78
-msgid "Choose Terminal Cursor Foreground Color"
-msgstr "Избор на цвета на курсора на терминала"
-
-#: ../src/profile-preferences.ui.h:79
-msgid "Choose Terminal Cursor Background Color"
-msgstr "Избор на цвета на фона на курсора на терминала"
-
-#: ../src/profile-preferences.ui.h:80
-msgid "_Underline color:"
-msgstr "Цвят за под_чертаване:"
-
-#: ../src/profile-preferences.ui.h:81
-msgid "Bo_ld color:"
-msgstr "Полу_черен цвят:"
-
-#: ../src/profile-preferences.ui.h:82
-msgid "_Highlight color:"
-msgstr "Цвят на _осветяване:"
-
-#: ../src/profile-preferences.ui.h:83
-msgid "Palette"
-msgstr "Палитра"
-
-#: ../src/profile-preferences.ui.h:84
-msgid "Built-in _schemes:"
-msgstr "Вградени _схеми:"
-
-#: ../src/profile-preferences.ui.h:85
-msgid "<b>Note:</b> Terminal applications have these colors available to them."
-msgstr "<b>Бележка:</b> Приложенията в терминала разполагат с тези цветове."
-
-#: ../src/profile-preferences.ui.h:86
-msgid "Color p_alette:"
-msgstr "_Цветова палитра:"
-
-#: ../src/profile-preferences.ui.h:87
-msgid "Colors"
-msgstr "Цветове"
-
-#: ../src/profile-preferences.ui.h:88
-msgid "Scroll on _keystroke"
-msgstr "Придвижване при _натискане на клавиш"
-
-#: ../src/profile-preferences.ui.h:89
-msgid "Scroll on _output"
-msgstr "Придвижване при _извеждане на текст"
-
-#: ../src/profile-preferences.ui.h:90
-msgid "_Limit scrollback to:"
-msgstr "_Ограничаване на придвижването назад до:"
-
-#: ../src/profile-preferences.ui.h:91
-msgid "lines"
-msgstr "реда"
-
-#: ../src/profile-preferences.ui.h:92
-msgid "_Show scrollbar"
-msgstr "_Лента за придвижване"
-
-#: ../src/profile-preferences.ui.h:93
-msgid "Scrolling"
-msgstr "Придвижване"
-
-#: ../src/profile-preferences.ui.h:94
-msgid ""
-"<b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior."
+#: src/skey-popup.c:63
+msgid "The text you clicked doesn't seem to be an S/Key challenge."
 msgstr ""
-"<b>Бележка:</b> Тези настройки могат да доведат до некоректна работа на "
-"някои програми.\n"
-"Те са тук, само за да ви позволят да работите с някои програми и операционни "
-"системи, които очакват различно поведение на терминала."
 
-#: ../src/profile-preferences.ui.h:95
-msgid "_Delete key generates:"
-msgstr "Клавишът „Delete“ _генерира:"
+#: src/terminal-accels.c:75
+msgid "New Tab"
+msgstr "Нова страница"
 
-#: ../src/profile-preferences.ui.h:96
-msgid "_Backspace key generates:"
-msgstr "_Клавишът „Backspace“ генерира:"
+#: src/terminal-accels.c:77
+msgid "New Window"
+msgstr "Нов прозорец"
 
-#: ../src/profile-preferences.ui.h:97
-msgid "_Encoding:"
-msgstr "_Кодиране:"
+#: src/terminal-accels.c:81
+msgid "Close Tab"
+msgstr "Затвори страница"
 
-#: ../src/profile-preferences.ui.h:98
-msgid "Ambiguous-_width characters:"
-msgstr "_Знаци с неясна широчина:"
+#: src/terminal-accels.c:83
+msgid "Close Window"
+msgstr "Затвори прозорец"
 
-#: ../src/profile-preferences.ui.h:99
-msgid "_Reset Compatibility Options to Defaults"
-msgstr "_Връщане настройките за съвместимост към стандартните"
-
-#: ../src/profile-preferences.ui.h:100
-msgid "Compatibility"
-msgstr "Съвместимост"
-
-#: ../src/search-popover.ui.h:1
-msgid "Search"
-msgstr "Търсене"
-
-#: ../src/search-popover.ui.h:2
-msgid "Search for previous occurrence"
-msgstr "Търсене на предишна поява"
-
-#: ../src/search-popover.ui.h:3
-msgid "Search for next occurrence"
-msgstr "Търсене на следваща поява"
-
-#: ../src/search-popover.ui.h:4
-msgid "Toggle search options"
-msgstr "Извеждане на лентата за търсене"
-
-#: ../src/search-popover.ui.h:5
-msgid "_Match case"
-msgstr "Зачитане на главни/_малки"
-
-#: ../src/search-popover.ui.h:6
-msgid "Match _entire word only"
-msgstr "Ако съвпада само с _цяла дума"
-
-#: ../src/search-popover.ui.h:7
-msgid "Match as _regular expression"
-msgstr "Ако съвпада с _регулярен израз"
-
-#: ../src/search-popover.ui.h:8
-msgid "_Wrap around"
-msgstr "_След края — от началото"
-
-#: ../src/terminal-accels.c:158
-msgid "New Terminal in New Tab"
-msgstr "Нов терминал в нов подпрозорец"
-
-#: ../src/terminal-accels.c:159
-msgid "New Terminal in New Window"
-msgstr "Нов терминал в нов прозорец"
-
-#: ../src/terminal-accels.c:160
-msgid "New Profile"
-msgstr "Нов профил"
-
-#: ../src/terminal-accels.c:162
-msgid "Save Contents"
-msgstr "Запазване на съдържанието"
-
-#: ../src/terminal-accels.c:164
-msgid "Close Terminal"
-msgstr "Затваряне на терминала"
-
-#: ../src/terminal-accels.c:165
-msgid "Close All Terminals"
-msgstr "Затваряне на всички терминали"
-
-#: ../src/terminal-accels.c:169
+#: src/terminal-accels.c:89
 msgid "Copy"
-msgstr "Копиране"
+msgstr "Копирай"
 
-#: ../src/terminal-accels.c:170
-msgid "Copy as HTML"
-msgstr "Копиране като HTML"
-
-#: ../src/terminal-accels.c:171
+#: src/terminal-accels.c:91
 msgid "Paste"
-msgstr "Поставяне"
+msgstr "Постави"
 
-#: ../src/terminal-accels.c:172 ../src/terminal-window.c:2548
-msgid "Select All"
-msgstr "Избор на всичко"
+#: src/terminal-accels.c:97
+msgid "Hide and Show menubar"
+msgstr "Скрий/покажи лентата с менюта"
 
-#: ../src/terminal-accels.c:174
-msgid "Profile Preferences"
-msgstr "Настройки на профила"
-
-#: ../src/terminal-accels.c:178 ../src/terminal-accels.c:236
-msgid "Find"
-msgstr "Търсене"
-
-#: ../src/terminal-accels.c:179
-msgid "Find Next"
-msgstr "Следваща поява"
-
-#: ../src/terminal-accels.c:180
-msgid "Find Previous"
-msgstr "Предишна поява"
-
-#: ../src/terminal-accels.c:181
-msgid "Clear Find Highlight"
-msgstr "Изчистване на осветяването"
-
-#: ../src/terminal-accels.c:185
-msgid "Hide and Show toolbar"
-msgstr "Скриване/показване на лентата с инструменти"
-
-#: ../src/terminal-accels.c:186
+#: src/terminal-accels.c:99
 msgid "Full Screen"
-msgstr "Цял екран"
+msgstr "На цял екран"
 
-#. View menu
-#: ../src/terminal-accels.c:187 ../src/terminal-window.c:2559
+#: src/terminal-accels.c:101
 msgid "Zoom In"
-msgstr "Увеличаване"
+msgstr "Увеличи"
 
-#: ../src/terminal-accels.c:188 ../src/terminal-window.c:2562
+#: src/terminal-accels.c:103
 msgid "Zoom Out"
-msgstr "Намаляване"
+msgstr "Намали"
 
-#: ../src/terminal-accels.c:189 ../src/terminal-window.c:2565
+#: src/terminal-accels.c:105
 msgid "Normal Size"
 msgstr "Нормален размер"
 
-#: ../src/terminal-accels.c:193
-msgid "Read-Only"
-msgstr "Само за четене"
+#: src/terminal-accels.c:111 src/terminal-screen.c:1969
+msgid "Set Title"
+msgstr "Задай заглавие"
 
-#: ../src/terminal-accels.c:194
+#: src/terminal-accels.c:113
 msgid "Reset"
-msgstr "Възстановяване"
+msgstr "Възстанови"
 
-#: ../src/terminal-accels.c:195
+#: src/terminal-accels.c:115
 msgid "Reset and Clear"
-msgstr "Възстановяване и изчистване"
+msgstr "Възстанови и изчисти"
 
-#: ../src/terminal-accels.c:199
-msgid "Switch to Previous Terminal"
-msgstr "Към предишния подпрозорец"
+#: src/terminal-accels.c:121
+msgid "Switch to Previous Tab"
+msgstr "Превключи към предишна страница"
 
-#: ../src/terminal-accels.c:200
-msgid "Switch to Next Terminal"
-msgstr "Към следващия подпрозорец"
+#: src/terminal-accels.c:123
+msgid "Switch to Next Tab"
+msgstr "Превключи към следваща страница"
 
-#: ../src/terminal-accels.c:201
-msgid "Move Terminal to the Left"
-msgstr "Преместване на подпрозореца наляво"
+#: src/terminal-accels.c:125
+msgid "Switch to Tab 1"
+msgstr "Превключи на страница 1"
 
-#: ../src/terminal-accels.c:202
-msgid "Move Terminal to the Right"
-msgstr "Преместване на подпрозореца надясно"
+#: src/terminal-accels.c:128
+msgid "Switch to Tab 2"
+msgstr "Превключи на страница 2"
 
-#: ../src/terminal-accels.c:203
-msgid "Detach Terminal"
-msgstr "Отделяне на подпрозореца"
+#: src/terminal-accels.c:131
+msgid "Switch to Tab 3"
+msgstr "Превключи на страница 3"
 
-#: ../src/terminal-accels.c:226
+#: src/terminal-accels.c:134
+msgid "Switch to Tab 4"
+msgstr "Превключи на страница 4"
+
+#: src/terminal-accels.c:137
+msgid "Switch to Tab 5"
+msgstr "Превключи на страница 5"
+
+#: src/terminal-accels.c:140
+msgid "Switch to Tab 6"
+msgstr "Превключи на страница 6"
+
+#: src/terminal-accels.c:143
+msgid "Switch to Tab 7"
+msgstr "Превключи на страница 7"
+
+#: src/terminal-accels.c:146
+msgid "Switch to Tab 8"
+msgstr "Превключи на страница 8"
+
+#: src/terminal-accels.c:149
+msgid "Switch to Tab 9"
+msgstr "Превключи на страница 9"
+
+#: src/terminal-accels.c:152
+msgid "Switch to Tab 10"
+msgstr "Превключи на страница 10"
+
+#: src/terminal-accels.c:155
+msgid "Switch to Tab 11"
+msgstr "Превключи на страница 11"
+
+#: src/terminal-accels.c:158
+msgid "Switch to Tab 12"
+msgstr "Превключи на страница 12"
+
+#: src/terminal-accels.c:164
 msgid "Contents"
-msgstr "Ръководство"
+msgstr "Съдържание"
 
-#: ../src/terminal-accels.c:233
+#: src/terminal-accels.c:169
 msgid "File"
 msgstr "Файл"
 
-#: ../src/terminal-accels.c:234
+#: src/terminal-accels.c:170
 msgid "Edit"
-msgstr "Редактиране"
+msgstr "Редакция"
 
-#: ../src/terminal-accels.c:235
+#: src/terminal-accels.c:171
 msgid "View"
-msgstr "Изглед"
+msgstr "Преглед"
 
-#: ../src/terminal-accels.c:238
-msgid "Tabs"
-msgstr "Подпрозорци"
+#: src/terminal-accels.c:173
+msgid "Go"
+msgstr "Иди"
 
-#: ../src/terminal-accels.c:239
+#: src/terminal-accels.c:174
 msgid "Help"
 msgstr "Помощ"
 
-#: ../src/terminal-accels.c:336
+#: src/terminal-accels.c:264 src/terminal-profile.c:392
+#: src/terminal-screen.c:199 src/terminal.c:1620
 #, c-format
-msgid "Switch to Tab %u"
-msgstr "Преход към подпрозорец %u"
+msgid "There was an error loading config from %s. (%s)\n"
+msgstr "Има грешка при зареждане на конфигурация от %s. (%s)\n"
 
-#: ../src/terminal-accels.c:544
+#: src/terminal-accels.c:278
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal keybinding "
+"changes. (%s)\n"
+msgstr ""
+"Има грешка при абонирането за известяване при промяна на клавишната "
+"комбинация. (%s)\n"
+
+#: src/terminal-accels.c:319
+#, c-format
+msgid "There was an error loading a terminal keybinding. (%s)\n"
+msgstr "Има грешка при зареждане на клавишна комбинация. (%s)\n"
+
+#: src/terminal-accels.c:335
+#, c-format
+msgid "The value of configuration key %s is not valid; value is \"%s\"\n"
+msgstr ""
+"Стойността на конфигурационният ключ %s не е валиден, стойността е \"%s\"\n"
+
+#: src/terminal-accels.c:358
+#, fuzzy, c-format
+msgid ""
+"There was an error loading config value for whether to use menubar access "
+"keys. (%s)\n"
+msgstr ""
+"Има грешка при зареждане на конфигурационната стойност определяща дали да се "
+"използват ускорители за менюто. (%s)\n"
+
+#: src/terminal-accels.c:372
+#, fuzzy, c-format
+msgid ""
+"There was an error subscribing to notification on changes on whether to use "
+"menubar access keys (%s)\n"
+msgstr ""
+"Има грешка при абонирането за известяване за use_menu_accelerators (%s)\n"
+
+#: src/terminal-accels.c:383
+#, c-format
+msgid ""
+"There was an error loading config value for whether to use menu "
+"accelerators. (%s)\n"
+msgstr ""
+"Има грешка при зареждане на конфигурационната стойност определяща дали да се "
+"използват ускорители за менюто. (%s)\n"
+
+#: src/terminal-accels.c:399
+#, c-format
+msgid ""
+"There was an error subscribing to notification for use_menu_accelerators (%"
+"s)\n"
+msgstr ""
+"Има грешка при абонирането за известяване за use_menu_accelerators (%s)\n"
+
+#: src/terminal-accels.c:777
+#, c-format
+msgid "Error propagating accelerator change to configuration database: %s\n"
+msgstr ""
+"Грешка при разпространяване на промяна на ускорител към базата данни за "
+"настройки: %s\n"
+
+#: src/terminal-accels.c:986
+#, c-format
+msgid "The shortcut key \"%s\" is already bound to the \"%s\" action"
+msgstr ""
+
+#: src/terminal-accels.c:1018
+#, c-format
+msgid "Error setting new accelerator in configuration database: %s\n"
+msgstr "Грешка при задаване на нов ускорител в базата данни с настройки: %s\n"
+
+#: src/terminal-accels.c:1049
+#, fuzzy, c-format
+msgid "Error setting %s config key: %s\n"
+msgstr "Грешка при задаване на ключа use_mnemonics: %s\n"
+
+#: src/terminal-accels.c:1077
+#, c-format
+msgid "Error setting use_menu_accelerators key: %s\n"
+msgstr "Грешка при задаване на ключа use_menu_accelerators: %s\n"
+
+#: src/terminal-accels.c:1196
 msgid "_Action"
 msgstr "_Действие"
 
-#: ../src/terminal-accels.c:563
+#: src/terminal-accels.c:1216
 msgid "Shortcut _Key"
-msgstr "_Клавишна комбинация"
+msgstr "Бърз бутон"
 
-#: ../src/terminal-app.c:753
-msgid "User Defined"
-msgstr "Определено от потребителя"
-
-#: ../src/terminal.c:380
-#, c-format
-msgid "Failed to parse arguments: %s\n"
-msgstr "Аргументите не могат да бъдат анализирани: %s\n"
-
-#: ../src/terminal-encoding.c:52 ../src/terminal-encoding.c:65
-#: ../src/terminal-encoding.c:79 ../src/terminal-encoding.c:101
-#: ../src/terminal-encoding.c:112
-msgid "Western"
-msgstr "западноевропейски"
-
-#: ../src/terminal-encoding.c:53 ../src/terminal-encoding.c:80
-#: ../src/terminal-encoding.c:91 ../src/terminal-encoding.c:110
-msgid "Central European"
-msgstr "централноевропейски"
-
-#: ../src/terminal-encoding.c:54
-msgid "South European"
-msgstr "южноевропейски"
-
-#: ../src/terminal-encoding.c:55 ../src/terminal-encoding.c:63
-#: ../src/terminal-encoding.c:117
-msgid "Baltic"
-msgstr "балтийски"
-
-#: ../src/terminal-encoding.c:56 ../src/terminal-encoding.c:81
-#: ../src/terminal-encoding.c:87 ../src/terminal-encoding.c:88
-#: ../src/terminal-encoding.c:93 ../src/terminal-encoding.c:111
-msgid "Cyrillic"
-msgstr "кирилица"
-
-#: ../src/terminal-encoding.c:57 ../src/terminal-encoding.c:84
-#: ../src/terminal-encoding.c:90 ../src/terminal-encoding.c:116
-msgid "Arabic"
-msgstr "арабски"
-
-#: ../src/terminal-encoding.c:58 ../src/terminal-encoding.c:96
-#: ../src/terminal-encoding.c:113
-msgid "Greek"
-msgstr "гръцки"
-
-#: ../src/terminal-encoding.c:59
-msgid "Hebrew Visual"
-msgstr "иврит — визуална подредба"
-
-#: ../src/terminal-encoding.c:60 ../src/terminal-encoding.c:83
-#: ../src/terminal-encoding.c:99 ../src/terminal-encoding.c:115
-msgid "Hebrew"
-msgstr "иврит"
-
-#: ../src/terminal-encoding.c:61 ../src/terminal-encoding.c:82
-#: ../src/terminal-encoding.c:103 ../src/terminal-encoding.c:114
-msgid "Turkish"
-msgstr "турски"
-
-#: ../src/terminal-encoding.c:62
-msgid "Nordic"
-msgstr "скандинавски"
-
-#: ../src/terminal-encoding.c:64
-msgid "Celtic"
-msgstr "келтски"
-
-#: ../src/terminal-encoding.c:66 ../src/terminal-encoding.c:102
-msgid "Romanian"
-msgstr "румънски"
-
-#. These encodings do NOT pass-through ASCII, so are always rejected.
-#. * FIXME: why are they in this table; or rather why do we need
-#. * the ASCII pass-through requirement?
-#.
-#: ../src/terminal-encoding.c:67 ../src/terminal-encoding.c:124
-#: ../src/terminal-encoding.c:125 ../src/terminal-encoding.c:126
-#: ../src/terminal-encoding.c:127
-msgid "Unicode"
-msgstr "Уникод"
-
-#: ../src/terminal-encoding.c:68
-msgid "Armenian"
-msgstr "арменски"
-
-#: ../src/terminal-encoding.c:69 ../src/terminal-encoding.c:70
-#: ../src/terminal-encoding.c:74
-msgid "Chinese Traditional"
-msgstr "традиционен китайски"
-
-#: ../src/terminal-encoding.c:71
-msgid "Cyrillic/Russian"
-msgstr "кирилица — Русия"
-
-#: ../src/terminal-encoding.c:72 ../src/terminal-encoding.c:85
-#: ../src/terminal-encoding.c:105
-msgid "Japanese"
-msgstr "японски"
-
-#: ../src/terminal-encoding.c:73 ../src/terminal-encoding.c:86
-#: ../src/terminal-encoding.c:108 ../src/terminal-encoding.c:128
-msgid "Korean"
-msgstr "корейски"
-
-#: ../src/terminal-encoding.c:75 ../src/terminal-encoding.c:76
-#: ../src/terminal-encoding.c:77
-msgid "Chinese Simplified"
-msgstr "китайски — опростен"
-
-#: ../src/terminal-encoding.c:78
-msgid "Georgian"
-msgstr "грузински"
-
-#: ../src/terminal-encoding.c:89 ../src/terminal-encoding.c:104
-msgid "Cyrillic/Ukrainian"
-msgstr "кирилица — Украйна"
-
-#: ../src/terminal-encoding.c:92
-msgid "Croatian"
-msgstr "хърватски"
-
-#: ../src/terminal-encoding.c:94
-msgid "Hindi"
-msgstr "хинди"
-
-#: ../src/terminal-encoding.c:95
-msgid "Persian"
-msgstr "персийски"
-
-#: ../src/terminal-encoding.c:97
-msgid "Gujarati"
-msgstr "гуджарати"
-
-#: ../src/terminal-encoding.c:98
-msgid "Gurmukhi"
-msgstr "гурмуки"
-
-#: ../src/terminal-encoding.c:100
-msgid "Icelandic"
-msgstr "исландски"
-
-#: ../src/terminal-encoding.c:106 ../src/terminal-encoding.c:109
-#: ../src/terminal-encoding.c:118
-msgid "Vietnamese"
-msgstr "виетнамски"
-
-#: ../src/terminal-encoding.c:107
-msgid "Thai"
-msgstr "тайландски"
-
-#: ../src/terminal-menus.ui.h:1
-msgid "_New Terminal"
-msgstr "_Нов терминал"
-
-#: ../src/terminal-menus.ui.h:2
-msgid "_Preferences"
-msgstr "_Настройки"
-
-#: ../src/terminal-menus.ui.h:3 ../src/terminal-window.c:2507
-msgid "_Help"
-msgstr "Помо_щ"
-
-#: ../src/terminal-menus.ui.h:4 ../src/terminal-window.c:2627
-msgid "_About"
-msgstr "_Относно"
-
-#: ../src/terminal-menus.ui.h:5
-msgid "_Quit"
-msgstr "_Спиране на програмата"
-
-#: ../src/terminal-nautilus.c:601
-msgid "Open in _Remote Terminal"
-msgstr "Отваряне в _отдалечен терминал"
-
-#: ../src/terminal-nautilus.c:603
-msgid "Open in _Local Terminal"
-msgstr "Отваряне в _локален терминал"
-
-#: ../src/terminal-nautilus.c:607 ../src/terminal-nautilus.c:618
-msgid "Open the currently selected folder in a terminal"
-msgstr "Отваряне на терминал в текущо избраната папка"
-
-#: ../src/terminal-nautilus.c:609 ../src/terminal-nautilus.c:620
-#: ../src/terminal-nautilus.c:630
-msgid "Open the currently open folder in a terminal"
-msgstr "Отваряне на терминал в текущо отворената папка"
-
-#: ../src/terminal-nautilus.c:615 ../src/terminal-nautilus.c:629
-msgid "Open in T_erminal"
-msgstr "Отваряне на _терминал"
-
-#: ../src/terminal-nautilus.c:626
-msgid "Open T_erminal"
-msgstr "_Отваряне на терминал"
-
-#: ../src/terminal-nautilus.c:627
-msgid "Open a terminal"
-msgstr "Отваряне на терминал"
-
-#: ../src/terminal-nautilus.c:645 ../src/terminal-nautilus.c:658
-msgid "Open in _Midnight Commander"
-msgstr "Отваряне в _Midnight Commander"
-
-#: ../src/terminal-nautilus.c:647
-msgid ""
-"Open the currently selected folder in the terminal file manager Midnight "
-"Commander"
-msgstr ""
-"Отваряне на текстовия файлов мениджър Midnight Commander в текущо избраната "
-"папка"
-
-#: ../src/terminal-nautilus.c:649 ../src/terminal-nautilus.c:659
-msgid ""
-"Open the currently open folder in the terminal file manager Midnight "
-"Commander"
-msgstr ""
-"Отваряне на текстовия файлов мениджър Midnight Commander в текущо отворената "
-"папка"
-
-#: ../src/terminal-nautilus.c:655
-msgid "Open _Midnight Commander"
-msgstr "Отваряне на _Midnight Commander"
-
-#: ../src/terminal-nautilus.c:656
-msgid "Open the terminal file manager Midnight Commander"
-msgstr "Отваряне на текстовия файлов мениджър Midnight Commander"
-
-#: ../src/terminal-options.c:223
+#: src/terminal-profile.c:407
 #, c-format
 msgid ""
-"Option “%s” is deprecated and might be removed in a later version of gnome-"
-"terminal."
+"There was an error subscribing to notification of terminal profile changes. "
+"(%s)\n"
 msgstr ""
-"Опцията „%s“ не се поддържа повече в и може да бъде махната в следваща "
-"версия на gnome-terminal."
+"Има грешка при абонирането за известяване за промяна в профила на терминала."
+"(%s)\n"
 
-#. %s is being replaced with "-- " (without quotes), which must be used literally, not translatable
-#: ../src/terminal-options.c:234
+#: src/terminal-profile.c:1002
+#, c-format
+msgid "Could not find an icon called \"%s\" for terminal profile \"%s\"\n"
+msgstr "Не можах да намеря иконата \"%s\" за терминален профил \"%s\"\n"
+
+#: src/terminal-profile.c:1016
+#, c-format
+msgid "Failed to load icon \"%s\" for terminal profile \"%s\": %s\n"
+msgstr "Не успях да заредя икона \"%s\" за терминален профил \"%s\": %s\n"
+
+#: src/terminal-profile.c:1193
 #, c-format
 msgid ""
-"Use “%s” to terminate the options and put the command line to execute after "
-"it."
+"Could not find a background image called \"%s\" for terminal profile \"%s\"\n"
 msgstr ""
-"Чрез „%s“ означавате, че всички опции са вече зададени. Поставете командата "
-"за изпълнение след това."
+"Не можах да намеря фоновата картинка \"%s\" за терминален профил \"%s\"\n"
 
-#: ../src/terminal-options.c:244 ../src/terminal-options.c:257
-#, c-format
-msgid "Option “%s” is no longer supported in this version of gnome-terminal."
-msgstr "Опцията „%s“ не се поддържа повече в тази версия на gnome-terminal."
-
-#: ../src/terminal-options.c:269 ../src/terminal-util.c:236
-msgid "GNOME Terminal"
-msgstr "Терминалът на GNOME"
-
-#: ../src/terminal-options.c:270 ../src/terminal-util.c:225
-#, c-format
-msgid "Using VTE version %u.%u.%u"
-msgstr "Използвана версия на VTE — %u.%u.%u"
-
-#: ../src/terminal-options.c:316
-#, c-format
-msgid "Argument to “%s” is not a valid command: %s"
-msgstr "Аргументът на „%s“ не е правилна команда: %s"
-
-#: ../src/terminal-options.c:484
-msgid "Two roles given for one window"
-msgstr "Дадени са две роли на един прозорец"
-
-#: ../src/terminal-options.c:505 ../src/terminal-options.c:538
-#, c-format
-msgid "“%s” option given twice for the same window\n"
-msgstr "Опцията „%s“ е зададена повече от веднъж за един и същи прозорец\n"
-
-#: ../src/terminal-options.c:738
-#, c-format
-msgid "Zoom factor “%g” is too small, using %g\n"
-msgstr "Увеличението „%g“ е прекалено малко, използва се „%g“\n"
-
-#: ../src/terminal-options.c:746
-#, c-format
-msgid "Zoom factor “%g” is too large, using %g\n"
-msgstr "Увеличението „%g“ е прекалено голямо, използва се „%g“\n"
-
-#: ../src/terminal-options.c:784
+#: src/terminal-profile.c:1207
 #, c-format
 msgid ""
-"Option “%s” requires specifying the command to run on the rest of the "
-"command line"
+"Failed to load background image \"%s\" for terminal profile \"%s\": %s\n"
 msgstr ""
-"Опцията „%s“ изисква задаване на командата за изпълнение на остатъка от "
-"командния ред"
+"Не успях да заредя фоновата картинка \"%s\" за терминален профил \"%s\": %s\n"
 
-#: ../src/terminal-options.c:922
-msgid "Not a valid terminal config file."
-msgstr "Това не е файл с настройки за терминала."
-
-#: ../src/terminal-options.c:935
-msgid "Incompatible terminal config file version."
-msgstr "Несъвместима версия на файла с настройки на терминала."
-
-#: ../src/terminal-options.c:1081
-msgid ""
-"Do not register with the activation nameserver, do not re-use an active "
-"terminal"
-msgstr ""
-"Да не се регистрира към активиращия сървър за имена. Не използва повторно "
-"активен терминал."
-
-#: ../src/terminal-options.c:1090
-msgid "Load a terminal configuration file"
-msgstr "Зареждане на файл с настройки на терминала"
-
-#: ../src/terminal-options.c:1091
-msgid "FILE"
-msgstr "ФАЙЛ"
-
-#: ../src/terminal-options.c:1101
-msgid "Show preferences window"
-msgstr "Показване на опциите за прозорците"
-
-#: ../src/terminal-options.c:1113
-msgid "Open a new window containing a tab with the default profile"
-msgstr "Отваряне на нов прозорец с подпрозорец със стандартен профил."
-
-#: ../src/terminal-options.c:1122
-msgid "Open a new tab in the last-opened window with the default profile"
-msgstr ""
-"Отваряне на нов подпрозорец със стандартния профил в последно отворения "
-"прозорец."
-
-#: ../src/terminal-options.c:1135
-msgid "Turn on the menubar"
-msgstr "Показване на менюто"
-
-#: ../src/terminal-options.c:1144
-msgid "Turn off the menubar"
-msgstr "Скриване на менюто"
-
-#: ../src/terminal-options.c:1153
-msgid "Maximize the window"
-msgstr "Максимизиране на прозореца"
-
-#: ../src/terminal-options.c:1189
-msgid "Set the last specified tab as the active one in its window"
-msgstr ""
-"Задаване на последния избран подпрозорец като активен в неговия прозорец"
-
-#: ../src/terminal-options.c:1202
-msgid "Execute the argument to this option inside the terminal"
-msgstr "Изпълняване на аргумента на тази опция в терминала."
-
-#: ../src/terminal-options.c:1212
-msgid "PROFILE-NAME"
-msgstr "ИМЕ_НА_ПРОФИЛ"
-
-#: ../src/terminal-options.c:1220
-msgid "Set the initial terminal title"
-msgstr "Начално заглавие на терминала:"
-
-#: ../src/terminal-options.c:1221
-msgid "TITLE"
-msgstr "ЗАГЛАВИЕ"
-
-#: ../src/terminal-options.c:1326
-msgid "COMMAND"
-msgstr "КОМАНДА"
-
-#: ../src/terminal-options.c:1334
-msgid "GNOME Terminal Emulator"
-msgstr "Терминалният емулатор на GNOME"
-
-#: ../src/terminal-options.c:1335
-msgid "Show GNOME Terminal options"
-msgstr "Показване на опциите на терминала на GNOME"
-
-#: ../src/terminal-options.c:1345
-msgid ""
-"Options to open new windows or terminal tabs; more than one of these may be "
-"specified:"
-msgstr ""
-"Опции за отварянето на нови прозорци или подпрозорци. Могат да се указват "
-"по- вече от една от тях:"
-
-#: ../src/terminal-options.c:1354
-msgid ""
-"Window options; if used before the first --window or --tab argument, sets "
-"the default for all windows:"
-msgstr ""
-"Опции за прозорците. Използвани преди всички опции „--window“ или „--tab“ "
-"задават стандарта за всички прозорци:"
-
-#: ../src/terminal-options.c:1355
-msgid "Show per-window options"
-msgstr "Показване на опциите за прозорците"
-
-#: ../src/terminal-options.c:1363
-msgid ""
-"Terminal options; if used before the first --window or --tab argument, sets "
-"the default for all terminals:"
-msgstr ""
-"Опции за подпрозорците. Използвани преди всички опции „--window“ или „--tab“ "
-"задават стандарта за всички подпрозорци:"
-
-#: ../src/terminal-options.c:1364
-msgid "Show per-terminal options"
-msgstr "Показване на опциите за подпрозорците"
-
-#: ../src/terminal-prefs.c:214
-msgid "Click button to choose profile"
-msgstr "Натиснете за избор на профил"
-
-#: ../src/terminal-prefs.c:315
-msgid "Profile list"
-msgstr "Списък на профилите"
-
-#: ../src/terminal-prefs.c:370
+#: src/terminal-profile.c:1861
 #, c-format
-msgid "Delete profile “%s”?"
-msgstr "Да бъде ли изтрит профилът „%s“?"
+msgid ""
+"GNOME Terminal: font name \"%s\" set in configuration database is not valid\n"
+msgstr ""
+"Гном терминал: името на шрифт \"%s\" зададено в базата данни с настройки не "
+"е валидно\n"
 
-#: ../src/terminal-prefs.c:374 ../src/terminal-window.c:549
-msgid "_Cancel"
-msgstr "_Отмяна"
+#: src/terminal-profile.c:2162
+#, c-format
+msgid "Error getting default value of %s: %s\n"
+msgstr "Грешка при получаване на стойност по подразбиране на %s: %s\n"
 
-#: ../src/terminal-prefs.c:376
-msgid "_Delete"
-msgstr "_Изтриване"
+#: src/terminal-profile.c:2168
+#, c-format
+msgid "There wasn't a default value for %s\n"
+msgstr "Няма подразбираща се стойност за %s\n"
 
-#: ../src/terminal-prefs.c:386
-msgid "Delete Profile"
-msgstr "Изтриване на профил"
+#: src/terminal-profile.c:2183
+#, c-format
+msgid "Error setting key %s back to default: %s\n"
+msgstr ""
+"Грешка при установяване на ключа %s към стойността по подразбиране %s\n"
 
-#: ../src/terminal-prefs.c:711
-msgid "Show"
-msgstr "Показване"
+#: src/terminal-profile.c:2386
+#, fuzzy, c-format
+msgid ""
+"There was an error while removing the configuration directory %s. (%s)\n"
+msgstr "Има грешка при зареждане на конфигурация от %s. (%s)\n"
 
-#: ../src/terminal-prefs.c:722
-msgid "_Encoding"
-msgstr "_Кодиране"
+#: src/terminal-profile.c:2443
+#, c-format
+msgid ""
+"There was an error subscribing to notification of changes to default "
+"profile. (%s)\n"
+msgstr ""
+"Има грешка при абонирането за известяване за смяната на профила по "
+"подразбиране. (%s)\n"
 
-#: ../src/terminal-screen.c:1161
-msgid "No command supplied nor shell requested"
-msgstr "Не е зададена нито команда, нито обвивка"
+#: src/terminal-profile.c:2488
+msgid "_Details"
+msgstr "_Подробности"
 
-#: ../src/terminal-screen.c:1378 ../src/terminal-window.c:2554
-msgid "_Profile Preferences"
-msgstr "_Настройки на профила"
+#: src/terminal-profile.c:2923
+#, c-format
+msgid "There was an error creating the profile \"%s\""
+msgstr "Имаше грешка при създаване на профил \"%s\""
 
-#: ../src/terminal-screen.c:1379 ../src/terminal-screen.c:1728
-msgid "_Relaunch"
-msgstr "_Повторно пускане"
+#: src/terminal-profile.c:3003
+msgid "There was an error deleting the profiles"
+msgstr "Имаше грешка при изтриване на профили"
 
-#: ../src/terminal-screen.c:1382
+#: src/terminal-profile.c:3106
+#, c-format
+msgid "Could not parse string \"%s\" as a color palette\n"
+msgstr "Не мога да анализирам низа \"%s\" като цветова палитра\n"
+
+#: src/terminal-profile.c:3115
+#, fuzzy, c-format
+msgid "Palette had %d entry instead of %d\n"
+msgid_plural "Palette had %d entries instead of %d\n"
+msgstr[0] "Палитрата има %d цвята вместо %d\n"
+msgstr[1] "Палитрата има %d цвята вместо %d\n"
+
+#: src/terminal-screen.c:215
+#, fuzzy, c-format
+msgid ""
+"There was an error subscribing to notification of monospace font changes. (%"
+"s)\n"
+msgstr ""
+"Има грешка при абонирането за известяване за промяна в профила на терминала."
+"(%s)\n"
+
+#: src/terminal-screen.c:822
+#, c-format
+msgid "Could not load font \"%s\"\n"
+msgstr "Не мога да заредя шрифта \"%s\"\n"
+
+#: src/terminal-screen.c:950
+#, c-format
+msgid "There was a problem with the command for this terminal: %s"
+msgstr "Имаше проблем с командата за този терминал: %s"
+
+#: src/terminal-screen.c:1306
+#, c-format
+msgid ""
+"Could not open the address \"%s\":\n"
+"%s"
+msgstr ""
+"Не мога да отворя адрес \"%s\":\n"
+"%s"
+
+#: src/terminal-screen.c:1399 src/terminal-window.c:784
+#, fuzzy, c-format
+msgid ""
+"There was an error loading config value for whether to use image in menus. (%"
+"s)\n"
+msgstr ""
+"Има грешка при зареждане на конфигурационната стойност определяща дали да се "
+"използва мнемоника. (%s)\n"
+
+#: src/terminal-screen.c:1470
+msgid "_Open Link"
+msgstr "_Отвори указател"
+
+#: src/terminal-screen.c:1475
+msgid "_Copy Link Address"
+msgstr "_Копирай адреса на указателя"
+
+#: src/terminal-screen.c:1486 src/terminal-window.c:827
+msgid "Open _Terminal"
+msgstr "Отваря терминал"
+
+#: src/terminal-screen.c:1491 src/terminal-window.c:830
+msgid "Open Ta_b"
+msgstr "Отваря таб"
+
+#: src/terminal-screen.c:1501 src/terminal-window.c:845
+msgid "C_lose Tab"
+msgstr "_Затвори страница"
+
+#: src/terminal-screen.c:1506 src/terminal-window.c:849
+msgid "_Close Window"
+msgstr "_Затвори прозорец"
+
+#: src/terminal-screen.c:1534
+msgid "Change P_rofile"
+msgstr "Сменя профил"
+
+#: src/terminal-screen.c:1584
+msgid "_Edit Current Profile..."
+msgstr "_Редактирай текущия профил..."
+
+#: src/terminal-screen.c:1589
+msgid "Show _Menubar"
+msgstr "Покажи _лентата с менюта"
+
+#: src/terminal-screen.c:1596
+msgid "Secure _Keyboard"
+msgstr "Защити _клавиатурата"
+
+#: src/terminal-screen.c:1606
+msgid "_Input Methods"
+msgstr "_Входни методи"
+
+#: src/terminal-screen.c:1998
+msgid "_Title:"
+msgstr "_Заглавие:"
+
+#: src/terminal-screen.c:2115
+#, c-format
+msgid "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
+msgstr ""
+"Поставеният text/plain върху терминала има грешен формат (%d) или дължина (%"
+"d)\n"
+
+#: src/terminal-screen.c:2138
+#, c-format
+msgid "Color dropped on terminal had wrong format (%d) or length (%d)\n"
+msgstr ""
+"Поставеният цвят върху терминала има грешен формат (%d) или дължина (%d)\n"
+
+#: src/terminal-screen.c:2181
+#, c-format
+msgid "Mozilla url dropped on terminal had wrong format (%d) or length (%d)\n"
+msgstr ""
+"Поставеният URL от Mozilla в терминала има грешен формат (%d) или дължина (%"
+"d)\n"
+
+#: src/terminal-screen.c:2230
+#, c-format
+msgid "URI list dropped on terminal had wrong format (%d) or length (%d)\n"
+msgstr ""
+"Поставеният списък с URI в терминала има грешен формат (%d) или дължина (%"
+"d)\n"
+
+#: src/terminal-screen.c:2284
+#, c-format
+msgid ""
+"Image filename dropped on terminal had wrong format (%d) or length (%d)\n"
+msgstr ""
+"Поставеното име на картинка в терминала има грешен формат (%d) или дължина (%"
+"d)\n"
+
+#: src/terminal-screen.c:2310
+#, c-format
+msgid "Error converting URI \"%s\" into filename: %s\n"
+msgstr "Грешка при конвертиране на URI \"%s\" в име на файл: %s\n"
+
+#: src/terminal-widget-vte.c:574
+#, fuzzy
 msgid "There was an error creating the child process for this terminal"
-msgstr "Грешка при създаване на дъщерен процес за този терминал"
+msgstr "Имаше грешка при създаване на дъщерен процес от този терминал: %s"
 
-#: ../src/terminal-screen.c:1732
-#, c-format
-msgid "The child process exited normally with status %d."
-msgstr "Дъщерният процес завърши нормално с код за състояние %d."
-
-#: ../src/terminal-screen.c:1735
-#, c-format
-msgid "The child process was aborted by signal %d."
-msgstr "Дъщерният процес бе преустановен от сигнал %d."
-
-#: ../src/terminal-screen.c:1738
-msgid "The child process was aborted."
-msgstr "Дъщерният процес бе преустановен."
-
-#: ../src/terminal-tab-label.c:206
-msgid "Close tab"
-msgstr "Затваряне на подпрозорец"
-
-#: ../src/terminal-tabs-menu.c:198
-msgid "Switch to this tab"
-msgstr "Преход към този подпрозорец"
-
-#: ../src/terminal-util.c:154
-msgid "There was an error displaying help"
-msgstr "Грешка при зареждането на помощта"
-
-#: ../src/terminal-util.c:209
-msgid "Contributors:"
-msgstr "Сътрудници:"
-
-#: ../src/terminal-util.c:231
-msgid "A terminal emulator for the GNOME desktop"
-msgstr "Емулатор на терминал към GNOME"
-
-#: ../src/terminal-util.c:246
-msgid "translator-credits"
-msgstr ""
-"Владимир „Kaladan“ Петков <kaladan@gmail.com>\n"
-"Александър Шопов <ash@kambanaria.org>\n"
-"Борислав Александров <B.Aleksandrov@cnsys.bg>\n"
-"Ростислав Райков <zbrox@i-space.org>\n"
-"Ясен Праматаров <turin@fsa-bg.org>\n"
-"\n"
-"Проектът за превод на GNOME има нужда от подкрепа.\n"
-"Научете повече за нас на http://gnome.cult.bg\n"
-"Докладвайте за грешки на http://gnome.cult.bg/bugs"
-
-#: ../src/terminal-util.c:319
-#, c-format
-msgid "Could not open the address “%s”"
-msgstr "Адресът „%s“ не може да бъде отворен"
-
-#: ../src/terminal-util.c:388
+#: src/terminal-window.c:336
+#, fuzzy, c-format
 msgid ""
-"GNOME Terminal is free software: you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation, either version 3 of the License, or (at your option) "
-"any later version."
+"There was an error subscribing to notification of menu icon visibility "
+"changes. (%s)\n"
 msgstr ""
-"Тази програма (GNOME Terminal) е свободен софтуер. Можете да я "
-"разпространявате и/или променяте под условията на Общия публичен лиценз на "
-"GNU (GNU GPL), както е публикуван от Фондацията за свободен софтуер — версия "
-"3 на лиценза или (по ваше решение) по-късна версия."
+"Имаше грешка при абониране за известяване на промяна в списъка с кодирания "
+"на терминала. (%s)\n"
 
-#: ../src/terminal-util.c:392
-msgid ""
-"GNOME Terminal is distributed in the hope that it will be useful, but "
-"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
-"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details."
-msgstr ""
-"Тази програма се разпространява с надеждата, че ще бъде полезна, но БЕЗ "
-"НИКАКВИ ГАРАНЦИИ, дори и косвените за ПРОДАЖБА или СЪОТВЕТСТВИЕ С КАКВАТО И "
-"ДА Е УПОТРЕБА. За подробности погледнете Общия публичен лиценз на GNU."
-
-#: ../src/terminal-util.c:396
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"GNOME Terminal.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Трябва да сте получили копие от Общия публичен лиценз на GNU (GNU GPL) "
-"заедно с тази програма. Ако не сте, посетете <http://www.gnu.org/licenses/>."
-
-#: ../src/terminal-util.c:1175
-msgid "“file” scheme with remote hostname not supported"
-msgstr "Схема „file“ с отдалечена машина не се поддържа"
-
-#: ../src/terminal-window.c:524
-msgid "Could not save contents"
-msgstr "Съдържанието не може да бъде запазено"
-
-#: ../src/terminal-window.c:546
-msgid "Save as…"
-msgstr "Запазване като…"
-
-#: ../src/terminal-window.c:550
-msgid "_Save"
-msgstr "_Запазване"
-
-#. Translators: This is the label of a menu item to choose a profile.
-#. * _%u is used as the accelerator (with u between 1 and 9), and
-#. * the %s is the name of the terminal profile.
-#.
-#: ../src/terminal-window.c:1286
+#: src/terminal-window.c:594
 #, c-format
-msgid "_%u. %s"
-msgstr "_%u. %s"
+msgid "_%d. %s"
+msgstr "_%d. %s"
 
-#. Translators: This is the label of a menu item to choose a profile.
-#. * _%c is used as the accelerator (it will be a character between A and Z),
-#. * and the %s is the name of the terminal profile.
-#.
-#: ../src/terminal-window.c:1292
+#: src/terminal-window.c:596
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
-#. Toplevel
-#: ../src/terminal-window.c:2500
+#: src/terminal-window.c:717
+msgid "_Add or Remove..."
+msgstr "_Добави или махни..."
+
+#. This is fairly bogus to have here but I don't know
+#. * where else to put it really
+#.
+#: src/terminal-window.c:838
+msgid "New _Profile..."
+msgstr "Нов _профил..."
+
+#: src/terminal-window.c:880
+msgid "P_rofiles..."
+msgstr "_Профили..."
+
+#: src/terminal-window.c:883
+msgid "_Keyboard Shortcuts..."
+msgstr "Клавиатурни препратки..."
+
+#: src/terminal-window.c:887
+msgid "C_urrent Profile..."
+msgstr "Т_екущ профил..."
+
+#. This is a check menu item so that the togglability is evident, but when it is not checked,
+#. * it won't be seen, of course, because the menubar will be then hidden.
+#: src/terminal-window.c:902
+msgid "Show Menu_bar"
+msgstr "Показва лентата с менюта"
+
+#: src/terminal-window.c:906
+msgid "_Full Screen"
+msgstr "На цял _екран"
+
+#. the default label for GTK_STOCK_ZOOM_100 does not follow the HIG...
+#: src/terminal-window.c:929
+msgid "_Normal Size"
+msgstr "_Възстанови нормалния размер"
+
+#: src/terminal-window.c:951
+msgid "Change _Profile"
+msgstr "Сменя профил"
+
+#: src/terminal-window.c:954
+msgid "_Set Title..."
+msgstr "_Задай заглавие..."
+
+#: src/terminal-window.c:961
+#, fuzzy
+msgid "Set _Character Encoding"
+msgstr "_Кодиране на символите"
+
+#: src/terminal-window.c:971
+msgid "_Reset"
+msgstr "_Възстанови"
+
+#: src/terminal-window.c:974
+msgid "Reset and C_lear"
+msgstr "Възстанови и _изчисти"
+
+#: src/terminal-window.c:988
+msgid "_Previous Tab"
+msgstr "_Предишна страница"
+
+#: src/terminal-window.c:992
+msgid "_Next Tab"
+msgstr "_Следваща страница"
+
+#: src/terminal-window.c:1011
+msgid "_Contents"
+msgstr "_Съдържание"
+
+#: src/terminal-window.c:1021
+msgid "_About"
+msgstr "_Информация"
+
+#: src/terminal-window.c:1185
+#, c-format
+msgid ""
+"There was an error loading config value for whether to use mnemonics. (%s)\n"
+msgstr ""
+"Има грешка при зареждане на конфигурационната стойност определяща дали да се "
+"използва мнемоника. (%s)\n"
+
+#: src/terminal-window.c:1204
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal window "
+"configuration changes. (%s)\n"
+msgstr ""
+"Имаше грешка при абониране за известяване на промяна в настройките на "
+"терминалния прозорец. (%s)\n"
+
+#: src/terminal-window.c:2092
 msgid "_File"
 msgstr "_Файл"
 
-#. File menu
-#: ../src/terminal-window.c:2501 ../src/terminal-window.c:2513
-#: ../src/terminal-window.c:2519 ../src/terminal-window.c:2675
-msgid "Open _Terminal"
-msgstr "_Отваряне на прозорец"
-
-#: ../src/terminal-window.c:2502
+#: src/terminal-window.c:2094 src/terminal.c:2827
 msgid "_Edit"
-msgstr "_Редактиране"
+msgstr "_Редакция"
 
-#: ../src/terminal-window.c:2503
+#: src/terminal-window.c:2096
 msgid "_View"
-msgstr "_Изглед"
+msgstr "_Преглед"
 
-#: ../src/terminal-window.c:2504
-msgid "_Search"
-msgstr "_Търсене"
-
-#: ../src/terminal-window.c:2505
+#: src/terminal-window.c:2098
 msgid "_Terminal"
 msgstr "_Терминал"
 
-#: ../src/terminal-window.c:2506
+#: src/terminal-window.c:2100
 msgid "Ta_bs"
-msgstr "По_дпрозорци"
+msgstr "Табове"
 
-#: ../src/terminal-window.c:2516
-msgid "Open Ta_b"
-msgstr "О_тваряне на подпрозорец"
+#: src/terminal-window.c:2102
+msgid "_Help"
+msgstr "_Помощ"
 
-#: ../src/terminal-window.c:2522
-msgid "New _Profile"
-msgstr "_Нов профил"
+#: src/terminal-window.c:2283
+#, c-format
+msgid "This window has one tab open. Closing the window will close it."
+msgid_plural ""
+"This window has %d tabs open. Closing the window will also close all its "
+"tabs."
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../src/terminal-window.c:2525
-msgid "_Save Contents"
-msgstr "_Запазване на съдържанието"
+#: src/terminal-window.c:2288
+#, fuzzy
+msgid "Close all tabs?"
+msgstr "Затвори страница"
 
-#: ../src/terminal-window.c:2528 ../src/terminal-window.c:3953
-msgid "C_lose Terminal"
-msgstr "_Затваряне на терминала"
+#: src/terminal-window.c:2300
+#, fuzzy
+msgid "Close All Tabs"
+msgstr "Затвори страница"
 
-#: ../src/terminal-window.c:2531
-msgid "_Close All Terminals"
-msgstr "Затваряне на _всички терминали"
-
-#. Edit menu
-#: ../src/terminal-window.c:2536 ../src/terminal-window.c:2663
-msgid "_Copy"
-msgstr "_Копиране"
-
-#: ../src/terminal-window.c:2539 ../src/terminal-window.c:2666
-msgid "Copy as _HTML"
-msgstr "Копиран_е като HTML"
-
-#: ../src/terminal-window.c:2542 ../src/terminal-window.c:2669
-msgid "_Paste"
-msgstr "_Поставяне"
-
-#: ../src/terminal-window.c:2545 ../src/terminal-window.c:2672
-msgid "Paste _Filenames"
-msgstr "Поставяне на име на _файл"
-
-#: ../src/terminal-window.c:2551
-msgid "Pre_ferences"
-msgstr "_Настройки"
-
-#. Search menu
-#: ../src/terminal-window.c:2570
-msgid "_Find…"
-msgstr "_Търсене…"
-
-#: ../src/terminal-window.c:2573
-msgid "Find Ne_xt"
-msgstr "_Следваща поява"
-
-#: ../src/terminal-window.c:2576
-msgid "Find Pre_vious"
-msgstr "_Предишна поява"
-
-#: ../src/terminal-window.c:2579
-msgid "_Clear Highlight"
-msgstr "_Изчистване на осветяването"
-
-#: ../src/terminal-window.c:2583
-msgid "Go to _Line…"
-msgstr "Към _ред…"
-
-#: ../src/terminal-window.c:2586
-msgid "_Incremental Search…"
-msgstr "Постепенно _търсене…"
-
-#. Terminal menu
-#: ../src/terminal-window.c:2592
-msgid "Change _Profile"
-msgstr "Смяна на _профила"
-
-#: ../src/terminal-window.c:2593
-msgid "Set _Character Encoding"
-msgstr "_Кодиране на знаците"
-
-#: ../src/terminal-window.c:2594
-msgid "_Reset"
-msgstr "_Възстановяване"
-
-#: ../src/terminal-window.c:2597
-msgid "Reset and C_lear"
-msgstr "Възстановяване и _изчистване"
-
-#. Terminal/Encodings menu
-#: ../src/terminal-window.c:2602
-msgid "_Add or Remove…"
-msgstr "_Добавяне или премахване…"
-
-#. Tabs menu
-#: ../src/terminal-window.c:2607
-msgid "_Previous Terminal"
-msgstr "_Предишен подпрозорец"
-
-#: ../src/terminal-window.c:2610
-msgid "_Next Terminal"
-msgstr "_Следващ терминал"
-
-#: ../src/terminal-window.c:2613
-msgid "Move Terminal _Left"
-msgstr "Преместване на подпрозореца на_ляво"
-
-#: ../src/terminal-window.c:2616
-msgid "Move Terminal _Right"
-msgstr "Преместване на подпрозореца на_дясно"
-
-#: ../src/terminal-window.c:2619
-msgid "_Detach Terminal"
-msgstr "_Отделяне в нов прозорец"
-
-#. Help menu
-#: ../src/terminal-window.c:2624
-msgid "_Contents"
-msgstr "_Ръководство"
-
-#: ../src/terminal-window.c:2630
-msgid "_Inspector"
-msgstr "_Инспектор"
-
-#. Popup menu
-#: ../src/terminal-window.c:2635
-msgid "_Open Hyperlink"
-msgstr "_Отваряне на връзка"
-
-#: ../src/terminal-window.c:2638
-msgid "_Copy Hyperlink Address"
-msgstr "_Копиране на адреса на връзката"
-
-#: ../src/terminal-window.c:2641
-msgid "_Send Mail To…"
-msgstr "Из_пращане на е-поща до…"
-
-#: ../src/terminal-window.c:2644
-msgid "_Copy E-mail Address"
-msgstr "_Копиране на адреса на е-пощата"
-
-#: ../src/terminal-window.c:2647
-msgid "C_all To…"
-msgstr "_Обаждане на…"
-
-#: ../src/terminal-window.c:2650
-msgid "_Copy Call Address"
-msgstr "_Копиране на адреса за обаждане"
-
-#: ../src/terminal-window.c:2653
-msgid "_Open Link"
-msgstr "_Отваряне на връзка"
-
-#: ../src/terminal-window.c:2656
-msgid "_Copy Link Address"
-msgstr "_Копиране на адреса на връзката"
-
-#: ../src/terminal-window.c:2662
-msgid "P_rofiles"
-msgstr "_Профили"
-
-#: ../src/terminal-window.c:2678
-msgid "L_eave Full Screen"
-msgstr "Изход от _цял екран"
-
-#. View Menu
-#: ../src/terminal-window.c:2686
-msgid "Show _Menubar"
-msgstr "_Показване на менюто"
-
-#: ../src/terminal-window.c:2690
-msgid "_Full Screen"
-msgstr "На _цял екран"
-
-#. Terminal menu
-#: ../src/terminal-window.c:2695
-msgid "Read-_Only"
-msgstr "Само за _четене"
-
-#: ../src/terminal-window.c:3940
-msgid "Close this window?"
-msgstr "Затваряне на този прозорец?"
-
-#: ../src/terminal-window.c:3940
-msgid "Close this terminal?"
-msgstr "Затваряне на терминала?"
-
-#: ../src/terminal-window.c:3944
-msgid ""
-"There are still processes running in some terminals in this window. Closing "
-"the window will kill all of them."
+#: src/terminal-window.c:2692
+msgid "translator_credits"
 msgstr ""
-"Поне един процес в някой от подпрозорците на този прозорец още не е завършил "
-"работа. Затварянето на прозореца ще го убие."
+"Борислав Александров <B.Aleksandrov@cnsys.bg>\n"
+"Александър Шопов <al_shopov@yanoo.com>"
 
-#: ../src/terminal-window.c:3948
+#: src/terminal-window.c:2704
+msgid "GNOME Terminal"
+msgstr "Терминал на Гном"
+
+#: src/terminal.c:187
+msgid "Execute the argument to this option inside the terminal."
+msgstr "Изпълни аргумента на тази опция в терминала."
+
+#: src/terminal.c:196
+msgid "Execute the remainder of the command line inside the terminal."
+msgstr "Изпълни остатъка на командния ред в терминала."
+
+#: src/terminal.c:205
+#, fuzzy
 msgid ""
-"There is still a process running in this terminal. Closing the terminal will "
-"kill it."
+"Open a new window containing a tab with the default profile. More than one "
+"of these options can be provided."
 msgstr ""
-"Поне един процес в този прозорец още не е завършил работа. Затварянето на "
-"прозореца ще го убие."
+"Отваря нов прозорец със страница със зададения профил. Може да зададете "
+"повече от една от тези опции."
 
-#: ../src/terminal-window.c:3953
-msgid "C_lose Window"
-msgstr "_Затваряне на този прозорец"
+#: src/terminal.c:214
+msgid ""
+"Open a new window containing a tab with the given profile. More than one of "
+"these options can be provided."
+msgstr ""
+"Отваря нов прозорец със страница със зададения профил. Може да зададете "
+"повече от една от тези опции."
+
+#: src/terminal.c:215 src/terminal.c:233
+msgid "PROFILENAME"
+msgstr "ИМЕ НА ПРОФИЛ"
+
+#: src/terminal.c:223
+#, fuzzy
+msgid ""
+"Open a new tab in the last-opened window with the default profile. More than "
+"one of these options can be provided."
+msgstr ""
+"Отваря нова страница със зададения профил в последно отворения прозорец. "
+"Може да зададете повече от една от тези опции."
+
+#: src/terminal.c:232
+msgid ""
+"Open a new tab in the last-opened window with the given profile. More than "
+"one of these options can be provided."
+msgstr ""
+"Отваря нова страница със зададения профил в последно отворения прозорец. "
+"Може да зададете повече от една от тези опции."
+
+#: src/terminal.c:241
+msgid ""
+"Open a new window containing a tab with the given profile ID. Used "
+"internally to save sessions."
+msgstr ""
+"Отваря нов прозорец съдържащ страница със зададен ID профил. Използва се "
+"вътрешно за запазване на сесии."
+
+#: src/terminal.c:242 src/terminal.c:251
+msgid "PROFILEID"
+msgstr "ID НА ПРОФИЛ"
+
+#: src/terminal.c:250
+msgid ""
+"Open a new tab in the last-opened window with the given profile ID. Used "
+"internally to save sessions."
+msgstr ""
+"Отваря нова страница с ID профил в последно отворения прозорец. Използва се "
+"вътрешно за запазване на сесии."
+
+#: src/terminal.c:259
+msgid ""
+"Set the role for the last-specified window; applies to only one window; can "
+"be specified once for each window you create from the command line."
+msgstr ""
+"Задава ролята на последно указания прозорец. Отнася се само до един "
+"прозорец. Може да се указва веднъж за всеки прозорец, който създавате от "
+"командния ред."
+
+#: src/terminal.c:260
+msgid "ROLE"
+msgstr "РОЛЯ"
+
+#: src/terminal.c:268
+msgid ""
+"Turn on the menubar for the last-specified window; applies to only one "
+"window; can be specified once for each window you create from the command "
+"line."
+msgstr ""
+"Включва лентата с менюта последно указания прозорец. Отнася се само до един "
+"прозорец. Може да се указва веднъж за всеки прозорец, който създавате от "
+"командния ред."
+
+#: src/terminal.c:277
+msgid ""
+"Turn off the menubar for the last-specified window; applies to only one "
+"window; can be specified once for each window you create from the command "
+"line."
+msgstr ""
+"Изключва лента с менюта на последно указания прозорец. Отнася се само до "
+"един прозорец. Може да се указва веднъж за всеки прозорец, който създавате "
+"от командния ред."
+
+#: src/terminal.c:286
+msgid ""
+"X geometry specification (see \"X\" man page), can be specified once per "
+"window to be opened."
+msgstr ""
+"X спецификация на геометрията (виж ръководството за \"X\") може да се задава "
+"еднократно за прозорец."
+
+#: src/terminal.c:287
+msgid "GEOMETRY"
+msgstr "ГЕОМЕТРИЯ"
+
+#: src/terminal.c:295
+msgid ""
+"Do not register with the activation nameserver, do not re-use an active "
+"terminal"
+msgstr ""
+"Не регистрира към активиращия сървър за имена. Не преизползва активен "
+"терминал."
+
+#: src/terminal.c:304
+#, fuzzy
+msgid "Register with the activation nameserver [default]"
+msgstr ""
+"Не регистрира към активиращия сървър за имена. Не преизползва активен "
+"терминал."
+
+#: src/terminal.c:313
+msgid "ID for startup notification protocol."
+msgstr "ID за протокола за уведомяване за стартиране"
+
+#: src/terminal.c:322
+msgid "Set the terminal's title"
+msgstr "Задава названието на терминала"
+
+#: src/terminal.c:323
+msgid "TITLE"
+msgstr "НАЗВАНИЕ"
+
+#: src/terminal.c:331
+msgid "Set the terminal's working directory"
+msgstr "Задава работната директория на терминала"
+
+#: src/terminal.c:332 src/terminal.c:341
+msgid "DIRNAME"
+msgstr "ДИРЕКТОРИЯ"
+
+#: src/terminal.c:340
+#, fuzzy
+msgid "Set the default terminal's working directory. Used internally"
+msgstr "Задава работната директория на терминала"
+
+#: src/terminal.c:349
+msgid "Set the terminal's zoom factor (1.0 = normal size)"
+msgstr ""
+"Задава коефициентът на мащабиране на терминала (1.0 отговаря на нормален "
+"размер)"
+
+#: src/terminal.c:350 src/terminal.c:359
+msgid "ZOOMFACTOR"
+msgstr "КОЕФИЦИЕНТНАМАЩАБИРАНЕ"
+
+#: src/terminal.c:358
+msgid "Set the last specified tab as the active one in its window"
+msgstr "Настройва последния избран таб като активния в неговия прозорец"
+
+#: src/terminal.c:696
+#, c-format
+msgid "Could not load icon \"%s\": %s\n"
+msgstr "Не можах да заредя иконата \"%s\": %s\n"
+
+#: src/terminal.c:761
+#, fuzzy, c-format
+msgid "Option \"%s\" requires specifying the command to run\n"
+msgstr "Опцията --command/-e изисква задаване на команда за изпълнение\n"
+
+#: src/terminal.c:769
+#, fuzzy, c-format
+msgid "Argument to \"%s\" is not a valid command: %s\n"
+msgstr "Аргументът на --command/-e не е валидна команда: %s\n"
+
+#: src/terminal.c:779 src/terminal.c:803
+#, fuzzy, c-format
+msgid "\"%s\" specified more than once for the same window or tab\n"
+msgstr ""
+"--command/-e/--execute/-x е зададена повече от един път за определен "
+"прозорец или страница\n"
+
+#: src/terminal.c:794
+#, fuzzy, c-format
+msgid ""
+"Option \"%s\" requires specifying the command to run on the rest of the "
+"command line\n"
+msgstr ""
+"Опцията --execute/-x изисква задаване на командата за изпълнение на остатъка "
+"от командния ред\n"
+
+#: src/terminal.c:825 src/terminal.c:849
+#, fuzzy, c-format
+msgid "Option \"%s\" requires an argument specifying what profile to use\n"
+msgstr ""
+"Опцията --tab-with-profile  изисква аргумент определящ профила, който да се "
+"използва\n"
+
+#: src/terminal.c:883 src/terminal.c:909
+#, fuzzy, c-format
+msgid "\"%s\" option given twice for the same window\n"
+msgstr "--show-menubar е зададена повече от един път за определен прозорец\n"
+
+#: src/terminal.c:932
+#, fuzzy, c-format
+msgid "Option \"%s\" requires an argument giving the role\n"
+msgstr "Опцията --title изисква аргумент задаващ ролята\n"
+
+#: src/terminal.c:941
+msgid "Two roles given for one window\n"
+msgstr "Две роли зададени за един прозорец\n"
+
+#: src/terminal.c:957
+#, fuzzy, c-format
+msgid "Option \"%s\" requires an argument giving the geometry\n"
+msgstr "Опцията --geometry изисква аргумент задаващ геометрията\n"
+
+#: src/terminal.c:966
+#, fuzzy, c-format
+msgid "Two \"%s\" options given for one window\n"
+msgstr "Две роли зададени за един прозорец\n"
+
+#: src/terminal.c:976
+msgid "Two geometries given for one window\n"
+msgstr "Две геометрии зададени за един прозорец\n"
+
+#: src/terminal.c:1002
+#, fuzzy, c-format
+msgid "Option \"%s\" requires an argument giving the title\n"
+msgstr "Опцията --title изисква аргумент задаващ названието\n"
+
+#: src/terminal.c:1010 src/terminal.c:1033 src/terminal.c:1075
+#, fuzzy, c-format
+msgid "Two \"%s\" options given for one tab\n"
+msgstr "Две названия зададени за един прозорец\n"
+
+#: src/terminal.c:1025
+#, fuzzy, c-format
+msgid "Option \"%s\" requires an argument giving the directory\n"
+msgstr "Опцията --title изисква аргумент задаващ ролята\n"
+
+#: src/terminal.c:1045
+#, fuzzy
+msgid ""
+"Option --default-working-directory requires an argument giving the "
+"directory\n"
+msgstr "Опцията --working-directory изисква аргумент директория\n"
+
+#: src/terminal.c:1051
+#, fuzzy
+msgid "Two --default-working-directories given\n"
+msgstr "Две работни директории зададени за една страница\n"
+
+#: src/terminal.c:1067
+#, fuzzy, c-format
+msgid "Option \"%s\" requires an argument giving the zoom factor\n"
+msgstr "Опцията --zoom изисква аргумент задаващ коефициента на мащабиране\n"
+
+#: src/terminal.c:1090
+#, c-format
+msgid "\"%s\" is not a valid zoom factor\n"
+msgstr "\"%s\" не е валиден коефициент на мащабиране\n"
+
+#: src/terminal.c:1098
+#, c-format
+msgid "Zoom factor \"%g\" is too small, using %g\n"
+msgstr "Коефициентът на мащабиране \"%g\" е прекалено малък, използвам %g\n"
+
+#: src/terminal.c:1105
+#, c-format
+msgid "Zoom factor \"%g\" is too large, using %g\n"
+msgstr "Коефициентът на мащабиране \"%g\" е прекалено голям, използвам %g\n"
+
+#: src/terminal.c:1126
+#, fuzzy, c-format
+msgid ""
+"Option --%s is no longer supported in this version of gnome-terminal; you "
+"might want to create a profile with the desired setting, and use the new --"
+"window-with-profile option\n"
+msgstr ""
+"Зададената опция не се поддържа в тази версия на gnome-terminal. Можете  да "
+"създадете профил с желаните настройки и да използвате новата опция --window-"
+"with-profile\n"
+
+#: src/terminal.c:1132
+#, fuzzy, c-format
+msgid "\"%s\" option given twice\n"
+msgstr "--startup-id е зададена два пъти\n"
+
+#: src/terminal.c:1137 src/terminal.c:1278
+#, fuzzy, c-format
+msgid "\"%s\" option requires an argument\n"
+msgstr "--startup-id изисква аргумент\n"
+
+#: src/terminal.c:1256
+#, c-format
+msgid "No argument given to \"%s\" option\n"
+msgstr "Не е зададен аргумент на опцията \"%s\"\n"
+
+#: src/terminal.c:1390
+#, c-format
+msgid "No such profile '%s', using default profile\n"
+msgstr "Няма профил \"%s\", използвам подразбиращият се\n"
+
+#: src/terminal.c:1568
+#, c-format
+msgid "Invalid argument: \"%s\"\n"
+msgstr "Грешен аргумент: \"%s\"\n"
+
+#: src/terminal.c:1636
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr ""
+"Имаше грешка в абонамента за известяване при промяна на списъка с терминални "
+"профили. (%s)\n"
+
+#: src/terminal.c:1864
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Грешен низ с геометрия \"%s\"\n"
+
+#: src/terminal.c:1924
+#, c-format
+msgid "There was an error getting the list of terminal profiles. (%s)\n"
+msgstr "Имаше грешка при получаване на списъка с терминални профили. (%s)\n"
+
+#: src/terminal.c:2223
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr "Вече имате профил на име \"%s\""
+
+#: src/terminal.c:2234
+msgid ""
+"The profile you selected as a base for your new profile no longer exists"
+msgstr "Избраният профил, на който новия да се базира, вече не съществува"
+
+#: src/terminal.c:2323
+msgid "Enter profile name"
+msgstr "Въведете име на профил"
+
+#: src/terminal.c:2333
+msgid "Choose base profile"
+msgstr "Избира базов профил"
+
+#: src/terminal.c:2472
+msgid "Profile list"
+msgstr "Списък на профили"
+
+#: src/terminal.c:2541
+msgid "You must select one or more profiles to delete."
+msgstr "Трябва да изберете един или повече профили за изтриване."
+
+#: src/terminal.c:2552
+msgid "You must have at least one profile; you can't delete all of them."
+msgstr "Трябва да имате поне един профил. Не можете да изтриете всички."
+
+#: src/terminal.c:2559
+#, fuzzy, c-format
+msgid "Delete this profile?\n"
+msgid_plural "Delete these %d profiles?\n"
+msgstr[0] "Изтриване на този профил?\n"
+msgstr[1] "Изтриване на този профил?\n"
+
+#: src/terminal.c:2580
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr "Да изтрия профил \"%s\"?"
+
+#: src/terminal.c:2602
+msgid "Delete Profile"
+msgstr "Изтрий профил"
+
+#: src/terminal.c:2860
+msgid "Profiles"
+msgstr "Профили"
+
+#: src/terminal.c:2902
+msgid "Profile _used when launching a new terminal:"
+msgstr "Профил _използван при стартиране на нов терминал:"
+
+#: src/terminal.c:2922
+msgid "_Profiles:"
+msgstr "_Профили:"
+
+#: src/terminal.c:2969
+msgid "Click to open new profile dialog"
+msgstr "Щракнете, за да отворите нов диалог за профил"
+
+#: src/terminal.c:2982
+msgid "Click to open edit profile dialog"
+msgstr "Щракнете, за да отворите диалог за редакция на профил"
+
+#: src/terminal.c:2992
+msgid "Click to delete selected profile"
+msgstr "Щракнете, за да изтриете избраният профил"
+
+#: src/terminal.c:3041
+msgid "Click button to choose profile"
+msgstr "Щракнете бутона, за да изберете профил"
+
+#: src/terminal.c:3458
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Имаше грешка при показване на помощта: %s"
+
+#: src/terminal.c:3529
+#, fuzzy, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly."
+msgstr ""
+"Файлът \"%s\" липсва. Това показва, че приложението не е инсталирано "
+"правилно и диалогът не може да бъде показан."
+
+#: src/terminal.c:3693
+msgid ""
+"It appears that you do not have gnome-terminal.server installed in a valid "
+"location. Factory mode disabled.\n"
+msgstr ""
+"Изглежда gnome-terminal.server не е инсталиран на правилно място. Режимът за "
+"фабрика е изключен.\n"
+
+#: src/terminal.c:3696
+msgid ""
+"Error registering terminal with the activation service; factory mode "
+"disabled.\n"
+msgstr ""
+"Грешка при регистриране на терминал към услугата за активиране. Режимът за "
+"фабрика е изключен.\n"
+
+#: src/terminal.c:3732
+msgid "Failed to retrieve terminal server from activation server\n"
+msgstr "Не успях да получа терминален сървър от сървъра за активиране\n"
+
+#~ msgid "There was an error creating the child process for this terminal: %s"
+#~ msgstr "Имаше грешка при създаване на дъщерен процес от този терминал: %s"
+
+#~ msgid "Could not set working directory to \"%s\": %s\n"
+#~ msgstr "Не мога да задам работната директория \"%s\": %s\n"
+
+#~ msgid "Could not execute command %s: %s\n"
+#~ msgstr "Не мога да изпълня командата %s: %s\n"
+
+#~ msgid ""
+#~ "There was an error subscribing to notification for use_mnemonics (%s)\n"
+#~ msgstr "Има грешка при абонирането за известяване за use_mnemonics (%s)\n"
+
+#, fuzzy
+#~ msgid "Accelerator to close a tab."
+#~ msgstr "Режим на ускорителя"
+
+#, fuzzy
+#~ msgid "Accelerator to copy text."
+#~ msgstr "Режим на ускорителя"
+
+#, fuzzy
+#~ msgid "Accelerator to launch help."
+#~ msgstr "Режим на ускорителя"
+
+#, fuzzy
+#~ msgid "Accelerator to paste text."
+#~ msgstr "Режим на ускорителя"
+
+#~ msgid "Delete these two profiles?\n"
+#~ msgstr "Да изтрия тези два профила?\n"
+
+#~ msgid "Edit Profiles"
+#~ msgstr "Редактирай профили"
+
+#~ msgid "_New Window"
+#~ msgstr "_Нов прозорец"
+
+#~ msgid "New _Tab"
+#~ msgstr "Нова _страница"
+
+#~ msgid "Hide _Menubar"
+#~ msgstr "Скрий _лентата с менюта"
+
+#~ msgid "Change terminal title"
+#~ msgstr "Смени заглавието на терминала"
+
+#~ msgid "Hide Menu_bar"
+#~ msgstr "Скрий _лентата с менюта"
+
+#~ msgid "_Zoom In"
+#~ msgstr "_Увеличи"
+
+#~ msgid "Zoom _Out"
+#~ msgstr "_Намали"
+
+#~ msgid "_Go"
+#~ msgstr "_Иди"
+
+#~ msgid "_Restore normal size"
+#~ msgstr "_Възстанови нормалния размер"
+
+#~ msgid "_Full screen"
+#~ msgstr "_На цял екран"
+
+#~ msgid ""
+#~ "Your current desktop environment does not support the full screen "
+#~ "feature.\n"
+#~ " (In technical terms, you need a window manager with support for the "
+#~ "_NET_WM_STATE_FULLSCREEN property.)"
+#~ msgstr ""
+#~ "Графичната Ви среда не поддържа режим на пълен екран.\n"
+#~ " (в технически смисъл се нуждаете от мениджър на прозорци който поддържа "
+#~ "_NET_WM_STATE_FULLSCREEN режима.)"
+
+#~ msgid "_Accelerators:"
+#~ msgstr "_Ускорители:"
+
+#~ msgid "_Use the same size font as other applications"
+#~ msgstr "_Използвай същите шрифтове както другите приложения"
+
+#~ msgid "Accelerator _Key"
+#~ msgstr "Клавиш-_ускорител"
+
+#~ msgid ""
+#~ "Option --window-with-profile requires an argument specifying what profile "
+#~ "to use\n"
+#~ msgstr ""
+#~ "Опцията --window-with-profile изисква аргумент определящ профила, който "
+#~ "да се използва\n"
+
+#~ msgid "--hide-menubar option given twice for the same window\n"
+#~ msgstr ""
+#~ "--hide-menubar е зададена повече от един път за определен прозорец\n"
+
+#~ msgid "Two zoom factors given for one tab\n"
+#~ msgstr "Два коефициента на мащабиране зададени за една страница\n"
+
+#~ msgid "No argument given to --display option\n"
+#~ msgstr "Не е зададен аргумент на опцията --display\n"
+
+#~ msgid "You have to name your profile."
+#~ msgstr "Трябва да именувате Вашия профил"
+
+#~ msgid "There was an error forgetting profile dir %s. (%s)\n"
+#~ msgstr "Има грешка при забравяне директорията на профил %s. (%s)\n"
+
+#~ msgid "_Keybindings..."
+#~ msgstr "_Клавишни комбинации..."
+
+#~ msgid "Farsi"
+#~ msgstr "Фарси"
+
+#~ msgid "Foundry:"
+#~ msgstr "Букволеярна:"
+
+#~ msgid "Family:"
+#~ msgstr "Фамилия:"
+
+#~ msgid "Weight:"
+#~ msgstr "Ширина:"
+
+#~ msgid "Slant:"
+#~ msgstr "Наклон:"
+
+#~ msgid "Set Width:"
+#~ msgstr "Задава ширина:"
+
+#~ msgid "Add Style:"
+#~ msgstr "Добавя стил:"
+
+#~ msgid "Pixel Size:"
+#~ msgstr "Размер в пиксели:"
+
+#~ msgid "Point Size:"
+#~ msgstr "Размер в точки:"
+
+#~ msgid "Resolution X:"
+#~ msgstr "Разд. способност X:"
+
+#~ msgid "Resolution Y:"
+#~ msgstr "Разд. способност Y:"
+
+#~ msgid "Spacing:"
+#~ msgstr "Отстояние:"
+
+#~ msgid "Average Width:"
+#~ msgstr "Средна ширина:"
+
+#~ msgid "Charset:"
+#~ msgstr "Кодиране:"
+
+#~ msgid "Font Property"
+#~ msgstr "Свойства на шрифт"
+
+#~ msgid "Requested Value"
+#~ msgstr "Изискана стойност"
+
+#~ msgid "Actual Value"
+#~ msgstr "Действителна стойност"
+
+#~ msgid "Font:"
+#~ msgstr "Шрифт:"
+
+#~ msgid "Font Style:"
+#~ msgstr "Стил на шрифт:"
+
+#~ msgid "Size:"
+#~ msgstr "Размер:"
+
+#~ msgid "Reset Filter"
+#~ msgstr "Нулирай филтъра"
+
+#~ msgid "Metric:"
+#~ msgstr "Метрика:"
+
+#~ msgid "Points"
+#~ msgstr "Точки"
+
+#~ msgid "Pixels"
+#~ msgstr "Пиксели"
+
+#~ msgid "Preview:"
+#~ msgstr "Преглед:"
+
+#~ msgid "Font Information"
+#~ msgstr "Информация за шрифт"
+
+#~ msgid "Requested Font Name:"
+#~ msgstr "Заявено име на шрифт:"
+
+#~ msgid "Actual Font Name:"
+#~ msgstr "Действително име на шрифт:"
+
+#~ msgid "%i fonts available with a total of %i styles."
+#~ msgstr "Налични са %i шрифта с общо %i стила."
+
+#~ msgid "Filter"
+#~ msgstr "Филтър"
+
+#~ msgid "Font Types:"
+#~ msgstr "Видове шрифтове:"
+
+#~ msgid "Bitmap"
+#~ msgstr "Растерни"
+
+#~ msgid "Scalable"
+#~ msgstr "Мащабируеми"
+
+#~ msgid "Scaled Bitmap"
+#~ msgstr "Мащабирани растерни"
+
+#~ msgid "(nil)"
+#~ msgstr "(nil)"
+
+#~ msgid "regular"
+#~ msgstr "regular"
+
+#~ msgid "[M]"
+#~ msgstr "[M]"
+
+#~ msgid "[C]"
+#~ msgstr "[C]"
+
+#~ msgid "The selected font is not available."
+#~ msgstr "Избраният шрифт не е наличен."
+
+#~ msgid "The selected font is not a valid font."
+#~ msgstr "Избраният шрифт не е валиден шрифт."
+
+#~ msgid "This is a 2-byte font and may not be displayed correctly."
+#~ msgstr "Това е двубайтов шрифт и може да не се покаже правилно"
+
+#~ msgid "(unknown)"
+#~ msgstr "(неизвестно)"
+
+#~ msgid "Font: (Filter Applied)"
+#~ msgstr "Шрифт: (с приложен филтър)"
+
+#~ msgid "Select a font"
+#~ msgstr "Избери шрифт"
+
+#~ msgid "Copyright 2002 Havoc Pennington"
+#~ msgstr "Авторски права 2002 Havoc Pennington"
+
+#~ msgid "Title"
+#~ msgstr "Заглавие"
+
+#~ msgid ""
+#~ "The file \"%s\" is missing. This indicates that the application is "
+#~ "installed incorrectly, so the profile editor can't be displayed."
+#~ msgstr ""
+#~ "Файла \"%s\" липсва. Това показва че приложението не е инсталирано "
+#~ "коректно, така че редактора на профил не можа да бъде показан."
+
+#~ msgid ""
+#~ "The file \"%s\" is missing. This indicates that the application is "
+#~ "installed incorrectly, so the keybindings dialog can't be displayed."
+#~ msgstr ""
+#~ "Файла \"%s\" е липсващ. Това показва, че приложението не е инсталирано "
+#~ "коректно, и така диалога за клавишни комбинации не може да бъде показан."
+
+#~ msgid "_Blink cursor"
+#~ msgstr "_Мигащ показалец"
+
+#~ msgid "_About GNOME Terminal"
+#~ msgstr "_Относно Терминал на ГНОМЕ"
+
+#~ msgid "New terminal profile"
+#~ msgstr "Нов профил на терминал"
+
+#~ msgid "Profile _Name:"
+#~ msgstr "Име на _Профил"
+
+#~ msgid "_No"
+#~ msgstr "_Не"
+
+#~ msgid "_Delete"
+#~ msgstr "_Изтрива"
+
+#~ msgid "Manage terminal profiles"
+#~ msgstr "Управление на терминалните профили"
+
+#~ msgid "_New..."
+#~ msgstr "_Нов..."
+
+#~ msgid "_Edit..."
+#~ msgstr "_Редакция..."
+
+#~ msgid "_Delete..."
+#~ msgstr "_Изтрива..."
