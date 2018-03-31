@@ -931,7 +931,7 @@
 
       <locale name="pt_BR">
          <short>Se a barra de menu tem teclas de acesso</short>
-         <long>Se deve-se ter atalhos Alt+letra para barra de menu. Isto pode interferir com algumas aplicações que rodam dentro do terminal e por isso é possível desabilitá-los.</long>
+         <long>Se deve-se ter atalhos Alt+letra para barra de menu. Isto pode interferir com algumas aplicações que rodam dentro do terminal, por isso é possível desabilitá-los.</long>
       </locale>
 
       <locale name="ro">
@@ -1142,7 +1142,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut utiliser le raccourci standard de GTK pour accéder à la barre de menus</short>
+         <short>Indique s&apos;il faut utiliser le raccourci standard de GTK pour accéder à la barre de menus</short>
          <long>Cette option désactive le raccourci standard d&apos;accès à la barre de menus. Initialement à F10, ce raccourci peut être redéfini dans gtkrc par gtk-menu-bar-accel.</long>
       </locale>
 
@@ -1247,8 +1247,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se os atalhos padrões do GTK para acesso à barra de menu está ativado</short>
-         <long>Normalmente você pode acessar a barra de menus com F10. Isso pode também ser customizado via gtkrc (gtk-menu-bar-accel = &quot;qualquercoisa&quot;). Essa opção permite que o acelerador padrão da barra de menus seja desligado.</long>
+         <short>Se o atalho padrão do GTK para acesso à barra de menu está ativado</short>
+         <long>Normalmente você pode acessar a barra de menus com F10. Isso pode também ser personalizado no gtkrc (gtk-menu-bar-accel = &quot;qualquercoisa&quot;). Essa opção permite que o acelerador padrão da barra de menus seja desligado.</long>
       </locale>
 
       <locale name="ro">
@@ -1470,8 +1470,8 @@
 
       <locale name="et">
          <default>[UTF-8,current]</default>
-         <short>Saadaolevate kodeeringute loend</short>
-         <long>Võimalike kodeeringute alamhulk, mis on kasutatav &quot;Kodeering&quot; alammenüüst. Siinkirjeldatud loend ilmub selles alammenüüs. Kodeeringute erinimi &quot;current&quot; tähendab käesoleva lokaadi vaikimisi kodeeringut.</long>
+         <short>Saadaolevate kooditabelite loend</short>
+         <long>Võimalike kooditabelite alamhulk, mis on kasutatav &quot;Kodeering&quot; alammenüüst. Siinkirjeldatud loend ilmub selles alammenüüs. Kooditabelite erinimi &quot;current&quot; tähendab käesoleva lokaadi vaikimisi kooditabelit.</long>
       </locale>
 
       <locale name="eu">
@@ -1657,7 +1657,7 @@
       <locale name="pt_BR">
          <default>[UTF-8,current,ISO-8859-15]</default>
          <short>Lista de codificações disponíveis</short>
-         <long>As codificações possíveis aparecem no submenu Codificações. Esta é uma lista de codificações que aparecem lá. O nome especial &quot;current&quot; irá mostrar a codificação atual usado pelo sistema.</long>
+         <long>O subconjunto de codificações possíveis aparece no submenu Codificações. Esta é uma lista de codificações que aparecem lá. O nome especial &quot;atual&quot; representa a opção da codificação atual.</long>
       </locale>
 
       <locale name="ro">
@@ -2005,8 +2005,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve pedir confirmação ao fechar janelas de terminal</short>
-         <long>Se deve pedir confirmação ao fechar uma janela de terminal que tem mais de uma aba aberta.</long>
+         <short>Se pede-se confirmação ao fechar janelas de terminal</short>
+         <long>Se pede-se confirmação ao fechar uma janela de terminal que tem mais de uma aba aberta.</long>
       </locale>
 
       <locale name="ro">
@@ -2419,7 +2419,7 @@
       <locale name="pt_BR">
          <default>Padrão</default>
          <short>Nome legível do perfil</short>
-         <long>Nome legível do nome do perfil.</long>
+         <long>Nome legível do perfil.</long>
       </locale>
 
       <locale name="ro">
@@ -2651,7 +2651,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut activer le clignotement du curseur</short>
+         <short>Indique s&apos;il faut activer le clignotement du curseur</short>
          <long>Si VRAI, activer le clignotement du curseur lorsque le terminal a le focus.</long>
       </locale>
 
@@ -2771,7 +2771,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve permitir cursor piscando</short>
+         <short>Se o cursor deve piscar</short>
          <long>Verdadeiro se o cursor deve piscar quando o terminal está com o foco, para janelas/abas desse perfil.</long>
       </locale>
 
@@ -2987,7 +2987,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut afficher la barre de menus dans les nouvelles fenêtres et les nouveaux onglets.</short>
+         <short>Indique s&apos;il faut afficher la barre de menus dans les nouvelles fenêtres et les nouveaux onglets.</short>
          <long>Vrai si la barre de menus doit être affichée dans les nouvelles fenêtres.</long>
       </locale>
 
@@ -3102,7 +3102,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve mostrar barra de menu em novas janelas/abas</short>
+         <short>Se deve-se mostrar a barra de menu em novas janelas/abas</short>
          <long>Verdadeiro se a barra de menu deve ser mostrada em novas janelas, para janelas/abas nesse perfil.</long>
       </locale>
 
@@ -3319,7 +3319,7 @@
 
       <locale name="fr">
          <short>Couleur par défaut du texte dans le terminal</short>
-         <long>Couleur par défaut du texte dans le terminal. Comme en HTML, cette couleur peut être spécifiée par un nom (« red ») ou par des valeurs hexadécimales (« #FF003F »).</long>
+         <long>Couleur par défaut du texte dans le terminal. Comme en HTML, cette couleur peut être indiquée par un nom (« red ») ou par des valeurs hexadécimales (« #FF003F »).</long>
       </locale>
 
       <locale name="ga">
@@ -3454,7 +3454,7 @@
 
       <locale name="pt_BR">
          <short>Cor do texto do terminal</short>
-         <long>Cor padrão de texto do terminal, como uma especificação de cores (pode ser no estilo HTML de 6 digitos, ou um nome como &quot;red&quot;, para vermelho).</long>
+         <long>Cor padrão de texto do terminal, como uma especificação de cor (pode ser no estilo HTML de 6 digitos, ou um nome como &quot;red&quot;, para vermelho).</long>
       </locale>
 
       <locale name="ro">
@@ -3670,7 +3670,7 @@
 
       <locale name="fr">
          <short>Couleur par défaut de l&apos;arrière-plan du terminal</short>
-         <long>Couleur par défaut de l&apos;arrière-plan du terminal. Comme en HTML, cette couleur peut être spécifiée par un nom (« red ») ou par des valeurs hexadécimales (« #FF003F »).</long>
+         <long>Couleur par défaut de l&apos;arrière-plan du terminal. Comme en HTML, cette couleur peut être indiquée par un nom (« red ») ou par des valeurs hexadécimales (« #FF003F »).</long>
       </locale>
 
       <locale name="ga">
@@ -3805,7 +3805,7 @@
 
       <locale name="pt_BR">
          <short>Cor de fundo do terminal</short>
-         <long>Cor padrão do fundo do terminal, como uma especificação de cores (pode ser no estilo HTML de 6 digitos, ou um nome como &quot;red&quot;, para vermelho).</long>
+         <long>Cor padrão do fundo do terminal, como uma especificação de cor (pode ser no estilo HTML de 6 dígitos, ou um nome como &quot;red&quot;, para vermelho).</long>
       </locale>
 
       <locale name="ro">
@@ -4389,7 +4389,7 @@
       <locale name="fr">
 	<default>Terminal</default>
          <short>Titre du terminal</short>
-         <long>Titre de la fenêtre ou de l&apos;onglet. Suivant le paramètre title_mode, ce titre peut être remplacé ou combiné avec le titre spécifié par l&apos;application lancée dans le terminal.</long>
+         <long>Titre de la fenêtre ou de l&apos;onglet. Suivant le paramètre title_mode, ce titre peut être remplacé ou combiné avec le titre indiqué par l&apos;application lancée dans le terminal.</long>
       </locale>
 
       <locale name="ga">
@@ -4807,7 +4807,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut autoriser le texte en gras</short>
+         <short>Indique s&apos;il faut autoriser le texte en gras</short>
          <long>Si VRAI, les applications seront autorisées à utiliser du texte en gras.</long>
       </locale>
 
@@ -4937,7 +4937,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve permitir texto em negrito</short>
+         <short>Se é permitido texto em negrito</short>
          <long>Se verdadeiro, permitir o uso de texto em negrito para aplicações no terminal.</long>
       </locale>
 
@@ -5277,8 +5277,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve silenciar a campainha do terminal</short>
-         <long>Se verdadeiro, não faz um barulho quando as aplicações enviarem a sequência de escape para o sino do terminal.</long>
+         <short>Se deve-se silenciar a campainha do terminal</short>
+         <long>Se verdadeiro, não produz som quando as aplicações enviarem a sequência de escape para a campainha do terminal.</long>
       </locale>
 
       <locale name="ro">
@@ -5620,7 +5620,7 @@
 
       <locale name="pt_BR">
          <short>Caracteres que são considerados &quot;parte de uma palavra&quot;</short>
-         <long>Quando selecionando texto por palavra, sequências desses caracteres serão consideradas palavras sozinhas. Intervalos podem ser dados como &quot;A-Z&quot;. Um hyphen literal (não expressando um intervalo) deve ser o primeiro caractere a ser dado.</long>
+         <long>Quando selecionando texto por palavra, seqüências desses caracteres serão consideradas palavras sozinhas. Intervalos podem ser dados como &quot;A-Z&quot;. Um hífen literal (não expressando um intervalo) deve ser o primeiro caractere a ser dado.</long>
       </locale>
 
       <locale name="ro">
@@ -6183,7 +6183,7 @@
 
       <locale name="fr">
          <short>Nombre de lignes à garder en mémoire pour le défilement</short>
-         <long>Nombre de lignes à garder en mémoire pour le défilement. Il sera possible de « remonter » dans le terminal de ce nombre de lignes; au-delà, les anciennes lignes seront oubliées. Ce paramètre est le facteur principal déterminant la mémoire utilisée par le terminal et doit être manié avec précaution.</long>
+         <long>Nombre de lignes à garder en mémoire pour le défilement. Il sera possible de « remonter » dans le terminal de ce nombre de lignes ; au-delà, les anciennes lignes seront oubliées. Ce paramètre est le facteur principal déterminant la mémoire utilisée par le terminal et doit être manié avec précaution.</long>
       </locale>
 
       <locale name="gl">
@@ -6302,8 +6302,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Número de linhas para manter ao voltar rolagem</short>
-         <long>Número de linhas de retorno a serem mantidas. Você pode rolar de volta no terminal por tantas linhas quanto forem especificadas aqui; linhas que não couberem no retorno serão descartadas. Tome cuidado com essa configuração; o seu principal objetivo é determinar quanto de memória o terminal usará.</long>
+         <short>Número de linhas a manter para rolagem</short>
+         <long>Número de linhas de rolagem a serem mantidas. Você pode rolar de volta no terminal o número de linhas especificado aqui; linhas que não couberem na memória serão descartadas. Tome cuidado com essa configuração; o seu principal objetivo é determinar quanto de memória o terminal usará.</long>
       </locale>
 
       <locale name="ro">
@@ -6511,7 +6511,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut se rendre en bas du terminal lors de l&apos;appui sur une touche</short>
+         <short>Indique s&apos;il faut se rendre en bas du terminal lors de l&apos;appui sur une touche</short>
          <long>Si VRAI, presser une touche fait défiler le terminal jusqu&apos;en bas.</long>
       </locale>
 
@@ -6636,8 +6636,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve rolar ao fundo quando uma tecla é pressionada</short>
-         <long>Se verdadeiro, pressionar uma tecla pula a barra de rolagem para a última linha.</long>
+         <short>Se deve-se atualizar o terminal quando uma tecla é pressionada</short>
+         <long>Se verdadeiro, pressionar uma tecla faz a barra de rolagem pular para a última linha.</long>
       </locale>
 
       <locale name="ro">
@@ -6851,7 +6851,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut se rendre en bas du terminal quand du nouveau texte est affiché</short>
+         <short>Indique s&apos;il faut se rendre en bas du terminal quand du nouveau texte est affiché</short>
          <long>Si VRAI, toute nouvelle sortie affichée fera défiler le terminal jusqu&apos;en bas.</long>
       </locale>
 
@@ -6966,8 +6966,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve rolar ao fundo quando não houver saída</short>
-         <long>Se verdadeiro, sempre que houver nova saída o terminal rolará até a última linha.</long>
+         <short>Se deve-se atualizar o terminal quando houver nova saída</short>
+         <long>Se verdadeiro, sempre que houver nova saída, o terminal rolará até o final.</long>
       </locale>
 
       <locale name="ro">
@@ -7291,7 +7291,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>O que fazer com o terminal quando o comando filho sai</short>
+         <short>O que fazer com o terminal quando o comando filho termina</short>
          <long>Valores possíveis são &quot;close&quot; para fechar o terminal e &quot;restart&quot; para reiniciar o comando.</long>
       </locale>
 
@@ -7511,7 +7511,7 @@
 
       <locale name="fr">
          <short>Indique s&apos;il faut lancer la commande dans le terminal comme un shell de connexion</short>
-         <long>Si VRAI, la commande lancée dans le terminal le sera comme un shell de login. (argv[0] sera précédé d&apos;un tiret.)</long>
+         <long>Si VRAI, la commande lancée dans le terminal le sera comme un shell de connexion (argv[0] sera précédé d&apos;un tiret).</long>
       </locale>
 
       <locale name="gl">
@@ -7625,8 +7625,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve executar o comando no terminal como shell de login</short>
-         <long>Se verdadeiro, o interpretador de comandos do terminal será lançado como uma shell de login. (argv[0] terá um hyphen na frente.)</long>
+         <short>Se deve-se executar o comando no terminal como shell de login</short>
+         <long>Se verdadeiro, o comando dentro do terminal será lançado como uma shell de login. (argv[0] terá um hífen na frente.)</long>
       </locale>
 
       <locale name="ro">
@@ -7950,7 +7950,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve atualizar registros de login quando iniciar o comando do terminal</short>
+         <short>Se deve-se atualizar registros de login quando se inicia o comando do terminal</short>
          <long>Se verdadeiro, os registros utmp e wtmp do sistema serão atualizados quando o comando dentro do terminal for lançado.</long>
       </locale>
 
@@ -8161,7 +8161,7 @@
 
       <locale name="fr">
          <short>Indique s&apos;il faut exécuter une commande personnalisée au lieu du shell</short>
-         <long>Lancer la commande spécifiée dans custom_command à la place du shell.</long>
+         <long>Lancer la commande indiquée dans custom_command à la place du shell.</long>
       </locale>
 
       <locale name="gl">
@@ -8285,7 +8285,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve executar um comando personalizado em vez da shell</short>
+         <short>Se deve-se executar um comando personalizado em vez da shell</short>
          <long>Se verdadeiro, o valor de custom_command será usado no lugar da shell atual.</long>
       </locale>
 
@@ -9687,7 +9687,7 @@
 
       <locale name="pt_BR">
          <short>Fonte</short>
-         <long>Um nome de fonte do X. Veja o manual do X (digite &quot;man X&quot;) para mais detalhes no formato de fontes do X.</long>
+         <long>Um nome de fonte do X. Veja o manual do X (digite &quot;man X&quot;) para mais detalhes sobre o formato dos nomes das fontes do X.</long>
       </locale>
 
       <locale name="ro">
@@ -11111,8 +11111,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se a imagem de fundo deve ser rolada com o terminal</short>
-         <long>Se verdadeiro, rolar a imagem de fundo com o texto de frente; se falso, manter a imagem em uma posição fixa e rolar o texto sobre ela.</long>
+         <short>Se a imagem de fundo deve mover com a tela</short>
+         <long>Se verdadeiro, move a imagem de fundo junto com o texto; se falso, mantem a imagem em uma posição fixa e move o texto sobre ela.</long>
       </locale>
 
       <locale name="ro">
@@ -11460,7 +11460,7 @@
 
       <locale name="pt_BR">
          <short>Quanto escurecer a imagem de fundo</short>
-         <long>Um valor entre 0.0 e 1.0 indica quanto escurecer a imagem de fundo. 0.0 significa não escurecer, 1.0 significa totalmente escuro. Na implementação atual só existem dois níveis de escurecimento possíveis, então esta opção funciona como um booleano, onde 0.0 desativa o escurecimento.</long>
+         <long>Um valor entre 0.0 e 1.0 indica o quanto escurecer a imagem de fundo. 0.0 significa não escurecer, 1.0 significa totalmente escuro. Na implementação atual só existem dois níveis de escurecimento possíveis, então esta opção se comporta como uma chave, onde 0.0 desativa o escurecimento.</long>
       </locale>
 
       <locale name="ro">
@@ -12167,7 +12167,7 @@
 
       <locale name="pt_BR">
          <short>Efeito da tecla Delete</short>
-         <long>Define qual o código que a tecla delete gera. Valores possíveis são &quot;ascii-del&quot; para o caractere ASCII DEL, &quot;control-h&quot; para Control-H (Também conhecido como caractere ASCII BS), &quot;escape-sequence&quot; para a sequência de escape tipicamente ligada ao backspace ou delete. &quot;escape-sequence&quot; é normalmente considerada a configuração correta para a tecla Delete.</long>
+         <long>Define qual o código que a tecla delete gera. Valores possíveis são &quot;ascii-del&quot; para o caractere ASCII DEL, &quot;control-h&quot; para Control-H (Também conhecido como caractere ASCII BS), &quot;escape-sequence&quot; para a seqüência de escape tipicamente ligada ao backspace ou delete. &quot;escape-sequence&quot; é normalmente considerada a configuração correta para a tecla Delete.</long>
       </locale>
 
       <locale name="ro">
@@ -12390,7 +12390,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut utiliser les couleurs du thème pour le terminal</short>
+         <short>Indique s&apos;il faut utiliser les couleurs du thème pour le terminal</short>
          <long>Si VRAI, les couleurs du thème utilisées pour les boîtes de texte seront employées pour le terminal (à la place de celles indiquées par l&apos;utilisateur).</long>
       </locale>
 
@@ -12505,7 +12505,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve usar as cores do tema para o widget do terminal</short>
+         <short>Se deve-se usar as cores do tema para o widget do terminal</short>
          <long>Se verdadeiro, o esquema de cores do tema usado para caixas de texto será usado para o terminal, ao invés das cores fornecidas pelo usuário.</long>
       </locale>
 
@@ -12705,7 +12705,7 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut désactiver l&apos;anti-crénelage an l&apos;absence de l&apos;extension X RENDER</short>
+         <short>Indique s&apos;il faut désactiver l&apos;anti-crénelage en l&apos;absence de l&apos;extension X RENDER</short>
          <long>Si VRAI, le lissage des polices sera désactivé lors d&apos;un lancement sans l&apos;extension X RENDER. Celle-ci permet de fournir une amélioration considérable des performances dans ce genre de situations.</long>
       </locale>
 
@@ -12795,8 +12795,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve desabilitar anti-aliasing quando sem a extensão RENDER do X</short>
-         <long>Se verdadeiro, anti-aliasing de fontes será desabilitado quando rodando sem a extensão RENDER do X, o que resulta em um aumento considerável de desempenho nessas situações.</long>
+         <short>Se desabilita-se suavização de fontes quando sem a extensão RENDER do X</short>
+         <long>Se verdadeiro, suavização de fontes será desabilitado quando executado sem a extensão RENDER do X, o que resulta em um aumento considerável de desempenho nessas situações.</long>
       </locale>
 
       <locale name="ro">
@@ -12986,8 +12986,8 @@
       </locale>
 
       <locale name="fr">
-         <short>Indique si il faut utiliser la police système</short>
-         <long>Si VRAI, le terminal utilisera la police spécifiée par desktop-global dans le cas où elle est à espacement fixe (et la police la plus ressemblante dans le cas contraire).</long>
+         <short>Indique s&apos;il faut utiliser la police système</short>
+         <long>Si VRAI, le terminal utilisera la police indiquée par desktop-global dans le cas où elle est à espacement fixe (et la police la plus ressemblante dans le cas contraire).</long>
       </locale>
 
       <locale name="gl">
@@ -13111,8 +13111,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve usar a fonte do sistema</short>
-         <long>Se verdadeiro, o terminal usará a fonte padrão do desktop se ela for mono-espaçada (e a fonte mais similar que aparecer, se não).</long>
+         <short>Se deve-se usar a fonte do sistema</short>
+         <long>Se verdadeiro, o terminal usará a fonte padrão do desktop se ela for monoespaçada (ou a fonte mais próxima que ele conseguir caso contrário).</long>
       </locale>
 
       <locale name="ro">
@@ -13399,8 +13399,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Destacar desafios S/Key</short>
-         <long>Mostrar um diálogo quando uma solicitação de resposta a um desafio S/Key for detectada e clicada. Digitar uma senha no diálogo a enviará para o terminal.</long>
+         <short>Destacar desafios de S/Key</short>
+         <long>Mostrar uma caixa de diálogo quando uma solicitação de resposta a um desafio de S/Key for detectada e clicada. Digitar uma senha na caixa a enviará para o terminal.</long>
       </locale>
 
       <locale name="ro">
@@ -13733,8 +13733,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para abrir uma nova aba</short>
-         <long>Tecla de atalho para abrir uma nova aba. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para abrir uma nova aba</short>
+         <long>Atalho de teclado para abrir uma nova aba. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -14080,8 +14080,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para abrir uma nova janela</short>
-         <long>Tecla de atalho para abrir uma nova janela. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para abrir uma nova janela</short>
+         <long>Atalho de teclado para abrir uma nova janela. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -14427,8 +14427,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho parar criar um novo perfil</short>
-         <long>Tecla de atalho para abrir o diálogo de criação de perfil. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado parar criar um novo perfil</short>
+         <long>Atalho de teclado para abrir o diálogo de criação de perfil. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -14774,8 +14774,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para fechar uma aba</short>
-         <long>Tecla de atalho para fechar uma aba. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para fechar uma aba</short>
+         <long>Atalho de teclado para fechar uma aba. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -15121,8 +15121,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para fechar uma janela</short>
-         <long>Tecla de atalho para fechar uma janela. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para fechar uma janela</short>
+         <long>Atalho de teclado para fechar uma janela. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -15470,8 +15470,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para copiar texto</short>
-         <long>Tecla de atalho para copiar o texto selecionado para a área de transferência. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para copiar texto</short>
+         <long>Atalho de teclado para copiar o texto selecionado para a área de transferência. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -15819,8 +15819,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para colar texto</short>
-         <long>Tecla de atalho para colar o conteúdo da área de transferência no terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para colar texto</short>
+         <long>Atalho de teclado para colar o conteúdo da área de transferência no terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -16166,8 +16166,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para alternat o modo de tela cheia</short>
-         <long>Tecla de atalho para alternar modo de tela cheia. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para alternar modo de tela cheia</short>
+         <long>Atalho de teclado para alternar modo de tela cheia. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -16511,8 +16511,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para alternar a visibilidade da barra de menu</short>
-         <long>Tecla de atalho para alternar a visibilidade da barra de menus. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para alternar visibilidade da barra de menu</short>
+         <long>Atalho de teclado para alternar a visibilidade da barra de menus. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -16857,8 +16857,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para definir o título do terminal</short>
-         <long>Tecla de atalho para definir título do terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para definir o título do terminal</short>
+         <long>Atalho de teclado para definir título do terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -17203,8 +17203,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para resetar o terminal</short>
-         <long>Tecla de atalho para resetar o terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para restaurar o terminal</short>
+         <long>Atalho de teclado para resetar o terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -17549,8 +17549,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para resetar e limpar o terminal</short>
-         <long>Tecla de atalho para resetar e limpar o terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para restaurar e limpar o terminal</short>
+         <long>Atalho de teclado para resetar e limpar o terminal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -17896,8 +17896,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para ir para a aba anterior</short>
-         <long>Tecla de atalho para mudar para a aba anterior. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para ir para a aba anterior</short>
+         <long>Atalho de teclado para mudar para a aba anterior. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -18243,8 +18243,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para ir para a próxima aba</short>
-         <long>Tecla de atalho para mudar para a próxima aba. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para ir para a próxima aba</short>
+         <long>Atalho de teclado para mudar para a próxima aba. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -18546,7 +18546,7 @@
 
       <locale name="pt_BR">
          <short>Atalho para mover a aba atual para a esquerda.</short>
-         <long>Tecla de atalho para mover a aba atual para a esquerda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mover a aba atual para a esquerda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -18833,7 +18833,7 @@
 
       <locale name="pt_BR">
          <short>Atalho para mover a aba atual para a direita.</short>
-         <long>Tecla de atalho para mover a aba atual para a direita. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mover a aba atual para a direita. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -19118,8 +19118,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Atalho para destacar a aba atual.</short>
-         <long>Tecla de atalho para destacar a aba atual. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho para desvincular a aba atual.</short>
+         <long>Atalho de teclado para desvincular a aba atual. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -19456,7 +19456,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 1</short>
-         <long>Tecla de atalho para mudar para aba 1. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 1. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -19803,7 +19803,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 2</short>
-         <long>Tecla de atalho para mudar para aba 2. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 2. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -20150,7 +20150,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 3</short>
-         <long>Tecla de atalho para mudar para aba 3. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 3. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a expressão especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -20497,7 +20497,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 4</short>
-         <long>Tecla de atalho para mudar para aba 4. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 4. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -20844,7 +20844,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 5</short>
-         <long>Tecla de atalho para mudar para aba 5. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 5. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -21191,7 +21191,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 6</short>
-         <long>Tecla de atalho para mudar para aba 6. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 6. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -21538,7 +21538,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 7</short>
-         <long>Tecla de atalho para mudar para aba 7. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 7. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -21885,7 +21885,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 8</short>
-         <long>Tecla de atalho para mudar para aba 8. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 8. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -22232,7 +22232,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 9</short>
-         <long>Tecla de atalho para mudar para aba 9. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 9. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -22579,7 +22579,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 10</short>
-         <long>Tecla de atalho para mudar para aba 10. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 10. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -22926,7 +22926,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 11</short>
-         <long>Tecla de atalho para mudar para aba 11. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 11. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -23273,7 +23273,7 @@
 
       <locale name="pt_BR">
          <short>Atalho de teclado para ir para aba 12</short>
-         <long>Tecla de atalho para mudar para aba 12. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <long>Atalho de teclado para mudar para aba 12. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -23619,8 +23619,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para chamar a ajuda</short>
-         <long>Tecla de atalho para abrir a ajuda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para chamar a ajuda</short>
+         <long>Atalho de teclado para abrir a ajuda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -23966,8 +23966,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para aumentar a fonte</short>
-         <long>Tecla de atalho para aumentar a fonte. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para aumentar a fonte</short>
+         <long>Atalho de teclado para aumentar a fonte. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar esta opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para esta ação.</long>
       </locale>
 
       <locale name="ro">
@@ -24313,8 +24313,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para diminuir a fonte</short>
-         <long>Tecla de atalho para diminuir a fonte. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para diminuir a fonte</short>
+         <long>Atalho de teclado para diminuir a fonte. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
@@ -24660,8 +24660,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Tecla de atalho para colocar a fonte em tamanho normal</short>
-         <long>Tecla de atalho para fonte tamanho normal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+         <short>Atalho de teclado para colocar a fonte em tamanho normal</short>
+         <long>Atalho de teclado para fonte tamanho normal. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você mudar a opção para a palavra especial &quot;disabled&quot;, não haverá atalho de teclado para essa ação.</long>
       </locale>
 
       <locale name="ro">
