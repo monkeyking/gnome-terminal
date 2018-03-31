@@ -1,7 +1,7 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[3])
+m4_define([gt_version_minor],[4])
 m4_define([gt_version_micro],[0])
-m4_define([gt_version_extra],[])
+m4_define([gt_version_extra],[.1])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
 m4_define([gt_api_version],[0])
@@ -34,8 +34,6 @@ IT_PROG_INTLTOOL([0.40.0])
 
 GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
-GNOME_COMPILE_WARNINGS([maximum])
-#GNOME_MAINTAINER_MODE_DEFINES
 
 AM_GLIB_GNU_GETTEXT
 
@@ -46,30 +44,25 @@ GSETTINGS_DESKTOP_SCHEMAS_REQUIRED=0.1.0
 
 AC_MSG_CHECKING([which gtk+ version to compile against])
 AC_ARG_WITH([gtk],
-  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 3.0)])],
+  [AS_HELP_STRING([--with-gtk=3.0],[which gtk+ version to compile against (default: 3.0)])],
   [case "$with_gtk" in
-     2.0|3.0) ;;
-     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
+     3.0) ;;
+     2.0) AC_MSG_ERROR([unsupported gtk version $with_gtk specified]) ;;
+     *) AC_MSG_ERROR([invalid gtk version $with_gtk specified]) ;;
    esac],
   [with_gtk=3.0])
 AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
-  2.0) GTK_API_VERSION=2.0
-       GTK_REQUIRED=2.18.0
-       VTE_PC_VERSION=
-       VTE_REQUIRED=0.26.0
-       ;;
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.0.0
        VTE_PC_VERSION=-2.90
-       VTE_REQUIRED=0.27.3
+       VTE_REQUIRED=0.30.0
        ;;
 esac
 
 AC_MSG_CHECKING([for GDK target])
 case "$with_gtk" in
-  2.0) GDK_TARGET="$($PKG_CONFIG --variable target gdk-$GTK_API_VERSION)" ;;
   3.0) for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
          GDK_TARGET="$target"
          break
@@ -167,6 +160,10 @@ AC_SUBST([TERMINAL_MAJOR_VERSION],[gt_version_major])
 AC_SUBST([TERMINAL_MINOR_VERSION],[gt_version_minor])
 AC_SUBST([TERMINAL_MICRO_VERSION],[gt_version_micro])
 AC_SUBST([TERMINAL_API_VERSION],[gt_api_version])
+
+AC_SUBST([AM_CPPFLAGS],"$AM_CPPFLAGS -DGLIB_DISABLE_DEPRECATION_WARNINGS"])
+AC_SUBST([AM_CFLAGS])
+AC_SUBST([AM_LDFLAGS])
 
 # ****************************
 
