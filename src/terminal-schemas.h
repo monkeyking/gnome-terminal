@@ -56,7 +56,6 @@ G_BEGIN_DECLS
 #define TERMINAL_PROFILE_SCROLLBAR_POLICY_KEY           "scrollbar-policy"
 #define TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE_KEY        "scroll-on-keystroke"
 #define TERMINAL_PROFILE_SCROLL_ON_OUTPUT_KEY           "scroll-on-output"
-#define TERMINAL_PROFILE_UPDATE_RECORDS_KEY             "update-records"
 #define TERMINAL_PROFILE_USE_CUSTOM_COMMAND_KEY         "use-custom-command"
 #define TERMINAL_PROFILE_USE_SKEY_KEY                   "use-skey"
 #define TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY            "use-system-font"
@@ -73,6 +72,7 @@ G_BEGIN_DECLS
 #define TERMINAL_SETTING_NEW_TERMINAL_MODE_KEY          "new-terminal-mode"
 #define TERMINAL_SETTING_SCHEMA_VERSION                 "schema-version"
 #define TERMINAL_SETTING_SHELL_INTEGRATION_KEY          "shell-integration-enabled"
+#define TERMINAL_SETTING_TAB_POLICY_KEY                 "tab-policy"
 #define TERMINAL_SETTING_TAB_POSITION_KEY               "tab-position"
 
 #define TERMINAL_SETTINGS_LIST_LIST_KEY                 "list"

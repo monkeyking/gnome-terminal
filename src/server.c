@@ -44,6 +44,8 @@
 
 static char *app_id = NULL;
 
+#define INACTIVITY_TIMEOUT (100 /* ms */)
+
 static gboolean
 option_app_id_cb (const gchar *option_name,
                     const gchar *value,
@@ -101,6 +103,7 @@ increase_rlimit_nofile (void)
 enum {
   _EXIT_FAILURE_WRONG_ID = 7,
   _EXIT_FAILURE_NO_UTF8 = 8,
+  _EXIT_FAILURE_UNSUPPORTED_LOCALE = 9
 };
 
 int
@@ -118,7 +121,10 @@ main (int argc, char **argv)
     return _EXIT_FAILURE_WRONG_ID;
   }
 
-  setlocale (LC_ALL, "");
+  if (setlocale (LC_ALL, "") == NULL) {
+    g_printerr ("Locale not supported.\n");
+    return _EXIT_FAILURE_UNSUPPORTED_LOCALE;
+  }
 
   terminal_i18n_init (TRUE);
 
@@ -129,6 +135,10 @@ main (int argc, char **argv)
 
   /* Sanitise environment */
   g_unsetenv ("DBUS_STARTER_BUS_TYPE");
+
+  /* Not interested in silly debug spew polluting the journal, bug #749195 */
+  if (g_getenv ("G_ENABLE_DIAGNOSTIC") == NULL)
+    g_setenv ("G_ENABLE_DIAGNOSTIC", "0", TRUE);
 
 #ifndef ENABLE_DISTRO_PACKAGING
 #ifdef HAVE_UBUNTU
@@ -169,6 +179,9 @@ main (int argc, char **argv)
   /* Now we can create the app */
   app = terminal_app_new (app_id);
   g_free (app_id);
+
+  /* We stay around a bit after the last window closed */
+  g_application_set_inactivity_timeout (app, INACTIVITY_TIMEOUT);
 
   return g_application_run (app, 0, NULL);
 }
