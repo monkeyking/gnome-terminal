@@ -1,3 +1,138 @@
+commit 5740b4fd943824e942d93a86b0a91250065fd1b7
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Jun 10 17:54:39 2013 +0200
+
+    NEWS update
+
+ NEWS | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 67c8030bcd16fb10b517f974c0f7a19e30b5847f
+Author: Tomas Bzatek <tbzatek@redhat.com>
+Date:   Tue Aug 2 15:06:14 2011 +0200
+
+    Don't split URL having a colon (":") in the middle
+    
+    Properly handle links like
+    http://foo.bar/path/with/a/colon:foo
+    
+    This patch also avoids selecting trailing colon.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=640727
+    (cherry picked from commit 1eb9a8283fec7d1cc7492deb53d6705b52538b5c)
+
+ src/terminal-screen.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 5af1c4a07915c8aa43ceef42572d2d55d962043d
+Author: tuhaihe <wangdianjin@linuxdeepin.com>
+Date:   Thu Jun 6 12:22:15 2013 +0800
+
+    update Simplified Chinese (zh_CN) translation
+
+ po/zh_CN.po | 494 ++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 246 insertions(+), 248 deletions(-)
+
+commit bc564147dedad7d632afa06b61d5a9f39fb09795
+Author: Sandeep Sheshrao Shedmake <sshedmak@redhat.com>
+Date:   Wed Jun 5 15:32:48 2013 +0530
+
+    Updated Marathi Translations
+
+ po/mr.po | 235 +++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 99 insertions(+), 136 deletions(-)
+
+commit 03627411aa21591175d7402931c5a76f96095170
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Jun 1 19:16:15 2013 +0200
+
+    Version 3.8.3
+
+ NEWS | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 01d3dee839b3a6d99d07b58b83f1061a3f171396
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed May 29 13:31:37 2013 +0200
+
+    client: legacy: Fix crash when using deprecated smclient options
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=968140
+    (cherry picked from commit e7a9bc9445badb3b0d1375e05e3c75c648be41f6)
+
+ src/terminal-options.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 37f4772c08cc657dbb980820e9cee6dde5e583e2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat May 25 18:03:30 2013 +0200
+
+    screen: Don't merge the parent environment
+    
+    Make sure not to inherit the server's environment into the terminal child
+    processes, but instead only the environment as passed from the client.
+    (cherry picked from commit aaa515ee68e833437add3f4e30e79ed97f4f26d1)
+
+ configure.ac          | 2 +-
+ src/terminal-screen.c | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit c44effdcaafbd1de31a3591c89ae7fb4d371251d
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat May 25 18:00:36 2013 +0200
+
+    screen: Don't merge the parent environment
+    
+    Since vte already does this, there is no point in doing it before as well.
+    (cherry picked from commit e74c3e3fc9b330644a02ce2b7030defbb401a111)
+
+ src/terminal-screen.c | 7 -------
+ 1 file changed, 7 deletions(-)
+
+commit a47d9d258807521d05be2c6c1d0992163dabbb27
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat May 25 00:22:19 2013 +0200
+
+    window: Disconnect signal handler from the right object
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=966713
+    (cherry picked from commit 8cd6fb6ae915dca3cc8f8d420148c5e63202af79)
+
+ src/terminal-window.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 97e6b32fc39d0e19f2b430c11f88061295ad9592
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu May 23 19:21:34 2013 +0200
+
+    server: Only disable ubuntu modules on ubuntu
+    
+    Add build time check for ubuntu, and an --enable-distro-packaging configure
+    switch that will disable setting the env vars.
+    (cherry picked from commit 04d58702ff269343a3b8b992ff545b9bb3a76ae9)
+
+ configure.ac | 24 ++++++++++++++++++++++++
+ src/server.c | 10 +++++++---
+ 2 files changed, 31 insertions(+), 3 deletions(-)
+
+commit 0d3432a5037c59d00c7350fae6e8f19d2ffbdc5f
+Author: Shankar Prasad <svenkate@redhat.com>
+Date:   Tue May 14 15:50:06 2013 +0530
+
+    updated kn translations
+
+ po/kn.po | 541 ++++++++++++++++++++++++++++-----------------------------------
+ 1 file changed, 240 insertions(+), 301 deletions(-)
+
+commit 33268f313a800a9e14ee1b78666e28703a551756
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon May 13 20:16:49 2013 +0200
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit a598e30bee5a86a66cc8c7897ceb859cf9822db7
 Author: Christian Persch <chpe@gnome.org>
 Date:   Mon May 13 20:15:54 2013 +0200

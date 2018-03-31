@@ -1,5 +1,8 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Define if building a distro package */
+#undef ENABLE_DISTRO_PACKAGING
+
 /* Define to 1 to enable prefs migration from GConf to GSettings */
 #undef ENABLE_MIGRATION
 
@@ -56,6 +59,9 @@
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
+
+/* Define if building under ubuntu */
+#undef HAVE_UBUNTU
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
