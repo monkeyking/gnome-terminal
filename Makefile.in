@@ -152,8 +152,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(desktopdir)"
-DATA = $(desktop_DATA)
+am__installdirs = "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)"
+DATA = $(nodist_appdata_DATA) $(nodist_desktop_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -234,6 +234,7 @@ AM_CFLAGS = @AM_CFLAGS@
 AM_CPPFLAGS = @AM_CPPFLAGS@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AM_LDFLAGS = @AM_LDFLAGS@
+APPDATA_VALIDATE = @APPDATA_VALIDATE@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -250,6 +251,7 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DESKTOP_FILE_VALIDATE = @DESKTOP_FILE_VALIDATE@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -413,15 +415,22 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 desktopdir = $(datadir)/applications
 desktop_in_files = @PACKAGE@.desktop.in.in
-desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+DESKTOP_FILE_VALIDATE_FLAGS = 
+appdatadir = $(datadir)/appdata
+appdata_in_files = gnome-terminal.appdata.xml.in
+nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+APPDATA_VALIDATE_FLAGS = --nonet
 EXTRA_DIST = \
+	$(appdata_in_files)	\
 	ChangeLog.pre-2-23	\
 	ChangeLog.README	\
 	HACKING			\
 	$(NULL)
 
 CLEANFILES = \
-	$(desktop_DATA)	\
+	$(nodist_appdata_DATA) \
+	$(nodist_desktop_DATA) \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
@@ -505,9 +514,30 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
-install-desktopDATA: $(desktop_DATA)
+install-nodist_appdataDATA: $(nodist_appdata_DATA)
 	@$(NORMAL_INSTALL)
-	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
+	@list='$(nodist_appdata_DATA)'; test -n "$(appdatadir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(appdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(appdatadir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(appdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(appdatadir)" || exit $$?; \
+	done
+
+uninstall-nodist_appdataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nodist_appdata_DATA)'; test -n "$(appdatadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(appdatadir)'; $(am__uninstall_files_from_dir)
+install-nodist_desktopDATA: $(nodist_desktop_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(nodist_desktop_DATA)'; test -n "$(desktopdir)" || list=; \
 	if test -n "$$list"; then \
 	  echo " $(MKDIR_P) '$(DESTDIR)$(desktopdir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(desktopdir)" || exit 1; \
@@ -521,9 +551,9 @@ install-desktopDATA: $(desktop_DATA)
 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(desktopdir)" || exit $$?; \
 	done
 
-uninstall-desktopDATA:
+uninstall-nodist_desktopDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
+	@list='$(nodist_desktop_DATA)'; test -n "$(desktopdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(desktopdir)'; $(am__uninstall_files_from_dir)
 
@@ -814,11 +844,12 @@ distcleancheck: distclean
 	       $(distcleancheck_listfiles) ; \
 	       exit 1; } >&2
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
 all-am: Makefile $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(desktopdir)"; do \
+	for dir in "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -875,7 +906,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-desktopDATA
+install-data-am: install-nodist_appdataDATA install-nodist_desktopDATA
 
 install-dvi: install-dvi-recursive
 
@@ -921,30 +952,44 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-desktopDATA
+uninstall-am: uninstall-nodist_appdataDATA \
+	uninstall-nodist_desktopDATA
 
-.MAKE: $(am__recursive_targets) all install-am install-strip
+.MAKE: $(am__recursive_targets) all check-am install-am install-strip
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
-	am--refresh check check-am clean clean-cscope clean-generic \
-	clean-libtool cscope cscopelist-am ctags ctags-am dist \
-	dist-all dist-bzip2 dist-gzip dist-lzip dist-shar dist-tarZ \
-	dist-xz dist-zip distcheck distclean distclean-generic \
-	distclean-hdr distclean-libtool distclean-tags distcleancheck \
-	distdir distuninstallcheck dvi dvi-am html html-am info \
-	info-am install install-am install-data install-data-am \
-	install-desktopDATA install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-desktopDATA
+	am--refresh check check-am check-local clean clean-cscope \
+	clean-generic clean-libtool cscope cscopelist-am ctags \
+	ctags-am dist dist-all dist-bzip2 dist-gzip dist-lzip \
+	dist-shar dist-tarZ dist-xz dist-zip distcheck distclean \
+	distclean-generic distclean-hdr distclean-libtool \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man \
+	install-nodist_appdataDATA install-nodist_desktopDATA \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am tags tags-am uninstall uninstall-am \
+	uninstall-nodist_appdataDATA uninstall-nodist_desktopDATA
 
 	--without-nautilus-extension \
 	$(NULL)
 @INTLTOOL_DESKTOP_RULE@
+desktop-file-validate: $(nodist_desktop_DATA)
+	for f in $^; do \
+		$(DESKTOP_FILE_VALIDATE) $(DESKTOP_FILE_VALIDATE_FLAGS) $$f; \
+	done
+@INTLTOOL_XML_RULE@
+appdata-validate: $(nodist_appdata_DATA)
+	for f in $^; do \
+		$(APPDATA_VALIDATE) $(APPDATA_VALIDATE_FLAGS) $$f; \
+	done
+
+check-local: desktop-file-validate
 
 # Build ChangeLog from GIT  history
 ChangeLog:

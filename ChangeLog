@@ -1,3 +1,739 @@
+commit fde13860e3ebbeb25571eca9988693fff516f4c6
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:11:50 2014 +0100
+
+    build: Fix make distclean
+
+ Makefile.am | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 591e23d49d3d74af0112a674c6994d8de544962e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:03:18 2014 +0100
+
+    Version 3.12.0
+
+ NEWS         | 7 +++++++
+ configure.ac | 4 ++--
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+commit 8f39c77175dbc7fb412c40b2239c067cf61f95cc
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 24 15:03:01 2014 +0100
+
+    build: Bump vte req version to stable
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9032006c626cf9fca4a55dc42e6dc61a9ec303b8
+Author: Jiro Matsuzawa <jmatsuzawa@gnome.org>
+Date:   Mon Mar 24 20:07:59 2014 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 763 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 425 insertions(+), 338 deletions(-)
+
+commit 9f0ad57292851f23497635dee4972d47ec02b8ee
+Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
+Date:   Sun Mar 23 09:39:12 2014 +0100
+
+    Updated Serbian translation
+
+ po/sr.po       | 997 +++++++++++++++++++++++++++++++--------------------------
+ po/sr@latin.po | 997 +++++++++++++++++++++++++++++++--------------------------
+ 2 files changed, 1098 insertions(+), 896 deletions(-)
+
+commit a6c8a3d0cf752221ee7cc8ba989a1db6dc3b1b2c
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Sat Mar 22 20:12:28 2014 +0000
+
+    Updated German translation
+
+ help/de/de.po | 3301 +++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 2015 insertions(+), 1286 deletions(-)
+
+commit ecf31ee1eb8b161a470e320a1c1c22203277fd35
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Sat Mar 22 18:59:10 2014 +0000
+
+    Updated German translation
+
+ po/de.po | 505 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 293 insertions(+), 212 deletions(-)
+
+commit 6dcf007f791779da3200d78f5ece9477c66b3805
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Sat Mar 22 14:07:48 2014 +0100
+
+    Updated Basque language
+
+ po/eu.po | 1231 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 673 insertions(+), 558 deletions(-)
+
+commit dadda7c5228facf77ba0946640c1761ab1dd21f8
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sat Mar 22 10:03:32 2014 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 354 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 206 insertions(+), 148 deletions(-)
+
+commit ebd1984fed713b56b58b389b688f56219ae24798
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Fri Mar 21 15:02:12 2014 +0100
+
+    Fix tags in French help translation
+
+ help/fr/fr.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit b3519a790ce9ebffe263dfd00b28dc1bed8402d4
+Author: maria thukididu <marablack3@gmail.com>
+Date:   Fri Mar 21 10:24:00 2014 +0200
+
+    Updated Greek translation
+
+ po/el.po | 4443 ++++----------------------------------------------------------
+ 1 file changed, 219 insertions(+), 4224 deletions(-)
+
+commit 2c24d38187da659e1297182b9b1bd935a0a3ea70
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Mar 20 14:40:30 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b54311903d4552e0bf89cbcc98a8e444c01b096f
+Author: Ask H. Larsen <asklarsen@gmail.com>
+Date:   Wed Mar 19 22:41:50 2014 +0100
+
+    Updated Danish translation
+
+ po/da.po | 1037 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 582 insertions(+), 455 deletions(-)
+
+commit cb3717fbd8a90cd9dd58390cc6dfa2fc3d57e1c6
+Author: Attila Hammer <hammera@pickup.hu>
+Date:   Tue Mar 18 01:48:36 2014 +0000
+
+    Updated Hungarian translation
+
+ help/hu/hu.po | 1277 ++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 756 insertions(+), 521 deletions(-)
+
+commit 687c02663e19e0e211bdc6d36dd763ec84c2c827
+Author: A S Alam <apreet.alam@gmail.com>
+Date:   Mon Mar 17 16:51:02 2014 -0500
+
+    update Punjabi Translation 17March2014: Alam
+
+ po/pa.po | 1270 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 708 insertions(+), 562 deletions(-)
+
+commit b745dcf12595db13c273a6a19c39faf30eb3395a
+Author: Ville-Pekka Vainio <vpvainio@iki.fi>
+Date:   Sun Mar 16 20:36:29 2014 +0200
+
+    Finnish translation update by Jiri Grönroos
+
+ po/fi.po | 89 +++++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 57 insertions(+), 32 deletions(-)
+
+commit ed52404d530dd79e5f6f7d126736da3211f7f8e1
+Author: AlainLojewski <allomervan@gmail.com>
+Date:   Sun Mar 16 17:51:42 2014 +0000
+
+    Updated French translation
+
+ help/fr/fr.po | 579 ++++++++++++++++++++++++----------------------------------
+ 1 file changed, 237 insertions(+), 342 deletions(-)
+
+commit a7a271649666d32b1eba6c09045c4b4d5ae7abfc
+Author: Duarte Loreto <happyguy_pt@hotmail.com>
+Date:   Sat Mar 15 23:33:30 2014 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 771 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 415 insertions(+), 356 deletions(-)
+
+commit 803682732b2fe31ae2dca3665f42a79c52fbec56
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Sat Mar 15 22:17:42 2014 +0200
+
+    Updated Ukrainian translation
+
+ po/uk.po | 358 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 197 insertions(+), 161 deletions(-)
+
+commit 0667007dc5e838eac6c8b249f6105d925196e0f0
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   Sat Mar 15 18:15:37 2014 +0100
+
+    Updated French translation
+
+ po/fr.po | 82 +++++++++++++++++++++-------------------------------------------
+ 1 file changed, 27 insertions(+), 55 deletions(-)
+
+commit 0690436ded8559602c790cf1e02d740e0c8ff713
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Sat Mar 15 06:13:58 2014 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 692 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 375 insertions(+), 317 deletions(-)
+
+commit 829d3eddf6f66b4e28a73bd08a08d0ace60e9ca7
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Fri Mar 14 16:38:40 2014 +0100
+
+    Updated Polish translation
+
+ po/pl.po | 870 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 466 insertions(+), 404 deletions(-)
+
+commit 4a7f64ee3088be85096bf4ed39198d892e5805b2
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Mar 11 21:19:34 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 109 +++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 62 insertions(+), 47 deletions(-)
+
+commit 9384fb1ab6247e50cf7ed4a3f28e98c0d474980b
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Tue Mar 11 14:34:23 2014 +0400
+
+    Fixed Russian translation
+
+ po/ru.po | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit d193f8cbdc31b3de8bb2443d091616dc4452e6e2
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Tue Mar 11 13:09:59 2014 +0400
+
+    Updated Russian translation
+
+ po/ru.po | 386 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 223 insertions(+), 163 deletions(-)
+
+commit 776ad92b0f88cbcb112b81e6049e698a109ff415
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Mar 10 16:43:18 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 130 ++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 67 insertions(+), 63 deletions(-)
+
+commit aeb46519e3bf9995c77ca840d6954a8ba656bed4
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Mon Mar 10 15:15:06 2014 +0100
+
+    Fix tags in French help translation
+
+ help/fr/fr.po | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit ad78b721400fc3bffcb1a21d19b127699950217e
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   Sun Mar 9 09:11:44 2014 +0400
+
+    Fixed Russian doc
+
+ help/ru/ru.po | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 648c1b45a367ee01cbce5fbea5ec1cf973566810
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sun Mar 9 12:51:55 2014 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 87 ++++++++++++++++++++++++++++++++++++-----------------------
+ po/zh_TW.po | 89 ++++++++++++++++++++++++++++++++++++++-----------------------
+ 2 files changed, 110 insertions(+), 66 deletions(-)
+
+commit d4589e8d403091cf599bc0aa4372eab084bc8214
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sat Mar 8 21:57:29 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 55 +++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 33 insertions(+), 22 deletions(-)
+
+commit 827c0a821bb64be12b7d56372c145eed2ca34f2b
+Author: Marek Černocký <marek@manet.cz>
+Date:   Sat Mar 8 20:51:45 2014 +0100
+
+    Fixed special char
+
+ help/cs/cs.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 745157046f8dc1675a5b943a67a642b1ced39e2e
+Author: Sphinx Jiang <yishanj13@gmail.com>
+Date:   Sat Mar 8 14:45:24 2014 +0000
+
+    Updated Chinese (China) translation
+
+ po/zh_CN.po | 84 ++++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 50 insertions(+), 34 deletions(-)
+
+commit 3155b3fd52a49b5a4780ee88de74912d36a963e7
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Sat Mar 8 12:10:06 2014 +0200
+
+    Updated Latvian translation
+
+ po/lv.po | 957 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 536 insertions(+), 421 deletions(-)
+
+commit 90e4fa2f9d62332394404138820b6e82375de351
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Fri Mar 7 23:26:46 2014 +0000
+
+    Add note to help about tab/window prefs
+
+ help/C/gs-tabs.page | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+commit 776b604790c76b9301e98e67e9955ae0784bf127
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Mar 7 16:47:06 2014 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po | 393 ++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 245 insertions(+), 148 deletions(-)
+
+commit d150492ab72ffb77c9225599f33cc1526539aeaf
+Author: Gábor Kelemen <kelemeng@gnome.hu>
+Date:   Fri Mar 7 01:27:35 2014 +0000
+
+    Updated Hungarian translation
+
+ po/hu.po | 1286 +++++++++++++++++++-------------------------------------------
+ 1 file changed, 395 insertions(+), 891 deletions(-)
+
+commit 0c9eec8848db005802d6968549d970f2ec6fc317
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Mar 6 18:24:26 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 44 ++++++++++++++++++++++----------------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
+
+commit 091c5464151bbe5462fe639246a53b536fac5aa4
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Thu Mar 6 10:01:31 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 64 ++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 40 insertions(+), 24 deletions(-)
+
+commit 9df6fac92ec20eb28f84144e340f9efb3aedc648
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Thu Mar 6 09:52:34 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+commit 463a0f68a668957b89f41445b941b80da951abfc
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   Thu Mar 6 03:21:47 2014 +0900
+
+    Updated Korean translation
+
+ po/ko.po | 869 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 463 insertions(+), 406 deletions(-)
+
+commit b4bb52e7ac458a915a490126953e70921b780e43
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Wed Mar 5 16:58:56 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 60 ++++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 38 insertions(+), 22 deletions(-)
+
+commit ee3a5a8786d2e4c7dbc4b5c3e95b626100ee5a39
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Wed Mar 5 06:59:48 2014 +0100
+
+    Updated Norwegian bokmål translation
+
+ po/nb.po | 62 +++++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 37 insertions(+), 25 deletions(-)
+
+commit f22900e6c9e65ac0fd48f3e0342e9a363fee44d4
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Wed Mar 5 00:23:56 2014 +0100
+
+    Update French translation with file from gnome-3-10
+
+ help/Makefile.am |    2 +-
+ help/fr/fr.po    | 4028 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 4029 insertions(+), 1 deletion(-)
+
+commit bfdd25e857e331bffb4d2e263aa45d57f0173a21
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Tue Mar 4 20:14:41 2014 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 388 +++++++++++++++++++++++++++++++----------------------------
+ po/zh_TW.po | 392 ++++++++++++++++++++++++++++++++----------------------------
+ 2 files changed, 418 insertions(+), 362 deletions(-)
+
+commit 6509484d2b05348fab33c4159b33a7d21225afa5
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Mon Mar 3 22:57:02 2014 +0000
+
+    Updated French translation
+
+ po/fr.po | 861 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 478 insertions(+), 383 deletions(-)
+
+commit f5735134910796d0538fc4565d8c5b345b5f1199
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Mar 3 21:53:49 2014 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 46 ++++++++++++++++++++++++++--------------------
+ 1 file changed, 26 insertions(+), 20 deletions(-)
+
+commit 958fce64ba2cebf124f149599946d3796aacf58c
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Mon Mar 3 22:48:36 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 70 ++++++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 44 insertions(+), 26 deletions(-)
+
+commit fbc9e952deb9ba995c5180de5f3e21304d82c2f4
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 20:32:19 2014 +0000
+
+    window: Use "Terminal" in Tabs menu
+    
+    Reffer to tabs as "Terminal" because that's already done in the File
+    menu.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=725252
+
+ src/terminal-accels.c | 10 +++++-----
+ src/terminal-window.c | 10 +++++-----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+commit d37f22f12f09ffc0253842d2d410d871e3af5d92
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Mar 3 03:07:16 2014 +0100
+
+    utils: Fix double-free in error path
+
+ src/terminal-util.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 4822d5b708535c068b9cdd1ea0dbc627aa8f5774
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Mon Mar 3 17:44:25 2014 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 302 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 176 insertions(+), 126 deletions(-)
+
+commit 1c35b6ee7fc150961d23f424d927fc29885d2804
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Mon Mar 3 16:03:18 2014 +0700
+
+    Updated Thai translation
+
+ po/th.po | 285 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 166 insertions(+), 119 deletions(-)
+
+commit 7c54b85a0979c6aef861e5d9c7d6c1bc9ec9ca7f
+Author: Ville-Pekka Vainio <vpvainio@iki.fi>
+Date:   Sat Mar 1 20:16:35 2014 +0200
+
+    Finnish translation update by Jiri Grönroos
+
+ po/fi.po | 428 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 232 insertions(+), 196 deletions(-)
+
+commit 00440df2bef37cc8d32909452494dc0a936cdeae
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Fri Feb 28 22:29:27 2014 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 289 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 169 insertions(+), 120 deletions(-)
+
+commit e2a34629ab445f7bb858d3529d9308429c45315f
+Author: Marek Černocký <marek@manet.cz>
+Date:   Thu Feb 27 22:51:50 2014 +0100
+
+    Updated Czech translation
+
+ help/cs/cs.po | 285 +++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 154 insertions(+), 131 deletions(-)
+
+commit 204daea9e392a8433fdbbe93d5d9f19a8a2d23c2
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Thu Feb 27 23:01:58 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 33 +++++++++++++++++++++------------
+ 1 file changed, 21 insertions(+), 12 deletions(-)
+
+commit 873ff69400f8f5e72d86c0d03dacdf15985e3cd7
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Thu Feb 27 18:24:00 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 32 ++++++++++++++++++++++----------
+ 1 file changed, 22 insertions(+), 10 deletions(-)
+
+commit c4078cf67523c8c7cf21a137419d51b921878245
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Feb 27 12:42:53 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 34 ++++++++++++++++++++++------------
+ 1 file changed, 22 insertions(+), 12 deletions(-)
+
+commit 2f61577bb5ceb2fd118fa1ce9de077bab78a5660
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 19:23:18 2014 +0000
+
+    Add a help page about the dark theme variant
+
+ help/C/pref-theme.page | 42 ++++++++++++++++++++++++++++++++++++++++++
+ help/Makefile.am       |  1 +
+ 2 files changed, 43 insertions(+)
+
+commit 52813f5594c0d03a7b288e5f7c5edda0e2308741
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 19:16:07 2014 +0000
+
+    Add Ctrl shortcut detail for New Terminal menuitem
+
+ help/C/pref-tab-window.page | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit d51870ac9eb0bd6ea4d9736761ce32a65d0f3132
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 19:08:35 2014 +0000
+
+    Update tab help for 3.12
+    
+    Remove tab renaming, see bug 720693. Add tab preferences in new page.
+
+ help/C/gs-tabs.page         | 42 ++++++++++++++++++++++--------------------
+ help/C/pref-tab-window.page | 44 ++++++++++++++++++++++++++++++++++++++++++++
+ help/Makefile.am            |  1 +
+ 3 files changed, 67 insertions(+), 20 deletions(-)
+
+commit ba436f96dcc0814d681135752aa7292785d644fd
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 17:38:41 2014 +0000
+
+    Give terminal a better desc on h.g.o/users/
+
+ help/C/index.page | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 87208a69143a4d66380dec1f079a9c54c32666c1
+Author: Ekaterina Gerasimova <kittykat3756@gmail.com>
+Date:   Wed Feb 26 17:35:42 2014 +0000
+
+    Update the introduction desc in help
+
+ help/C/introduction.page | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+commit da887cd0781b4a02dc346d603e26f841a26ba454
+Author: Marek Černocký <marek@manet.cz>
+Date:   Wed Feb 26 11:29:22 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 26 +++++++++++++++++++++-----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
+
+commit 47bfb3893deb6975851e635e9e949ad6b9596cf2
+Author: Enrico Nicoletto <liverig@gmail.com>
+Date:   Tue Feb 25 16:29:03 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 40 +++++++++++++++++++++++++---------------
+ 1 file changed, 25 insertions(+), 15 deletions(-)
+
+commit 201f63c603cff124af8df6a36ca7b759c875fb27
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue Feb 25 13:55:11 2014 +0100
+
+    Added AppData file
+
+ gnome-terminal.appdata.xml.in | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit 7ca5feee1a7c72aaad66d07c63ded6b31e363e14
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:29:36 2014 +0100
+
+    build: Validate appdata file
+    
+    Add make target to validate appdata file. Not added to make check yet
+    since appdata-validate throws an invalid error on our appdata file.
+
+ Makefile.am  | 6 ++++++
+ configure.ac | 6 ++++++
+ 2 files changed, 12 insertions(+)
+
+commit c49f1fa47688ee4275965efba33318d499886211
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:29:36 2014 +0100
+
+    build: Validate desktop file on make check
+
+ Makefile.am  | 10 +++++++++-
+ configure.ac |  6 ++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+
+commit 67ac742580ac9ec685ddc3e12ccc5c77df725dd9
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:28:01 2014 +0100
+
+    appdata: Fix screenshots section
+
+ gnome-terminal.appdata.xml.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 9f321cbc9907acbf483bfd235031a8a4ad002738
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 24 23:11:41 2014 +0100
+
+    appdata: Add appdata file
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=708448
+
+ Makefile.am                   |  6 ++++++
+ gnome-terminal.appdata.xml.in | 38 ++++++++++++++++++++++++++++++++++++++
+ po/POTFILES.in                |  1 +
+ 3 files changed, 45 insertions(+)
+
+commit 1c0819bf7867b448fbf8a74ba507ccc5c1168d6e
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Mon Feb 24 23:11:02 2014 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 288 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 164 insertions(+), 124 deletions(-)
+
+commit cfe2205a3c56ba6729630d609ffaffb4f643598c
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Feb 24 17:28:23 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 24 +++++++++---------------
+ 1 file changed, 9 insertions(+), 15 deletions(-)
+
+commit 15148b1195a4716e41d9007e9ff1e80da2d7bfae
+Author: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date:   Sun Feb 23 22:29:52 2014 +0100
+
+    Updated Belarusian translation.
+
+ po/be.po | 802 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 424 insertions(+), 378 deletions(-)
+
+commit b0777aab2f6b5afa101bfcfadc2ebb9b60533a5f
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Sun Feb 23 23:10:31 2014 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 285 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 159 insertions(+), 126 deletions(-)
+
+commit d53a2d0696e754b247a4265d3f613ec64b23ead5
+Author: Wylmer Wang <wantinghard@gmail.com>
+Date:   Sat Feb 22 02:59:50 2014 +0000
+
+    Updated Chinese (China) translation
+
+ po/zh_CN.po | 418 +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 232 insertions(+), 186 deletions(-)
+
+commit ae1531b4a62e87f9ec87a6c58c6f5f8b1588734d
+Author: Rafael Ferreira <rafael.f.f1@gmail.com>
+Date:   Fri Feb 21 13:14:47 2014 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 292 ++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 167 insertions(+), 125 deletions(-)
+
+commit 382c2a5b5b4463ede75f5bf25f0d8516922df008
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Fri Feb 21 13:10:53 2014 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 293 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 169 insertions(+), 124 deletions(-)
+
+commit 2d6274d060bf6f91caf1fb9879a2a1880ad73514
+Author: Marek Černocký <marek@manet.cz>
+Date:   Fri Feb 21 10:43:42 2014 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 283 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 157 insertions(+), 126 deletions(-)
+
+commit 13e80d54f3dd89d1d16a4c0c82ef60e88fa482ff
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Feb 20 16:58:47 2014 +0500
+
+    Tajik translation updated
+
+ po/tg.po | 290 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 165 insertions(+), 125 deletions(-)
+
+commit eb051f32babd014ef17f8a9750d58f505c02ea03
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Feb 19 21:04:18 2014 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 9850c8260dd90fd1b567b9977bb5bc1354583bd8
 Author: Christian Persch <chpe@gnome.org>
 Date:   Wed Feb 19 21:00:31 2014 +0100
