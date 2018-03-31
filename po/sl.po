@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-terminal\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-terminal&component=general\n"
-"POT-Creation-Date: 2010-01-26 05:59+0000\n"
-"PO-Revision-Date: 2010-01-26 08:57+0100\n"
+"POT-Creation-Date: 2010-03-17 16:32+0000\n"
+"PO-Revision-Date: 2010-03-17 20:04+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -24,10 +24,10 @@ msgstr ""
 
 #: ../gnome-terminal.desktop.in.in.h:1
 #: ../src/gnome-terminal.schemas.in.h:129
-#: ../src/terminal-accels.c:226
+#: ../src/terminal-accels.c:228
 #: ../src/terminal.c:304
 #: ../src/terminal-profile.c:158
-#: ../src/terminal-window.c:1897
+#: ../src/terminal-window.c:1901
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -525,7 +525,7 @@ msgstr "Običajno je mogoče menijsko vrstico priklicati s tipko F10. Možnost j
 
 #: ../src/gnome-terminal.schemas.in.h:114
 msgid "Number of columns in newly created terminal windows."
-msgstr "Število stolpcev v novo ustvarjenem oknu terminala."
+msgstr "Število stolpcev v novo ustvarjenih oknih terminala."
 
 #: ../src/gnome-terminal.schemas.in.h:115
 msgid "Number of lines to keep in scrollback"
@@ -533,7 +533,7 @@ msgstr "Število vrstic, ki naj se ohranijo v zgodovini drsnika"
 
 #: ../src/gnome-terminal.schemas.in.h:116
 msgid "Number of rows in newly created terminal windows."
-msgstr "Število vrstic v novo ustvarjenem oknu terminala."
+msgstr "Število vrstic v novo ustvarjenih oknih terminala."
 
 #: ../src/gnome-terminal.schemas.in.h:117
 msgid "Number of scrollback lines to keep around. You can scroll back in the terminal by this number of lines; lines that don't fit in the scrollback are discarded. If scrollback_unlimited is true, this value is ignored."
@@ -747,26 +747,26 @@ msgstr "Zeleno na črnem"
 msgid "White on black"
 msgstr "Belo na črnem"
 
-#: ../src/profile-editor.c:479
+#: ../src/profile-editor.c:472
 #, c-format
 msgid "Error parsing command: %s"
 msgstr "Napaka med razčlenjevanjem ukaza: %s"
 
-#: ../src/profile-editor.c:499
+#: ../src/profile-editor.c:490
 #, c-format
 msgid "Editing Profile “%s”"
 msgstr "Urejanje profila “%s”"
 
-#: ../src/profile-editor.c:637
+#: ../src/profile-editor.c:628
 msgid "Images"
 msgstr "Slike"
 
-#: ../src/profile-editor.c:763
+#: ../src/profile-editor.c:754
 #, c-format
 msgid "Choose Palette Color %d"
 msgstr "Izbor barve palete %d"
 
-#: ../src/profile-editor.c:767
+#: ../src/profile-editor.c:758
 #, c-format
 msgid "Palette entry %d"
 msgstr "Vnos palete %d"
@@ -1134,167 +1134,167 @@ msgstr "Nov zavihek"
 msgid "New Window"
 msgstr "Novo okno"
 
-#: ../src/terminal-accels.c:127
+#: ../src/terminal-accels.c:128
 msgid "Save Contents"
 msgstr "Shrani vsebino"
 
-#: ../src/terminal-accels.c:129
+#: ../src/terminal-accels.c:131
 msgid "Close Tab"
 msgstr "Zapri zavihek"
 
-#: ../src/terminal-accels.c:131
+#: ../src/terminal-accels.c:133
 msgid "Close Window"
 msgstr "Zapri okno"
 
-#: ../src/terminal-accels.c:137
+#: ../src/terminal-accels.c:139
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: ../src/terminal-accels.c:139
+#: ../src/terminal-accels.c:141
 msgid "Paste"
 msgstr "Prilepi"
 
-#: ../src/terminal-accels.c:145
+#: ../src/terminal-accels.c:147
 msgid "Hide and Show menubar"
 msgstr "Skrij in pokaži menijsko vrstico"
 
-#: ../src/terminal-accels.c:147
+#: ../src/terminal-accels.c:149
 msgid "Full Screen"
 msgstr "_Celozaslonski način"
 
-#: ../src/terminal-accels.c:149
+#: ../src/terminal-accels.c:151
 msgid "Zoom In"
 msgstr "Približaj"
 
-#: ../src/terminal-accels.c:151
+#: ../src/terminal-accels.c:153
 msgid "Zoom Out"
 msgstr "Oddalji"
 
-#: ../src/terminal-accels.c:153
+#: ../src/terminal-accels.c:155
 msgid "Normal Size"
 msgstr "Običajna velikost"
 
-#: ../src/terminal-accels.c:159
-#: ../src/terminal-window.c:3482
+#: ../src/terminal-accels.c:161
+#: ../src/terminal-window.c:3487
 msgid "Set Title"
 msgstr "Določitev naziva okna"
 
-#: ../src/terminal-accels.c:161
+#: ../src/terminal-accels.c:163
 msgid "Reset"
 msgstr "Ponastavi"
 
-#: ../src/terminal-accels.c:163
+#: ../src/terminal-accels.c:165
 msgid "Reset and Clear"
 msgstr "Ponastavi in počisti"
 
-#: ../src/terminal-accels.c:169
+#: ../src/terminal-accels.c:171
 msgid "Switch to Previous Tab"
 msgstr "Preklopi na predhodni zavihek"
 
-#: ../src/terminal-accels.c:171
+#: ../src/terminal-accels.c:173
 msgid "Switch to Next Tab"
 msgstr "Preklopi na naslednji zavihek"
 
-#: ../src/terminal-accels.c:173
+#: ../src/terminal-accels.c:175
 msgid "Move Tab to the Left"
 msgstr "Premakni zavihek levo"
 
-#: ../src/terminal-accels.c:175
+#: ../src/terminal-accels.c:177
 msgid "Move Tab to the Right"
 msgstr "Premakni zavihek desno"
 
-#: ../src/terminal-accels.c:177
+#: ../src/terminal-accels.c:179
 msgid "Detach Tab"
 msgstr "Odpni zavihek"
 
-#: ../src/terminal-accels.c:179
+#: ../src/terminal-accels.c:181
 msgid "Switch to Tab 1"
 msgstr "Preklopi na zavihek 1"
 
-#: ../src/terminal-accels.c:182
+#: ../src/terminal-accels.c:184
 msgid "Switch to Tab 2"
 msgstr "Preklopi na zavihek 2"
 
-#: ../src/terminal-accels.c:185
+#: ../src/terminal-accels.c:187
 msgid "Switch to Tab 3"
 msgstr "Preklopi na zavihek 3"
 
-#: ../src/terminal-accels.c:188
+#: ../src/terminal-accels.c:190
 msgid "Switch to Tab 4"
 msgstr "Preklopi na zavihek 4"
 
-#: ../src/terminal-accels.c:191
+#: ../src/terminal-accels.c:193
 msgid "Switch to Tab 5"
 msgstr "Preklopi na zavihek 5"
 
-#: ../src/terminal-accels.c:194
+#: ../src/terminal-accels.c:196
 msgid "Switch to Tab 6"
 msgstr "Preklopi na zavihek 6"
 
-#: ../src/terminal-accels.c:197
+#: ../src/terminal-accels.c:199
 msgid "Switch to Tab 7"
 msgstr "Preklopi na zavihek 7"
 
-#: ../src/terminal-accels.c:200
+#: ../src/terminal-accels.c:202
 msgid "Switch to Tab 8"
 msgstr "Preklopi na zavihek 8"
 
-#: ../src/terminal-accels.c:203
+#: ../src/terminal-accels.c:205
 msgid "Switch to Tab 9"
 msgstr "Preklopi na zavihek 9"
 
-#: ../src/terminal-accels.c:206
+#: ../src/terminal-accels.c:208
 msgid "Switch to Tab 10"
 msgstr "Preklopi na zavihek 10"
 
-#: ../src/terminal-accels.c:209
+#: ../src/terminal-accels.c:211
 msgid "Switch to Tab 11"
 msgstr "Preklopi na zavihek 11"
 
-#: ../src/terminal-accels.c:212
+#: ../src/terminal-accels.c:214
 msgid "Switch to Tab 12"
 msgstr "Preklopi na zavihek 12"
 
-#: ../src/terminal-accels.c:218
+#: ../src/terminal-accels.c:220
 msgid "Contents"
 msgstr "Vsebina"
 
-#: ../src/terminal-accels.c:223
+#: ../src/terminal-accels.c:225
 msgid "File"
 msgstr "Datoteka"
 
-#: ../src/terminal-accels.c:224
+#: ../src/terminal-accels.c:226
 msgid "Edit"
 msgstr "Uredi"
 
-#: ../src/terminal-accels.c:225
+#: ../src/terminal-accels.c:227
 msgid "View"
 msgstr "Pogled"
 
-#: ../src/terminal-accels.c:227
+#: ../src/terminal-accels.c:229
 msgid "Tabs"
 msgstr "Zavihki"
 
-#: ../src/terminal-accels.c:228
+#: ../src/terminal-accels.c:230
 msgid "Help"
 msgstr "Pomoč"
 
 #. Translators: Scrollbar is: ...
-#: ../src/terminal-accels.c:285
+#: ../src/terminal-accels.c:287
 #: ../src/extra-strings.c:51
 msgid "Disabled"
 msgstr "Onemogočeno"
 
-#: ../src/terminal-accels.c:757
+#: ../src/terminal-accels.c:759
 #, c-format
 msgid "The shortcut key “%s” is already bound to the “%s” action"
 msgstr "Bližnjica  “%s” je že povezana z dejanjem “%s”"
 
-#: ../src/terminal-accels.c:915
+#: ../src/terminal-accels.c:917
 msgid "_Action"
 msgstr "_Dejanje"
 
-#: ../src/terminal-accels.c:934
+#: ../src/terminal-accels.c:936
 msgid "Shortcut _Key"
 msgstr "_Tipkovna bližnjica"
 
@@ -1328,12 +1328,12 @@ msgstr "Profil z imenom “%s” že obstaja. Ali želite ustvariti nov profil z
 msgid "Choose base profile"
 msgstr "Izberi osnovni profil"
 
-#: ../src/terminal-app.c:1794
+#: ../src/terminal-app.c:1800
 #, c-format
 msgid "No such profile \"%s\", using default profile\n"
 msgstr "Profil \"%s\" ne obstaja, uporabljen bo privzeti profil\n"
 
-#: ../src/terminal-app.c:1818
+#: ../src/terminal-app.c:1824
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Neveljaven geometrijski niz \"%s\"\n"
@@ -1546,7 +1546,7 @@ msgid "Option \"%s\" is no longer supported in this version of gnome-terminal; y
 msgstr "Možnost \"%s\" v tej različici gnome-terminal ni več podprta; morda boste želeli ustvariti profil z želeno nastavitvijo in uporabiti novo možnost '--profile'\n"
 
 #: ../src/terminal-options.c:188
-#: ../src/terminal-window.c:3703
+#: ../src/terminal-window.c:3708
 msgid "GNOME Terminal"
 msgstr "GNOME terminal"
 
@@ -1722,11 +1722,11 @@ msgstr "Pokaži možnosti za vsak terminal"
 msgid "Unnamed"
 msgstr "Neimenovan"
 
-#: ../src/terminal-screen.c:1307
+#: ../src/terminal-screen.c:1309
 msgid "There was a problem with the command for this terminal"
 msgstr "Ukaz za ta terminal je povzročil napako"
 
-#: ../src/terminal-screen.c:1744
+#: ../src/terminal-screen.c:1513
 msgid "There was an error creating the child process for this terminal"
 msgstr "Prišlo je do napake pri ustvarjanju podrejenih procesov tega terminala"
 
@@ -1738,24 +1738,24 @@ msgstr "Zapri zavihek"
 msgid "Switch to this tab"
 msgstr "Preklopi na ta zavihek"
 
-#: ../src/terminal-util.c:183
+#: ../src/terminal-util.c:185
 msgid "There was an error displaying help"
 msgstr "Prišlo je do napake med prikazovanjem pomoči"
 
-#: ../src/terminal-util.c:256
+#: ../src/terminal-util.c:258
 #, c-format
 msgid "Could not open the address “%s”"
 msgstr "Ni mogoče odpreti naslova “%s”"
 
-#: ../src/terminal-util.c:363
+#: ../src/terminal-util.c:365
 msgid "GNOME Terminal is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
 msgstr "GNOME Terminal je prosti programski paket; lahko ga izmenjujete in spreminjate pod pogoji GNU Splošnega javnega dovoljenja, kot ga izdaja Free Software Foundation; različica 2 ali kasnejše različice."
 
-#: ../src/terminal-util.c:367
+#: ../src/terminal-util.c:369
 msgid "GNOME Terminal is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
 msgstr "GNOME Terminal se širi v upanju, da bo uporaben, vendar brez kakršnekoli garancije. Za več podrobnosti si oglejte GNU Splošno javno licenco."
 
-#: ../src/terminal-util.c:371
+#: ../src/terminal-util.c:373
 msgid "You should have received a copy of the GNU General Public License along with GNOME Terminal; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA"
 msgstr "S programom bi morali dobiti tudi kopijo GNU Splošnega javnega dovoljenja. V primeru, da ga niste dobili, pišite na Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA"
 
@@ -1763,7 +1763,7 @@ msgstr "S programom bi morali dobiti tudi kopijo GNU Splošnega javnega dovoljen
 #. * _%d is used as the accelerator (with d between 1 and 9), and
 #. * the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:434
+#: ../src/terminal-window.c:436
 #, c-format
 msgid "_%d. %s"
 msgstr "_%d. %s"
@@ -1772,231 +1772,231 @@ msgstr "_%d. %s"
 #. * _%c is used as the accelerator (it will be a character between A and Z),
 #. * and the %s is the name of the terminal profile.
 #.
-#: ../src/terminal-window.c:440
+#: ../src/terminal-window.c:442
 #, c-format
 msgid "_%c. %s"
 msgstr "_%c. %s"
 
 #. Toplevel
-#: ../src/terminal-window.c:1707
+#: ../src/terminal-window.c:1709
 msgid "_File"
 msgstr "_Datoteka"
 
 #. File menu
-#: ../src/terminal-window.c:1708
-#: ../src/terminal-window.c:1719
-#: ../src/terminal-window.c:1844
+#: ../src/terminal-window.c:1710
+#: ../src/terminal-window.c:1721
+#: ../src/terminal-window.c:1848
 msgid "Open _Terminal"
 msgstr "Odpri _terminal"
 
-#: ../src/terminal-window.c:1709
-#: ../src/terminal-window.c:1722
-#: ../src/terminal-window.c:1847
+#: ../src/terminal-window.c:1711
+#: ../src/terminal-window.c:1724
+#: ../src/terminal-window.c:1851
 msgid "Open Ta_b"
 msgstr "Odpri za_vihek"
 
-#: ../src/terminal-window.c:1710
+#: ../src/terminal-window.c:1712
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: ../src/terminal-window.c:1711
+#: ../src/terminal-window.c:1713
 msgid "_View"
 msgstr "Po_gled"
 
-#: ../src/terminal-window.c:1712
+#: ../src/terminal-window.c:1714
 msgid "_Terminal"
 msgstr "_Terminal"
 
-#: ../src/terminal-window.c:1713
+#: ../src/terminal-window.c:1715
 msgid "Ta_bs"
 msgstr "_Zavihki"
 
-#: ../src/terminal-window.c:1714
+#: ../src/terminal-window.c:1716
 msgid "_Help"
 msgstr "_Pomoč"
 
-#: ../src/terminal-window.c:1725
+#: ../src/terminal-window.c:1727
 msgid "New _Profile…"
 msgstr "Nov _profil ..."
 
-#: ../src/terminal-window.c:1728
+#: ../src/terminal-window.c:1731
 msgid "_Save Contents"
 msgstr "_Shrani vsebino"
 
-#: ../src/terminal-window.c:1731
-#: ../src/terminal-window.c:1853
+#: ../src/terminal-window.c:1735
+#: ../src/terminal-window.c:1857
 msgid "C_lose Tab"
 msgstr "Zapri _zavihek"
 
-#: ../src/terminal-window.c:1734
+#: ../src/terminal-window.c:1738
 msgid "_Close Window"
 msgstr "_Zapri okno"
 
-#: ../src/terminal-window.c:1745
-#: ../src/terminal-window.c:1841
+#: ../src/terminal-window.c:1749
+#: ../src/terminal-window.c:1845
 msgid "Paste _Filenames"
 msgstr "Kopiraj _datotečna imena"
 
-#: ../src/terminal-window.c:1751
+#: ../src/terminal-window.c:1755
 msgid "P_rofiles…"
 msgstr "Profili ..."
 
-#: ../src/terminal-window.c:1754
+#: ../src/terminal-window.c:1758
 msgid "_Keyboard Shortcuts…"
 msgstr "_Tipkovne bližnjice ..."
 
-#: ../src/terminal-window.c:1757
+#: ../src/terminal-window.c:1761
 msgid "Pr_ofile Preferences"
 msgstr "_Lastnosti profila"
 
 #. Terminal menu
-#: ../src/terminal-window.c:1773
+#: ../src/terminal-window.c:1777
 msgid "Change _Profile"
 msgstr "Zamenjaj _profil"
 
-#: ../src/terminal-window.c:1774
+#: ../src/terminal-window.c:1778
 msgid "_Set Title…"
 msgstr "_Določi naziv okna ..."
 
-#: ../src/terminal-window.c:1777
+#: ../src/terminal-window.c:1781
 msgid "Set _Character Encoding"
 msgstr "Določi nabor _znakov"
 
-#: ../src/terminal-window.c:1778
+#: ../src/terminal-window.c:1782
 msgid "_Reset"
 msgstr "_Ponastavi"
 
-#: ../src/terminal-window.c:1781
+#: ../src/terminal-window.c:1785
 msgid "Reset and C_lear"
 msgstr "Ponastavi in _počisti"
 
 #. Terminal/Encodings menu
-#: ../src/terminal-window.c:1786
+#: ../src/terminal-window.c:1790
 msgid "_Add or Remove…"
 msgstr "_Dodaj ali odstrani ..."
 
 #. Tabs menu
-#: ../src/terminal-window.c:1791
+#: ../src/terminal-window.c:1795
 msgid "_Previous Tab"
 msgstr "_Predhodni zavihek"
 
-#: ../src/terminal-window.c:1794
+#: ../src/terminal-window.c:1798
 msgid "_Next Tab"
 msgstr "_Naslednji zavihek"
 
-#: ../src/terminal-window.c:1797
+#: ../src/terminal-window.c:1801
 msgid "Move Tab _Left"
 msgstr "Premakni zavihek _levo"
 
-#: ../src/terminal-window.c:1800
+#: ../src/terminal-window.c:1804
 msgid "Move Tab _Right"
 msgstr "Premakni zavihek _desno"
 
-#: ../src/terminal-window.c:1803
+#: ../src/terminal-window.c:1807
 msgid "_Detach tab"
 msgstr "_Odpni zavihek"
 
 #. Help menu
-#: ../src/terminal-window.c:1808
+#: ../src/terminal-window.c:1812
 msgid "_Contents"
 msgstr "_Vsebina"
 
-#: ../src/terminal-window.c:1811
+#: ../src/terminal-window.c:1815
 msgid "_About"
 msgstr "_O programu"
 
 #. Popup menu
-#: ../src/terminal-window.c:1816
+#: ../src/terminal-window.c:1820
 msgid "_Send Mail To…"
 msgstr "_Pošlji pošto za ..."
 
-#: ../src/terminal-window.c:1819
+#: ../src/terminal-window.c:1823
 msgid "_Copy E-mail Address"
 msgstr "_Kopiraj e-poštni naslov"
 
-#: ../src/terminal-window.c:1822
+#: ../src/terminal-window.c:1826
 msgid "C_all To…"
 msgstr "Klic za ..."
 
-#: ../src/terminal-window.c:1825
+#: ../src/terminal-window.c:1829
 msgid "_Copy Call Address"
 msgstr "_Kopiraj klicni naslov"
 
-#: ../src/terminal-window.c:1828
+#: ../src/terminal-window.c:1832
 msgid "_Open Link"
 msgstr "_Odpri povezavo"
 
-#: ../src/terminal-window.c:1831
+#: ../src/terminal-window.c:1835
 msgid "_Copy Link Address"
 msgstr "_Kopiraj naslov povezave"
 
-#: ../src/terminal-window.c:1834
+#: ../src/terminal-window.c:1838
 msgid "P_rofiles"
 msgstr "P_rofili"
 
-#: ../src/terminal-window.c:1850
-#: ../src/terminal-window.c:3045
+#: ../src/terminal-window.c:1854
+#: ../src/terminal-window.c:3049
 msgid "C_lose Window"
 msgstr "_Zapri okno"
 
-#: ../src/terminal-window.c:1856
+#: ../src/terminal-window.c:1860
 msgid "L_eave Full Screen"
 msgstr "_Zapusti celozaslonski način"
 
-#: ../src/terminal-window.c:1859
+#: ../src/terminal-window.c:1863
 msgid "_Input Methods"
 msgstr "_Načini vnosa"
 
 #. View Menu
-#: ../src/terminal-window.c:1865
+#: ../src/terminal-window.c:1869
 msgid "Show _Menubar"
 msgstr "Pokaži _menijsko vrstico"
 
-#: ../src/terminal-window.c:1869
+#: ../src/terminal-window.c:1873
 msgid "_Full Screen"
 msgstr "_Celozaslonski način"
 
-#: ../src/terminal-window.c:3032
+#: ../src/terminal-window.c:3036
 msgid "Close this window?"
 msgstr "Zapri to okno?"
 
-#: ../src/terminal-window.c:3032
+#: ../src/terminal-window.c:3036
 msgid "Close this terminal?"
 msgstr "Ali naj se okno terminala zapre?"
 
-#: ../src/terminal-window.c:3036
+#: ../src/terminal-window.c:3040
 msgid "There are still processes running in some terminals in this window. Closing the window will kill all of them."
 msgstr "Še vedno so dejavna opravila v terminalih tega okna. Z zapiranjem okna se vstavijo tudi nedokončana."
 
-#: ../src/terminal-window.c:3040
+#: ../src/terminal-window.c:3044
 msgid "There is still a process running in this terminal. Closing the terminal will kill it."
 msgstr "Še vedno so dejavna opravila v terminalu. Z zapiranjem terminala se vstavijo tudi nedokončana."
 
-#: ../src/terminal-window.c:3045
+#: ../src/terminal-window.c:3049
 msgid "C_lose Terminal"
 msgstr "_Zapri terminal"
 
-#: ../src/terminal-window.c:3117
+#: ../src/terminal-window.c:3122
 msgid "Could not save contents"
 msgstr "Ni mogoče shraniti vsebine"
 
-#: ../src/terminal-window.c:3139
+#: ../src/terminal-window.c:3144
 msgid "Save as..."
 msgstr "Shrani kot ..."
 
-#: ../src/terminal-window.c:3499
+#: ../src/terminal-window.c:3504
 msgid "_Title:"
 msgstr "_Naziv:"
 
-#: ../src/terminal-window.c:3686
+#: ../src/terminal-window.c:3691
 msgid "Contributors:"
 msgstr "Sodelavci:"
 
-#: ../src/terminal-window.c:3705
+#: ../src/terminal-window.c:3710
 msgid "A terminal emulator for the GNOME desktop"
 msgstr "Posnemovalnik terminala za namizje GNOME"
 
-#: ../src/terminal-window.c:3712
+#: ../src/terminal-window.c:3717
 msgid "translator-credits"
 msgstr ""
 "Matjaž Horvat <m@owca.info>\n"
@@ -2123,6 +2123,17 @@ msgstr "XTerm"
 msgid "Rxvt"
 msgstr "Rxvt"
 
+#~ msgid ""
+#~ "If true, newly created terminal windows will have custom size specified "
+#~ "by default_size_columns and default_size_rows."
+#~ msgstr ""
+#~ "Izbrana možnost omogoča, da bo pri novo ustvarjenem terminalu privzeto "
+#~ "uporabljena velikost po meri s podatki privzete velikosti stolpcev in "
+#~ "vrstic."
+#~ msgid "Whether to use custom terminal size for new windows"
+#~ msgstr "Ali naj se za nova okna uporabi privzeta velikost terminalnega okna"
+#~ msgid "Use custom default terminal si_ze"
+#~ msgstr "Privzeto uporabi velikost terminala po meri"
 #~ msgid ""
 #~ "Set the window geometry from the provided X geometry specification; see "
 #~ "the \"X\" man page for more information"
