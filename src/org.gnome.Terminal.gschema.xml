@@ -31,8 +31,14 @@
 
    <enum id='org.gnome.Terminal.ScrollbarPolicy'>
     <value nick='always' value='0'/>
-    <value nick='automatic' value='1'/>
+    <!-- <value nick='automatic' value='1'/> -->
     <value nick='never' value='2'/>
+  </enum>
+
+   <enum id='org.gnome.Terminal.TabsbarPolicy'>
+    <value nick='always' value='0'/>
+    <value nick='automatic' value='1'/>
+    <!-- <value nick='never' value='2'/> -->
   </enum>
 
   <enum id='org.gnome.Terminal.ExitAction'>
@@ -188,11 +194,6 @@
       <default>false</default>
       <summary>Whether to launch the command in the terminal as a login shell</summary>
       <description>If true, the command inside the terminal will be launched as a login shell (argv[0] will have a hyphen in front of it).</description>
-    </key>
-    <key name="update-records" type="b">
-      <default>true</default>
-      <summary>Whether to update login records when launching terminal command</summary>
-      <description>If true, the system login records utmp and wtmp will be updated when the command inside the terminal is launched.</description>
     </key>
     <key name="use-custom-command" type="b">
       <default>false</default>
@@ -650,6 +651,11 @@
     <key name="new-terminal-mode" enum="org.gnome.Terminal.NewTerminalMode">
       <default>'window'</default>
       <summary>Whether to open new terminals as windows or tabs</summary>
+    </key>
+
+    <key name="tab-policy" enum="org.gnome.Terminal.TabsbarPolicy">
+      <default>'automatic'</default>
+      <summary>When to show the tabs bar</summary>
     </key>
 
     <key name="tab-position" enum="org.gnome.Terminal.TabPosition">

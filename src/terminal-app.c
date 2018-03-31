@@ -3,7 +3,7 @@
  * Copyright © 2002 Red Hat, Inc.
  * Copyright © 2002 Sun Microsystems
  * Copyright © 2003 Mariano Suarez-Alvarez
- * Copyright © 2008, 2010, 2011 Christian Persch
+ * Copyright © 2008, 2010, 2011, 2015 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -150,6 +150,60 @@ maybe_migrate_settings (TerminalApp *app)
                        TERMINAL_SETTING_SCHEMA_VERSION,
                        TERMINAL_SCHEMA_VERSION);
 #endif /* ENABLE_MIGRATION */
+}
+
+static gboolean
+load_css_from_resource (GApplication *application,
+                        GtkCssProvider *provider,
+                        gboolean theme)
+{
+  const char *base_path;
+  gs_free char *uri;
+  gs_unref_object GFile *file;
+  gs_free_error GError *error = NULL;
+
+  base_path = g_application_get_resource_base_path (application);
+
+  if (theme) {
+    gs_free char *str, *theme_name;
+
+    g_object_get (gtk_settings_get_default (), "gtk-theme-name", &str, NULL);
+    theme_name = g_ascii_strdown (str, -1);
+    uri = g_strdup_printf ("resource://%s/css/%s/terminal.css", base_path, theme_name);
+  } else {
+    uri = g_strdup_printf ("resource://%s/css/terminal.css", base_path);
+  }
+
+  file = g_file_new_for_uri (uri);
+  if (!g_file_query_exists (file, NULL /* cancellable */))
+    return FALSE;
+
+  if (!gtk_css_provider_load_from_file (provider, file, &error))
+    g_assert_no_error (error);
+
+  return TRUE;
+}
+
+static void
+add_css_provider (GApplication *application,
+                  gboolean theme)
+{
+  gs_unref_object GtkCssProvider *provider;
+
+  provider = gtk_css_provider_new ();
+  if (!load_css_from_resource (application, provider, theme))
+    return;
+
+  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+                                             GTK_STYLE_PROVIDER (provider),
+                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+}
+
+static void
+app_load_css (GApplication *application)
+{
+  add_css_provider (application, FALSE);
+  add_css_provider (application, TRUE);
 }
 
 void
@@ -321,8 +375,7 @@ terminal_app_startup (GApplication *application)
     { "quit",        app_menu_quit_cb,          NULL, NULL, NULL }
   };
 
-  gs_unref_object GtkBuilder *builder;
-  GError *error = NULL;
+  g_application_set_resource_base_path (application, TERMINAL_RESOURCES_PATH_PREFIX);
 
   G_APPLICATION_CLASS (terminal_app_parent_class)->startup (application);
 
@@ -333,14 +386,8 @@ terminal_app_startup (GApplication *application)
                                    app_menu_actions, G_N_ELEMENTS (app_menu_actions),
                                    application);
 
-  builder = gtk_builder_new ();
-  gtk_builder_add_from_resource (builder,
-                                 TERMINAL_RESOURCES_PATH_PREFIX "ui/terminal-appmenu.ui",
-                                 &error);
-  g_assert_no_error (error);
 
-  gtk_application_set_app_menu (GTK_APPLICATION (application),
-                                G_MENU_MODEL (gtk_builder_get_object (builder, "appmenu")));
+  app_load_css (application);
 
   _terminal_debug_print (TERMINAL_DEBUG_SERVER, "Startup complete\n");
 }
@@ -381,16 +428,6 @@ terminal_app_init (TerminalApp *app)
 
   settings = g_settings_get_child (app->global_settings, "keybindings");
   terminal_accels_init (G_APPLICATION (app), settings);
-
-#if 1
-{
-  /* Legacy gtkuimanager menu accelerator */
-  /* Disallow in-place menu accel changes. Only needed on gtk 3.8,
-   * it's unused and ignored from 3.10 onward. */
-  TERMINAL_UTIL_OBJECT_TYPE_UNDEPRECATE_PROPERTY (GTK_TYPE_SETTINGS, "gtk-can-change-accels");
-  g_object_set (gtk_settings_get_default (), "gtk-can-change-accels", FALSE, NULL);
-}
-#endif
 }
 
 static void

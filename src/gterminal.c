@@ -1738,6 +1738,18 @@ GType gterminal_verb_get_type (void) {
 }
 
 
+static gchar string_get (const gchar* self, glong index) {
+	gchar result = '\0';
+	glong _tmp0_ = 0L;
+	gchar _tmp1_ = '\0';
+	g_return_val_if_fail (self != NULL, '\0');
+	_tmp0_ = index;
+	_tmp1_ = ((gchar*) self)[_tmp0_];
+	result = _tmp1_;
+	return result;
+}
+
+
 gint gterminal_apply_map (GTerminalVerb* commands, int commands_length1, gchar** argv, int argv_length1, GError** error) {
 	gint result = 0;
 	gboolean _tmp0_ = FALSE;
@@ -1847,13 +1859,13 @@ gint gterminal_apply_map (GTerminalVerb* commands, int commands_length1, gchar**
 		gchar* _tmp28_ = NULL;
 		_tmp25_ = argv;
 		_tmp25__length1 = argv_length1;
-		if (_tmp25__length1 > 2) {
+		if (_tmp25__length1 > 0) {
 			gchar** _tmp26_ = NULL;
 			gint _tmp26__length1 = 0;
 			const gchar* _tmp27_ = NULL;
 			_tmp26_ = argv;
 			_tmp26__length1 = argv_length1;
-			_tmp27_ = _tmp26_[2];
+			_tmp27_ = _tmp26_[0];
 			_tmp24_ = _tmp27_;
 		} else {
 			_tmp24_ = NULL;
@@ -1870,8 +1882,14 @@ gint gterminal_apply_map (GTerminalVerb* commands, int commands_length1, gchar**
 					guint _tmp31_ = 0U;
 					GTerminalVerb* _tmp32_ = NULL;
 					gint _tmp32__length1 = 0;
-					gboolean _tmp33_ = FALSE;
-					const gchar* _tmp34_ = NULL;
+					GTerminalVerb* _tmp33_ = NULL;
+					gint _tmp33__length1 = 0;
+					guint _tmp34_ = 0U;
+					GTerminalVerb _tmp35_ = {0};
+					const gchar* _tmp36_ = NULL;
+					gchar _tmp37_ = '\0';
+					gboolean _tmp38_ = FALSE;
+					const gchar* _tmp39_ = NULL;
 					if (!_tmp29_) {
 						guint _tmp30_ = 0U;
 						_tmp30_ = i;
@@ -1884,55 +1902,64 @@ gint gterminal_apply_map (GTerminalVerb* commands, int commands_length1, gchar**
 					if (!(_tmp31_ < ((guint) _tmp32__length1))) {
 						break;
 					}
-					_tmp34_ = prefix;
-					if (_tmp34_ == NULL) {
-						_tmp33_ = TRUE;
-					} else {
-						GTerminalVerb* _tmp35_ = NULL;
-						gint _tmp35__length1 = 0;
-						guint _tmp36_ = 0U;
-						GTerminalVerb _tmp37_ = {0};
-						const gchar* _tmp38_ = NULL;
-						const gchar* _tmp39_ = NULL;
-						gboolean _tmp40_ = FALSE;
-						_tmp35_ = commands;
-						_tmp35__length1 = commands_length1;
-						_tmp36_ = i;
-						_tmp37_ = _tmp35_[_tmp36_];
-						_tmp38_ = _tmp37_.verb;
-						_tmp39_ = prefix;
-						_tmp40_ = g_str_has_prefix (_tmp38_, _tmp39_);
-						_tmp33_ = _tmp40_;
+					_tmp33_ = commands;
+					_tmp33__length1 = commands_length1;
+					_tmp34_ = i;
+					_tmp35_ = _tmp33_[_tmp34_];
+					_tmp36_ = _tmp35_.verb;
+					_tmp37_ = string_get (_tmp36_, (glong) 0);
+					if (_tmp37_ == '_') {
+						continue;
 					}
-					if (_tmp33_) {
-						GTerminalVerb* _tmp41_ = NULL;
-						gint _tmp41__length1 = 0;
-						guint _tmp42_ = 0U;
-						GTerminalVerb _tmp43_ = {0};
+					_tmp39_ = prefix;
+					if (_tmp39_ == NULL) {
+						_tmp38_ = TRUE;
+					} else {
+						GTerminalVerb* _tmp40_ = NULL;
+						gint _tmp40__length1 = 0;
+						guint _tmp41_ = 0U;
+						GTerminalVerb _tmp42_ = {0};
+						const gchar* _tmp43_ = NULL;
 						const gchar* _tmp44_ = NULL;
-						_tmp41_ = commands;
-						_tmp41__length1 = commands_length1;
-						_tmp42_ = i;
-						_tmp43_ = _tmp41_[_tmp42_];
-						_tmp44_ = _tmp43_.verb;
-						gterminal_output_print ("%s\n", _tmp44_);
+						gboolean _tmp45_ = FALSE;
+						_tmp40_ = commands;
+						_tmp40__length1 = commands_length1;
+						_tmp41_ = i;
+						_tmp42_ = _tmp40_[_tmp41_];
+						_tmp43_ = _tmp42_.verb;
+						_tmp44_ = prefix;
+						_tmp45_ = g_str_has_prefix (_tmp43_, _tmp44_);
+						_tmp38_ = _tmp45_;
+					}
+					if (_tmp38_) {
+						GTerminalVerb* _tmp46_ = NULL;
+						gint _tmp46__length1 = 0;
+						guint _tmp47_ = 0U;
+						GTerminalVerb _tmp48_ = {0};
+						const gchar* _tmp49_ = NULL;
+						_tmp46_ = commands;
+						_tmp46__length1 = commands_length1;
+						_tmp47_ = i;
+						_tmp48_ = _tmp46_[_tmp47_];
+						_tmp49_ = _tmp48_.verb;
+						gterminal_output_print ("%s\n", _tmp49_);
 					}
 				}
 			}
 		}
 		_g_free0 (prefix);
 	} else {
-		const gchar* _tmp45_ = NULL;
-		gchar** _tmp46_ = NULL;
-		gint _tmp46__length1 = 0;
-		const gchar* _tmp47_ = NULL;
-		GError* _tmp48_ = NULL;
-		_tmp45_ = _ ("Unknown command \"%s\"");
-		_tmp46_ = argv;
-		_tmp46__length1 = argv_length1;
-		_tmp47_ = _tmp46_[0];
-		_tmp48_ = g_error_new (G_OPTION_ERROR, G_OPTION_ERROR_FAILED, _tmp45_, _tmp47_);
-		_inner_error_ = _tmp48_;
+		const gchar* _tmp50_ = NULL;
+		gchar** _tmp51_ = NULL;
+		gint _tmp51__length1 = 0;
+		const gchar* _tmp52_ = NULL;
+		GError* _tmp53_ = NULL;
+		_tmp50_ = _ ("Unknown command \"%s\"");
+		_tmp51_ = argv;
+		_tmp51__length1 = argv_length1;
+		_tmp52_ = _tmp51_[0];
+		_tmp53_ = g_error_new (G_OPTION_ERROR, G_OPTION_ERROR_FAILED, _tmp50_, _tmp52_);
+		_inner_error_ = _tmp53_;
 		g_propagate_error (error, _inner_error_);
 		return 0;
 	}
@@ -2011,29 +2038,29 @@ gint gterminal_open (gchar** argv, int argv_length1, GError** error) {
 	gchar** _tmp2_ = NULL;
 	gint _tmp2__length1 = 0;
 	const gchar* _tmp3_ = NULL;
-	GTerminalReceiver* receiver = NULL;
-	GTerminalReceiver* _tmp9_ = NULL;
 	GVariantBuilder* builder = NULL;
-	const GVariantType* _tmp10_ = NULL;
-	GVariantBuilder* _tmp11_ = NULL;
-	GVariantBuilder* _tmp12_ = NULL;
-	const GVariantType* _tmp13_ = NULL;
-	GVariantBuilder* _tmp19_ = NULL;
-	GVariantBuilder* _tmp20_ = NULL;
-	gchar** _tmp21_ = NULL;
-	gint _tmp21__length1 = 0;
-	GVariant* _tmp22_ = NULL;
-	GVariant* _tmp23_ = NULL;
-	GTerminalReceiver* _tmp24_ = NULL;
+	const GVariantType* _tmp15_ = NULL;
+	GVariantBuilder* _tmp16_ = NULL;
+	GVariantBuilder* _tmp17_ = NULL;
+	const GVariantType* _tmp18_ = NULL;
+	GVariantBuilder* _tmp24_ = NULL;
 	GVariantBuilder* _tmp25_ = NULL;
-	GVariant* _tmp26_ = NULL;
+	gchar** _tmp26_ = NULL;
+	gint _tmp26__length1 = 0;
 	GVariant* _tmp27_ = NULL;
-	GUnixFDList* _tmp28_ = NULL;
-	GVariant* _tmp29_ = NULL;
-	GVariant* _tmp30_ = NULL;
-	gboolean _tmp31_ = FALSE;
-	GTerminalReceiver* _tmp32_ = NULL;
-	gint _tmp33_ = 0;
+	GVariant* _tmp28_ = NULL;
+	GTerminalReceiver* receiver = NULL;
+	GTerminalReceiver* _tmp29_ = NULL;
+	GTerminalReceiver* _tmp30_ = NULL;
+	GVariantBuilder* _tmp31_ = NULL;
+	GVariant* _tmp32_ = NULL;
+	GVariant* _tmp33_ = NULL;
+	GUnixFDList* _tmp34_ = NULL;
+	GVariant* _tmp35_ = NULL;
+	GVariant* _tmp36_ = NULL;
+	gboolean _tmp37_ = FALSE;
+	GTerminalReceiver* _tmp38_ = NULL;
+	gint _tmp39_ = 0;
 	GError * _inner_error_ = NULL;
 	_tmp0_ = argv;
 	_tmp0__length1 = argv_length1;
@@ -2068,74 +2095,101 @@ gint gterminal_open (gchar** argv, int argv_length1, GError** error) {
 		_inner_error_ = _tmp8_;
 		g_propagate_error (error, _inner_error_);
 		return 0;
+	} else {
+		gboolean _tmp9_ = FALSE;
+		gchar** _tmp10_ = NULL;
+		gint _tmp10__length1 = 0;
+		const gchar* _tmp11_ = NULL;
+		_tmp10_ = argv;
+		_tmp10__length1 = argv_length1;
+		_tmp11_ = _tmp10_[0];
+		if (g_strcmp0 (_tmp11_, "shell") == 0) {
+			gchar** _tmp12_ = NULL;
+			gint _tmp12__length1 = 0;
+			_tmp12_ = gterminal_open_options_argv_post;
+			_tmp12__length1 = _vala_array_length (gterminal_open_options_argv_post);
+			_tmp9_ = _tmp12_ != NULL;
+		} else {
+			_tmp9_ = FALSE;
+		}
+		if (_tmp9_) {
+			const gchar* _tmp13_ = NULL;
+			GError* _tmp14_ = NULL;
+			_tmp13_ = _ ("Extraneous arguments after '--'");
+			_tmp14_ = g_error_new_literal (G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE, _tmp13_);
+			_inner_error_ = _tmp14_;
+			g_propagate_error (error, _inner_error_);
+			return 0;
+		}
 	}
-	_tmp9_ = gterminal_create_terminal (&_inner_error_);
-	receiver = _tmp9_;
-	if (G_UNLIKELY (_inner_error_ != NULL)) {
-		g_propagate_error (error, _inner_error_);
-		return 0;
-	}
-	_tmp10_ = G_VARIANT_TYPE_TUPLE;
-	_tmp11_ = g_variant_builder_new (_tmp10_);
-	builder = _tmp11_;
-	_tmp12_ = builder;
-	_tmp13_ = G_VARIANT_TYPE_VARDICT;
-	g_variant_builder_open (_tmp12_, _tmp13_);
+	_tmp15_ = G_VARIANT_TYPE_TUPLE;
+	_tmp16_ = g_variant_builder_new (_tmp15_);
+	builder = _tmp16_;
+	_tmp17_ = builder;
+	_tmp18_ = G_VARIANT_TYPE_VARDICT;
+	g_variant_builder_open (_tmp17_, _tmp18_);
 	{
-		GVariantBuilder* _tmp14_ = NULL;
-		const gchar* _tmp15_ = NULL;
-		PassFdElement* _tmp16_ = NULL;
-		gint _tmp16__length1 = 0;
-		gchar** _tmp17_ = NULL;
-		gint _tmp17__length1 = 0;
-		const gchar* _tmp18_ = NULL;
-		_tmp14_ = builder;
-		_tmp15_ = gterminal_open_options_working_directory;
-		_tmp16_ = gterminal_open_options_fd_array;
-		_tmp16__length1 = gterminal_open_options_fd_array_length1;
-		_tmp17_ = argv;
-		_tmp17__length1 = argv_length1;
-		_tmp18_ = _tmp17_[0];
-		terminal_client_append_exec_options (_tmp14_, _tmp15_, _tmp16_, _tmp16__length1, g_strcmp0 (_tmp18_, "shell") == 0);
+		GVariantBuilder* _tmp19_ = NULL;
+		const gchar* _tmp20_ = NULL;
+		PassFdElement* _tmp21_ = NULL;
+		gint _tmp21__length1 = 0;
+		gchar** _tmp22_ = NULL;
+		gint _tmp22__length1 = 0;
+		const gchar* _tmp23_ = NULL;
+		_tmp19_ = builder;
+		_tmp20_ = gterminal_open_options_working_directory;
+		_tmp21_ = gterminal_open_options_fd_array;
+		_tmp21__length1 = gterminal_open_options_fd_array_length1;
+		_tmp22_ = argv;
+		_tmp22__length1 = argv_length1;
+		_tmp23_ = _tmp22_[0];
+		terminal_client_append_exec_options (_tmp19_, _tmp20_, _tmp21_, _tmp21__length1, g_strcmp0 (_tmp23_, "shell") == 0);
 	}
-	_tmp19_ = builder;
-	g_variant_builder_close (_tmp19_);
-	_tmp20_ = builder;
-	_tmp21_ = gterminal_open_options_argv_post;
-	_tmp21__length1 = _vala_array_length (gterminal_open_options_argv_post);
-	_tmp22_ = g_variant_new_bytestring_array (_tmp21_, _tmp21__length1);
-	g_variant_ref_sink (_tmp22_);
-	_tmp23_ = _tmp22_;
-	g_variant_builder_add_value (_tmp20_, _tmp23_);
-	_g_variant_unref0 (_tmp23_);
-	_tmp24_ = receiver;
+	_tmp24_ = builder;
+	g_variant_builder_close (_tmp24_);
 	_tmp25_ = builder;
-	_tmp26_ = g_variant_builder_end (_tmp25_);
-	g_variant_ref_sink (_tmp26_);
-	_tmp27_ = _tmp26_;
-	_tmp28_ = gterminal_open_options_fd_list;
-	_tmp29_ = g_dbus_proxy_call_with_unix_fd_list_sync ((GDBusProxy*) _tmp24_, "Exec", _tmp27_, G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, _tmp28_, NULL, NULL, &_inner_error_);
-	_tmp30_ = _tmp29_;
-	_g_variant_unref0 (_tmp30_);
-	_g_variant_unref0 (_tmp27_);
+	_tmp26_ = gterminal_open_options_argv_post;
+	_tmp26__length1 = _vala_array_length (gterminal_open_options_argv_post);
+	_tmp27_ = g_variant_new_bytestring_array (_tmp26_, _tmp26__length1);
+	g_variant_ref_sink (_tmp27_);
+	_tmp28_ = _tmp27_;
+	g_variant_builder_add_value (_tmp25_, _tmp28_);
+	_g_variant_unref0 (_tmp28_);
+	_tmp29_ = gterminal_create_terminal (&_inner_error_);
+	receiver = _tmp29_;
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 		g_propagate_error (error, _inner_error_);
 		_g_variant_builder_unref0 (builder);
-		_g_object_unref0 (receiver);
 		return 0;
 	}
-	_tmp31_ = gterminal_open_options_wait_for_remote;
-	if (!_tmp31_) {
-		result = EXIT_SUCCESS;
-		_g_variant_builder_unref0 (builder);
+	_tmp30_ = receiver;
+	_tmp31_ = builder;
+	_tmp32_ = g_variant_builder_end (_tmp31_);
+	g_variant_ref_sink (_tmp32_);
+	_tmp33_ = _tmp32_;
+	_tmp34_ = gterminal_open_options_fd_list;
+	_tmp35_ = g_dbus_proxy_call_with_unix_fd_list_sync ((GDBusProxy*) _tmp30_, "Exec", _tmp33_, G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, _tmp34_, NULL, NULL, &_inner_error_);
+	_tmp36_ = _tmp35_;
+	_g_variant_unref0 (_tmp36_);
+	_g_variant_unref0 (_tmp33_);
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+		g_propagate_error (error, _inner_error_);
 		_g_object_unref0 (receiver);
+		_g_variant_builder_unref0 (builder);
+		return 0;
+	}
+	_tmp37_ = gterminal_open_options_wait_for_remote;
+	if (!_tmp37_) {
+		result = EXIT_SUCCESS;
+		_g_object_unref0 (receiver);
+		_g_variant_builder_unref0 (builder);
 		return result;
 	}
-	_tmp32_ = receiver;
-	_tmp33_ = gterminal_run (_tmp32_);
-	result = _tmp33_;
-	_g_variant_builder_unref0 (builder);
+	_tmp38_ = receiver;
+	_tmp39_ = gterminal_run (_tmp38_);
+	result = _tmp39_;
 	_g_object_unref0 (receiver);
+	_g_variant_builder_unref0 (builder);
 	return result;
 }
 
