@@ -1,50 +1,24 @@
-3.10.0
+3.11.0
 ======
- * Translation updates
+* Build fixes
+* Code cleanup
+* Let applications handle clicks in mouse tracking mode (#13299, Egmont Koblinger)
+* Remove 'visible when necessary' pref value (#712331)
+* Documentation fixes (#711164, Aruna Sankaranarayanan)
+* Translation updates
 
-3.9.92
+3.9.90
 ======
- * Remove UUID from profile list display (#704097)
- * Remove input method submenu from context menu
- * Make terminal close keybinding work for single tab windows (#701354)
- * Fix a crash while waiting for clipboard data (RH#977010)
- * Fix output of --disable-factory option (#707899)
- * Fix desktop file categories (#707552)
- * Misc bug and build fixes
- * Translation updates
-
-3.8.4
-=====
- * Fix a crash on session resume (RH#981440)
- * Fix a mem leak
- * Don't write to gsettings on each startup if migration is disabled
- * Translation updates
-
-3.8.3
-=====
+ * Build fixes and cleanup
+ * Portability fixes
+ * Migration fixes
+ * Enable menu access key by default again
+ * Enable nautilus extension by default
  * Reduce environmental pollution
- * Critical bug fixes (RH#966713, RH#968140)
- * Bug fixes (#640727)
- * Translation updates
-
-3.8.2
-=====
- * Misc fixes
- * Translation updates
-
-3.8.1
-=====
- * Nautilus extension fixes (#697225 etc.)
- * Portability fix (#697024)
- * Translation updates
-
-3.8.0.1
-=======
-* Re-dist
-
-3.8.0
-=====
- * Bug fixes
+ * Remove input method submenu from context menu
+ * Add Quit and New Terminal items to app menu
+ * Implement dark theme checkbox in preferences
+ * Unify new tab and new window
  * Translation updates
 
 3.7.91

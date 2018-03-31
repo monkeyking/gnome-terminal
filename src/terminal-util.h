@@ -26,8 +26,6 @@
 
 G_BEGIN_DECLS
 
-void terminal_util_set_unique_role (GtkWindow *window, const char *prefix);
-
 void terminal_util_show_error_dialog (GtkWindow *transient_parent, 
                                       GtkWidget **weap_ptr, 
                                       GError *error,
@@ -65,29 +63,10 @@ void terminal_util_dialog_focus_widget (GtkWidget *dialog,
 
 gboolean terminal_util_dialog_response_on_delete (GtkWindow *widget);
 
-void terminal_util_key_file_set_string_escape    (GKeyFile *key_file,
-                                                  const char *group,
-                                                  const char *key,
-                                                  const char *string);
-void terminal_util_key_file_set_argv      (GKeyFile *key_file,
-                                           const char *group,
-                                           const char *key,
-                                           int argc,
-                                           char **argv);
-
 void terminal_util_add_proxy_env (GHashTable *env_table);
 
 GdkScreen *terminal_util_get_screen_by_display_name (const char *display_name,
                                                      int screen_number);
-
-gboolean terminal_util_x11_get_net_wm_desktop (GdkWindow *window,
-					       guint32   *desktop);
-void     terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
-					       guint32    desktop);
-
-void terminal_util_x11_clear_demands_attention (GdkWindow *window);
-
-gboolean terminal_util_x11_window_is_minimized (GdkWindow *window);
 
 const GdkRGBA *terminal_g_settings_get_rgba (GSettings  *settings,
                                              const char *key,

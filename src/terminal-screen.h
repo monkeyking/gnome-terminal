@@ -72,6 +72,8 @@ struct _TerminalScreenClass
 
 GType terminal_screen_get_type (void) G_GNUC_CONST;
 
+const char *terminal_screen_get_uuid (TerminalScreen *screen);
+
 TerminalScreen *terminal_screen_new (GSettings       *profile,
                                      char           **override_command,
                                      const char      *title,
@@ -93,24 +95,21 @@ void _terminal_screen_launch_child_on_idle (TerminalScreen *screen);
 void terminal_screen_set_profile (TerminalScreen *screen,
                                   GSettings      *profile);
 GSettings* terminal_screen_get_profile (TerminalScreen *screen);
+GSettings* terminal_screen_ref_profile (TerminalScreen *screen);
 
 void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
                                                       char           **argv);
 char **      terminal_screen_get_initial_environment (TerminalScreen  *screen);
 
-const char* terminal_screen_get_raw_title      (TerminalScreen *screen);
+const char *terminal_screen_get_user_title     (TerminalScreen *screen);
 const char* terminal_screen_get_title          (TerminalScreen *screen);
 const char* terminal_screen_get_icon_title     (TerminalScreen *screen);
 gboolean    terminal_screen_get_icon_title_set (TerminalScreen *screen);
+char *      terminal_screen_get_description    (TerminalScreen *screen);
 
 void terminal_screen_set_user_title (TerminalScreen *screen,
                                      const char *text);
 
-void        terminal_screen_set_override_title     (TerminalScreen *screen,
-                                                    const char     *title);
-
-const char *terminal_screen_get_dynamic_title      (TerminalScreen *screen);
-const char *terminal_screen_get_dynamic_icon_title (TerminalScreen *screen);
 
 char *terminal_screen_get_current_dir (TerminalScreen *screen);
 
@@ -134,7 +133,9 @@ void terminal_screen_save_config (TerminalScreen *screen,
 
 void terminal_screen_update_style (TerminalScreen *screen);
 
-gboolean terminal_screen_has_foreground_process (TerminalScreen *screen);
+gboolean terminal_screen_has_foreground_process (TerminalScreen *screen,
+                                                 char           **process_name,
+                                                 char           **cmdline);
 
 /* Allow scales a bit smaller and a bit larger than the usual pango ranges */
 #define TERMINAL_SCALE_XXX_SMALL   (PANGO_SCALE_XX_SMALL/1.2)

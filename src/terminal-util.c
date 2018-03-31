@@ -34,11 +34,6 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 
-#ifdef GDK_WINDOWING_X11
-#include <gdk/gdkx.h>
-#include <X11/Xatom.h>
-#endif
-
 #include <gdesktop-enums.h>
 
 #include "terminal-accels.h"
@@ -47,16 +42,7 @@
 #include "terminal-screen.h"
 #include "terminal-util.h"
 #include "terminal-window.h"
-
-void
-terminal_util_set_unique_role (GtkWindow *window, const char *prefix)
-{
-  char *role;
-
-  role = g_strdup_printf ("%s-%d-%u-%d", prefix, getpid (), (guint) g_random_int (), (int) time (NULL));
-  gtk_window_set_role (window, role);
-  g_free (role);
-}
+#include "terminal-libgsystem.h"
 
 /**
  * terminal_util_show_error_dialog:
@@ -78,7 +64,7 @@ terminal_util_show_error_dialog (GtkWindow *transient_parent,
                                  const char *message_format, 
                                  ...) 
 {
-  char *message;
+  gs_free char *message;
   va_list args;
 
   if (message_format)
@@ -124,8 +110,6 @@ terminal_util_show_error_dialog (GtkWindow *transient_parent,
 
       gtk_window_present (GTK_WINDOW (*weak_ptr));
     }
-
-  g_free (message);
 }
 
 static gboolean
@@ -148,8 +132,8 @@ void
 terminal_util_show_help (const char *topic, 
                          GtkWindow  *parent)
 {
-  char *uri;
-  GError *error = NULL;
+  gs_free_error GError *error = NULL;
+  gs_free char *uri;
 
   if (topic) {
     uri = g_strdup_printf ("help:gnome-terminal/%s", topic);
@@ -161,14 +145,11 @@ terminal_util_show_help (const char *topic,
     {
       terminal_util_show_error_dialog (GTK_WINDOW (parent), NULL, error,
                                        _("There was an error displaying help"));
-      g_error_free (error);
     }
-
-  g_free (uri);
 }
 
 #define ABOUT_GROUP "About"
-#define ABOUT_URL "https://live.gnome.org/Terminal"
+#define ABOUT_URL "https://wiki.gnome.org/Apps/Terminal"
 #define EMAILIFY(string) (g_strdelimit ((string), "%", '@'))
 
 void
@@ -288,8 +269,8 @@ terminal_util_open_url (GtkWidget *parent,
                         TerminalURLFlavour flavor,
                         guint32 user_time)
 {
-  GError *error = NULL;
-  char *uri;
+  gs_free_error GError *error = NULL;
+  gs_free char *uri = NULL;
 
   g_return_if_fail (orig_url != NULL);
 
@@ -318,11 +299,7 @@ terminal_util_open_url (GtkWidget *parent,
       terminal_util_show_error_dialog (GTK_WINDOW (parent), NULL, error,
                                        _("Could not open the address “%s”"),
                                        uri);
-
-      g_error_free (error);
     }
-
-  g_free (uri);
 }
 
 /**
@@ -342,23 +319,21 @@ terminal_util_transform_uris_to_quoted_fuse_paths (char **uris)
 
   for (i = 0; uris[i]; ++i)
     {
-      GFile *file;
-      char *path;
+      gs_unref_object GFile *file;
+      gs_free char *path;
 
       file = g_file_new_for_uri (uris[i]);
 
-      if ((path = g_file_get_path (file)))
+      path = g_file_get_path (file);
+      if (path)
         {
           char *quoted;
 
           quoted = g_shell_quote (path);
           g_free (uris[i]);
-          g_free (path);
 
           uris[i] = quoted;
         }
-
-      g_object_unref (file);
     }
 }
 
@@ -418,7 +393,7 @@ terminal_util_load_builder_resource (const char *path,
                                      const char *object_name,
                                      ...)
 {
-  GtkBuilder *builder;
+  gs_unref_object GtkBuilder *builder;
   GError *error = NULL;
   va_list args;
 
@@ -445,10 +420,8 @@ terminal_util_load_builder_resource (const char *path,
     GObject *main_object;
 
     main_object = gtk_builder_get_object (builder, main_object_name);
-    g_object_set_data_full (main_object, "builder", builder, (GDestroyNotify) g_object_unref);
+    g_object_set_data_full (main_object, "builder", g_object_ref (builder), (GDestroyNotify) g_object_unref);
     g_signal_connect (main_object, "destroy", G_CALLBACK (main_object_destroy_cb), NULL);
-  } else {
-    g_object_unref (builder);
   }
 }
 
@@ -490,50 +463,6 @@ terminal_util_dialog_focus_widget (GtkWidget *dialog,
 
   if (gtk_widget_is_sensitive (widget))
     gtk_widget_grab_focus (widget);
-}
-
-/* Like g_key_file_set_string, but escapes characters so that
- * the stored string is ASCII. Use when the input string may not
- * be UTF-8.
- */
-void
-terminal_util_key_file_set_string_escape (GKeyFile *key_file,
-                                          const char *group,
-                                          const char *key,
-                                          const char *string)
-{
-  char *escaped;
-
-  /* FIXMEchpe: be more intelligent and only escape characters that aren't UTF-8 */
-  escaped = g_strescape (string, NULL);
-  g_key_file_set_string (key_file, group, key, escaped);
-  g_free (escaped);
-}
-
-void
-terminal_util_key_file_set_argv (GKeyFile *key_file,
-                                 const char *group,
-                                 const char *key,
-                                 int argc,
-                                 char **argv)
-{
-  char **quoted_argv;
-  char *flat;
-  int i;
-
-  if (argc < 0)
-    argc = g_strv_length (argv);
-
-  quoted_argv = g_new (char*, argc + 1);
-  for (i = 0; i < argc; ++i)
-    quoted_argv[i] = g_shell_quote (argv[i]);
-  quoted_argv[argc] = NULL;
-
-  flat = g_strjoinv (" ", quoted_argv);
-  terminal_util_key_file_set_string_escape (key_file, group, key, flat);
-
-  g_free (flat);
-  g_strfreev (quoted_argv);
 }
 
 /* Proxy stuff */
@@ -593,9 +522,9 @@ setup_proxy_env (GSettings  *proxy_settings,
                  const char *env_name,
                  GHashTable *env_table)
 {
-  GSettings *child_settings;
+  gs_unref_object GSettings *child_settings;
   GString *buf;
-  const char *host;
+  gs_free char *host;
   int port;
   gboolean is_http;
 
@@ -603,10 +532,10 @@ setup_proxy_env (GSettings  *proxy_settings,
 
   child_settings = g_settings_get_child (proxy_settings, child_schema_id);
 
-  g_settings_get (child_settings, "host", "&s", &host);
+  host = g_settings_get_string (child_settings, "host");
   port = g_settings_get_int (child_settings, "port");
   if (host[0] == '\0' || port == 0)
-    goto out;
+    return;
 
   buf = g_string_sized_new (64);
 
@@ -615,16 +544,16 @@ setup_proxy_env (GSettings  *proxy_settings,
   if (is_http &&
       g_settings_get_boolean (child_settings, "use-authentication"))
     {
-      const char *user, *password;
+      gs_free char *user;
 
-      g_settings_get (child_settings, "authentication-user", "&s", &user);
-
+      user = g_settings_get_string (child_settings, "authentication-user");
       if (user[0])
         {
+          gs_free char *password;
+
           g_string_append_uri_escaped (buf, user, NULL, TRUE);
 
-          g_settings_get (child_settings, "authentication-password", "&s", &password);
-
+          password = g_settings_get_string (child_settings, "authentication-password");
           if (password[0])
             {
               g_string_append_c (buf, ':');
@@ -636,9 +565,6 @@ setup_proxy_env (GSettings  *proxy_settings,
 
   g_string_append_printf (buf, "%s:%d/", host, port);
   set_proxy_env (env_table, env_name, g_string_free (buf, FALSE));
-
-out:
-  g_object_unref (child_settings);
 }
 
 static void
@@ -646,9 +572,9 @@ setup_autoconfig_proxy_env (GSettings *proxy_settings,
                             GHashTable *env_table)
 {
   /* XXX  Not sure what to do with this.  See bug #596688.
-  const char *url;
+  gs_free char *url;
 
-  g_settings_get (proxy_settings, "autoconfig-url", "&s", &url);
+  url = g_settings_get_string (proxy_settings, "autoconfig-url");
   if (url[0])
     {
       char *proxy;
@@ -663,10 +589,10 @@ setup_ignore_proxy_env (GSettings *proxy_settings,
                         GHashTable *env_table)
 {
   GString *buf;
-  char **ignore;
+  gs_strfreev char **ignore;
   int i;
 
-  g_settings_get (proxy_settings, "ignore-hosts", "^a&s", &ignore);
+  g_settings_get (proxy_settings, "ignore-hosts", "^as", &ignore);
   if (ignore == NULL)
     return;
 
@@ -677,7 +603,6 @@ setup_ignore_proxy_env (GSettings *proxy_settings,
         g_string_append_c (buf, ',');
       g_string_append (buf, ignore[i]);
     }
-  g_free (ignore);
 
   set_proxy_env (env_table, "no_proxy", g_string_free (buf, FALSE));
 }
@@ -771,213 +696,6 @@ terminal_util_get_screen_by_display_name (const char *display_name,
   return screen;
 }
 
-#ifdef GDK_WINDOWING_X11
-
-/* We don't want to hop desktops when we unrealize/realize.
- * So we need to save and restore the value of NET_WM_DESKTOP. This isn't
- * exposed through GDK.
- */
-gboolean
-terminal_util_x11_get_net_wm_desktop (GdkWindow *window,
-				      guint32   *desktop)
-{
-  GdkDisplay *display;
-  Atom type;
-  int format;
-  guchar *data;
-  gulong n_items, bytes_after;
-  gboolean result = FALSE;
-
-  display = gdk_window_get_display (window);
-
-  if (XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
-                          GDK_WINDOW_XID (window),
-			  gdk_x11_get_xatom_by_name_for_display (display,
-								 "_NET_WM_DESKTOP"),
-			  0, G_MAXLONG, False, AnyPropertyType,
-			  &type, &format, &n_items, &bytes_after, &data) == Success &&
-      type != None)
-    {
-      if (type == XA_CARDINAL && format == 32 && n_items == 1)
-	{
-	  *desktop = *(gulong *)data;
-	  result = TRUE;
-	}
-
-      XFree (data);
-    }
-
-  return result;
-}
-
-void
-terminal_util_x11_set_net_wm_desktop (GdkWindow *window,
-				      guint32    desktop)
-{
-  /* We can't change the current desktop before mapping our window,
-   * because GDK has the annoying habit of clearing _NET_WM_DESKTOP
-   * before mapping a GdkWindow, So we we have to do it after instead.
-   *
-   * However, doing it after is different whether or not we have a
-   * window manager (if we don't have a window manager, we have to
-   * set the _NET_WM_DESKTOP property so that it picks it up when
-   * it starts)
-   *
-   * http://bugzilla.gnome.org/show_bug.cgi?id=586311 asks for GTK+
-   * to just handle everything behind the scenes including the desktop.
-   */
-  GdkScreen *screen;
-  GdkDisplay *display;
-  Display *xdisplay;
-  char *wm_selection_name;
-  Atom wm_selection;
-  gboolean have_wm;
-
-  screen = gdk_window_get_screen (window);
-  display = gdk_screen_get_display (screen);
-  xdisplay = GDK_DISPLAY_XDISPLAY (display);
-
-  wm_selection_name = g_strdup_printf ("WM_S%d", gdk_screen_get_number (screen));
-  wm_selection = gdk_x11_get_xatom_by_name_for_display (display, wm_selection_name);
-  g_free(wm_selection_name);
-
-  XGrabServer (xdisplay);
-
-  have_wm = XGetSelectionOwner (xdisplay, wm_selection) != None;
-
-  if (have_wm)
-    {
-      /* code borrowed from GDK
-       */
-      XClientMessageEvent xclient;
-
-      memset (&xclient, 0, sizeof (xclient));
-      xclient.type = ClientMessage;
-      xclient.serial = 0;
-      xclient.send_event = True;
-      xclient.window = GDK_WINDOW_XID (window);
-      xclient.message_type = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_DESKTOP");
-      xclient.format = 32;
-
-      xclient.data.l[0] = desktop;
-      xclient.data.l[1] = 0;
-      xclient.data.l[2] = 0;
-      xclient.data.l[3] = 0;
-      xclient.data.l[4] = 0;
-
-      XSendEvent (xdisplay,
-                  GDK_WINDOW_XID (gdk_screen_get_root_window (screen)),
-		  False,
-		  SubstructureRedirectMask | SubstructureNotifyMask,
-		  (XEvent *)&xclient);
-    }
-  else
-    {
-      gulong long_desktop = desktop;
-
-      XChangeProperty (xdisplay,
-                       GDK_WINDOW_XID (window),
-		       gdk_x11_get_xatom_by_name_for_display (display,
-							      "_NET_WM_DESKTOP"),
-		       XA_CARDINAL, 32, PropModeReplace,
-		       (guchar *)&long_desktop, 1);
-    }
-
-  XUngrabServer (xdisplay);
-  XFlush (xdisplay);
-}
-
-/* Asks the window manager to turn off the "demands attention" state on the window.
- *
- * This only works for windows that are currently window managed; if the window
- * is unmapped (in the withdrawn state) it would be necessary to change _NET_WM_STATE
- * directly.
- */
-void
-terminal_util_x11_clear_demands_attention (GdkWindow *window)
-{
-  GdkScreen *screen;
-  GdkDisplay *display;
-  XClientMessageEvent xclient;
-
-  screen = gdk_window_get_screen (window);
-  display = gdk_screen_get_display (screen);
-
-  memset (&xclient, 0, sizeof (xclient));
-  xclient.type = ClientMessage;
-  xclient.serial = 0;
-  xclient.send_event = True;
-  xclient.window = GDK_WINDOW_XID (window);
-  xclient.message_type = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE");
-  xclient.format = 32;
-
-  xclient.data.l[0] = 0; /* _NET_WM_STATE_REMOVE */
-  xclient.data.l[1] = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE_DEMANDS_ATTENTION");
-  xclient.data.l[2] = 0;
-  xclient.data.l[3] = 0;
-  xclient.data.l[4] = 0;
-
-  XSendEvent (GDK_DISPLAY_XDISPLAY (display),
-              GDK_WINDOW_XID (gdk_screen_get_root_window (screen)),
-	      False,
-	      SubstructureRedirectMask | SubstructureNotifyMask,
-	      (XEvent *)&xclient);
-}
-
-/* Check if a GdkWindow is minimized. This is a workaround for a
- * GDK bug/misfeature. gdk_window_get_state (window) has the
- * GDK_WINDOW_STATE_ICONIFIED bit for all unmapped windows,
- * even windows on another desktop.
- *
- * http://bugzilla.gnome.org/show_bug.cgi?id=586664
- *
- * Code to read _NET_WM_STATE adapted from GDK
- */
-gboolean
-terminal_util_x11_window_is_minimized (GdkWindow *window)
-{
-  GdkDisplay *display;
-  Atom type;
-  gint format;
-  gulong nitems;
-  gulong bytes_after;
-  guchar *data;
-  Atom *atoms = NULL;
-  gulong i;
-  gboolean minimized = FALSE;
-
-  display = gdk_window_get_display (window);
-
-  type = None;
-  gdk_error_trap_push ();
-  XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window),
-                      gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE"),
-                      0, G_MAXLONG, False, XA_ATOM, &type, &format, &nitems,
-                      &bytes_after, &data);
-  gdk_error_trap_pop_ignored ();
-
-  if (type != None)
-    {
-      Atom hidden_atom = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_STATE_HIDDEN");
-
-      atoms = (Atom *)data;
-
-      for (i = 0; i < nitems; i++)
-        {
-          if (atoms[i] == hidden_atom)
-            minimized = TRUE;
-
-          ++i;
-        }
-
-      XFree (atoms);
-    }
-
-  return minimized;
-}
-
-#endif /* GDK_WINDOWING_X11 */
-
 static gboolean
 s_to_rgba (GVariant *variant,
            gpointer *result,
@@ -1035,11 +753,10 @@ terminal_g_settings_set_rgba (GSettings  *settings,
                               const char *key,
                               const GdkRGBA *color)
 {
-  char *str;
+  gs_free char *str;
 
   str = gdk_rgba_to_string (color);
   g_settings_set_string (settings, key, str);
-  g_free (str);
 }
 
 static gboolean
@@ -1048,18 +765,15 @@ as_to_rgba_palette (GVariant *variant,
                     gpointer user_data)
 {
   gsize *n_colors = user_data;
-  gsize n, i;
-  GdkRGBA *colors;
+  gs_free GdkRGBA *colors = NULL;
+  gsize n = 0;
   GVariantIter iter;
   const char *str;
+  gsize i;
 
   /* Fallback */
-  if (variant == NULL) {
-    *result = NULL;
-    if (n_colors)
-      *n_colors = 0;
-    return TRUE;
-  }
+  if (variant == NULL)
+    goto out;
 
   g_variant_iter_init (&iter, variant);
   n = g_variant_iter_n_children (&iter);
@@ -1073,7 +787,8 @@ as_to_rgba_palette (GVariant *variant,
     }
   }
 
-  *result = colors;
+ out:
+  gs_transfer_out_value (result, &colors);
   if (n_colors)
     *n_colors = n;
 
@@ -1104,7 +819,7 @@ terminal_g_settings_set_rgba_palette (GSettings      *settings,
                                       const GdkRGBA  *colors,
                                       gsize           n_colors)
 {
-  char **strv;
+  gs_strfreev char **strv;
   gsize i;
 
   strv = g_new (char *, n_colors + 1);
@@ -1113,7 +828,6 @@ terminal_g_settings_set_rgba_palette (GSettings      *settings,
   strv[n_colors] = NULL;
 
   g_settings_set (settings, key, "^as", strv);
-  g_strfreev (strv);
 }
 
 static void

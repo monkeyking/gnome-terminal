@@ -1,5 +1,5 @@
 <page xmlns="http://projectmallard.org/1.0/"
-      xmlns:ui="http://projectmallard.org/experimental/ui/"
+      xmlns:ui="http://projectmallard.org/ui/1.0"
       type="task"
       id="adv-keyboard-shortcuts">
 
@@ -34,7 +34,7 @@
 
   <p>Keyboard shortcuts are combinations of keys that allow you to perform
   actions, such as opening the settings dialog or accessing a feature inside
-  <app>Terminal</app>, quickly. These shortcuts can be modified to suit your
+  <app>Terminal</app> quickly. These shortcuts can be modified to suit your
   preferences.</p>
 
   <p>To change a keyboard shortcut:</p>
@@ -52,15 +52,13 @@
       to edit it.</p>
     </item>
     <item>
-      <p>Type in your desired shortcut key combination as you would enter it to
+      <p>Press your desired shortcut key combination as you would enter it to
       use it. The keys that you can use include <key>Alt</key>,
       <key>Alt Gr</key>, <key>Ctrl</key>, <key>Shift</key>, number and letter
       keys.</p>
       <note>
         <p>Mnemonic key combinations, such as <keyseq><key>Alt</key>
-        <key>F</key></keyseq> will not work. If you accidentally set one of
-        these key combinations as a shortcut, you may need to reset it before
-        you can change it to something else.</p>
+        <key>F</key></keyseq> will not work.</p>
       </note>
     </item>
     <item>
@@ -81,7 +79,7 @@
     <p>The default shortcuts for options under <gui style="menu">File</gui>
     menu are:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="yes">
+    <table rules="rows" frame="top bottom" ui:expanded="true">
       <thead>
         <tr>
           <td><p>Action</p></td>
@@ -115,7 +113,7 @@
     <p>The default shortcuts for options under <gui style="menu">Edit</gui>
     menu are:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="no">
+    <table rules="rows" frame="top bottom" ui:expanded="false">
       <thead>
         <tr>
           <td><p>Action</p></td>
@@ -141,7 +139,7 @@
     <p>The default shortcuts for options in the <gui style="menu">View</gui>
     menu are:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="no">
+    <table rules="rows" frame="top bottom" ui:expanded="false">
       <thead>
         <tr>
           <td><p>Action</p></td>
@@ -174,7 +172,7 @@
 
     <p>The default shortcuts for working with tabs are:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="no">
+    <table rules="rows" frame="top bottom" ui:expanded="false">
       <thead>
         <tr>
           <td><p>Action</p></td>
@@ -235,7 +233,7 @@
           <td><p><keyseq><key>Alt</key><key>9</key></keyseq></p></td>
         </tr>
         <tr>
-          <td><p>Switch to Tab 0</p></td>
+          <td><p>Switch to Tab 10</p></td>
           <td><p><keyseq><key>Alt</key><key>0</key></keyseq></p></td>
         </tr>
       </tbody>
@@ -248,7 +246,7 @@
     <p>The default shortcuts for accessing items in the
     <gui style="menu">Help</gui> menu are:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="no">
+    <table rules="rows" frame="top bottom" ui:expanded="false">
       <thead>
         <tr>
           <td><p>Action</p></td>
@@ -269,7 +267,7 @@
 
     <p>There are also some shortcuts that cannot be edited:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="no">
+    <table rules="rows" frame="top bottom" ui:expanded="false">
       <thead>
         <tr>
           <td><p>Action</p></td>
@@ -302,7 +300,7 @@
     </comment>
     <p><app>Bash</app> shell specific keyboard shortcuts are:</p>
 
-    <table rules="rows" frame="top bottom" ui:expanded="no">
+    <table rules="rows" frame="top bottom" ui:expanded="false">
       <thead>
         <tr>
           <td><p>Action</p></td>

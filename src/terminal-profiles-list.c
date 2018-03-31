@@ -23,6 +23,7 @@
 
 #include "terminal-profiles-list.h"
 #include "terminal-schemas.h"
+#include "terminal-libgsystem.h"
 
 #include <string.h>
 #include <uuid.h>
@@ -81,7 +82,6 @@ get_profile_names (TerminalSettingsList *list,
                    char ***profilesp,
                    char ***namesp)
 {
-  GSettings *profile;
   char **profiles, **names;
   guint i, n;
 
@@ -90,9 +90,10 @@ get_profile_names (TerminalSettingsList *list,
   n = g_strv_length (profiles);
   *namesp = names = g_new0 (char *, n + 1);
   for (i = 0; i < n; i++) {
+    gs_unref_object GSettings *profile;
+
     profile = terminal_settings_list_ref_child (list, profiles[i]);
     names[i] = g_settings_get_string (profile, TERMINAL_PROFILE_VISIBLE_NAME_KEY);
-    g_object_unref (profile);
   }
 
   names[n] = NULL;
@@ -156,7 +157,7 @@ terminal_profiles_list_ref_profile_by_uuid (TerminalSettingsList *list,
                                             const char *uuid,
                                             GError **error)
 {
-  char *profile_uuid;
+  gs_free char *profile_uuid;
   GSettings *profile;
 
   profile_uuid = terminal_profiles_list_dup_uuid (list, uuid, error);
@@ -164,7 +165,6 @@ terminal_profiles_list_ref_profile_by_uuid (TerminalSettingsList *list,
     return NULL;
 
   profile = terminal_settings_list_ref_child (list, profile_uuid);
-  g_free (profile_uuid);
   g_assert (profile != NULL);
   return profile;
 }
@@ -225,7 +225,7 @@ terminal_profiles_list_ref_profile_by_uuid_or_name (TerminalSettingsList *list,
                                                     const char *uuid_or_name,
                                                     GError **error)
 {
-  char *uuid;
+  gs_free char *uuid;
   GSettings *profile;
 
   uuid = terminal_profiles_list_dup_uuid_or_name (list, uuid_or_name, error);
@@ -233,7 +233,6 @@ terminal_profiles_list_ref_profile_by_uuid_or_name (TerminalSettingsList *list,
     return NULL;
 
   profile = terminal_settings_list_ref_child (list, uuid);
-  g_free (uuid);
   g_assert (profile != NULL);
   return profile;
 }
@@ -244,8 +243,10 @@ terminal_profiles_compare (gconstpointer pa,
 {
   GSettings *a = (GSettings *) pa;
   GSettings *b = (GSettings *) pb;
-  const char *na, *nb;
-  char *patha, *pathb;
+  gs_free char *na = NULL;
+  gs_free char *nb = NULL;
+  gs_free char *patha = NULL;
+  gs_free char *pathb = NULL;
   int result;
 
   if (pa == pb)
@@ -255,17 +256,13 @@ terminal_profiles_compare (gconstpointer pa,
   if (pb == NULL)
     return -1;
 
-  g_settings_get (a, TERMINAL_PROFILE_VISIBLE_NAME_KEY, "&s", &na);
-  g_settings_get (b, TERMINAL_PROFILE_VISIBLE_NAME_KEY, "&s", &nb);
+  na = g_settings_get_string (a, TERMINAL_PROFILE_VISIBLE_NAME_KEY);
+  nb = g_settings_get_string (b, TERMINAL_PROFILE_VISIBLE_NAME_KEY);
   result =  g_utf8_collate (na, nb);
   if (result != 0)
     return result;
 
   g_object_get (a, "path", &patha, NULL);
   g_object_get (b, "path", &pathb, NULL);
-  result = strcmp (patha, pathb);
-  g_free (patha);
-  g_free (pathb);
-
-  return result;
+  return strcmp (patha, pathb);
 }
