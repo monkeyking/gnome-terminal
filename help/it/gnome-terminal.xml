@@ -35,11 +35,11 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006, 2008</year><holder>Lorenzo Travaglio (ltrav02@yahoo.it)</holder></copyright>
+     </copyright><copyright><year>2006, 2009</year><holder>Lorenzo Travaglio (ltrav02@yahoo.it)</holder></copyright>
      <publisher> 
         <publishername>GNOME Documentation Project</publishername> 
      </publisher>    <legalnotice id="legalnotice">
-         <para>Questo documento può essere copiato, distribuito e/o modificato solo in conformità con i termini della GNU Free Documentation License (GFDL) Versione 1.1 o delle versioni successive pubblicate dalla Free Software Foundation senza sezioni invariabili, frontespizi e testi di copertina. Una copia della GFDL è disponibile su questo <ulink type="help" url="ghelp:fdl">collegamento</ulink> o nel file COPYING-DOCS distribuito con questo manuale.</para>
+         <para>Questo documento può essere copiato, distribuito o modificato solo in conformità con i termini della GNU Free Documentation License (GFDL) Versione 1.1 o delle versioni successive pubblicate dalla Free Software Foundation senza sezioni invariabili, frontespizi e testi di copertina. Una copia della GFDL è disponibile su questo <ulink type="help" url="ghelp:fdl">collegamento</ulink> o nel file COPYING-DOCS distribuito con questo manuale.</para>
           <para>Questo manuale fa parte di una raccolta di manuali GNOME distribuita in conformità con la GFDL. Per poter distribuire questo manuale separatamente, è necessario inserirvi una copia della licenza, come descritto nella sezione 6 della licenza.</para>
  
          <para>Molti dei nomi usati dalle aziende per distinguere i propri prodotti e servizi sono rivendicati come marchi. Quando questi nomi compaiono nella documentazione di GNOME, e i partecipanti al GNOME Documentation Project sono consapevoli del loro utilizzo, essi vengono scritti in lettere maiuscole o con l'iniziale maiuscola.</para>
@@ -89,7 +89,7 @@
      </publisher>
      <revhistory> 
         <revision> 
-          <revnumber>Manuale Terminale di GNOME V2.8</revnumber> 
+          <revnumber>Manuale del Terminale GNOME V2.8</revnumber> 
           <date>Marzo 2004</date> 
           <revdescription> 
              <para role="author">Sun GNOME Documentation Team</para>
@@ -201,7 +201,7 @@
   </sect1> 
   <sect1 id="gnome-terminal-get-started"> 
      <title>Per iniziare</title> 
-     <para>Le sezioni seguenti descrivono i possibili metodi per avviare il <application>Terminale GNOME </application>.</para>
+     <para>Le sezioni seguenti descrivono i possibili metodi per avviare il <application>Terminale GNOME</application>.</para>
      <sect2 id="gnome-terminal-to-start"> 
         <title>Avviare il Terminale GNOME</title> 
         <para>Il <application>Terminale GNOME</application> può essere avviato nei seguenti modi:</para>
@@ -267,7 +267,7 @@
 
      <sect2 id="gnome-terminal-profiles"> 
         <title>Profili del terminale</title> 
-        <para>È possibile creare un nuovo profilo e applicarlo al terminale per modificare caratteristiche come il tipo di carattere, il colore e gli effetti, le impostazione di scorrimento, il titolo della finestra e la compatibilità. È inoltre possibile definire nel profilo un comando per avviare il <application>Terminale GNOME</application>.</para>
+        <para>È possibile creare un nuovo profilo e applicarlo al terminale per modificare caratteristiche come il tipo di carattere, il colore e gli effetti, le impostazioni di scorrimento, il titolo della finestra e la compatibilità. È inoltre possibile definire nel profilo un comando da eseguire automaticamente all'avvio di <application>Terminale GNOME</application>.</para>
           <para>È possibile definire ogni profilo di terminale tramite il dialogo <guilabel>Profili...</guilabel> accessibile dal menù <guimenu>Modifica</guimenu>. È possibile definire il numero di profili desiderato. Quando si avvia un terminale, è possibile scegliere il profilo desiderato oppure modificarlo durante l'uso. Per specificare quale profilo iniziale utilizzare quando si avvia l'applicazione dalla riga di comando, usare la sintassi seguente:</para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>nome_profilo</replaceable></command> 
@@ -325,14 +325,14 @@
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Aprire una scheda di terminale:</term> 
+             <term>Per aprire una scheda di terminale:</term> 
              <listitem> 
                 <para>Fare clic sul nome della scheda che si desidera aprire, oppure selezionare il titolo della scheda del menù <guimenu>Schede</guimenu>.</para>
                 <para>Alternativamente, scegliere <menuchoice><guimenu>Schede</guimenu><guimenuitem>Scheda successiva</guimenuitem></menuchoice> o <menuchoice><guimenu>Schede</guimenu><guimenuitem>Scheda precedente</guimenuitem></menuchoice> per spostarsi tra le schede.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Chiudere una scheda di terminale:</term> 
+             <term>Per chiudere una scheda di terminale:</term> 
              <listitem> 
                 <para>
                   <orderedlist> 
@@ -408,7 +408,7 @@
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Per cancellare un profilo:</term> 
+             <term>Per eliminare un profilo:</term> 
              <listitem> 
                 <para>
                   <orderedlist> 
@@ -416,10 +416,10 @@
                         <para>Scegliere <menuchoice><guimenu>Modifica</guimenu><guimenuitem>Profili...</guimenuitem></menuchoice>.</para>
                      </listitem> 
                      <listitem> 
-                        <para>Selezionare il nome del profilo da cancellare dall'elenco <guilabel>Profili</guilabel> quindi fare clic su <guibutton>Elimina</guibutton>. Verrà visualizzato il dialogo <guilabel>Elimina il profilo</guilabel>.</para>
+                        <para>Selezionare il nome del profilo da eliminare dall'elenco <guilabel>Profili</guilabel> quindi fare clic su <guibutton>Elimina</guibutton>. Verrà visualizzato il dialogo <guilabel>Elimina il profilo</guilabel>.</para>
                      </listitem> 
                      <listitem> 
-                        <para>Fare clic su <guibutton>Elimina</guibutton> per confermare la cancellazione.</para>
+                        <para>Fare clic su <guibutton>Elimina</guibutton> per confermare l'eliminazione.</para>
                      </listitem> 
                      <listitem> 
                         <para>Fare quindi clic su <guibutton>Chiudi</guibutton> per chiudere il dialogo <guilabel>Profili</guilabel>.</para>
@@ -488,7 +488,7 @@
                      <para>Per selezionare una parola alla volta, fare doppio clic sulla prima parola da selezionare e trascinare il mouse fino all'ultima parola desiderata. I simboli vengono selezionati singolarmente.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Per selezionare una linea alla volta fare clic tre volte sulla prima riga da selezionare e trascinare il mouse fino all'ultima riga desiderata.</para>
+                     <para>Per selezionare una riga alla volta fare clic tre volte sulla prima riga da selezionare e trascinare il mouse fino all'ultima riga desiderata.</para>
                   </listitem> 
                 </itemizedlist> 
                 <para>Queste azioni selezionano tutto il testo compreso fra il primo e l'ultimo elemento. <application>Terminale GNOME</application> copia il testo selezionato negli appunti solo quando viene rilasciato il pulsante del mouse. Per copiare esplicitamente una porzione di testo, selezionare <menuchoice><guimenu>ModificaCopia.</guimenu></menuchoice></para>
@@ -541,15 +541,13 @@
           <varlistentry> 
              <term><guilabel>Disabilitare gli acceleratori di menù (come Alt+F per aprire il menù File)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Deselezionare questa opzione per disabilitare l'uso della tastiera al posto del mouse nella selezione dei menù. Ogni sequenza è identificata da una lettera sottolineata nel menù o in un dialogo. In alcuni casi è necessario premere il tasto <keycap>Alt</keycap> in combinazione con la lettera per effettuare l'azione desiderata.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Disabilitare il tasto scorciatoia per i menù (tasto predefinito F10)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Deselezionare questa opzione per disabilitare la scorciatoia definita per accedere al menù del <application>Terminale GNOME</application>. La scorciatoia predefinita è il tasto <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -564,7 +562,7 @@
      
 	<sect2 id="gnome-terminal-resize">
 	<title>Dimensione del testo</title>
-	<para>Per modificare la dimensione del testo in una finestra di Terminale GNOME è possibile utilizzare uno dei seguenti metodi:</para>
+	<para>Per modificare la dimensione del testo in una finestra di <application>Terminale GNOME</application> è possibile utilizzare uno dei seguenti metodi:</para>
 		<itemizedlist>
 			<listitem><para>Per aumentare la dimensione del testo, scegliere <menuchoice><guimenu>Visualizza</guimenu><guimenuitem>Aumenta ingrandimento</guimenuitem></menuchoice>.</para>
 			</listitem>
@@ -672,11 +670,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Use the system fixed width font</guilabel> </term>
+                <guilabel>Usare il carattere a larghezza fissa di sistema per il terminale</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
-                </para>
+                <para>Selezionare questa opzione per utilizzare il carattere standard a larghezza fissa specificato nello strumento <application>Tipi di carattere</application> del menù di sistema.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -703,11 +699,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Segnale acustico</guilabel> </term> 
+                <guilabel>Avviso acustico</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable the terminal bell.
-                </para>
+                <para>Selezionare quest'opzione per abilitare l'avviso acustico del terminale.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -732,7 +726,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>When terminal commands set their own titles</guilabel> </term>
+                <guilabel>Quando i comandi da terminale impostano un proprio titolo</guilabel> </term>
              <listitem> 
                 <para>Utilizzare questo elenco a discesa per gestire dinamicamente i titoli, in modo che vengano impostati da comandi eseguiti nel terminale.</para>
              </listitem> 
@@ -763,9 +757,7 @@
              <term> 
                 <guilabel>Quando il comando termina</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>Utilizzare questo elenco a discesa per specificare l'azione da eseguire al termine del comando.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -778,9 +770,7 @@
                 <guilabel>Primo piano e sfondo</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
-                </para>
+                <para>Selezionare l'opzione <guilabel>Usare i colori del tema di sistema</guilabel> per usare i colori specificati nel tema del desktop GNOME, selezionato attraverso lo strumento di preferenze <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Aspetto</application></ulink>.</para>
                 <para>Usare l'elenco a discesa <guilabel>Schemi predefiniti</guilabel> per specificare i colori di sfondo e primo piano del terminale. <application>Terminale GNOME</application> supporta le seguenti combinazioni di colori:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -842,11 +832,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Solid color</guilabel>
+                        <guilabel>Colore pieno</guilabel>
                      </para>
-                     <para>
-                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
-                     </para>
+                     <para>Selezionare quest'opzione per usare come sfondo del terminale il colore impostato nella scheda <guilabel>Colori</guilabel>.</para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -882,7 +870,7 @@
              <term> 
                 <guilabel>Barra di scorrimento</guilabel> </term> 
              <listitem> 
-                <para>Usare questo elenco a discesa per specificare la posizione della barra discorrimento nella finestra del terminale.</para>
+                <para>Usare questo elenco a discesa per specificare la posizione della barra di scorrimento nella finestra del terminale.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -921,7 +909,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Il tasto «Cancella» genera</guilabel> </term> 
+                <guilabel>Il tasto «Canc» genera</guilabel> </term> 
              <listitem> 
                 <para>Usare l'elenco a discesa per selezionare la funzione che si desidera associare al tasto <keycap>Cancella</keycap>.</para>
              </listitem> 
@@ -930,7 +918,7 @@
              <term> 
                 <guibutton>Ripristina valori predefiniti per opzioni di compatibilità</guibutton> </term> 
              <listitem> 
-                <para>Fare clic su questo pulsante per ripristinare le opzioni della scheda <guilabel>Compatibilità</guilabel> ai valori iniziali.</para>
+                <para>Fare clic su questo pulsante per ripristinare le opzioni della scheda <guilabel>Compatibilità</guilabel> ai valori predefiniti.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 

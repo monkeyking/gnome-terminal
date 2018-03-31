@@ -963,17 +963,25 @@ screen_resize_window_cb (TerminalScreen *screen,
 {
   TerminalWindowPrivate *priv = window->priv;
   VteTerminal *terminal = VTE_TERMINAL (screen);
+  GtkWidget *widget = GTK_WIDGET (screen);
   guint grid_width, grid_height;
-  int xpad, ypad, char_width, char_height;
+  int xpad_total, ypad_total, char_width, char_height;
+
+  /* NOTE: width and height already include the VteTerminal's padding! */
+
+  /* Short-circuit */
+  if (((int) width) == widget->allocation.width &&
+      ((int) height) == widget->allocation.height)
+    return;
 
   /* The resize-window signal sucks. Re-compute grid widths */
 
-  vte_terminal_get_padding (terminal, &xpad, &ypad);
+  vte_terminal_get_padding (terminal, &xpad_total, &ypad_total);
   char_width = vte_terminal_get_char_width (terminal);
   char_height = vte_terminal_get_char_height (terminal);
 
-  grid_width = (width - 2 * xpad) / char_width;
-  grid_height = (height - 2 * ypad) / char_height;
+  grid_width = (width - xpad_total) / char_width;
+  grid_height = (height - ypad_total) / char_height;
 
   vte_terminal_set_size (terminal, grid_width, grid_height);
 
@@ -2305,8 +2313,8 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   int char_height;
   int grid_width;
   int grid_height;
-  int xpad;
-  int ypad;
+  int xpad_total;
+  int ypad_total;
 
   /* be sure our geometry is up-to-date */
   terminal_window_update_geometry (window);
@@ -2335,10 +2343,10 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   if (force_grid_height >= 0)
     grid_height = force_grid_height;
   
-  vte_terminal_get_padding (VTE_TERMINAL (screen), &xpad, &ypad);
+  vte_terminal_get_padding (VTE_TERMINAL (screen), &xpad_total, &ypad_total);
 
-  w += xpad * 2 + char_width * grid_width;
-  h += ypad * 2 + char_height * grid_height;
+  w += xpad_total + char_width * grid_width;
+  h += ypad_total + char_height * grid_height;
 
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
                          "[window %p] set size: grid %dx%d force %dx%d setting %dx%d pixels\n",
@@ -2694,15 +2702,15 @@ terminal_window_update_geometry (TerminalWindow *window)
       char_height != priv->old_char_height ||
       widget != (GtkWidget*) priv->old_geometry_widget)
     {
-      int xpad, ypad;
+      int xpad_total, ypad_total;
       
       /* FIXME Since we're using xthickness/ythickness to compute
        * padding we need to change the hints when the theme changes.
        */
-      vte_terminal_get_padding (VTE_TERMINAL (priv->active_screen), &xpad, &ypad);
+      vte_terminal_get_padding (VTE_TERMINAL (priv->active_screen), &xpad_total, &ypad_total);
       
-      hints.base_width = xpad;
-      hints.base_height = ypad;
+      hints.base_width = xpad_total;
+      hints.base_height = ypad_total;
 
 #define MIN_WIDTH_CHARS 4
 #define MIN_HEIGHT_CHARS 2
@@ -2904,7 +2912,7 @@ confirm_close_window_or_tab (TerminalWindow *window,
 
   gtk_window_set_title (GTK_WINDOW (dialog), ""); 
 
-  gtk_dialog_add_button (GTK_DIALOG (dialog), n_tabs > 1 ? _("_Close Terminal") : _("_Close Window"), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_add_button (GTK_DIALOG (dialog), n_tabs > 1 ? _("_Close Window") : _("_Close Terminal"), GTK_RESPONSE_ACCEPT);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
   g_object_set_data (G_OBJECT (dialog), "close-screen", screen);

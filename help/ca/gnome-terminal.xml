@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2007</year><holder>Joan Duran (jodufi@gmail.com)</holder></copyright>
+     </copyright><copyright><year>2007-2009</year><holder>Joan Duran (jodufi@gmail.com)</holder></copyright>
      <publisher> 
         <publishername>Projecte de documentació del GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -541,15 +541,13 @@
           <varlistentry> 
              <term><guilabel>Inhabilita totes les tecles d'accés dels menús (com ara Alt+f per obrir el menú Fitxer)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the access keys that are defined to enable you to use the keyboard instead of the mouse to select a menu item. Each access key is identified by an underlined letter on a menu or dialog option. In some cases, you must press the <keycap>Alt</keycap> key in combination with the access key to perform the action.  </para>
+                <para>Anul·leu la selecció d'aquesta opció per a inhabilitar les tecles d'accés definides per a utilitzar el teclat enlloc del ratolí per a seleccionar un element del menú. Cada tecla d'accés està identificada per una lletra subratllada en una opció del menú o del diàleg. En alguns casos, heu de prémer la tecla <keycap>Alt</keycap> en combinació amb la tecla d'accés per a realitzar l'acció.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
              <term><guilabel>Inhabilita la tecla d'accés al menú (F10 per defecte)</guilabel></term> 
              <listitem> 
-                <para>
-                  Deselect this option to disable the shortcut key that is defined to enable you to access the <application>GNOME Terminal</application> menus. The default shortcut key to access the menus is <keycap>F10</keycap>.  </para>
+                <para>Anul·leu la selecció d'aquesta opció per a inhabilitar la tecla de drecera definida per a accedir als menús del <application>terminal del GNOME</application>. Per defecte la tecla de drecera per a accedir als menús és <keycap>F10</keycap>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -672,11 +670,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Use the system fixed width font</guilabel> </term>
+                <guilabel>Utilitza el tipus de lletra d'amplada fixa del sistema</guilabel> </term>
              <listitem> 
-                <para>
-                  Select this option to use the standard fixed width font that is specified in the <guilabel>Font</guilabel> tab of the <application>Appearance</application> preference tool.
-                </para>
+                <para>Seleccioneu aquesta opció per a utilitzar el tipus de lletra d'amplada fixa estàndard, la qual s'especifica a la pestanya <guilabel>Tipus de lletra</guilabel> de l'eina de preferències <application>Aparença</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -705,9 +701,7 @@
              <term> 
                 <guilabel>Avís sonor del terminal</guilabel> </term> 
              <listitem> 
-                <para>
-                  Select this option to enable the terminal bell.
-                </para>
+                <para>Seleccioneu aquesta opció per a habilitar l'avís sonor del terminal.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -732,7 +726,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>When terminal commands set their own titles</guilabel> </term>
+                <guilabel>Quan les ordres del terminal estableixin el seu propi títol</guilabel> </term>
              <listitem> 
                 <para>Utilitzeu aquesta llista desplegable per a especificar com gestionar la manera d'establir dinàmicament el títol, és a dir, com establir el títol del terminal en funció de les ordres que s'executin en aquest.</para>
              </listitem> 
@@ -763,9 +757,7 @@
              <term> 
                 <guilabel>Quan l'ordre surt</guilabel> </term> 
              <listitem> 
-                <para>
-                  Use this drop-down list to specify what action to perform when the command exits. 
-                </para>
+                <para>Utilitzeu aquesta llista desplegable per a especificar quina acció s'ha de realitzar quan l'ordre finalitzi.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 
@@ -778,9 +770,7 @@
                 <guilabel>Primer pla i fons</guilabel>
                 </term> 
              <listitem> 
-                <para>
-                  Select the <guilabel>Use colours from system theme</guilabel> option to use the colors that are specified in the GNOME Desktop theme that is selected in the <guilabel>Theme</guilabel> tab of the <ulink type="help" url="ghelp:user-guide?prefs-theme"><application>Appearance</application> preference tool</ulink>.
-                </para>
+                <para>Seleccioneu l'opció <guilabel>Empra els colors del tema del sistema</guilabel> per a utilitzar els colors especificats en el tema de l'escriptori del GNOME que s'hagin seleccionat a la pestanya <guilabel>Tema</guilabel> de l'<ulink type="help" url="ghelp:user-guide?prefs-theme">eina de preferències <application>Aparença</application></ulink>.</para>
                 <para>Utilitzeu la llista desplegable <guilabel>Esquemes integrats</guilabel> per a especificar els colors de primer pla i de fons del terminal. El <application>terminal del GNOME</application> admet les combinacions de color de primer pla i de fons següents:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -842,11 +832,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Solid color</guilabel>
+                        <guilabel>Color sòlid</guilabel>
                      </para>
-                     <para>
-                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
-                     </para>
+                     <para>Seleccioneu aquesta opció per a utilitzar el color de fons que s'ha especificat en la pestanya <guilabel>Colors</guilabel> com a color de fons per al terminal.</para>
                   </listitem> 
                   <listitem> 
                      <para>
