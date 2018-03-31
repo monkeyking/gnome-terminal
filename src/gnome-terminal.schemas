@@ -958,7 +958,7 @@
 
       <locale name="bg">
          <short>Дали стандартните GTK бързи клавиши за менюта са разрешени</short>
-         <long>Можете да достигате до лентата с инструменти чрез F10. Това може да се променя чрез файла gtkrc (gtk-menu-bar-accel = „каквото_трябва“). Тази настройка изключва ускорителя за достъп до лентата с инструменти.</long>
+         <long>Можете да достигате до лентата с инструменти чрез F10. Това може да се променя чрез файла gtkrc (gtk-menu-bar-accel = „каквото_трябва“). Тази настройка изключва бързия клавиш за достъп до лентата с инструменти.</long>
       </locale>
 
       <locale name="bs">
@@ -1310,7 +1310,7 @@
       <locale name="el">
          <default>[UTF-8,current]</default>
          <short>Λίστα διαθέσιμων κωδικοποιήσεων</short>
-         <long>Ένα υποσύνολο από πιθανές κωδικοποιήσεις παρουσιάζονται στο υπομενού των κωδικοποιήσεων. Αυτή είναι μια λίστα από κωδικοποιήσεις που θα εμφανίζονατι εκεί. Το όνομα κωδικοποίησης &quot;τρέχον&quot; σημαίνει ότι εμφανίζεται η κωδικοποίηση του τρέχοντος locale.</long>
+         <long>Ένα υποσύνολο από πιθανές κωδικοποιήσεις παρουσιάζονται στο υπομενού των κωδικοποιήσεων. Αυτή είναι μια λίστα από κωδικοποιήσεις που θα εμφανίζονται εκεί. Το όνομα κωδικοποίησης &quot;τρέχον&quot; σημαίνει ότι εμφανίζεται η κωδικοποίηση του τρέχοντος locale.</long>
       </locale>
 
       <locale name="en_CA">
@@ -1946,7 +1946,7 @@
       </locale>
 
       <locale name="bg">
-         
+         <default>По подразбиране</default>
          <short>Разбираемо за човек име на профила</short>
          <long>Разбираемо за човек име на профила.</long>
       </locale>
@@ -1958,7 +1958,7 @@
       </locale>
 
       <locale name="ca">
-         
+         <default>Predeterminat</default>
          <short>Nom del perfil llegible per humans</short>
          <long>Nom del perfil llegible per humans.</long>
       </locale>
@@ -1988,7 +1988,7 @@
       </locale>
 
       <locale name="el">
-         
+         <default>Προεπιλογή</default>
          <short>Ανθρωπίνως αναγνώσιμο όνομα προφίλ</short>
          <long>Ανθρωπίνως αναγνώσιμο όνομα προφίλ.</long>
       </locale>
@@ -2006,7 +2006,7 @@
       </locale>
 
       <locale name="es">
-         
+         <default>Predeterminado</default>
          <short>Nombre del perfil legible por el humano</short>
          <long>Nombre del perfil legible por el humano.</long>
       </locale>
@@ -2048,7 +2048,7 @@
       </locale>
 
       <locale name="gl">
-         
+         <default>Predeterminado</default>
          <short>Nome lexible do perfil</short>
          <long>Nome lexible do perfil.</long>
       </locale>
@@ -2132,7 +2132,7 @@
       </locale>
 
       <locale name="nb">
-         
+         <default>Forvalgt</default>
          <short>Lesbart navn for profilen</short>
          <long>Lesbart navn for profilen.</long>
       </locale>
@@ -2144,7 +2144,7 @@
       </locale>
 
       <locale name="nl">
-         
+         <default>Standaard</default>
          <short>Profielnaam in menselijk leesbare vorm.</short>
          <long>Profielnaam in menselijk leesbare vorm.</long>
       </locale>
@@ -2156,7 +2156,7 @@
       </locale>
 
       <locale name="no">
-         
+         <default>Forvalgt</default>
          <short>Lesbart navn for profilen</short>
          <long>Lesbart navn for profilen.</long>
       </locale>
@@ -2180,7 +2180,7 @@
       </locale>
 
       <locale name="pt_BR">
-         
+         <default>Padrão</default>
          <short>Nome legível do perfil</short>
          <long>Nome legível do nome do perfil.</long>
       </locale>
@@ -2192,7 +2192,7 @@
       </locale>
 
       <locale name="ru">
-         
+         <default>По умолчанию</default>
          <short>Читабельное название профиля</short>
          <long>Читабельное имя профиля.</long>
       </locale>
@@ -2276,7 +2276,7 @@
       </locale>
 
       <locale name="zh_CN">
-         
+         <default>默认</default>
          <short>配置文件的友好名称</short>
          <long>配置文件的友好名称。</long>
       </locale>
@@ -4905,8 +4905,8 @@
       </locale>
 
       <locale name="bg">
-         <short>Символи, които се считат за „част от дума“</short>
-         <long>Последователностите, които съдържат тези знаци се считат за една дума при избирането на текст по думи. Обхватите могат да се записват разделени с тире: „А-Я“. Ако тирето също се счита за част от дума, то трябва да се зададе като първи символ.</long>
+         <short>Знаци, които се считат за част от дума</short>
+         <long>Последователностите, които съдържат тези знаци се считат за една дума при избирането на текст по думи. Обхватите могат да се записват разделени с тире: „А-Я“. Ако тирето също се счита за част от дума, то трябва да се зададе като първи знак.</long>
       </locale>
 
       <locale name="bs">
@@ -7499,7 +7499,7 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Se deve executar um comando personalizado ao invés do shell</short>
+         <short>Se deve executar um comando personalizado em vez da shell</short>
          <long>Se verdadeiro, o valor de custom_command será usado no lugar da shell atual.</long>
       </locale>
 
@@ -7619,7 +7619,7 @@
       </locale>
 
       <locale name="bg">
-         <short>Потребителска команда, която да се използва вместо системната обвивка.</short>
+         <short>Потребителска команда, която да се използва вместо стандартната обвивка.</short>
          <long>изпълняване на тази команда вместо обвивка, ако е зададено use_custom_command.</long>
       </locale>
 
@@ -7660,7 +7660,7 @@
 
       <locale name="el">
          <short>Εκτέλεση μια προσαρμοσμένης εντολής αντί για το κέλυφος</short>
-         <long>Εκτέλεση αυτής της εντολής αντί του κέλυφους αν είναι true η use_custom_command.</long>
+         <long>Εκτέλεση αυτής της εντολής αντί του κελύφους αν είναι true η use_custom_command.</long>
       </locale>
 
       <locale name="en_CA">
@@ -7814,8 +7814,8 @@
       </locale>
 
       <locale name="pt_BR">
-         <short>Comando personalizado para usar ao invés do shell</short>
-         <long>Executar este comando ao invés do shell, se use_custom_commando for verdadeiro.</long>
+         <short>Comando personalizado para usar em vez da shell</short>
+         <long>Executar este comando em vez da shell se use_custom_commando for verdadeiro.</long>
       </locale>
 
       <locale name="ro">
@@ -10234,7 +10234,7 @@
 
       <locale name="el">
          <short>Ποσοστό σκοτεινιάσματος της εικόνας παρασκηνίου</short>
-         <long>Μια τιμή ανάμεσα στο 0.0 και 1.0 καθορίζει το βαθμό σκοτεινότητας της εικόνας παρασκηνίου. 0.0 σημαίνει καθόλου σκοτεινιά, 1.0 σημαίνει πλήρες σκοτάδι. Στην τρέχουσα έκδοση υπάρχουν μόνο δυο επίπεδα σκοτεινότητας με αποτέλεσμα η ρύθμιση να είναι δυαδική, όπου 0.0 απενεργοποιεί το εφφέ του σκοταδιού.</long>
+         <long>Μια τιμή ανάμεσα στο 0.0 και 1.0 καθορίζει το βαθμό σκοτεινότητας της εικόνας παρασκηνίου. 0.0 σημαίνει καθόλου σκοτεινιά, 1.0 σημαίνει πλήρες σκοτάδι. Στην τρέχουσα έκδοση υπάρχουν μόνο δυο επίπεδα σκοτεινότητας με αποτέλεσμα η ρύθμιση να είναι δυαδική, όπου 0.0 απενεργοποιεί το εφέ του σκοταδιού.</long>
       </locale>
 
       <locale name="en_CA">
@@ -11418,51 +11418,81 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-         <short>Whether to disable anti aliasing without render extension</short>
+         <short>Whether to disable anti-aliasing without the X RENDER extension</short>
          <long>
-	  If true, font anti aliasing will be disabled for X servers without the RENDER
-	  extension. This would give a large performance improvement.
+	  If true, font anti-aliasing will be disabled when running without the X RENDER
+	  extension, which gives a considerable performance improvement in these situations.
          </long>
       </locale>
 
-      <locale name="be">
-         <short>Ці адключаць згладжваньне пры адсутнасьці пашырэньня render</short>
-         <long>Калі ісьціна, згладжваньне шрыфтоў будзе адключана для Х паслужнікаў, якія ня маюць пашырэньня RENDER. Гэта дадасьць значнае паляпшэньне вытворчасьці.</long>
+      <locale name="bg">
+         <short>Дали да бъде спряно заглаждането при липса на разширението X RENDER</short>
+         <long>Ако е вярно, заглаждането на шрифтовете ще бъде изключено при отсъствието на разширението X RENDER, което дава значително увеличение на скоростта в такива ситуации.</long>
       </locale>
 
-      <locale name="da">
-         <short>Om udjævning deaktiveres uden RENDER-udvidelse</short>
-         <long>Om skrifttype-udjævning deaktiveres for X-servere uden RENDER-udvidelsen. Dette vil give en stor ydelses-forbedring.</long>
+      <locale name="ca">
+         <short>Si s&apos;ha d&apos;inhabilitar l&apos;antidentat sense l&apos;extensió X RENDER</short>
+         <long>Si està habilitat, no s&apos;utilitzarà l&apos;antidentat per al tipus de lletra quan s&apos;executi sense l&apos;extensió X RENDER, que proporciona una considerable millora de rendiment en aquestes situacions.</long>
+      </locale>
+
+      <locale name="el">
+         <short>Αν θα απενεργοποιείται η εξομάλυνση χαρακτήρων χωρίς την επέκταση X RENDER</short>
+         <long>Αν true, θα απενεργοποιείται η εξομάλυνση γραμματοσειρών όταν γίνεται εκτέλεση χωρίς τη επέκταση X RENDER, πράγμα το οποίο βελτιώνει την ταχύτητα σε τέτοιες καταστάσεις.</long>
       </locale>
 
       <locale name="en_CA">
-         <short>Whether to disable anti-aliasing without RENDER extension</short>
-         <long>If true, font anti-aliasing will be disabled for X servers without the RENDER extension. This may give a large performance improvement.</long>
+         <short>Whether to disable anti-aliasing without the X RENDER extension</short>
+         <long>If true, font anti-aliasing will be disabled when running without the X RENDER extension, which gives a considerable performance improvement in these situations.</long>
+      </locale>
+
+      <locale name="es">
+         <short>Indica si se debe desactivar el alisado de tipografías sin la extensión X RENDER</short>
+         <long>Si es «true», el suavizado de tipografías será desactivado cuando se ejecute sin la extensión XRENDER, la cual produce una mejora considerable de rendimiento en estos casos.</long>
       </locale>
 
       <locale name="fi">
          <short>Poistetaanko kirjasinten pehmennys, jos RENDER-laajennosta ei ole</short>
-         <long>Jos tosi, kirjasinten pehmennys poistetaan käytöstä, kun X-palvelin ei sisällä RENDER-laajennusta. Tämä nopeuttaa toimintaa suuresti.</long>
+         <long>Jos tosi, kirjasinten pehmennys poistetaan käytöstä, kun X-palvelin ei sisällä RENDER-laajennusta. Tämä nopeuttaa toimintaa suuresti näissä tilanteissa.</long>
+      </locale>
+
+      <locale name="gl">
+         <short>Indica se se debe desactivar o suavizado de fontes sen a extensión XRENDER</short>
+         <long>Se é verdadeiro, o suavizado da fonte desactivarase cando se execute sen a extensión XRENDER, a cal produce produce unha mellora considerable de redemento nestes casos.</long>
       </locale>
 
       <locale name="gu">
-         <short>શું રેન્ડર એક્સટેન્સન વિના એન્ટી એલિઆઝીંગ નિષ્ક્રિય કરવું</short>
-         <long>જો સાચું હોય, તો X સર્વરો માટે ફોન્ટ એન્ટી એલિઆઝીંગ નિષ્ક્રિય થઈ જશે RENDER એક્સટેન્સન વિના. આ મોટો પ્રભાવ સુધારો આપશો.</long>
+         <short>શું X રેન્ડર એક્સટેન્સન વિના એન્ટી એલિઆઝીંગ નિષ્ક્રિય કરવું</short>
+         <long>જો સાચું હોય, તો X સર્વરો માટે ફોન્ટ એન્ટી એલિઆઝીંગ નિષ્ક્રિય થઈ જશે RENDER એક્સટેન્સન વિના, કે જે આવી પરિસ્થિતિઓમાં સમજી શકાય તેવા પ્રભાવ સુધારાઓ આપે છે.</long>
       </locale>
 
-      <locale name="sr">
-         <short>Да ли да искључим омекшавање слова ако нема „RENDER “проширења</short>
-         <long>Ако је постављено, омекшавање слова биће искључено за Икс сервере који немају RENDER проширење. Ово даје велико убрзање.</long>
+      <locale name="nl">
+         <short>Anti-aliasing uitzetten indien er geen X RENDER extension is.</short>
+         <long>Indien waar, zullen, bij het ontbreken van de X RENDER extension, lettertekens geen anti-aliasing krijgen. Dat levert in die situatie een aanzienlijke snelheidswinst op.</long>
       </locale>
 
-      <locale name="sr@Latn">
-         <short>Da li da isključim omekšavanje slova ako nema „RENDER “proširenja</short>
-         <long>Ako je postavljeno, omekšavanje slova biće isključeno za Iks servere koji nemaju RENDER proširenje. Ovo daje veliko ubrzanje.</long>
+      <locale name="pt_BR">
+         <short>Se deve desabilitar anti-aliasing quando sem a extensão RENDER do X</short>
+         <long>Se verdadeiro, anti-aliasing de fontes será desabilitado quando rodando sem a extensão RENDER do X, o que resulta em um aumento considerável de desempenho nessas situações.</long>
+      </locale>
+
+      <locale name="ru">
+         <short>Отключать ли сглаживание без расширения X RENDER</short>
+         <long>Если включено, сглаживание шрифтов не будет использовано если запущено без расширения X RENDER, которое дает значнительное улучшение произволительности в это ситуации</long>
+      </locale>
+
+      <locale name="th">
+         <short>กำหนดว่าจะไม่ใช้การลบรอยหยักเมื่อไม่มีส่วนขยาย X RENDER หรือไม่</short>
+         <long>ถ้าเลือก จะปิดการลบรอยหยักเมื่อทำงานโดยไม่มีส่วนขยาย X RENDER ซึ่งจะเพิ่มประสิทธิภาพการทำงานของโปรแกรมพอสมควร ภายใต้สภาวะดังกล่าว</long>
       </locale>
 
       <locale name="vi">
-         <short>Có nên tắt khả năng làm trơn không có phần mở rộng vẽ hay không</short>
-         <long>Nếu đúng, khả năng làm trơn phông chữ sẽ bị tắt cho trình phục vụ X không có phần mở rộng RENDER (vẽ). Làm như thế sẽ rất tăng tốc độ chạy.</long>
+         <short>Có nên tắt khả năng làm trơn không có phần mở rộng RENDER (vẽ) hay không</short>
+         <long>Nếu đúng, khả năng làm trơn phông chữ sẽ bị tắt khi chạy không có phần mở rộng RENDER (vẽ), mà rất tăng tốc độ chạy trong những trường hợp này.</long>
+      </locale>
+
+      <locale name="zh_CN">
+         <short>在没有 X RENDER 扩展的情况下是否要禁用反锯齿</short>
+         <long>如果为 true，在没有 X RENDERE 扩展的情况下运行时将会禁用字体反锯齿，以便显著改进性能。</long>
       </locale>
     </schema>
 
@@ -11819,6 +11849,11 @@
          <long>Soll ein Dialog angezeigt werden, wenn eine Passwortanfrage erkannt und angeklickt wird. Die Eingabe eines Passworts in den Dialog schickt dieses an das Terminal.</long>
       </locale>
 
+      <locale name="el">
+         <short>Επισήμανση S/Key challenges</short>
+         <long>Ανάδυση ενός διαλόγου όταν εντοπίζεται ένα ερώτημα  S/Key challenge και γίνεται κλικ. Η πληκτρολόγηση κωδικού στο διάλογο θα το στέλνει στο τερματικό.</long>
+      </locale>
+
       <locale name="en_CA">
          <short>Highlight S/Key challenges</short>
          <long>Pop up a dialogue when an S/Key challenge response query is detected and clicked on. Typing a password into the dialogue will send it to the terminal.</long>
@@ -11877,6 +11912,11 @@
       <locale name="pt_BR">
          <short>Destacar desafios S/Key</short>
          <long>Mostrar um diálogo quando uma solicitação de resposta a um desafio S/Key for detectada e clicada. Digitar uma senha no diálogo a enviará para o terminal.</long>
+      </locale>
+
+      <locale name="ru">
+         <short>Выделять запросы S/Key</short>
+         <long>Показывать диалог при обнаружении ответа на запрос S/Key и нажатии на него. Ввод пароля в диалоге приведет к отправке его в терминал.</long>
       </locale>
 
       <locale name="sk">
@@ -14075,6 +14115,7 @@
       <applyto>/apps/gnome-terminal/keybindings/full_screen</applyto>
       <owner>gnome-terminal</owner>
       <type>string</type>
+      <default>F11</default>
       <locale name="C">
          <short>Keyboard shortcut to toggle full screen mode</short>
          <long>
@@ -16254,6 +16295,11 @@
          <long>Die Tastenkombination, um den aktuellen Reiter nach links zu verschieben. Als Zeichenkette anzugeben, und zwar im selben Format wie das in GTK+-Ressourcendateien verwendete. Falls Sie diesen Schlüssel auf den Wert »disabled« setzen, wird dieser Aktion keine Tastenkombination zugewiesen.</long>
       </locale>
 
+      <locale name="el">
+         <short>Συντόμευση για μετακίνηση τρέχουσας καρτέλας στα αριστερά.</short>
+         <long>Πλήκτρο συντόμευσης για την μετακίνηση της τρέχουσας καρτέλας στα αριστερά. Εκφράζεται ως αλφαριθμητικό με την ίδια μορφή που χρησιμοποιείται για τα αρχεία πηγής GTK+. Αν ρυθμίσετε την επιλογή στο αλφαριθμητικό &quot;disabled&quot; τότε δεν θα υπάρχει συνδυασμός πλήκτρων για αυτή την ενέργεια.</long>
+      </locale>
+
       <locale name="en_CA">
          <short>Accelerator to move the current tab to the left.</short>
          <long>Accelerator key to move the current tab to the left. Expressed as a string in the same format used for GTK+ resource files. If you set the option to the special string &quot;disabled&quot;, then there will be no keybinding for this action.</long>
@@ -16319,6 +16365,11 @@
          <long>Tecla de atalho para mover a aba atual para a esquerda. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
+      <locale name="ru">
+         <short>Комбинация клавиш для перемещения текущей вкладки влево.</short>
+         <long>Комбинация клавиш для перемещения текущей вкладки влево. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
+      </locale>
+
       <locale name="sr">
          <short>Пречица за премештање текућег листа на лево.</short>
          <long>Пречица за премештање текучег листа на лево. Изражава се као ниска на исти начин како се користи и у датотекама са Гтк+ ресурсима. Уколико поставите опцију на нарочиту ниску „disabled“, онда се неће доделити пречица овој акцији.</long>
@@ -16337,6 +16388,11 @@
       <locale name="vi">
          <short>Phím tắt có chuyển thanh hiện thời sang bên trái.</short>
          <long>Phím tắt để chuyển thanh hiện thời sang bên trái. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi đặc biệt « disabled » (bị tắt), nghĩa là không có phím tổ hợp cho hành động này.</long>
+      </locale>
+
+      <locale name="zh_CN">
+         <short>将当前标签左移的加速键。</short>
+         <long>将当前标签左移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
       </locale>
     </schema>
     
@@ -16379,6 +16435,11 @@
       <locale name="de">
          <short>Tastenkombination um den aktuellen Reiter nach rechts zu verschieben.</short>
          <long>Die Tastenkombination, um den aktuellen Reiter nach rechts zu verschieben. Als Zeichenkette anzugeben, und zwar im selben Format wie das in GTK+-Ressourcendateien verwendete. Falls Sie diesen Schlüssel auf den Wert »disabled« setzen, wird dieser Aktion keine Tastenkombination zugewiesen.</long>
+      </locale>
+
+      <locale name="el">
+         <short>Συντόμευση για μετακίνηση τρέχουσας καρτέλας στα δεξιά.</short>
+         <long>Πλήκτρο συντόμευσης για την μετακίνηση της τρέχουσας καρτέλας στα δεξιά. Εκφράζεται ως αλφαριθμητικό με την ίδια μορφή που χρησιμοποιείται για τα αρχεία πηγής GTK+. Αν ρυθμίσετε την επιλογή στο αλφαριθμητικό &quot;disabled&quot; τότε δεν θα υπάρχει συνδυασμός πλήκτρων για αυτή την ενέργεια.</long>
       </locale>
 
       <locale name="en_CA">
@@ -16446,6 +16507,11 @@
          <long>Tecla de atalho para mover a aba atual para a direita. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
       </locale>
 
+      <locale name="ru">
+         <short>Комбинация клавиш для перемещения текущей вкладки вправо.</short>
+         <long>Комбинация клавиш для перемещения текущей вкладки вправо. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
+      </locale>
+
       <locale name="sr">
          <short>Пречица за премештање текућег листа на десно.</short>
          <long>Пречица за премештање текућег листа на десно. Изражава се као ниска на исти начин како се користи и у датотекама са Гтк+ ресурсима. Уколико поставите опцију на нарочиту ниску „disabled“, онда се неће доделити пречица овој акцији.</long>
@@ -16464,6 +16530,11 @@
       <locale name="vi">
          <short>Phím tắt có chuyển thanh hiện thời sang bên phải.</short>
          <long>Phím tắt để chuyển thanh hiện thời sang phải. Dùng dạng chuỗi có cùng một khuôn dạng với tập tin tài nguyên GTK+. Nếu bạn đặt tùy chọn là chuỗi đặc biệt « disabled » (bị tắt), nghĩa là không có phím tổ hợp cho hành động này.</long>
+      </locale>
+
+      <locale name="zh_CN">
+         <short>将当前标签右移的加速键。</short>
+         <long>将当前标签右移的加速键。以 GTK+ 资源文件所用格式给出的字符串。如果您将选项设为特殊字符串“disabled”，则此操作就没有快捷键。</long>
       </locale>
     </schema>
 
@@ -16510,6 +16581,11 @@
       <locale name="de">
          <short>Tastenkombination um den aktuellen Reiter abzutrennen.</short>
          <long>Die Tastenkombination, um den aktuellen Reiter abzutrennen. Als Zeichenkette anzugeben, und zwar im selben Format wie das in GTK+-Ressourcendateien verwendete. Falls Sie diesen Schlüssel auf den Wert »disabled« setzen, wird dieser Aktion keine Tastenkombination zugewiesen.</long>
+      </locale>
+
+      <locale name="el">
+         <short>Συντόμευση για αποκοπή τρέχουσας καρτέλας.</short>
+         <long>Πλήκτρο συντόμευσης για την αποκοπή τρέχουσας καρτέλας. Εκφράζεται ως αλφαριθμητικό με την ίδια μορφή που χρησιμοποιείται για τα αρχεία πηγής GTK+. Αν ρυθμίσετε την επιλογή στο αλφαριθμητικό &quot;disabled&quot; τότε δεν θα υπάρχει συνδυασμός πλήκτρων για αυτή την ενέργεια.</long>
       </locale>
 
       <locale name="en_CA">
@@ -16575,6 +16651,11 @@
       <locale name="pt_BR">
          <short>Atalho para destacar a aba atual.</short>
          <long>Tecla de atalho para destacar a aba atual. Expresso como uma string no mesmo formato usado pelos arquivos de recursos do GTK+. Se você configurar a opção para a expressão especial &quot;disabled&quot; não haverá atalho de teclado para essa ação.</long>
+      </locale>
+
+      <locale name="ru">
+         <short>Комбинация клавиш для о</short>
+         <long>Комбинация клавиш для отцепления текущей вкладки. Указывается в виде строки в формате файлов ресурсов GTK+. Если установить специальное значение &quot;disabled&quot;, то для этого действия не будет комбинации клавиш.</long>
       </locale>
 
       <locale name="sk">
