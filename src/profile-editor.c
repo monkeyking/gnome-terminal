@@ -579,7 +579,7 @@ update_image_preview (GtkFileChooser *chooser)
   gchar *file;
 
   image = gtk_file_chooser_get_preview_widget (GTK_FILE_CHOOSER (chooser));
-  file = gtk_file_chooser_get_preview_filename (chooser);
+  file = gtk_file_chooser_get_preview_uri (chooser);
   
   if (file != NULL) {
 
@@ -597,8 +597,8 @@ update_image_preview (GtkFileChooser *chooser)
                                 "gtk-dialog-question",
       	                        GTK_ICON_SIZE_DIALOG);
     }
-  }				
-  gtk_file_chooser_set_preview_widget_active (chooser, TRUE);
+  }
+  gtk_file_chooser_set_preview_widget_active (chooser, file != NULL);
 }
 
 static void
@@ -612,12 +612,7 @@ setup_background_filechooser (GtkWidget *filechooser,
   filter = gtk_file_filter_new ();
   gtk_file_filter_add_pixbuf_formats (filter);
   gtk_file_filter_set_name (filter, _("Images"));
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (filechooser), filter);
-
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("All Files"));
-  gtk_file_filter_add_pattern (filter, "*");
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (filechooser), filter);
+  gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (filechooser), filter);
 
   image_preview = gtk_image_new ();
   /* FIXMchpe this is bogus */

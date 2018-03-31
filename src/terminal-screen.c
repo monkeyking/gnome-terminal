@@ -48,7 +48,7 @@
 typedef struct
 {
   int tag;
-  int flavor;
+  TerminalURLFlavour flavor;
 } TagData;
 
 struct _TerminalScreenPrivate
@@ -67,16 +67,14 @@ struct _TerminalScreenPrivate
   double font_scale;
   guint recheck_working_dir_idle;
   gboolean user_title; /* title was manually set */
-  GSList *url_tags;
-  GSList *skey_tags;
+  GSList *match_tags;
 };
 
 enum
 {
   PROFILE_SET,
   SHOW_POPUP_MENU,
-  SKEY_CLICKED,
-  URL_CLICKED,
+  MATCH_CLICKED,
   CLOSE_SCREEN,
   LAST_SIGNAL
 };
@@ -136,23 +134,57 @@ static void terminal_screen_cook_icon_title (TerminalScreen *screen);
 
 static void queue_recheck_working_dir (TerminalScreen *screen);
 
+#if !VTE_CHECK_VERSION (0, 16, 15)
 static void  terminal_screen_match_add         (TerminalScreen            *screen,
                                                 const char           *regexp,
                                                 int                   flavor);
-static void  terminal_screen_skey_match_add    (TerminalScreen            *screen,
-                                                const char           *regexp,
-                                                int                   flavor);
+#endif /* VTE < 0.16.15 */
 static char* terminal_screen_check_match       (TerminalScreen            *screen,
-                                                int                   column,
-                                                int                   row,
-                                                int                  *flavor);
-static char* terminal_screen_skey_check_match  (TerminalScreen            *screen,
                                                 int                   column,
                                                 int                   row,
                                                 int                  *flavor);
 static void  terminal_screen_skey_match_remove (TerminalScreen            *screen);
 
 static guint signals[LAST_SIGNAL];
+
+#if VTE_CHECK_VERSION (0, 16, 15)
+
+#define USERCHARS "-[:alnum:]"
+#define USERCHARS_CLASS "[" USERCHARS "]"
+#define PASSCHARS_CLASS "[-[:alnum:]\\Q,?;.:/!%$^*&~\"#'\\E]"
+#define HOSTCHARS_CLASS "[-[:alnum:]]"
+#define HOST HOSTCHARS_CLASS "+(\\." HOSTCHARS_CLASS "+)*"
+#define PORT "(?:\\:[[:digit:]]{1,5})?"
+#define PATHCHARS_CLASS "[-[:alnum:]\\Q_$.+!*(),;:@&=?/~#%\\E]"
+#define SCHEME "(?:news:|telnet:|nntp:|file:\\/|https?:|ftps?:|webcal:)"
+#define USERPASS USERCHARS_CLASS "+(?:" PASSCHARS_CLASS "+)?"
+#define URLPATH "/" PATHCHARS_CLASS "*[^\\Q]'.}>) \t\r\n,\"\\E]"
+
+typedef struct {
+  const char *pattern;
+  TerminalURLFlavour flavor;
+  GRegexCompileFlags flags;
+} TerminalRegexPattern;
+
+static const TerminalRegexPattern url_regex_patterns[] = {
+  { SCHEME "//(?:" USERPASS "\\@)?" HOST PORT "(?:" URLPATH ")?", FLAVOR_AS_IS, G_REGEX_CASELESS },
+  { "(?:www|ftp)" HOSTCHARS_CLASS "*\\." HOST PORT "(?:" URLPATH ")?", FLAVOR_DEFAULT_TO_HTTP, G_REGEX_CASELESS  },
+  { "(?:callto:|h323:|sip:)" USERCHARS_CLASS "[" USERCHARS ".]*(?:" PORT "/[a-z0-9]+)?\\@" HOST, FLAVOR_VOIP_CALL, G_REGEX_CASELESS  },
+  { "(?:mailto:)?" USERCHARS_CLASS "[" USERCHARS ".]*\\@" HOSTCHARS_CLASS "+\\." HOST, FLAVOR_EMAIL, G_REGEX_CASELESS  },
+  { "news:[[:alnum:]\\Q^_{|}~!\"#$%&'()*+,./;:=?`\\E]+", FLAVOR_AS_IS, G_REGEX_CASELESS  },
+};
+
+static const TerminalRegexPattern skey_regex_patterns[] = {
+  { "s/key [[:digit:]]* [-[:alnum:]]*",         FLAVOR_AS_IS },
+  { "otp-[a-z0-9]* [[:digit:]]* [-[:alnum:]]*", FLAVOR_AS_IS },
+};
+
+static GRegex **url_regexes;
+static TerminalURLFlavour *url_regex_flavors;
+static guint n_url_regexes;
+static GRegex **skey_regexes;
+static guint n_skey_regexes;
+#endif /* VTE 0.16.15 */
 
 G_DEFINE_TYPE (TerminalScreen, terminal_screen, VTE_TYPE_TERMINAL)
 
@@ -219,29 +251,17 @@ set_background_image_file (VteTerminal *terminal,
     vte_terminal_set_background_image (terminal, NULL);
 }
 
-static void
-terminal_screen_update_cursor_blink (TerminalScreen *screen,
-                                     GtkSettings *settings)
-{
-  TerminalScreenPrivate *priv = screen->priv;
-  TerminalCursorBlinkMode mode;
-  gboolean blink;
-
-  mode = terminal_profile_get_property_enum (priv->profile, TERMINAL_PROFILE_CURSOR_BLINK_MODE);
-  if (mode == TERMINAL_CURSOR_BLINK_SYSTEM)
-    g_object_get (settings, "gtk-cursor-blink", &blink, NULL);
-  else
-    blink = (mode == TERMINAL_CURSOR_BLINK_ON);
-
-  vte_terminal_set_cursor_blinks (VTE_TERMINAL (screen), blink);
-}
+#if !VTE_CHECK_VERSION (0, 16, 15)
 
 static void
 terminal_screen_sync_settings (GtkSettings *settings,
                                GParamSpec *pspec,
                                TerminalScreen *screen)
 {
-  terminal_screen_update_cursor_blink (screen, settings);
+  gboolean blink;
+
+  g_object_get (settings, "gtk-cursor-blink", &blink, NULL);
+  vte_terminal_set_cursor_blinks (VTE_TERMINAL (screen), blink);
 }
 
 static void
@@ -271,6 +291,8 @@ terminal_screen_screen_changed (GtkWidget *widget, GdkScreen *previous_screen)
   g_signal_connect (settings, "notify::gtk-cursor-blink",
                     G_CALLBACK (terminal_screen_sync_settings), widget);
 }
+
+#endif /* VTE < 0.16.15 */
 
 static void
 terminal_screen_realize (GtkWidget *widget)
@@ -338,6 +360,10 @@ terminal_screen_init (TerminalScreen *screen)
   GtkTargetList *target_list;
   GtkTargetEntry *targets;
   int n_targets;
+#if VTE_CHECK_VERSION (0, 16, 15)
+  VteTerminal *terminal = VTE_TERMINAL (screen);
+  guint i;
+#endif
 
   priv = screen->priv = G_TYPE_INSTANCE_GET_PRIVATE (screen, TERMINAL_TYPE_SCREEN, TerminalScreenPrivate);
 
@@ -352,6 +378,20 @@ terminal_screen_init (TerminalScreen *screen)
 
   priv->font_scale = PANGO_SCALE_MEDIUM;
 
+#if VTE_CHECK_VERSION (0, 16, 15)
+  for (i = 0; i < n_url_regexes; ++i)
+    {
+      TagData *tag_data;
+
+      tag_data = g_slice_new (TagData);
+      tag_data->flavor = url_regex_flavors[i];
+      tag_data->tag = vte_terminal_match_add_gregex (terminal, url_regexes[i], 0);
+      vte_terminal_match_set_cursor_type (terminal, tag_data->tag, URL_MATCH_CURSOR);
+
+      priv->match_tags = g_slist_prepend (priv->match_tags, tag_data);
+    }
+#else /* VTE < 0.16.15 */
+  
 #define USERCHARS "-A-Za-z0-9"
 #define PASSCHARS "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
 #define HOSTCHARS "-A-Za-z0-9"
@@ -387,6 +427,7 @@ terminal_screen_init (TerminalScreen *screen)
                              "\\<news:[-A-Z\\^_a-z{|}~!\"#$%&'()*+,./0-9;:=?`]+"
                              HOST PORT "\\>",
                              FLAVOR_AS_IS);
+#endif /* VTE 0.16.15 */
 
   /* Setup DND */
   target_list = gtk_target_list_new (NULL, 0);
@@ -504,7 +545,9 @@ terminal_screen_class_init (TerminalScreenClass *klass)
   object_class->get_property = terminal_screen_get_property;
   object_class->set_property = terminal_screen_set_property;
 
+#if !VTE_CHECK_VERSION (0, 16, 15)
   widget_class->screen_changed = terminal_screen_screen_changed;
+#endif
   widget_class->realize = terminal_screen_realize;
   widget_class->style_set = terminal_screen_style_set;
   widget_class->drag_data_received = terminal_screen_drag_data_received;
@@ -532,25 +575,15 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                   1,
                   G_TYPE_POINTER);
 
-  signals[SKEY_CLICKED] =
-    g_signal_new (I_("skey-clicked"),
+  signals[MATCH_CLICKED] =
+    g_signal_new (I_("match-clicked"),
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (TerminalScreenClass, skey_clicked),
-                  NULL, NULL,
-                  g_cclosure_marshal_VOID__STRING,
-                  G_TYPE_NONE,
-                  1, G_TYPE_STRING);
-  
-  signals[URL_CLICKED] =
-    g_signal_new (I_("url-clicked"),
-                  G_OBJECT_CLASS_TYPE (object_class),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (TerminalScreenClass, url_clicked),
-                  NULL, NULL,
-                  _terminal_marshal_VOID__STRING_INT,
-                  G_TYPE_NONE,
-                  2, G_TYPE_STRING, G_TYPE_INT);
+                  G_STRUCT_OFFSET (TerminalScreenClass, match_clicked),
+                  g_signal_accumulator_true_handled, NULL,
+                  _terminal_marshal_BOOLEAN__STRING_INT_UINT,
+                  G_TYPE_BOOLEAN,
+                  3, G_TYPE_STRING, G_TYPE_INT, G_TYPE_UINT);
   
   signals[CLOSE_SCREEN] =
     g_signal_new (I_("close-screen"),
@@ -598,6 +631,47 @@ terminal_screen_class_init (TerminalScreenClass *klass)
                           G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   g_type_class_add_private (object_class, sizeof (TerminalScreenPrivate));
+
+#if VTE_CHECK_VERSION (0, 16, 15)
+{
+  guint i;
+
+  /* Precompile the regexes */
+  n_url_regexes = G_N_ELEMENTS (url_regex_patterns);
+  url_regexes = g_new0 (GRegex*, n_url_regexes);
+  url_regex_flavors = g_new0 (TerminalURLFlavour, n_url_regexes);
+  n_skey_regexes = G_N_ELEMENTS (skey_regex_patterns);
+  skey_regexes = g_new0 (GRegex*, n_skey_regexes);
+
+  for (i = 0; i < n_url_regexes; ++i)
+    {
+      GError *error = NULL;
+
+      url_regexes[i] = g_regex_new (url_regex_patterns[i].pattern,
+                                    url_regex_patterns[i].flags | G_REGEX_OPTIMIZE,
+                                    0, &error);
+      if (error)
+        {
+          g_message ("%s", error->message);
+          g_error_free (error);
+        }
+
+      url_regex_flavors[i] = url_regex_patterns[i].flavor;
+    }
+
+  for (i = 0; i < n_skey_regexes; ++i)
+    {
+      GError *error = NULL;
+
+      skey_regexes[i] = g_regex_new (skey_regex_patterns[i].pattern, G_REGEX_OPTIMIZE, 0, &error);
+      if (error)
+        {
+          g_message ("%s", error->message);
+          g_error_free (error);
+        }
+    }
+}
+#endif /* VTE 0.16.15 */
 }
 
 static void
@@ -637,11 +711,8 @@ terminal_screen_finalize (GObject *object)
   g_strfreev (priv->override_command);
   g_free (priv->working_dir);
 
-  g_slist_foreach (priv->url_tags, (GFunc) free_tag_data, NULL);
-  g_slist_free (priv->url_tags);
-
-  g_slist_foreach (priv->skey_tags, (GFunc) free_tag_data, NULL);
-  g_slist_free (priv->skey_tags);
+  g_slist_foreach (priv->match_tags, (GFunc) free_tag_data, NULL);
+  g_slist_free (priv->match_tags);
 
   G_OBJECT_CLASS (terminal_screen_parent_class)->finalize (object);
 }
@@ -770,13 +841,29 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
     {
       if (terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_SKEY))
         {
-          terminal_screen_skey_match_add (screen,
-                                          "s/key [0-9]* [-A-Za-z0-9]*",
-                                          FLAVOR_AS_IS);
+#if VTE_CHECK_VERSION (0, 16, 15)
+          guint i;
 
-          terminal_screen_skey_match_add (screen,
-                                          "otp-[a-z0-9]* [0-9]* [-A-Za-z0-9]*",
-                                          FLAVOR_AS_IS);
+          for (i = 0; i < n_skey_regexes; ++i)
+            {
+              TagData *tag_data;
+
+              tag_data = g_slice_new (TagData);
+              tag_data->flavor = FLAVOR_SKEY;
+              tag_data->tag = vte_terminal_match_add_gregex (vte_terminal, skey_regexes[i], 0);
+              vte_terminal_match_set_cursor_type (vte_terminal, tag_data->tag, SKEY_MATCH_CURSOR);
+
+              priv->match_tags = g_slist_prepend (priv->match_tags, tag_data);
+            }
+#else /* VTE < 0.16.15 */
+          terminal_screen_match_add (screen,
+                                     "s/key [0-9]* [-A-Za-z0-9]*",
+                                     FLAVOR_SKEY);
+
+          terminal_screen_match_add (screen,
+                                     "otp-[a-z0-9]* [0-9]* [-A-Za-z0-9]*",
+                                     FLAVOR_SKEY);
+#endif /* VTE 0.16.15 */
         }
       else
         {
@@ -838,12 +925,17 @@ terminal_screen_profile_notify_cb (TerminalProfile *profile,
     vte_terminal_set_allow_bold (vte_terminal,
                                  terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_ALLOW_BOLD));
 
+#if VTE_CHECK_VERSION (0, 16, 15)
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_CURSOR_BLINK_MODE))
-    terminal_screen_update_cursor_blink (screen, gtk_widget_get_settings (GTK_WIDGET (screen)));
+    vte_terminal_set_cursor_blink_mode (vte_terminal,
+                                        terminal_profile_get_property_enum (priv->profile, TERMINAL_PROFILE_CURSOR_BLINK_MODE));
+#endif
 
-  /* Some changes require a redraw, but vte doesn't always schedule one */
+#if !VTE_CHECK_VERSION (0, 16, 15)
+  /* For bug 535552 */
   if (GTK_WIDGET_REALIZED (screen))
     gtk_widget_queue_draw (GTK_WIDGET (screen));
+#endif
 
   g_object_thaw_notify (object);
 }
@@ -977,7 +1069,9 @@ terminal_screen_set_font (TerminalScreen *screen)
   TerminalScreenPrivate *priv = screen->priv;
   TerminalProfile *profile;
   PangoFontDescription *desc;
+#if !VTE_CHECK_VERSION (0, 16, 15)
   gboolean no_aa_without_render;
+#endif
 
   profile = priv->profile;
   
@@ -991,6 +1085,9 @@ terminal_screen_set_font (TerminalScreen *screen)
 				   priv->font_scale *
 				   pango_font_description_get_size (desc));
 
+#if VTE_CHECK_VERSION (0, 16, 15)
+  vte_terminal_set_font (VTE_TERMINAL (screen), desc);
+#else
   no_aa_without_render = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_NO_AA_WITHOUT_RENDER);
   if (!no_aa_without_render)
     {
@@ -1014,6 +1111,7 @@ terminal_screen_set_font (TerminalScreen *screen)
 				    desc,
 				    VTE_ANTI_ALIAS_FORCE_DISABLE);
     }
+#endif /* VTE 0.16.15 */
 
   pango_font_description_free (desc);
 }
@@ -1239,13 +1337,13 @@ get_child_environment (TerminalScreen *screen)
   for (i = 0, p = env; *p; p++)
     {
       /* Strip all these out, we'll replace some of them */
-      if ((strncmp (*p, "COLUMNS=", 8) == 0) ||
-          (strncmp (*p, "LINES=", 6) == 0)   ||
-          (strncmp (*p, "WINDOWID=", 9) == 0) ||
-          (strncmp (*p, "TERM=", 5) == 0)    ||
-          (strncmp (*p, "GNOME_DESKTOP_ICON=", 19) == 0) ||
-          (strncmp (*p, "COLORTERM=", 10) == 0) ||
-	  (strncmp (*p, "DISPLAY=", 8) == 0))
+      if ((strcmp (*p, "COLUMNS") == 0) ||
+          (strcmp (*p, "LINES") == 0)   ||
+          (strcmp (*p, "WINDOWID") == 0) ||
+          (strcmp (*p, "TERM") == 0)    ||
+          (strcmp (*p, "GNOME_DESKTOP_ICON") == 0) ||
+          (strcmp (*p, "COLORTERM") == 0) ||
+          (strcmp (*p, "DISPLAY") == 0))
         {
           /* nothing: do not copy */
         }
@@ -1504,55 +1602,44 @@ terminal_screen_button_press (GtkWidget      *widget,
 {
   TerminalScreen *screen = TERMINAL_SCREEN (widget);
   TerminalScreenPrivate *priv = screen->priv;
-  int char_width, char_height;
-  gboolean dingus_button;
+  gboolean (* button_press_event) (GtkWidget*, GdkEventButton*) =
+    GTK_WIDGET_CLASS (terminal_screen_parent_class)->button_press_event;
+  int char_width, char_height, x, y, xpad, ypad;
   char *matched_string;
   int matched_flavor = 0;
   guint state;
 
   state = event->state & gtk_accelerator_get_default_mod_mask ();
 
+  vte_terminal_get_padding (VTE_TERMINAL (screen), &xpad, &ypad);
   terminal_screen_get_cell_size (screen, &char_width, &char_height);
 
-  matched_string =
-    terminal_screen_check_match (screen,
-                                 event->x / char_width,
-                                 event->y / char_height,
-                                 &matched_flavor);
-  dingus_button = ((event->button == 1) || (event->button == 2));
-
-  if (dingus_button &&
-      (state & GDK_CONTROL_MASK) &&
-      terminal_profile_get_property_boolean (priv->profile, TERMINAL_PROFILE_USE_SKEY))
+  x = (event->x - xpad) / char_width;
+  y = (event->y - ypad) / char_height;
+  matched_string = terminal_screen_check_match (screen, x, y, &matched_flavor);
+  
+  if (matched_string != NULL &&
+      (event->button == 1 || event->button == 2) &&
+      (state & GDK_CONTROL_MASK))
     {
-      gchar *skey_match;
+      gboolean handled = FALSE;
 
-      skey_match = terminal_screen_skey_check_match (screen,
-						     event->x / char_width,
-						     event->y / char_height,
-                                                     NULL);
-      if (skey_match != NULL)
-	{
-          g_signal_emit (screen, signals[SKEY_CLICKED], 0, skey_match);
-	  g_free (skey_match);
-          g_free (matched_string);
+      if (matched_flavor != FLAVOR_SKEY ||
+          terminal_profile_get_property_boolean (priv->profile, TERMINAL_PROFILE_USE_SKEY))
+        {
+          g_signal_emit (screen, signals[MATCH_CLICKED], 0,
+                         matched_string,
+                         matched_flavor,
+                         state,
+                         &handled);
+        }
 
-	  return TRUE;
-	}
+        g_free (matched_string);
+
+        if (handled)
+          return TRUE; /* don't do anything else such as select with the click */
     }
 
-  if (dingus_button &&
-      (state & GDK_CONTROL_MASK) != 0 &&
-      matched_string != NULL)
-    {
-      gtk_widget_grab_focus (widget);
-
-      g_signal_emit (screen, signals[URL_CLICKED], 0, matched_string, matched_flavor);
-      g_free (matched_string);
-
-      return TRUE; /* don't do anything else such as select with the click */
-    }
-      
   if (event->button == 3 &&
       (state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK)) == 0)
     {
@@ -1560,6 +1647,7 @@ terminal_screen_button_press (GtkWidget      *widget,
 
       info = terminal_screen_popup_info_new (screen);
       info->button = event->button;
+      info->state = state;
       info->timestamp = event->time;
       info->string = matched_string; /* adopted */
       info->flavour = matched_flavor;
@@ -1571,8 +1659,8 @@ terminal_screen_button_press (GtkWidget      *widget,
     }
 
   /* default behavior is to let the terminal widget deal with it */
-  if (GTK_WIDGET_CLASS (terminal_screen_parent_class)->button_press_event)
-    return GTK_WIDGET_CLASS (terminal_screen_parent_class)->button_press_event (widget, event);
+  if (button_press_event)
+    return button_press_event (widget, event);
 
   return FALSE;
 }
@@ -2115,8 +2203,10 @@ terminal_screen_get_cell_size (TerminalScreen *screen,
   *cell_height_pixels = terminal->char_height;
 }
 
+#if !VTE_CHECK_VERSION (0, 16, 15)
+
 static void
-terminal_screen_match_add (TerminalScreen            *screen,
+terminal_screen_match_add (TerminalScreen       *screen,
                            const char           *regexp,
                            int                   flavor)
 {
@@ -2132,42 +2222,31 @@ terminal_screen_match_add (TerminalScreen            *screen,
   tag_data->tag = tag;
   tag_data->flavor = flavor;
 
-  priv->url_tags = g_slist_append (priv->url_tags, tag_data);
+  priv->match_tags = g_slist_append (priv->match_tags, tag_data);
 }
 
-static void
-terminal_screen_skey_match_add (TerminalScreen *screen,
-                                const char *regexp,
-                                int flavor)
-{
-  TerminalScreenPrivate *priv = screen->priv;
-  VteTerminal *terminal = VTE_TERMINAL (screen);
-  TagData *tag_data;
-  int tag;
-  
-  tag = vte_terminal_match_add (terminal, regexp);
-  vte_terminal_match_set_cursor_type (terminal, tag, SKEY_MATCH_CURSOR);
-
-  tag_data = g_slice_new (TagData);
-  tag_data->tag = tag;
-  tag_data->flavor = flavor;
-
-  priv->skey_tags = g_slist_append (priv->skey_tags, tag_data);
-}
+#endif /* VTE 0.16.15 */
 
 static void
 terminal_screen_skey_match_remove (TerminalScreen *screen)
 {
   TerminalScreenPrivate *priv = screen->priv;
-  GSList *tags;
-  
-  for (tags = priv->skey_tags; tags != NULL; tags = tags->next)
-    vte_terminal_match_remove (VTE_TERMINAL (screen),
-                               GPOINTER_TO_INT(((TagData*)tags->data)->tag));
+  GSList *l, *next;
 
-  g_slist_foreach (priv->skey_tags, (GFunc) free_tag_data, NULL);
-  g_slist_free (priv->skey_tags);
-  priv->skey_tags = NULL;
+  l = priv->match_tags;
+  while (l != NULL)
+    {
+      TagData *tag_data = (TagData *) l->data;
+
+      next = l->next;
+      if (tag_data->flavor == FLAVOR_SKEY)
+        {
+          vte_terminal_match_remove (VTE_TERMINAL (screen), tag_data->tag);
+          priv->match_tags = g_slist_delete_link (priv->match_tags, l);
+        }
+
+      l = next;
+    }
 }
 
 static char*
@@ -2178,41 +2257,14 @@ terminal_screen_check_match (TerminalScreen *screen,
 {
   TerminalScreenPrivate *priv = screen->priv;
   GSList *tags;
-  gint tag;
+  int tag;
   char *match;
 
   match = vte_terminal_match_check (VTE_TERMINAL (screen), column, row, &tag);
-  for (tags = priv->url_tags; tags != NULL; tags = tags->next)
+  for (tags = priv->match_tags; tags != NULL; tags = tags->next)
     {
       TagData *tag_data = (TagData*) tags->data;
-      if (GPOINTER_TO_INT(tag_data->tag) == tag)
-	{
-	  if (flavor)
-	    *flavor = tag_data->flavor;
-	  return match;
-	}
-    }
-
-  g_free (match);
-  return NULL;
-}
-
-static char*
-terminal_screen_skey_check_match (TerminalScreen *screen,
-				  int        column,
-				  int        row,
-                                  int       *flavor)
-{
-  TerminalScreenPrivate *priv = screen->priv;
-  GSList *tags;
-  gint tag;
-  char *match;
-
-  match = vte_terminal_match_check (VTE_TERMINAL (screen), column, row, &tag);
-  for (tags = priv->skey_tags; tags != NULL; tags = tags->next)
-    {
-      TagData *tag_data = (TagData*) tags->data;
-      if (GPOINTER_TO_INT(tag_data->tag) == tag)
+      if (tag_data->tag == tag)
 	{
 	  if (flavor)
 	    *flavor = tag_data->flavor;

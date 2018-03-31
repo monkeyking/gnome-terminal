@@ -6,13 +6,13 @@
 
 G_BEGIN_DECLS
 
-/* VOID:STRING,INT (../../../src/terminal-marshal.list:1) */
-G_GNUC_INTERNAL void _terminal_marshal_VOID__STRING_INT (GClosure     *closure,
-                                                         GValue       *return_value,
-                                                         guint         n_param_values,
-                                                         const GValue *param_values,
-                                                         gpointer      invocation_hint,
-                                                         gpointer      marshal_data);
+/* BOOLEAN:STRING,INT,UINT (../../../src/terminal-marshal.list:1) */
+G_GNUC_INTERNAL void _terminal_marshal_BOOLEAN__STRING_INT_UINT (GClosure     *closure,
+                                                                 GValue       *return_value,
+                                                                 guint         n_param_values,
+                                                                 const GValue *param_values,
+                                                                 gpointer      invocation_hint,
+                                                                 gpointer      marshal_data);
 
 G_END_DECLS
 

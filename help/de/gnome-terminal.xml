@@ -670,9 +670,11 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Die dicktengleiche Systemschrift verwenden</guilabel> </term> 
+                <guilabel>Use the system fixed width font</guilabel> </term>
              <listitem> 
-                <para>Wählen Sie diese Option, um für die Anwendung die Standardschriftart zu verwenden, die im Voreinstellungstool <application>Schriftart</application> festgelegt ist.</para>
+                <para>
+                  Select this option to use the standard fixed width font that is specified in the <application>Font</application> preference tool.
+                </para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -681,29 +683,15 @@
              <listitem> 
                 <para>Klicken Sie auf diese Schaltfläche, um für das Terminal eine Standardschriftart und eine Standardschriftgröße auszuwählen. Diese Schaltfläche ist nur verfügbar, wenn die Option <guilabel>Die dicktengleiche Systemschrift verwenden</guilabel> nicht aktiviert ist.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Profil-Symbol</guilabel> </term> 
-             <listitem> 
-                <para>Klicken Sie auf diese Schaltfläche, um ein Symbol für das aktuelle Profil auszuwählen.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Fetten Text erlauben</guilabel> </term> 
              <listitem> 
                 <para>Wählen Sie diese Option, damit im Terminal Text fett dargestellt werden kann.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Cursor blinkt</guilabel> </term> 
-             <listitem> 
-                <para>Wählen Sie diese Option, damit ein blinkender Cursor angezeigt wird.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Menüleiste in neuen Terminals per Vorgabe anzeigen</guilabel>
                 </term> 
@@ -740,7 +728,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Titel dynamisch setzen</guilabel> </term> 
+                <guilabel>When terminal commands set their own titles</guilabel> </term>
              <listitem> 
                 <para>Wählen Sie in diesem Dropdown-Listenfeld aus, wie ein Titel dynamisch gesetzt werden soll. Das bedeutet, wie der Titel aus den im Terminal ausgeführten Befehlen erstellt wird.</para>
              </listitem> 
@@ -846,9 +834,11 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Keiner (einfarbig)</guilabel> 
+                        <guilabel>Solid color</guilabel>
                      </para>
-                     <para>Wählen Sie diese Option, um die Hintergrundfarbe zu verwenden, die auf der Registerkarte <guilabel>Farben</guilabel> als Hintergrundfarbe für das Terminal festgelegt ist.</para>
+                     <para>
+                        Select this option to use the background color that is specified in the <guilabel>Colors</guilabel> tabbed section as the background color for the terminal.
+                     </para>
                   </listitem> 
                   <listitem> 
                      <para>

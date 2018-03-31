@@ -35,7 +35,7 @@
      <copyright> 
         <year>2000</year> 
         <holder>Alexander Kirillov</holder> 
-     </copyright><copyright><year>2006, 2007</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
+     </copyright><copyright><year>2006, 2007, 2008</year><holder>Daniel Nylander (po@danielnylander.se)</holder></copyright>
      <publisher> 
         <publishername>Dokumentationsprojekt för GNOME</publishername> 
      </publisher>    <legalnotice id="legalnotice">
@@ -670,9 +670,9 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Använd systemets terminaltypsnitt</guilabel> </term> 
+                <guilabel>Använd systemets typsnitt med fast breddsteg</guilabel> </term>
              <listitem> 
-                <para>Välj det här alternativet för att använda standardprogramtypsnittet som har angivits i inställningsverktyget <application>Typsnitt</application>.</para>
+                <para>Välj det här alternativet för att använda standardtypsnittet med fast breddsteg som har angivits i inställningsverktyget <application>Typsnitt</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -681,29 +681,15 @@
              <listitem> 
                 <para>Klicka på den här knappen för att välja en typsnittstyp och typsnittsstorlek för terminalen. Den här knappen är endast aktiverad om alternativet <guilabel>Använd systemets terminaltypsnitt</guilabel> inte har valts.</para>
              </listitem> 
-          </varlistentry> 
-          <varlistentry> 
-             <term> 
-                <guilabel>Profilikon</guilabel> </term> 
-             <listitem> 
-                <para>Klicka på den här knappen för att välja en ikon som representerar terminalfönstren som använder den aktuella profilen.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          </varlistentry>
+          <varlistentry>
              <term> 
                 <guilabel>Tillåt fet text</guilabel> </term> 
              <listitem> 
                 <para>Välj det här alternativet för att terminalen ska visa fet text.</para>
              </listitem> 
           </varlistentry>
-          <varlistentry> 
-             <term> 
-                <guilabel>Markören blinkar</guilabel> </term> 
-             <listitem> 
-                <para>Välj detta alternativ för att visa en markör som blinkar.</para>
-             </listitem> 
-          </varlistentry> 
-          <varlistentry> 
+          <varlistentry>
              <term> 
                 <guilabel>Visa menyrad som standard i nya terminalfönster</guilabel>
                 </term> 
@@ -740,7 +726,7 @@
           </varlistentry> 
           <varlistentry> 
              <term> 
-                <guilabel>Dynamiskt inställd titel</guilabel> </term> 
+                <guilabel>När terminalkommandon ställer in sina egna titlar</guilabel> </term>
              <listitem> 
                 <para>Använd den här rullgardinslistan för att ange hur dynamiskt inställda titlar ska hanteras, alltså, terminaltitlar inställda av kommandon som kör i terminalen.</para>
              </listitem> 
@@ -846,9 +832,9 @@
                 <itemizedlist> 
                   <listitem> 
                      <para>
-                        <guilabel>Ingen (använd enfärgad bakgrund)</guilabel> 
+                        <guilabel>Enfärgad</guilabel>
                      </para>
-                     <para>Välj det här alternativet för att använda bakgrundsfärgen som är angiven i den flikade sektionen <guilabel>Färger</guilabel> som bakgrundsfärgen för terminalen.</para>
+                     <para>Välj det här alternativet för att använda bakgrundsfärgen som är angiven i den flikade sektionen <guilabel>Färger</guilabel> som bakgrundsfärg för terminalen.</para>
                   </listitem> 
                   <listitem> 
                      <para>
