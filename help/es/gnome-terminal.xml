@@ -302,10 +302,10 @@
      </sect2> 
      <sect2 id="gnome-terminal-more-windows"> 
         <title>Trabajar con varios terminales</title> 
-        <para>El <application>Terminal de GNOME</application> proporciona una característica de solapa que le permite añadir terminales adicionales a una sola ventana. Cada terminal se abre en una solapa diferente. Pulse en la solapa apropiada para mostrar el terminal en la ventana. Cada solapa del terminal en una ventana es un proceso separado, así que puede usar cada terminal para diferentes tareas. Puede aplicar un perfil diferente a cada solapa del terminal en la ventana.</para>
-       <para>La barra de título de la ventana del terminal muestra o el nombre del perfil actual o el nombre especificado por el perfil actual. La <xref linkend="gnome-terminal-tabbed"/> muestra una ventana del <application>Terminal de GNOME</application> con cuatro solapas.En este caso, cada una de las cuatro solapas tiene un perfil diferente. El nombre  del perfil en la solapa activa, Perfil 1, aparece en la barra de título.</para>
+        <para>El <application>Terminal de GNOME</application> proporciona una característica de pestaña que le permite añadir terminales adicionales a una sola ventana. Cada terminal se abre en una pestaña diferente. Pulse en la pestaña apropiada para mostrar el terminal en la ventana. Cada pestaña del terminal en una ventana es un proceso separado, así que puede usar cada terminal para diferentes tareas. Puede aplicar un perfil diferente a cada pestaña del terminal en la ventana.</para>
+       <para>La barra de título de la ventana del terminal muestra o el nombre del perfil actual o el nombre especificado por el perfil actual. La <xref linkend="gnome-terminal-tabbed"/> muestra una ventana del <application>Terminal de GNOME</application> con cuatro pestañas.En este caso, cada una de las cuatro pestañas tiene un perfil diferente. El nombre del perfil en la pestaña activa, Perfil 1, aparece en la barra de título.</para>
         <figure id="gnome-terminal-tabbed"> 
-          <title>Ejemplo de una ventana de terminal con solapas</title> 
+          <title>Ejemplo de una ventana de terminal con pestañas</title> 
           <screenshot> 
              <screeninfo>Ventana predeterminada del Terminal de GNOME</screeninfo> 
              <mediaobject> 
@@ -318,7 +318,7 @@
              </mediaobject> 
           </screenshot> 
         </figure> 
-        <para>Vea la <xref linkend="gnome-terminal-windows"/> para obtener información sobre cómo abrir una solapa del terminal nueva.</para>
+        <para>Vea la <xref linkend="gnome-terminal-windows"/> para obtener información sobre cómo abrir una pestaña del terminal nueva.</para>
      </sect2> 
 
   </sect1> 
@@ -346,28 +346,28 @@
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Para añadir un terminal con solapas a una ventana:</term> 
+             <term>Para añadir un terminal con pestañas a una ventana:</term> 
              <listitem> 
-                <para>Elija <menuchoice><guimenu>Archivo</guimenu><guisubmenu>Abrir solapa</guisubmenu><guimenuitem>Predeterminada</guimenuitem></menuchoice> o simplemente <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Abrir solapa</guimenuitem></menuchoice> si no hay un submenú.</para>
+                <para>Elija <menuchoice><guimenu>Archivo</guimenu><guisubmenu>Abrir pestaña</guisubmenu><guimenuitem>Predeterminada</guimenuitem></menuchoice> o simplemente <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Abrir pestaña</guimenuitem></menuchoice> si no hay un submenú.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Para mostrar un terminal solapado:</term> 
+             <term>Para mostrar un terminal con pestañas:</term> 
              <listitem> 
-                <para>Pulse sobre el nombre de la solapa del terminal que desea mostrar, o seleccione un título de solapa desde el menú <guimenu>Solapas</guimenu>.</para>
-                <para>Alternativamente, puede elegir <menuchoice><guimenu>Solapas</guimenu><guimenuitem>Solapa siguiente</guimenuitem></menuchoice> o <menuchoice><guimenu>Solapas</guimenu><guimenuitem>Solapa anterior</guimenuitem></menuchoice> para cambiar entre las solapas.</para>
+                <para>Pulse sobre el nombre de la pestaña del terminal que desea mostrar, o seleccione un título de pestaña desde el menú <guimenu>Pestañas</guimenu>.</para>
+                <para>Alternativamente, puede elegir <menuchoice><guimenu>Pestañas</guimenu><guimenuitem>Pestaña siguiente</guimenuitem></menuchoice> o <menuchoice><guimenu>Pestañas</guimenu><guimenuitem>Pestaña anterior</guimenuitem></menuchoice> para cambiar entre las pestañas.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Para cerrar una solapa de un terminal:</term> 
+             <term>Para cerrar una pestaña de un terminal:</term> 
              <listitem> 
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>Muestre la solapa del terminal que quiere cerrar.</para>
+                        <para>Muestre la pestaña del terminal que quiere cerrar.</para>
                      </listitem> 
                      <listitem> 
-                        <para>Elija <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Cerrar solapa</guimenuitem></menuchoice>.</para>
+                        <para>Elija <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Cerrar pestaña</guimenuitem></menuchoice>.</para>
                      </listitem> 
                   </orderedlist> 
                 </para>
@@ -403,12 +403,12 @@
              </listitem> 
           </varlistentry> 
           <varlistentry> 
-             <term>Para cambiar el perfil de una solapa del terminal:</term> 
+             <term>Para cambiar el perfil de una pestaña del terminal:</term> 
              <listitem> 
                 <para>
                   <orderedlist> 
                      <listitem> 
-                        <para>Pulse en la solapa del terminal cuyo perfil desea cambiar.</para>
+                        <para>Pulse en la pestaña del terminal cuyo perfil desea cambiar.</para>
                      </listitem> 
                      <listitem> 
                         <para>Seleccione <menuchoice><guimenu>Terminal</guimenu><guisubmenu>Cambiar Perfil</guisubmenu><guimenuitem><replaceable>nombre-perfil</replaceable></guimenuitem></menuchoice>.</para>
@@ -500,7 +500,7 @@
                      <para>Pulse las teclas <keycombo><keycap>Mayús</keycap><keycap>RePág</keycap></keycombo>, <keycombo><keycap>Mayús</keycap><keycap>AvPág</keycap></keycombo>, <keycombo><keycap>Mayús</keycap><keycap>Inicio</keycap></keycombo>, o <keycombo><keycap>Mayús</keycap><keycap>Fin</keycap></keycombo>.</para>
                   </listitem> 
                 </itemizedlist> 
-                <para>El número de líneas que puede desplazar hacia atrás en la ventana del terminal se lo determina el ajuste <guilabel>Desplazamiento hacia atrás</guilabel>, en la solapa <guilabel>Desplazamiento</guilabel> del cuadro de diálogo <guilabel>Edición de perfiles</guilabel>. También puede desplazarse arriba o abajo una línea pulsando <guilabel/>Control<guilabel/>Mayús<guilabel/>Arriba<keycombo><keycap> o </keycap><keycap>Control</keycap><keycap>Mayús</keycap></keycombo>Abajo<keycombo><keycap>.</keycap></keycombo></para>
+                <para>El número de líneas que puede desplazar hacia atrás en la ventana del terminal se lo determina el ajuste <guilabel>Desplazamiento hacia atrás</guilabel>, en la pestaña <guilabel>Desplazamiento</guilabel> del cuadro de diálogo <guilabel>Edición de perfiles</guilabel>. También puede desplazarse arriba o abajo una línea pulsando <keycombo><keycap>Ctrl</keycap><keycap>Mayús</keycap><keycap>Arriba</keycap></keycombo> o <keycombo><keycap>Ctrl</keycap><keycap>Mayús</keycap><keycap>Abajo</keycap></keycombo>.</para>
              </listitem> 
           </varlistentry> 
           <varlistentry> 
@@ -670,7 +670,7 @@
   <sect1 id="gnome-terminal-prefs"> 
      <title>Preferencias</title> 
      <para>Para configurar el <application>Terminal de GNOME</application>, seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Perfil actual</guimenuitem></menuchoice>. Para configurar otro perfil que haya creado, seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Perfiles</guimenuitem></menuchoice>, seleccione el perfil que desea editar y, a continuación, pulse en <guibutton>Editar</guibutton>.</para>
-     <para>El cuadro de diálogo <guilabel>Editar perfil</guilabel> contiene las solapas que puede usar para configurar <application>Terminal de GNOME</application>:</para>
+     <para>El cuadro de diálogo <guilabel>Editar perfil</guilabel> contiene las pestañas que puede usar para configurar <application>Terminal de GNOME</application>:</para>
      <itemizedlist> 
 		<listitem><para><xref linkend="gnome-terminal-prefs-general"/></para>
 		</listitem>
@@ -701,7 +701,7 @@
              <term> 
                 <guilabel>Usar la tipografía de anchura fija del sistema</guilabel> </term>
              <listitem> 
-                <para>Seleccione esta opción para usar la tipografía estándar de anchura fija especificada en la solapa <guilabel>Tipografía</guilabel> de la herramienta de preferencias <application>Apariencia</application>.</para>
+                <para>Seleccione esta opción para usar la tipografía estándar de anchura fija especificada en la pestaña <guilabel>Tipografía</guilabel> de la herramienta de preferencias <application>Apariencia</application>.</para>
              </listitem> 
           </varlistentry>
           <varlistentry> 
@@ -799,7 +799,7 @@
                 <guilabel>Primer plano y fondo</guilabel>
                 </term> 
              <listitem> 
-                <para>Seleccione la opción <guilabel>Usar colores del tema del sistema</guilabel> para usar los colores especificados en el tema de escritorio de GNOME que esté seleccionado en la solapa <guilabel>Tema</guilabel> de la <ulink type="help" url="ghelp:user-guide?prefs-theme">herramienta de preferencias <application>Apariencia</application></ulink>.</para>
+                <para>Seleccione la opción <guilabel>Usar colores del tema del sistema</guilabel> para usar los colores especificados en el tema de escritorio de GNOME que esté seleccionado en la pestaña <guilabel>Tema</guilabel> de la <ulink type="help" url="ghelp:user-guide?prefs-theme">herramienta de preferencias <application>Apariencia</application></ulink>.</para>
                 <para>Utilice el cuadro de lista desplegable <guilabel>Esquemas integrados</guilabel> para especificar los colores de primer plano y fondo para el terminal. <application>Terminal de GNOME</application> admite las siguientes combinaciones de color de primer plano y fondo:</para>
                 <itemizedlist> 
                   <listitem> 
@@ -863,7 +863,7 @@
                      <para>
                         <guilabel>Color sólido</guilabel>
                      </para>
-                     <para>Seleccione esta opción para usar el color de fondo especificado en la sección de la solapa <guilabel>Colores</guilabel> como color de fondo del terminal.</para>
+                     <para>Seleccione esta opción para usar el color de fondo especificado en la sección de la pestaña <guilabel>Colores</guilabel> como color de fondo del terminal.</para>
                   </listitem> 
                   <listitem> 
                      <para>
@@ -947,7 +947,7 @@
              <term> 
                 <guibutton>Restablecer opciones predeterminadas de compatibilidad</guibutton> </term> 
              <listitem> 
-                <para>Pulse en este botón para restablecer las opciones predeterminadas de la solapa <guilabel>Compatibilidad</guilabel>.</para>
+                <para>Pulse en este botón para restablecer las opciones predeterminadas de la pestaña <guilabel>Compatibilidad</guilabel>.</para>
              </listitem> 
           </varlistentry> 
         </variablelist> 

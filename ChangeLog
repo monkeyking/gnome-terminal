@@ -1,14 +1,709 @@
-commit 71cba5f8463c5c976deb2a4d64fd4d48b4e17a9b
+commit 54f6c5dee2a273d571d294c977ae1a1571386358
 Author: Christian Persch <chpe@gnome.org>
-Date:   Sat Nov 13 13:24:50 2010 +0100
+Date:   Mon Apr 4 13:48:42 2011 +0200
 
-    Version 2.32.1
+    Version 3.0.0
 
- NEWS         |    5 +++++
+ NEWS         |    4 ++--
+ configure.ac |    6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+commit 3dc2476ce69c924f0666a4db685e7b040a8322f5
+Author: Jordi Serratosa <serratosa@gmail.com>
+Date:   Mon Apr 4 00:28:57 2011 +0200
+
+    [l10n]Fixes on Catalan translation
+
+ po/ca.po |   42 +++++++++++++++++++++---------------------
+ 1 files changed, 21 insertions(+), 21 deletions(-)
+
+commit 621a192a1a74ff35bad84a397d4dade91a423186
+Author: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+Date:   Sun Apr 3 12:54:55 2011 +0200
+
+    Updated Esperanto translation
+
+ po/eo.po |  940 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 455 insertions(+), 485 deletions(-)
+
+commit 1cf879960e679ba1f63eab449c9b0058627d94f0
+Author: Gil Forcada <gforcada@gnome.org>
+Date:   Sat Apr 2 18:53:13 2011 +0200
+
+    [l10n]Updated Catalan translation
+
+ help/ca/ca.po |  659 ++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 366 insertions(+), 293 deletions(-)
+
+commit 859c05885f7f07b74c75fc69650f9d3918405124
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Fri Apr 1 00:56:18 2011 +0200
+
+    Updated Arabic translation
+
+ po/ar.po |  152 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 76 insertions(+), 76 deletions(-)
+
+commit 7a7bc0a1cdc66c095be61c8bc84c956b9bcad1ab
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Thu Mar 31 16:32:11 2011 +0200
+
+    Updated Basque language
+
+ po/eu.po |   14 +++++++-------
+ 1 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 450911e26eb22de5b5b8ca3877f6593f057a82d8
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Thu Mar 31 15:40:54 2011 +0200
+
+    Updated Basque language
+
+ po/eu.po |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 059afba784f93429c5bd239f5e1a2fd45ee25389
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Thu Mar 31 15:20:10 2011 +0200
+
+    Updated Basque language
+
+ po/eu.po |  954 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 464 insertions(+), 490 deletions(-)
+
+commit d3ffb9b4ddad8f5b65a6b83e9591bcf031b90129
+Author: Sandeep Shedmake <sshedmak@redhat.com>
+Date:   Mon Mar 28 11:26:43 2011 +0530
+
+    Updated Marathi Translations
+
+ po/mr.po |  798 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 386 insertions(+), 412 deletions(-)
+
+commit d3ab234dabd2188b905ab19386795593efab4fd3
+Author: Abduxukur Abdurixit <abdurixit@gmail.com>
+Date:   Sun Mar 27 19:58:37 2011 +0200
+
+    Added UG translation
+
+ po/ug.po |  123 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 62 insertions(+), 61 deletions(-)
+
+commit e9bd8184a07a0ada31972ffce234e157ebaf7e6e
+Author: Wouter Bolsterlee <wbolster@gnome.org>
+Date:   Fri Mar 25 21:41:13 2011 +0100
+
+    Updated Dutch translation by Wouter Bolsterlee
+
+ po/nl.po |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 2659f4d8577350335456f92f13d944218938b0ac
+Author: Milo Casagrande <milo@ubuntu.com>
+Date:   Wed Mar 23 21:59:07 2011 +0100
+
+    [l10n] Updated Italian translation
+
+ po/it.po |  711 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 340 insertions(+), 371 deletions(-)
+
+commit 4a17cb516a4b24bc4d845574b1c1d9efc5ce4cb5
+Author: Michael Terry <michael.terry@canonical.com>
+Date:   Mon Mar 7 10:33:13 2011 -0500
+
+    Update paste sensitivity whenever clipboard changes
+    
+    Bug #600876.
+
+ src/terminal-window.c |   29 ++++++++++++++---------------
+ 1 files changed, 14 insertions(+), 15 deletions(-)
+
+commit 588398337426a7f7d0d8fb28c54191fc9ec4200c
+Author: Dirgita <dirgitadevina@yahoo.co.id>
+Date:   Sat Mar 19 23:48:30 2011 +0700
+
+    Updated Indonesian translation
+
+ po/id.po |  817 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 394 insertions(+), 423 deletions(-)
+
+commit 75cd72fe28264426edb466a9e0601ae78be71177
+Author: Adi Roiban <adi@roiban.ro>
+Date:   Wed Mar 16 18:04:43 2011 +0100
+
+    Updated Romanian translation
+
+ po/ro.po | 1007 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 537 insertions(+), 470 deletions(-)
+
+commit f416a6669176b855553849f45b5badbe78d8c946
+Author: Manoj Kumar Giri <mgiri@redhat.com>
+Date:   Fri Mar 4 16:14:33 2011 +0530
+
+    Updated Oriya Translation
+
+ po/or.po |  808 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 402 insertions(+), 406 deletions(-)
+
+commit f7eb2452c60f3396edb17bb1cc367d9938ee80a5
+Author: Rudolfs Mazurs <rudolfs.mazurs@gmail.com>
+Date:   Fri Mar 4 00:39:44 2011 +0200
+
+    Updated Latvian translation.
+
+ po/lv.po |  984 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 552 insertions(+), 432 deletions(-)
+
+commit ba4bd8fcc6e220e787135e64cd00c567c8f28ebf
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Tue Mar 1 22:05:45 2011 +0200
+
+    Uploaded Ukranian
+
+ po/uk.po | 1063 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 584 insertions(+), 479 deletions(-)
+
+commit 137c153718be6ca2a6dd87fad814df668415fcc6
+Author: Runa Bhattacharjee <runab@redhat.com>
+Date:   Tue Feb 22 16:59:09 2011 +0530
+
+    Updated Bengali India Translation
+
+ po/bn_IN.po |  832 +++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 410 insertions(+), 422 deletions(-)
+
+commit 81b84fef7fc47aa639cd9229ddf54e42d74c8bd5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 21 17:43:44 2011 +0100
+
+    Version 2.33.90
+
  configure.ac |    2 +-
- 2 files changed, 6 insertions(+), 1 deletions(-)
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-commit 6d5a8d9359de5e640fb89489af7025b851850fa1
+commit 20254475361641d27cae0f7cd382e11d7df25097
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 21 17:47:24 2011 +0100
+
+    Fix the gtk2 build
+
+ src/terminal-close-button.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit c3a3e0600edbcbb51a5cb7489269e8afb6e48262
+Author: Ignacio Casal Quinteiro <icq@gnome.org>
+Date:   Sun Feb 20 19:25:09 2011 +0100
+
+    Borrow gedit-close-button class and use it.
+    
+    This is a subclass of GtkButton special theming for the close button.
+
+ src/Makefile.am             |    2 +
+ src/terminal-close-button.c |  116 +++++++++++++++++++++++++++++++++++++++++++
+ src/terminal-close-button.h |   59 ++++++++++++++++++++++
+ src/terminal-tab-label.c    |   30 +----------
+ src/terminal-window.c       |    9 ---
+ 5 files changed, 180 insertions(+), 36 deletions(-)
+
+commit e348af85675b1f54cb6100930ab8861a45098154
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Sun Feb 20 16:02:03 2011 +0100
+
+    Updated Spanish translation
+
+ help/es/es.po |   70 +++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 36 insertions(+), 34 deletions(-)
+
+commit c40c5b678c8459a7dc714f44fda7bb03d06d6c21
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Sun Feb 20 15:58:40 2011 +0100
+
+    Updated Spanish translation
+
+ po/es.po |  121 ++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 60 insertions(+), 61 deletions(-)
+
+commit db2d4417eb021337037736ff02cdc91fdc765c7b
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Sun Feb 20 14:01:51 2011 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 1025 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 506 insertions(+), 519 deletions(-)
+
+commit 1b610f3b8edc04d6533fef9bfd1a7533930c5c08
+Author: Sweta Kothari <swkothar@redhat.com>
+Date:   Thu Feb 17 14:26:04 2011 +0530
+
+    Updated Gujarati Translations
+
+ po/gu.po |  837 +++++++++++++++++++++++++++++---------------------------------
+ 1 files changed, 395 insertions(+), 442 deletions(-)
+
+commit b272fc7bfa12dd45d1d4e1536749bb87cb990691
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Feb 14 23:22:53 2011 +0100
+
+    Require gtk 3.0.0
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit af5cde618e6485fc28b8ad8bbf920934ea9606da
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Fri Feb 4 19:04:25 2011 +0200
+
+    Updated Arabic translation
+
+ po/ar.po |   49 ++++++++++++++++++++++++-------------------------
+ 1 files changed, 24 insertions(+), 25 deletions(-)
+
+commit 923d74f77a49aa7946738f6a30a3d955051b292f
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Feb 3 23:43:42 2011 +0100
+
+    Remove debug printfs
+
+ src/terminal-screen.c |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
+
+commit e8e2367fcbea54ae5a34b0aeb68028def3a5d644
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Feb 3 23:40:53 2011 +0100
+
+    Add style-updated handler to TerminalScreen
+    
+    This didn't fix bug #640240 as I hoped, however.
+
+ src/terminal-screen.c |   52 ++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 files changed, 51 insertions(+), 1 deletions(-)
+
+commit e1ba3eea28f62c7b9b16a35b2d625aaf925f4802
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Feb 3 23:09:52 2011 +0100
+
+    Take system font from gsettings instead of gconf
+    
+    Bug #590774.
+
+ configure.ac       |    2 ++
+ src/terminal-app.c |   52 ++++++++++++++++++++--------------------------------
+ 2 files changed, 22 insertions(+), 32 deletions(-)
+
+commit c1f3b9f453cc10b5793f45c1109fed2cbf31f4c4
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Feb 3 23:09:42 2011 +0100
+
+    Fix compiler warning
+
+ src/terminal-accels.c |   10 ----------
+ 1 files changed, 0 insertions(+), 10 deletions(-)
+
+commit 7ae1250cf6659e1b09830220f88b6675a6f11633
+Author: David Benjamin <davidben@mit.edu>
+Date:   Fri Jan 28 16:45:44 2011 -0500
+
+    Disable sorting in the Keyboard Shortcut editor
+    
+    Sorting by action name results in nonsensical ordering: in English,
+    'Edit' goes before 'File', 'Switch to Tab 10' gets stuck between
+    'Switch to Tab 1' and 'Switch to Tab 2', etc. Better to just order
+    based on the actual menu. This also removes the ability to sort by
+    shortcut; that only sorted actions within a menu anyway, so it's
+    not terribly useful.
+
+ src/terminal-accels.c |   58 -------------------------------------------------
+ 1 files changed, 0 insertions(+), 58 deletions(-)
+
+commit 355987a808d74aafbc086867280d736ec5adedb9
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Feb 2 18:53:23 2011 +0100
+
+    Version 2.23.5
+
+ configure.ac |   13 ++++++-------
+ 1 files changed, 6 insertions(+), 7 deletions(-)
+
+commit f520fd849c7a52ffe80e1e929978ada80c946ebb
+Author: Ask H. Larsen <asklarsen@gmail.com>
+Date:   Thu Jan 27 22:15:53 2011 +0100
+
+    Updated Danish translation
+
+ po/da.po |  716 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 354 insertions(+), 362 deletions(-)
+
+commit eb25212dd0d7f02bc7dea872c4c068fedb129b23
+Author: Fran Diéguez <fran.dieguez@mabishu.com>
+Date:   Thu Jan 27 03:32:13 2011 +0100
+
+    QA of Galician translations
+
+ po/gl.po |  950 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 471 insertions(+), 479 deletions(-)
+
+commit bc4546204ab13ebc0e1f46ed438a2db7d66af465
+Author: Tomas Bzatek <tbzatek@redhat.com>
+Date:   Tue Jan 25 18:34:56 2011 +0100
+
+    search: Reflect changes to pattern string
+    
+    Some dialog options modify the pattern string, make sure to update
+    our GRegex instance.
+    
+    Originally found in https://bugzilla.redhat.com/show_bug.cgi?id=669113
+
+ src/terminal-search-dialog.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit e9daf1c9b763fc0a803b4d9016958bedd44952c4
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   Tue Jan 18 01:03:21 2011 +0100
+
+    build: explicitely require ICE in configure (#634950)
+    
+    Some distributions (e.g. Debian) tweak the SM pkgconfig file to remove
+    -lICE from Requires, so the dependency is not dragged in properly.
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 4aa7e14e020d96880b94c2ddd1431b98cdfa90ae
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jan 12 22:58:39 2011 +0100
+
+    Fix syntax error
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 378a9776bb934ed6143a158c4174f499eb9b11a5
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jan 12 22:55:30 2011 +0100
+
+    Use target version flags when converting glade files to gtkbuilder
+    
+    Bug #639327.
+
+ configure.ac    |   12 ++++++++----
+ src/Makefile.am |    2 +-
+ 2 files changed, 9 insertions(+), 5 deletions(-)
+
+commit 19c67139fbac7a285cf17be438c3859b071dd210
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Jan 12 22:54:36 2011 +0100
+
+    Fix gdk target detection on gtk 3
+
+ configure.ac |   14 ++++++++++++--
+ 1 files changed, 12 insertions(+), 2 deletions(-)
+
+commit e918468af0c14863df7237bd20b499b16d0bce90
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Wed Jan 12 15:10:20 2011 -0500
+
+    Make terminal search work with gtk3
+    
+    Actually, this patch is not enough, the ui file for gtk3 must
+    be different and create a GtkComboBox with has-entry = TRUE
+    instead of a GtkComboBoxEntry. That will be part of a separate
+    fix.
+
+ src/terminal-search-dialog.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit fc15345e2e81c4845f9cfd4b1f1e58098e22902c
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Wed Jan 12 10:12:21 2011 +0200
+
+    Updated Arabic translation
+
+ po/ar.po |  849 ++++++++++++++++++++++++--------------------------------------
+ 1 files changed, 322 insertions(+), 527 deletions(-)
+
+commit 4a8f1af69a7dd8a5e93c779ca3825bf0466050a6
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Tue Jan 11 14:50:45 2011 -0500
+
+    Bump back to .git
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit e1857e69444756cdf15048af3031ac8bdccac9ca
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Tue Jan 11 14:30:36 2011 -0500
+
+    Release 2.33.4
+
+ configure.ac |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 8d98bb0b4e9a1e59db6b9d128a765c1d5f3e83e0
+Author: Nguyen Vu Hung <vuhung16plus@gmail.com>
+Date:   Mon Jan 10 17:33:18 2011 +0700
+
+    Updated Vietnamese translation
+
+ po/vi.po |  185 +++++++++++++++++++++++++++-----------------------------------
+ 1 files changed, 80 insertions(+), 105 deletions(-)
+
+commit 67ba8972c14daabd7df2317e3b7314948bdb50ac
+Author: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>
+Date:   Mon Jan 10 17:23:18 2011 +0700
+
+    po/vi.po: import from Damned Lies
+
+ po/vi.po | 2097 ++++++++++++++++++++++++++++++++++++++++++--------------------
+ 1 files changed, 1441 insertions(+), 656 deletions(-)
+
+commit 550b70a5d64c1aca3e9b8bb7281dec3711b07c7b
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Fri Jan 7 17:40:44 2011 -0500
+
+    Fix build with GTK+ 2.99
+    
+    gtk-builder-convert-3.0 got renamed back to gtk-builder-convert.
+    Look for both names for now.
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit aba7a5ef8b02fa88344db9c9c195e61df86f590c
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Fri Jan 7 09:50:57 2011 +0800
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  763 +++++++++++++++++++++++++++++------------------------------
+ po/zh_TW.po |  765 +++++++++++++++++++++++++++++------------------------------
+ 2 files changed, 758 insertions(+), 770 deletions(-)
+
+commit 4dcf79cd4433f5203713137885f2f3fed19777b2
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Sun Jan 2 19:24:16 2011 +0100
+
+    Updated Norwegian bokmål translation from Torstein Adolf Winterseth
+
+ po/nb.po |  756 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 376 insertions(+), 380 deletions(-)
+
+commit e176ee741bee7b74d22747c6272e7ce1738235e3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Dec 30 18:43:07 2010 +0100
+
+    Fix smclient update
+    
+    The previous update lost our custom patches, and also
+    changed the licence.
+
+ src/eggdesktopfile.c      |    2 +-
+ src/eggdesktopfile.h      |    2 +-
+ src/eggshell.c            |    6 ++--
+ src/eggshell.h            |    6 ++--
+ src/eggsmclient-osx.c     |    8 +++---
+ src/eggsmclient-private.h |    2 +-
+ src/eggsmclient-win32.c   |    8 +++---
+ src/eggsmclient-xsmp.c    |   58 ++++++++++++++++++++++++++++++++++++--------
+ src/eggsmclient.c         |   29 +++++++++++++++++++---
+ src/eggsmclient.h         |    8 +++++-
+ 10 files changed, 96 insertions(+), 33 deletions(-)
+
+commit cf0df173432b4650edc3d74f31cc433fab95fe3a
+Author: Gheyret T.Kenji <gheyret@gmail.com>
+Date:   Thu Dec 23 19:10:07 2010 +0100
+
+    Added UG translation
+
+ po/ug.po |   22 ++++++++++------------
+ 1 files changed, 10 insertions(+), 12 deletions(-)
+
+commit d1831ee28b808d405f18914bd361843a2cbf1eca
+Author: Vincent Untz <vuntz@gnome.org>
+Date:   Thu Dec 23 14:33:25 2010 +0100
+
+    release: post-release bump to 2.33.4
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit feef73338c639a206d0c21249142deb6f17da765
+Author: Vincent Untz <vuntz@gnome.org>
+Date:   Thu Dec 23 14:32:49 2010 +0100
+
+    release: 2.33.3.1
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 4200c2720d2a3ba9dabab788456a9e64ed5c83aa
+Author: Vincent Untz <vuntz@gnome.org>
+Date:   Thu Dec 23 14:28:06 2010 +0100
+
+    Update EggSMClient from libegg
+    
+    This fixes the build with latest GTK+ 3.
+
+ src/eggdesktopfile.c      |   12 +++++++++-
+ src/eggdesktopfile.h      |    5 +++-
+ src/eggsmclient-osx.c     |    4 +-
+ src/eggsmclient-private.h |    8 +++++-
+ src/eggsmclient-win32.c   |    2 +-
+ src/eggsmclient-xsmp.c    |   56 ++++++++++----------------------------------
+ src/eggsmclient.c         |   52 ++++++++++++++++++-----------------------
+ src/eggsmclient.h         |    8 +-----
+ 8 files changed, 62 insertions(+), 85 deletions(-)
+
+commit 32e1fef5d285162a382e9770522c25ea6a0d3023
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Mon Dec 20 17:28:31 2010 -0500
+
+    Post-release version bump
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 2c2b119aa75a6953a2936e3cff91dc56ed8c4919
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Mon Dec 20 17:26:15 2010 -0500
+
+    Release 2.33.3
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit de84f851064e55d1ef0ae6522bccfe4f9482f9ae
+Author: Ivar Smolin <okul@linux.ee>
+Date:   Mon Dec 20 14:17:22 2010 +0200
+
+    [l10n] Updated Estonian translation
+
+ po/et.po |   71 ++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 35 insertions(+), 36 deletions(-)
+
+commit 24300091782b2aac6ce84e31e648a8c259140b35
+Author: Yaron Shahrabani <sh.yaron@gmail.com>
+Date:   Sun Dec 12 16:55:04 2010 +0200
+
+    Updated Hebrew translation
+
+ po/he.po |   38 +++++++++++++++++++-------------------
+ 1 files changed, 19 insertions(+), 19 deletions(-)
+
+commit 74e9bb2a72d93a1f4069b24be734b4452b60f9fb
+Author: Yaron Shahrabani <sh.yaron@gmail.com>
+Date:   Sun Dec 5 15:14:26 2010 +0200
+
+    Updated Hebrew translations
+
+ po/he.po |  678 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 335 insertions(+), 343 deletions(-)
+
+commit fc460c3dbf55491b8cecfc7c65bda6bba2f32dae
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Dec 2 21:15:54 2010 +0100
+
+    Fix the build with gtk3 master
+
+ configure.ac          |    4 ++--
+ src/terminal-screen.c |    8 +++++++-
+ src/terminal-util.c   |   24 ++++++++++++++++++++++++
+ 3 files changed, 33 insertions(+), 3 deletions(-)
+
+commit 66d623ce9165eb3ab62b1908cfa8ea9439e66112
+Author: Mahyar Moghimi <mahyar.moqimi@gmail.com>
+Date:   Wed Dec 1 13:43:32 2010 +0330
+
+    Updating Persian translation
+
+ po/fa.po | 4074 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 1978 insertions(+), 2096 deletions(-)
+
+commit accdc87b25c895c10adfca6a2043c862907382ff
+Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Date:   Sun Nov 28 14:44:15 2010 +0700
+
+    Updated Thai translation.
+
+ po/th.po |  799 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 394 insertions(+), 405 deletions(-)
+
+commit 687350b08ab0c9b9950c0470bee4e9eda850d5bc
+Author: Gheyret T.Kenji <gheyret@gmail.com>
+Date:   Sat Nov 20 11:48:58 2010 +0100
+
+    Added UG translation
+
+ po/ug.po |  674 ++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 331 insertions(+), 343 deletions(-)
+
+commit 4314db8b4a52574d14a9f6c2c1dd3c1a352b5725
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Nov 17 17:53:53 2010 +0100
+
+    Remove S/Key support
+    
+    Bug #635063.
+
+ configure.ac                  |   18 ---
+ po/POTFILES.in                |    2 -
+ po/POTFILES.skip              |    1 -
+ src/Makefile.am               |   13 --
+ src/gnome-terminal.schemas.in |   17 --
+ src/skey-challenge.glade      |  198 ------------------------
+ src/skey-popup.c              |  228 ----------------------------
+ src/skey-popup.h              |   35 -----
+ src/skey/Makefile.am          |   60 --------
+ src/skey/btoe.c               |  304 -------------------------------------
+ src/skey/btoe.h               |    2 -
+ src/skey/md4.c                |  335 -----------------------------------------
+ src/skey/md4.h                |   19 ---
+ src/skey/md5.c                |   67 --------
+ src/skey/md5.h                |    9 -
+ src/skey/sha1.c               |  112 --------------
+ src/skey/sha1.h               |    9 -
+ src/skey/skey.c               |   37 -----
+ src/skey/skey.h               |   10 --
+ src/skey/skeyutil.c           |   24 ---
+ src/skey/skeyutil.h           |    3 -
+ src/skey/test.c               |   99 ------------
+ src/terminal-profile.c        |    4 -
+ src/terminal-profile.h        |    1 -
+ src/terminal-screen.c         |  106 ++------------
+ src/terminal-screen.h         |    3 +-
+ src/terminal-util.c           |    2 -
+ src/terminal-window.c         |   20 +--
+ 28 files changed, 15 insertions(+), 1723 deletions(-)
+
+commit a6fa45ab52c2de21dd8867c2a79bebf3ef7a3906
+Author: Gheyret T.Kenji <gheyret@gmail.com>
+Date:   Sat Nov 13 22:28:55 2010 +0100
+
+    Added UG translation
+
+ po/ug.po |  621 ++++++++++++++++++--------------------------------------------
+ 1 files changed, 175 insertions(+), 446 deletions(-)
+
+commit 5453d06efb401bba8a227687ef73c9d1452c1e6c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Nov 11 14:48:17 2010 +0100
+
+    Post release version bump
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit bf5a6e11ed242ceec11f07fa3d11457023a4c1cd
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Nov 11 14:41:12 2010 +0100
+
+    Version 2.33.2
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit b0b41a219fda65378a915882fddbabfeee92b9aa
 Author: Christian Persch <chpe@gnome.org>
 Date:   Sat Nov 6 13:10:30 2010 +0100
 
@@ -19,7 +714,7 @@ Date:   Sat Nov 6 13:10:30 2010 +0100
  src/terminal.c |    4 +++-
  1 files changed, 3 insertions(+), 1 deletions(-)
 
-commit eaa52093c56b7eb3bfa8f21a5614db61b8ad2968
+commit 26e0fa1ba6f0775c9ae847a0ee2cef708728fbda
 Author: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>
 Date:   Thu Nov 4 22:03:40 2010 +0900
 
@@ -28,7 +723,7 @@ Date:   Thu Nov 4 22:03:40 2010 +0900
  po/ja.po |  143 +++++++++++++++++++++++++++++++-------------------------------
  1 files changed, 72 insertions(+), 71 deletions(-)
 
-commit d5f2cbaf38626bce3dbe7b0da29d26917791cc54
+commit eee2ffbd11b2c87eb6bc0b4f6034c49d87649fa5
 Author: Carles Ferrando <carles.ferrando@gmail.com>
 Date:   Fri Oct 29 01:25:45 2010 +0100
 
@@ -37,16 +732,286 @@ Date:   Fri Oct 29 01:25:45 2010 +0100
  po/ca@valencia.po | 1371 +++++++++++++++++++++++++++++------------------------
  1 files changed, 745 insertions(+), 626 deletions(-)
 
-commit 34d2f443093895e1fc5aa4ce189eaeb6981ad415
-Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
-Date:   Tue Oct 5 22:39:57 2010 +0200
+commit 772d63551c5f89f82b2a219c977a844dbd18cfe0
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Oct 28 22:34:03 2010 +0200
 
-    Updated Basque language
+    Lower vte req for gtk2 build
 
- po/eu.po |  521 ++++++++++++++++++++++++++++++++------------------------------
- 1 files changed, 271 insertions(+), 250 deletions(-)
+ configure.ac |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
 
-commit ade4658fe674868592aa5920b2a8af849416960b
+commit e6dc7a41a49ab4a3a95d9bfa6c7649b6c655a90a
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Oct 28 22:33:28 2010 +0200
+
+    Fix the gtk3 build for combo box text API changes
+    
+    Bug #633226.
+
+ src/profile-editor.c          |   26 +++++++++++++++++++-------
+ src/profile-preferences.glade |    1 -
+ 2 files changed, 19 insertions(+), 8 deletions(-)
+
+commit a0ecd018f070b96a6ca2ff778ddda0f7fde5b847
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Oct 26 15:40:33 2010 +0200
+
+    Don't need to put TERM in the spawn env
+    
+    vte is handling this internally just fine.
+
+ src/terminal-screen.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit 6cd7d1b108948a10986ad2b977419f8e17992dd2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Oct 24 20:18:51 2010 +0200
+
+    Fix packing properties to work correctly on gtk3
+
+ src/profile-preferences.glade |   16 ++++++++--------
+ 1 files changed, 8 insertions(+), 8 deletions(-)
+
+commit a90840b3cf92b4a44eac3c8bd2f5bc0ca4d2460e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Oct 24 20:18:42 2010 +0200
+
+    Use GtkScrollable on gtk3
+
+ src/terminal-screen-container.c |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
+
+commit 0d5bd060c37b0dfd7c778ec1bca7fd43a64fd4dd
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   Wed Oct 20 08:32:22 2010 +0200
+
+    Updated Spanish translation
+
+ help/es/es.po |   20 ++++++--------------
+ 1 files changed, 6 insertions(+), 14 deletions(-)
+
+commit 232b643773e2718287c72bc7621d9e99a51e4eab
+Author: Andre Klapper <a9016009@gmx.de>
+Date:   Wed Oct 20 02:21:20 2010 +0200
+
+    Fix xml error (reported by Ask Hjorth Larsen on gnome-i18n mailing list)
+
+ help/cs/cs.po |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 42acc3433d8fd81af7802a0f94747ade9718918c
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 18 16:13:02 2010 +0200
+
+    Post release version bump
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 7c2caa739379b743452c9fd7e9f0efcfca799643
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 18 16:11:16 2010 +0200
+
+    Version 2.33.1
+
+ NEWS         |    6 ++++++
+ configure.ac |    2 +-
+ 2 files changed, 7 insertions(+), 1 deletions(-)
+
+commit adbb5a74839e567e247d2d08072eb15604d40998
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Thu Oct 14 20:54:39 2010 +0200
+
+    Added sl for Slovenian translation
+
+ help/Makefile.am |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit c6cedae35f8cb5eb61748e600ce94d8c1bc34d95
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Thu Oct 14 20:54:39 2010 +0200
+
+    Added Slovenian translation
+
+ help/sl/sl.po | 1169 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 1169 insertions(+), 0 deletions(-)
+
+commit 769a9136630b0590208c829c5f13a7b3beb6f132
+Author: Christian Persch <chpe@gnome.org>
+Date:   Wed Oct 13 15:12:08 2010 +0200
+
+    Fix version check
+
+ src/terminal-window.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 1ab1fe12fe075f5b84b7c20944b327c64ef38310
+Author: Owen W. Taylor <otaylor@fishsoup.net>
+Date:   Sat Oct 9 23:05:12 2010 -0400
+
+    Remove even_if_mapped parameter to terminal_window_set_size()
+    
+    The even_if_mapped parameter to terminal_window_set_size() and
+    terminal_window_set_size_force_grid() doesn't have any useful
+    role any more. The original reason it was added is lost to
+    history, but it may had a residual role of making sure that
+    the the size set by terminal_window_set_size() didn't override
+    a default size set by gtk_window_parse_geometry(). With the
+    better handling of geometry from bug 592435, this is no longer
+    necessary.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=631799
+
+ src/terminal-screen.c |    2 +-
+ src/terminal-window.c |   30 ++++++++++--------------------
+ src/terminal-window.h |    4 +---
+ 3 files changed, 12 insertions(+), 24 deletions(-)
+
+commit 8e6454b0efc01cf212f338c76d5d0557575f9513
+Author: Owen W. Taylor <otaylor@fishsoup.net>
+Date:   Sat Oct 9 22:48:16 2010 -0400
+
+    Use new GTK+ 3 facilities to fix resizing
+    
+    The old sizing hacks don't work at all with GTK+ 3 because GTK+
+    no longer deals with underallocation (allocation smaller than the
+    minimum size) gracefully. However, GTK+ 3 has now been fixed so that
+    the geometry widget feature of gtk_window_set_geometry_hints() works
+    without hacks.
+    
+    For GTK+ 3, we use the new gtk_window_resize_to_geometry() function
+    to replace the hacks we were doing to determine the minimum size.
+    (The same hacks also did a dual purpose of making GTK+'s
+    computation for the geometry widget work correctly.)
+    
+    GTK+ required version is bumped for the new function; VTE required
+    version is bumped for a fix to the minimum size it reports in its
+    GTK+ 3 build.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=631797
+
+ configure.ac          |    4 ++--
+ src/terminal-window.c |   38 +++++++++++++++++++++++++-------------
+ 2 files changed, 27 insertions(+), 15 deletions(-)
+
+commit 724fcc269931432e7044ac16fee5934931a29f55
+Author: Owen W. Taylor <otaylor@fishsoup.net>
+Date:   Fri Oct 8 16:34:03 2010 -0400
+
+    Fix gridding for small sizes
+    
+    The patch from 336325 (762e01947e) caused gridding to work wrong
+    when the number of rows/columns in the terminal got small enough
+    that other window elements were larger. Now that we have a better
+    fix for sizing of detached tabs (see previous commit), we can
+    revert the change.
+    
+    The comment is made more explanatory to hopefully prevent the
+    code from accidentally being removed again in the future.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=631709
+
+ src/terminal-window.c |   17 +++++++++++++++++
+ 1 files changed, 17 insertions(+), 0 deletions(-)
+
+commit fd94140f9f0848152932ddf7318a610e37dfc60d
+Author: Owen W. Taylor <otaylor@fishsoup.net>
+Date:   Fri Oct 8 16:34:03 2010 -0400
+
+    Implement a better fix for wrong sizing of detached tabs
+    
+    This is a better fix for bug 336325 where a detached notebook
+    tab would end up with the wrong size. The problem was essentially
+    that the toplevel was being shown when the notebook was in a
+    inconsistent state.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=631709
+
+ src/terminal-window.c |    7 +++++++
+ 1 files changed, 7 insertions(+), 0 deletions(-)
+
+commit d69ebe5c9c38f5fa0b8faea0b8ad9e24acb932c5
+Author: Owen W. Taylor <otaylor@fishsoup.net>
+Date:   Sat Oct 9 21:18:23 2010 -0400
+
+    Fix embarassing width/height mistake
+    
+    With previous patch --geometry=80x24 gave a 24x80 terminal. Fix
+    width height reversal.
+
+ src/terminal-window.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit c304285248ecdb97b5e617fc25f8f25f9783d4f8
+Author: Owen W. Taylor <otaylor@fishsoup.net>
+Date:   Mon Aug 31 17:11:50 2009 -0400
+
+    Make geometry parsing more robust
+    
+    Instead of counting on terminal_window_set_size() not being called
+    between gtk_window_parse_geometry(), find out the grid size that
+    gtk_window_parse_geometry() determined and set that on the active
+    terminal. Then if terminal_window_set_size() is called, it will get
+    the correct new size instead of the old one.
+    
+    terminal_window_parse_geometry() is added to encapsulate this logic.
+    
+    This replaces the fix in commit 549e45a
+    
+    http://bugzilla.gnome.org/show_bug.cgi?id=592435
+
+ src/terminal-app.c    |    2 +-
+ src/terminal-window.c |   56 ++++++++++++++++++++++++++++++++++++++----------
+ src/terminal-window.h |    3 ++
+ 3 files changed, 48 insertions(+), 13 deletions(-)
+
+commit 019b850de78d3d0b2e84f14ffa126dbb19ddd48b
+Author: Christian Persch <chpe@gnome.org>
+Date:   Thu Oct 7 19:04:46 2010 +0200
+
+    Check for gtk-builder-convert-3.0 on gtk 3
+
+ configure.ac |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
+
+commit e9f0697b5c01000252caed8a1e014e68a5daca25
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Oct 5 20:09:15 2010 +0200
+
+    Use g_warn_if_fail() here
+
+ src/terminal-screen.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 68b9b50d3f46389d7df877f72a164137b4b50162
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 4 14:18:05 2010 +0200
+
+    Post release version bump
+
+ configure.ac |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 7bfeb7ab14129c18e975c0f45d8c3fb5c3fcfef2
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Oct 4 14:12:19 2010 +0200
+
+    Bump gtk 3 and vte req
+
+ configure.ac |    5 ++---
+ 1 files changed, 2 insertions(+), 3 deletions(-)
+
+commit 987853b55eca3390baeddbd3daae1b66396b27b2
+Author: Marek Černocký <marek@manet.cz>
+Date:   Fri Oct 1 11:35:12 2010 +0200
+
+    Updated Czech translation
+
+ po/cs.po |  951 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 511 insertions(+), 440 deletions(-)
+
+commit 049f966852f876b02693c488ad400986fd08028d
 Author: Joan Duran <jodufi@gmail.com>
 Date:   Wed Sep 29 23:43:43 2010 +0200
 
@@ -55,59 +1020,95 @@ Date:   Wed Sep 29 23:43:43 2010 +0200
  po/ca.po | 1341 +++++++++++++++++++++++++++++++++-----------------------------
  1 files changed, 715 insertions(+), 626 deletions(-)
 
-commit 682a2f514104d519661cf645412120519c3561a4
-Author: Ivar Smolin <okul@linux.ee>
-Date:   Tue Sep 28 18:44:56 2010 +0300
-
-    [l10n] Updated Estonian translation
-
- po/et.po |   11 +++++------
- 1 files changed, 5 insertions(+), 6 deletions(-)
-
-commit ac3eaea752264746865366e992c8c26f4c26cc44
-Author: Andika Triwidada <andika@gmail.com>
-Date:   Tue Sep 28 00:35:57 2010 +0700
-
-    Updated Indonesian translation
-
- po/id.po |  374 +++++++++++++++++++++++++++++++------------------------------
- 1 files changed, 190 insertions(+), 184 deletions(-)
-
-commit 8378e1160611b2aa64530ada202e77bcb6ab16c9
-Author: Petr Kovar <pknbe@volny.cz>
-Date:   Mon Sep 27 18:37:08 2010 +0200
-
-    Update Czech translation by Marek Cernocky
-
- po/cs.po |  951 ++++++++++++++++++++++++++++++++++----------------------------
- 1 files changed, 516 insertions(+), 435 deletions(-)
-
-commit 4848c43f1dd13edae7a6dfbd456ad70e24aa3e78
+commit ccaa3fd8b6c1175a626e7bb88395fc33b1c67795
 Author: Christian Persch <chpe@gnome.org>
-Date:   Sun Sep 26 21:03:18 2010 +0200
+Date:   Tue Sep 28 19:46:20 2010 +0200
 
-    Use stable vte 0.26
+    Fix build after GtkObject removal on gtk 3
 
- configure.ac |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ src/terminal-window.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
 
-commit 652e9c55c26b2ca834f8312b2b624225d81ef48b
+commit 30d8eb59d124280b5d5685ad1003760df2e93350
 Author: Christian Persch <chpe@gnome.org>
-Date:   Sun Sep 26 20:46:10 2010 +0200
+Date:   Tue Sep 28 19:45:32 2010 +0200
 
-    Distcheck with gtk2
+    Use gtk_widget_set_visual
 
- Makefile.am |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-commit f2949b43b13bc772b4546b91588d33bb3d2d5bb2
-Author: Christian Persch <chpe@gnome.org>
-Date:   Sun Sep 26 16:31:09 2010 +0200
-
-    Version 2.32.0
-
- configure.ac |    4 ++--
+ src/terminal-window.c |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit e588457ea97df164810cf5f1240b428c0323d3ef
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 26 16:29:08 2010 +0200
+
+    Use gtk_notebook_set_group_name()
+    
+    ... instead of the deprecated gtk_notebook_set_group(), on gtk 3.
+
+ src/terminal-window.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit e8bf9269636b82787738b2c5a9167a4077611478
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 26 16:27:52 2010 +0200
+
+    Connect to create-window directly
+    
+    ... instead of using the hook, on gtk 3.
+
+ src/terminal-window.c |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
+
+commit b32b4c15934f8604974162b49e1a4dd97d8bdf48
+Author: Christian Persch <chpe@gnome.org>
+Date:   Fri Sep 24 14:55:32 2010 +0200
+
+    Use gdk_error_trap_pop_ignored here
+
+ src/terminal-util.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit e2299ee2451167ad41b35705b4fbd577aebd0c39
+Author: Christian Persch <chpe@gnome.org>
+Date:   Tue Sep 21 23:59:49 2010 +0200
+
+    Re-implement tab scrolling
+    
+    Code adapted from gtk.
+
+ src/terminal-window.c |   61 ++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 files changed, 60 insertions(+), 1 deletions(-)
+
+commit cff281c9ed147036938d6bae10a4d63bbef167d3
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Sep 11 12:51:49 2010 +0200
+
+    Fix the build with gtk3 rendering-cleanup branch
+
+ src/terminal-util.c   |   41 ++++++++++++++++++++++++++++++++++-------
+ src/terminal-window.c |   21 ++++++++++++++++++++-
+ 2 files changed, 54 insertions(+), 8 deletions(-)
+
+commit 1d2b467c5459a5eda70f43b2653d820d55f03a16
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sat Sep 11 12:45:37 2010 +0200
+
+    Use changed gdk keysym names on gtk 3
+
+ src/terminal-accels.c |   57 +++++++++++++++++++++++++++---------------------
+ src/terminal-screen.c |   10 +++++++-
+ src/terminal-window.c |   10 +++++++-
+ 3 files changed, 48 insertions(+), 29 deletions(-)
+
+commit 201010c5b3c2c7f4d5a976676d7b2288d7f7b9aa
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Sep 26 16:30:23 2010 +0200
+
+    Post branch version bump
+
+ configure.ac |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
 commit 7bbd8083350eccbfb3353ec2973ced0078d78ff8
 Author: Yuri Kozlov <yuray@komyakino.ru>

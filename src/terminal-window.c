@@ -25,7 +25,13 @@
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
+
+#if GTK_CHECK_VERSION (2, 90, 7)
+#define GDK_KEY(symbol) GDK_KEY_##symbol
+#else
 #include <gdk/gdkkeysyms.h>
+#define GDK_KEY(symbol) GDK_##symbol
+#endif
 
 #include "terminal-accels.h"
 #include "terminal-app.h"
@@ -38,10 +44,6 @@
 #include "terminal-tabs-menu.h"
 #include "terminal-util.h"
 #include "terminal-window.h"
-
-#ifdef ENABLE_SKEY
-#include "skey-popup.h"
-#endif
 
 struct _TerminalWindowPrivate
 {
@@ -153,6 +155,11 @@ static void notebook_page_removed_callback   (GtkWidget       *notebook,
                                               GtkWidget       *container,
                                               guint            page_num,
                                               TerminalWindow  *window);
+#if GTK_CHECK_VERSION (2, 90, 8)
+static gboolean notebook_scroll_event_cb     (GtkWidget      *notebook,
+                                              GdkEventScroll *event,
+                                              TerminalWindow *window);
+#endif
 
 /* Menu action callbacks */
 static void file_new_window_callback          (GtkAction *action,
@@ -893,7 +900,7 @@ terminal_size_to_cb (GtkAction *action,
 
   vte_terminal_set_size (VTE_TERMINAL (priv->active_screen), width, height);
 
-  terminal_window_set_size_force_grid (window, priv->active_screen, TRUE, -1, -1);
+  terminal_window_set_size_force_grid (window, priv->active_screen, -1, -1);
 }
 
 static void
@@ -1031,13 +1038,10 @@ update_edit_menu_cb (GtkClipboard *clipboard,
 }
 
 static void
-edit_menu_activate_callback (GtkMenuItem *menuitem,
-                             gpointer     user_data)
+update_edit_menu (GtkClipboard *clipboard,
+                  GdkEvent *event G_GNUC_UNUSED,
+                  TerminalWindow *window)
 {
-  TerminalWindow *window = (TerminalWindow *) user_data;
-  GtkClipboard *clipboard;
-
-  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
   gtk_clipboard_request_targets (clipboard,
                                  (GtkClipboardTargetsReceivedFunc) update_edit_menu_cb,
                                  g_object_ref (window));
@@ -1086,7 +1090,7 @@ screen_resize_window_cb (TerminalScreen *screen,
   if (screen != priv->active_screen)
     return;
 
-  terminal_window_set_size_force_grid (window, screen, TRUE, -1, -1); //grid_width, grid_height);
+  terminal_window_set_size_force_grid (window, screen, -1, -1); //grid_width, grid_height);
 }
 
 static void
@@ -1166,7 +1170,7 @@ handle_tab_droped_on_desktop (GtkNotebook *source_notebook,
                               GtkWidget   *container,
                               gint         x,
                               gint         y,
-                              gpointer     data)
+                              gpointer     data G_GNUC_UNUSED)
 {
   TerminalScreen *screen;
   TerminalWindow *source_window;
@@ -1416,19 +1420,9 @@ screen_match_clicked_cb (TerminalScreen *screen,
   if (screen != priv->active_screen)
     return FALSE;
 
-  switch (flavour)
-    {
-#ifdef ENABLE_SKEY
-      case FLAVOR_SKEY:
-        terminal_skey_do_popup (GTK_WINDOW (window), screen, match);
-        break;
-#endif
-      default:
-        gtk_widget_grab_focus (GTK_WIDGET (screen));
-        terminal_util_open_url (GTK_WIDGET (window), match, flavour,
-                                gtk_get_current_event_time ());
-        break;
-    }
+  gtk_widget_grab_focus (GTK_WIDGET (screen));
+  terminal_util_open_url (GTK_WIDGET (window), match, flavour,
+                          gtk_get_current_event_time ());
 
   return TRUE;
 }
@@ -1518,11 +1512,29 @@ terminal_window_realize (GtkWidget *widget)
   TerminalWindowPrivate *priv = window->priv;
 #ifdef GDK_WINDOWING_X11
   GdkScreen *screen;
-  GdkColormap *colormap;
   GtkAllocation widget_allocation;
+#if GTK_CHECK_VERSION (2, 90, 8)
+  GdkVisual *visual;
+#else
+  GdkColormap *colormap;
+#endif
 
   gtk_widget_get_allocation (widget, &widget_allocation);
   screen = gtk_widget_get_screen (GTK_WIDGET (window));
+#if GTK_CHECK_VERSION (2, 90, 8)
+  if (gdk_screen_is_composited (screen) &&
+      (visual = gdk_screen_get_rgba_visual (screen)) != NULL)
+    {
+      /* Set RGBA visual if possible so VTE can use real transparency */
+      gtk_widget_set_visual (GTK_WIDGET (widget), visual);
+      priv->have_argb_visual = TRUE;
+    }
+  else
+    {
+      gtk_widget_set_visual (GTK_WIDGET (window), gdk_screen_get_system_visual (screen));
+      priv->have_argb_visual = FALSE;
+    }
+#else
   if (gdk_screen_is_composited (screen) &&
       (colormap = gdk_screen_get_rgba_colormap (screen)) != NULL)
     {
@@ -1535,6 +1547,7 @@ terminal_window_realize (GtkWidget *widget)
       gtk_widget_set_colormap (widget, gdk_screen_get_default_colormap (screen));
       priv->have_argb_visual = FALSE;
     }
+#endif
 #endif
 
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
@@ -1987,6 +2000,7 @@ terminal_window_init (TerminalWindow *window)
   GError *error;
   GtkWindowGroup *window_group;
   GtkAccelGroup *accel_group;
+  GtkClipboard *clipboard;
 
   priv = window->priv = G_TYPE_INSTANCE_GET_PRIVATE (window, TERMINAL_TYPE_WINDOW, TerminalWindowPrivate);
 
@@ -2014,7 +2028,11 @@ terminal_window_init (TerminalWindow *window)
   gtk_notebook_set_scrollable (GTK_NOTEBOOK (priv->notebook), TRUE);
   gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
+#if GTK_CHECK_VERSION (2, 90, 8)
+  gtk_notebook_set_group_name (GTK_NOTEBOOK (priv->notebook), I_("gnome-terminal-window"));
+#else
   gtk_notebook_set_group (GTK_NOTEBOOK (priv->notebook), GUINT_TO_POINTER (1));
+#endif
   gtk_notebook_set_scrollable (GTK_NOTEBOOK (priv->notebook),
                                TRUE);
   g_signal_connect (priv->notebook, "button-press-event",
@@ -2030,7 +2048,16 @@ terminal_window_init (TerminalWindow *window)
   g_signal_connect_data (priv->notebook, "page-reordered",
                          G_CALLBACK (terminal_window_update_tabs_menu_sensitivity),
                          window, NULL, G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-  
+#if GTK_CHECK_VERSION (2, 90, 8)
+  g_signal_connect (priv->notebook, "create-window",
+                    G_CALLBACK (handle_tab_droped_on_desktop), window);
+
+  /* Tab scrolling was removed from GtkNotebook in gtk 3 */
+  gtk_widget_add_events (priv->notebook, GDK_SCROLL_MASK);
+  g_signal_connect (priv->notebook, "scroll-event",
+                    G_CALLBACK (notebook_scroll_event_cb), window);
+#endif
+
   gtk_box_pack_end (GTK_BOX (main_vbox), priv->notebook, TRUE, TRUE, 0);
   gtk_widget_show (priv->notebook);
 
@@ -2060,15 +2087,10 @@ terminal_window_init (TerminalWindow *window)
   gtk_ui_manager_insert_action_group (manager, action_group, 0);
   g_object_unref (action_group);
 
-  action = gtk_action_group_get_action (action_group, "Edit");
-  g_signal_connect (action, "activate",
-                    G_CALLBACK (edit_menu_activate_callback), window);
-
-  /* Set this action invisible so the Edit menu doesn't flash the first
-   * time it's shown and there's no text/uri-list on the clipboard.
-   */
-  action = gtk_action_group_get_action (priv->action_group, "EditPasteURIPaths");
-  gtk_action_set_visible (action, FALSE);
+  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
+  update_edit_menu (clipboard, NULL, window);
+  g_signal_connect (clipboard, "owner-change",
+                    G_CALLBACK (update_edit_menu), window);
 
   /* Idem for this action, since the window is not fullscreen. */
   action = gtk_action_group_get_action (priv->action_group, "PopupLeaveFullscreen");
@@ -2141,16 +2163,9 @@ terminal_window_class_init (TerminalWindowClass *klass)
 
   g_type_class_add_private (object_class, sizeof (TerminalWindowPrivate));
 
-  gtk_rc_parse_string ("style \"gnome-terminal-tab-close-button-style\"\n"
-                       "{\n"
-                          "GtkWidget::focus-padding = 0\n"
-                          "GtkWidget::focus-line-width = 0\n"
-                          "xthickness = 0\n"
-                          "ythickness = 0\n"
-                       "}\n"
-                       "widget \"*.gnome-terminal-tab-close-button\" style \"gnome-terminal-tab-close-button-style\"");
-
+#if !GTK_CHECK_VERSION (2, 90, 8)
   gtk_notebook_set_window_creation_hook (handle_tab_droped_on_desktop, NULL, NULL);
+#endif
 }
 
 static void
@@ -2160,6 +2175,7 @@ terminal_window_dispose (GObject *object)
   TerminalWindowPrivate *priv = window->priv;
   TerminalApp *app;
   GdkScreen *screen;
+  GtkClipboard *clipboard;
 
   remove_popup_info (window);
 
@@ -2182,6 +2198,11 @@ terminal_window_dispose (GObject *object)
                                         window);
   g_signal_handlers_disconnect_by_func (app,
                                         G_CALLBACK (terminal_window_encoding_list_changed_cb),
+                                        window);
+
+  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (window), GDK_SELECTION_CLIPBOARD);
+  g_signal_handlers_disconnect_by_func (clipboard,
+                                        G_CALLBACK (update_edit_menu),
                                         window);
 
   screen = gtk_widget_get_screen (GTK_WIDGET (object));
@@ -2231,28 +2252,30 @@ static void
 terminal_window_show (GtkWidget *widget)
 {
   TerminalWindow *window = TERMINAL_WINDOW (widget);
+  TerminalWindowPrivate *priv = window->priv;
   GtkAllocation widget_allocation;
 
   gtk_widget_get_allocation (widget, &widget_allocation);
-
-#if 0
-  TerminalWindowPrivate *priv = window->priv;
-
-  if (priv->active_screen != NULL)
-    {
-      /* At this point, we have our GdkScreen, and hence the right
-       * font size, so we can go ahead and size the window. */
-      terminal_window_set_size (window, priv->active_screen, FALSE);
-    }
-#endif
-
-  terminal_window_update_geometry (window);
 
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
                          "[window %p] show, size %d : %d at (%d, %d)\n",
                          widget,
                          widget_allocation.width, widget_allocation.height,
                          widget_allocation.x, widget_allocation.y);
+
+  /* Because of the unexpected reentrancy caused by notebook_page_added_callback()
+   * showing the TerminalWindow, we can get here when the first page has been
+   * added but not yet set current. By setting the page current, we get the
+   * right size when we first show the window */
+  if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) == -1)
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
+
+  if (priv->active_screen != NULL)
+    {
+      /* At this point, we have our GdkScreen, and hence the right
+       * font size, so we can go ahead and size the window. */
+      terminal_window_set_size (window, priv->active_screen);
+    }
 
   GTK_WIDGET_CLASS (terminal_window_parent_class)->show (widget);
 }
@@ -2519,7 +2542,7 @@ terminal_window_set_menubar_visible (TerminalWindow *window,
                              "[window %p] setting size after toggling menubar visibility\n",
                              window);
 
-      terminal_window_set_size (window, priv->active_screen, TRUE);
+      terminal_window_set_size (window, priv->active_screen);
     }
 }
 
@@ -2543,30 +2566,21 @@ terminal_window_get_notebook (TerminalWindow *window)
 
 void
 terminal_window_set_size (TerminalWindow *window,
-                          TerminalScreen *screen,
-                          gboolean        even_if_mapped)
+                          TerminalScreen *screen)
 {
-  terminal_window_set_size_force_grid (window, screen, even_if_mapped, -1, -1);
+  terminal_window_set_size_force_grid (window, screen, -1, -1);
 }
 
 void
 terminal_window_set_size_force_grid (TerminalWindow *window,
                                      TerminalScreen *screen,
-                                     gboolean        even_if_mapped,
                                      int             force_grid_width,
                                      int             force_grid_height)
 {
-  /* Owen's hack from gnome-terminal */
   GtkWidget *widget;
   GtkWidget *app;
-  GtkRequisition toplevel_request;
-  GtkRequisition widget_request;
-  int w, h;
-  int char_width;
-  int char_height;
   int grid_width;
   int grid_height;
-  GtkBorder *inner_border = NULL;
 
   /* be sure our geometry is up-to-date */
   terminal_window_update_geometry (window);
@@ -2576,11 +2590,47 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   app = gtk_widget_get_toplevel (widget);
   g_assert (app != NULL);
 
+  terminal_screen_get_size (screen, &grid_width, &grid_height);
+
+  if (force_grid_width >= 0)
+    grid_width = force_grid_width;
+  if (force_grid_height >= 0)
+    grid_height = force_grid_height;
+
+#if GTK_CHECK_VERSION (2, 91, 1)
+  gtk_window_resize_to_geometry (GTK_WINDOW (app), grid_width, grid_height);
+#else
+{
+  /* Owen's hack from gnome-terminal */
+
+  GtkBorder *inner_border = NULL;
+  GtkRequisition toplevel_request;
+  GtkRequisition widget_request;
+  int char_width;
+  int char_height;
+  int w, h;
+
+  /* This set_size_request hack is because the extra size above base
+   * size should only include the width of widgets to the side of the
+   * terminal and the height of widgets above and below the terminal.
+   * The minimum width of the menu, for example, shouldn't be included.
+   * GTK+ computes this extra size as:
+   *
+   *  size_request(toplevel) - size_request(geometry_widget)
+
+   * Which only works when the terminal has a size request wider than
+   * the menu and taller than scrollbar.
+   *
+   * See https://bugzilla.gnome.org/show_bug.cgi?id=68668
+   *
+   * The size request can be huge without hosing anything because we
+   * set the MIN_SIZE geometry hint.
+   */
+  gtk_widget_set_size_request (widget, 2000, 2000);
   gtk_widget_size_request (app, &toplevel_request);
   gtk_widget_size_request (widget, &widget_request);
 
   terminal_screen_get_cell_size (screen, &char_width, &char_height);
-  terminal_screen_get_size (screen, &grid_width, &grid_height);
 
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
                          "[window %p] set size: toplevel %dx%d widget %dx%d grid %dx%d char-cell %dx%d\n",
@@ -2592,11 +2642,6 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
   w = toplevel_request.width - widget_request.width;
   h = toplevel_request.height - widget_request.height;
 
-  if (force_grid_width >= 0)
-    grid_width = force_grid_width;
-  if (force_grid_height >= 0)
-    grid_height = force_grid_height;
-  
   gtk_widget_style_get (widget, "inner-border", &inner_border, NULL);
   w += (inner_border ? (inner_border->left + inner_border->right) : 0) + char_width * grid_width;
   h += (inner_border ? (inner_border->top + inner_border->bottom) : 0) + char_height * grid_height;
@@ -2607,12 +2652,9 @@ terminal_window_set_size_force_grid (TerminalWindow *window,
                          window,
                          grid_width, grid_height, force_grid_width, force_grid_height, w, h);
 
-  if (even_if_mapped && gtk_widget_get_mapped (app)) {
-    gtk_window_resize (GTK_WINDOW (app), w, h);
-  }
-  else {
-    gtk_window_set_default_size (GTK_WINDOW (app), w, h);
-  }
+  gtk_window_resize (GTK_WINDOW (app), w, h);
+}
+#endif
 }
 
 void
@@ -2782,7 +2824,7 @@ notebook_page_selected_callback (GtkWidget       *notebook,
   _terminal_debug_print (TERMINAL_DEBUG_GEOMETRY,
                          "[window %p] setting size after flipping notebook pages\n",
                          window);
-  terminal_window_set_size (window, screen, TRUE);
+  terminal_window_set_size (window, screen);
 
   terminal_window_update_tabs_menu_sensitivity (window);
   terminal_window_update_encoding_menu_active_encoding (window);
@@ -2921,12 +2963,97 @@ notebook_page_removed_callback (GtkWidget       *notebook,
   pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook));
   if (pages == 1)
     {
-      terminal_window_set_size (window, priv->active_screen, TRUE);
+      terminal_window_set_size (window, priv->active_screen);
     }
   else if (pages == 0)
     {
       gtk_widget_destroy (GTK_WIDGET (window));
     }
+}
+
+#if GTK_CHECK_VERSION (2, 90, 8)
+
+static gboolean
+notebook_scroll_event_cb (GtkWidget      *widget,
+                          GdkEventScroll *event,
+                          TerminalWindow *window)
+{
+  GtkNotebook *notebook = GTK_NOTEBOOK (widget);
+  GtkWidget *child, *event_widget, *action_widget;
+
+  child = gtk_notebook_get_nth_page (notebook, gtk_notebook_get_current_page (notebook));
+  if (child == NULL)
+    return FALSE;
+
+  event_widget = gtk_get_event_widget ((GdkEvent *) event);
+
+  /* Ignore scroll events from the content of the page */
+  if (event_widget == NULL ||
+      event_widget == child ||
+      gtk_widget_is_ancestor (event_widget, child))
+    return FALSE;
+
+  /* And also from the action widgets */
+  action_widget = gtk_notebook_get_action_widget (notebook, GTK_PACK_START);
+  if (event_widget == action_widget ||
+      (action_widget != NULL && gtk_widget_is_ancestor (event_widget, action_widget)))
+    return FALSE;
+  action_widget = gtk_notebook_get_action_widget (notebook, GTK_PACK_END);
+  if (event_widget == action_widget ||
+      (action_widget != NULL && gtk_widget_is_ancestor (event_widget, action_widget)))
+    return FALSE;
+
+  switch (event->direction) {
+    case GDK_SCROLL_RIGHT:
+    case GDK_SCROLL_DOWN:
+      gtk_notebook_next_page (notebook);
+      break;
+    case GDK_SCROLL_LEFT:
+    case GDK_SCROLL_UP:
+      gtk_notebook_prev_page (notebook);
+      break;
+    }
+
+  return TRUE;
+}
+
+#endif /* GTK 3.0 */
+
+gboolean
+terminal_window_parse_geometry (TerminalWindow *window,
+				const char     *geometry)
+{
+  TerminalWindowPrivate *priv = window->priv;
+
+  /* gtk_window_parse_geometry() needs to have the right base size
+   * and width/height increment to compute the window size from
+   * the geometry.
+   */
+  terminal_window_update_geometry (window);
+
+  if (!gtk_window_parse_geometry (GTK_WINDOW (window), geometry))
+    return FALSE;
+
+  /* We won't actually get allocated at the size parsed out of the
+   * geometry until the window is shown. If terminal_window_set_size()
+   * is called between now and then, that could result in us getting
+   * snapped back to the old grid size. So we need to immediately
+   * update the size of the active terminal to grid size from the
+   * geometry.
+   */
+  if (priv->active_screen)
+    {
+      int grid_width, grid_height;
+
+      /* After parse_geometry(), the default size is in units of the
+       * width/height increment, not a pixel size */
+      gtk_window_get_default_size (GTK_WINDOW (window), &grid_width, &grid_height);
+
+      vte_terminal_set_size (VTE_TERMINAL (priv->active_screen),
+			     grid_width, grid_height);
+    }
+
+  return TRUE;
 }
 
 void
@@ -3789,9 +3916,9 @@ tabs_next_or_previous_tab_cb (GtkAction *action,
 
   name = gtk_action_get_name (action);
   if (strcmp (name, "TabsNext") == 0) {
-    keyval = GDK_Page_Down;
+    keyval = GDK_KEY (Page_Down);
   } else if (strcmp (name, "TabsPrevious") == 0) {
-    keyval = GDK_Page_Up;
+    keyval = GDK_KEY (Page_Up);
   }
 
   klass = GTK_NOTEBOOK_GET_CLASS (GTK_NOTEBOOK (priv->notebook));
@@ -3799,7 +3926,11 @@ tabs_next_or_previous_tab_cb (GtkAction *action,
   gtk_binding_set_activate (gtk_binding_set_by_class (klass),
                             keyval,
                             GDK_CONTROL_MASK,
+#if GTK_CHECK_VERSION (2, 90, 8)
+                            G_OBJECT (priv->notebook));
+#else
                             GTK_OBJECT (priv->notebook));
+#endif
 }
 
 static void
@@ -3857,7 +3988,7 @@ tabs_detach_tab_callback (GtkAction *action,
 
   terminal_window_move_screen (window, new_window, screen, -1);
 
-  gtk_window_parse_geometry (GTK_WINDOW (new_window), geometry);
+  terminal_window_parse_geometry (new_window, geometry);
   g_free (geometry);
 
   gtk_window_present_with_time (GTK_WINDOW (new_window), gtk_get_current_event_time ());

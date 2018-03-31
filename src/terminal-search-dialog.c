@@ -108,7 +108,11 @@ terminal_search_dialog_new (GtkWindow   *parent)
   priv->store = store = gtk_list_store_new (1, G_TYPE_STRING);
   g_object_set (G_OBJECT (priv->search_entry),
 		"model", store,
+#if GTK_CHECK_VERSION (2, 91, 0)
+		"entry-text-column", 0,
+#else
 		"text-column", 0,
+#endif
 		NULL);
 
   priv->completion = completion = gtk_entry_completion_new ();
@@ -361,7 +365,8 @@ terminal_search_dialog_get_regex (GtkWidget *dialog)
       g_free ((char *) old_pattern);
   }
 
-  if (!priv->regex || priv->regex_compile_flags != compile_flags) {
+  if (!priv->regex || priv->regex_compile_flags != compile_flags ||
+      g_strcmp0 (pattern, g_regex_get_pattern (priv->regex)) != 0) {
     priv->regex_compile_flags = compile_flags;
     if (priv->regex)
       g_regex_unref (priv->regex);

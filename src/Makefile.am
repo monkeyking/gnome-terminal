@@ -1,9 +1,5 @@
 NULL =
 
-if ENABLE_SKEY
-SUBDIRS = skey
-endif
-
 bin_PROGRAMS = gnome-terminal
 
 BUILT_SOURCES = \
@@ -23,6 +19,8 @@ gnome_terminal_SOURCES= \
 	terminal-accels.h \
 	terminal-app.c \
 	terminal-app.h \
+	terminal-close-button.h \
+	terminal-close-button.c \
 	terminal-debug.c \
 	terminal-debug.h \
 	terminal-encoding.c \
@@ -50,13 +48,6 @@ gnome_terminal_SOURCES= \
 	terminal-window.c \
 	terminal-window.h \
 	$(NULL)
-
-if ENABLE_SKEY
-gnome_terminal_SOURCES += \
-	skey-popup.c \
-	skey-popup.h \
-	$(NULL)
-endif
 
 nodist_gnome_terminal_SOURCES= $(BUILT_SOURCES)
 
@@ -86,7 +77,6 @@ gnome_terminal_CFLAGS = \
 gnome_terminal_LDFLAGS =
 
 gnome_terminal_LDADD = \
-	skey/libskey.la \
 	$(TERM_LIBS)
 
 if WITH_SMCLIENT
@@ -168,7 +158,6 @@ builder_in_files = \
 	profile-manager.glade \
 	profile-new-dialog.glade \
 	profile-preferences.glade \
-	skey-challenge.glade \
 	$(NULL)
 
 builderdir = $(pkgdatadir)
@@ -200,6 +189,6 @@ install-data-local:
 endif
 
 %.ui: %.glade
-	$(AM_V_GEN) $(GTK_BUILDER_CONVERT) $< $@
+	$(AM_V_GEN) $(GTK_BUILDER_CONVERT) $(GTK_BUILDER_CONVERT_FLAGS) $< $@
 
 -include $(top_srcdir)/git.mk
