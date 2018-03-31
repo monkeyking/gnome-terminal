@@ -5,6 +5,19 @@
 
 G_BEGIN_DECLS
 
+#ifndef _DBUS_GLIB_ASYNC_DATA_FREE
+#define _DBUS_GLIB_ASYNC_DATA_FREE
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+void
+_dbus_glib_async_data_free (gpointer stuff)
+{
+	g_slice_free (DBusGAsyncData, stuff);
+}
+#endif
+
 #ifndef DBUS_GLIB_CLIENT_WRAPPERS_org_gnome_Terminal_Factory
 #define DBUS_GLIB_CLIENT_WRAPPERS_org_gnome_Terminal_Factory
 
@@ -40,10 +53,10 @@ org_gnome_Terminal_Factory_handle_arguments_async (DBusGProxy *proxy, const GArr
 
 {
   DBusGAsyncData *stuff;
-  stuff = g_new (DBusGAsyncData, 1);
+  stuff = g_slice_new (DBusGAsyncData);
   stuff->cb = G_CALLBACK (callback);
   stuff->userdata = userdata;
-  return dbus_g_proxy_begin_call (proxy, "HandleArguments", org_gnome_Terminal_Factory_handle_arguments_async_callback, stuff, g_free, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_working_directory, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_display_name, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_startup_id, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_environment, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_arguments, G_TYPE_INVALID);
+  return dbus_g_proxy_begin_call (proxy, "HandleArguments", org_gnome_Terminal_Factory_handle_arguments_async_callback, stuff, _dbus_glib_async_data_free, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_working_directory, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_display_name, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_startup_id, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_environment, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), IN_arguments, G_TYPE_INVALID);
 }
 #endif /* defined DBUS_GLIB_CLIENT_WRAPPERS_org_gnome_Terminal_Factory */
 

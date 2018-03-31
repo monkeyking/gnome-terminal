@@ -5,9 +5,9 @@
 
 #include "terminal-type-builtins.h"
 
-/* enumerations from "../../src/terminal-profile.h" */
+/* enumerations from "terminal-profile.h" */
 
-#include "../../src/terminal-profile.h"
+#include "terminal-profile.h"
 #
 GType
 terminal_title_mode_get_type (void)
