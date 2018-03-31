@@ -4,7 +4,7 @@
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * Gnome-terminal is distributed in the hope that it will be useful,
@@ -95,6 +95,20 @@
 #define KEY_ZOOM_OUT            CONF_KEYS_PREFIX "/zoom_out"
 #define KEY_SWITCH_TAB_PREFIX   CONF_KEYS_PREFIX "/switch_to_tab_"
 
+#if 1
+/*
+* We don't want to enable content saving until vte supports it async.
+* So we disable this code for stable versions.
+*/
+#include "terminal-version.h"
+
+#if (TERMINAL_MINOR_VERSION & 1) != 0
+#define ENABLE_SAVE
+#else
+#undef ENABLE_SAVE
+#endif
+#endif
+
 typedef struct
 {
   const char *user_visible_name;
@@ -124,7 +138,7 @@ static KeyEntry file_entries[] =
     KEY_NEW_WINDOW, ACCEL_PATH_NEW_WINDOW, GDK_SHIFT_MASK | GDK_CONTROL_MASK, GDK_n, NULL, FALSE, TRUE },
   { N_("New Profile"),
     KEY_NEW_PROFILE, ACCEL_PATH_NEW_PROFILE, 0, 0, NULL, FALSE, TRUE },
-#if 0
+#ifdef ENABLE_SAVE
   { N_("Save Contents"),
     KEY_SAVE_CONTENTS, ACCEL_PATH_SAVE_CONTENTS, 0, 0, NULL, FALSE, TRUE },
 #endif

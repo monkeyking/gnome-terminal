@@ -7,7 +7,7 @@
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * Gnome-terminal is distributed in the hope that it will be useful,
@@ -116,7 +116,8 @@ terminal_util_show_error_dialog (GtkWindow *transient_parent,
     {
       g_return_if_fail (GTK_IS_MESSAGE_DIALOG (*weak_ptr));
 
-      gtk_label_set_text (GTK_LABEL (GTK_MESSAGE_DIALOG (*weak_ptr)->label), message);
+      /* Sucks that there's no direct accessor for "text" property */
+      g_object_set (G_OBJECT (*weak_ptr), "text", message, NULL);
 
       gtk_window_present (GTK_WINDOW (*weak_ptr));
     }
@@ -364,7 +365,7 @@ terminal_util_get_licence_text (void)
   const gchar *license[] = {
     N_("GNOME Terminal is free software; you can redistribute it and/or modify "
        "it under the terms of the GNU General Public License as published by "
-       "the Free Software Foundation; either version 2 of the License, or "
+       "the Free Software Foundation; either version 3 of the License, or "
        "(at your option) any later version."),
     N_("GNOME Terminal is distributed in the hope that it will be useful, "
        "but WITHOUT ANY WARRANTY; without even the implied warranty of "
@@ -513,144 +514,6 @@ terminal_util_key_file_get_argv (GKeyFile *key_file,
   return NULL;
 }
 
-/* Why? Because dbus-glib sucks, that's why! */
-
-/**
- * terminal_util_string_to_array:
- * @string:
- *
- * Converts the string @string into a #GArray.
- * 
- * Returns: a newly allocated #GArray containing @string's bytes.
- */
-GArray *
-terminal_util_string_to_array (const char *string)
-{
-  GArray *array;
-  gsize len = 0;
-
-  if (string)
-    len = strlen (string);
-
-  array = g_array_sized_new (FALSE, FALSE, sizeof (guchar), len);
-  return g_array_append_vals (array, string, len);
-}
-
-/**
- * terminal_util_strv_to_array:
- * @argc: the length of @argv
- * @argv: a string array
- *
- * Converts the string array @argv of length @argc into a #GArray.
- * 
- * Returns: a newly allocated #GArray
- */
-GArray *
-terminal_util_strv_to_array (int argc,
-                             char **argv)
-{
-  GArray *array;
-  gsize len = 0;
-  int i;
-  const char nullbyte = 0;
-
-  for (i = 0; i < argc; ++i)
-    len += strlen (argv[i]);
-  if (argc > 0)
-    len += argc - 1;
-
-  array = g_array_sized_new (FALSE, FALSE, sizeof (guchar), len);
-
-  for (i = 0; i < argc; ++i) {
-    g_array_append_vals (array, argv[i], strlen (argv[i]));
-    if (i < argc)
-      g_array_append_val (array, nullbyte);
-  }
-
-  return array;
-}
-
-/**
- * terminal_util_array_to_string:
- * @array:
- * @error: a #GError to fill in
- *
- * Converts @array into a string.
- * 
- * Returns: a newly allocated string, or %NULL on error
- */
-char *
-terminal_util_array_to_string (const GArray *array,
-                               GError **error)
-{
-  char *string;
-  g_return_val_if_fail (array != NULL, NULL);
-
-  string = g_strndup (array->data, array->len);
-
-  /* Validate */
-  if (strlen (string) < array->len) {
-    g_set_error_literal (error,
-                         g_quark_from_static_string ("terminal-error"),
-                         0,
-                         "String is shorter than claimed");
-    return NULL;
-  }
-
-  return string;
-}
-
-/**
- * terminal_util_array_to_strv:
- * @array:
- * @argc: a location to store the length of the returned string array
- * @error: a #GError to fill in
- *
- * Converts @array into a string.
- * 
- * Returns: a newly allocated string array of length *@argc, or %NULL on error
- */
-char **
-terminal_util_array_to_strv (const GArray *array,
-                             int *argc,
-                             GError **error)
-{
-  GPtrArray *argv;
-  const char *data, *nullbyte;
-  gssize len;
-
-  g_return_val_if_fail (array != NULL, NULL);
-
-  if (array->len == 0 || array->len > G_MAXSSIZE) {
-    *argc = 0;
-    return NULL;
-  }
-
-  argv = g_ptr_array_new ();
-
-  len = array->len;
-  data = array->data;
-
-  do {
-    gsize string_len;
-
-    nullbyte = memchr (data, '\0', len);
-
-    string_len = nullbyte ? (gsize) (nullbyte - data) : len;
-    g_ptr_array_add (argv, g_strndup (data, string_len));
-
-    len -= string_len + 1;
-    data += string_len + 1;
-  } while (len > 0);
-
-  if (argc)
-    *argc = argv->len;
-
-  /* NULL terminate */
-  g_ptr_array_add (argv, NULL);
-  return (char **) g_ptr_array_free (argv, FALSE);
-}
-
 /* Proxy stuff */
 
 static char *
@@ -719,46 +582,42 @@ static void
 setup_http_proxy_env (GHashTable *env_table,
                       GConfClient *conf)
 {
-  gchar *host, *auth = NULL;
+  gchar *host;
   gint port;
   GSList *ignore;
 
   if (!gconf_client_get_bool (conf, CONF_HTTP_PROXY_PREFIX "/use_http_proxy", NULL))
     return;
 
-  if (gconf_client_get_bool (conf, CONF_HTTP_PROXY_PREFIX "/use_authentication", NULL))
-    {
-      char *user, *password;
-      user = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_user");
-      password = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_password");
-      if (user)
-	{
-	  if (password)
-	    {
-	      auth = g_strdup_printf ("%s:%s", user, password);
-	      g_free (user);
-	    }
-	  else
-	    auth = user;
-	}
-      g_free (password);
-    }
-
   host = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/host");
   port = gconf_client_get_int (conf, CONF_HTTP_PROXY_PREFIX "/port", NULL);
   if (host && port)
     {
-      char *proxy;
-      if (auth)
-	proxy = g_strdup_printf ("http://%s@%s:%d/", auth, host, port);
-      else
-	proxy = g_strdup_printf ("http://%s:%d/", host, port);
-      set_proxy_env (env_table, "http_proxy", proxy);
+      GString *buf = g_string_sized_new (64);
+      g_string_append (buf, "http://");
+
+      if (gconf_client_get_bool (conf, CONF_HTTP_PROXY_PREFIX "/use_authentication", NULL))
+	{
+	  char *user, *password;
+	  user = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_user");
+	  if (user)
+	    {
+	      g_string_append_uri_escaped (buf, user, NULL, TRUE);
+	      password = conf_get_string (conf, CONF_HTTP_PROXY_PREFIX "/authentication_password");
+	      if (password)
+		{
+		  g_string_append_c (buf, ':');
+		  g_string_append_uri_escaped (buf, password, NULL, TRUE);
+		  g_free (password);
+		}
+	      g_free (user);
+	      g_string_append_c (buf, '@');
+	    }
+	}
+      g_string_append_printf (buf, "%s:%d/", host, port);
+      set_proxy_env (env_table, "http_proxy", g_string_free (buf, FALSE));
     }
   g_free (host);
-
-  g_free (auth);
-
 
   ignore = gconf_client_get_list (conf, CONF_HTTP_PROXY_PREFIX "/ignore_hosts", GCONF_VALUE_STRING, NULL);
   if (ignore)
@@ -793,7 +652,8 @@ setup_https_proxy_env (GHashTable *env_table,
   if (host && port)
     {
       char *proxy;
-      proxy = g_strdup_printf ("https://%s:%d/", host, port);
+      /* Even though it's https, the proxy scheme is 'http'. See bug #624440. */
+      proxy = g_strdup_printf ("http://%s:%d/", host, port);
       set_proxy_env (env_table, "https_proxy", proxy);
     }
   g_free (host);
@@ -811,7 +671,8 @@ setup_ftp_proxy_env (GHashTable *env_table,
   if (host && port)
     {
       char *proxy;
-      proxy = g_strdup_printf ("ftp://%s:%d/", host, port);
+      /* Even though it's ftp, the proxy scheme is 'http'. See bug #624440. */
+      proxy = g_strdup_printf ("http://%s:%d/", host, port);
       set_proxy_env (env_table, "ftp_proxy", proxy);
     }
   g_free (host);
@@ -839,18 +700,18 @@ static void
 setup_autoconfig_proxy_env (GHashTable *env_table,
                             GConfClient *conf)
 {
+  /* XXX  Not sure what to do with this.  See bug #596688.
   gchar *url;
 
   url = conf_get_string (conf, CONF_PROXY_PREFIX "/autoconfig_url");
   if (url)
     {
-      /* XXX  Not sure what to do with it.  See bug 596688
       char *proxy;
       proxy = g_strdup_printf ("pac+%s", url);
       set_proxy_env (env_table, "http_proxy", proxy);
-      */
     }
   g_free (url);
+  */
 }
 
 /**

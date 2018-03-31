@@ -6,7 +6,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 3 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,7 +29,7 @@
 typedef struct
 {
   int   refcount;
-  char *charset;
+  char *id;
   char *name;
   guint valid            : 1;
   guint validity_checked : 1;
@@ -49,6 +49,10 @@ TerminalEncoding *terminal_encoding_ref (TerminalEncoding *encoding);
 void terminal_encoding_unref (TerminalEncoding *encoding);
 
 gboolean terminal_encoding_is_valid (TerminalEncoding *encoding);
+
+const char *terminal_encoding_get_id (TerminalEncoding *encoding);
+
+const char *terminal_encoding_get_charset (TerminalEncoding *encoding);
 
 GHashTable *terminal_encodings_get_builtins (void);
 

@@ -5,7 +5,7 @@
  *
  * Gnome-terminal is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * Gnome-terminal is distributed in the hope that it will be useful,
@@ -110,7 +110,6 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
                                GtkWidget *editor)
 {
   TerminalBackgroundType bg_type;
-  gboolean use_custom_locked, palette_locked, bg_type_locked;
   const char *prop_name;
 
   if (pspec)
@@ -120,12 +119,12 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
   
 #define SET_SENSITIVE(name, setting) widget_and_labels_set_sensitive (profile_editor_get_widget (editor, name), setting)
 
-  use_custom_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND);
   if (!prop_name ||
       prop_name == I_(TERMINAL_PROFILE_USE_CUSTOM_COMMAND) ||
       prop_name == I_(TERMINAL_PROFILE_CUSTOM_COMMAND))
     {
-      SET_SENSITIVE ("use-custom-command-checkbutton", !use_custom_locked);
+      gboolean use_custom_command_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND);
+      SET_SENSITIVE ("use-custom-command-checkbutton", !use_custom_command_locked);
       SET_SENSITIVE ("custom-command-box",
                      terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND) &&
                      !terminal_profile_property_locked (profile, TERMINAL_PROFILE_CUSTOM_COMMAND));
@@ -133,7 +132,7 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TYPE))
     {
-      bg_type_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
+      gboolean bg_type_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_BACKGROUND_TYPE);
       SET_SENSITIVE ("solid-radiobutton", !bg_type_locked);
       SET_SENSITIVE ("image-radiobutton", !bg_type_locked);
       SET_SENSITIVE ("transparent-radiobutton", !bg_type_locked);
@@ -237,13 +236,18 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
                    !terminal_profile_property_locked (profile, TERMINAL_PROFILE_WORD_CHARS));
 
   if (!prop_name ||
+      prop_name == I_(TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE) ||
       prop_name == I_(TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS) ||
       prop_name == I_(TERMINAL_PROFILE_DEFAULT_SIZE_ROWS))
     {
+      gboolean use_custom_default_size_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE);
+      gboolean use_custom_default_size = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE);
       gboolean columns_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS);
       gboolean rows_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS);
 
-      SET_SENSITIVE ("default-size-label", !columns_locked || !rows_locked);
+      SET_SENSITIVE ("use-custom-default-size-checkbutton", !use_custom_default_size_locked);
+      SET_SENSITIVE ("default-size-hbox", use_custom_default_size);
+      SET_SENSITIVE ("default-size-label", (!columns_locked || !rows_locked));
       SET_SENSITIVE ("default-size-columns-label", !columns_locked);
       SET_SENSITIVE ("default-size-columns-spinbutton", !columns_locked);
       SET_SENSITIVE ("default-size-rows-label", !rows_locked);
@@ -289,7 +293,7 @@ profile_notify_sensitivity_cb (TerminalProfile *profile,
 
   if (!prop_name || prop_name == I_(TERMINAL_PROFILE_PALETTE))
     {
-      palette_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_PALETTE);
+      gboolean palette_locked = terminal_profile_property_locked (profile, TERMINAL_PROFILE_PALETTE);
       SET_SENSITIVE ("palette-combobox", !palette_locked);
       SET_SENSITIVE ("palette-table", !palette_locked);
     }
@@ -683,9 +687,53 @@ profile_editor_destroyed (GtkWidget       *editor,
   g_object_set_data (G_OBJECT (editor), "builder", NULL);
 }
 
+static void
+terminal_profile_editor_focus_widget (GtkWidget *editor,
+                                      const char *widget_name)
+{
+  GtkBuilder *builder;
+  GtkWidget *widget, *page, *page_parent;
+
+  if (widget_name == NULL)
+    return;
+
+  builder = g_object_get_data (G_OBJECT (editor), "builder");
+  widget = GTK_WIDGET (gtk_builder_get_object (builder, widget_name));
+  if (widget == NULL)
+    return;
+
+  page = widget;
+  while (page != NULL &&
+         (page_parent = gtk_widget_get_parent (page)) != NULL &&
+         !GTK_IS_NOTEBOOK (page_parent))
+    page = page_parent;
+
+  page_parent = gtk_widget_get_parent (page);
+  if (page != NULL && GTK_IS_NOTEBOOK (page_parent)) {
+    GtkNotebook *notebook;
+
+    notebook = GTK_NOTEBOOK (page_parent);
+    gtk_notebook_set_current_page (notebook, gtk_notebook_page_num (notebook, page));
+  }
+
+  if (gtk_widget_is_sensitive (widget))
+    gtk_widget_grab_focus (widget);
+}
+
+/**
+ * terminal_profile_edit:
+ * @profile: a #TerminalProfile
+ * @transient_parent: a #GtkWindow, or %NULL
+ * @widget_name: a widget name in the profile editor's UI, or %NULL
+ *
+ * Shows the profile editor with @profile, anchored to @transient_parent.
+ * If @widget_name is non-%NULL, focuses the corresponding widget and
+ * switches the notebook to its containing page.
+ */
 void
 terminal_profile_edit (TerminalProfile *profile,
-                       GtkWindow       *transient_parent)
+                       GtkWindow       *transient_parent,
+                       const char      *widget_name)
 {
   char *path;
   GtkBuilder *builder;
@@ -696,6 +744,8 @@ terminal_profile_edit (TerminalProfile *profile,
   editor = g_object_get_data (G_OBJECT (profile), "editor-window");
   if (editor)
     {
+      terminal_profile_editor_focus_widget (editor, widget_name);
+
       gtk_window_set_transient_for (GTK_WINDOW (editor),
                                     GTK_WINDOW (transient_parent));
       gtk_window_present (GTK_WINDOW (editor));
@@ -797,11 +847,12 @@ terminal_profile_edit (TerminalProfile *profile,
 #define CONNECT(name, prop) CONNECT_WITH_FLAGS (name, prop, 0)
 #define SET_ENUM_VALUE(name, value) g_object_set_data (gtk_builder_get_object (builder, name), "enum-value", GINT_TO_POINTER (value))
 
-  g_signal_connect (GTK_WIDGET (gtk_builder_get_object (builder, "custom-command-entry")),
-                    "changed",
+  w = GTK_WIDGET (gtk_builder_get_object (builder, "custom-command-entry"));
+  custom_command_entry_changed_cb (GTK_ENTRY (w));
+  g_signal_connect (w, "changed",
                     G_CALLBACK (custom_command_entry_changed_cb), NULL);
-  g_signal_connect (GTK_WIDGET (gtk_builder_get_object (builder, "profile-name-entry")),
-                    "changed",
+  w = GTK_WIDGET (gtk_builder_get_object (builder, "profile-name-entry"));
+  g_signal_connect (w, "changed",
                     G_CALLBACK (visible_name_entry_changed_cb), editor);
 
   g_signal_connect (gtk_builder_get_object  (builder, "reset-compat-defaults-button"),
@@ -844,6 +895,7 @@ terminal_profile_edit (TerminalProfile *profile,
   CONNECT ("transparent-radiobutton", TERMINAL_PROFILE_BACKGROUND_TYPE);
   CONNECT ("update-records-checkbutton", TERMINAL_PROFILE_UPDATE_RECORDS);
   CONNECT ("use-custom-command-checkbutton", TERMINAL_PROFILE_USE_CUSTOM_COMMAND);
+  CONNECT ("use-custom-default-size-checkbutton", TERMINAL_PROFILE_USE_CUSTOM_DEFAULT_SIZE);
   CONNECT ("use-theme-colors-checkbutton", TERMINAL_PROFILE_USE_THEME_COLORS);
   CONNECT ("word-chars-entry", TERMINAL_PROFILE_WORD_CHARS);
   CONNECT_WITH_FLAGS ("bell-checkbutton", TERMINAL_PROFILE_SILENT_BELL, FLAG_INVERT_BOOL);
@@ -860,6 +912,8 @@ terminal_profile_edit (TerminalProfile *profile,
                     "forgotten",
                     G_CALLBACK (profile_forgotten_cb),
                     editor);
+
+  terminal_profile_editor_focus_widget (editor, widget_name);
 
   gtk_window_set_transient_for (GTK_WINDOW (editor),
                                 GTK_WINDOW (transient_parent));

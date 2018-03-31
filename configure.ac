@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[2])
-m4_define([gt_version_minor],[30])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_minor],[31])
+m4_define([gt_version_micro],[90])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -39,13 +39,34 @@ GNOME_COMPILE_WARNINGS([maximum])
 
 AM_GLIB_GNU_GETTEXT
 
-GLIB_REQUIRED=2.16.0
+GLIB_REQUIRED=2.25.0
+GIO_REQUIRED=2.25.12
 GTK_REQUIRED=2.14.0
-GCONF_REQUIRED=2.14.0
-DBUS_GLIB_REQUIRED=0.6
-VTE_REQUIRED=0.24.0
+GCONF_REQUIRED=2.31.3
+VTE_REQUIRED=0.25.90
 
-GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
+AC_MSG_CHECKING([which gtk+ version to compile against])
+AC_ARG_WITH([gtk],
+  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 2.0)])],
+  [case "$with_gtk" in
+     2.0|3.0) ;;
+     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
+   esac],
+  [with_gtk=2.0])
+AC_MSG_RESULT([$with_gtk])
+
+case "$with_gtk" in
+  2.0) GTK_API_VERSION=2.0
+       GTK_REQUIRED=2.18.0
+       VTE_PC_VERSION=
+       ;;
+  3.0) GTK_API_VERSION=3.0
+       GTK_REQUIRED=2.90.0
+       VTE_PC_VERSION=-2.90
+       ;;
+esac
+
+GDK_TARGET="$($PKG_CONFIG --variable target gdk-$GTK_API_VERSION)"
 
 case "$GDK_TARGET" in
   x11) PLATFORM_DEPS="x11" ;;
@@ -53,16 +74,18 @@ case "$GDK_TARGET" in
 esac
 
 PKG_CHECK_MODULES([TERM],
-  [vte >= $VTE_REQUIRED
+  [vte$VTE_PC_VERSION >= $VTE_REQUIRED
    glib-2.0 >= $GLIB_REQUIRED
    gthread-2.0
-   gio-2.0
-   gtk+-2.0 >= $GTK_REQUIRED
+   gio-2.0 >= $GIO_REQUIRED
+   gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
    gconf-2.0 >= $GCONF_REQUIRED
-   dbus-glib-1 >= $DBUS_GLIB_REQUIRED
    $PLATFORM_DEPS])
 
-# Check the smclient backend
+# ********
+# smclient
+# ********
+
 SMCLIENT_PKGS=
 AC_MSG_CHECKING([which smclient backend to use])
 AC_ARG_WITH([smclient],
@@ -90,7 +113,10 @@ AM_CONDITIONAL([WITH_SMCLIENT_XSMP],[test "$with_smclient" = "xsmp"])
 AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
 AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 
+# *****
 # GConf
+# *****
+
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
 if test x"$GCONFTOOL" = xno; then
@@ -109,10 +135,25 @@ if test "$GTK_BUILDER_CONVERT" = "false"; then
   AC_MSG_ERROR([gtk-builder-convert not found])
 fi
 
-AC_PATH_PROG([DBUS_BINDING_TOOL],[dbus-binding-tool],[false])
-if test "$DBUS_BINDING_TOOL" = "false"; then
-  AC_MSG_ERROR([dbus-binding-tool not found])
+# *****
+# S/Key
+# *****
+
+AC_MSG_CHECKING([whether to enable s/key support])
+AC_ARG_ENABLE([skey],
+  [AS_HELP_STRING([--disable-skey],[disable s/key support (default: enabled)])],
+  [],[enable_skey=yes])
+AC_MSG_RESULT([$enable_skey])
+
+if test "$enable_skey" = "yes"; then
+  AC_DEFINE([ENABLE_SKEY],[1],[Define if s/key support is enabled])
 fi
+
+AM_CONDITIONAL([ENABLE_SKEY],[test "$enable_skey" = "yes"])
+
+# *************
+# Documentation
+# *************
 
 GNOME_DOC_INIT
 
@@ -150,4 +191,5 @@ gnome-terminal-$VERSION:
 	compiler:		${CC}
 
         using smclient:         ${with_smclient}
+        s/key support:          ${enable_skey}
 "

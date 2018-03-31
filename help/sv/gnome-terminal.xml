@@ -298,7 +298,7 @@ text-based commands through a shell such as Bash.
      <sect2 id="gnome-terminal-profiles"> 
         <title>Terminalprofiler</title> 
         <para>Du kan skapa en ny profil, och använda den nya profilen i terminalen för att ändra egenskaper som till exempel typsnitt, färg och effekter, rullningsbeteende, fönstertitel, och kompatibilitet. Du kan även ange ett kommando som kör automatiskt när du startar <application>GNOME-terminal</application> i profilen.</para>
-          <para>Du kan definiera varje terminalprofil i dialogrutan <guilabel>Redigera profiler</guilabel>, vilken du kan komma åt från menyn <guimenu>Redigera</guimenu>. Du kan definiera så många olika profiler som du behöver. När du startar en terminal, kan du välja profilen som du vill använda för terminalen. Alternativt kan du ändra terminalprofilen under tiden du använder terminalen. Använd följande kommando för att ange en startprofil för en terminal när du startar programmet från en kommandorad:</para>
+          <para>You define each terminal profile in the <guilabel>Profiles</guilabel> dialog, which you access from the <guimenu>Edit</guimenu> menu. You can define as many different profiles as you require. When you start a terminal, you can choose the profile that you want to use for the terminal. Alternatively, you can change the terminal profile while you use the terminal. To specify an initial profile for a terminal when you start the application from a command line, use the following command: </para>
         <para>
           <command>gnome-terminal --window-with-profile=<replaceable>profilnamn</replaceable></command> 
         </para>
@@ -431,7 +431,8 @@ text-based commands through a shell such as Bash.
                      <para>Välj <menuchoice><guimenu>Redigera</guimenu><guisubmenu>Aktuell profil</guisubmenu></menuchoice>.</para>
                   </listitem> 
                   <listitem> 
-                     <para>Högerklicka på terminalfönstret, välj sedan <guimenuitem>Redigera aktuell profil</guimenuitem> från popuppmenyn.</para>
+                     <para>
+                        Right-click in the terminal window, then choose <menuchoice><guimenuitem>Profiles</guimenuitem> <guimenuitem>Profile Preferences</guimenuitem></menuchoice> from the popup menu.  </para>
                   </listitem> 
                   <listitem> 
                      <para>Välj <menuchoice><guimenu>Redigera</guimenu><guisubmenu>Profiler</guisubmenu></menuchoice>, välj profilen som du vill redigera, klicka sedan på <guibutton>Redigera</guibutton>. För information om vilka alternativ du kan ställa in för profiler, se <xref linkend="gnome-terminal-prefs"/>.</para>
