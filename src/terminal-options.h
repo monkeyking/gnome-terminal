@@ -28,6 +28,7 @@ G_BEGIN_DECLS
 
 typedef struct
 {
+  gboolean remote_arguments;
   char   **env;
   char    *startup_id;
   char    *display_name;
@@ -68,6 +69,8 @@ typedef struct
 
 typedef struct
 {
+  guint source_tag;
+
   GList *tabs; /* list of InitialTab */
 
   gboolean force_menubar_state;
@@ -84,6 +87,7 @@ typedef struct
 #define TERMINAL_OPTION_ERROR (g_quark_from_static_string ("terminal-option-error"))
 
 typedef enum {
+  TERMINAL_OPTION_ERROR_NOT_IN_FACTORY,
   TERMINAL_OPTION_ERROR_EXCLUSIVE_OPTIONS,
   TERMINAL_OPTION_ERROR_INVALID_CONFIG_FILE,
   TERMINAL_OPTION_ERROR_INCOMPATIBLE_CONFIG_FILE
@@ -93,6 +97,7 @@ TerminalOptions *terminal_options_parse (const char *working_directory,
                                          const char *display_name,
                                          const char *startup_id,
                                          char **env,
+                                         gboolean remote_arguments,
                                          gboolean ignore_unknown_options,
                                          int *argcp,
                                          char ***argvp,
@@ -101,6 +106,7 @@ TerminalOptions *terminal_options_parse (const char *working_directory,
 
 gboolean terminal_options_merge_config (TerminalOptions *options,
                                         GKeyFile *key_file,
+                                        guint source_tag,
                                         GError **error);
 
 void terminal_options_ensure_window (TerminalOptions *options);

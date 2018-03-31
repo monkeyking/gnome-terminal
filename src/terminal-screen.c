@@ -104,8 +104,6 @@ enum
   TARGET_TAB
 };
 
-static void terminal_screen_init        (TerminalScreen      *screen);
-static void terminal_screen_class_init  (TerminalScreenClass *klass);
 static void terminal_screen_dispose     (GObject             *object);
 static void terminal_screen_finalize    (GObject             *object);
 static void terminal_screen_drag_data_received (GtkWidget        *widget,
@@ -151,9 +149,10 @@ static guint signals[LAST_SIGNAL];
 #define HOST HOSTCHARS_CLASS "+(\\." HOSTCHARS_CLASS "+)*"
 #define PORT "(?:\\:[[:digit:]]{1,5})?"
 #define PATHCHARS_CLASS "[-[:alnum:]\\Q_$.+!*,;@&=?/~#%\\E]"
+#define PATHTERM_CLASS "[^\\Q]'.}>) \t\r\n,\"\\E]"
 #define SCHEME "(?:news:|telnet:|nntp:|file:\\/|https?:|ftps?:|webcal:)"
 #define USERPASS USERCHARS_CLASS "+(?:" PASSCHARS_CLASS "+)?"
-#define URLPATH   "(/"PATHCHARS_CLASS"+(?:[(]"PATHCHARS_CLASS"*[)])*"PATHCHARS_CLASS"*)*"
+#define URLPATH   "(?:(/"PATHCHARS_CLASS"+(?:[(]"PATHCHARS_CLASS"*[)])*"PATHCHARS_CLASS"*)*"PATHTERM_CLASS")?"
 
 typedef struct {
   const char *pattern;
@@ -181,6 +180,59 @@ static GRegex **skey_regexes;
 static guint n_skey_regexes;
 
 G_DEFINE_TYPE (TerminalScreen, terminal_screen, VTE_TYPE_TERMINAL)
+
+static char *
+cwd_of_pid (int pid)
+{
+  static const char patterns[][18] = {
+    "/proc/%d/cwd",         /* Linux */
+    "/proc/%d/path/cwd",    /* Solaris >= 10 */
+  };
+  guint i;
+  
+  if (pid == -1)
+    return NULL;
+
+  /* Try to get the working directory using various OS-specific mechanisms */
+  for (i = 0; i < G_N_ELEMENTS (patterns); ++i)
+    {
+      char cwd_file[64];
+      char buf[PATH_MAX + 1];
+      int len;
+
+      g_snprintf (cwd_file, sizeof (cwd_file), patterns[i], pid);
+      len = readlink (cwd_file, buf, sizeof (buf) - 1);
+
+      if (len > 0 && buf[0] == '/')
+        return g_strndup (buf, len);
+
+      /* If that didn't do it, try this hack */
+      if (len <= 0)
+        {
+          char *cwd, *working_dir = NULL;
+
+          cwd = g_get_current_dir ();
+          if (cwd != NULL)
+            {
+              /* On Solaris, readlink returns an empty string, but the
+               * link can be used as a directory, including as a target
+               * of chdir().
+               */
+              if (chdir (cwd_file) == 0)
+                {
+                  working_dir = g_get_current_dir ();
+                  chdir (cwd);
+                }
+              g_free (cwd);
+            }
+
+          if (working_dir)
+            return working_dir;
+        }
+    }
+
+  return NULL;
+}
 
 static void
 free_tag_data (TagData *tagdata)
@@ -280,9 +332,6 @@ terminal_screen_realize (GtkWidget *widget)
   vte_terminal_set_background_transparent (VTE_TERMINAL (screen),
                                            bg_type == TERMINAL_BACKGROUND_TRANSPARENT &&
                                            !terminal_window_uses_argb_visual (priv->window));
-
-  /* FIXME: why do this on realize? */
-  terminal_window_set_size (priv->window, screen, TRUE);
 }
 
 static void
@@ -1223,8 +1272,8 @@ show_command_error_dialog (TerminalScreen *screen,
 {
   g_assert (error != NULL);
   
-  terminal_util_show_error_dialog ((GtkWindow*) gtk_widget_get_ancestor (GTK_WIDGET (screen), GTK_TYPE_WINDOW), NULL,
-                                   _("There was a problem with the command for this terminal: %s"), error->message);
+  terminal_util_show_error_dialog ((GtkWindow*) gtk_widget_get_ancestor (GTK_WIDGET (screen), GTK_TYPE_WINDOW), NULL, error,
+                                   "%s", _("There was a problem with the command for this terminal"));
 }
 
 static gboolean
@@ -1309,6 +1358,7 @@ get_child_environment (TerminalScreen *screen,
 {
   TerminalScreenPrivate *priv = screen->priv;
   GtkWidget *term = GTK_WIDGET (screen);
+  GtkWidget *window;
   char **env;
   char *e, *v;
   char *proxymode, *proxyhost;
@@ -1318,6 +1368,9 @@ get_child_environment (TerminalScreen *screen,
   GHashTableIter iter;
   GPtrArray *retval;
   guint i;
+
+  window = gtk_widget_get_toplevel (term);
+  g_assert (window != NULL && GTK_WIDGET_TOPLEVEL (window));
 
   env_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
@@ -1350,8 +1403,8 @@ get_child_environment (TerminalScreen *screen,
   
 #ifdef GDK_WINDOWING_X11
   /* FIXME: moving the tab between windows, or the window between displays will make the next two invalid... */
-  g_hash_table_replace (env_table, g_strdup ("WINDOWID"), g_strdup_printf ("%ld", GDK_WINDOW_XWINDOW (term->window)));
-  g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (term))));
+  g_hash_table_replace (env_table, g_strdup ("WINDOWID"), g_strdup_printf ("%ld", GDK_WINDOW_XWINDOW (window->window)));
+  g_hash_table_replace (env_table, g_strdup ("DISPLAY"), g_strdup (gdk_display_get_name (gtk_widget_get_display (window))));
 #endif
 
   conf = gconf_client_get_default ();
@@ -1492,6 +1545,7 @@ terminal_screen_launch_child (TerminalScreen *screen)
   char *path, *shell = NULL;
   GError *err = NULL;
   gboolean update_records;
+  const char *working_dir;
 
   profile = priv->profile;
 
@@ -1509,11 +1563,16 @@ terminal_screen_launch_child (TerminalScreen *screen)
 
   update_records = terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_UPDATE_RECORDS);
 
+  if (priv->initial_working_directory)
+    working_dir = priv->initial_working_directory;
+  else
+    working_dir = g_get_home_dir ();
+
   priv->child_pid = vte_terminal_fork_command (terminal,
                                                path,
                                                argv,
                                                env,
-                                               priv->initial_working_directory,
+                                               working_dir,
                                                terminal_profile_get_property_boolean (profile, TERMINAL_PROFILE_LOGIN_SHELL),
                                                update_records,
                                                update_records);
@@ -1522,6 +1581,7 @@ terminal_screen_launch_child (TerminalScreen *screen)
     {
 
       terminal_util_show_error_dialog ((GtkWindow*) gtk_widget_get_ancestor (GTK_WIDGET (screen), GTK_TYPE_WINDOW), NULL,
+                                       err,
                                        "%s", _("There was an error creating the child process for this terminal"));
     }
   
@@ -1737,75 +1797,56 @@ terminal_screen_get_dynamic_icon_title (TerminalScreen *screen)
  * terminal_screen_get_current_dir:
  * @screen:
  *
- * Returns: a newly allocated string containing the current working directory
- *   of the foreground process in @screen's PTY; or otherwise the initial working
- *   directory as set by terminal_screen_new()
+ * Tries to determine the current working directory of the foreground process
+ * in @screen's PTY, falling back to the current working directory of the
+ * primary child.
+ * 
+ * Returns: a newly allocated string containing the current working directory,
+ *   or %NULL on failure
  */
 char*
 terminal_screen_get_current_dir (TerminalScreen *screen)
 {
-  static const char patterns[][18] = {
-    "/proc/%d/cwd",         /* Linux */
-    "/proc/%d/path/cwd",    /* Solaris >= 10 */
-  };
   TerminalScreenPrivate *priv = screen->priv;
-  int fgpid;
-  guint i;
-  
-  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
+  char *cwd;
+
+  if (priv->pty_fd != -1) {
+#if 0
+    /* Get the foreground process ID */
+    cwd = cwd_of_pid (tcgetpgrp (priv->pty_fd));
+    if (cwd != NULL)
+      return cwd;
+#endif
+
+    /* If that didn't work, try falling back to the primary child. See bug #575184. */
+    cwd = cwd_of_pid (priv->child_pid);
+    if (cwd != NULL)
+      return cwd;
+  }
+
+  return NULL;
+}
+
+/**
+ * terminal_screen_get_current_dir_with_fallback:
+ * @screen:
+ *
+ * Like terminal_screen_get_current_dir(), but falls back to returning
+ * @screen's initial working directory, with a further fallback to the
+ * user's home directory.
+ * 
+ * Returns: a newly allocated string containing the current working directory,
+ *   or %NULL on failure
+ */
+char*
+terminal_screen_get_current_dir_with_fallback (TerminalScreen *screen)
+{
+  TerminalScreenPrivate *priv = screen->priv;
 
   if (priv->pty_fd == -1)
     return g_strdup (priv->initial_working_directory);
 
-  /* Get the foreground process ID */
-  fgpid = tcgetpgrp (priv->pty_fd);
-
-  /* If that didn't work, try falling back to the primary child. See bug #575184. */
-  if (fgpid == -1)
-    fgpid = priv->child_pid;
-
-  if (fgpid == -1)
-    return g_strdup (priv->initial_working_directory);
-
-  /* Try to get the working directory using various OS-specific mechanisms */
-  for (i = 0; i < G_N_ELEMENTS (patterns); ++i)
-    {
-      char cwd_file[64];
-      char buf[PATH_MAX + 1];
-      int len;
-
-      g_snprintf (cwd_file, sizeof (cwd_file), patterns[i], fgpid);
-      len = readlink (cwd_file, buf, sizeof (buf) - 1);
-
-      if (len > 0 && buf[0] == '/')
-        return g_strndup (buf, len);
-
-      /* If that didn't do it, try this hack */
-      if (len <= 0)
-        {
-          char *cwd, *working_dir = NULL;
-
-          cwd = g_get_current_dir ();
-          if (cwd != NULL)
-            {
-              /* On Solaris, readlink returns an empty string, but the
-               * link can be used as a directory, including as a target
-               * of chdir().
-               */
-              if (chdir (cwd_file) == 0)
-                {
-                  working_dir = g_get_current_dir ();
-                  chdir (cwd);
-                }
-              g_free (cwd);
-            }
-
-          if (working_dir)
-            return working_dir;
-        }
-    }
-
-  return g_strdup (priv->initial_working_directory);
+  return terminal_screen_get_current_dir (screen);
 }
 
 void
@@ -1879,6 +1920,7 @@ terminal_screen_child_exited (VteTerminal *terminal)
       terminal_screen_launch_child (screen);
       break;
     case TERMINAL_EXIT_HOLD:
+    default:
       break;
     }
 }
@@ -1908,7 +1950,7 @@ terminal_screen_drag_data_received (GtkWidget        *widget,
                                     gint              y,
                                     GtkSelectionData *selection_data,
                                     guint             info,
-                                    guint             time)
+                                    guint             timestamp)
 {
   TerminalScreen *screen = TERMINAL_SCREEN (widget);
   TerminalScreenPrivate *priv = screen->priv;
@@ -2115,7 +2157,7 @@ terminal_screen_drag_data_received (GtkWidget        *widget,
                                           GTK_WIDGET (screen));
         terminal_window_move_screen (source_window, dest_window, moving_screen, page_num + 1);
 
-        gtk_drag_finish (context, TRUE, TRUE, time);
+        gtk_drag_finish (context, TRUE, TRUE, timestamp);
       }
       break;
 

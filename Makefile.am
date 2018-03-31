@@ -1,5 +1,7 @@
 SUBDIRS = src po help
 
+NULL =
+
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-schemas-install
 
 desktopdir = $(datadir)/applications
@@ -9,18 +11,36 @@ desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 EXTRA_DIST = 			\
 	ChangeLog.pre-2-23	\
-	po/ChangeLog.pre-2-23	\
-	help/ChangeLog.pre-2-23	\
 	ChangeLog.README	\
 	HACKING			\
-	$(desktop_DATA)		\
 	gnome-doc-utils.make	\
 	xmldocs.make		\
-	omf.make
+	omf.make		\
+	$(NULL)
 
-DISTCLEANFILES =		\
-	gnome-doc-utils.make	\
-	$(desktop_DATA)
+CLEANFILES = \
+	$(desktop_DATA)	\
+	$(NULL)
+
+MAINTAINERCLEANFILES = \
+	$(srcdir)/INSTALL \
+	$(srcdir)/aclocal.m4 \
+	$(srcdir)/autoscan.log \
+	$(srcdir)/compile \
+	$(srcdir)/config.guess \
+	$(srcdir)/config.h.in \
+	$(srcdir)/config.sub \
+	$(srcdir)/configure.scan \
+	$(srcdir)/depcomp \
+	$(srcdir)/install-sh \
+	$(srcdir)/ltmain.sh \
+	$(srcdir)/missing \
+	$(srcdir)/mkinstalldirs \
+	$(srcdir)/omf.make \
+	$(srcdir)/xmldocs.make \
+	$(srcdir)/gnome-doc-utils.make	\
+	`find "$(srcdir)" -type f -name Makefile.in -print` \
+	$(NULL)
 
 # hack from sound-juicer to get around scrollkeeper's leaving a big
 # mess behind.
@@ -29,10 +49,12 @@ distuninstallcheck_listfiles = 	\
 
 # Build ChangeLog from GIT  history
 ChangeLog:
-	@if test -f $(top_srcdir)/.git/HEAD; then \
-		git log --stat > $@; \
+	$(AM_V_GEN) if test -d $(top_srcdir)/.git; then \
+		GIT_DIR="$(top_srcdir)/.git" git log --stat > $@; \
 	fi
 
 dist: ChangeLog
 
 .PHONY: ChangeLog
+
+-include $(top_srcdir)/git.mk

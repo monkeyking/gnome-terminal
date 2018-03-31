@@ -66,11 +66,12 @@ initial_tab_free (InitialTab *it)
 }
 
 static InitialWindow*
-initial_window_new (void)
+initial_window_new (guint source_tag)
 {
   InitialWindow *iw;
 
   iw = g_slice_new0 (InitialWindow);
+  iw->source_tag = source_tag;
 
   return iw;
 }
@@ -117,7 +118,7 @@ ensure_top_window (TerminalOptions *options)
 
   if (options->initial_windows == NULL)
     {
-      iw = initial_window_new ();
+      iw = initial_window_new (0);
       iw->tabs = g_list_append (NULL, initial_tab_new (NULL, FALSE));
       apply_defaults (options, iw);
 
@@ -155,7 +156,7 @@ add_new_window (TerminalOptions *options,
 {
   InitialWindow *iw;
 
-  iw = initial_window_new ();
+  iw = initial_window_new (0);
   iw->tabs = g_list_prepend (NULL, initial_tab_new (profile, is_id));
   apply_defaults (options, iw);
 
@@ -178,7 +179,7 @@ unsupported_option_callback (const gchar *option_name,
 }
 
 
-static gboolean
+static gboolean G_GNUC_NORETURN
 option_version_cb (const gchar *option_name,
                    const gchar *value,
                    gpointer     data,
@@ -187,7 +188,6 @@ option_version_cb (const gchar *option_name,
   g_print ("%s %s\n", _("GNOME Terminal"), VERSION);
 
   exit (EXIT_SUCCESS);
-  return FALSE;
 }
 
 static gboolean
@@ -501,7 +501,7 @@ option_load_save_config_cb (const gchar *option_name,
       return FALSE;
     }
 
-  options->config_file = g_strdup (value);
+  options->config_file = terminal_util_resolve_relative_path (options->default_working_dir, value);
   options->load_config = strcmp (option_name, "--load-config") == 0;
   options->save_config = strcmp (option_name, "--save-config") == 0;
 
@@ -664,6 +664,7 @@ digest_options_callback (GOptionContext *context,
  * @display_name: the default X display name
  * @startup_id: the startup notification ID
  * @env: the environment as variable=value pairs
+ * @remote_arguments: whether the caller is the factory process or not
  * @ignore_unknown_options: whether to ignore unknown options when parsing
  *   the arguments
  * @argcp: (inout) address of the argument count. Changed if any arguments were handled
@@ -682,6 +683,7 @@ terminal_options_parse (const char *working_directory,
                         const char *display_name,
                         const char *startup_id,
                         char **env,
+                        gboolean remote_arguments,
                         gboolean ignore_unknown_options,
                         int *argcp,
                         char ***argvp,
@@ -698,6 +700,7 @@ terminal_options_parse (const char *working_directory,
 
   options = g_slice_new0 (TerminalOptions);
 
+  options->remote_arguments = remote_arguments;
   options->default_window_menubar_forced = FALSE;
   options->default_window_menubar_state = TRUE;
   options->default_fullscreen = FALSE;
@@ -777,6 +780,7 @@ terminal_options_parse (const char *working_directory,
  * terminal_options_merge_config:
  * @options:
  * @key_file: a #GKeyFile containing to merge the options from
+ * @source_tag: a source_tag to use in new #InitialWindow<!-- -->s
  * @error: a #GError to fill in
  *
  * Merges the saved options from @key_file into @options.
@@ -787,6 +791,7 @@ terminal_options_parse (const char *working_directory,
 gboolean
 terminal_options_merge_config (TerminalOptions *options,
                                GKeyFile *key_file,
+                               guint source_tag,
                                GError **error)
 {
   int version, compat_version;
@@ -831,7 +836,7 @@ terminal_options_merge_config (TerminalOptions *options,
       if (!tab_groups)
         continue; /* no tabs in this window, skip it */
 
-      iw = initial_window_new ();
+      iw = initial_window_new (source_tag);
       initial_windows = g_list_append (initial_windows, iw);
       apply_defaults (options, iw);
 
