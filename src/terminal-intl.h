@@ -1,7 +1,5 @@
-/* the intl macros */
-
 /*
- * Copyright (C) 2002 Havoc Pennington
+ * Copyright © 2002 Havoc Pennington
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,24 +20,8 @@
 #ifndef TERMINAL_INTL_H
 #define TERMINAL_INTL_H
 
-#include <config.h>
-#include <libintl.h>
-#include <locale.h>
-#include <glib.h>
+#include <glib/gi18n.h>
 
-G_BEGIN_DECLS
-
-#ifdef _
-#undef _
-#endif
-
-#ifdef N_
-#undef N_
-#endif
-
-#define _(x) dgettext (GETTEXT_PACKAGE, x)
-#define N_(x) x
-
-G_END_DECLS
+#define I_(string) g_intern_static_string (string)
 
 #endif /* TERMINAL_INTL_H */

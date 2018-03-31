@@ -1,7 +1,6 @@
-/* object representing one Zvt widget and its properties */
-
 /*
- * Copyright (C) 2001 Havoc Pennington
+ * Copyright © 2001 Havoc Pennington
+ * Copyright © 2008 Christian Persch
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,13 +21,21 @@
 #ifndef TERMINAL_SCREEN_H
 #define TERMINAL_SCREEN_H
 
-#include <gtk/gtkbin.h>
+#include <vte/vte.h>
 
 #include "terminal-profile.h"
 
 G_BEGIN_DECLS
 
+typedef enum {
+  FLAVOR_AS_IS,
+  FLAVOR_DEFAULT_TO_HTTP,
+  FLAVOR_VOIP_CALL,
+  FLAVOR_EMAIL
+} TerminalURLFlavour;
+
 /* Forward decls */
+typedef struct _TerminalScreenPopupInfo TerminalScreenPopupInfo;
 typedef struct _TerminalWindow        TerminalWindow;
 
 #define TERMINAL_TYPE_SCREEN              (terminal_screen_get_type ())
@@ -44,58 +51,48 @@ typedef struct _TerminalScreenPrivate TerminalScreenPrivate;
 
 struct _TerminalScreen
 {
-  GtkBin parent_instance;
+  VteTerminal parent_instance;
 
   TerminalScreenPrivate *priv;
 };
 
 struct _TerminalScreenClass
 {
-  GtkBinClass parent_class;
+  VteTerminalClass parent_class;
 
-  void (* profile_set)        (TerminalScreen *screen);
-  void (* title_changed)      (TerminalScreen *screen);
-  void (* icon_title_changed) (TerminalScreen *screen);
-  void (* selection_changed)  (TerminalScreen *screen);
-  void (* encoding_changed)   (TerminalScreen *screen);
+  void (* profile_set)        (TerminalScreen *screen,
+                               TerminalProfile *old_profile);
+  void (* show_popup_menu)    (TerminalScreen *screen,
+                               TerminalScreenPopupInfo *info);
+  void (* skey_clicked)       (TerminalScreen *screen,
+                               const char *skey_challenge);
+  void (* url_clicked)        (TerminalScreen *screen,
+                               const char *url,
+                               int flavour);
+  void (* close_screen)       (TerminalScreen *screen);
 };
 
 GType terminal_screen_get_type (void) G_GNUC_CONST;
 
 TerminalScreen* terminal_screen_new                    (void);
 
-
-TerminalWindow* terminal_screen_get_window (TerminalScreen *screen);
-/* Used in terminal-window.c only, others should call terminal_window_add_screen() */
-void terminal_screen_set_window (TerminalScreen *screen,
-                                 TerminalWindow *window);
-
 void terminal_screen_set_profile (TerminalScreen *screen,
                                   TerminalProfile *profile);
 TerminalProfile* terminal_screen_get_profile (TerminalScreen *screen);
-
-void terminal_screen_reread_profile (TerminalScreen *screen);
 
 void         terminal_screen_set_override_command (TerminalScreen  *screen,
                                                    char           **argv);
 const char** terminal_screen_get_override_command (TerminalScreen  *screen);
 
-
-
-GtkWidget* terminal_screen_get_widget (TerminalScreen *screen);
-
 void terminal_screen_launch_child (TerminalScreen *screen);
 
+const char* terminal_screen_get_raw_title      (TerminalScreen *screen);
 const char* terminal_screen_get_title          (TerminalScreen *screen);
 const char* terminal_screen_get_icon_title     (TerminalScreen *screen);
 gboolean    terminal_screen_get_icon_title_set (TerminalScreen *screen);
 
-void terminal_screen_close (TerminalScreen *screen);
-
-gboolean terminal_screen_get_text_selected (TerminalScreen *screen);
-
-void terminal_screen_edit_title (TerminalScreen *screen,
-                                 GtkWindow      *transient_parent);
+void terminal_screen_set_user_title (TerminalScreen *screen,
+                                     const char *text);
 
 void        terminal_screen_set_dynamic_title      (TerminalScreen *screen,
                                                     const char     *title,
@@ -118,7 +115,14 @@ void        terminal_screen_set_font_scale    (TerminalScreen *screen,
                                                double          factor);
 double      terminal_screen_get_font_scale    (TerminalScreen *screen);
 
-void terminal_screen_update_scrollbar (TerminalScreen *screen);
+void       terminal_screen_get_size (TerminalScreen *screen,
+                                     int *width_chars,
+                                     int *height_chars);
+void       terminal_screen_get_cell_size (TerminalScreen *screen,
+                                          int *width_chars,
+                                          int *height_chars);
+
+void _terminal_screen_update_scrollbar (TerminalScreen *screen);
 
 /* Allow scales a bit smaller and a bit larger than the usual pango ranges */
 #define TERMINAL_SCALE_XXX_SMALL   (PANGO_SCALE_XX_SMALL/1.2)
@@ -129,6 +133,20 @@ void terminal_screen_update_scrollbar (TerminalScreen *screen);
 #define TERMINAL_SCALE_XXXXX_LARGE (TERMINAL_SCALE_XXXX_LARGE*1.2)
 #define TERMINAL_SCALE_MINIMUM     (TERMINAL_SCALE_XXXXX_SMALL/1.2)
 #define TERMINAL_SCALE_MAXIMUM     (TERMINAL_SCALE_XXXXX_LARGE*1.2)
+
+struct _TerminalScreenPopupInfo {
+  int ref_count;
+  TerminalWindow *window;
+  TerminalScreen *screen;
+  char *string;
+  TerminalURLFlavour flavour;
+  guint button;
+  guint32 timestamp;
+};
+
+TerminalScreenPopupInfo *terminal_screen_popup_info_ref (TerminalScreenPopupInfo *info);
+
+void terminal_screen_popup_info_unref (TerminalScreenPopupInfo *info);
 
 G_END_DECLS
 
