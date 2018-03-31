@@ -1,3 +1,47 @@
+commit bbd0b277163fddf734d88d8827c01eb7c35362a3
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Tue Mar 24 15:44:43 2015 +0100
+
+    notebook: Don't let the keyboard focus enter from the tab label
+    
+    Merely setting TerminalTabLabel:can-focus to FALSE is not enough to
+    prevent the keyboard focus from entering the tab label. One can still
+    click the current tab's label and have the keyboard focus move there.
+    
+    This solution was taken from gedit.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=746665
+    (cherry picked from commit 9ce642509b67d8140641a8e99cde44979d2e676c)
+
+ src/terminal-notebook.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 3bd692f5d63f0bdfb526d570c92da3270601c155
+Author: Christian Persch <chpe@gnome.org>
+Date:   Sun Feb 21 15:46:05 2016 +0100
+
+    screen: Rewrite URL regexes
+    
+    Rewrite the URL match regex to be more correct.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756038
+    (cherry picked from commit 1a94499aca8f9a06479f5149e70e246bf9249ac0)
+
+ src/Makefile.am       |  27 +++++
+ src/terminal-regex.c  | 313 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/terminal-regex.h  | 145 +++++++++++++++++++++++
+ src/terminal-screen.c |  27 ++---
+ 4 files changed, 493 insertions(+), 19 deletions(-)
+
+commit f508d6b2c145cbccef1d2b5b1d1a469df31ca55e
+Author: Christian Persch <chpe@gnome.org>
+Date:   Mon Nov 9 20:59:06 2015 +0100
+
+    Post release version bump
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit b7c8f7ba4149a8b6f156d85529ef2aadf2b79378
 Author: YunQiang Su <yqsu@src.gnome.org>
 Date:   Mon Nov 9 18:44:46 2015 +0800
