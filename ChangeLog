@@ -1,3 +1,155 @@
+2007-01-22  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	* NEWS: updated
+	* configure.in: release 2.17.90.
+
+2007-01-22  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 125364 – vte screens are black when initially shown
+	Patch from Mariano Suárez-Alvarez
+
+	* src/terminal-screen.c (terminal_screen_reread_profile),
+	(update_color_scheme): Update the color scheme earlier in the show.
+
+2007-01-19  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	Bug 385519 – configure script doesn't recognize old GConf
+
+	* configure.in: require gconf 2.14.0
+	
+	Also fix my email in the last few changlog entries...
+
+2007-01-15  Christian Persch  <chpe@svn.gnome.org>
+
+	* configure.in: Remove help/it/Makefile from configure to fix the
+	build.
+
+2006-11-23  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	Bug 335946 – tab menu needs to be shortened
+
+	* src/terminal-window (title_changed_callback, reset_tab_menuitems):
+	Ellipsise the tab titles when putting them in the menubar menuitem.
+	Based on the patch attached on the bug by Diego Escalante Urrelo
+
+2006-11-23  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	Bug 378243 – crash in Terminal: Copy item activated on a destroyed 
+	window popup.
+
+	* src/terminal_screen.c (terminal_screen_class_init,
+	terminal_screen_unrealize): override GtkWidget:unrealize so we
+	destroy the popup upon unrealizing, just as GtkEntry, say, does.
+
+2006-11-23  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	* configure.in: the last commit left behind one instance of
+	CFLAGS which should have been CPPFLAGS.
+
+2006-11-23  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	Bug 362256 – configure kills CPPFLAGS set on configure command line
+
+	* configure.in: add TERM_CFLAGS to CPPFLAGS, not CFLAGS.
+
+2006-11-23  Mariano Suárez-Alvarez  <mariano@gnome.org>
+
+	* configure.in: use GNOME_COMPILE_WARNINGS instead of out own check.
+
+2006-11-23  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal.c (terminal_app_new_terminal): put the focus on a new
+	screen when we create a tab.
+
+2006-11-16  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 322709 – respect show-input-method-menu setting
+	Patch from Matthias Clasen.
+
+	* src/terminal-screen.c (popup_clipboard_request_callback):
+	Respect the show-input-method-menu setting.
+
+2006-10-17  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 354234 – Don't ignore terminal default sizes, and copy zoom to 
+	new terminals
+
+	* src/terminal-window.c (notebook_tab_added_callback): do not hardcode
+	the 80x24 size but use the default provided by vte (which could be
+	changed in vte's termcap) Also, move the copy-zoom-from-active-terminal
+	handling from new_tab_callback to here.
+
+2006-10-17  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 338613 – "Detach Tab" menu item is missing a mnemonic
+
+	* src/terminal-window (terminal_window_init): add a mnemonic to the
+	Detach Tab menu option. Patch by Dennis Cranston.
+
+2006-10-17  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	* src/terminal-window.c (confirm_close_window): be slightly less verbose
+	in the confirmation dialog. Induced by Wouter Bolsterlee's bug 340940.
+
+2006-10-17  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 160455 – Change "system terminal font" to "system monospace font"
+
+	* src/gnome-terminal.glade2: s/terminal font/fixed width font/ in the 
+	profile editor dialog, so that out language matches
+	gnome-font-properties'.
+
+2006-10-17  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 79326 – When making things insensitive, doesn't catch their label
+
+	* src/profile-editor.c (profile_editor_update_sensitivity):
+	when changing the sensibility of a widget, do the same for its menmonic 
+	label. Essentially the patch by Michael Terry.
+
+2006-10-12  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 362159 – es doc to gnome-doc-utils
+
+	* configure.in: remove help/es/Makefile from AC_CONFIG_FILES,
+	because it is no longer there after the g-u-d-ization of help/es.
+
+2006-10-12  Wouter Bolsterlee  <wbolster@gnome.org>
+
+	* src/terminal-window.c (terminal_window_set_active),
+	(notebook_page_selected_callback):
+	Hopefully fix the annoying window resizing bug triggered
+	by switching between multiple tabs. Fixes bug #95316,
+	patch by Eric Anderson.
+
+2006-10-12  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 360385 – Context menu has two uses for "c" key
+
+	* src/terminal-screen.c (popup_clipboard_request_callback): don't have
+	clashing shortcuts for Close and Copy when there is only one tab.
+
+2006-10-12  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
+
+	Bug 358267 – set_palette() compares uninitialized memory
+	Bug 124417 – Use of uninitialized value of size 4
+
+	* src/terminal-profile.c: do not compare GdkColors using memcmp,
+	as the pixel thingie gets in the way. I officially owe Mark Schreiber 
+	a beer.
+
+2006-10-06  Wouter Bolsterlee  <wbolster@gnome.org>
+
+	* src/terminal-window.c: (new_tab_callback):
+	Remember zoom setting for new tabs. Fixes bug #335200 .
+
+2006-10-06  Wouter Bolsterlee  <wbolster@gnome.org>
+
+	* src/profile-editor.c:
+	* src/terminal-profile.c:
+	* src/terminal-profile.h:
+	Include Tango color scheme.  Fixes bug #356389.
+
 2006-10-02  Guilherme de S. Pastore  <gpastore@gnome.org>
 
 	* NEWS: updated.
@@ -10,7 +162,7 @@
 	Patch from Owen Swerkstrom
 
 	* src/terminal-screen.c (terminal_screen_init),
-	(terminal_screen_finalize), (cook_title),
+	(terminal_screen_finalize, cook_title),
 	(terminal_screen_set_dynamic_icon_title),
 	(terminal_screen_set_title):
 	* src/terminal-screen.h:
