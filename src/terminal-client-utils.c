@@ -55,6 +55,7 @@ terminal_client_append_create_instance_options (GVariantBuilder *builder,
                                                 const char      *role,
                                                 const char      *profile,
                                                 const char      *title,
+                                                gboolean         active,
                                                 gboolean         maximise_window,
                                                 gboolean         fullscreen_window)
 {
@@ -80,6 +81,10 @@ terminal_client_append_create_instance_options (GVariantBuilder *builder,
                            "role", g_variant_new_string (role));
 
   /* Boolean options */
+  if (active)
+    g_variant_builder_add (builder, "{sv}",
+                           "active", g_variant_new_boolean (active));
+
   if (maximise_window)
     g_variant_builder_add (builder, "{sv}", 
                            "maximize-window", g_variant_new_boolean (TRUE));
@@ -109,13 +114,13 @@ terminal_client_append_exec_options (GVariantBuilder *builder,
   envv = g_environ_unsetenv (envv, "COLORTERM");
   envv = g_environ_unsetenv (envv, "COLUMNS");
   envv = g_environ_unsetenv (envv, "DESKTOP_STARTUP_ID");
-  envv = g_environ_unsetenv (envv, "DISPLAY");
   envv = g_environ_unsetenv (envv, "GIO_LAUNCHED_DESKTOP_FILE_PID");
   envv = g_environ_unsetenv (envv, "GIO_LAUNCHED_DESKTOP_FILE");
   envv = g_environ_unsetenv (envv, "GNOME_DESKTOP_ICON");
   envv = g_environ_unsetenv (envv, "LINES");
   envv = g_environ_unsetenv (envv, "PWD");
   envv = g_environ_unsetenv (envv, "TERM");
+  envv = g_environ_unsetenv (envv, "VTE_VERSION");
   envv = g_environ_unsetenv (envv, "WINDOWID");
 
   g_variant_builder_add (builder, "{sv}",

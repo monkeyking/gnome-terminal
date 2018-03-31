@@ -74,6 +74,8 @@ struct _TerminalWindowPrivate
   TerminalScreen *active_screen;
   int old_char_width;
   int old_char_height;
+  int old_base_width;
+  int old_base_height;
   void *old_geometry_widget; /* only used for pointer value as it may be freed */
 
   GtkWidget *confirm_close_dialog;
@@ -229,8 +231,6 @@ static void
 sync_screen_icon_title (TerminalScreen *screen,
                         GParamSpec *psepc,
                         TerminalWindow *window);
-
-static void terminal_window_update_size (TerminalWindow *window);
 
 G_DEFINE_TYPE (TerminalWindow, terminal_window, GTK_TYPE_APPLICATION_WINDOW)
 
@@ -1203,16 +1203,16 @@ profile_visible_name_notify_cb (GSettings  *profile,
       free_me = display_name;
       if (num < 10)
         /* Translators: This is the label of a menu item to choose a profile.
-         * _%d is used as the accelerator (with d between 1 and 9), and
+         * _%u is used as the accelerator (with u between 1 and 9), and
          * the %s is the name of the terminal profile.
          */
-        display_name = g_strdup_printf (_("_%d. %s"), num, display_name);
+        display_name = g_strdup_printf (_("_%u. %s"), num, display_name);
       else if (num < 36)
         /* Translators: This is the label of a menu item to choose a profile.
          * _%c is used as the accelerator (it will be a character between A and Z),
          * and the %s is the name of the terminal profile.
          */
-        display_name = g_strdup_printf (_("_%c. %s"), ('A' + num - 10), display_name);
+        display_name = g_strdup_printf (_("_%c. %s"), (guchar)('A' + num - 10), display_name);
       else
         free_me = NULL;
     }
@@ -2600,6 +2600,9 @@ terminal_window_init (TerminalWindow *window)
                          G_CALLBACK (terminal_window_update_tabs_menu_sensitivity),
                          window, NULL, G_CONNECT_SWAPPED | G_CONNECT_AFTER);
 
+  g_signal_connect_swapped (priv->mdi_container, "notify::tab-pos",
+                            G_CALLBACK (terminal_window_update_geometry), window);
+
   /* FIXME hack hack! */
   if (GTK_IS_NOTEBOOK (priv->mdi_container)) {
   g_signal_connect (priv->mdi_container, "button-press-event",
@@ -2618,6 +2621,8 @@ terminal_window_init (TerminalWindow *window)
 
   priv->old_char_width = -1;
   priv->old_char_height = -1;
+  priv->old_base_width = -1;
+  priv->old_base_height = -1;
   priv->old_geometry_widget = NULL;
 
   /* GAction setup */
@@ -3136,7 +3141,7 @@ terminal_window_get_mdi_container (TerminalWindow *window)
   return GTK_WIDGET (priv->mdi_container);
 }
 
-static void
+void
 terminal_window_update_size (TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
@@ -3427,6 +3432,9 @@ mdi_screen_removed_cb (TerminalMdiContainer *container,
   pages = terminal_mdi_container_get_n_screens (container);
   if (pages == 1)
     {
+      TerminalScreen *active_screen = terminal_mdi_container_get_active_screen (container);
+      gtk_widget_grab_focus (GTK_WIDGET(active_screen));  /* bug 742422 */
+
       terminal_window_update_size (window);
     }
   else if (pages == 0)
@@ -3478,6 +3486,7 @@ terminal_window_update_geometry (TerminalWindow *window)
   TerminalWindowPrivate *priv = window->priv;
   GtkWidget *widget;
   GdkGeometry hints;
+  GtkBorder padding;
   int char_width;
   int char_height;
   
@@ -3493,20 +3502,16 @@ terminal_window_update_geometry (TerminalWindow *window)
    */
   terminal_screen_get_cell_size (priv->active_screen, &char_width, &char_height);
   
+  gtk_style_context_get_padding(gtk_widget_get_style_context(widget),
+                                gtk_widget_get_state_flags(widget),
+                                &padding);
+
   if (char_width != priv->old_char_width ||
       char_height != priv->old_char_height ||
+      padding.left + padding.right != priv->old_base_width ||
+      padding.top + padding.bottom != priv->old_base_height ||
       widget != (GtkWidget*) priv->old_geometry_widget)
     {
-      GtkBorder padding;
-      
-      /* FIXME Since we're using xthickness/ythickness to compute
-       * padding we need to change the hints when the theme changes.
-       */
-
-      gtk_style_context_get_padding(gtk_widget_get_style_context(widget),
-                                    gtk_widget_get_state_flags(widget),
-                                    &padding);
-
       hints.base_width = padding.left + padding.right;
       hints.base_height = padding.top + padding.bottom;
 
@@ -3539,6 +3544,8 @@ terminal_window_update_geometry (TerminalWindow *window)
       
       priv->old_char_width = hints.width_inc;
       priv->old_char_height = hints.height_inc;
+      priv->old_base_width = hints.base_width;
+      priv->old_base_height = hints.base_height;
       priv->old_geometry_widget = widget;
     }
   else

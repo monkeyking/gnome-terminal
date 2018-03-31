@@ -159,7 +159,7 @@ terminal_util_show_about (GtkWindow *transient_parent)
     "Copyright © 2002–2004 Havoc Pennington\n"
     "Copyright © 2003–2004, 2007 Mariano Suárez-Alvarez\n"
     "Copyright © 2006 Guilherme de S. Pastore\n"
-    "Copyright © 2007–2013 Christian Persch";
+    "Copyright © 2007–2015 Christian Persch";
   char *licence_text;
   GKeyFile *key_file;
   GBytes *bytes;
@@ -169,6 +169,8 @@ terminal_util_show_about (GtkWindow *transient_parent)
   char **authors, **contributors, **artists, **documenters, **array_strv;
   gsize n_authors = 0, n_contributors = 0, n_artists = 0, n_documenters = 0 , i;
   GPtrArray *array;
+  gs_free char *comment;
+  gs_free char *vte_version;
 
   bytes = g_resources_lookup_data (TERMINAL_RESOURCES_PATH_PREFIX "ui/terminal.about", 
                                    G_RESOURCE_LOOKUP_FLAGS_NONE,
@@ -202,7 +204,7 @@ terminal_util_show_about (GtkWindow *transient_parent)
       g_ptr_array_add (array, EMAILIFY (contributors[i]));
   }
   g_free (contributors); /* strings are now owned by the array */
-  
+
   g_ptr_array_add (array, NULL);
   array_strv = (char **) g_ptr_array_free (array, FALSE);
 
@@ -213,10 +215,20 @@ terminal_util_show_about (GtkWindow *transient_parent)
 
   licence_text = terminal_util_get_licence_text ();
 
+  vte_version = g_strdup_printf (_("Using VTE version %u.%u.%u"),
+                                 vte_get_major_version (),
+                                 vte_get_minor_version (),
+                                 vte_get_micro_version ());
+
+  comment = g_strdup_printf("%s\n%s %s",
+                            _("A terminal emulator for the GNOME desktop"),
+                            vte_version,
+                            vte_get_features ());
+
   gtk_show_about_dialog (transient_parent,
                          "program-name", _("GNOME Terminal"),
                          "copyright", copyright,
-                         "comments", _("A terminal emulator for the GNOME desktop"),
+                         "comments", comment,
                          "version", VERSION,
                          "authors", array_strv,
                          "artists", artists,
@@ -418,10 +430,20 @@ terminal_util_load_builder_resource (const char *path,
 
   if (main_object_name) {
     GObject *main_object;
+    GtkWidget *action_area;
 
     main_object = gtk_builder_get_object (builder, main_object_name);
     g_object_set_data_full (main_object, "builder", g_object_ref (builder), (GDestroyNotify) g_object_unref);
     g_signal_connect (main_object, "destroy", G_CALLBACK (main_object_destroy_cb), NULL);
+
+    /* Fixup dialogue padding, #735242 */
+    if (GTK_IS_DIALOG (main_object) &&
+        (action_area = (GtkWidget *) gtk_builder_get_object (builder, "dialog-action-area"))) {
+      gtk_widget_set_margin_left   (action_area, 5);
+      gtk_widget_set_margin_right  (action_area, 5);
+      gtk_widget_set_margin_top    (action_area, 5);
+      gtk_widget_set_margin_bottom (action_area, 5);
+    }
   }
 }
 
