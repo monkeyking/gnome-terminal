@@ -85,6 +85,9 @@ struct _TerminalWindowPrivate
    * event-driven while GTK doesn't support _NET_WM_STATE_FULLSCREEN
    */
   guint fullscreen : 1;
+
+  /* Compositing manager integration */
+  guint have_argb_visual : 1;
 };
 
 enum {
@@ -750,6 +753,34 @@ edit_menu_activate_callback (GtkMenuItem *menuitem,
 }
 
 static void
+initialize_alpha_mode (TerminalWindow *window)
+{
+  GdkScreen *screen;
+  GdkColormap *colormap;
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (window));
+  colormap = gdk_screen_get_rgba_colormap (screen);
+  if (colormap != NULL && gdk_screen_is_composited (screen))
+    {
+      /* Set RGBA colormap if possible so VTE can use real alpha
+       * channels for transparency. */
+
+      gtk_widget_set_colormap(GTK_WIDGET (window), colormap);
+      window->priv->have_argb_visual = TRUE;
+    }
+  else
+    {
+      window->priv->have_argb_visual = FALSE;
+    }
+}
+
+gboolean
+terminal_window_uses_argb_visual (TerminalWindow *window)
+{
+  return window->priv->have_argb_visual;
+}
+
+static void
 terminal_window_init (TerminalWindow *window)
 {
   GtkWidget *mi;
@@ -780,6 +811,8 @@ terminal_window_init (TerminalWindow *window)
   
   window->priv->use_mnemonics = TRUE;
   window->priv->using_mnemonics = FALSE;
+
+  initialize_alpha_mode (window);
 
   /* force gtk to construct its GtkClipboard; otherwise our UI is very slow the first time we need it */
   window->priv->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (GTK_WIDGET (window)), GDK_NONE);
@@ -2246,7 +2279,6 @@ confirm_close_window (TerminalWindow *window)
   GtkWidget *dialog;
   GError *error;
   gboolean result;
-  char *msg, *msg1;
   int n;
 
   n = gtk_notebook_get_n_pages (GTK_NOTEBOOK (window->priv->notebook));
@@ -2258,32 +2290,26 @@ confirm_close_window (TerminalWindow *window)
   if (!gconf_client_get_bool (window->priv->conf, CONF_GLOBAL_PREFIX "/confirm_window_close", &error))
     return TRUE;
 
-  msg1 = g_strdup_printf (ngettext ("This window has one tab open. Closing "
-				    "the window will close it.",
-				    "This window has %d tabs open. Closing "
-				    "the window will also close all of its "
-				    "tabs.",
-				    n),
-			  n);
-
-  msg = g_strdup_printf ("<span weight=\"bold\" size=\"larger\">%s</span>\n\n"
-			 "%s\n", _("Close all tabs?"), msg1);
-
-  dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
+  dialog = gtk_message_dialog_new (GTK_WINDOW (window),
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
                                    GTK_MESSAGE_WARNING,
-                                   GTK_BUTTONS_NONE,
-                                   msg);
+                                   GTK_BUTTONS_CANCEL,
+                                   "%s", _("Close all tabs?"));
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+			  		    ngettext ("This window has one tab open. Closing "
+						      "the window will close it.",
+						      "This window has %d tabs open. Closing "
+						      "the window will also close all of its "
+						      "tabs.",
+						      n),
+					    n);
+
   gtk_window_set_title (GTK_WINDOW(dialog), ""); 
-  g_free (msg);
-  g_free (msg1);
 
-  gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Close All _Tabs"), GTK_RESPONSE_YES);
+  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Close All _Tabs"), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
-
-  result = gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_YES;
+  result = gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT;
   gtk_widget_destroy (dialog);
 
   return result;
