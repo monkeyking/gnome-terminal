@@ -1,6 +1,6 @@
 m4_define([gt_version_major],[3])
-m4_define([gt_version_minor],[24])
-m4_define([gt_version_micro],[2])
+m4_define([gt_version_minor],[25])
+m4_define([gt_version_micro],[92])
 m4_define([gt_version_extra],[])
 m4_define([gt_version],[gt_version_major().gt_version_minor().gt_version_micro()gt_version_extra])
 
@@ -60,7 +60,7 @@ case "$with_gtk" in
        GTK_MIN_REQUIRED=3.8
        GTK_MAX_ALLOWED=3.20
        VTE_API_VERSION=2.91
-       VTE_REQUIRED=0.48.2
+       VTE_REQUIRED=0.49.92
        ;;
 esac
 
@@ -363,10 +363,10 @@ AC_SUBST([WARN_CFLAGS])
 AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
-AC_DEFINE_UNQUOTED([GLIB_VERSION_MIN_REQUIRED],[G_ENCODE_VERSION(${GLIB_MIN_REQUIRED/./,})],[Define the min required glib version])
-AC_DEFINE_UNQUOTED([GLIB_VERSION_MAX_ALLOWED],[G_ENCODE_VERSION(${GLIB_MAX_ALLOWED/./,})],[Define the max allowed glib version])
-AC_DEFINE_UNQUOTED([GDK_VERSION_MIN_REQUIRED],[G_ENCODE_VERSION(${GTK_MIN_REQUIRED/./,})],[Define the min required gtk version])
-AC_DEFINE_UNQUOTED([GDK_VERSION_MAX_ALLOWED],[G_ENCODE_VERSION(${GTK_MAX_ALLOWED/./,})],[Define the max allowed gtk version])
+AC_DEFINE_UNQUOTED([GLIB_VERSION_MIN_REQUIRED],[G_ENCODE_VERSION($(echo $GLIB_MIN_REQUIRED | tr . ,))],[Define the min required glib version])
+AC_DEFINE_UNQUOTED([GLIB_VERSION_MAX_ALLOWED],[G_ENCODE_VERSION($(echo $GLIB_MAX_ALLOWED | tr . ,))],[Define the max allowed glib version])
+AC_DEFINE_UNQUOTED([GDK_VERSION_MIN_REQUIRED],[G_ENCODE_VERSION($(echo $GTK_MIN_REQUIRED | tr . ,))],[Define the min required gtk version])
+AC_DEFINE_UNQUOTED([GDK_VERSION_MAX_ALLOWED],[G_ENCODE_VERSION($(echo $GTK_MAX_ALLOWED | tr . ,))],[Define the max allowed gtk version])
 
 # ****************************
 

@@ -95,6 +95,14 @@ void terminal_util_bind_mnemonic_label_sensitivity (GtkWidget *widget);
 
 char *terminal_util_number_info (const char *str);
 
+char *terminal_util_uri_fixup (const char *uri,
+                               GError **error);
+
+char *terminal_util_hyperlink_uri_label (const char *str);
+
+gchar *terminal_util_utf8_make_valid (const gchar *str,
+                                      gssize       len) G_GNUC_MALLOC;
+
 G_END_DECLS
 
 #endif /* TERMINAL_UTIL_H */
