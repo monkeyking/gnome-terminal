@@ -1325,6 +1325,25 @@ profile_prefs_load (const char *uuid, GSettings *profile)
                                w,
                                "active-id",
                                G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+  profile_prefs_settings_bind (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                               gtk_builder_get_object (builder, "use-transparent-background"),
+                               "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  profile_prefs_settings_bind (profile, TERMINAL_PROFILE_USE_TRANSPARENT_BACKGROUND,
+                               gtk_builder_get_object (builder, "background-transparent-scale-box"),
+                               "sensitive", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
+  profile_prefs_settings_bind (profile, TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT,
+                               gtk_builder_get_object (builder, "background-transparent-adjustment"),
+                               "value", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  profile_prefs_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+                               gtk_builder_get_object (builder, "use-theme-transparency-checkbutton"),
+                               "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+  profile_prefs_settings_bind (profile, TERMINAL_PROFILE_USE_THEME_TRANSPARENCY,
+                               gtk_builder_get_object (builder, "use-transparent-background-box"),
+                               "sensitive",
+                               G_SETTINGS_BIND_GET |
+                               G_SETTINGS_BIND_INVERT_BOOLEAN |
+                               G_SETTINGS_BIND_NO_SENSITIVITY);
 }
 
 /* Called once per Preferences window, to destroy stuff that doesn't depend on the profile being edited */
