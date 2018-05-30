@@ -1017,7 +1017,17 @@ action_copy_match_cb (GSimpleAction *action,
   if (info->url == NULL)
     return;
 
-  gtk_clipboard_set_text (priv->clipboard, info->url, -1);
+  if (info->url_flavor == FLAVOR_LP)
+    {
+      char *uri;
+      uri = terminal_util_get_lp_url (info->url);
+      gtk_clipboard_set_text (priv->clipboard, uri, -1);
+      g_free (uri);
+    }
+  else
+    {
+      gtk_clipboard_set_text (priv->clipboard, info->url, -1);
+    }
 }
 
 static void
@@ -1096,13 +1106,21 @@ search_popover_notify_regex_cb (TerminalSearchPopover *popover,
                                 TerminalWindow *window)
 {
   TerminalWindowPrivate *priv = window->priv;
+#ifdef WITH_PCRE2
   VteRegex *regex;
+#else
+  GRegex *regex;
+#endif
 
   if (G_UNLIKELY (priv->active_screen == NULL))
     return;
 
   regex = terminal_search_popover_get_regex (popover);
+#ifdef WITH_PCRE2
   vte_terminal_search_set_regex (VTE_TERMINAL (priv->active_screen), regex, 0);
+#else
+  vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), regex, 0);
+#endif
 
   terminal_window_update_search_sensitivity (priv->active_screen, window);
 }
@@ -1198,7 +1216,11 @@ action_find_clear_cb (GSimpleAction *action,
   if (priv->active_screen == NULL)
     return;
 
+#ifdef WITH_PCRE2
   vte_terminal_search_set_regex (VTE_TERMINAL (priv->active_screen), NULL, 0);
+#else
+  vte_terminal_search_set_gregex (VTE_TERMINAL (priv->active_screen), NULL, 0);
+#endif
   vte_terminal_unselect_all (VTE_TERMINAL (priv->active_screen));
 }
 
@@ -1539,7 +1561,11 @@ terminal_window_update_search_sensitivity (TerminalScreen *screen,
   if (screen != priv->active_screen)
     return;
 
+#ifdef WITH_PCRE2
   gboolean can_search = vte_terminal_search_get_regex (VTE_TERMINAL (screen)) != NULL;
+#else
+  gboolean can_search = vte_terminal_search_get_gregex (VTE_TERMINAL (screen)) != NULL;
+#endif
 
   g_simple_action_set_enabled (lookup_action (window, "find-forward"), can_search);
   g_simple_action_set_enabled (lookup_action (window, "find-backward"), can_search);
@@ -1728,6 +1754,7 @@ screen_show_popup_menu_cb (TerminalScreen *screen,
       break;
     case FLAVOR_AS_IS:
     case FLAVOR_DEFAULT_TO_HTTP:
+    case FLAVOR_LP:
     default:
       open_label = _("_Open Link");
       copy_label = _("Copy _Link");
@@ -1957,6 +1984,32 @@ terminal_window_realize (GtkWidget *widget)
 }
 
 static gboolean
+terminal_window_draw (GtkWidget *widget,
+                      cairo_t   *cr)
+{
+  if (gtk_widget_get_app_paintable (widget))
+    {
+      GtkAllocation child_allocation;
+      GtkStyleContext *context;
+      GtkWidget *child;
+
+      /* Get the *child* allocation, so we don't overwrite window borders */
+      child = gtk_bin_get_child (GTK_BIN (widget));
+      gtk_widget_get_allocation (child, &child_allocation);
+
+      context = gtk_widget_get_style_context (widget);
+      gtk_render_background (context, cr,
+                             child_allocation.x, child_allocation.y,
+                             child_allocation.width, child_allocation.height);
+      gtk_render_frame (context, cr,
+                        child_allocation.x, child_allocation.y,
+                        child_allocation.width, child_allocation.height);
+    }
+
+  return GTK_WIDGET_CLASS (terminal_window_parent_class)->draw (widget, cr);
+}
+
+static gboolean
 terminal_window_state_event (GtkWidget            *widget,
                              GdkEventWindowState  *event)
 {
@@ -2100,6 +2153,8 @@ terminal_window_init (TerminalWindow *window)
   };
   TerminalWindowPrivate *priv;
   TerminalApp *app;
+  GdkScreen *screen;
+  GdkVisual *visual;
   GSettings *gtk_debug_settings;
   GtkWindowGroup *window_group;
   //  GtkAccelGroup *accel_group;
@@ -2113,6 +2168,11 @@ terminal_window_init (TerminalWindow *window)
   priv = window->priv = G_TYPE_INSTANCE_GET_PRIVATE (window, TERMINAL_TYPE_WINDOW, TerminalWindowPrivate);
 
   gtk_widget_init_template (GTK_WIDGET (window));
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (window));
+  visual = gdk_screen_get_rgba_visual (screen);
+  if (visual != NULL)
+    gtk_widget_set_visual (GTK_WIDGET (window), visual);
 
   uuid_generate (u);
   uuid_unparse (u, uuidstr);
@@ -2260,6 +2320,7 @@ terminal_window_class_init (TerminalWindowClass *klass)
 
   widget_class->show = terminal_window_show;
   widget_class->realize = terminal_window_realize;
+  widget_class->draw = terminal_window_draw;
   widget_class->window_state_event = terminal_window_state_event;
   widget_class->screen_changed = terminal_window_screen_changed;
   widget_class->style_updated = terminal_window_style_updated;
