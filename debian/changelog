@@ -1,3 +1,10 @@
+gnome-terminal (3.28.2-1ubuntu1~18.04.1) bionic; urgency=medium
+
+  * debian/{gbp.conf,control{,.in}}: Update for Ubuntu bionic
+  * Backport from cosmic to bionic.
+
+ -- Iain Lane <laney@debian.org>  Wed, 30 May 2018 14:03:45 +0100
+
 gnome-terminal (3.28.2-1ubuntu1) cosmic; urgency=medium
 
   * Merge with Debian. Remaining changes:
@@ -55,6 +62,13 @@ gnome-terminal (3.28.1-2) unstable; urgency=medium
  -- Jeremy Bicha <jbicha@debian.org>  Fri, 11 May 2018 19:37:03 -0400
 
 gnome-terminal (3.28.1-1ubuntu2) cosmic; urgency=medium
+
+  * Restore File > New Tab menu item. Thanks Debarshi Ray for the suggestion.
+    (LP: #1747171)
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Fri, 11 May 2018 17:15:21 -0400
+
+gnome-terminal (3.28.1-1ubuntu1.1) bionic; urgency=medium
 
   * Restore File > New Tab menu item. Thanks Debarshi Ray for the suggestion.
     (LP: #1747171)
