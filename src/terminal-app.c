@@ -65,6 +65,10 @@
 #define GTK_DEBUG_ENABLE_INSPECTOR_KEY          "enable-inspector-keybinding"
 #define GTK_DEBUG_ENABLE_INSPECTOR_TYPE         G_VARIANT_TYPE_BOOLEAN
 
+#ifdef DISUNIFY_NEW_TERMINAL_SECTION
+#error Use a gsettings override instead
+#endif
+
 /*
  * Session state is stored entirely in the RestartCommand command line.
  *
@@ -109,6 +113,8 @@ struct _TerminalApp
   GtkClipboard *clipboard;
   GdkAtom *clipboard_targets;
   int n_clipboard_targets;
+
+  gboolean unified_menu;
 };
 
 enum
@@ -198,63 +204,6 @@ terminal_app_init_debug (void)
 }
 
 /* Helper functions */
-
-static void
-maybe_migrate_settings (TerminalApp *app)
-{
-#ifdef ENABLE_MIGRATION
-  const char * const argv[] = { 
-    TERM_LIBEXECDIR "/gnome-terminal-migration",
-#ifdef ENABLE_DEBUG
-    "--verbose", 
-#endif
-    NULL 
-  };
-  int status;
-  gs_free_error GError *error = NULL;
-#endif /* ENABLE_MIGRATION */
-  guint version;
-
-  version = g_settings_get_uint (terminal_app_get_global_settings (app), TERMINAL_SETTING_SCHEMA_VERSION);
-  if (version >= TERMINAL_SCHEMA_VERSION) {
-     _terminal_debug_print (TERMINAL_DEBUG_SERVER | TERMINAL_DEBUG_PROFILE,
-                            "Schema version is %u, already migrated.\n", version);
-    return;
-  }
-
-#ifdef ENABLE_MIGRATION
-  /* Only do migration if the settings backend is dconf */
-  GType type = G_OBJECT_TYPE (g_settings_backend_get_default ());
-  if (!g_type_is_a (type, g_type_from_name ("DConfSettingsBackend"))) {
-    _terminal_debug_print (TERMINAL_DEBUG_SERVER | TERMINAL_DEBUG_PROFILE,
-                           "Not migration settings to %s\n", g_type_name (type));
-    goto done;
-  }
-
-  if (!g_spawn_sync (NULL /* our home directory */,
-                     (char **) argv,
-                     NULL /* envv */,
-                     0,
-                     NULL, NULL,
-                     NULL, NULL,
-                     &status,
-                     &error)) {
-    g_printerr ("Failed to migrate settings: %s\n", error->message);
-    return;
-  }
-
-  if (WIFEXITED (status)) {
-    if (WEXITSTATUS (status) != 0)
-      g_printerr ("Profile migrator exited with status %d\n", WEXITSTATUS (status));
-  } else {
-    g_printerr ("Profile migrator exited abnormally.\n");
-  }
-done:
-#endif /* ENABLE_MIGRATION */
-  g_settings_set_uint (terminal_app_get_global_settings (app),
-                       TERMINAL_SETTING_SCHEMA_VERSION,
-                       TERMINAL_SCHEMA_VERSION);
-}
 
 static gboolean
 load_css_from_resource (GApplication *application,
@@ -477,22 +426,23 @@ append_new_terminal_item (GMenu *section,
     g_menu_item_set_link (item, G_MENU_LINK_SUBMENU, G_MENU_MODEL (submenu));
   } else {
     g_menu_item_set_action_and_target (item, "win.new-terminal",
-                                       "(ss)", target, "default");
+                                       "(ss)", target, "current");
   }
   g_menu_append_item (section, item);
 }
 
 static void
-fill_new_terminal_section (GMenu *section,
+fill_new_terminal_section (TerminalApp *app,
+                           GMenu *section,
                            ProfileData *profiles,
                            guint n_profiles)
 {
-#ifndef DISUNIFY_NEW_TERMINAL_SECTION
-  append_new_terminal_item (section, _("New _Terminal"), "default", profiles, n_profiles);
-#else
-  append_new_terminal_item (section, _("New _Tab"), "tab", profiles, n_profiles);
-  append_new_terminal_item (section, _("New _Window"), "window", profiles, n_profiles);
-#endif
+  if (terminal_app_get_menu_unified (app)) {
+    append_new_terminal_item (section, _("New _Terminal"), "default", profiles, n_profiles);
+  } else {
+    append_new_terminal_item (section, _("New _Tab"), "tab", profiles, n_profiles);
+    append_new_terminal_item (section, _("New _Window"), "window", profiles, n_profiles);
+  }
 }
 
 static GMenu *
@@ -534,7 +484,7 @@ terminal_app_update_profile_menus (TerminalApp *app)
   ProfileData *profiles = (ProfileData*) array->data;
   guint n_profiles = array->len;
 
-  fill_new_terminal_section (app->menubar_new_terminal_section, profiles, n_profiles);
+  fill_new_terminal_section (app, app->menubar_new_terminal_section, profiles, n_profiles);
 
   app->set_profile_menu = set_profile_submenu_new (profiles, n_profiles);
 
@@ -698,7 +648,7 @@ terminal_app_startup (GApplication *application)
   /* App menu */
   GMenu *appmenu_new_terminal_section = gtk_application_get_menu_by_id (gtk_application,
                                                                         "new-terminal-section");
-  fill_new_terminal_section (appmenu_new_terminal_section, NULL, 0); /* no submenu */
+  fill_new_terminal_section (app, appmenu_new_terminal_section, NULL, 0); /* no submenu */
 
   /* Menubar */
   /* If the menubar is shown by the shell, omit mnemonics for the submenus. This is because Alt+F etc.
@@ -760,6 +710,11 @@ terminal_app_init (TerminalApp *app)
                                                      GTK_DEBUG_ENABLE_INSPECTOR_KEY,
                                                      GTK_DEBUG_ENABLE_INSPECTOR_TYPE);
 
+  /* This is an internal setting that exists only for distributions
+   * to override, so we cache it on startup and don't react to changes.
+   */
+  app->unified_menu = g_settings_get_boolean (app->global_settings, TERMINAL_SETTING_UNIFIED_MENU);
+
 #if GTK_CHECK_VERSION (3, 19, 0)
   GtkSettings *gtk_settings = gtk_settings_get_default ();
   terminal_app_theme_variant_changed_cb (app->global_settings,
@@ -779,9 +734,6 @@ terminal_app_init (TerminalApp *app)
 
   if (!gdk_display_supports_selection_notification (display))
     g_printerr ("Display does not support owner-change; copy/paste will be broken!\n");
-
-  /* Check if we need to migrate from gconf to dconf */
-  maybe_migrate_settings (app);
 
   /* Get the profiles */
   app->profiles_list = terminal_profiles_list_new ();
@@ -1211,4 +1163,12 @@ terminal_app_get_object_manager (TerminalApp *app)
 {
   g_warn_if_fail (app->object_manager != NULL);
   return app->object_manager;
+}
+
+gboolean
+terminal_app_get_menu_unified (TerminalApp *app)
+{
+  g_return_val_if_fail (TERMINAL_IS_APP (app), TRUE);
+
+  return app->unified_menu;
 }

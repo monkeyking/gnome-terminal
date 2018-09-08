@@ -90,9 +90,6 @@ struct _TerminalWindowPrivate
   guint present_on_insert : 1;
 
   guint realized : 1;
-
-  /* Workaround until gtk+ bug #535557 is fixed */
-  guint icon_title_set : 1;
 };
 
 #define TERMINAL_WINDOW_CSS_NAME "terminal-window"
@@ -166,11 +163,6 @@ static void terminal_window_show (GtkWidget *widget);
 
 static gboolean confirm_close_window_or_tab (TerminalWindow *window,
                                              TerminalScreen *screen);
-
-static void
-sync_screen_icon_title (TerminalScreen *screen,
-                        GParamSpec *psepc,
-                        TerminalWindow *window);
 
 G_DEFINE_TYPE (TerminalWindow, terminal_window, GTK_TYPE_APPLICATION_WINDOW)
 
@@ -1779,21 +1771,21 @@ screen_show_popup_menu_cb (TerminalScreen *screen,
 
   /* New Terminal section */
   gs_unref_object GMenu *section6 = g_menu_new ();
-#ifndef DISUNIFY_NEW_TERMINAL_SECTION
-  gs_unref_object GMenuItem *item6 = g_menu_item_new (_("New _Terminal"), NULL);
-  g_menu_item_set_action_and_target (item6, "win.new-terminal",
-                                     "(ss)", "default", "current");
-  g_menu_append_item (section6, item6);
-#else
-  gs_unref_object GMenuItem *item61 = g_menu_item_new (_("New _Window"), NULL);
-  g_menu_item_set_action_and_target (item61, "win.new-terminal",
-                                     "(ss)", "window", "current");
-  g_menu_append_item (section6, item61);
-  gs_unref_object GMenuItem *item62 = g_menu_item_new (_("New _Tab"), NULL);
-  g_menu_item_set_action_and_target (item62, "win.new-terminal",
-                                     "(ss)", "tab", "current");
-  g_menu_append_item (section6, item62);
-#endif
+  if (terminal_app_get_menu_unified (app)) {
+    gs_unref_object GMenuItem *item6 = g_menu_item_new (_("New _Terminal"), NULL);
+    g_menu_item_set_action_and_target (item6, "win.new-terminal",
+                                       "(ss)", "default", "current");
+    g_menu_append_item (section6, item6);
+  } else {
+    gs_unref_object GMenuItem *item61 = g_menu_item_new (_("New _Window"), NULL);
+    g_menu_item_set_action_and_target (item61, "win.new-terminal",
+                                       "(ss)", "window", "current");
+    g_menu_append_item (section6, item61);
+    gs_unref_object GMenuItem *item62 = g_menu_item_new (_("New _Tab"), NULL);
+    g_menu_item_set_action_and_target (item62, "win.new-terminal",
+                                       "(ss)", "tab", "current");
+    g_menu_append_item (section6, item62);
+  }
   g_menu_append_section (menu, NULL, G_MENU_MODEL (section6));
 
   /* Window section */
@@ -1944,10 +1936,6 @@ terminal_window_realize (GtkWidget *widget)
                          widget_allocation.x, widget_allocation.y);
 
   GTK_WIDGET_CLASS (terminal_window_parent_class)->realize (widget);
-
-  /* Need to do this now since this requires the window to be realized */
-  if (priv->active_screen != NULL)
-    sync_screen_icon_title (priv->active_screen, NULL, window);
 
   /* Now that we've been realized, we should know precisely how large the
    * client-side decorations are going to be. Recalculate the geometry hints,
@@ -2423,58 +2411,6 @@ sync_screen_title (TerminalScreen *screen,
 }
 
 static void
-sync_screen_icon_title (TerminalScreen *screen,
-                        GParamSpec *psepc,
-                        TerminalWindow *window)
-{
-  TerminalWindowPrivate *priv = window->priv;
-
-  if (!gtk_widget_get_realized (GTK_WIDGET (window)))
-    return;
-
-  if (screen != priv->active_screen)
-    return;
-
-  if (!terminal_screen_get_icon_title_set (screen))
-    return;
-
-  gdk_window_set_icon_name (gtk_widget_get_window (GTK_WIDGET (window)), terminal_screen_get_icon_title (screen));
-
-  priv->icon_title_set = TRUE;
-}
-
-static void
-sync_screen_icon_title_set (TerminalScreen *screen,
-                            GParamSpec *psepc,
-                            TerminalWindow *window)
-{
-  TerminalWindowPrivate *priv = window->priv;
-
-  if (!gtk_widget_get_realized (GTK_WIDGET (window)))
-    return;
-
-  /* No need to restore the title if we never set an icon title */
-  if (!priv->icon_title_set)
-    return;
-
-  if (screen != priv->active_screen)
-    return;
-
-  if (terminal_screen_get_icon_title_set (screen))
-    return;
-
-  /* Need to reset the icon name */
-  /* FIXME: Once gtk+ bug 535557 is fixed, use that to unset the icon title. */
-
-  g_object_set_qdata (G_OBJECT (gtk_widget_get_window (GTK_WIDGET (window))),
-                      g_quark_from_static_string ("gdk-icon-name-set"),
-                      GUINT_TO_POINTER (FALSE));
-  priv->icon_title_set = FALSE;
-
-  /* Re-setting the right title will be done by the notify::title handler which comes after this one */
-}
-
-static void
 screen_font_any_changed_cb (TerminalScreen *screen,
                             GParamSpec *psepc,
                             TerminalWindow *window)
@@ -2808,8 +2744,6 @@ mdi_screen_switched_cb (TerminalMdiContainer *container,
       terminal_window_set_menubar_visible (window, setting);
     }
 
-  sync_screen_icon_title_set (screen, NULL, window);
-  sync_screen_icon_title (screen, NULL, window);
   sync_screen_title (screen, NULL, window);
 
   /* set size of window to current grid size */
@@ -2847,10 +2781,6 @@ mdi_screen_added_cb (TerminalMdiContainer *container,
   /* FIXME: only connect on the active screen, not all screens! */
   g_signal_connect (screen, "notify::title",
                     G_CALLBACK (sync_screen_title), window);
-  g_signal_connect (screen, "notify::icon-title",
-                    G_CALLBACK (sync_screen_icon_title), window);
-  g_signal_connect (screen, "notify::icon-title-set",
-                    G_CALLBACK (sync_screen_icon_title_set), window);
   g_signal_connect (screen, "notify::font-desc",
                     G_CALLBACK (screen_font_any_changed_cb), window);
   g_signal_connect (screen, "notify::font-scale",
@@ -2930,14 +2860,6 @@ mdi_screen_removed_cb (TerminalMdiContainer *container,
 
   g_signal_handlers_disconnect_by_func (G_OBJECT (screen),
                                         G_CALLBACK (sync_screen_title),
-                                        window);
-
-  g_signal_handlers_disconnect_by_func (G_OBJECT (screen),
-                                        G_CALLBACK (sync_screen_icon_title),
-                                        window);
-
-  g_signal_handlers_disconnect_by_func (G_OBJECT (screen),
-                                        G_CALLBACK (sync_screen_icon_title_set),
                                         window);
 
   g_signal_handlers_disconnect_by_func (G_OBJECT (screen),
