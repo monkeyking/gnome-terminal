@@ -23,10 +23,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef WITH_PCRE2
 #include "terminal-pcre2.h"
-#endif
-
 #include "terminal-search-popover.h"
 #include "terminal-intl.h"
 #include "terminal-window.h"
@@ -66,13 +63,8 @@ struct _TerminalSearchPopoverPrivate
 
   /* Cached regex */
   gboolean regex_caseless;
-  gboolean regex_multiline;
   char *regex_pattern;
-#ifdef WITH_PCRE2
   VteRegex *regex;
-#else
-  GRegex *regex;
-#endif
 };
 
 enum {
@@ -267,7 +259,7 @@ update_regex (TerminalSearchPopover *popover)
 {
   TerminalSearchPopoverPrivate *priv = PRIV (popover);
   const char *search_text;
-  gboolean caseless, multiline = FALSE;
+  gboolean caseless;
   gs_free char *pattern;
   gs_free_error GError *error = NULL;
 
@@ -277,7 +269,6 @@ update_regex (TerminalSearchPopover *popover)
 
   if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->regex_checkbutton))) {
     pattern = g_strdup (search_text);
-    multiline = TRUE;
   } else {
     pattern = g_regex_escape_string (search_text, -1);
   }
@@ -290,47 +281,29 @@ update_regex (TerminalSearchPopover *popover)
   }
 
   if (priv->regex_caseless == caseless &&
-      priv->regex_multiline == multiline &&
       g_strcmp0 (priv->regex_pattern, pattern) == 0)
     return;
 
   if (priv->regex) {
-#ifdef WITH_PCRE2
     vte_regex_unref (priv->regex);
-#else
-    g_regex_unref (priv->regex);
-#endif
   }
 
   g_clear_pointer (&priv->regex_pattern, g_free);
 
   /* FIXME: if comping the regex fails, show the error message somewhere */
   if (search_text[0] != '\0') {
-#ifdef WITH_PCRE2
     guint32 compile_flags;
 
-    compile_flags = PCRE2_UTF | PCRE2_NO_UTF_CHECK;
+    compile_flags = PCRE2_UTF | PCRE2_NO_UTF_CHECK | PCRE2_MULTILINE;
     if (caseless)
       compile_flags |= PCRE2_CASELESS;
-    if (multiline)
-      compile_flags |= PCRE2_MULTILINE;
 
     priv->regex = vte_regex_new_for_search (pattern, -1, compile_flags, &error);
     if (priv->regex != NULL &&
         (!vte_regex_jit (priv->regex, PCRE2_JIT_COMPLETE, NULL) ||
          !vte_regex_jit (priv->regex, PCRE2_JIT_PARTIAL_SOFT, NULL))) {
     }
-#else
-    GRegexCompileFlags compile_flags;
 
-    compile_flags = G_REGEX_OPTIMIZE;
-    if (caseless)
-      compile_flags |= G_REGEX_CASELESS;
-    if (multiline)
-      compile_flags |= G_REGEX_MULTILINE;
-
-    priv->regex = g_regex_new (pattern, compile_flags, 0, &error);
-#endif
     if (priv->regex != NULL)
       gs_transfer_out_value (&priv->regex_pattern, &pattern);
   } else {
@@ -380,7 +353,6 @@ terminal_search_popover_init (TerminalSearchPopover *popover)
 
   priv->regex_pattern = 0;
   priv->regex_caseless = TRUE;
-  priv->regex_multiline = FALSE;
 
   gtk_widget_init_template (widget);
 
@@ -448,11 +420,7 @@ terminal_search_popover_finalize (GObject *object)
   TerminalSearchPopoverPrivate *priv = PRIV (popover);
 
   if (priv->regex) {
-#ifdef WITH_PCRE2
     vte_regex_unref (priv->regex);
-#else
-    g_regex_unref (priv->regex);
-#endif
   }
 
   g_free (priv->regex_pattern);
@@ -521,11 +489,7 @@ terminal_search_popover_class_init (TerminalSearchPopoverClass *klass)
 
   pspecs[PROP_REGEX] =
     g_param_spec_boxed ("regex", NULL, NULL,
-#ifdef WITH_PCRE2
                         VTE_TYPE_REGEX,
-#else
-                        G_TYPE_REGEX,
-#endif
                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB);
 
   pspecs[PROP_WRAP_AROUND] =
@@ -573,11 +537,7 @@ terminal_search_popover_new (GtkWidget *relative_to_widget)
  *
  * Returns: (transfer none): the search regex, or %NULL
  */
-#ifdef WITH_PCRE2
 VteRegex *
-#else
-GRegex *
-#endif
 terminal_search_popover_get_regex (TerminalSearchPopover *popover)
 {
   g_return_val_if_fail (TERMINAL_IS_SEARCH_POPOVER (popover), NULL);
