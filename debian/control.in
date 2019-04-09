@@ -1,7 +1,8 @@
 Source: gnome-terminal
 Section: gnome
 Priority: optional
-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
 Build-Depends: debhelper (>= 11),
                dh-exec,
@@ -24,8 +25,10 @@ Build-Depends: debhelper (>= 11),
                libnautilus-extension-dev (>= 3.21.92-3~)
 Rules-Requires-Root: no
 Standards-Version: 4.3.0
-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-terminal
-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-terminal.git
+Vcs-Browser: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-terminal
+Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-terminal
+XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-terminal
+XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-terminal.git
 Homepage: https://wiki.gnome.org/Apps/Terminal
 
 Package: gnome-terminal
@@ -34,6 +37,9 @@ Multi-Arch: foreign
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          default-dbus-session-bus | dbus-session-bus,
+         python3,
+         python3-gi,
+         gir1.2-glib-2.0,
          gsettings-desktop-schemas (>= 0.1.0),
          gnome-terminal-data (>= ${gnome:Version}),
          gnome-terminal-data (<< ${gnome:NextVersion})
