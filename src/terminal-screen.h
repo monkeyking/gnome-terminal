@@ -105,6 +105,8 @@ void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
 char **      terminal_screen_get_initial_environment (TerminalScreen  *screen);
 
 const char* terminal_screen_get_title          (TerminalScreen *screen);
+GdkRGBA*    terminal_screen_get_bg_color       (TerminalScreen *screen);
+GdkRGBA*    terminal_screen_get_fg_color       (TerminalScreen *screen);
 
 char *terminal_screen_get_current_dir (TerminalScreen *screen);
 
